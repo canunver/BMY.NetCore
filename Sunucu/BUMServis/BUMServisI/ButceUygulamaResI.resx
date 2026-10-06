@@ -1,0 +1,1149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BUM001" xml:space="preserve">
+    <value>Kurum Kodu Girilmesi gerekmektedir.</value>
+  </data>
+  <data name="BUM002" xml:space="preserve">
+    <value>Kullanıcı alanı boş geliyor.</value>
+  </data>
+  <data name="BUM003" xml:space="preserve">
+    <value>Aşama daha önce onaylanmış. Kayıt Yapamazsınız</value>
+  </data>
+  <data name="BUM004" xml:space="preserve">
+    <value>AHP Kaydetme Yetkiniz Yok</value>
+  </data>
+  <data name="BUM005" xml:space="preserve">
+    <value>Kayıt işlemi için en az 1 adet kayıt gönderilmelidir!</value>
+  </data>
+  <data name="BUM006" xml:space="preserve">
+    <value>Gider, Gelir ve Finasman haricinde kayt işlemi geçersizdir!</value>
+  </data>
+  <data name="BUM007" xml:space="preserve">
+    <value>tertibi gönderilen diğer tertiplerin formatında değil!</value>
+  </data>
+  <data name="BUM008" xml:space="preserve">
+    <value>tertibi</value>
+  </data>
+  <data name="BUM009" xml:space="preserve">
+    <value>kurumuna/birimine ait değil!</value>
+  </data>
+  <data name="BUM010" xml:space="preserve">
+    <value>Aylıkların toplamı</value>
+  </data>
+  <data name="BUM011" xml:space="preserve">
+    <value>KBÖ'yü yada belirlenen limiti</value>
+  </data>
+  <data name="BUM012" xml:space="preserve">
+    <value>geçmemelidir. Lütfen düzelterek tekrar deneyin.</value>
+  </data>
+  <data name="BUM013" xml:space="preserve">
+    <value>Kurum Kodu Girilmesi gerekmektedir.</value>
+  </data>
+  <data name="BUM014" xml:space="preserve">
+    <value>Kullanıcı Bilgisi Boş Olamaz</value>
+  </data>
+  <data name="BUM015" xml:space="preserve">
+    <value>Verdiğniz değerlere uyan tertipleri veya aşamayı  görme hakkınız yok.</value>
+  </data>
+  <data name="BUM016" xml:space="preserve">
+    <value>Gider, Gelir ve Finasman haricinde bu işlem geçersizdir!</value>
+  </data>
+  <data name="BUM017" xml:space="preserve">
+    <value>Veritabanından yanlış ay geldi</value>
+  </data>
+  <data name="BUM018" xml:space="preserve">
+    <value>Veritabanından okuma yapılamadı</value>
+  </data>
+  <data name="BUM019" xml:space="preserve">
+    <value>Gider, Gelir ve Finasman haricinde işlem yapılamamaktadır!</value>
+  </data>
+  <data name="BUM020" xml:space="preserve">
+    <value>Veritabanından yanlış ay geldi</value>
+  </data>
+  <data name="BUM021" xml:space="preserve">
+    <value>Veritabanından okuma yapılamadı</value>
+  </data>
+  <data name="BUM022" xml:space="preserve">
+    <value>Kurum Kodu Girilmesi gerekmektedir.</value>
+  </data>
+  <data name="BUM023" xml:space="preserve">
+    <value>Kullanıcı Bilgisi Boş Olamaz</value>
+  </data>
+  <data name="BUM024" xml:space="preserve">
+    <value>Bu birimi veya aşamayı görme yetkiniz yok</value>
+  </data>
+  <data name="BUM025" xml:space="preserve">
+    <value>Veritabanından yanlış ay geldi</value>
+  </data>
+  <data name="BUM026" xml:space="preserve">
+    <value>Veritabanından okuma yapılamadı</value>
+  </data>
+  <data name="BUM027" xml:space="preserve">
+    <value>Tanınmayan tertip geldi</value>
+  </data>
+  <data name="BUM028" xml:space="preserve">
+    <value>Veritabanından yanlış ay geldi</value>
+  </data>
+  <data name="BUM029" xml:space="preserve">
+    <value>Veritabanından okuma yapılamadı</value>
+  </data>
+  <data name="BUM030" xml:space="preserve">
+    <value>Kullanıcı alanı boş geliyor.</value>
+  </data>
+  <data name="BUM031" xml:space="preserve">
+    <value>Kurum Kodu Girilmesi gerekmektedir.</value>
+  </data>
+  <data name="BUM032" xml:space="preserve">
+    <value>AHP Kaydetme Yetkiniz Yok</value>
+  </data>
+  <data name="BUM033" xml:space="preserve">
+    <value>Aşama daha önce onaylanmış. Kayıt Yapamazsınız</value>
+  </data>
+  <data name="BUM034" xml:space="preserve">
+    <value>Seçtiğiniz ekonomik koda ait bilgi bulunamamıştır.</value>
+  </data>
+  <data name="BUM035" xml:space="preserve">
+    <value>Kurum Kodu Girilmesi gerekmektedir.</value>
+  </data>
+  <data name="BUM036" xml:space="preserve">
+    <value>Bir Kurum Yada Birim seçmeniz gerekmektedir!</value>
+  </data>
+  <data name="BUM037" xml:space="preserve">
+    <value>Kullanıcı alanı boş geliyor.</value>
+  </data>
+  <data name="BUM038" xml:space="preserve">
+    <value>AHP Onay Kaldırma Yetkiniz Yok</value>
+  </data>
+  <data name="BUM039" xml:space="preserve">
+    <value>tertibi bloke tutulması gereken miktardan</value>
+  </data>
+  <data name="BUM040" xml:space="preserve">
+    <value>fazla girilmiş</value>
+  </data>
+  <data name="BUM041" xml:space="preserve">
+    <value>Düzelterek tekrar deneyin.</value>
+  </data>
+  <data name="BUM042" xml:space="preserve">
+    <value>Veritabanı okuma hatası</value>
+  </data>
+  <data name="BUM043" xml:space="preserve">
+    <value>Veritabanından okuma yapılamadı</value>
+  </data>
+  <data name="BUM044" xml:space="preserve">
+    <value>Veritabanından okuma yapılamadı</value>
+  </data>
+  <data name="BUM045" xml:space="preserve">
+    <value>Ekonomik kod için AHP toplamı IHP toplamından büyük. Lütfen Kontrol Ediniz.</value>
+  </data>
+  <data name="BUM046" xml:space="preserve">
+    <value>Kurum Kodu Girilmesi gerekmektedir.</value>
+  </data>
+  <data name="BUM047" xml:space="preserve">
+    <value>Bir Kurum seçmeniz gerekmektedir!</value>
+  </data>
+  <data name="BUM048" xml:space="preserve">
+    <value>Kullanıcı alanı boş geliyor!</value>
+  </data>
+  <data name="BUM049" xml:space="preserve">
+    <value>AHP Onaylama Yetkiniz Yok!</value>
+  </data>
+  <data name="BUM050" xml:space="preserve">
+    <value>Ahp'yi onaylayabilmeniz için öncelikle IHP'yi onaylamanız gerekmektedir!</value>
+  </data>
+  <data name="BUM051" xml:space="preserve">
+    <value>Veritabanından okuma yapılamadı</value>
+  </data>
+  <data name="BUM052" xml:space="preserve">
+    <value>Hatalı kurumKod</value>
+  </data>
+  <data name="BUM053" xml:space="preserve">
+    <value>geldi.</value>
+  </data>
+  <data name="BUM054" xml:space="preserve">
+    <value>Kurum kodu boş olamaz!</value>
+  </data>
+  <data name="BUM055" xml:space="preserve">
+    <value>Dayanaklar okunurken hata oldu!</value>
+  </data>
+  <data name="BUM056" xml:space="preserve">
+    <value>Gider tertipleri eklenirken hata oldu!</value>
+  </data>
+  <data name="BUM057" xml:space="preserve">
+    <value>Gelir tertipleri eklenirken hata oldu!</value>
+  </data>
+  <data name="BUM058" xml:space="preserve">
+    <value>Finans tertipleri eklenirken hata oldu!</value>
+  </data>
+  <data name="BUM059" xml:space="preserve">
+    <value>Gider tertipleri eklenirken hata oldu!</value>
+  </data>
+  <data name="BUM060" xml:space="preserve">
+    <value>Gelir tertipleri eklenirken hata oldu!</value>
+  </data>
+  <data name="BUM061" xml:space="preserve">
+    <value>Finans tertipleri eklenirken hata oldu!</value>
+  </data>
+  <data name="BUM062" xml:space="preserve">
+    <value>Veri tabanından kayıt okunamadı!</value>
+  </data>
+  <data name="BUM063" xml:space="preserve">
+    <value>Dayanaklar okunamadı</value>
+  </data>
+  <data name="BUM064" xml:space="preserve">
+    <value>Bu işlemi yapmaya yetkiniz yok</value>
+  </data>
+  <data name="BUM065" xml:space="preserve">
+    <value>Dayanaklar okunamadı</value>
+  </data>
+  <data name="BUM066" xml:space="preserve">
+    <value>Kopyalama yapmak için sistem yöneticisi olmanız gerekiyor!</value>
+  </data>
+  <data name="BUM067" xml:space="preserve">
+    <value>PERSONEL GİDERLERİNİ KARŞILAMA ÖDENEĞİ</value>
+  </data>
+  <data name="BUM068" xml:space="preserve">
+    <value>YATIRIMLARI HIZLANDIRMA ÖDENEĞİ</value>
+  </data>
+  <data name="BUM069" xml:space="preserve">
+    <value>DOĞAL AFET GİDERLERİNİ KARŞILAMA ÖDENEĞİ</value>
+  </data>
+  <data name="BUM070" xml:space="preserve">
+    <value>YEDEK ÖDENEK</value>
+  </data>
+  <data name="BUM071" xml:space="preserve">
+    <value>YENİ KURULACAK DAİRE VE İDARELERİN İHTİYAÇLARINI KARŞILAMA ÖDENEĞİ</value>
+  </data>
+  <data name="BUM072" xml:space="preserve">
+    <value>Diğer-İlama bağlı borçları karşılama ödeneği</value>
+  </data>
+  <data name="BUM073" xml:space="preserve">
+    <value>Diğer-Özellikli giderleri karşılama ödeneği</value>
+  </data>
+  <data name="BUM074" xml:space="preserve">
+    <value>STRATEJİ GELİŞTİRME BAŞKANLIĞINA</value>
+  </data>
+  <data name="BUM075" xml:space="preserve">
+    <value>Kurumlar listesi okunamadı!</value>
+  </data>
+  <data name="BUM076" xml:space="preserve">
+    <value>Verdiğiniz işlem kodu</value>
+  </data>
+  <data name="BUM077" xml:space="preserve">
+    <value>hatalı!</value>
+  </data>
+  <data name="BUM078" xml:space="preserve">
+    <value>Verdiğiniz numaralı işlemi görme yetkiniz yok!</value>
+  </data>
+  <data name="BUM079" xml:space="preserve">
+    <value>Dayanaklar okunurken hata oldu!</value>
+  </data>
+  <data name="BUM080" xml:space="preserve">
+    <value>Gider harcama programı tertipleri okunurken hata oldu!</value>
+  </data>
+  <data name="BUM081" xml:space="preserve">
+    <value>Gelir harcama programı tertipleri okunurken hata oldu!</value>
+  </data>
+  <data name="BUM082" xml:space="preserve">
+    <value>Finansman harcama programı tertipleri okunurken hata oldu!</value>
+  </data>
+  <data name="BUM083" xml:space="preserve">
+    <value>Gider tertipleri okunurken hata oldu!</value>
+  </data>
+  <data name="BUM084" xml:space="preserve">
+    <value>Verdiğiniz numaraya ait işlem bulunamadı!</value>
+  </data>
+  <data name="BUM085" xml:space="preserve">
+    <value>Verdiğiniz kuruma ait işlemleri görme yetkiniz yok!</value>
+  </data>
+  <data name="BUM086" xml:space="preserve">
+    <value>.satırda verilen</value>
+  </data>
+  <data name="BUM087" xml:space="preserve">
+    <value>tertibi bulunamadı!</value>
+  </data>
+  <data name="BUM088" xml:space="preserve">
+    <value>Devreden tertip</value>
+  </data>
+  <data name="BUM089" xml:space="preserve">
+    <value>bulunamadı!</value>
+  </data>
+  <data name="BUM090" xml:space="preserve">
+    <value>KBÖ'sü olan bir tertibi</value>
+  </data>
+  <data name="BUM091" xml:space="preserve">
+    <value>yeni diye işaretleyemezsiniz!(yıldızyer sıfırdan farklı)</value>
+  </data>
+  <data name="BUM092" xml:space="preserve">
+    <value>Daha önce başka bir bütçe işlemi(İşlem:</value>
+  </data>
+  <data name="BUM093" xml:space="preserve">
+    <value>SıraNo:</value>
+  </data>
+  <data name="BUM094" xml:space="preserve">
+    <value>)ile açılmış bir tertibi(</value>
+  </data>
+  <data name="BUM095" xml:space="preserve">
+    <value>), tekrar açmaya çalışıyorsunuz! (yıldızyer sıfırdan farklı)</value>
+  </data>
+  <data name="BUM096" xml:space="preserve">
+    <value>"Daha önce açılmamış bir tertip ("</value>
+  </data>
+  <data name="BUM097" xml:space="preserve">
+    <value>) için, yıldız yeri belirtmelisiniz!</value>
+  </data>
+  <data name="BUM098" xml:space="preserve">
+    <value>Kurumsal kod (</value>
+  </data>
+  <data name="BUM099" xml:space="preserve">
+    <value>) veya fonksiyonel kod(</value>
+  </data>
+  <data name="BUM100" xml:space="preserve">
+    <value>) veya finans kodu(</value>
+  </data>
+  <data name="BUM101" xml:space="preserve">
+    <value>) veya ekonomik kod(</value>
+  </data>
+  <data name="BUM102" xml:space="preserve">
+    <value>) hatalı!</value>
+  </data>
+  <data name="BUM103" xml:space="preserve">
+    <value>Girilen tertip</value>
+  </data>
+  <data name="BUM104" xml:space="preserve">
+    <value>hatalı!</value>
+  </data>
+  <data name="BUM105" xml:space="preserve">
+    <value>Fonksiyonel kod</value>
+  </data>
+  <data name="BUM106" xml:space="preserve">
+    <value>veya finans kodu</value>
+  </data>
+  <data name="BUM107" xml:space="preserve">
+    <value>veya ekonomik kod</value>
+  </data>
+  <data name="BUM108" xml:space="preserve">
+    <value>hatalı!</value>
+  </data>
+  <data name="BUM109" xml:space="preserve">
+    <value>Gönderdiğiniz işlemde aylık program girilmesi gerekirken girilmemiş</value>
+  </data>
+  <data name="BUM110" xml:space="preserve">
+    <value>tertibinde Harcama programı aylara dağıtılamadı!(Dağıtılamayan Miktar:</value>
+  </data>
+  <data name="BUM111" xml:space="preserve">
+    <value>KBÖ'sü olmayan bir tertibin</value>
+  </data>
+  <data name="BUM112" xml:space="preserve">
+    <value>icmal revizesi yapılamaz!</value>
+  </data>
+  <data name="BUM113" xml:space="preserve">
+    <value>Yaptığınız serbest bırakma işlemi ile</value>
+  </data>
+  <data name="BUM114" xml:space="preserve">
+    <value>tertibinde, serbest toplamı</value>
+  </data>
+  <data name="BUM115" xml:space="preserve">
+    <value>odeneği</value>
+  </data>
+  <data name="BUM116" xml:space="preserve">
+    <value>geçti!</value>
+  </data>
+  <data name="BUM117" xml:space="preserve">
+    <value>tertibinden yaptığınız düşme miktarı</value>
+  </data>
+  <data name="BUM118" xml:space="preserve">
+    <value>kalan serbestten</value>
+  </data>
+  <data name="BUM119" xml:space="preserve">
+    <value>fazla!</value>
+  </data>
+  <data name="BUM120" xml:space="preserve">
+    <value>tertibinde yaptığınız ekleme ile toplam eklenen</value>
+  </data>
+  <data name="BUM121" xml:space="preserve">
+    <value>KBÖ'nün</value>
+  </data>
+  <data name="BUM122" xml:space="preserve">
+    <value>yüzde</value>
+  </data>
+  <data name="BUM123" xml:space="preserve">
+    <value>oranını geçti!</value>
+  </data>
+  <data name="BUM124" xml:space="preserve">
+    <value>Yaptığınız işlem ile</value>
+  </data>
+  <data name="BUM125" xml:space="preserve">
+    <value>gider tertibinde, AHP toplamı</value>
+  </data>
+  <data name="BUM126" xml:space="preserve">
+    <value>ödeneğin son durumunu</value>
+  </data>
+  <data name="BUM127" xml:space="preserve">
+    <value>geçti!</value>
+  </data>
+  <data name="BUM128" xml:space="preserve">
+    <value>Yaptığınız işlem ile</value>
+  </data>
+  <data name="BUM129" xml:space="preserve">
+    <value>gider tertibinde</value>
+  </data>
+  <data name="BUM130" xml:space="preserve">
+    <value>ay, AHP toplamı</value>
+  </data>
+  <data name="BUM131" xml:space="preserve">
+    <value>sıfırdan küçük oldu!</value>
+  </data>
+  <data name="BUM132" xml:space="preserve">
+    <value>Yaptığınız işlem ile</value>
+  </data>
+  <data name="BUM133" xml:space="preserve">
+    <value>icmal tertibinde, icmal toplamı</value>
+  </data>
+  <data name="BUM134" xml:space="preserve">
+    <value>başlangıç ödeneğini</value>
+  </data>
+  <data name="BUM135" xml:space="preserve">
+    <value>geçti!</value>
+  </data>
+  <data name="BUM136" xml:space="preserve">
+    <value>Yaptığınız işlem ile</value>
+  </data>
+  <data name="BUM137" xml:space="preserve">
+    <value>icmal tertibinde</value>
+  </data>
+  <data name="BUM138" xml:space="preserve">
+    <value>. aya kadar olan icmal toplamı</value>
+  </data>
+  <data name="BUM139" xml:space="preserve">
+    <value>Aktarmalar hariç</value>
+  </data>
+  <data name="BUM140" xml:space="preserve">
+    <value>aynı aya kadar olan harcama programı toplamından</value>
+  </data>
+  <data name="BUM141" xml:space="preserve">
+    <value>Aktarmalar hariç</value>
+  </data>
+  <data name="BUM142" xml:space="preserve">
+    <value>küçük oldu!</value>
+  </data>
+  <data name="BUM143" xml:space="preserve">
+    <value>KBÖ'sü olan bir gelir tertibine</value>
+  </data>
+  <data name="BUM144" xml:space="preserve">
+    <value>yeni diye işaretleyemezsiniz</value>
+  </data>
+  <data name="BUM145" xml:space="preserve">
+    <value>yıldızyer sıfırdan farklı</value>
+  </data>
+  <data name="BUM146" xml:space="preserve">
+    <value>Daha önce başka bir bütçe işlemi</value>
+  </data>
+  <data name="BUM147" xml:space="preserve">
+    <value>İşlem:</value>
+  </data>
+  <data name="BUM148" xml:space="preserve">
+    <value>SıraNo:</value>
+  </data>
+  <data name="BUM149" xml:space="preserve">
+    <value>ile açılmış bir gelir tertibini</value>
+  </data>
+  <data name="BUM150" xml:space="preserve">
+    <value>tekrar açmaya çalışıyorsunuz</value>
+  </data>
+  <data name="BUM151" xml:space="preserve">
+    <value>yıldızyer sıfırdan farklı</value>
+  </data>
+  <data name="BUM152" xml:space="preserve">
+    <value>Daha önce açılmamış bir gelir tertibi</value>
+  </data>
+  <data name="BUM153" xml:space="preserve">
+    <value>için, yıldız yeri belirtmelisiniz!</value>
+  </data>
+  <data name="BUM154" xml:space="preserve">
+    <value>Kurumsal kod</value>
+  </data>
+  <data name="BUM155" xml:space="preserve">
+    <value>veya gelir ekonomik kodu</value>
+  </data>
+  <data name="BUM156" xml:space="preserve">
+    <value>hatalı!</value>
+  </data>
+  <data name="BUM157" xml:space="preserve">
+    <value>Girilen tertip</value>
+  </data>
+  <data name="BUM158" xml:space="preserve">
+    <value>hatalı!</value>
+  </data>
+  <data name="BUM159" xml:space="preserve">
+    <value>veya gelir ekonomik kodu</value>
+  </data>
+  <data name="BUM160" xml:space="preserve">
+    <value>hatalı!</value>
+  </data>
+  <data name="BUM161" xml:space="preserve">
+    <value>Girilen tertip</value>
+  </data>
+  <data name="BUM162" xml:space="preserve">
+    <value>hatalı!</value>
+  </data>
+  <data name="BUM163" xml:space="preserve">
+    <value>tertibinden yaptığınız işlem sonucunda</value>
+  </data>
+  <data name="BUM164" xml:space="preserve">
+    <value>kalan ödenek</value>
+  </data>
+  <data name="BUM165" xml:space="preserve">
+    <value>negatif oldu!</value>
+  </data>
+  <data name="BUM166" xml:space="preserve">
+    <value>Yaptığınız işlem ile</value>
+  </data>
+  <data name="BUM167" xml:space="preserve">
+    <value>gelir tertibinde, icmal toplamı</value>
+  </data>
+  <data name="BUM168" xml:space="preserve">
+    <value>başlangıç ödeneğini</value>
+  </data>
+  <data name="BUM169" xml:space="preserve">
+    <value>geçti!</value>
+  </data>
+  <data name="BUM170" xml:space="preserve">
+    <value>KBÖ'sü olan bir finansman tertibini</value>
+  </data>
+  <data name="BUM171" xml:space="preserve">
+    <value>yeni diye işaretleyemezsiniz!(yıldızyer sıfırdan farklı)</value>
+  </data>
+  <data name="BUM172" xml:space="preserve">
+    <value>Daha önce başka bir bütçe işlemi</value>
+  </data>
+  <data name="BUM173" xml:space="preserve">
+    <value>İşlem:</value>
+  </data>
+  <data name="BUM174" xml:space="preserve">
+    <value>SıraNo:</value>
+  </data>
+  <data name="BUM175" xml:space="preserve">
+    <value>tekrar açmaya çalışıyorsunuz! (yıldızyer sıfırdan farklı)</value>
+  </data>
+  <data name="BUM176" xml:space="preserve">
+    <value>Daha önce açılmamış bir finansman tertibi</value>
+  </data>
+  <data name="BUM177" xml:space="preserve">
+    <value>için, yıldız yeri belirtmelisiniz!</value>
+  </data>
+  <data name="BUM178" xml:space="preserve">
+    <value>Kurumsal kod</value>
+  </data>
+  <data name="BUM179" xml:space="preserve">
+    <value>veya finansman kodu</value>
+  </data>
+  <data name="BUM180" xml:space="preserve">
+    <value>hatalı!</value>
+  </data>
+  <data name="BUM181" xml:space="preserve">
+    <value>Girilen finansman tertibi</value>
+  </data>
+  <data name="BUM182" xml:space="preserve">
+    <value>hatalı!</value>
+  </data>
+  <data name="BUM183" xml:space="preserve">
+    <value>Kurumsal kod</value>
+  </data>
+  <data name="BUM184" xml:space="preserve">
+    <value>veya finansman kodu</value>
+  </data>
+  <data name="BUM185" xml:space="preserve">
+    <value>hatalı!</value>
+  </data>
+  <data name="BUM186" xml:space="preserve">
+    <value>Girilen finansman tertibi</value>
+  </data>
+  <data name="BUM187" xml:space="preserve">
+    <value>hatalı!</value>
+  </data>
+  <data name="BUM188" xml:space="preserve">
+    <value>tertibinden yaptığınız işlem sonucunda</value>
+  </data>
+  <data name="BUM189" xml:space="preserve">
+    <value>kalan ödenek</value>
+  </data>
+  <data name="BUM190" xml:space="preserve">
+    <value>negatif oldu!</value>
+  </data>
+  <data name="BUM191" xml:space="preserve">
+    <value>Yaptığınız işlem ile</value>
+  </data>
+  <data name="BUM192" xml:space="preserve">
+    <value>finansman tertibinde, icmal toplamı</value>
+  </data>
+  <data name="BUM193" xml:space="preserve">
+    <value>başlangıç ödeneğini</value>
+  </data>
+  <data name="BUM194" xml:space="preserve">
+    <value>geçti!</value>
+  </data>
+  <data name="BUM195" xml:space="preserve">
+    <value>Bu kuruma işlem kaydetme yetkiniz bulunmamaktadır.</value>
+  </data>
+  <data name="BUM196" xml:space="preserve">
+    <value>AHP Onaylanmadan AHP Revize yapamazsınız.</value>
+  </data>
+  <data name="BUM197" xml:space="preserve">
+    <value>İHP Onaylanmadan İHP Revize yapamazsınız.</value>
+  </data>
+  <data name="BUM198" xml:space="preserve">
+    <value>Yalnızca yeni durumundaki formlar kaydedilebilir!</value>
+  </data>
+  <data name="BUM199" xml:space="preserve">
+    <value>Başka bir kullanıcının yaptığı işlemi değiştirme hakkınız yoktur.</value>
+  </data>
+  <data name="BUM200" xml:space="preserve">
+    <value>İptal etmeye çalıştığınız işlem onaylı olmadığı için, iptal formu ile iptal edilemez!</value>
+  </data>
+  <data name="BUM201" xml:space="preserve">
+    <value>Bu işlemi onaylama yetkiniz bulunmamaktadır..</value>
+  </data>
+  <data name="BUM202" xml:space="preserve">
+    <value>Bu kuruma ait işlemleri onaylama yetkiniz bulunmamaktadır.</value>
+  </data>
+  <data name="BUM203" xml:space="preserve">
+    <value>Onaylanacak form önce kaydedilmelidir!</value>
+  </data>
+  <data name="BUM204" xml:space="preserve">
+    <value>Yalnızca yeni durumundaki formlar, onaylanabilir!</value>
+  </data>
+  <data name="BUM205" xml:space="preserve">
+    <value>Bu işlemi onaylama yetkiniz bulunmamaktadır.</value>
+  </data>
+  <data name="BUM206" xml:space="preserve">
+    <value>kullanıcısının yaptığı işlemi iptal etme yetkiniz yoktur!</value>
+  </data>
+  <data name="BUM207" xml:space="preserve">
+    <value>Bu kuruma ait işlemleri iptal etme yetkiniz bulunmamaktadır.</value>
+  </data>
+  <data name="BUM208" xml:space="preserve">
+    <value>İptal edilecek form önce kaydedilmelidir!</value>
+  </data>
+  <data name="BUM209" xml:space="preserve">
+    <value>Yalnızca yeni durumundaki formlar, iptal edilebilir!</value>
+  </data>
+  <data name="BUM210" xml:space="preserve">
+    <value>Bu işlemi iptal etme yetkiniz bulunmamaktadır.</value>
+  </data>
+  <data name="BUM211" xml:space="preserve">
+    <value>Verdiğiniz numaralı işlemi görme yetkiniz yok!</value>
+  </data>
+  <data name="BUM212" xml:space="preserve">
+    <value>Dayanaklar okunurken hata oldu!</value>
+  </data>
+  <data name="BUM213" xml:space="preserve">
+    <value>Gider tertipleri okunurken hata oldu!</value>
+  </data>
+  <data name="BUM214" xml:space="preserve">
+    <value>Verdiğiniz numaraya ait işlem bulunamadı!</value>
+  </data>
+  <data name="BUM215" xml:space="preserve">
+    <value>Verdiğiniz kuruma ait işlemleri görme yetkiniz yok!</value>
+  </data>
+  <data name="BUM216" xml:space="preserve">
+    <value>Serbest Hesaplama İşlemi Kurum Bazında Yapılmaktadır, Lütfen kurum kodu veriniz!</value>
+  </data>
+  <data name="BUM217" xml:space="preserve">
+    <value>Bu işlem için sistem yöneticisi olmalısınız!</value>
+  </data>
+  <data name="BUM218" xml:space="preserve">
+    <value>Yeni</value>
+  </data>
+  <data name="BUM219" xml:space="preserve">
+    <value>Onaylı</value>
+  </data>
+  <data name="BUM220" xml:space="preserve">
+    <value>Yeni ve Onaylı</value>
+  </data>
+  <data name="BUM221" xml:space="preserve">
+    <value>İptalli</value>
+  </data>
+  <data name="BUM222" xml:space="preserve">
+    <value>Hepsi</value>
+  </data>
+  <data name="BUM223" xml:space="preserve">
+    <value>Bu işlemi yapmak için sistem yöneticisi olmanız gerekmektedir!</value>
+  </data>
+  <data name="BUM224" xml:space="preserve">
+    <value>Hatalı tablo kod geldi</value>
+  </data>
+  <data name="BUM225" xml:space="preserve">
+    <value>Verilen yıl ve kuruma ait bilgi bulumadı!</value>
+  </data>
+  <data name="BUM226" xml:space="preserve">
+    <value>Değişken servisten KURUMKOD alınamadı!</value>
+  </data>
+  <data name="BUM227" xml:space="preserve">
+    <value>Bu işlemi yapmaya yetkiniz yok!</value>
+  </data>
+  <data name="BUM228" xml:space="preserve">
+    <value>Kullanıcı alanı boş geliyor.</value>
+  </data>
+  <data name="BUM229" xml:space="preserve">
+    <value>Veritabanından yanlış ay geldi</value>
+  </data>
+  <data name="BUM230" xml:space="preserve">
+    <value>Veritabanından okuma yapılamadı</value>
+  </data>
+  <data name="BUM231" xml:space="preserve">
+    <value>için işlem yapma yetkiniz yoktur</value>
+  </data>
+  <data name="BUM232" xml:space="preserve">
+    <value>Kullanıcı alanı boş geliyor!</value>
+  </data>
+  <data name="BUM233" xml:space="preserve">
+    <value>Veritabanından yanlış ay geldi</value>
+  </data>
+  <data name="BUM234" xml:space="preserve">
+    <value>Veritabanından okuma yapılamadı</value>
+  </data>
+  <data name="BUM235" xml:space="preserve">
+    <value>için işlem yapma yetkiniz yoktur</value>
+  </data>
+  <data name="BUM236" xml:space="preserve">
+    <value>Kayıt bilgisi bos geldi!</value>
+  </data>
+  <data name="BUM237" xml:space="preserve">
+    <value>Kaydedilecek satır bulunamadı!</value>
+  </data>
+  <data name="BUM238" xml:space="preserve">
+    <value>bir kurum degil.</value>
+  </data>
+  <data name="BUM239" xml:space="preserve">
+    <value>Kullanıcı alanı bos geliyor.</value>
+  </data>
+  <data name="BUM240" xml:space="preserve">
+    <value>Kaydetme işlemi yapmaya yetkiniz yok</value>
+  </data>
+  <data name="BUM241" xml:space="preserve">
+    <value>Önceden onaylanmış bir işlem üzerinde değişiklik yapıp kaydedemezsiniz.</value>
+  </data>
+  <data name="BUM242" xml:space="preserve">
+    <value>Satırların kurumları tutarsız.</value>
+  </data>
+  <data name="BUM243" xml:space="preserve">
+    <value>Hatalı ekonomik kod geldi.</value>
+  </data>
+  <data name="BUM244" xml:space="preserve">
+    <value>Aylıkların toplamı KBO yü geçmemelidir.Lütfen düzelterek tekrar deneyin.</value>
+  </data>
+  <data name="BUM245" xml:space="preserve">
+    <value>Kullanıcı alanı boş geliyor.</value>
+  </data>
+  <data name="BUM246" xml:space="preserve">
+    <value>Veritabanından yanlış ay geldi</value>
+  </data>
+  <data name="BUM247" xml:space="preserve">
+    <value>Veritabanından okuma yapılamadı</value>
+  </data>
+  <data name="BUM248" xml:space="preserve">
+    <value>Bu bilgileri görme yetkiniz yok!</value>
+  </data>
+  <data name="BUM249" xml:space="preserve">
+    <value>Onaylama yapmaya yetkiniz yok</value>
+  </data>
+  <data name="BUM250" xml:space="preserve">
+    <value>Veritabanından yanlış ay geldi</value>
+  </data>
+  <data name="BUM251" xml:space="preserve">
+    <value>Veritabanından okuma yapılamadı</value>
+  </data>
+  <data name="BUM252" xml:space="preserve">
+    <value>The method or operation is not implemented.</value>
+  </data>
+  <data name="BUM253" xml:space="preserve">
+    <value>Ödenek Serbest Bırakma İşlemleri</value>
+  </data>
+  <data name="BUM254" xml:space="preserve">
+    <value>AHP</value>
+  </data>
+  <data name="BUM255" xml:space="preserve">
+    <value>AHP Revize</value>
+  </data>
+  <data name="BUM256" xml:space="preserve">
+    <value>AHP Revize ile Bloke Çözüm</value>
+  </data>
+  <data name="BUM257" xml:space="preserve">
+    <value>AHP Revize Aylar arası değişim</value>
+  </data>
+  <data name="BUM258" xml:space="preserve">
+    <value>Serbest</value>
+  </data>
+  <data name="BUM259" xml:space="preserve">
+    <value>Tel Emri</value>
+  </data>
+  <data name="BUM260" xml:space="preserve">
+    <value>İHP</value>
+  </data>
+  <data name="BUM261" xml:space="preserve">
+    <value>İHP Revize</value>
+  </data>
+  <data name="BUM262" xml:space="preserve">
+    <value>Aktarma/Ekleme İşlemleri</value>
+  </data>
+  <data name="BUM263" xml:space="preserve">
+    <value>Ekleme</value>
+  </data>
+  <data name="BUM264" xml:space="preserve">
+    <value>Ödenek Ekleme</value>
+  </data>
+  <data name="BUM265" xml:space="preserve">
+    <value>Gelirli Ödenek Kaydı</value>
+  </data>
+  <data name="BUM266" xml:space="preserve">
+    <value>Akreditif Artığı Ekleme</value>
+  </data>
+  <data name="BUM267" xml:space="preserve">
+    <value>Ödenek Devri</value>
+  </data>
+  <data name="BUM268" xml:space="preserve">
+    <value>Taahhüt Avans Artığı Ekleme</value>
+  </data>
+  <data name="BUM269" xml:space="preserve">
+    <value>Devreden Dış Proje Kredileri</value>
+  </data>
+  <data name="BUM270" xml:space="preserve">
+    <value>Gelir Fazlası Karşılığı Ödenek Kaydı</value>
+  </data>
+  <data name="BUM271" xml:space="preserve">
+    <value>Likit Karşılığı Ödenek Kaydı</value>
+  </data>
+  <data name="BUM272" xml:space="preserve">
+    <value>Bağış ve Yardımların Devri</value>
+  </data>
+  <data name="BUM273" xml:space="preserve">
+    <value>Gelirli Ödenek Kaydı(Protokollü İşler)</value>
+  </data>
+  <data name="BUM274" xml:space="preserve">
+    <value>Bağış ve Yardımların Ödenek Kaydı</value>
+  </data>
+  <data name="BUM275" xml:space="preserve">
+    <value>Gelirli Ödenek kaydı (Diğer)</value>
+  </data>
+  <data name="BUM276" xml:space="preserve">
+    <value>Aktarma</value>
+  </data>
+  <data name="BUM277" xml:space="preserve">
+    <value>Kurum İçi Aktarma</value>
+  </data>
+  <data name="BUM278" xml:space="preserve">
+    <value>Kurumlar Arası Aktarma</value>
+  </data>
+  <data name="BUM279" xml:space="preserve">
+    <value>Yedekten Aktarma</value>
+  </data>
+  <data name="BUM280" xml:space="preserve">
+    <value>Yedeğe Aktarma</value>
+  </data>
+  <data name="BUM281" xml:space="preserve">
+    <value>İptal İşlemleri</value>
+  </data>
+  <data name="BUM282" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="BUM283" xml:space="preserve">
+    <value>Kayıt yapılmamış</value>
+  </data>
+  <data name="BUM284" xml:space="preserve">
+    <value>Bütçe işlem iptal</value>
+  </data>
+  <data name="BUM285" xml:space="preserve">
+    <value>Doğru Yanlış/Doğru</value>
+  </data>
+  <data name="BUM286" xml:space="preserve">
+    <value>Doğru Yanlış/İptal</value>
+  </data>
+  <data name="BUM287" xml:space="preserve">
+    <value>Onaylı</value>
+  </data>
+  <data name="BUM288" xml:space="preserve">
+    <value>Sayıştayda</value>
+  </data>
+  <data name="BUM289" xml:space="preserve">
+    <value>Sayıştay İade</value>
+  </data>
+  <data name="BUM290" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="BUM291" xml:space="preserve">
+    <value>Yeni</value>
+  </data>
+  <data name="BUM292" xml:space="preserve">
+    <value>kodlu kurumda, gider toplamı</value>
+  </data>
+  <data name="BUM293" xml:space="preserve">
+    <value>gelir</value>
+  </data>
+  <data name="BUM294" xml:space="preserve">
+    <value>ve finasman</value>
+  </data>
+  <data name="BUM295" xml:space="preserve">
+    <value>toplamına eşit değil!</value>
+  </data>
+  <data name="BUM296" xml:space="preserve">
+    <value>kodlu kuruma, ait gider cari hazine yardımı</value>
+  </data>
+  <data name="BUM297" xml:space="preserve">
+    <value>ile gelir cari hazine yardımı</value>
+  </data>
+  <data name="BUM298" xml:space="preserve">
+    <value>birbirine eşit değil!</value>
+  </data>
+  <data name="BUM299" xml:space="preserve">
+    <value>kodlu kuruma, ait gider sermaye hazine yardımı</value>
+  </data>
+  <data name="BUM300" xml:space="preserve">
+    <value>AFP İcmal revizesinde</value>
+  </data>
+  <data name="BUM301" xml:space="preserve">
+    <value>ay toplamında giderler toplamı, gelir ve finans toplamından küçük</value>
+  </data>
+  <data name="BUM302" xml:space="preserve">
+    <value>Gelirli ödenek kayıtlarında, gelirin kaydedileceği Gelir Tertibini girmeniz gerekmektedir.</value>
+  </data>
+  <data name="BUM303" xml:space="preserve">
+    <value>İşlem Yapılacak Kayıt Satır Bulunamadı</value>
+  </data>
+  <data name="BUM304" xml:space="preserve">
+    <value>Bu işlemin yapılabilmesi için, hazine yardımı, finansman ve gelir tertipleri girilmemelidir!</value>
+  </data>
+  <data name="BUM305" xml:space="preserve">
+    <value>Kurumlar arası aktarma işleminde 2 kuruma ait tertipler belirtmelisiniz!</value>
+  </data>
+  <data name="BUM306" xml:space="preserve">
+    <value>Yalnızca genel bütçeli kurumlar arasında veya yeni kurulan kuruma aktarma işlemi yapabilirsiniz!</value>
+  </data>
+  <data name="BUM307" xml:space="preserve">
+    <value>Yedekten aktarma işlemi için ilgili seçeneği seçiniz!</value>
+  </data>
+  <data name="BUM308" xml:space="preserve">
+    <value>İşlemi yaptığınız kuruma ait</value>
+  </data>
+  <data name="BUM309" xml:space="preserve">
+    <value>tertiplerden düşme yapabilirsiniz</value>
+  </data>
+  <data name="BUM310" xml:space="preserve">
+    <value>Kuruma ait olmayan tertip:</value>
+  </data>
+  <data name="BUM311" xml:space="preserve">
+    <value>Yapmaya çalıştığınız bütçe işleminde birden fazla kuruma ait tertip bulundu.!</value>
+  </data>
+  <data name="BUM312" xml:space="preserve">
+    <value>İşlemi yaptığınız kuruma ait</value>
+  </data>
+  <data name="BUM313" xml:space="preserve">
+    <value>tertip  belirtmemişsiniz!</value>
+  </data>
+  <data name="BUM314" xml:space="preserve">
+    <value>. satırda, aylık program belirtilmemiş!</value>
+  </data>
+  <data name="BUM315" xml:space="preserve">
+    <value>. satırda, aylık programa değer girilmemiş!</value>
+  </data>
+  <data name="BUM316" xml:space="preserve">
+    <value>. satırda, 0 dan küçük rakam girilmiş!</value>
+  </data>
+  <data name="BUM317" xml:space="preserve">
+    <value>. satırda, rakam girilmemiş!</value>
+  </data>
+  <data name="BUM318" xml:space="preserve">
+    <value>. satırda, düşülen rakamı girilmiş!</value>
+  </data>
+  <data name="BUM319" xml:space="preserve">
+    <value>(Devir)</value>
+  </data>
+  <data name="BUM320" xml:space="preserve">
+    <value>Verilen formun dayanağı belirtilmemiş</value>
+  </data>
+  <data name="BUM321" xml:space="preserve">
+    <value>Verilen formun evrak tarihi belirtilmemiş!</value>
+  </data>
+  <data name="BUM322" xml:space="preserve">
+    <value>Verilen formun evrak numarası belirtilmemiş!</value>
+  </data>
+  <data name="BUM323" xml:space="preserve">
+    <value>Verilen formun detay kaydı bulunmuyor!</value>
+  </data>
+  <data name="BUM324" xml:space="preserve">
+    <value>. satır ile</value>
+  </data>
+  <data name="BUM325" xml:space="preserve">
+    <value>. satirda</value>
+  </data>
+  <data name="BUM326" xml:space="preserve">
+    <value>tertibi tekrarlanmış!</value>
+  </data>
+  <data name="BUM327" xml:space="preserve">
+    <value>. satırda girilen</value>
+  </data>
+  <data name="BUM328" xml:space="preserve">
+    <value>tertibi hatalı!</value>
+  </data>
+  <data name="BUM329" xml:space="preserve">
+    <value>Verilen işlemde, düşülen</value>
+  </data>
+  <data name="BUM330" xml:space="preserve">
+    <value>ile eklenen</value>
+  </data>
+  <data name="BUM331" xml:space="preserve">
+    <value>birbirine eşit değil</value>
+  </data>
+  <data name="BUM332" xml:space="preserve">
+    <value>Kurum Kodu Boş geldi</value>
+  </data>
+  <data name="BUM333" xml:space="preserve">
+    <value>Odenek 0 dan küçük geldi</value>
+  </data>
+  <data name="BUM334" xml:space="preserve">
+    <value>Beklenenden fazla kayıt silindi</value>
+  </data>
+  <data name="BUM335" xml:space="preserve">
+    <value>Kurum Kodu Boş geldi</value>
+  </data>
+  <data name="BUM336" xml:space="preserve">
+    <value>Odenek 0 dan küçük geldi</value>
+  </data>
+  <data name="BUM337" xml:space="preserve">
+    <value>Kurum Kodu Boş geldi</value>
+  </data>
+  <data name="BUM338" xml:space="preserve">
+    <value>09 Ekonomik kodu için negatif rakam girmelisiniz!</value>
+  </data>
+  <data name="BUM339" xml:space="preserve">
+    <value>09 haricindeki tertipler için 0 dan küçük rakam giremezsiniz!</value>
+  </data>
+  <data name="BUM340" xml:space="preserve">
+    <value>Kurum Kodu Boş geldi</value>
+  </data>
+  <data name="BUM341" xml:space="preserve">
+    <value>09 Ekonomik kodu için negatif rakam girmelisiniz!</value>
+  </data>
+  <data name="BUM342" xml:space="preserve">
+    <value>09 haricindeki tertipler için 0 dan küçük rakam giremezsiniz!</value>
+  </data>
+  <data name="BUM343" xml:space="preserve">
+    <value>Hazır değil</value>
+  </data>
+</root>

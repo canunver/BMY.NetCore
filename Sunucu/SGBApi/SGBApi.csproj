@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <AssemblyName>SGBApi</AssemblyName>
+    <RootNamespace>SGBApi</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SGBServisler\SGBServisler.csproj" />
+  </ItemGroup>
+
+</Project>

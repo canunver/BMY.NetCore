@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>ORGServisC</AssemblyName>
+    <RootNamespace>TNS.ORG.IsKurallari</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BHMv2Servis\BKDServisI\BKDServisI.csproj" />
+    <ProjectReference Include="..\..\DEGServis\DEGServisI\DEGServisI.csproj" />
+    <ProjectReference Include="..\..\GNLServis\GNLServis.csproj" />
+    <ProjectReference Include="..\..\KYMServis\KYMServisI\KYMServisI.csproj" />
+    <ProjectReference Include="..\..\MUHServis\MUHServisI\MUHServisI.csproj" />
+    <ProjectReference Include="..\..\PERServis\PERServisI\PERServisI.csproj" />
+    <ProjectReference Include="..\..\UZYServis\UZYServisI\UZYServisI.csproj" />
+    <ProjectReference Include="..\..\VERServis\VERServis.csproj" />
+    <ProjectReference Include="..\ORGServisI\ORGServisI.csproj" />
+  </ItemGroup>
+
+</Project>

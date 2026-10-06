@@ -1,0 +1,802 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BE001" xml:space="preserve">
+    <value>Personnel Information</value>
+  </data>
+  <data name="BE002" xml:space="preserve">
+    <value>Announcements</value>
+  </data>
+  <data name="BE003" xml:space="preserve">
+    <value>Favorites</value>
+  </data>
+  <data name="BE004" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="BE005" xml:space="preserve">
+    <value>Weather</value>
+  </data>
+  <data name="BE006" xml:space="preserve">
+    <value>Exchange Rates</value>
+  </data>
+  <data name="KYM001" xml:space="preserve">
+    <value>No Record Found</value>
+  </data>
+  <data name="KYM002" xml:space="preserve">
+    <value>Please select Accounting Unit.</value>
+  </data>
+  <data name="KYM003" xml:space="preserve">
+    <value>The given folder ({0}) or the class ({1}) could not be found!</value>
+  </data>
+  <data name="KYMDUY001" xml:space="preserve">
+    <value>Requested records could not be found!</value>
+  </data>
+  <data name="KYMDUY002" xml:space="preserve">
+    <value>You do not have permission to do this operation!</value>
+  </data>
+  <data name="KYMDUY003" xml:space="preserve">
+    <value>Announcement code is not formed!</value>
+  </data>
+  <data name="KYMDUY004" xml:space="preserve">
+    <value>e-mail code is not formed!</value>
+  </data>
+  <data name="KYMDUY005" xml:space="preserve">
+    <value>e-mail sending process has been initiated. To check sent e-mails, click &lt;b&gt;Previous Posts&lt;/b&gt;</value>
+  </data>
+  <data name="KYMDUY006" xml:space="preserve">
+    <value>FAILED to send e-mail</value>
+  </data>
+  <data name="KYMDUY007" xml:space="preserve">
+    <value>ERROR</value>
+  </data>
+  <data name="KYMDUY008" xml:space="preserve">
+    <value>Sent</value>
+  </data>
+  <data name="KYMDUY009" xml:space="preserve">
+    <value>Not Sent Yet</value>
+  </data>
+  <data name="KYMF001" xml:space="preserve">
+    <value>Filter name cannot be left blank.</value>
+  </data>
+  <data name="KYMF002" xml:space="preserve">
+    <value>Filter criteria informations cannot be left blank.</value>
+  </data>
+  <data name="KYMF003" xml:space="preserve">
+    <value>Filter user code cannot be left blank.</value>
+  </data>
+  <data name="KYMF004" xml:space="preserve">
+    <value>Filter number field cannot be left blank</value>
+  </data>
+  <data name="KYMKT_0" xml:space="preserve">
+    <value>Guest</value>
+  </data>
+  <data name="KYMKT_1" xml:space="preserve">
+    <value>System Administrator</value>
+  </data>
+  <data name="KYMKT_11" xml:space="preserve">
+    <value>Personnel</value>
+  </data>
+  <data name="KYMKT_12" xml:space="preserve">
+    <value>Cadre</value>
+  </data>
+  <data name="KYMKT_13" xml:space="preserve">
+    <value>Internal Control</value>
+  </data>
+  <data name="KYMKT_14" xml:space="preserve">
+    <value>Preliminary Financial Control</value>
+  </data>
+  <data name="KYMKT_15" xml:space="preserve">
+    <value>User entering Movables transaction form</value>
+  </data>
+  <data name="KYMKT_16" xml:space="preserve">
+    <value>Library</value>
+  </data>
+  <data name="KYMKT_17" xml:space="preserve">
+    <value>Appropriation Sender</value>
+  </data>
+  <data name="KYMKT_18" xml:space="preserve">
+    <value>Payment Order/Journal Entry</value>
+  </data>
+  <data name="KYMKT_19" xml:space="preserve">
+    <value>Accounting Unit Manager</value>
+  </data>
+  <data name="KYMKT_2" xml:space="preserve">
+    <value>User Manager</value>
+  </data>
+  <data name="KYMKT_20" xml:space="preserve">
+    <value>Budget Preperation</value>
+  </data>
+  <data name="KYMKT_21" xml:space="preserve">
+    <value>Budget Execution</value>
+  </data>
+  <data name="KYMKT_22" xml:space="preserve">
+    <value>Investment Projects</value>
+  </data>
+  <data name="KYMKT_23" xml:space="preserve">
+    <value>Receivables Follow-Up</value>
+  </data>
+  <data name="KYMKT_24" xml:space="preserve">
+    <value>Economic Indicators</value>
+  </data>
+  <data name="KYMKT_25" xml:space="preserve">
+    <value>Final Account</value>
+  </data>
+  <data name="KYMKT_26" xml:space="preserve">
+    <value>Strategic Plan</value>
+  </data>
+  <data name="KYMKT_27" xml:space="preserve">
+    <value>Performance Budget</value>
+  </data>
+  <data name="KYMKT_28" xml:space="preserve">
+    <value>Movables Manager</value>
+  </data>
+  <data name="KYMKT_29" xml:space="preserve">
+    <value>Movables Consolidation Authorization Officer</value>
+  </data>
+  <data name="KYMKT_30" xml:space="preserve">
+    <value>Performance Budget Measure</value>
+  </data>
+  <data name="KYMKT_31" xml:space="preserve">
+    <value>Receipt User</value>
+  </data>
+  <data name="KYMKT_32" xml:space="preserve">
+    <value>Budget Manager</value>
+  </data>
+  <data name="KYMKT_33" xml:space="preserve">
+    <value>ID Information Sharing</value>
+  </data>
+  <data name="KYMKT_34" xml:space="preserve">
+    <value>Quality User</value>
+  </data>
+  <data name="KYMKT_35" xml:space="preserve">
+    <value>Project Management</value>
+  </data>
+  <data name="KYMKT_36" xml:space="preserve">
+    <value>Document user</value>
+  </data>
+  <data name="KYMKT_37" xml:space="preserve">
+    <value>Personnel v2</value>
+  </data>
+  <data name="KYMKT_38" xml:space="preserve">
+    <value>Taşınır Kullanıcı Birimi</value>
+  </data>
+  <data name="KYMKT_39" xml:space="preserve">
+    <value>Поддержка приложений (System Administrator)</value>
+  </data>
+  <data name="KYMKT_40" xml:space="preserve">
+    <value>Поддержка приложений (Эксперт)</value>
+  </data>
+  <data name="KYMKT_41" xml:space="preserve">
+    <value>Поддержка приложений (провинциального пользователя)</value>
+  </data>
+  <data name="KYMKT_42" xml:space="preserve">
+    <value>Пользователь бюджетной организации</value>
+  </data>
+  <data name="KYMKT_43" xml:space="preserve">
+    <value>Руководитель бюджетной организации</value>
+  </data>
+  <data name="KYMKT_44" xml:space="preserve">
+    <value>Куратор МФ по подготовке бюджета</value>
+  </data>
+  <data name="KYMKT_45" xml:space="preserve">
+    <value>Руководитель МФ по подготовке бюджета</value>
+  </data>
+  <data name="KYMKT_72" xml:space="preserve">
+    <value>Harcama Kurum Kullanıcısı</value>
+  </data>
+  <data name="KYMKT_73" xml:space="preserve">
+    <value>Harcama Hazine Kuratörü</value>
+  </data>
+  <data name="KYMKT_74" xml:space="preserve">
+    <value>Harcama Hazine Kuratörü Sorumlusu</value>
+  </data>
+  <data name="KYMKT_93" xml:space="preserve">
+    <value>Dış Kaynaklı Proje Modül Yöneticisi</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="KYMKT_94" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="KYMKT__1" xml:space="preserve">
+    <value>User Type is not defined</value>
+  </data>
+  <data name="KYMKUL001" xml:space="preserve">
+    <value>User reading list is empty!</value>
+  </data>
+  <data name="KYMKUL002" xml:space="preserve">
+    <value>Your user ({0}) does not have permission to see the user that has the code ({1})you have given!</value>
+  </data>
+  <data name="KYMKUL003" xml:space="preserve">
+    <value>Incorrect user code/password!</value>
+  </data>
+  <data name="KYMKUL004" xml:space="preserve">
+    <value>You cannot access the system since your user is passive, Please contact your administrator!</value>
+  </data>
+  <data name="KYMKUL005" xml:space="preserve">
+    <value>Your last entry date could not be updated!</value>
+  </data>
+  <data name="KYMKUL006" xml:space="preserve">
+    <value>Incorrect user code!</value>
+  </data>
+  <data name="KYMKUL007" xml:space="preserve">
+    <value>Authority Service Address that is connected: {0}</value>
+  </data>
+  <data name="KYMKUL008" xml:space="preserve">
+    <value>Session Service (GirisYap)is called. UserCode={0} sessionID={1}</value>
+  </data>
+  <data name="KYMKUL009" xml:space="preserve">
+    <value>Session Service (KullaniciOku) is called. UderCode={0}</value>
+  </data>
+  <data name="KYMKUL010" xml:space="preserve">
+    <value>User information was blank!</value>
+  </data>
+  <data name="KYMKUL011" xml:space="preserve">
+    <value>Error occured while reading user information: {1}</value>
+  </data>
+  <data name="KYMKUL012" xml:space="preserve">
+    <value>Read will be done</value>
+  </data>
+  <data name="KYMKUL013" xml:space="preserve">
+    <value>Reading is finished.</value>
+  </data>
+  <data name="KYMKUL014" xml:space="preserve">
+    <value>Reading is correct</value>
+  </data>
+  <data name="KYMKUL015" xml:space="preserve">
+    <value>&lt;b&gt;ID Number&lt;/b&gt; that has been sent from the given address ({0}) &lt;b&gt;is empty&lt;/b&gt;.</value>
+  </data>
+  <data name="KYMKUL016" xml:space="preserve">
+    <value>Reading is incorrect. Mernis:{0} Name:{1} UserCode:{2}</value>
+  </data>
+  <data name="KYMKUL017" xml:space="preserve">
+    <value>You are not authorized to use SGB system. User information could not be read from Web Service. Please contact your administrator!</value>
+  </data>
+  <data name="KYMKUL018" xml:space="preserve">
+    <value>You are not authorized  to use SGB system. User information could not be read from Web Service. Please contact your administrator!</value>
+  </data>
+  <data name="KYMKUL019" xml:space="preserve">
+    <value>You do not have authorization to see this user!</value>
+  </data>
+  <data name="KYMKUL020" xml:space="preserve">
+    <value>Incorrect user code/password!</value>
+  </data>
+  <data name="KYMKUL021" xml:space="preserve">
+    <value>Your new password has to be different than your previous password.</value>
+  </data>
+  <data name="KYMKUL022" xml:space="preserve">
+    <value>The user information could not be read!</value>
+  </data>
+  <data name="KYMKUL023" xml:space="preserve">
+    <value>New Passwords are not same!</value>
+  </data>
+  <data name="KYMKUL024" xml:space="preserve">
+    <value>Your password has to be {0} character at least.</value>
+  </data>
+  <data name="KYMKUL025" xml:space="preserve">
+    <value>New user is defined for you.</value>
+  </data>
+  <data name="KYMKUL026" xml:space="preserve">
+    <value>your password has changed.\r\n\r\n</value>
+  </data>
+  <data name="KYMKUL027" xml:space="preserve">
+    <value>Ms/Mr {0} {1},&lt;br&gt; in the {2}system, {3}Your User Information; &lt;br&gt;&lt;br&gt;User Code : {4}&lt;br&gt;Password : {5}&lt;br&gt;&lt;br&gt;By using information given above you can acces {2} system from this address {6} .&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;Note : Please do not share your password with anyone and also do not send it with e-mail. Our e-mail address is {7}&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;Yours Sincerely.&lt;br&gt;{2} Work Team</value>
+  </data>
+  <data name="KYMKUL028" xml:space="preserve">
+    <value>{0} User Information</value>
+  </data>
+  <data name="KYMKUL029" xml:space="preserve">
+    <value>ID Number {0} is wrong or does not match with the Name-Surname or connection is not enabled with the ID verification service.</value>
+  </data>
+  <data name="KYMKUL030" xml:space="preserve">
+    <value>You are not authorized to operate on user account.</value>
+  </data>
+  <data name="KYMKUL031" xml:space="preserve">
+    <value>The connection with MERNIS is not configured.</value>
+  </data>
+  <data name="KYMKUL032" xml:space="preserve">
+    <value>ID Number could not be found in the database.</value>
+  </data>
+  <data name="KYMKUL033" xml:space="preserve">
+    <value>ID Number: {0} is wrong!</value>
+  </data>
+  <data name="KYMKUL034" xml:space="preserve">
+    <value>ID Number should be 11 character</value>
+  </data>
+  <data name="KYMKUL035" xml:space="preserve">
+    <value>You have to fill the announcement information!</value>
+  </data>
+  <data name="KYMKUL036" xml:space="preserve">
+    <value>You have to fill the date!</value>
+  </data>
+  <data name="KYMKUL037" xml:space="preserve">
+    <value>You must enter the USER CODE!</value>
+  </data>
+  <data name="KYMKUL038" xml:space="preserve">
+    <value>You must enter the MERNIS number</value>
+  </data>
+  <data name="KYMKUL039" xml:space="preserve">
+    <value>You must enter the user's NAME!</value>
+  </data>
+  <data name="KYMKUL040" xml:space="preserve">
+    <value>You must enter the user's SURNAME!</value>
+  </data>
+  <data name="KYMKUL041" xml:space="preserve">
+    <value>You must enter the user's ACCOUNT UNIT!</value>
+  </data>
+  <data name="KYMKUL042" xml:space="preserve">
+    <value>You must enter the user's TITLE!</value>
+  </data>
+  <data name="KYMKUL043" xml:space="preserve">
+    <value>You must enter the user's PHONE!</value>
+  </data>
+  <data name="KYMKUL044" xml:space="preserve">
+    <value>You must enter the user's E-MAIL!</value>
+  </data>
+  <data name="KYMKUL045" xml:space="preserve">
+    <value>User's e-mail ({0}) is incorrect!</value>
+  </data>
+  <data name="KYMKUL046" xml:space="preserve">
+    <value>You must enter the USER TYPE!</value>
+  </data>
+  <data name="KYMKUL047" xml:space="preserve">
+    <value>You must enter the user type!</value>
+  </data>
+  <data name="KYMKUL048" xml:space="preserve">
+    <value>The user code '{0}' you entered, is used by an existing user. Please choose another user code.</value>
+  </data>
+  <data name="KYMKUL049" xml:space="preserve">
+    <value>The ID code '{0}' you entered, is used by an existing user. Please check the accuracy.</value>
+  </data>
+  <data name="KYMKUL050" xml:space="preserve">
+    <value>{0} authorization type information field must be filled.</value>
+  </data>
+  <data name="KYMYT001" xml:space="preserve">
+    <value>Доступ просмотра</value>
+  </data>
+  <data name="KYMYT002" xml:space="preserve">
+    <value>Доступ просмотра и Редактирования</value>
+  </data>
+  <data name="KYMYT003" xml:space="preserve">
+    <value>Доступ просмотра и Подтверждения</value>
+  </data>
+  <data name="KYMYT004" xml:space="preserve">
+    <value>Доступ просмотра, редактирования и Подтверждения</value>
+  </data>
+  <data name="KYMYT005" xml:space="preserve">
+    <value>Доступ просмотра</value>
+  </data>
+  <data name="KYMYT006" xml:space="preserve">
+    <value>Доступ просмотра и Редактирования</value>
+  </data>
+  <data name="KYMYT007" xml:space="preserve">
+    <value>Доступ просмотра, редактирования и удаления</value>
+  </data>
+  <data name="KYMYT008" xml:space="preserve">
+    <value>Доступ отмена подтверждения</value>
+  </data>
+  <data name="KYMYT009" xml:space="preserve">
+    <value>Yevmiye kaldırma.</value>
+  </data>
+  <data name="KYMYT_0" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="KYMYT_10" xml:space="preserve">
+    <value>Investment Preperation Authorization</value>
+  </data>
+  <data name="KYMYT_11" xml:space="preserve">
+    <value>Units for Receivables Follow-Up</value>
+  </data>
+  <data name="KYMYT_12" xml:space="preserve">
+    <value>Accounting Unit for Receivables Follow-up</value>
+  </data>
+  <data name="KYMYT_13" xml:space="preserve">
+    <value>Receivables Follow-up Authorization</value>
+  </data>
+  <data name="KYMYT_139" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="KYMYT_14" xml:space="preserve">
+    <value>Personnel Authorization</value>
+  </data>
+  <data name="KYMYT_140" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="KYMYT_15" xml:space="preserve">
+    <value>Cadre Authorization</value>
+  </data>
+  <data name="KYMYT_16" xml:space="preserve">
+    <value>Units for Internal Control</value>
+  </data>
+  <data name="KYMYT_17" xml:space="preserve">
+    <value>Internal Control Authorization</value>
+  </data>
+  <data name="KYMYT_18" xml:space="preserve">
+    <value>Units for Preliminary Financial Control</value>
+  </data>
+  <data name="KYMYT_19" xml:space="preserve">
+    <value>Preliminary Financial Control Authorization</value>
+  </data>
+  <data name="KYMYT_2" xml:space="preserve">
+    <value>Units for Budget Preperation</value>
+  </data>
+  <data name="KYMYT_20" xml:space="preserve">
+    <value>Units for Payment Order /Journal Entry</value>
+  </data>
+  <data name="KYMYT_21" xml:space="preserve">
+    <value>Payment Order /Journal Entry Accounting Office Units</value>
+  </data>
+  <data name="KYMYT_22" xml:space="preserve">
+    <value>Payment Order /Journal Form Authorization</value>
+  </data>
+  <data name="KYMYT_23" xml:space="preserve">
+    <value>Personnel Accounting Unit Authorization</value>
+  </data>
+  <data name="KYMYT_24" xml:space="preserve">
+    <value>Budget Execution View Permission</value>
+  </data>
+  <data name="KYMYT_25" xml:space="preserve">
+    <value>Budget Execution Steps to View</value>
+  </data>
+  <data name="KYMYT_26" xml:space="preserve">
+    <value>Budget Execution Record Permission</value>
+  </data>
+  <data name="KYMYT_27" xml:space="preserve">
+    <value>Budget Execution Steps to Record</value>
+  </data>
+  <data name="KYMYT_28" xml:space="preserve">
+    <value>Budget Execution Confirm Permission</value>
+  </data>
+  <data name="KYMYT_29" xml:space="preserve">
+    <value>Budget Execution Steps to Confirm</value>
+  </data>
+  <data name="KYMYT_3" xml:space="preserve">
+    <value>Budget Preperation Authorization</value>
+  </data>
+  <data name="KYMYT_30" xml:space="preserve">
+    <value>Final Account Authorization</value>
+  </data>
+  <data name="KYMYT_31" xml:space="preserve">
+    <value>Units for Final Account</value>
+  </data>
+  <data name="KYMYT_32" xml:space="preserve">
+    <value>Movables Authorization Template</value>
+  </data>
+  <data name="KYMYT_33" xml:space="preserve">
+    <value>Movables Account Spending Unit Authorization</value>
+  </data>
+  <data name="KYMYT_34" xml:space="preserve">
+    <value>Payment Order /Journal Entry Economic Code</value>
+  </data>
+  <data name="KYMYT_35" xml:space="preserve">
+    <value>Appropriation Sending Economic Code</value>
+  </data>
+  <data name="KYMYT_36" xml:space="preserve">
+    <value>Budget Preperation Units that can be seen</value>
+  </data>
+  <data name="KYMYT_37" xml:space="preserve">
+    <value>Budget Preperation Units that can be saved.</value>
+  </data>
+  <data name="KYMYT_38" xml:space="preserve">
+    <value>Budget Preperation Units that can be confirmed.</value>
+  </data>
+  <data name="KYMYT_39" xml:space="preserve">
+    <value>Budget Preperation Stages that can be seen.</value>
+  </data>
+  <data name="KYMYT_4" xml:space="preserve">
+    <value>Units for Budget Process</value>
+  </data>
+  <data name="KYMYT_40" xml:space="preserve">
+    <value>Budget Preperation Stages that can be saved.</value>
+  </data>
+  <data name="KYMYT_41" xml:space="preserve">
+    <value>Budget Preperation Stages that can be confirmed.</value>
+  </data>
+  <data name="KYMYT_42" xml:space="preserve">
+    <value>Strategic Plan Authorization</value>
+  </data>
+  <data name="KYMYT_43" xml:space="preserve">
+    <value>Performance Budget Authorization</value>
+  </data>
+  <data name="KYMYT_44" xml:space="preserve">
+    <value>Units for Performance Budget</value>
+  </data>
+  <data name="KYMYT_45" xml:space="preserve">
+    <value>Units for Performance Budget Measure</value>
+  </data>
+  <data name="KYMYT_47" xml:space="preserve">
+    <value>ID Information Sharing Accounting Unit Authorization</value>
+  </data>
+  <data name="KYMYT_48" xml:space="preserve">
+    <value>Quality Management Authorization</value>
+  </data>
+  <data name="KYMYT_49" xml:space="preserve">
+    <value>Project Management Authorization</value>
+  </data>
+  <data name="KYMYT_5" xml:space="preserve">
+    <value>Budget Process Authorization</value>
+  </data>
+  <data name="KYMYT_50" xml:space="preserve">
+    <value>Library List</value>
+  </data>
+  <data name="KYMYT_51" xml:space="preserve">
+    <value>Document Authorization Template</value>
+  </data>
+  <data name="KYMYT_52" xml:space="preserve">
+    <value>Document Units the user has permission</value>
+  </data>
+  <data name="KYMYT_53" xml:space="preserve">
+    <value>Document Confirm Permission</value>
+  </data>
+  <data name="KYMYT_54" xml:space="preserve">
+    <value>Personnel - Organizational Structure</value>
+  </data>
+  <data name="KYMYT_55" xml:space="preserve">
+    <value>Budget Preperation Sub-Activities that can be seen</value>
+  </data>
+  <data name="KYMYT_56" xml:space="preserve">
+    <value>Budget Preperation Sub-Activities that can be saved.</value>
+  </data>
+  <data name="KYMYT_57" xml:space="preserve">
+    <value>Budget Preperation Sub-Activities that can be confirmed.</value>
+  </data>
+  <data name="KYMYT_58" xml:space="preserve">
+    <value>Bütçe Hazırlığı Görebileceği Harcama Birimleri</value>
+  </data>
+  <data name="KYMYT_59" xml:space="preserve">
+    <value>Bütçe Hazırlığı Kaydedebileceği Harcama Birimleri</value>
+  </data>
+  <data name="KYMYT_6" xml:space="preserve">
+    <value>Ödenek Gönderme Hazırlayacağı Birimler</value>
+  </data>
+  <data name="KYMYT_60" xml:space="preserve">
+    <value>Bütçe Hazırlığı Onaylayabileceği Harcama Birimleri</value>
+  </data>
+  <data name="KYMYT_61" xml:space="preserve">
+    <value>Подготовка бюджета доступный функциональный клас.</value>
+  </data>
+  <data name="KYMYT_62" xml:space="preserve">
+    <value>Подготовка бюджета доступный функциональный клас.(редактировать)</value>
+  </data>
+  <data name="KYMYT_63" xml:space="preserve">
+    <value>Подготовка бюджета доступный функциональный клас.(подтверждения)</value>
+  </data>
+  <data name="KYMYT_64" xml:space="preserve">
+    <value>Stratejik Plan Yapacağı Birimler</value>
+  </data>
+  <data name="KYMYT_65" xml:space="preserve">
+    <value>Kadro Yapacağı Kurum</value>
+  </data>
+  <data name="KYMYT_66" xml:space="preserve">
+    <value>Taşınır Kullanıcı Birimi Yetkisi</value>
+  </data>
+  <data name="KYMYT_68" xml:space="preserve">
+    <value>Destek Başvuru Yetkili Olduğu İller</value>
+  </data>
+  <data name="KYMYT_69" xml:space="preserve">
+    <value>Destek Başvuru Yetkilisi</value>
+  </data>
+  <data name="KYMYT_7" xml:space="preserve">
+    <value>Ödenek Gönderme Yetkisi</value>
+  </data>
+  <data name="KYMYT_70" xml:space="preserve">
+    <value>Destek Türü</value>
+  </data>
+  <data name="KYMYT_71" xml:space="preserve">
+    <value>Уровни потолков бюджетных расходов (1,2,3)</value>
+  </data>
+  <data name="KYMYT_72" xml:space="preserve">
+    <value>Доступ для Бюджетных заявок (0:Нет;1:Регистрация;2:Регистрация и Редактирование)</value>
+  </data>
+  <data name="KYMYT_8" xml:space="preserve">
+    <value>Kütüphane Yetkisi</value>
+  </data>
+  <data name="KYMYT_9" xml:space="preserve">
+    <value>Yatırım Hazırlığı Yapacağı Birimler</value>
+  </data>
+  <data name="KYMYT_91" xml:space="preserve">
+    <value>Harcama Görebileceği Birimler</value>
+  </data>
+  <data name="KYMYT_92" xml:space="preserve">
+    <value>Harcama Kaydedebileceği Birimler</value>
+  </data>
+  <data name="KYMYT_93" xml:space="preserve">
+    <value>Harcama Onaylayabileceği Birimler</value>
+  </data>
+  <data name="KYMYT_94" xml:space="preserve">
+    <value>Harcama Görebileceği Fonksiyonlar</value>
+  </data>
+  <data name="KYMYT_95" xml:space="preserve">
+    <value>Harcama Kaydedebileceği Fonksiyonlar</value>
+  </data>
+  <data name="KYMYT_96" xml:space="preserve">
+    <value>Harcama Onaylayabileceği Fonksiyonlar</value>
+  </data>
+  <data name="MDL_ATM" xml:space="preserve">
+    <value>Receivable Tracking Module</value>
+  </data>
+  <data name="MDL_BHM" xml:space="preserve">
+    <value>Budget Preparation (Turkey)</value>
+  </data>
+  <data name="MDL_BUM" xml:space="preserve">
+    <value>Budget Execution</value>
+  </data>
+  <data name="MDL_DBP" xml:space="preserve">
+    <value>World Bank Project</value>
+  </data>
+  <data name="MDL_EKG" xml:space="preserve">
+    <value>Economical Indicators</value>
+  </data>
+  <data name="MDL_EVR" xml:space="preserve">
+    <value>Documentation Module</value>
+  </data>
+  <data name="MDL_GEL" xml:space="preserve">
+    <value>Income Processes Module</value>
+  </data>
+  <data name="MDL_GRV" xml:space="preserve">
+    <value>Job Assignment Module</value>
+  </data>
+  <data name="MDL_HRC" xml:space="preserve">
+    <value>Expenditure Processes Module</value>
+  </data>
+  <data name="MDL_KHM" xml:space="preserve">
+    <value>Final Account Module</value>
+  </data>
+  <data name="MDL_KPS" xml:space="preserve">
+    <value>Identification Sharing Module</value>
+  </data>
+  <data name="MDL_KTP" xml:space="preserve">
+    <value>Library Module</value>
+  </data>
+  <data name="MDL_MUH" xml:space="preserve">
+    <value>Accounting Module</value>
+  </data>
+  <data name="MDL_MVZ" xml:space="preserve">
+    <value>Legislation Module</value>
+  </data>
+  <data name="MDL_ORG" xml:space="preserve">
+    <value>Organization Schema Module</value>
+  </data>
+  <data name="MDL_PEB" xml:space="preserve">
+    <value>Performance Budgeting Module</value>
+  </data>
+  <data name="MDL_PER" xml:space="preserve">
+    <value>Personnel Module</value>
+  </data>
+  <data name="MDL_SB" xml:space="preserve">
+    <value>Examination Module</value>
+  </data>
+  <data name="MDL_STRBir" xml:space="preserve">
+    <value>Strategic Plan Module by Expenditure Units</value>
+  </data>
+  <data name="MDL_STRKur" xml:space="preserve">
+    <value>Strategic Plan Module by Organizations</value>
+  </data>
+  <data name="MDL_TFT" xml:space="preserve">
+    <value>Inspection Module</value>
+  </data>
+  <data name="MDL_TMM" xml:space="preserve">
+    <value>Movable Assets Module</value>
+  </data>
+  <data name="MDL_TRM" xml:space="preserve">
+    <value>Agriculture Module</value>
+  </data>
+  <data name="MDL_YAT" xml:space="preserve">
+    <value>Investment Project Module</value>
+  </data>
+</root>

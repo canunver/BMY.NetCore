@@ -1,0 +1,1167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BE001" xml:space="preserve">
+    <value>Personel Bilgisi</value>
+  </data>
+  <data name="BE002" xml:space="preserve">
+    <value>Duyurular</value>
+  </data>
+  <data name="BE003" xml:space="preserve">
+    <value>Sık Kullanılanlar</value>
+  </data>
+  <data name="BE004" xml:space="preserve">
+    <value>Evraklar</value>
+  </data>
+  <data name="BE005" xml:space="preserve">
+    <value>Hava Durumu</value>
+  </data>
+  <data name="BE006" xml:space="preserve">
+    <value>Kur Bilgisi</value>
+  </data>
+  <data name="BE007" xml:space="preserve">
+    <value>Anket</value>
+  </data>
+  <data name="BE008" xml:space="preserve">
+    <value>Sistem Mesajları</value>
+  </data>
+  <data name="Cografya001" xml:space="preserve">
+    <value>Yazma yetkiniz yok!</value>
+  </data>
+  <data name="Cografya002" xml:space="preserve">
+    <value>Görme yetkiniz yok!</value>
+  </data>
+  <data name="EvrakAktarim001" xml:space="preserve">
+    <value>Bu işlemi yapmaya yetkiniz bulunmamaktadır!</value>
+  </data>
+  <data name="KYM001" xml:space="preserve">
+    <value>Kayıt Bulunamadı</value>
+  </data>
+  <data name="KYM002" xml:space="preserve">
+    <value>Lütfen Muhasebe Birimi Seçiniz.</value>
+  </data>
+  <data name="KYM003" xml:space="preserve">
+    <value>Verilen dosya ({0}) yada sınıf ({1}) bulunamadı!</value>
+  </data>
+  <data name="KYMDUY001" xml:space="preserve">
+    <value>İstenilen kayıt bulunamadı!</value>
+  </data>
+  <data name="KYMDUY002" xml:space="preserve">
+    <value>Bu işlemi yapmaya yetkiniz yok!</value>
+  </data>
+  <data name="KYMDUY003" xml:space="preserve">
+    <value>Duyuru kodu üretilemedi!</value>
+  </data>
+  <data name="KYMDUY004" xml:space="preserve">
+    <value>Eposta kodu üretilemedi!</value>
+  </data>
+  <data name="KYMDUY005" xml:space="preserve">
+    <value>e-posta gönderme işlemi başlatıldı. &lt;b&gt;Önceki Gönderiler&lt;/b&gt; düğmesine basarak giden postaları kontrol edebilirsiniz.</value>
+  </data>
+  <data name="KYMDUY006" xml:space="preserve">
+    <value>e-posta GÖNDERİLEMEDİ</value>
+  </data>
+  <data name="KYMDUY007" xml:space="preserve">
+    <value>HATA</value>
+  </data>
+  <data name="KYMDUY008" xml:space="preserve">
+    <value>Gönderildi</value>
+  </data>
+  <data name="KYMDUY009" xml:space="preserve">
+    <value>Henüz Gönderilmedi</value>
+  </data>
+  <data name="KYMF001" xml:space="preserve">
+    <value>Filtre adı alanı boş bırakılamaz.</value>
+  </data>
+  <data name="KYMF002" xml:space="preserve">
+    <value>Filtre Kriter bilgileri boş bırakılamaz.</value>
+  </data>
+  <data name="KYMF003" xml:space="preserve">
+    <value>Filtre kullanıcı kodu alanı boş bırakılamaz.</value>
+  </data>
+  <data name="KYMF004" xml:space="preserve">
+    <value>Filtre numarası alanı boş bırakılamaz.</value>
+  </data>
+  <data name="KYMKT_0" xml:space="preserve">
+    <value>Misafir</value>
+  </data>
+  <data name="KYMKT_1" xml:space="preserve">
+    <value>Sistem yöneticisi</value>
+  </data>
+  <data name="KYMKT_11" xml:space="preserve">
+    <value>Personel</value>
+  </data>
+  <data name="KYMKT_12" xml:space="preserve">
+    <value>Kadro</value>
+  </data>
+  <data name="KYMKT_13" xml:space="preserve">
+    <value>İç kontrol</value>
+  </data>
+  <data name="KYMKT_14" xml:space="preserve">
+    <value>Ön mali kontrol</value>
+  </data>
+  <data name="KYMKT_15" xml:space="preserve">
+    <value>Taşınır mal işlem fişi giren</value>
+  </data>
+  <data name="KYMKT_16" xml:space="preserve">
+    <value>Kütüphane</value>
+  </data>
+  <data name="KYMKT_17" xml:space="preserve">
+    <value>Ödenek gönderebilen</value>
+  </data>
+  <data name="KYMKT_18" xml:space="preserve">
+    <value>Ödeme emri/MİF</value>
+  </data>
+  <data name="KYMKT_19" xml:space="preserve">
+    <value>Muhasebe birimi yöneticisi</value>
+  </data>
+  <data name="KYMKT_2" xml:space="preserve">
+    <value>Kullanıcı yöneticisi</value>
+  </data>
+  <data name="KYMKT_20" xml:space="preserve">
+    <value>Bütçe hazırlık</value>
+  </data>
+  <data name="KYMKT_21" xml:space="preserve">
+    <value>Bütçe uygulama</value>
+  </data>
+  <data name="KYMKT_22" xml:space="preserve">
+    <value>DPT Yatırım projeleri</value>
+  </data>
+  <data name="KYMKT_23" xml:space="preserve">
+    <value>Alacak takip</value>
+  </data>
+  <data name="KYMKT_24" xml:space="preserve">
+    <value>Ekonomik gösterge</value>
+  </data>
+  <data name="KYMKT_25" xml:space="preserve">
+    <value>Kesin hesap</value>
+  </data>
+  <data name="KYMKT_26" xml:space="preserve">
+    <value>Stratejik plan</value>
+  </data>
+  <data name="KYMKT_27" xml:space="preserve">
+    <value>Performans bütçe</value>
+  </data>
+  <data name="KYMKT_28" xml:space="preserve">
+    <value>Taşınır mal yöneticisi</value>
+  </data>
+  <data name="KYMKT_29" xml:space="preserve">
+    <value>Taşınır mal konsolide yetkilisi</value>
+  </data>
+  <data name="KYMKT_30" xml:space="preserve">
+    <value>Performans bütçe tedbir</value>
+  </data>
+  <data name="KYMKT_31" xml:space="preserve">
+    <value>Makbuz kullanıcısı</value>
+  </data>
+  <data name="KYMKT_32" xml:space="preserve">
+    <value>Bütçe yöneticisi</value>
+  </data>
+  <data name="KYMKT_33" xml:space="preserve">
+    <value>Kimlik paylaşımı</value>
+  </data>
+  <data name="KYMKT_34" xml:space="preserve">
+    <value>Kalite kullanıcısı</value>
+  </data>
+  <data name="KYMKT_35" xml:space="preserve">
+    <value>Proje yönetimi</value>
+  </data>
+  <data name="KYMKT_36" xml:space="preserve">
+    <value>Evrak kullanıcısı</value>
+  </data>
+  <data name="KYMKT_37" xml:space="preserve">
+    <value>Personel v2</value>
+  </data>
+  <data name="KYMKT_38" xml:space="preserve">
+    <value>Taşınır Kullanıcı Birimi</value>
+  </data>
+  <data name="KYMKT_39" xml:space="preserve">
+    <value>Destek Başvuru (Sistem Yöneticisi)</value>
+  </data>
+  <data name="KYMKT_40" xml:space="preserve">
+    <value>Destek Başvuru (Uzman)</value>
+  </data>
+  <data name="KYMKT_41" xml:space="preserve">
+    <value>Destek Başvuru (İl Kullanıcısı)</value>
+  </data>
+  <data name="KYMKT_42" xml:space="preserve">
+    <value>Kurum Bütçe Hazırlık Kullanıcısı</value>
+  </data>
+  <data name="KYMKT_43" xml:space="preserve">
+    <value>Kurum Bütçe Hazırlık Yetkilisi</value>
+  </data>
+  <data name="KYMKT_44" xml:space="preserve">
+    <value>Maliye Bakanlığı Bütçe Uzmanı</value>
+  </data>
+  <data name="KYMKT_45" xml:space="preserve">
+    <value>Maliye Bakanlığı Bütçe Yetkilisi</value>
+  </data>
+  <data name="KYMKT_46" xml:space="preserve">
+    <value>Sınav İşlemleri Yetkisi</value>
+  </data>
+  <data name="KYMKT_47" xml:space="preserve">
+    <value>Görevlendirme (Sistem Yöneticisi)</value>
+  </data>
+  <data name="KYMKT_48" xml:space="preserve">
+    <value>Görevlendirme (Birim Kullanıcısı)</value>
+  </data>
+  <data name="KYMKT_49" xml:space="preserve">
+    <value>Gelir İşlemleri Yetkisi</value>
+  </data>
+  <data name="KYMKT_50" xml:space="preserve">
+    <value>Destek Başvuru (Raporlama)</value>
+  </data>
+  <data name="KYMKT_51" xml:space="preserve">
+    <value>Destek Başvuru (Merkez Kullanıcısı)</value>
+  </data>
+  <data name="KYMKT_52" xml:space="preserve">
+    <value>Teminat Mektubu Yetkisi</value>
+  </data>
+  <data name="KYMKT_53" xml:space="preserve">
+    <value>Evrak Belge Yöneticisi (Kurum)</value>
+  </data>
+  <data name="KYMKT_54" xml:space="preserve">
+    <value>Evrak Belge Yöneticisi</value>
+  </data>
+  <data name="KYMKT_55" xml:space="preserve">
+    <value>Evrak Arşivci</value>
+  </data>
+  <data name="KYMKT_56" xml:space="preserve">
+    <value>Evrak Misafir </value>
+  </data>
+  <data name="KYMKT_57" xml:space="preserve">
+    <value>Teftiş Başkanı</value>
+  </data>
+  <data name="KYMKT_58" xml:space="preserve">
+    <value>Teftiş Başkan Yardımcısı</value>
+  </data>
+  <data name="KYMKT_59" xml:space="preserve">
+    <value>Teftiş Müfettiş</value>
+  </data>
+  <data name="KYMKT_60" xml:space="preserve">
+    <value>Teftiş Büro</value>
+  </data>
+  <data name="KYMKT_61" xml:space="preserve">
+    <value>Teftiş Kalite</value>
+  </data>
+  <data name="KYMKT_62" xml:space="preserve">
+    <value>Teftiş Sistem Yöneticisi</value>
+  </data>
+  <data name="KYMKT_63" xml:space="preserve">
+    <value>Etiket Basımı Yetkisi</value>
+  </data>
+  <data name="KYMKT_64" xml:space="preserve">
+    <value>Harcama İşlemleri</value>
+  </data>
+  <data name="KYMKT_65" xml:space="preserve">
+    <value>Taşınmaz İşlemleri Yetkisi</value>
+  </data>
+  <data name="KYMKT_66" xml:space="preserve">
+    <value>Taşınmaz Yönetici Yetkisi</value>
+  </data>
+  <data name="KYMKT_67" xml:space="preserve">
+    <value>İnsan Kaynakları Yöneticisi</value>
+  </data>
+  <data name="KYMKT_68" xml:space="preserve">
+    <value>İnsan Kaynakları Yetkilisi</value>
+  </data>
+  <data name="KYMKT_69" xml:space="preserve">
+    <value>İnsan Kaynakları Uzmanı</value>
+  </data>
+  <data name="KYMKT_70" xml:space="preserve">
+    <value>Taşınır Mal Yıl Devri Giriş Çıkış Yetkisi</value>
+  </data>
+  <data name="KYMKT_71" xml:space="preserve">
+    <value>Evrak Süreç Tasarımcısı</value>
+  </data>
+  <data name="KYMKT_72" xml:space="preserve">
+    <value>Harcama Kurum Kullanıcısı</value>
+  </data>
+  <data name="KYMKT_73" xml:space="preserve">
+    <value>Harcama Hazine Kuratörü</value>
+  </data>
+  <data name="KYMKT_74" xml:space="preserve">
+    <value>Harcama Hazine Kuratörü Sorumlusu</value>
+  </data>
+  <data name="KYMKT_75" xml:space="preserve">
+    <value>Medium Term Expenditure Framework</value>
+  </data>
+  <data name="KYMKT_76" xml:space="preserve">
+    <value>Destek Başvuru (Komisyon Başkanı)</value>
+  </data>
+  <data name="KYMKT_77" xml:space="preserve">
+    <value>Destek Başvuru (Komisyon Veri Giriş)</value>
+  </data>
+  <data name="KYMKT_78" xml:space="preserve">
+    <value>Destek Başvuru (Web Servis)</value>
+  </data>
+  <data name="KYMKT_79" xml:space="preserve">
+    <value>Kalite Dokümantasyon Kullanıcısı</value>
+  </data>
+  <data name="KYMKT_80" xml:space="preserve">
+    <value>Администратор отчётов</value>
+  </data>
+  <data name="KYMKT_81" xml:space="preserve">
+    <value>Администратор всех отчётов</value>
+  </data>
+  <data name="KYMKT_82" xml:space="preserve">
+    <value>Performans Bütçe Yöneticisi</value>
+  </data>
+  <data name="KYMKT_83" xml:space="preserve">
+    <value>Yetkili Olduğu Evrak Birimleri (Bakım)</value>
+  </data>
+  <data name="KYMKT_84" xml:space="preserve">
+    <value>Evrak Kep Gönder</value>
+  </data>
+  <data name="KYMKT_85" xml:space="preserve">
+    <value>Evrak Kep Al</value>
+  </data>
+  <data name="KYMKT_86" xml:space="preserve">
+    <value>Görev Yönetimi Sistemi Kullanıcısı</value>
+  </data>
+  <data name="KYMKT_87" xml:space="preserve">
+    <value>Satın Alma Görevlisi</value>
+  </data>
+  <data name="KYMKT_88" xml:space="preserve">
+    <value>İnsan Kaynakları Yöneticisi</value>
+  </data>
+  <data name="KYMKT_89" xml:space="preserve">
+    <value>Muhasebe Birim Yöneticisi</value>
+  </data>
+  <data name="KYMKT_90" xml:space="preserve">
+    <value>Taahhüt Kartı</value>
+  </data>
+  <data name="KYMKT_91" xml:space="preserve">
+    <value>Ödenek Talep Karşılama</value>
+  </data>
+  <data name="KYMKT_92" xml:space="preserve">
+    <value>Kurum Projeleri</value>
+  </data>
+  <data name="KYMKT_93" xml:space="preserve">
+    <value>Dış Kaynaklı Proje Modül Yöneticisi</value>
+  </data>
+  <data name="KYMKT_94" xml:space="preserve">
+    <value>Dış Kaynaklı Proje Birim Kullanıcısı</value>
+  </data>
+  <data name="KYMKT_95" xml:space="preserve">
+    <value>Sayıştay Bulgu Yöneticisi</value>
+    <comment>Sayışta Bulgu Yöneticisi</comment>
+  </data>
+  <data name="KYMKT_96" xml:space="preserve">
+    <value>Sayıştay Bulgu Kullanıcısı</value>
+    <comment>Sayışta Bulgu Kullanıcısı</comment>
+  </data>
+  <data name="KYMKT__1" xml:space="preserve">
+    <value>Kullanıcı tipi tanımsız</value>
+  </data>
+  <data name="KYMKUL001" xml:space="preserve">
+    <value>Aradığınız özellikere sahip kullanıcı bulunamadı!</value>
+  </data>
+  <data name="KYMKUL002" xml:space="preserve">
+    <value>Kullanıcınızın ({0}), verdiğiniz koda({1}) sahip kullanıcıyı görme hakkı yok!</value>
+  </data>
+  <data name="KYMKUL003" xml:space="preserve">
+    <value>Hatalı kullanıcı kodu/şifre geldi!</value>
+  </data>
+  <data name="KYMKUL004" xml:space="preserve">
+    <value>Kullanıcınız pasif yapıldığından sisteme giremezsiniz, lütfen yöneticisinizle görüşünüz!</value>
+  </data>
+  <data name="KYMKUL005" xml:space="preserve">
+    <value>Son giriş zamanınınız güncellenemedi.!</value>
+  </data>
+  <data name="KYMKUL006" xml:space="preserve">
+    <value>Hatalı kullanıcı kodu geldi!</value>
+  </data>
+  <data name="KYMKUL007" xml:space="preserve">
+    <value>Bağlanılan Yetki Servisi Adresi: {0}</value>
+  </data>
+  <data name="KYMKUL008" xml:space="preserve">
+    <value>Session Servisi (GirisYap) cagriliyor. KullaniciKodu={0} sessionID={1}</value>
+  </data>
+  <data name="KYMKUL009" xml:space="preserve">
+    <value>Session Servisi (KullaniciOku) cagriliyor. KullaniciKodu={0}</value>
+  </data>
+  <data name="KYMKUL010" xml:space="preserve">
+    <value>Kullanıcı bilgisi boş geldi!</value>
+  </data>
+  <data name="KYMKUL011" xml:space="preserve">
+    <value>Kullanıcı bilgisi okunurken hata oluştu: {1}</value>
+  </data>
+  <data name="KYMKUL012" xml:space="preserve">
+    <value>Okuma yapılacak</value>
+  </data>
+  <data name="KYMKUL013" xml:space="preserve">
+    <value>Okuma yapıldı</value>
+  </data>
+  <data name="KYMKUL014" xml:space="preserve">
+    <value>Okuma doğru</value>
+  </data>
+  <data name="KYMKUL015" xml:space="preserve">
+    <value>Verilen adresden ({0})&lt;b&gt;T.C.Kimlik Numarası boş geldi.&lt;/b&gt;</value>
+  </data>
+  <data name="KYMKUL016" xml:space="preserve">
+    <value>Okuma hatalı. Mernis:{0} Ad:{1} KullaniciKodu:{2}</value>
+  </data>
+  <data name="KYMKUL017" xml:space="preserve">
+    <value>SGB sistemini kullanmaya yetkili değilsiniz. Web Servisinden kullanıcı bilgisi okunamadı. Lütfen yöneticisinizle görüşünüz!</value>
+  </data>
+  <data name="KYMKUL018" xml:space="preserve">
+    <value>SGB sistemini kullanmaya yetkili değilsiniz. Web Servisinden kullanıcı bilgisi okunamadı. Lütfen yöneticisinizle görüşünüz!</value>
+  </data>
+  <data name="KYMKUL019" xml:space="preserve">
+    <value>Kullanıcıyı görme hakkınız yok!</value>
+  </data>
+  <data name="KYMKUL020" xml:space="preserve">
+    <value>Hatalı kullanıcı kodu/şifre geldi!</value>
+  </data>
+  <data name="KYMKUL021" xml:space="preserve">
+    <value>Yeni parolanızı eski parolanızdan farklı tanımlamalısınız!</value>
+  </data>
+  <data name="KYMKUL022" xml:space="preserve">
+    <value>Kullanıcı bilgileri okunamadı!</value>
+  </data>
+  <data name="KYMKUL023" xml:space="preserve">
+    <value>Yeni parolalar birbirine eşit değil!</value>
+  </data>
+  <data name="KYMKUL024" xml:space="preserve">
+    <value>Parolanız {0} karakterden az olamaz.</value>
+  </data>
+  <data name="KYMKUL025" xml:space="preserve">
+    <value>size ait yeni kullanıcı tanımlaması yapılmıştır.</value>
+  </data>
+  <data name="KYMKUL026" xml:space="preserve">
+    <value>kullanmakta olduğunuz parolanız değiştirilmiştir.\r\n\r\n</value>
+  </data>
+  <data name="KYMKUL027" xml:space="preserve">
+    <value>Sayın {0} {1},&lt;br&gt;{2} sisteminde, {3}Kullanıcı bilgileriniz;&lt;br&gt;&lt;br&gt;Kullanıcı Kodu : {4}&lt;br&gt;Parola : {5}&lt;br&gt;&lt;br&gt;Yukarıda verilen bilgileri kullanarak {6} adresinden, {2} sistemine giriş yapabilirsiniz.&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;Not : Lütfen parolanızı kimseyle paylaşmayınız ve e-posta gönderirken kullanmayınız. e-posta adresimiz {7}&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;İyi çalışmalar.&lt;br&gt;{2} Çalışma Ekibi</value>
+  </data>
+  <data name="KYMKUL028" xml:space="preserve">
+    <value>{0} Kullanıcı Bilgisi</value>
+  </data>
+  <data name="KYMKUL029" xml:space="preserve">
+    <value>T.C Kimlik numarası {0} hatalı veya yazılan Ad Soyad ile uyumsuz veya Kimlik doğrulama servisi ile bağlantı kurulamıyor.</value>
+  </data>
+  <data name="KYMKUL030" xml:space="preserve">
+    <value>Kullanıcı üzerinde işlem yapmaya yetkiniz yok.</value>
+  </data>
+  <data name="KYMKUL031" xml:space="preserve">
+    <value>Mernis ile bağlantı konfigüre edilmemiş</value>
+  </data>
+  <data name="KYMKUL032" xml:space="preserve">
+    <value>Belirtilen T.C. Kimlik No Mernis Veritabanında bulunamadı.</value>
+  </data>
+  <data name="KYMKUL033" xml:space="preserve">
+    <value>T.C. Kimlik No :{0} hatalı yazılmış!</value>
+  </data>
+  <data name="KYMKUL034" xml:space="preserve">
+    <value>T.C. Kimlik No 11 karakter olmalı</value>
+  </data>
+  <data name="KYMKUL035" xml:space="preserve">
+    <value>Duyuru bilgisini girmek zorundasınız!</value>
+  </data>
+  <data name="KYMKUL036" xml:space="preserve">
+    <value>Tarih bilgisini girmek zorundasınız!</value>
+  </data>
+  <data name="KYMKUL037" xml:space="preserve">
+    <value>KULLANICI KODUNU girmek zorundasınız!</value>
+  </data>
+  <data name="KYMKUL038" xml:space="preserve">
+    <value>MERNİS numarasını girmek zorundasınız!</value>
+  </data>
+  <data name="KYMKUL039" xml:space="preserve">
+    <value>Kullanıcının ADını girmek zorundasınız!</value>
+  </data>
+  <data name="KYMKUL040" xml:space="preserve">
+    <value>Kullanıcının SOYADını girmek zorundasınız!</value>
+  </data>
+  <data name="KYMKUL041" xml:space="preserve">
+    <value>Kullanıcının MUHASEBE BİRİMİ girmek zorundasınız!</value>
+  </data>
+  <data name="KYMKUL042" xml:space="preserve">
+    <value>Kullanıcının ÜNVANInı girmek zorundasınız!</value>
+  </data>
+  <data name="KYMKUL043" xml:space="preserve">
+    <value>Kullanıcının TELEFONunu girmek zorundasınız!</value>
+  </data>
+  <data name="KYMKUL044" xml:space="preserve">
+    <value>Kullanıcının EMAIL ADRESINI girmek zorundasınız!</value>
+  </data>
+  <data name="KYMKUL045" xml:space="preserve">
+    <value>Kullanıcının email ({0}) adresi hatalı!</value>
+  </data>
+  <data name="KYMKUL046" xml:space="preserve">
+    <value>KULLANICI TİPİNİ girmek zorundasınız!</value>
+  </data>
+  <data name="KYMKUL047" xml:space="preserve">
+    <value>Kullanıcı tipini girmek zorundasınız!</value>
+  </data>
+  <data name="KYMKUL048" xml:space="preserve">
+    <value>Girdiğiniz kullanıcı kodu '{0}', var olan bir kullanıcı tarafından kullanılmaktadır. Lütfen başka bir kullanıcı kodu seçiniz.</value>
+  </data>
+  <data name="KYMKUL049" xml:space="preserve">
+    <value>Girdiğiniz mernis numarası '{0}', var olan bir kullanıcı tarafından kullanılmaktadır. Lütfen doğruluğunu kontrol edin.</value>
+  </data>
+  <data name="KYMKUL050" xml:space="preserve">
+    <value>{0} yetki tipi alanına bilgi girilmesi zorunludur.</value>
+  </data>
+  <data name="KYMKUL051" xml:space="preserve">
+    <value>Çoklu Hatalı giriş yaptığınız için, kullanıcınız pasif yapıldığından sisteme giremezsiniz, lütfen yöneticisinizle görüşünüz!</value>
+  </data>
+  <data name="KYMYT001" xml:space="preserve">
+    <value>Görme yetkisi var.</value>
+  </data>
+  <data name="KYMYT002" xml:space="preserve">
+    <value>Görme ve yazma yetkisi var.</value>
+  </data>
+  <data name="KYMYT003" xml:space="preserve">
+    <value>Görme ve onaylama yetkisi var.</value>
+  </data>
+  <data name="KYMYT004" xml:space="preserve">
+    <value>Görme, yazma ve onaylama yetkisi var.</value>
+  </data>
+  <data name="KYMYT005" xml:space="preserve">
+    <value>Görme yetkisi var.</value>
+  </data>
+  <data name="KYMYT006" xml:space="preserve">
+    <value>Görme ve yazma yetkisi var.</value>
+  </data>
+  <data name="KYMYT007" xml:space="preserve">
+    <value>Görme, yazma ve silme yetkisi var.</value>
+  </data>
+  <data name="KYMYT008" xml:space="preserve">
+    <value>Belge onayı kaldırma</value>
+  </data>
+  <data name="KYMYT009" xml:space="preserve">
+    <value>Yevmiye kaldırma.</value>
+  </data>
+  <data name="KYMYT_0" xml:space="preserve">
+    <value>Kurum</value>
+  </data>
+  <data name="KYMYT_10" xml:space="preserve">
+    <value>Yatırım Hazırlığı Yetkisi</value>
+  </data>
+  <data name="KYMYT_100" xml:space="preserve">
+    <value>Project proposal organisation code</value>
+  </data>
+  <data name="KYMYT_101" xml:space="preserve">
+    <value>Kullanıcıları da yönetir</value>
+  </data>
+  <data name="KYMYT_102" xml:space="preserve">
+    <value>Dosya Tasnif Planı</value>
+  </data>
+  <data name="KYMYT_103" xml:space="preserve">
+    <value>Gizlilik Derecesi</value>
+  </data>
+  <data name="KYMYT_104" xml:space="preserve">
+    <value>Banka Hareketleri Göreceği Hesaplar</value>
+  </data>
+  <data name="KYMYT_105" xml:space="preserve">
+    <value>İzin-Devir Bilgisi Girebilir</value>
+  </data>
+  <data name="KYMYT_106" xml:space="preserve">
+    <value>Kalite Sistemi Rolü</value>
+  </data>
+  <data name="KYMYT_107" xml:space="preserve">
+    <value>Kalite Sistemi Birimi</value>
+  </data>
+  <data name="KYMYT_108" xml:space="preserve">
+    <value>Veznedar</value>
+  </data>
+  <data name="KYMYT_11" xml:space="preserve">
+    <value>Alacak Takibi Yapacağı Birimler</value>
+  </data>
+  <data name="KYMYT_110" xml:space="preserve">
+    <value>Yetkili Olduğu Evrak Birimleri (Kep Alma)</value>
+  </data>
+  <data name="KYMYT_111" xml:space="preserve">
+    <value>Yetkili Olduğu Evrak Birimleri (Kep Gönderme)</value>
+  </data>
+  <data name="KYMYT_112" xml:space="preserve">
+    <value>Görev Yönetimi Sistemi Rolü</value>
+  </data>
+  <data name="KYMYT_113" xml:space="preserve">
+    <value>Görev Yönetimi Sistemi Birimi</value>
+  </data>
+  <data name="KYMYT_114" xml:space="preserve">
+    <value>Görebileceği İşlemler</value>
+  </data>
+  <data name="KYMYT_115" xml:space="preserve">
+    <value>Yapabileceği İşlemler</value>
+  </data>
+  <data name="KYMYT_116" xml:space="preserve">
+    <value>Onaylayabileceği İşlemler</value>
+  </data>
+  <data name="KYMYT_117" xml:space="preserve">
+    <value>Sektörler</value>
+  </data>
+  <data name="KYMYT_118" xml:space="preserve">
+    <value>Görebileceği personel tipleri</value>
+  </data>
+  <data name="KYMYT_119" xml:space="preserve">
+    <value>Değiştirebileceği personel tipleri</value>
+  </data>
+  <data name="KYMYT_12" xml:space="preserve">
+    <value>Alacak Takibi Yapacağı Saymanlık-Birim</value>
+  </data>
+  <data name="KYMYT_120" xml:space="preserve">
+    <value>Onaylayabileceği personel tipleri</value>
+  </data>
+  <data name="KYMYT_121" xml:space="preserve">
+    <value>Okuma İşlemleri</value>
+  </data>
+  <data name="KYMYT_122" xml:space="preserve">
+    <value>Yazma İşlemleri</value>
+  </data>
+  <data name="KYMYT_123" xml:space="preserve">
+    <value>Silme İşlemleri</value>
+  </data>
+  <data name="KYMYT_126" xml:space="preserve">
+    <value>Yapabileceği Adımlar</value>
+  </data>
+  <data name="KYMYT_127" xml:space="preserve">
+    <value>Görebileceği Adımlar</value>
+  </data>
+  <data name="KYMYT_128" xml:space="preserve">
+    <value>Onaylayabileceği Adımlar</value>
+  </data>
+  <data name="KYMYT_129" xml:space="preserve">
+    <value>Görev Kodları</value>
+  </data>
+  <data name="KYMYT_13" xml:space="preserve">
+    <value>Alacak Takibi Yetkisi</value>
+  </data>
+  <data name="KYMYT_130" xml:space="preserve">
+    <value>Taşınır Hesap Kodu Değiştirme Yetkisi</value>
+  </data>
+  <data name="KYMYT_131" xml:space="preserve">
+    <value>Başvuruyu Online Durumuna Getir</value>
+  </data>
+  <data name="KYMYT_132" xml:space="preserve">
+    <value>Proje Kaydedebileceği Birimler</value>
+  </data>
+  <data name="KYMYT_133" xml:space="preserve">
+    <value>Proje Görebileceği Birimler</value>
+  </data>
+  <data name="KYMYT_134" xml:space="preserve">
+    <value>Proje Onaylayabileceği Birimler</value>
+  </data>
+  <data name="KYMYT_135" xml:space="preserve">
+    <value>Başvuru Üye İşlemi Yapabilir</value>
+  </data>
+  <data name="KYMYT_136" xml:space="preserve">
+    <value>Şube Müdürü</value>
+  </data>
+  <data name="KYMYT_137" xml:space="preserve">
+    <value>Merkez Kabul Yatirim</value>
+  </data>
+  <data name="KYMYT_138" xml:space="preserve">
+    <value>Merkez Kabul Altyapi</value>
+  </data>
+  <data name="KYMYT_139" xml:space="preserve">
+    <value>İlgili Birim</value>
+  </data>
+  <data name="KYMYT_14" xml:space="preserve">
+    <value>Personel Yetkisi</value>
+  </data>
+  <data name="KYMYT_140" xml:space="preserve">
+    <value>İşlem</value>
+  </data>
+  <data name="KYMYT_141" xml:space="preserve">
+    <value>Saymanlık Birim</value>
+  </data>
+  <data name="KYMYT_142" xml:space="preserve">
+    <value>İşlem</value>
+  </data>
+  <data name="KYMYT_15" xml:space="preserve">
+    <value>Kadro Yetkisi</value>
+  </data>
+  <data name="KYMYT_16" xml:space="preserve">
+    <value>İç Kontrol Yapacağı Birimler</value>
+  </data>
+  <data name="KYMYT_17" xml:space="preserve">
+    <value>İç Kontrol Yetkisi</value>
+  </data>
+  <data name="KYMYT_18" xml:space="preserve">
+    <value>Ön Mali Kontrol Yapacağı Birimler</value>
+  </data>
+  <data name="KYMYT_19" xml:space="preserve">
+    <value>Ön Mali Kontrol Yetkisi</value>
+  </data>
+  <data name="KYMYT_2" xml:space="preserve">
+    <value>Bütçe Hazırlığı Yapacağı Birimler</value>
+  </data>
+  <data name="KYMYT_20" xml:space="preserve">
+    <value>Ödeme Emri/MİF Hazırlayacağı Birimler</value>
+  </data>
+  <data name="KYMYT_21" xml:space="preserve">
+    <value>Ödeme Emri/MİF Saymanlık-Birim Yetkisi</value>
+  </data>
+  <data name="KYMYT_22" xml:space="preserve">
+    <value>Ödeme Emri/MİF Yetkisi</value>
+  </data>
+  <data name="KYMYT_23" xml:space="preserve">
+    <value>Personel Saymanlık-Birim Yetkisi</value>
+  </data>
+  <data name="KYMYT_24" xml:space="preserve">
+    <value>Bütçe Uygulama Görme Yetki Şablonu</value>
+  </data>
+  <data name="KYMYT_25" xml:space="preserve">
+    <value>Bütçe Uygulama Göreceği Aşamalar</value>
+  </data>
+  <data name="KYMYT_26" xml:space="preserve">
+    <value>Bütçe Uygulama Kayıt Yetki Şablonu</value>
+  </data>
+  <data name="KYMYT_27" xml:space="preserve">
+    <value>Bütçe Uygulama Kaydedeceği Aşamalar</value>
+  </data>
+  <data name="KYMYT_28" xml:space="preserve">
+    <value>Bütçe Uygulama Onay Yetki Şablonu</value>
+  </data>
+  <data name="KYMYT_29" xml:space="preserve">
+    <value>Bütçe Uygulama Onaylayacağı Aşamalar</value>
+  </data>
+  <data name="KYMYT_3" xml:space="preserve">
+    <value>Bütçe Hazırlığı Yetkisi</value>
+  </data>
+  <data name="KYMYT_30" xml:space="preserve">
+    <value>Kesin Hesap Yetkisi</value>
+  </data>
+  <data name="KYMYT_31" xml:space="preserve">
+    <value>Kesin Hesap Yapacağı Birimler</value>
+  </data>
+  <data name="KYMYT_32" xml:space="preserve">
+    <value>Taşınır Yetki Şablonu</value>
+  </data>
+  <data name="KYMYT_33" xml:space="preserve">
+    <value>Taşınır Muhasebe Harcama Birim Yetkisi</value>
+  </data>
+  <data name="KYMYT_34" xml:space="preserve">
+    <value>Ödeme Emri/MİF Ekonomik Kod</value>
+  </data>
+  <data name="KYMYT_35" xml:space="preserve">
+    <value>Ödenek Gönderme Ekonomik Kod</value>
+  </data>
+  <data name="KYMYT_36" xml:space="preserve">
+    <value>Bütçe Hazırlığı Görebileceği Birimler</value>
+  </data>
+  <data name="KYMYT_37" xml:space="preserve">
+    <value>Bütçe Hazırlığı Kaydedebileceği Birimler</value>
+  </data>
+  <data name="KYMYT_38" xml:space="preserve">
+    <value>Bütçe Hazırlığı Onaylayabileceği Birimler</value>
+  </data>
+  <data name="KYMYT_39" xml:space="preserve">
+    <value>Bütçe Hazırlığı Görebileceği Aşamalar</value>
+  </data>
+  <data name="KYMYT_4" xml:space="preserve">
+    <value>Bütçe İşlem Yapacağı Birimler</value>
+  </data>
+  <data name="KYMYT_40" xml:space="preserve">
+    <value>Bütçe Hazırlığı Kaydedebileceği Aşamalar</value>
+  </data>
+  <data name="KYMYT_41" xml:space="preserve">
+    <value>Bütçe Hazırlığı Onaylayabileceği Aşamalar</value>
+  </data>
+  <data name="KYMYT_42" xml:space="preserve">
+    <value>Stratejik Plan Yetkisi</value>
+  </data>
+  <data name="KYMYT_43" xml:space="preserve">
+    <value>Performans Bütçe Yetkisi</value>
+  </data>
+  <data name="KYMYT_44" xml:space="preserve">
+    <value>Performans Bütçe Yapacağı Birimler</value>
+  </data>
+  <data name="KYMYT_45" xml:space="preserve">
+    <value>Performans Bütçe Tedbir Yapacağı Birimler</value>
+  </data>
+  <data name="KYMYT_47" xml:space="preserve">
+    <value>Kimlik Paylaşım Saymanlık-Birim Yetkisi</value>
+  </data>
+  <data name="KYMYT_48" xml:space="preserve">
+    <value>Kalite Yönetimi Yetkisi</value>
+  </data>
+  <data name="KYMYT_49" xml:space="preserve">
+    <value>Proje Yönetimi Yetkisi</value>
+  </data>
+  <data name="KYMYT_5" xml:space="preserve">
+    <value>Bütçe İşlem Yetkisi</value>
+  </data>
+  <data name="KYMYT_50" xml:space="preserve">
+    <value>Kütüphane Listesi</value>
+  </data>
+  <data name="KYMYT_51" xml:space="preserve">
+    <value>Evrak Yetki Şablonu</value>
+  </data>
+  <data name="KYMYT_52" xml:space="preserve">
+    <value>Yetkili Olduğu Evrak Birimleri</value>
+  </data>
+  <data name="KYMYT_53" xml:space="preserve">
+    <value>Evrak Onay Yetki Şablonu</value>
+  </data>
+  <data name="KYMYT_54" xml:space="preserve">
+    <value>Personel-Organizasyonel Yapı</value>
+  </data>
+  <data name="KYMYT_55" xml:space="preserve">
+    <value>Bütçe Hazırlığı Görebileceği Altfaaliyetler</value>
+  </data>
+  <data name="KYMYT_56" xml:space="preserve">
+    <value>Bütçe Hazırlığı Kaydedebileceği Altfaaliyetler</value>
+  </data>
+  <data name="KYMYT_57" xml:space="preserve">
+    <value>Bütçe Hazırlığı Onaylayabileceği Altfaaliyetler</value>
+  </data>
+  <data name="KYMYT_58" xml:space="preserve">
+    <value>Bütçe Hazırlığı Görebileceği Harcama Birimleri</value>
+  </data>
+  <data name="KYMYT_59" xml:space="preserve">
+    <value>Bütçe Hazırlığı Kaydedebileceği Harcama Birimleri</value>
+  </data>
+  <data name="KYMYT_6" xml:space="preserve">
+    <value>Ödenek Gönderme Hazırlayacağı Birimler</value>
+  </data>
+  <data name="KYMYT_60" xml:space="preserve">
+    <value>Bütçe Hazırlığı Onaylayabileceği Harcama Birimleri</value>
+  </data>
+  <data name="KYMYT_61" xml:space="preserve">
+    <value>Bütçe Hazırlığı Görebileceği Fonksiyonlar</value>
+  </data>
+  <data name="KYMYT_62" xml:space="preserve">
+    <value>Bütçe Hazırlığı Kaydedebileceği Fonksiyonlar</value>
+  </data>
+  <data name="KYMYT_63" xml:space="preserve">
+    <value>Bütçe Hazırlığı Onaylayabileceği Fonksiyonlar</value>
+  </data>
+  <data name="KYMYT_64" xml:space="preserve">
+    <value>Stratejik Plan Yapacağı Birimler</value>
+  </data>
+  <data name="KYMYT_65" xml:space="preserve">
+    <value>Kadro Yapacağı Kurum</value>
+  </data>
+  <data name="KYMYT_66" xml:space="preserve">
+    <value>Taşınır Kullanıcı Birimi Yetkisi</value>
+  </data>
+  <data name="KYMYT_67" xml:space="preserve">
+    <value>Stratejik Plan Organizasyon Kodu</value>
+  </data>
+  <data name="KYMYT_68" xml:space="preserve">
+    <value>Destek Başvuru Yetkili Olduğu İller</value>
+  </data>
+  <data name="KYMYT_69" xml:space="preserve">
+    <value>Destek Başvuru Yetkilisi</value>
+  </data>
+  <data name="KYMYT_7" xml:space="preserve">
+    <value>Ödenek Gönderme Yetkisi</value>
+  </data>
+  <data name="KYMYT_70" xml:space="preserve">
+    <value>Destek Türü</value>
+  </data>
+  <data name="KYMYT_71" xml:space="preserve">
+    <value>Bütçe Tavanı Seviyesi (1,2,3)</value>
+  </data>
+  <data name="KYMYT_72" xml:space="preserve">
+    <value>Bütçe İsteği Tanımı Yetkisi (0:Yok; 1:Yeni Açar; 2:Açar ve Değiştirir)</value>
+  </data>
+  <data name="KYMYT_73" xml:space="preserve">
+    <value>Çalıştığı Birim</value>
+  </data>
+  <data name="KYMYT_74" xml:space="preserve">
+    <value>Faaliyet ve Projede Görebileceği Birimler</value>
+  </data>
+  <data name="KYMYT_75" xml:space="preserve">
+    <value>Faaliyet ve Projede Kaydedebileceği Birimler</value>
+  </data>
+  <data name="KYMYT_76" xml:space="preserve">
+    <value>Görev Atamada Görebileceği Birimler</value>
+  </data>
+  <data name="KYMYT_77" xml:space="preserve">
+    <value>Görev Atamada Kaydedebileceği Birimler</value>
+  </data>
+  <data name="KYMYT_78" xml:space="preserve">
+    <value>Görev Yönetimi Menü Yetkisi</value>
+  </data>
+  <data name="KYMYT_79" xml:space="preserve">
+    <value>Yetkili Olduğu Organizasyon Birimi</value>
+  </data>
+  <data name="KYMYT_8" xml:space="preserve">
+    <value>Kütüphane Yetkisi</value>
+  </data>
+  <data name="KYMYT_80" xml:space="preserve">
+    <value>Yetkili Olduğu Evrak Birimleri (Belge Yöneticisi)</value>
+  </data>
+  <data name="KYMYT_81" xml:space="preserve">
+    <value>Yetkili Olduğu Evrak Birimleri (Arşivci)</value>
+  </data>
+  <data name="KYMYT_82" xml:space="preserve">
+    <value>Yetkili Olduğu Evrak Birimleri (Misafir)</value>
+  </data>
+  <data name="KYMYT_83" xml:space="preserve">
+    <value>Teminat Mektubu Yetkisi</value>
+  </data>
+  <data name="KYMYT_84" xml:space="preserve">
+    <value>Yapabileceği İşlemler</value>
+  </data>
+  <data name="KYMYT_85" xml:space="preserve">
+    <value>Görebileceği İşlemler</value>
+  </data>
+  <data name="KYMYT_86" xml:space="preserve">
+    <value>Onaylayabileceği İşlemler</value>
+  </data>
+  <data name="KYMYT_87" xml:space="preserve">
+    <value>Taşınmaz Yetki Şablonu</value>
+  </data>
+  <data name="KYMYT_88" xml:space="preserve">
+    <value>Taşınmaz Bölge,İl,İlçe İşlem Yetkisi</value>
+  </data>
+  <data name="KYMYT_89" xml:space="preserve">
+    <value>Kişisel İşler</value>
+  </data>
+  <data name="KYMYT_9" xml:space="preserve">
+    <value>Yatırım Hazırlığı Yapacağı Birimler</value>
+  </data>
+  <data name="KYMYT_90" xml:space="preserve">
+    <value>Yevmiye İşlemi Yapamaz</value>
+  </data>
+  <data name="KYMYT_91" xml:space="preserve">
+    <value>Harcama Görebileceği Birimler</value>
+  </data>
+  <data name="KYMYT_92" xml:space="preserve">
+    <value>Harcama Kaydedebileceği Birimler</value>
+  </data>
+  <data name="KYMYT_93" xml:space="preserve">
+    <value>Harcama Onaylayabileceği Birimler</value>
+  </data>
+  <data name="KYMYT_94" xml:space="preserve">
+    <value>Harcama Görebileceği Fonksiyonlar</value>
+  </data>
+  <data name="KYMYT_95" xml:space="preserve">
+    <value>Harcama Kaydedebileceği Fonksiyonlar</value>
+  </data>
+  <data name="KYMYT_96" xml:space="preserve">
+    <value>Harcama Onaylayabileceği Fonksiyonlar</value>
+  </data>
+  <data name="KYMYT_97" xml:space="preserve">
+    <value>Ödenek Göndereceği Faaliyetler</value>
+  </data>
+  <data name="KYMYT_98" xml:space="preserve">
+    <value>Banka Hareketleri Görür</value>
+  </data>
+  <data name="KYMYT_99" xml:space="preserve">
+    <value>Ödeme Emri/MİF Faaliyet Kod</value>
+  </data>
+  <data name="KYM_YT98" xml:space="preserve">
+    <value>Banka Hareketleri Görür</value>
+  </data>
+  <data name="MDL_ATM" xml:space="preserve">
+    <value>Alacak Takip Modülü</value>
+  </data>
+  <data name="MDL_BHM" xml:space="preserve">
+    <value>Bütçe Hazırlık Modülü</value>
+  </data>
+  <data name="MDL_BUM" xml:space="preserve">
+    <value>Bütçe Uygulama Modülü</value>
+  </data>
+  <data name="MDL_DBP" xml:space="preserve">
+    <value>Dünya Bankası Projeleri</value>
+  </data>
+  <data name="MDL_EKG" xml:space="preserve">
+    <value>Ekonomik Gösterge</value>
+  </data>
+  <data name="MDL_EVR" xml:space="preserve">
+    <value>Evrak Modülü</value>
+  </data>
+  <data name="MDL_GEL" xml:space="preserve">
+    <value>Gelir Süreçleri Modülü</value>
+  </data>
+  <data name="MDL_GIT" xml:space="preserve">
+    <value>Görev Yönetimi Sistemi</value>
+  </data>
+  <data name="MDL_GRV" xml:space="preserve">
+    <value>Görev Yönetimi</value>
+  </data>
+  <data name="MDL_HRC" xml:space="preserve">
+    <value>Harcama Süreçleri Modülü</value>
+  </data>
+  <data name="MDL_IKY" xml:space="preserve">
+    <value>İnsan Kaynakları Yönetim Modülü</value>
+  </data>
+  <data name="MDL_KDS" xml:space="preserve">
+    <value>Kalite Dokümantasyon Sistemi</value>
+  </data>
+  <data name="MDL_KHM" xml:space="preserve">
+    <value>Kesin Hesap Modülü</value>
+  </data>
+  <data name="MDL_KPS" xml:space="preserve">
+    <value>Kimlik Paylaşım Modülü</value>
+  </data>
+  <data name="MDL_KTP" xml:space="preserve">
+    <value>Kütüphane Modülü</value>
+  </data>
+  <data name="MDL_MUH" xml:space="preserve">
+    <value>Muhasebe Modülü</value>
+  </data>
+  <data name="MDL_MVZ" xml:space="preserve">
+    <value>Mevzuat Modülü</value>
+  </data>
+  <data name="MDL_ORG" xml:space="preserve">
+    <value>Organizasyon Şeması Modülü</value>
+  </data>
+  <data name="MDL_PEB" xml:space="preserve">
+    <value>Performans Bütçeleme Modülü</value>
+  </data>
+  <data name="MDL_PER" xml:space="preserve">
+    <value>Personel Modülü</value>
+  </data>
+  <data name="MDL_SB" xml:space="preserve">
+    <value>Sınav Başvuru Modülü</value>
+  </data>
+  <data name="MDL_SBY" xml:space="preserve">
+    <value>Sayıştay Bulgu Yönetimi</value>
+    <comment>Sayıştay Bulgu Yönetimi</comment>
+  </data>
+  <data name="MDL_STRBir" xml:space="preserve">
+    <value>Birim Bazında Stratejik Plan Modülü</value>
+  </data>
+  <data name="MDL_STRKur" xml:space="preserve">
+    <value>Kurumsal Bazda Stratejik Plan Modülü</value>
+  </data>
+  <data name="MDL_TFT" xml:space="preserve">
+    <value>Teftiş Modülü</value>
+  </data>
+  <data name="MDL_TMM" xml:space="preserve">
+    <value>Taşınır Mal Modülü</value>
+  </data>
+  <data name="MDL_TMZ" xml:space="preserve">
+    <value>Taşınmaz Yönetimi</value>
+  </data>
+  <data name="MDL_TRM" xml:space="preserve">
+    <value>Tarım Modülü</value>
+  </data>
+  <data name="MDL_YAT" xml:space="preserve">
+    <value>DPT Yatırım Projeleri Modülü</value>
+  </data>
+  <data name="MD_TFT" xml:space="preserve">
+    <value>Teftiş Modülü</value>
+  </data>
+  <data name="YoneticiBildirimFormu001" xml:space="preserve">
+    <value>Yazma yetkiniz yok!</value>
+  </data>
+  <data name="YoneticiBildirimFormu002" xml:space="preserve">
+    <value>Görme yetkiniz yok!</value>
+  </data>
+</root>

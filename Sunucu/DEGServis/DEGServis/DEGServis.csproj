@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>DEGServis</AssemblyName>
+    <RootNamespace>TNS.DEG</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\GNLServis\GNLServis.csproj" />
+    <ProjectReference Include="..\DEGServisI\DEGServisI.csproj" />
+  </ItemGroup>
+
+</Project>

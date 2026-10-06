@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>KYMServisI</AssemblyName>
+    <RootNamespace>KYMServisI</RootNamespace>
+  </PropertyGroup>
+
+  <!-- Eski projede derlemeye dahil olmayan dosyalar -->
+  <ItemGroup>
+    <Compile Remove="KullaniciResI.tg.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DEGServis\DEGServisI\DEGServisI.csproj" />
+    <ProjectReference Include="..\..\GNLServis\GNLServis.csproj" />
+  </ItemGroup>
+
+</Project>

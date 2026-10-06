@@ -1,0 +1,1023 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PER001" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı</value>
+  </data>
+  <data name="PER002" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER003" xml:space="preserve">
+    <value>Silmek istenilen bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER004" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER005" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER006" xml:space="preserve">
+    <value>İlişki tipinin adı boş bırakılamaz.</value>
+  </data>
+  <data name="PER007" xml:space="preserve">
+    <value>İlişki tipi boş bırakılamaz.</value>
+  </data>
+  <data name="PER008" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER009" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu  belirtilmemiş.</value>
+  </data>
+  <data name="PER010" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER011" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER012" xml:space="preserve">
+    <value>Nesne adı boş bırakılamaz.</value>
+  </data>
+  <data name="PER013" xml:space="preserve">
+    <value>Nesne tipi boş bırakılamaz.</value>
+  </data>
+  <data name="PER014" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER015" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER016" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER017" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER018" xml:space="preserve">
+    <value>Nesne özellik adı boş bırakılamaz.</value>
+  </data>
+  <data name="PER019" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER020" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER021" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER022" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER023" xml:space="preserve">
+    <value>T.C. Kimlik No boş bırakılamaz.</value>
+  </data>
+  <data name="PER024" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER025" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER026" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER027" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER028" xml:space="preserve">
+    <value>Banka adı boş bırakılamaz.</value>
+  </data>
+  <data name="PER029" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER030" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER031" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER032" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER033" xml:space="preserve">
+    <value>Banka kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PER034" xml:space="preserve">
+    <value>Şube adı boş bırakılamaz.</value>
+  </data>
+  <data name="PER035" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER036" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER037" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER038" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER039" xml:space="preserve">
+    <value>Birim kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PER040" xml:space="preserve">
+    <value>Birim adı boş bırakılamaz.</value>
+  </data>
+  <data name="PER041" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER042" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER043" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER044" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER045" xml:space="preserve">
+    <value>Dil kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PER046" xml:space="preserve">
+    <value>Dil adı boş bırakılamaz.</value>
+  </data>
+  <data name="PER047" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER048" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER049" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER050" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER051" xml:space="preserve">
+    <value>Fakülte kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PER052" xml:space="preserve">
+    <value>Fakülte adı boş bırakılamaz.</value>
+  </data>
+  <data name="PER053" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER054" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER055" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER056" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER057" xml:space="preserve">
+    <value>Bölüm kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PER058" xml:space="preserve">
+    <value>Bölüm adı boş bırakılamaz.</value>
+  </data>
+  <data name="PER059" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER060" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER061" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER062" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER063" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER064" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER065" xml:space="preserve">
+    <value>Evrak Bilgileri başarıyla kaydedildi.</value>
+  </data>
+  <data name="PER066" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER067" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER068" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER069" xml:space="preserve">
+    <value>Görev Muhasebe kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PER070" xml:space="preserve">
+    <value>Görev Türü boş bırakılamaz.</value>
+  </data>
+  <data name="PER071" xml:space="preserve">
+    <value>Görev Birim Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PER072" xml:space="preserve">
+    <value>Görev Yer ve Tarih Bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="PER073" xml:space="preserve">
+    <value>Görevli Personel Bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="PER074" xml:space="preserve">
+    <value>Görev Tertip Bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="PER075" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER076" xml:space="preserve">
+    <value>Görev kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PER077" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER078" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER079" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER080" xml:space="preserve">
+    <value>Görev No bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="PER081" xml:space="preserve">
+    <value>TC Kimlik No bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="PER082" xml:space="preserve">
+    <value>Avans için para birimi seçiniz.</value>
+  </data>
+  <data name="PER083" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER084" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER085" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER086" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER087" xml:space="preserve">
+    <value>Görev No bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="PER088" xml:space="preserve">
+    <value>Tertip boş bırakılamaz.</value>
+  </data>
+  <data name="PER089" xml:space="preserve">
+    <value>Kullanılacak tutar boş bırakılamaz.</value>
+  </data>
+  <data name="PER090" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER091" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER092" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER093" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER094" xml:space="preserve">
+    <value>Görev No bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="PER095" xml:space="preserve">
+    <value>Bulunduğu Yer alanı boş bırakılamaz.</value>
+  </data>
+  <data name="PER096" xml:space="preserve">
+    <value>Gideceği Yer alanı boş bırakılamaz.</value>
+  </data>
+  <data name="PER097" xml:space="preserve">
+    <value>Başlangıç Tarihi boş bırakılamaz.</value>
+  </data>
+  <data name="PER098" xml:space="preserve">
+    <value>Bitiş Tarihi boş bırakılamaz.</value>
+  </data>
+  <data name="PER099" xml:space="preserve">
+    <value>Vasıta bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="PER100" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER101" xml:space="preserve">
+    <value>Bu işlemi sadece Sistem Yöneticisi yapabilir.</value>
+  </data>
+  <data name="PER102" xml:space="preserve">
+    <value>Aktarma işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER103" xml:space="preserve">
+    <value>Aktarma işlemi gerçekleştirilemedi!</value>
+  </data>
+  <data name="PER104" xml:space="preserve">
+    <value>İl kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PER105" xml:space="preserve">
+    <value>İl adı boş bırakılamaz.</value>
+  </data>
+  <data name="PER106" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER107" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER108" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER109" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER110" xml:space="preserve">
+    <value>Bu işlemi sadece Sistem Yöneticisi yapabilir.</value>
+  </data>
+  <data name="PER111" xml:space="preserve">
+    <value>Aktarma işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER112" xml:space="preserve">
+    <value>Aktarma işlemi gerçekleştirilemedi!</value>
+  </data>
+  <data name="PER113" xml:space="preserve">
+    <value>İlçe kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PER114" xml:space="preserve">
+    <value>İlçe adı boş bırakılamaz.</value>
+  </data>
+  <data name="PER115" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER116" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER117" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER118" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER119" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER120" xml:space="preserve">
+    <value>T.C. Kimlik No boş bırakılamaz.</value>
+  </data>
+  <data name="PER121" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER122" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu  belirtilmemiş.</value>
+  </data>
+  <data name="PER123" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER124" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER125" xml:space="preserve">
+    <value>Kurs kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PER126" xml:space="preserve">
+    <value>Kurs adı boş bırakılamaz.</value>
+  </data>
+  <data name="PER127" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER128" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER129" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER130" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER131" xml:space="preserve">
+    <value>Öğrenim kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PER132" xml:space="preserve">
+    <value>Öğrenim boş bırakılamaz.</value>
+  </data>
+  <data name="PER133" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER134" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER135" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER136" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER137" xml:space="preserve">
+    <value>Okul kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PER138" xml:space="preserve">
+    <value>Okul adı boş bırakılamaz.</value>
+  </data>
+  <data name="PER139" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER140" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER141" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER142" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER143" xml:space="preserve">
+    <value>T.C. Kimlik No alanı boş bırakılamaz.</value>
+  </data>
+  <data name="PER144" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER145" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER146" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER147" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER148" xml:space="preserve">
+    <value>T.C. Kimlik No boş bırakılamaz.</value>
+  </data>
+  <data name="PER149" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER150" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER151" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER152" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER153" xml:space="preserve">
+    <value>T.C. Kimlik No boş bırakılamaz.</value>
+  </data>
+  <data name="PER154" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER155" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER156" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER157" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER158" xml:space="preserve">
+    <value>T.C. Kimlik No boş bırakılamaz.</value>
+  </data>
+  <data name="PER159" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER160" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER161" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER162" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER163" xml:space="preserve">
+    <value>T.C. Kimlik No boş bırakılamaz.</value>
+  </data>
+  <data name="PER164" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER165" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER166" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER167" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER168" xml:space="preserve">
+    <value>T.C. Kimlik No boş bırakılamaz.</value>
+  </data>
+  <data name="PER169" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER170" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER171" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER172" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER173" xml:space="preserve">
+    <value>T.C. Kimlik No boş bırakılamaz.</value>
+  </data>
+  <data name="PER174" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER175" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER176" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER177" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER178" xml:space="preserve">
+    <value>T.C. Kimlik No boş bırakılamaz.</value>
+  </data>
+  <data name="PER179" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER180" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER181" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER182" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER183" xml:space="preserve">
+    <value>T.C. Kimlik No boş bırakılamaz.</value>
+  </data>
+  <data name="PER184" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER185" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER186" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER187" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER188" xml:space="preserve">
+    <value>T.C. Kimlik No boş bırakılamaz.</value>
+  </data>
+  <data name="PER189" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER190" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER191" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER192" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER193" xml:space="preserve">
+    <value>T.C. Kimlik No boş bırakılamaz.</value>
+  </data>
+  <data name="PER194" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER195" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER196" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER197" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER198" xml:space="preserve">
+    <value>T.C. Kimlik No boş bırakılamaz.</value>
+  </data>
+  <data name="PER199" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER200" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER201" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER202" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER203" xml:space="preserve">
+    <value>T.C. Kimlik No boş bırakılamaz.</value>
+  </data>
+  <data name="PER204" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER205" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER206" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER207" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER208" xml:space="preserve">
+    <value>T.C. Kimlik No boş bırakılamaz.</value>
+  </data>
+  <data name="PER209" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER210" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER211" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER212" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER213" xml:space="preserve">
+    <value>T.C. Kimlik No boş bırakılamaz.</value>
+  </data>
+  <data name="PER214" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER215" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER216" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER217" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER218" xml:space="preserve">
+    <value>Sınıf kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PER219" xml:space="preserve">
+    <value>Sınıf adı boş bırakılamaz.</value>
+  </data>
+  <data name="PER220" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER221" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER222" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER223" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER224" xml:space="preserve">
+    <value>Teşkilat kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PER225" xml:space="preserve">
+    <value>Teşkilat adı boş bırakılamaz.</value>
+  </data>
+  <data name="PER226" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER227" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER228" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER229" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER230" xml:space="preserve">
+    <value>Ülke kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PER231" xml:space="preserve">
+    <value>Ülke adı boş bırakılamaz.</value>
+  </data>
+  <data name="PER232" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER233" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER234" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER235" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER236" xml:space="preserve">
+    <value>Ünvan kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PER237" xml:space="preserve">
+    <value>Ünvan boş bırakılamaz.</value>
+  </data>
+  <data name="PER238" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER239" xml:space="preserve">
+    <value>Silmek istenilen Bilginin kodu belirtilmemiş.</value>
+  </data>
+  <data name="PER240" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PER241" xml:space="preserve">
+    <value>Ad alanı boş bırakılamaz.</value>
+  </data>
+  <data name="PER242" xml:space="preserve">
+    <value>Personel-Organizasyonel Yapı yetki değeri tanımlanmamış.</value>
+  </data>
+  <data name="PER243" xml:space="preserve">
+    <value>Bu kişiyle ilgili işlem yapma hakkınız yok.</value>
+  </data>
+  <data name="PER244" xml:space="preserve">
+    <value>{0} kodlu Muhasebe Birimi bulunamadı.</value>
+  </data>
+  <data name="PER245" xml:space="preserve">
+    <value>{0} - {1} kodlu Harcama Birimi bulunamadı.</value>
+  </data>
+  <data name="PER246" xml:space="preserve">
+    <value>Kaydetmeye çalıştığınız birim ile aynı bilgilere sahip başka bir birim, daha önce kayıt edilmiştir. İşleminiz yapılamadı!</value>
+  </data>
+  <data name="PER247" xml:space="preserve">
+    <value>Her bir birim için 999'dan fazla alt birim desteklenmemektedir. Lütfen, sistem yöneticisiyle görüşün!</value>
+  </data>
+  <data name="PER248" xml:space="preserve">
+    <value>Değişiklik yapılamadı!</value>
+  </data>
+  <data name="PER249" xml:space="preserve">
+    <value>Silme işlemi gerçekleştirilemedi.</value>
+  </data>
+  <data name="PER250" xml:space="preserve">
+    <value>Şablonun, il veya ilçe türünde olması gerekmektedir.</value>
+  </data>
+  <data name="PER251" xml:space="preserve">
+    <value>Şablonun kodu boş geliyor.</value>
+  </data>
+  <data name="PER252" xml:space="preserve">
+    <value>Şablonun adı boş bırakılamaz.</value>
+  </data>
+  <data name="PER253" xml:space="preserve">
+    <value>Kaydetme işlemi gerçekleştirilemedi.</value>
+  </data>
+  <data name="PER254" xml:space="preserve">
+    <value>Seçilen nesnenin şablon olması gerekmektedir.</value>
+  </data>
+  <data name="PER255" xml:space="preserve">
+    <value>Şablon uygulanamadı!</value>
+  </data>
+  <data name="PER256" xml:space="preserve">
+    <value>Şablon başarıyla uygulandı.</value>
+  </data>
+  <data name="PER257" xml:space="preserve">
+    <value>Şablon uygulanırken hata oluştu. Lütfen, sistem yöneticisiyle görüşün!</value>
+  </data>
+  <data name="PER258" xml:space="preserve">
+    <value>Sırası değiştirilmek istenen birimin kodu boş olamaz.</value>
+  </data>
+  <data name="PER259" xml:space="preserve">
+    <value>Sırası değiştirilmek istenen birim bulunamadı.</value>
+  </data>
+  <data name="PER260" xml:space="preserve">
+    <value>Sırası değiştirilmek istenen birimin hedef birimi bulunamadı.</value>
+  </data>
+  <data name="PER261" xml:space="preserve">
+    <value>Sırası değiştirilmek istenen birimin ve hedef biriminin bağlı olduğu birim aynı olmalı ya da sırası değiştirilmek istenen birim, hedef birime bağlı olmalı.</value>
+  </data>
+  <data name="PER262" xml:space="preserve">
+    <value>İşlem başarıyla yapıldı.</value>
+  </data>
+  <data name="PER263" xml:space="preserve">
+    <value>Ana birimi değiştirilmek istenen birimin kodu boş olamaz.</value>
+  </data>
+  <data name="PER264" xml:space="preserve">
+    <value>Kayıt edilecek bilgi bulunamadı.</value>
+  </data>
+  <data name="PER265" xml:space="preserve">
+    <value>Tekrar eden bütçe kodları var, lütfen kontrol ediniz!</value>
+  </data>
+  <data name="PER266" xml:space="preserve">
+    <value>Organizasyon birimleri alınırken bir hata oluştu!</value>
+  </data>
+  <data name="PER267" xml:space="preserve">
+    <value>Eğer birim seçmemiş iseniz, hem AD hem de SOYAD alanlarına değer girmelisiniz.</value>
+  </data>
+  <data name="PER268" xml:space="preserve">
+    <value>Sorgu alanlarında % karekteri kullanmayınız!</value>
+  </data>
+  <data name="PER269" xml:space="preserve">
+    <value>Org. Birim kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PERBRM001" xml:space="preserve">
+    <value>Bütçe Birimi</value>
+  </data>
+  <data name="PERBRM002" xml:space="preserve">
+    <value>Bütçe Kurumu</value>
+  </data>
+  <data name="PERBRM003" xml:space="preserve">
+    <value>Evrak Birimi</value>
+  </data>
+  <data name="PERBRM004" xml:space="preserve">
+    <value>Harcama Birimi</value>
+  </data>
+  <data name="PERBRM005" xml:space="preserve">
+    <value>Personel Birimi</value>
+  </data>
+  <data name="PERBRM006" xml:space="preserve">
+    <value>Taşınır Birimi</value>
+  </data>
+  <data name="PERBRM007" xml:space="preserve">
+    <value>Ambar</value>
+  </data>
+  <data name="PERBRMGRV001" xml:space="preserve">
+    <value>Ödenek Gönderir</value>
+  </data>
+  <data name="PERBRMGRV002" xml:space="preserve">
+    <value>Bütçe Hazırlığı Yapar</value>
+  </data>
+  <data name="PERBRMGRV003" xml:space="preserve">
+    <value>Bütçe İşlemi Yapar</value>
+  </data>
+  <data name="PERBRMGRV004" xml:space="preserve">
+    <value>Yatırım Projesi İşlemleri Yapar</value>
+  </data>
+  <data name="PERBRMGRV005" xml:space="preserve">
+    <value>Kesin Hesap İşlemleri Yapar</value>
+  </data>
+  <data name="PERBRMGRV006" xml:space="preserve">
+    <value>Stratejik Plan Girer</value>
+  </data>
+  <data name="PERBRMGRV007" xml:space="preserve">
+    <value>Performans Bütçe Yapar</value>
+  </data>
+  <data name="PERBRMGRV008" xml:space="preserve">
+    <value>Evrak İşlemleri Yapar</value>
+  </data>
+  <data name="PERBRMGRV009" xml:space="preserve">
+    <value>Ödeme Emri Belgesi Hazırlar</value>
+  </data>
+  <data name="PERBRMGRV010" xml:space="preserve">
+    <value>Alacak Takip İşlemleri Yapar</value>
+  </data>
+  <data name="PERBRMGRV011" xml:space="preserve">
+    <value>Personel Dosyası İşlemleri Yapar</value>
+  </data>
+  <data name="PERBRMGRV012" xml:space="preserve">
+    <value>Kadro İşlemleri Yapar</value>
+  </data>
+  <data name="PERBRMGRV013" xml:space="preserve">
+    <value>Kullanıcıları Yönetir</value>
+  </data>
+  <data name="PERBRMGRV014" xml:space="preserve">
+    <value>Taşınır İşlemleri Yapar</value>
+  </data>
+  <data name="PERBRMGRV015" xml:space="preserve">
+    <value>Sistem Yöneticiliği Yapar</value>
+  </data>
+  <data name="PERBRMGRV016" xml:space="preserve">
+    <value>Kütüphane İşlemleri Yapar</value>
+  </data>
+  <data name="PERBRMGRV017" xml:space="preserve">
+    <value>Kimlik Bilgilerine Erişir</value>
+  </data>
+  <data name="PERBRMGRV018" xml:space="preserve">
+    <value>Görev Yönetim Sistemi Kullanıcısı</value>
+  </data>
+  <data name="PERBRMGRV019" xml:space="preserve">
+    <value>Satın Alma İşlemi Yapar</value>
+  </data>
+  <data name="PERBRMGRV020" xml:space="preserve">
+    <value>Teminat Mektubu İşlemleri Yapar</value>
+  </data>
+  <data name="PERBRMGRV021" xml:space="preserve">
+    <value>Harcama Süreç İşlemleri Yapar</value>
+  </data>
+  <data name="PERBRMGRV022" xml:space="preserve">
+    <value>Taahhüt Kartı İşlemleri Yapar</value>
+  </data>
+  <data name="PERBRMGRV023" xml:space="preserve">
+    <value>Kurum Projesi İşlemleri Yapar</value>
+  </data>
+  <data name="PERBRMGRV024" xml:space="preserve">
+    <value>Dünya Bankası Projeleri İşlemleri</value>
+  </data>
+  <data name="PERBRMGRV025" xml:space="preserve">
+    <value>Sayıştay Bulgu Yönetim İşlemleri</value>
+  </data>
+</root>

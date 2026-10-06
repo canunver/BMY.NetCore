@@ -1,0 +1,1483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="TALEPKARSILAMADEPO_000" xml:space="preserve">
+    <value>Bütün Talepler</value>
+  </data>
+  <data name="TALEPKARSILAMADEPO_001" xml:space="preserve">
+    <value>Yeni</value>
+  </data>
+  <data name="TALEPKARSILAMADEPO_002" xml:space="preserve">
+    <value>İşleme Alındı</value>
+  </data>
+  <data name="TALEPKARSILAMADEPO_090" xml:space="preserve">
+    <value>Tamamlandı</value>
+  </data>
+  <data name="TALEPKARSILAMADEPO_099" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="TALEPKARSILAMATUR_1" xml:space="preserve">
+    <value>Talep</value>
+  </data>
+  <data name="TALEPKARSILAMATUR_2" xml:space="preserve">
+    <value>İstek</value>
+  </data>
+  <data name="TALEPKARSILAMA_001" xml:space="preserve">
+    <value>Beklemede</value>
+  </data>
+  <data name="TALEPKARSILAMA_002" xml:space="preserve">
+    <value>Satın Almada</value>
+  </data>
+  <data name="TALEPKARSILAMA_003" xml:space="preserve">
+    <value>Kapatıldı</value>
+  </data>
+  <data name="TESISBILESENDURUM_000" xml:space="preserve">
+    <value>Bütün İşlemler</value>
+  </data>
+  <data name="TESISBILESENDURUM_001" xml:space="preserve">
+    <value>Kayıt edildi</value>
+  </data>
+  <data name="TESISBILESENDURUM_009" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="TMM001" xml:space="preserve">
+    <value>{0} hesap kodunu güncellerken hata oluştu.</value>
+  </data>
+  <data name="TMM002" xml:space="preserve">
+    <value>İşlemci kodu {0}, sabit disk kodu {1} olan bilgisayara kurulan Stratek Stratejik Teknolojiler Ar-Ge tarafından yapılmış Taşınır Mal Yönetmeliği Programı için {2} harcama birimi karşılığı lisans ücreti ödenmiştir.</value>
+  </data>
+  <data name="TMM003" xml:space="preserve">
+    <value>{0} kurumu için kurulan Stratek Stratejik Teknolojiler Ar-Ge tarafından yapılmış Taşınır Mal Yönetmeliği Programı için {1} harcama birimi karşılığı lisans ücreti ödenmiştir.</value>
+  </data>
+  <data name="TMM004" xml:space="preserve">
+    <value>Maksimum sıra no alınamadı. Tekrar deneyin.</value>
+  </data>
+  <data name="TMM005" xml:space="preserve">
+    <value>Zimmet işlem tipi kodu yanlış, iptal işlemi yapılamaz.</value>
+  </data>
+  <data name="TMM006" xml:space="preserve">
+    <value>Zimmet işlem türü kodu yanlış, iptal işlemi yapılamaz.</value>
+  </data>
+  <data name="TMM007" xml:space="preserve">
+    <value>Yeni Giriş</value>
+  </data>
+  <data name="TMM008" xml:space="preserve">
+    <value>Değiştirildi</value>
+  </data>
+  <data name="TMM009" xml:space="preserve">
+    <value>Onaylandı</value>
+  </data>
+  <data name="TMM010" xml:space="preserve">
+    <value>Onay Kaldırıldı</value>
+  </data>
+  <data name="TMM011" xml:space="preserve">
+    <value>İptal Edildi</value>
+  </data>
+  <data name="TMM012" xml:space="preserve">
+    <value>Bilinmiyor ({0})</value>
+  </data>
+  <data name="TMM013" xml:space="preserve">
+    <value>Muhasebe Birimi Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="TMM014" xml:space="preserve">
+    <value>Harcama Birimi Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="TMM015" xml:space="preserve">
+    <value>Detaylar boş bırakılamaz.</value>
+  </data>
+  <data name="TMM016" xml:space="preserve">
+    <value>Belirtilen Muhasebe Birimi Kodu ve Harcama Birimi Kodu için yazma yetkiniz yoktur!</value>
+  </data>
+  <data name="TMM017" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="TMM018" xml:space="preserve">
+    <value>Kayıt işlemi gerçekleştirilemedi.</value>
+  </data>
+  <data name="TMM019" xml:space="preserve">
+    <value>{0} nolu sicil numarası ilgili harcama birimine ait değil.</value>
+  </data>
+  <data name="TMM020" xml:space="preserve">
+    <value>Sicil No boş bırakılamaz.</value>
+  </data>
+  <data name="TMM021" xml:space="preserve">
+    <value>{0} nolu sicil numarası bulunamadı.</value>
+  </data>
+  <data name="TMM022" xml:space="preserve">
+    <value>İstek Yapan Muhasebe Birimi Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="TMM023" xml:space="preserve">
+    <value>İstek Yapan Harcama Birimi Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="TMM024" xml:space="preserve">
+    <value>Belirtilen Muhasebe Birimi Kodu ve Harcama Birimi Kodu için silme yetkiniz yoktur!</value>
+  </data>
+  <data name="TMM025" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="TMM026" xml:space="preserve">
+    <value>Silme işlemi gerçekleştirilemedi.</value>
+  </data>
+  <data name="TMM027" xml:space="preserve">
+    <value>Taşınır Hesap Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="TMM028" xml:space="preserve">
+    <value>Belirtilen Muhasebe Birimi Kodu ve Harcama Birimi Kodu için okuma yetkiniz yoktur!</value>
+  </data>
+  <data name="TMM029" xml:space="preserve">
+    <value>Verilen kriterlere uygun kayıt bulunamadı.</value>
+  </data>
+  <data name="TMM030" xml:space="preserve">
+    <value>Bu bölümü kullanmaya yetkili değilsiniz.</value>
+  </data>
+  <data name="TMM031" xml:space="preserve">
+    <value>Ambar Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="TMM032" xml:space="preserve">
+    <value>Ambar Adı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM033" xml:space="preserve">
+    <value>Verdiğiniz Harcama Birimi kayıtlı değil.</value>
+  </data>
+  <data name="TMM034" xml:space="preserve">
+    <value>{0} kodlu Ambar silinmiştir.</value>
+  </data>
+  <data name="TMM035" xml:space="preserve">
+    <value>Değiştirmek istediğiniz bilgi; amortisman hesaplama işlemlerinde kullanıldığı için bu işlemi yapamazsınız. Bu işlemi yapmak için, önce amortismanı silin, daha sonra işleminizi yapın ve son olarak da amortismanı tekrar hesaplatın.</value>
+  </data>
+  <data name="TMM036" xml:space="preserve">
+    <value>Yıl boş bırakılamaz.</value>
+  </data>
+  <data name="TMM037" xml:space="preserve">
+    <value>Amortisman işlemlerini ilk defa yapıyorsanız, diğer ekranı kullanın.</value>
+  </data>
+  <data name="TMM038" xml:space="preserve">
+    <value>Amortisman Türü boş bırakılamaz.</value>
+  </data>
+  <data name="TMM039" xml:space="preserve">
+    <value>Değerleme Oranı(%) boş bırakılamaz.</value>
+  </data>
+  <data name="TMM040" xml:space="preserve">
+    <value>İşlem Türü boş bırakılamaz.</value>
+  </data>
+  <data name="TMM041" xml:space="preserve">
+    <value>Uygulama Türü "Girilen kriterlere uyan demirbaşlar için" seçildiği halde listeden demirbaş seçilmiş.</value>
+  </data>
+  <data name="TMM042" xml:space="preserve">
+    <value>Uygulama Türü "Seçilen demirbaşlar için" seçildiği halde listeden demirbaş seçilmemiş.</value>
+  </data>
+  <data name="TMM043" xml:space="preserve">
+    <value>Uygulama Türü boş bırakılamaz.</value>
+  </data>
+  <data name="TMM044" xml:space="preserve">
+    <value>Hesapla fonksiyonu, amortisman işlemlerini ilk defa yapıyorsanız kullanılır.</value>
+  </data>
+  <data name="TMM045" xml:space="preserve">
+    <value>Birikmiş Amortisman Oranı(%) 0\'dan küçük olamaz.</value>
+  </data>
+  <data name="TMM046" xml:space="preserve">
+    <value>Birikmiş Amortisman Oranı(%) 100\'den büyük olamaz.</value>
+  </data>
+  <data name="TMM047" xml:space="preserve">
+    <value>Kalan Amortisman Süresi 0\'dan küçük olamaz.</value>
+  </data>
+  <data name="TMM048" xml:space="preserve">
+    <value>Kalan Amortisman Süresi 0 olamaz.</value>
+  </data>
+  <data name="TMM049" xml:space="preserve">
+    <value>Kalan Amortisman Süresi 0 olmalıdır.</value>
+  </data>
+  <data name="TMM050" xml:space="preserve">
+    <value>Belirtilen muhasebe, harcama, ambar kodları için yazma yetkiniz yoktur!</value>
+  </data>
+  <data name="TMM051" xml:space="preserve">
+    <value>Önce {0} yılı amortismanlarını hesaplatın.</value>
+  </data>
+  <data name="TMM052" xml:space="preserve">
+    <value>Önce {0} yılı amortismanlarını silin.</value>
+  </data>
+  <data name="TMM053" xml:space="preserve">
+    <value>{0} yılı için amortisman alt sınırı tanımlanmamış.</value>
+  </data>
+  <data name="TMM054" xml:space="preserve">
+    <value>{0} yılında {1} hesap kodu için amortisman süresi tanımlanmamış.</value>
+  </data>
+  <data name="TMM055" xml:space="preserve">
+    <value>Cari Amortisman Tutarı/Cari Değerleme Amortisman Tutarı 0\'dan küçük olamaz.</value>
+  </data>
+  <data name="TMM056" xml:space="preserve">
+    <value>Cari Amortisman Tutarı/Cari Değerleme Amortisman Tutarı, Kalan Amortisman Tutarı\'ndan/Kalan Değerleme Amortisman Tutarı\'ndan büyük olamaz.</value>
+  </data>
+  <data name="TMM057" xml:space="preserve">
+    <value>Kalan Amortisman Süresi 0 olduğu için amortisman miktarlarını amortismanı sıfırlayacak şekilde girin.</value>
+  </data>
+  <data name="TMM058" xml:space="preserve">
+    <value>{0}. satırdaki {1} sicil nolu malzeme için:&lt;br&gt;{2}</value>
+  </data>
+  <data name="TMM059" xml:space="preserve">
+    <value>{0} sicil nolu malzeme sistemde bulunamadı.</value>
+  </data>
+  <data name="TMM060" xml:space="preserve">
+    <value>Belirtilen muhasebe, harcama, ambar kodları için okuma yetkiniz yoktur!</value>
+  </data>
+  <data name="TMM061" xml:space="preserve">
+    <value>Belirtilen muhasebe, harcama, ambar kodları için silme yetkiniz yoktur!</value>
+  </data>
+  <data name="TMM062" xml:space="preserve">
+    <value>Okuma hakkınız yok!</value>
+  </data>
+  <data name="TMM063" xml:space="preserve">
+    <value>TİF</value>
+  </data>
+  <data name="TMM064" xml:space="preserve">
+    <value>ZİMMET (Kişi)</value>
+  </data>
+  <data name="TMM065" xml:space="preserve">
+    <value>ZİMMET VERME</value>
+  </data>
+  <data name="TMM066" xml:space="preserve">
+    <value>ZİMMET DÜŞME</value>
+  </data>
+  <data name="TMM067" xml:space="preserve">
+    <value>ZİMMET (Ortak Alan)</value>
+  </data>
+  <data name="TMM068" xml:space="preserve">
+    <value>Değiştirmek istediğiniz bilgi; amortisman değerleme işlemlerinde kullanıldığı için bu işlemi yapamazsınız. Bu işlemi yapmak için, önce amortisman değerlemeyi silin, daha sonra işleminizi yapın ve son olarak da amortisman değerlemeyi tekrar hesaplatın.</value>
+  </data>
+  <data name="TMM069" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="TMM070" xml:space="preserve">
+    <value>Amortisman alt sınırı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM071" xml:space="preserve">
+    <value>Silme sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="TMM072" xml:space="preserve">
+    <value>Taşınır Hesap Kodu 999.99.99 formatında olmalıdır.</value>
+  </data>
+  <data name="TMM073" xml:space="preserve">
+    <value>Amortisman süresi boş bırakılamaz.</value>
+  </data>
+  <data name="TMM074" xml:space="preserve">
+    <value>Kod alanı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM075" xml:space="preserve">
+    <value>Ad alanı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM076" xml:space="preserve">
+    <value>{0} kodlu bölge silinmiştir.</value>
+  </data>
+  <data name="TMM077" xml:space="preserve">
+    <value>Belge Tarihi boş bırakılamaz.</value>
+  </data>
+  <data name="TMM078" xml:space="preserve">
+    <value>Geçici Alındı Formu detay bilgileri boş bırakılamaz.</value>
+  </data>
+  <data name="TMM079" xml:space="preserve">
+    <value>{0}. satırdaki Hesap Planı Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="TMM080" xml:space="preserve">
+    <value>{0}. satırdaki Miktarı doğru giriniz.</value>
+  </data>
+  <data name="TMM081" xml:space="preserve">
+    <value>{0}. satırdaki KDV Oranı eksi olamaz.</value>
+  </data>
+  <data name="TMM082" xml:space="preserve">
+    <value>{0}. satırdaki Birim Fiyat eksi olamaz.</value>
+  </data>
+  <data name="TMM083" xml:space="preserve">
+    <value>Belge numarası alınamadı.</value>
+  </data>
+  <data name="TMM084" xml:space="preserve">
+    <value> Belge numarası: &lt;b&gt;{0}&lt;/b&gt;</value>
+  </data>
+  <data name="TMM085" xml:space="preserve">
+    <value>Belge numarası boş bırakılamaz.</value>
+  </data>
+  <data name="TMM086" xml:space="preserve">
+    <value>Belge bulunamadı.</value>
+  </data>
+  <data name="TMM087" xml:space="preserve">
+    <value>Aynı yıl, muhasebe birimi, harcama birimi ve belge numarasına sahip birden fazla belge bulundu.</value>
+  </data>
+  <data name="TMM088" xml:space="preserve">
+    <value>Bu fişe ait hiçbir satır bulunamadı.</value>
+  </data>
+  <data name="TMM089" xml:space="preserve">
+    <value>Muhasebe birimi, harcama birimi, ambar bilgileri boş bırakılmış.</value>
+  </data>
+  <data name="TMM090" xml:space="preserve">
+    <value>Ambarda bulunmayan bir malzeme seçilmiş.</value>
+  </data>
+  <data name="TMM091" xml:space="preserve">
+    <value>{0} sicil numaralı demirbaş bulunamadı.</value>
+  </data>
+  <data name="TMM092" xml:space="preserve">
+    <value>{0}. satırdaki {1} kodu Hesap Planında bulunamadı.</value>
+  </data>
+  <data name="TMM093" xml:space="preserve">
+    <value>{0}. satırdaki {1} kodunun altında tanımlı kodlar bulunmaktadır. Lütfen detay kodu seçiniz.</value>
+  </data>
+  <data name="TMM094" xml:space="preserve">
+    <value>{0}. satırdaki {1} hesap kodu taşınır kodu değildir. Lütfen taşınır kodu seçiniz.</value>
+  </data>
+  <data name="TMM095" xml:space="preserve">
+    <value>{0}. satırdaki Hesap Kodu boş bırakılmış.</value>
+  </data>
+  <data name="TMM096" xml:space="preserve">
+    <value>{0} kodlu Muhasebe Birimi bulunamadı.</value>
+  </data>
+  <data name="TMM097" xml:space="preserve">
+    <value>{0} - {1} kodlu Harcama Birimi bulunamadı.</value>
+  </data>
+  <data name="TMM098" xml:space="preserve">
+    <value>{0} - {1} - {2} kodlu Ambar bulunamadı.</value>
+  </data>
+  <data name="TMM099" xml:space="preserve">
+    <value>Yetkiniz yok!</value>
+  </data>
+  <data name="TMM100" xml:space="preserve">
+    <value>Sıra No</value>
+  </data>
+  <data name="TMM101" xml:space="preserve">
+    <value>&lt;b&gt;{0}&lt;/b&gt; adet satır listelendi...</value>
+  </data>
+  <data name="TMM102" xml:space="preserve">
+    <value>{0} adlı tablo bulunamadı veya kolon adları alınamadı.</value>
+  </data>
+  <data name="TMM103" xml:space="preserve">
+    <value>Yeni Harcama Birimi ile ilgili veriler kopyalanırken sorun oluştu.</value>
+  </data>
+  <data name="TMM104" xml:space="preserve">
+    <value>Yeni Harcama Birimi ile ilgili veriler güncellenirken sorun oluştu.</value>
+  </data>
+  <data name="TMM105" xml:space="preserve">
+    <value>Eski Harcama Birimi ile ilgili veriler silinirken sorun oluştu.</value>
+  </data>
+  <data name="TMM106" xml:space="preserve">
+    <value>Kriterler yanlış ya da eksik.</value>
+  </data>
+  <data name="TMM107" xml:space="preserve">
+    <value>Verdiğiniz Eski Harcama Birimi kayıtlı değil.</value>
+  </data>
+  <data name="TMM108" xml:space="preserve">
+    <value>Verdiğiniz Yeni Harcama Birimi kayıtlı değil.</value>
+  </data>
+  <data name="TMM109" xml:space="preserve">
+    <value>Harcama Birimi değişikliği başarıyla gerçekleştirilmiştir.</value>
+  </data>
+  <data name="TMM110" xml:space="preserve">
+    <value>Sayaç ile ilgili veriler güncellenirken hata oluştu.</value>
+  </data>
+  <data name="TMM111" xml:space="preserve">
+    <value>Yeni Harcama Birimi\'nin altında tanımlı ambar var. Harcama Birimi Değiştirme işleminden önce, o ambarların silinmesi gerekiyor, çünkü Eski Harcama Birimi\'nin altında tanımlı olan ambarlar bu işlem sırasında zaten, Yeni Harcama Birimi\'nin altına kopyalanacaktır.</value>
+  </data>
+  <data name="TMM112" xml:space="preserve">
+    <value>Yeni Harcama Birimine ambarlar kopyalanırken sorun oluştu.</value>
+  </data>
+  <data name="TMM113" xml:space="preserve">
+    <value>Eski Harcama Biriminin ambarları silinirken sorun oluştu.</value>
+  </data>
+  <data name="TMM114" xml:space="preserve">
+    <value>Eski Harcama Birimi silinirken sorun oluştu.</value>
+  </data>
+  <data name="TMM115" xml:space="preserve">
+    <value>Harcama Birimi Adı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM116" xml:space="preserve">
+    <value>Verdiğiniz Muhasebe Birimi kayıtlı değil.</value>
+  </data>
+  <data name="TMM117" xml:space="preserve">
+    <value>Bu Harcama Biriminin altında ambar vardır, silinemez.</value>
+  </data>
+  <data name="TMM118" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla tamamlandı.</value>
+  </data>
+  <data name="TMM119" xml:space="preserve">
+    <value>Kayıt işlemi başarısız oldu.</value>
+  </data>
+  <data name="TMM120" xml:space="preserve">
+    <value>&lt;b&gt;Bu bir uyarıdır. Eğer yinede işlem yapmak istiyorsanız tekrar KAYDET düğmesine basınız.&lt;/b&gt;&lt;br&gt;Bu hesap plan kodu &lt;b&gt;{0}&lt;/b&gt; işlem görmüştür. İlgili fişlerde düzenleme yapmanız tavsiye edilir.&lt;br&gt;</value>
+    <comment>{0} Hesap Kod</comment>
+  </data>
+  <data name="TMM121" xml:space="preserve">
+    <value>Bu hesap plan kodunun üst kodu &lt;b&gt;{0}&lt;/b&gt; işlem görmüştür. İlgili fişlerde düzenleme yapmanız tavsiye edilir.&lt;br&gt;</value>
+    <comment>{0} Hesap Kod</comment>
+  </data>
+  <data name="TMM122" xml:space="preserve">
+    <value>Silmek istenilen Hesap Planı satırları başarıyla silindi.</value>
+  </data>
+  <data name="TMM123" xml:space="preserve">
+    <value>Belge kontrolü sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="TMM124" xml:space="preserve">
+    <value>Hesap Kodu bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="TMM125" xml:space="preserve">
+    <value>Açıklama bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="TMM126" xml:space="preserve">
+    <value>Verilen hesap kodu uygun formatta değil. Format : {0} şeklinde olmalı.</value>
+    <comment>{0} Hesap kodu formatı</comment>
+  </data>
+  <data name="TMM127" xml:space="preserve">
+    <value>{0} nolu hesap kodunun detay kayıtları olduğu için silinemez. Lütfen ilk önce detay kayıtları silin.</value>
+    <comment>{0} Hesap Kod</comment>
+  </data>
+  <data name="TMM128" xml:space="preserve">
+    <value>Bu hesap planı kodu daha önce kullanılmıştır, silinemez.</value>
+  </data>
+  <data name="TMM129" xml:space="preserve">
+    <value>Kullanıldığı TİF bilgileri - Yıl : {0} Muhasebe Kodu : {1} Harcama Birim Kodu : {2} Fiş No : {3}</value>
+    <comment>{0} Yıl, {1} Muhasebe Kod, {2} Harcama Birim Kod, {3} Fiş No</comment>
+  </data>
+  <data name="TMM130" xml:space="preserve">
+    <value>Bu İl\'e ait İlçe bilgileri kayıtlıdır, silinemez!</value>
+  </data>
+  <data name="TMM131" xml:space="preserve">
+    <value>{0} kodlu İl silinmiştir</value>
+    <comment>{0} İl Kod</comment>
+  </data>
+  <data name="TMM132" xml:space="preserve">
+    <value>İl Kodu alanı boş bırakılamaz</value>
+  </data>
+  <data name="TMM133" xml:space="preserve">
+    <value>İlçe Kodu alanı boş bırakılamaz</value>
+  </data>
+  <data name="TMM134" xml:space="preserve">
+    <value>İlçe Adı alanı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM135" xml:space="preserve">
+    <value>Kayıt edilmek istenilen bilgi başarıyla saklandı.</value>
+  </data>
+  <data name="TMM136" xml:space="preserve">
+    <value>Bu ilçeye ait muhasebe birimi vardır, silinemez.</value>
+  </data>
+  <data name="TMM137" xml:space="preserve">
+    <value>Silinmesi istenilen bilgi başarıyla silindi.</value>
+  </data>
+  <data name="TMM138" xml:space="preserve">
+    <value>Yazma hakkınız yok.</value>
+  </data>
+  <data name="TMM139" xml:space="preserve">
+    <value>Kayıt edilmek istenilen İmza bilgileri başarıyla saklandı.</value>
+  </data>
+  <data name="TMM140" xml:space="preserve">
+    <value>Bu işlem tipi taşınır işlemlerinde kullanılmış olduğundan silinemez.</value>
+  </data>
+  <data name="TMM141" xml:space="preserve">
+    <value>Taşınır istek belgesi detayları boş bırakılamaz.</value>
+  </data>
+  <data name="TMM142" xml:space="preserve">
+    <value>Muhasebe Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="TMM143" xml:space="preserve">
+    <value>Belge No boş geliyor.</value>
+  </data>
+  <data name="TMM144" xml:space="preserve">
+    <value>{0}. satırda Hesap Kodu boş bırakılmış.</value>
+    <comment>{0} Satır No</comment>
+  </data>
+  <data name="TMM145" xml:space="preserve">
+    <value>prSicilNo ve rfIdNo alanlarından en az biri dolu olmalıdır.</value>
+  </data>
+  <data name="TMM146" xml:space="preserve">
+    <value>Gönderilen T.C. Kimlik No sistemde kayıtlı değil.</value>
+  </data>
+  <data name="TMM147" xml:space="preserve">
+    <value>Verilen rfIdNo ile eşleşen demirbaş bulunamadı.</value>
+  </data>
+  <data name="TMM148" xml:space="preserve">
+    <value>Hiçbir demirbaş seçilmemiş.</value>
+  </data>
+  <data name="TMM149" xml:space="preserve">
+    <value>prSicilNo alanı boş geliyor</value>
+  </data>
+  <data name="TMM150" xml:space="preserve">
+    <value>Bu demirbaşın kapılardan çıkış izni yok.</value>
+  </data>
+  <data name="TMM151" xml:space="preserve">
+    <value>Bu işlemi yapmaya yetkiniz yok.</value>
+  </data>
+  <data name="TMM152" xml:space="preserve">
+    <value>T.C. Kimlik No alanı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM153" xml:space="preserve">
+    <value>Cep Telefonu alanı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM154" xml:space="preserve">
+    <value>Girilen Cep Telefonu bilgisi yanlış! Doğru format +90xxxxxxxxxx şeklinde olmalıdır.</value>
+  </data>
+  <data name="TMM155" xml:space="preserve">
+    <value>E-posta alanı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM156" xml:space="preserve">
+    <value>Seçilen personel sistemde kayıtlı değil.</value>
+  </data>
+  <data name="TMM157" xml:space="preserve">
+    <value>Kayıttan düşme teklif ve onay tutanağı detayları boş bırakılamaz.</value>
+  </data>
+  <data name="TMM158" xml:space="preserve">
+    <value>Tutanak No boş geliyor.</value>
+  </data>
+  <data name="TMM159" xml:space="preserve">
+    <value>Tüketim malzemeleri ve dayanıklı taşınırlar ayrı belgeler ile kayıttan düşülmelidir</value>
+  </data>
+  <data name="TMM160" xml:space="preserve">
+    <value>{0}. satırdaki {1} Sicil No ile {2} Hesap Kodu uyuşmuyor.</value>
+    <comment>{0} Satır No, {1} Sicil No, {2} Hesap Plan Kod</comment>
+  </data>
+  <data name="TMM161" xml:space="preserve">
+    <value>{0}. satırda {1} Sicil No\'ya karşılık gelen taşınır miktarı 1 olmalıdır.</value>
+    <comment>{0} Satır No, {1} Sicil No</comment>
+  </data>
+  <data name="TMM162" xml:space="preserve">
+    <value>Silme işlemi başarıyla tamamlandı.</value>
+  </data>
+  <data name="TMM163" xml:space="preserve">
+    <value>Silme işlemi başarısız.</value>
+  </data>
+  <data name="TMM164" xml:space="preserve">
+    <value>{0} isimli marka daha önce kayıt edilmiştir.</value>
+    <comment>{0} Marka Adı</comment>
+  </data>
+  <data name="TMM165" xml:space="preserve">
+    <value>Kayıtlı olmayan bilgi silinemez.</value>
+  </data>
+  <data name="TMM166" xml:space="preserve">
+    <value>Bu Marka\'ya ait Model bilgileri kayıtlıdır, silinemez.</value>
+  </data>
+  <data name="TMM167" xml:space="preserve">
+    <value>{0} adlı Marka silinmiştir</value>
+    <comment>{0} Marka Adı</comment>
+  </data>
+  <data name="TMM168" xml:space="preserve">
+    <value>Marka Adı alanı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM169" xml:space="preserve">
+    <value>Model Adı alanı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM170" xml:space="preserve">
+    <value>{0} isimli model daha önce kayıt edilmiştir.</value>
+    <comment>{0} Model Adı</comment>
+  </data>
+  <data name="TMM171" xml:space="preserve">
+    <value>Marka Kodu alanı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM172" xml:space="preserve">
+    <value>Marka Kodu alanı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM173" xml:space="preserve">
+    <value>Muhasebe Birimi Adı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM174" xml:space="preserve">
+    <value>İl Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="TMM175" xml:space="preserve">
+    <value>İlçe Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="TMM176" xml:space="preserve">
+    <value>Kayıt edilmek istenilen Muhasebe bilgisi başarıyla saklandı.</value>
+  </data>
+  <data name="TMM177" xml:space="preserve">
+    <value>Bu Muhasebe Biriminin altında Harcama Birimi vardır, silinemez.</value>
+  </data>
+  <data name="TMM178" xml:space="preserve">
+    <value>Silinmesi istenilen Muhasebe bilgisi başarıyla silindi.</value>
+  </data>
+  <data name="TMM179" xml:space="preserve">
+    <value>Oda Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="TMM180" xml:space="preserve">
+    <value>Oda Adı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM181" xml:space="preserve">
+    <value>Verdiğiniz Ambar kayıtlı değil.</value>
+  </data>
+  <data name="TMM182" xml:space="preserve">
+    <value>Silme hakkınız yok.</value>
+  </data>
+  <data name="TMM183" xml:space="preserve">
+    <value>{0} kodlu Oda silinmiştir.</value>
+    <comment>{0} Oda Kod</comment>
+  </data>
+  <data name="TMM184" xml:space="preserve">
+    <value>Personel Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="TMM185" xml:space="preserve">
+    <value>Personel Kodu 11 karakter olmak zorundadır.</value>
+  </data>
+  <data name="TMM186" xml:space="preserve">
+    <value>Personel Adı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM187" xml:space="preserve">
+    <value>Bu kişi üzerinde zimmetli malzeme olduğu için silemezsiniz.</value>
+  </data>
+  <data name="TMM188" xml:space="preserve">
+    <value>{0} kodlu Personel silinmiştir.</value>
+    <comment>{0} Personel Kod</comment>
+  </data>
+  <data name="TMM189" xml:space="preserve">
+    <value>İlk Kayıt alanı pozitif olmalıdır.</value>
+  </data>
+  <data name="TMM190" xml:space="preserve">
+    <value>Kayıt Sayısı alanı pozitif olmalıdır.</value>
+  </data>
+  <data name="TMM191" xml:space="preserve">
+    <value>İl boş bırakılamaz.</value>
+  </data>
+  <data name="TMM192" xml:space="preserve">
+    <value>Rapor Türü boş bırakılamaz.</value>
+  </data>
+  <data name="TMM193" xml:space="preserve">
+    <value>Nereye Verildiği alanı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM194" xml:space="preserve">
+    <value>Kime Verildiği alanı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM195" xml:space="preserve">
+    <value>TC Kimlik Numarası girilmemiş.</value>
+  </data>
+  <data name="TMM196" xml:space="preserve">
+    <value>Düzey boş bırakılamaz.</value>
+  </data>
+  <data name="TMM197" xml:space="preserve">
+    <value>Sayım Tarihi boş bırakılamaz.</value>
+  </data>
+  <data name="TMM198" xml:space="preserve">
+    <value>Sayım tutanağı detayları boş bırakılamaz.</value>
+  </data>
+  <data name="TMM199" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla tamamlandı. Belge numarası: &lt;b&gt;{0}&lt;/b&gt;</value>
+    <comment>{0} Belge No</comment>
+  </data>
+  <data name="TMM200" xml:space="preserve">
+    <value>Kayıt başarısız.</value>
+  </data>
+  <data name="TMM201" xml:space="preserve">
+    <value>Kullanıcı bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="TMM202" xml:space="preserve">
+    <value>Yıl bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="TMM203" xml:space="preserve">
+    <value>Sayım numarası boş bırakılamaz.</value>
+  </data>
+  <data name="TMM204" xml:space="preserve">
+    <value>Sayım adı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM205" xml:space="preserve">
+    <value>Sayım detayları boş bırakılamaz.</value>
+  </data>
+  <data name="TMM206" xml:space="preserve">
+    <value>prSicilNo boş bırakılamaz.</value>
+  </data>
+  <data name="TMM207" xml:space="preserve">
+    <value>Durum bilgisi 0, 1, 2 değerlerinden biri olmalıdır.</value>
+  </data>
+  <data name="TMM208" xml:space="preserve">
+    <value>{0} nolu {1} sayımı {2} adet demirbaş ile başarıyla aktarılmıştır.</value>
+    <comment>{0} Sayım No, {1} Sayım Adı, {2} Demirbaş sayısı</comment>
+  </data>
+  <data name="TMM209" xml:space="preserve">
+    <value>{0} nolu {1} sayım aktarımı başarısız.</value>
+    <comment>{0} Sayım No, {1} Sayım Adı</comment>
+  </data>
+  <data name="TMM210" xml:space="preserve">
+    <value>Okuma hakkınız yoktur.</value>
+  </data>
+  <data name="TMM211" xml:space="preserve">
+    <value>Taşınır işlem fişi numarası boş bırakılamaz.</value>
+  </data>
+  <data name="TMM212" xml:space="preserve">
+    <value>Sicil numarası bulunamadı.</value>
+  </data>
+  <data name="TMM213" xml:space="preserve">
+    <value>Sicil sıra numarası alınamadı.</value>
+  </data>
+  <data name="TMM214" xml:space="preserve">
+    <value>Programatik sicil numarası alınamadı.</value>
+  </data>
+  <data name="TMM215" xml:space="preserve">
+    <value>Devir girişi sırasında malzemenin eski Programatik sicil numarası alınamadı.</value>
+  </data>
+  <data name="TMM216" xml:space="preserve">
+    <value>Sicil numarası alınamadı.</value>
+  </data>
+  <data name="TMM217" xml:space="preserve">
+    <value>İptal edilecek bilgi bulunamadı.</value>
+  </data>
+  <data name="TMM218" xml:space="preserve">
+    <value>Hesap Plan Kodu bulunamadı.</value>
+  </data>
+  <data name="TMM219" xml:space="preserve">
+    <value>{0} kodu taşınır kodu değildir, kayıt yapılamaz</value>
+    <comment>{0} Kod</comment>
+  </data>
+  <data name="TMM220" xml:space="preserve">
+    <value>Hiç bir satıra RfId No girilmemiş.</value>
+  </data>
+  <data name="TMM221" xml:space="preserve">
+    <value>prSicilNo ve rfIdNo alanları boş bırakılamaz. Lütfen kontrol ediniz.</value>
+  </data>
+  <data name="TMM222" xml:space="preserve">
+    <value>{0} nolu rfIdNo daha önce başka bir prSicilNo ile eşleştirilmiştir veya sistemde kayıtlı bir rfIdNo değildir.</value>
+    <comment>{0} RFID No</comment>
+  </data>
+  <data name="TMM223" xml:space="preserve">
+    <value>{0} nolu prSicilNo daha önce başka bir rfIdNo ile eşleştirilmiştir.</value>
+    <comment>{0} Programatik sicil no</comment>
+  </data>
+  <data name="TMM224" xml:space="preserve">
+    <value>prSicilNo veya rfIdNo alanlarından biri dolu olmalıdır. Lütfen kontrol ediniz.</value>
+  </data>
+  <data name="TMM225" xml:space="preserve">
+    <value>{0}. satır ile {1}. satırda yazılan sicil numaraları aynı.</value>
+    <comment>{0} - {1} Satır No</comment>
+  </data>
+  <data name="TMM226" xml:space="preserve">
+    <value>{0}. satırdaki Hesap Kodu boş bırakılamaz.</value>
+    <comment>{0} Satır No</comment>
+  </data>
+  <data name="TMM227" xml:space="preserve">
+    <value>{0}. satırdaki Miktar giriniz.</value>
+    <comment>{0} Satır No</comment>
+  </data>
+  <data name="TMM228" xml:space="preserve">
+    <value>{0}. satırdaki KDV Oranı eksi olamaz.</value>
+    <comment>{0} Satır No</comment>
+  </data>
+  <data name="TMM229" xml:space="preserve">
+    <value>{0}. satırdaki Birim Fiyat eksi olamaz.</value>
+    <comment>{0} Satır No</comment>
+  </data>
+  <data name="TMM230" xml:space="preserve">
+    <value>{0}. satırda belirtilen Hesap Planı Kodu ile Sicil Numarası uyumsuz.</value>
+    <comment>{0} Satır No</comment>
+  </data>
+  <data name="TMM231" xml:space="preserve">
+    <value>{0}. satırda Sicil Numarası alanı boş bırakılmalıdır.</value>
+    <comment>{0} Satır No</comment>
+  </data>
+  <data name="TMM232" xml:space="preserve">
+    <value>Yıl Devir İşlemlerinde (Giriş/Çıkış) Fişinde 253, 254, 255 hesap kodlarını kullanamazsınız.</value>
+  </data>
+  <data name="TMM233" xml:space="preserve">
+    <value>{0}. satırdaki Hesap Plan Kodu bulunamadı</value>
+    <comment>{0} Satır No</comment>
+  </data>
+  <data name="TMM234" xml:space="preserve">
+    <value>{0}. satırdaki {1} hesap kodu taşınır kodu değildir ! Lütfen taşınır kodu seçiniz.</value>
+    <comment>{0} Satır No, {1} Hesap Kod</comment>
+  </data>
+  <data name="TMM235" xml:space="preserve">
+    <value>{0}. satırdaki {1} kodlu malzemenin fiyat veya miktar bilgilerinde hatalı giriş yapılmış. Malzeme tutarı {2} TL\'den yüksek.</value>
+    <comment>{0} Satır No, {1} Hesap Kod, {2} Malzeme Tutarı</comment>
+  </data>
+  <data name="TMM236" xml:space="preserve">
+    <value>{0}. satırdaki {1} kodlu Hesap Planının altında tanımlı kod bulunmaktadır! Lütfen detay kodu seçiniz.</value>
+    <comment>{0} Satır No, {1} Hesap Kod</comment>
+  </data>
+  <data name="TMM237" xml:space="preserve">
+    <value>{0}. satırdaki {1} sicil numarası bulunamadı.</value>
+    <comment>{0} Satır No, {1} Sicil No</comment>
+  </data>
+  <data name="TMM238" xml:space="preserve">
+    <value>{0}. satırdaki {1} sicil numaralı taşınırın fiyatı {2}\ olarak yazılmış. Oysa {3} olmalıdır.</value>
+    <comment>{0} Satır No, {1} Sicil No, {2} Birim Fiyat, {3} Fiyat</comment>
+  </data>
+  <data name="TMM239" xml:space="preserve">
+    <value>{0}. satırdaki {1} sicil numaralı taşınırın kdvsi {2} olmalıdır.</value>
+    <comment>{0} Satır No, {1} Sicil No, {2} KDV Oran</comment>
+  </data>
+  <data name="TMM240" xml:space="preserve">
+    <value>{0}. satırdaki {1} nolu Hesap Kodunun sicil numarası boş bırakılmış.</value>
+    <comment>{0} Satır No, {1} Hesap Kod</comment>
+  </data>
+  <data name="TMM241" xml:space="preserve">
+    <value>{0}. satırdaki malzeme dayanıklı taşınır olup tüketim çıkışı ile çıkış yapılamaz.</value>
+    <comment>{0} Satır No</comment>
+  </data>
+  <data name="TMM242" xml:space="preserve">
+    <value>{0}. satırdaki malzeme dayanıklı taşınır olup kullanılmaz hal çıkışı ile çıkış yapılamaz. Hurda Çıkış işlemini seçin.</value>
+    <comment>{0} Satır No</comment>
+  </data>
+  <data name="TMM243" xml:space="preserve">
+    <value>{0}. satırdaki {1} hesap kodlu malzeme stokta yok.</value>
+    <comment>{0} Satır No, {1} Hesap Kod</comment>
+  </data>
+  <data name="TMM244" xml:space="preserve">
+    <value>Tüketim malzemesi çıkış işleminde, &lt;b&gt;İlk giren ilk çıkar yöntemi&lt;/b&gt; kullanıldığı için {0}. satırda yazmış olduğunuz malzemenin fiyat ve kdv oranı stokta bulunan ilk malzeme ile uyuşmuyor. Stoktaki ilk malzeme bilgileri; Miktar: {1}; Fiyat:{2}; Kdv :{3}</value>
+    <comment>{0} Sıra No, {1} Miktar, {2} Fiyat, {3} KDV Oran</comment>
+  </data>
+  <data name="TMM245" xml:space="preserve">
+    <value>{0} nolu satırda kullanılmak istenilen {1} hesap kodlu malzeme en fazla {2} olabilir.</value>
+    <comment>{0} Satır No, {1} Hesap Kod, {2} Miktar</comment>
+  </data>
+  <data name="TMM246" xml:space="preserve">
+    <value>Tüketim malzemesi çıkış işleminde, &lt;b&gt;İlk giren ilk çıkar yöntemi&lt;/b&gt; kullanıldığı için {0} nolu satırdaki malzemeyi, stokta bulunan ilk malzeme tamamen bitene kadar çıkamazsınız. {1}. sıradaki malzemenin çıkış miktarını yükseltin. Bu miktar en fazla {2} olabilir.</value>
+    <comment>{0} Kontrol Sıra No, {1} Tif Sıra No, {2} Miktar</comment>
+  </data>
+  <data name="TMM247" xml:space="preserve">
+    <value>{0}. satırda, kayıt edilmek istenilen {1} hesap kodlu malzeme stokta {2} olmasına karşın toplam {3} olarak kayıt edilmek isteniyor.</value>
+    <comment>{0} Satır No, {1} Hesap Kod, {2} Miktar, {3} Miktar</comment>
+  </data>
+  <data name="TMM248" xml:space="preserve">
+    <value>Kayıt edilmek istenilen malzemelerin fiyat veya miktar bilgilerinde hatalı giriş yapılmış. TİF toplam tutarı {0} TL\'den yüksek.</value>
+    <comment>{0} En yüksek tutar</comment>
+  </data>
+  <data name="TMM249" xml:space="preserve">
+    <value>İşlem Tipi boş bırakılamaz.</value>
+  </data>
+  <data name="TMM250" xml:space="preserve">
+    <value>İşlem yapılan Yıl ({0}) ile belge tarihi ({1}) arasında uyuşmazlık var.</value>
+    <comment>{0} Yıl, {1} Fiş Tarihi</comment>
+  </data>
+  <data name="TMM251" xml:space="preserve">
+    <value>Bu ambar {0} yılı için işlemlere &lt;b&gt;kapatılmıştır&lt;/b&gt;.</value>
+    <comment>{0} Yıl</comment>
+  </data>
+  <data name="TMM252" xml:space="preserve">
+    <value>Nereden geldiği boş bırakılamaz.</value>
+  </data>
+  <data name="TMM253" xml:space="preserve">
+    <value>İlgili fatura bilgileri ile girişi yapılmak istenilen malzemelerin, daha önce {0} yılında, {1} nolu belge ile kaydı yapılmıştır.</value>
+    <comment>{0} Yıl, {1} Fiş No</comment>
+  </data>
+  <data name="TMM254" xml:space="preserve">
+    <value>Nereye veya Kime Gittiği boş bırakılamaz.</value>
+  </data>
+  <data name="TMM255" xml:space="preserve">
+    <value>Gönderen/Gönderilen Muhasebe Birimi Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="TMM256" xml:space="preserve">
+    <value>Gönderen/Gönderilen Harcama Birimi Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="TMM257" xml:space="preserve">
+    <value>Gönderen/Gönderilen Ambar Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="TMM258" xml:space="preserve">
+    <value>{0} kodlu Gönderilen Muhasebe Birimi bulunamadı</value>
+    <comment>{0} Muhasebe Kod</comment>
+  </data>
+  <data name="TMM259" xml:space="preserve">
+    <value>{0} - {1} kodlu Gönderilen Harcama Birimi bulunamadı.</value>
+    <comment>{0} Muhasebe Kod, {1} Birim Kod</comment>
+  </data>
+  <data name="TMM260" xml:space="preserve">
+    <value>{0} - {1} - {2} kodlu Gönderilen Ambar bulunamadı.</value>
+    <comment>{0} Muhasebe Kod, {1} Birim Kod, {2} Ambar Kod</comment>
+  </data>
+  <data name="TMM261" xml:space="preserve">
+    <value>Kaynak ve Hedef ambarlar aynı olamaz.</value>
+  </data>
+  <data name="TMM262" xml:space="preserve">
+    <value>Devir girişi yapılmak istenilen malzemelerin, daha önce {0} yılında, {1} nolu belge ile kaydı yapılmıştır.</value>
+    <comment>{0} Yıl, {1} Fiş No</comment>
+  </data>
+  <data name="TMM263" xml:space="preserve">
+    <value>Devir girişi yapılmak istenilen malzemeler verdiğiniz birime gönderilmemiştir.</value>
+  </data>
+  <data name="TMM264" xml:space="preserve">
+    <value>Devir girişi için verilen Gelen Belge Yılı veya Gelen Belge Numarası hatalı.</value>
+  </data>
+  <data name="TMM265" xml:space="preserve">
+    <value>Yıl Devri Girişi için verilen belge numarası, Yıl Devri Çıkış fişine ait değildir.</value>
+  </data>
+  <data name="TMM266" xml:space="preserve">
+    <value>Yıl Devri Girişi için verilen belge numaralı tif henüz onaylanmamış.</value>
+  </data>
+  <data name="TMM267" xml:space="preserve">
+    <value>Yıl Devri Girişi için verilen belge numarasıyla kayıtlı TİF bulunamadı.</value>
+  </data>
+  <data name="TMM268" xml:space="preserve">
+    <value>Dayanak Belgenin Tarihi, Belge Tarihi\'nden büyük olamaz.</value>
+  </data>
+  <data name="TMM269" xml:space="preserve">
+    <value>Taşınır İşlem Formu detay bilgileri boş bırakılamaz.</value>
+  </data>
+  <data name="TMM270" xml:space="preserve">
+    <value>{0} no\'lu belge kaydı bulunamadı.</value>
+    <comment>{0} Fiş No</comment>
+  </data>
+  <data name="TMM271" xml:space="preserve">
+    <value>{0} no\'lu belge onaylı olduğundan değişiklik yapılamaz.</value>
+    <comment>{0} Fiş No</comment>
+  </data>
+  <data name="TMM272" xml:space="preserve">
+    <value>Aynı yıl, harcama kodu ve belge numarasına sahip birden fazla belge bulundu.</value>
+  </data>
+  <data name="TMM273" xml:space="preserve">
+    <value>{0} no\'lu belge onaylı olduğundan iptal edilemez.</value>
+    <comment>{0} Belge No</comment>
+  </data>
+  <data name="TMM274" xml:space="preserve">
+    <value>{0} no\'lu belge zaten onaylıdır.</value>
+    <comment>{0} Belge No</comment>
+  </data>
+  <data name="TMM275" xml:space="preserve">
+    <value>{0} no\'lu belge onaylı değildir.</value>
+    <comment>{0} Belge No</comment>
+  </data>
+  <data name="TMM276" xml:space="preserve">
+    <value>Fiş bulunamadı.</value>
+  </data>
+  <data name="TMM277" xml:space="preserve">
+    <value>Belirtilen muhasebe, harcama, ambar kodları için onaylama yetkiniz yoktur</value>
+  </data>
+  <data name="TMM278" xml:space="preserve">
+    <value>Belirtilen muhasebe, harcama, ambar kodları için işlem yapma yetkiniz yoktur.</value>
+  </data>
+  <data name="TMM279" xml:space="preserve">
+    <value>Değer arttırıcı tüketim malzemesi girilmemiş.</value>
+  </data>
+  <data name="TMM280" xml:space="preserve">
+    <value>Değeri arttırmak istediğiniz dayanıklı taşınır bir adet olmalıdır.</value>
+  </data>
+  <data name="TMM281" xml:space="preserve">
+    <value>Devir Girişi sırasında kaynak gösterdiğiniz TİF belgesi ile giriş yaptığınız dayanıklı taşınırlar hatalı. Lütfen işlemlerinizi kontrol edin veya Devir çıkışı yapan birim ile görüşün.</value>
+  </data>
+  <data name="TMM282" xml:space="preserve">
+    <value>{0} sicil numaralı taşınırın fiyatı {1} olmalıdır.</value>
+    <comment>{0} Sicil No, {1} Fiyat</comment>
+  </data>
+  <data name="TMM283" xml:space="preserve">
+    <value>Fiş Türü : {0}; Yıl : {1}; Muhasebe : {2}; Harcama Birimi : {3}; Ambar : {4}; Belge No : {5}</value>
+    <comment>{0} Yıl, {1} Muhasebe, {2} Birim, {3} Ambar, {4} Belge No</comment>
+  </data>
+  <data name="TMM284" xml:space="preserve">
+    <value>{0} no\'lu belge durumu değiştirilemedi</value>
+    <comment>{0} Belge No</comment>
+  </data>
+  <data name="TMM285" xml:space="preserve">
+    <value>Belgenin onayının kaldırılabilmesi için ilk önce sonrasında yapılan işlemlerin de onayının kaldırılması gereklidir.</value>
+  </data>
+  <data name="TMM286" xml:space="preserve">
+    <value>Onayının kaldırılması gereken belge bilgileri;</value>
+  </data>
+  <data name="TMM287" xml:space="preserve">
+    <value>İşlem açıklanamayan bir nedenden dolayı yapılamadı.</value>
+  </data>
+  <data name="TMM288" xml:space="preserve">
+    <value>{0} belgenin durumu değiştirildi.</value>
+  </data>
+  <data name="TMM289" xml:space="preserve">
+    <value>Kaydetme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="TMM290" xml:space="preserve">
+    <value>&lt;b&gt;Bilgileriniz kayıt edilemedi.&lt;/b&gt;</value>
+  </data>
+  <data name="TMM291" xml:space="preserve">
+    <value>{0} nolu TİF için hazırlanan {1} nolu ödeme emri onaylı olduğu için Belgenin durumu değiştirilemedi.</value>
+    <comment>{0} Tif No, {1} Ödeme emri belge no</comment>
+  </data>
+  <data name="TMM292" xml:space="preserve">
+    <value>Belge türü bilgisi eksik, listeleme yapılamaz.</value>
+  </data>
+  <data name="TMM293" xml:space="preserve">
+    <value>Belge numarası giriniz.</value>
+  </data>
+  <data name="TMM294" xml:space="preserve">
+    <value>Belge yılı giriniz.</value>
+  </data>
+  <data name="TMM295" xml:space="preserve">
+    <value>Kime verildiği boş bırakılamaz</value>
+  </data>
+  <data name="TMM296" xml:space="preserve">
+    <value>Kime verildiği bilgisi hatalı girilmiş. Kişi bulunamadı.</value>
+  </data>
+  <data name="TMM297" xml:space="preserve">
+    <value>Nereye verildiği boş bırakılamaz.</value>
+  </data>
+  <data name="TMM298" xml:space="preserve">
+    <value>Nereye verildiği bilgisi hatalı girilmiş. Oda bulunamadı.</value>
+  </data>
+  <data name="TMM299" xml:space="preserve">
+    <value>Zimmet Formu detay bilgileri boş bırakılamaz.</value>
+  </data>
+  <data name="TMM300" xml:space="preserve">
+    <value>Zimmet Formu detay satırları en fazla 5000 adet olabilir.</value>
+  </data>
+  <data name="TMM301" xml:space="preserve">
+    <value>Taşıt veya İş makinesi zimmet işleminde sadece 1 adet malzeme olmalıdır.</value>
+  </data>
+  <data name="TMM302" xml:space="preserve">
+    <value>{0}. satırdaki sicil numarası 2 kere bulunamaz.</value>
+    <comment>{0} Satır No</comment>
+  </data>
+  <data name="TMM303" xml:space="preserve">
+    <value>{0}. satırdaki sicil numaralı demirbaş bulunamadı.</value>
+    <comment>{0} Satır No</comment>
+  </data>
+  <data name="TMM304" xml:space="preserve">
+    <value>{0}. satırdaki Hesap Plan Kodu boş bırakılamaz.</value>
+    <comment>{0} Satır No</comment>
+  </data>
+  <data name="TMM305" xml:space="preserve">
+    <value>{0}. satırdaki {1} kodu taşınır kodu değildir, kayıt yapılamaz.</value>
+    <comment>{0} Satır No, {1} Hesap Kod</comment>
+  </data>
+  <data name="TMM306" xml:space="preserve">
+    <value>{0}. satırda {1}</value>
+    <comment>{0} Satır No, {1} Hata</comment>
+  </data>
+  <data name="TMM307" xml:space="preserve">
+    <value>{0}. satırdaki demirbaş bu muhasebe-harcama-ambar biriminde bulunamadı.</value>
+    <comment>{0} Satır No</comment>
+  </data>
+  <data name="TMM308" xml:space="preserve">
+    <value>{0}. satırdaki Taşınır Hesap Kodu ile Sicil Numarası uyuşmamaktadır.</value>
+    <comment>{0} Satır No</comment>
+  </data>
+  <data name="TMM309" xml:space="preserve">
+    <value>{0}. satırdaki demirbaş zimmetlidir.&lt;br&gt;Zimmetli olduğu fiş bilgileri Yıl: {1}</value>
+    <comment>{0} Satır No, {1} Yıl</comment>
+  </data>
+  <data name="TMM310" xml:space="preserve">
+    <value>{0}. satırdaki demirbaş belirtilen muhasebe, harcama, ambarda {1} TC Kimlik Nolu kişinin zimmetinde değildir.</value>
+    <comment>{0} Satır No, {1} TC Kimlik No</comment>
+  </data>
+  <data name="TMM311" xml:space="preserve">
+    <value>{0}. satırdaki demirbaş belirtilen muhasebe, harcama, ambarda {1} TC Kimlik Nolu kişinin sorumluluğunda, {2} kodlu oda zimmetinde değildir.</value>
+    <comment>{0} Satır No, {1} TC Kimlik No, {2} Nereye Gittiği</comment>
+  </data>
+  <data name="TMM312" xml:space="preserve">
+    <value>Zimmet belge türü belirsiz.</value>
+  </data>
+  <data name="TMM313" xml:space="preserve">
+    <value>Sicil hareket kayıt edilemedi.</value>
+  </data>
+  <data name="TMM314" xml:space="preserve">
+    <value>YIL : {0}; MUHASEBE KODU : {1}; HARCAMA BİRİMİ KODU : {2}; FİŞ NO : {3}; FİŞ TÜRÜ : {4}</value>
+  </data>
+  <data name="TMM315" xml:space="preserve">
+    <value>Zimmet Fişi</value>
+  </data>
+  <data name="TMM316" xml:space="preserve">
+    <value>TİF</value>
+  </data>
+  <data name="TMM317" xml:space="preserve">
+    <value>Sicil hareket iptal edilemedi.&lt;br&gt;Öncesinde onayının kaldırılması gereken fiş bilgileri : &lt;br&gt; {0}</value>
+    <comment>{0} Fiş Bilgileri</comment>
+  </data>
+  <data name="TMM318" xml:space="preserve">
+    <value>{0} no\'lu belgenin durumu değiştirildi</value>
+    <comment>{0} Belge No</comment>
+  </data>
+  <data name="TMM319" xml:space="preserve">
+    <value>{0} no\'lu belge durumu değiştirilemedi</value>
+    <comment>{0} Belge No</comment>
+  </data>
+  <data name="TMM320" xml:space="preserve">
+    <value>{0} ambarının {1} yılı Yıl Devri (Çıkış) işlemleri hatalı. Kayıtlara göre, {2} yılında kalan ({3}) tane tüketim malzemesi görünüyor. Lütfen, Yıl Devri (Çıkış) işlemlerinizi kontrol ediniz.</value>
+  </data>
+  <data name="TMM321" xml:space="preserve">
+    <value>{0} ambarının {1} yılı Yıl Devri (Giriş) işlemleri hatalı. Kayıtlara göre, {2} yılında Yıl Devri (Giriş) işlemi yapılması gereken ({3}) tane tüketim malzemesi görünüyor. Lütfen, Yıl Devri (Giriş) işlemlerinizi kontrol ediniz.</value>
+  </data>
+  <data name="TMM322" xml:space="preserve">
+    <value>İşlem başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="TMM323" xml:space="preserve">
+    <value>İşlem gerçekleştirilemedi.</value>
+  </data>
+  <data name="TMM324" xml:space="preserve">
+    <value>Devir giriş belgesindeki malzemelerle, devir çıkış belgesindeki malzemeler aynı değil. Hatalı işlem!</value>
+  </data>
+  <data name="TMM325" xml:space="preserve">
+    <value>Taşınır talep karşılama belgesi detayları boş bırakılamaz.</value>
+  </data>
+  <data name="TMM326" xml:space="preserve">
+    <value>Talep eden personel alanı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM327" xml:space="preserve">
+    <value>Talep karşılama şekli boş bırakılamaz.</value>
+  </data>
+  <data name="TMM328" xml:space="preserve">
+    <value>Dağıtım/İade Belgesi iki kullanıcı birimi arasında yapılamaz. Lütfen başka bir ambar seçiniz.</value>
+  </data>
+  <data name="TMM329" xml:space="preserve">
+    <value>Devir çıkış yaptığınız bu fiş, devir yapılan birim tarafından kayıt altına alındığı için Onayı kaldıramazsınız.</value>
+  </data>
+  <data name="TMM330" xml:space="preserve">
+    <value>Belirtilen belge Harcama Birimi tarafından henüz Onaylanmamış.</value>
+  </data>
+  <data name="TMM331" xml:space="preserve">
+    <value>Belge türü boş bırakılamaz.</value>
+  </data>
+  <data name="TMM332" xml:space="preserve">
+    <value>Tüketim, üretim ve elde edilenler belgesi detayları boş bırakılamaz.</value>
+  </data>
+  <data name="TMM333" xml:space="preserve">
+    <value>Devir Giriş Fişi : </value>
+  </data>
+  <data name="TMM334" xml:space="preserve">
+    <value>Devir Çıkış Fişi : </value>
+  </data>
+  <data name="TMM335" xml:space="preserve">
+    <value>Oluşan belge bilgileri aşağıdadır.</value>
+  </data>
+  <data name="TMM336" xml:space="preserve">
+    <value>Karşılanan miktar ile satın alınacak miktar toplamı, talep edilen miktardan büyük olamaz.</value>
+  </data>
+  <data name="TMM337" xml:space="preserve">
+    <value>Muhasebe kodu beklenenden uzun.</value>
+  </data>
+  <data name="TMM338" xml:space="preserve">
+    <value>Harcama Birimi kodu beklenenden uzun.</value>
+  </data>
+  <data name="TMM339" xml:space="preserve">
+    <value>Belge no beklenenden uzun.</value>
+  </data>
+  <data name="TMM340" xml:space="preserve">
+    <value>Hesap kodu beklenenden uzun.</value>
+  </data>
+  <data name="TMM341" xml:space="preserve">
+    <value>Eski sicil no beklenenden uzun.</value>
+  </data>
+  <data name="TMM342" xml:space="preserve">
+    <value>Tedarik şekli beklenenden uzun.</value>
+  </data>
+  <data name="TMM343" xml:space="preserve">
+    <value>Açıklama beklenenden uzun.</value>
+  </data>
+  <data name="TMM344" xml:space="preserve">
+    <value>Şase no beklenenden uzun.</value>
+  </data>
+  <data name="TMM345" xml:space="preserve">
+    <value>Motor no beklenenden uzun.</value>
+  </data>
+  <data name="TMM346" xml:space="preserve">
+    <value>Plaka beklenenden uzun.</value>
+  </data>
+  <data name="TMM347" xml:space="preserve">
+    <value>Cilt no beklenenden uzun.</value>
+  </data>
+  <data name="TMM348" xml:space="preserve">
+    <value>Dil beklenenden uzun.</value>
+  </data>
+  <data name="TMM349" xml:space="preserve">
+    <value>Yazar adı beklenenden uzun.</value>
+  </data>
+  <data name="TMM350" xml:space="preserve">
+    <value>Ad beklenenden uzun.</value>
+  </data>
+  <data name="TMM351" xml:space="preserve">
+    <value>Yayın yeri beklenenden uzun.</value>
+  </data>
+  <data name="TMM352" xml:space="preserve">
+    <value>Yayın tarihi beklenenden uzun.</value>
+  </data>
+  <data name="TMM353" xml:space="preserve">
+    <value>Nereden geldiği beklenenden uzun.</value>
+  </data>
+  <data name="TMM354" xml:space="preserve">
+    <value>Boyutları beklenenden uzun.</value>
+  </data>
+  <data name="TMM355" xml:space="preserve">
+    <value>Satır sayısı beklenenden uzun.</value>
+  </data>
+  <data name="TMM356" xml:space="preserve">
+    <value>Yaprak sayısı beklenenden uzun.</value>
+  </data>
+  <data name="TMM357" xml:space="preserve">
+    <value>Sayfa sayısı beklenenden uzun.</value>
+  </data>
+  <data name="TMM358" xml:space="preserve">
+    <value>Cilt türü beklenenden uzun.</value>
+  </data>
+  <data name="TMM359" xml:space="preserve">
+    <value>Çeşidi beklenenden uzun.</value>
+  </data>
+  <data name="TMM360" xml:space="preserve">
+    <value>Yeri/Konusu beklenenden uzun.</value>
+  </data>
+  <data name="TMM361" xml:space="preserve">
+    <value>Geliş tarihi beklenenden uzun.</value>
+  </data>
+  <data name="TMM362" xml:space="preserve">
+    <value>Nerede bulunduğu beklenenden uzun.</value>
+  </data>
+  <data name="TMM363" xml:space="preserve">
+    <value>Çağı beklenenden uzun.</value>
+  </data>
+  <data name="TMM364" xml:space="preserve">
+    <value>Durumu maddesi beklenenden uzun.</value>
+  </data>
+  <data name="TMM365" xml:space="preserve">
+    <value>Ön yüz beklenenden uzun.</value>
+  </data>
+  <data name="TMM366" xml:space="preserve">
+    <value>Arka yüz beklenenden uzun.</value>
+  </data>
+  <data name="TMM367" xml:space="preserve">
+    <value>Fotograf beklenenden uzun.</value>
+  </data>
+  <data name="TMM368" xml:space="preserve">
+    <value>Puan beklenenden uzun.</value>
+  </data>
+  <data name="TMM369" xml:space="preserve">
+    <value>Dış sicil no beklenenden uzun.</value>
+  </data>
+  <data name="TMM370" xml:space="preserve">
+    <value>{0}. satırda hata var.</value>
+  </data>
+  <data name="TMM371" xml:space="preserve">
+    <value>Ambar kodu beklenenden uzun.</value>
+  </data>
+  <data name="TMM372" xml:space="preserve">
+    <value>Muayene no beklenenden uzun.</value>
+  </data>
+  <data name="TMM373" xml:space="preserve">
+    <value>Dayanak no beklenenden uzun.</value>
+  </data>
+  <data name="TMM374" xml:space="preserve">
+    <value>Nereye gittiği beklenenden uzun.</value>
+  </data>
+  <data name="TMM375" xml:space="preserve">
+    <value>Gön. muhasebe kodu beklenenden uzun.</value>
+  </data>
+  <data name="TMM376" xml:space="preserve">
+    <value>Gön. harcama Birimi kodu beklenenden uzun.</value>
+  </data>
+  <data name="TMM377" xml:space="preserve">
+    <value>Gön. ambar kodu beklenenden uzun.</value>
+  </data>
+  <data name="TMM378" xml:space="preserve">
+    <value>İşlem yapan beklenenden uzun.</value>
+  </data>
+  <data name="TMM379" xml:space="preserve">
+    <value>Fatura no beklenenden uzun.</value>
+  </data>
+  <data name="TMM380" xml:space="preserve">
+    <value>Kime gittiği beklenenden uzun.</value>
+  </data>
+  <data name="TMM381" xml:space="preserve">
+    <value>Gön. belge no beklenenden uzun.</value>
+  </data>
+  <data name="TMM382" xml:space="preserve">
+    <value>Talebi giren kullanıcı, ambar bilgisini giremez.</value>
+  </data>
+  <data name="TMM383" xml:space="preserve">
+    <value>Talebi giren kullanıcı, karşılanan miktar bilgisini giremez.</value>
+  </data>
+  <data name="TMM384" xml:space="preserve">
+    <value>Talebi giren kullanıcı, satın alınacak miktar bilgisini giremez.</value>
+  </data>
+  <data name="TMM385" xml:space="preserve">
+    <value>Talebi giren kullanıcı, TİF yıl bilgisini giremez.</value>
+  </data>
+  <data name="TMM386" xml:space="preserve">
+    <value>Talebi giren kullanıcı, TİF belge numarası bilgisini giremez.</value>
+  </data>
+  <data name="TMM387" xml:space="preserve">
+    <value>BEKLEMEDE</value>
+  </data>
+  <data name="TMM388" xml:space="preserve">
+    <value>KAPATILDI</value>
+  </data>
+  <data name="TMM389" xml:space="preserve">
+    <value>SATIN ALMADA</value>
+  </data>
+  <data name="TMM390" xml:space="preserve">
+    <value>TANIMSIZ</value>
+  </data>
+  <data name="TMM391" xml:space="preserve">
+    <value>Taşınır görevlileri talebiniz ile ilgili işlem yapmaya başladığı için talepte değişiklik yapamazsınız.</value>
+  </data>
+  <data name="TMM392" xml:space="preserve">
+    <value>{0} nolu ambarda {1} hesap kodlu malzemeden {2} tane bulunmaktadır. Karşılanmak istenen miktar ise {3} tanedir. Bu nedenle tüketim çıkış işlemi yapılamadı.</value>
+  </data>
+  <data name="TMM393" xml:space="preserve">
+    <value>Tüketim çıkış işlemleri başarıyla gerçekleştirildi. Kaydedilip onaylanan taşınır işlem fişleri satırlarda listelenmiştir.</value>
+  </data>
+  <data name="TMM394" xml:space="preserve">
+    <value>Belge no boş bırakılamaz.</value>
+  </data>
+  <data name="TMM395" xml:space="preserve">
+    <value>Ambar bilgileri boş bırakılamaz.</value>
+  </data>
+  <data name="TMM396" xml:space="preserve">
+    <value>{0} T. C. kimlik nolu kişinin üzerinde zimmetli malzeme yok. Lütfen kontrol ediniz.</value>
+  </data>
+  <data name="TMM397" xml:space="preserve">
+    <value>{0} nolu malzeme, {1} T. C. kimlik nolu kişinin üzerinde zimmetli değildir. Lütfen kontrol ediniz.</value>
+  </data>
+  <data name="TMM398" xml:space="preserve">
+    <value>Zimmetten Düşme Belge Numarası : </value>
+  </data>
+  <data name="TMM399" xml:space="preserve">
+    <value>Zimmete Verme Belge Numarası : </value>
+  </data>
+  <data name="TMM400" xml:space="preserve">
+    <value>{0} nolu ambar için TİF kaydederken aşağıdaki hata oluştu.</value>
+  </data>
+  <data name="TMM401" xml:space="preserve">
+    <value>{0} nolu ambar için {1} nolu TİF onaylanırken aşağıdaki hata oluştu. Lütfen, bu belgeyi onaylayınız.</value>
+  </data>
+  <data name="TMM402" xml:space="preserve">
+    <value>İstek yapan alanı boş bırakılamaz.</value>
+  </data>
+  <data name="TMM403" xml:space="preserve">
+    <value>eOnaya Gönderilmedi</value>
+  </data>
+  <data name="TMM404" xml:space="preserve">
+    <value>eOnaya Gönderildi</value>
+  </data>
+  <data name="TMM405" xml:space="preserve">
+    <value>eOnaya Cevaplandı (KABUL)</value>
+  </data>
+  <data name="TMM406" xml:space="preserve">
+    <value>eOnaya Cevaplandı (RED)</value>
+  </data>
+  <data name="TMM407" xml:space="preserve">
+    <value>eOnay kayıt işlemi başarıyla tamamlandı. ePosta Gönderildi: &lt;b&gt;{0}&lt;/b&gt;</value>
+    <comment>{0} ePosta adresi</comment>
+  </data>
+  <data name="TMM408" xml:space="preserve">
+    <value>ePosta Gönderilemedi.</value>
+  </data>
+  <data name="TMM409" xml:space="preserve">
+    <value>Zimmet Formu eOnay</value>
+  </data>
+  <data name="TMM410" xml:space="preserve">
+    <value>&lt;b&gt;{0}&lt;/b&gt; nolu Zimmet Belgesi onaylamanız için ePosta gönderilmiştir. {1} adresinden Zimmet Formu detaylarına bakarak cevap dönmeniz gerekmektedir.</value>
+    <comment>{0} Zimmet Belge No, {1} YazilimAdresi</comment>
+  </data>
+  <data name="TMM411" xml:space="preserve">
+    <value>Personelin mail adres bilgisi girilmemiş.</value>
+  </data>
+  <data name="TMM412" xml:space="preserve">
+    <value>&lt;b&gt;5&lt;/b&gt;</value>
+    <comment>EMAİL CEVAP SÜRESİ</comment>
+  </data>
+  <data name="TMM413" xml:space="preserve">
+    <value>&lt;b&gt;{0} iş günü içinde cevap vermeniz gerekmektedir.&lt;/b&gt;</value>
+    <comment>{0} email cevap süresi</comment>
+  </data>
+  <data name="TMM414" xml:space="preserve">
+    <value>İPTAL</value>
+  </data>
+  <data name="TMM415" xml:space="preserve">
+    <value>İşlem Tip alanı boş bırakılamaz</value>
+  </data>
+  <data name="TMM416" xml:space="preserve">
+    <value>Belgenin durumunda değişiklik yapılamaz</value>
+  </data>
+</root>

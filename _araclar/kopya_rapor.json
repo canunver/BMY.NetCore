@@ -1,0 +1,252 @@
+[
+ {
+  "proje": "BHMv2Servis/BHMv2ServisI/BHMv2ServisI.csproj",
+  "asm": "BHMv2ServisI",
+  "dosya": 13,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [],
+  "paket": []
+ },
+ {
+  "proje": "BHMv2Servis/BKDServisI/BKDServisI.csproj",
+  "asm": "BKDServisI",
+  "dosya": 6,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [],
+  "paket": []
+ },
+ {
+  "proje": "BUMServis/BUMServisI/BUMServisI.csproj",
+  "asm": "BUMServisI",
+  "dosya": 4,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [],
+  "paket": []
+ },
+ {
+  "proje": "DEGServis/DEGServis/DEGServis.csproj",
+  "asm": "DEGServis",
+  "dosya": 2,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [
+   "System.Web"
+  ],
+  "paket": []
+ },
+ {
+  "proje": "DEGServis/DEGServisI/DEGServisI.csproj",
+  "asm": "DEGServisI",
+  "dosya": 2,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [
+   "System.Web"
+  ],
+  "paket": []
+ },
+ {
+  "proje": "GNLServis/GNLServis.csproj",
+  "asm": "GNLServis",
+  "dosya": 7,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [],
+  "paket": [
+   "SSH.NET"
+  ]
+ },
+ {
+  "proje": "HRCServis/HRCServisI/HRCServisI.csproj",
+  "asm": "HRCServisI",
+  "dosya": 11,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [
+   "System.Web"
+  ],
+  "paket": []
+ },
+ {
+  "proje": "IKYServis/IKYServisI/IKYServisI.csproj",
+  "asm": "IKYServisI",
+  "dosya": 6,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [],
+  "paket": [
+   "System.Drawing.Common"
+  ]
+ },
+ {
+  "proje": "KHMServis/KHMServisC/KHMServisC.csproj",
+  "asm": "KHMServisC",
+  "dosya": 21,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [],
+  "paket": []
+ },
+ {
+  "proje": "KHMServis/KHMServisI/KHMServisI.csproj",
+  "asm": "KHMServisI",
+  "dosya": 2,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [],
+  "paket": []
+ },
+ {
+  "proje": "KPMServis/KPMServisI/KPMServisI.csproj",
+  "asm": "KPMServisI",
+  "dosya": 3,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [],
+  "paket": []
+ },
+ {
+  "proje": "KYMServis/KYMServisC/KYMServis.csproj",
+  "asm": "KYMServisC",
+  "dosya": 43,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [
+   "Microsoft.Web.Services2",
+   "System.EnterpriseServices",
+   "System.Runtime.Remoting",
+   "System.Web",
+   "System.Web.Services"
+  ],
+  "paket": [
+   "Newtonsoft.Json",
+   "System.DirectoryServices",
+   "System.DirectoryServices.Protocols",
+   "System.ServiceModel.Http"
+  ]
+ },
+ {
+  "proje": "KYMServis/KYMServisI/KYMServisI.csproj",
+  "asm": "KYMServisI",
+  "dosya": 17,
+  "derlemeDisi": [
+   "KullaniciResI.tg.Designer.cs"
+  ],
+  "eksik": [],
+  "desteksizReferans": [
+   "System.EnterpriseServices",
+   "System.Web.Services"
+  ],
+  "paket": []
+ },
+ {
+  "proje": "KYMServis/Mernis.KPS.Types/Mernis.KPS.Types.csproj",
+  "asm": "Mernis.KPS.Types",
+  "dosya": 30,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [
+   "Microsoft.Web.Services2",
+   "System.EnterpriseServices",
+   "System.Web.Services"
+  ],
+  "paket": []
+ },
+ {
+  "proje": "KYMServis/Mernis.KPSv2.Types/Mernis.KPSv2.Types.csproj",
+  "asm": "Mernis.KPSv2.Types",
+  "dosya": 35,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [
+   "Microsoft.IdentityModel",
+   "System.IdentityModel"
+  ],
+  "paket": [
+   "System.ServiceModel.Http"
+  ]
+ },
+ {
+  "proje": "MUHServis/MUHServisI/MUHServisI.csproj",
+  "asm": "MUHServisI",
+  "dosya": 4,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [
+   "System.Web"
+  ],
+  "paket": []
+ },
+ {
+  "proje": "ORGServis/ORGServisC/ORGServisC.csproj",
+  "asm": "ORGServisC",
+  "dosya": 17,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [],
+  "paket": []
+ },
+ {
+  "proje": "ORGServis/ORGServisI/ORGServisI.csproj",
+  "asm": "ORGServisI",
+  "dosya": 7,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [],
+  "paket": []
+ },
+ {
+  "proje": "PERServis/PERServisI/PERServisI.csproj",
+  "asm": "PERServisI",
+  "dosya": 5,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [],
+  "paket": []
+ },
+ {
+  "proje": "TMMServis/TMMServisI/TMMServisI.csproj",
+  "asm": "TMMServisI",
+  "dosya": 8,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [
+   "System.Web"
+  ],
+  "paket": []
+ },
+ {
+  "proje": "UZYServis/UZYServisC/UZYServisC.csproj",
+  "asm": "UZYServisC",
+  "dosya": 4,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [],
+  "paket": [
+   "Oracle.ManagedDataAccess.Core"
+  ]
+ },
+ {
+  "proje": "UZYServis/UZYServisI/UZYServisI.csproj",
+  "asm": "UZYServisI",
+  "dosya": 2,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [],
+  "paket": []
+ },
+ {
+  "proje": "VERServis/VERServis.csproj",
+  "asm": "VERServis",
+  "dosya": 5,
+  "derlemeDisi": [],
+  "eksik": [],
+  "desteksizReferans": [],
+  "paket": [
+   "Oracle.ManagedDataAccess.Core"
+  ]
+ }
+]

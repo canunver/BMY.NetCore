@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>UZYServisI</AssemblyName>
+    <RootNamespace>UZYServisI</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DEGServis\DEGServisI\DEGServisI.csproj" />
+    <ProjectReference Include="..\..\GNLServis\GNLServis.csproj" />
+    <ProjectReference Include="..\..\KYMServis\KYMServisI\KYMServisI.csproj" />
+  </ItemGroup>
+
+</Project>

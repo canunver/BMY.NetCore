@@ -1,0 +1,582 @@
+[
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "KesinHesapGiderCetveliHazirla",
+  "param": "Kullanici kullanan, int yil, int ay, Tertip tertip",
+  "donus": "TNSCollection",
+  "durum": "donusturuldu",
+  "T": "TNS.BHMv2.UcgenSatir",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "KesinHesapFonksiyonelCetvelHazirla",
+  "param": "Kullanici kullanan, int yil, int ay, Tertip tertip",
+  "donus": "TNSCollection",
+  "durum": "bilinmiyor",
+  "tipler": [
+   "?",
+   "TNS.Sonuc"
+  ]
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "KesinHesapFinansalCetvelHazirla",
+  "param": "Kullanici kullanan, int yil, int ay, Tertip tertip",
+  "donus": "TNSCollection",
+  "durum": "bilinmiyor",
+  "tipler": [
+   "?",
+   "TNS.Sonuc"
+  ]
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "KesinHesapEkonomikCetvelHazirla",
+  "param": "Kullanici kullanan, int yil, int ay, Tertip tertip",
+  "donus": "TNSCollection",
+  "durum": "bilinmiyor",
+  "tipler": [
+   "?",
+   "TNS.Sonuc"
+  ]
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "KesinHesapKodCetvelHazirla",
+  "param": "Kullanici kullanan, int yil, int ay, Tertip tertip, string tur, int seviye",
+  "donus": "TNSCollection",
+  "durum": "donusturuldu",
+  "T": "TertipBilgi",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "KesinHesapGiderCetveliHazirlaKurumsal",
+  "param": "Kullanici kullanan, int yil, int ay, Tertip tertip, bool kurumsal",
+  "donus": "TNSCollection",
+  "durum": "donusturuldu",
+  "T": "TNS.BHMv2.UcgenSatir",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "KesinHesapGiderCetveliHazirlaRaporTur",
+  "param": "Kullanici kullanan, int yil, int ay, Tertip tertip, bool kurumsal, ENUMIslemKod raporTur",
+  "donus": "TNSCollection",
+  "durum": "donusturuldu",
+  "T": "TNS.BHMv2.UcgenSatir",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "KesinHesapCaprazCetvelHazirla",
+  "param": "Kullanici kullanan, int yil, int ay, Tertip tertip",
+  "donus": "TNSCollection",
+  "durum": "donusturuldu",
+  "T": "TertipBilgi",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "KesinHesapMahsupCetveliHazirla",
+  "param": "Kullanici kullanan, int yil, int ay, Tertip tertip, string tur, int seviye",
+  "donus": "TNSCollection",
+  "durum": "donusturuldu",
+  "T": "TertipHarcamaBilgi",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "BIDevirAkreditifListele",
+  "param": "Kullanici kullanan, int yil, string[] kodlar, bool akreditifMi",
+  "donus": "TNSCollection",
+  "durum": "donusturuldu",
+  "T": "TertipOdenekBilgi",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "KHDevirAkreditifListele",
+  "param": "Kullanici kullanan, int yil, string[] islem, string[] kodlar",
+  "donus": "TNSCollection",
+  "durum": "donusturuldu",
+  "T": "TertipOdenekBilgi",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "KesinHesapGelirCetveliHazirla",
+  "param": "Kullanici kullanan, int yil, int ay, Tertip tertip, bool dinamikMi",
+  "donus": "TNSCollection",
+  "durum": "donusturuldu",
+  "T": "TNS.BHMv2.UcgenSatir",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "GiderGerekceListele",
+  "param": "Kullanici kullanan, int yil, Tertip tertip",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "GiderGerekce",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "KesinHesapMizanHazirla",
+  "param": "Kullanici kullanan, int yil, string kurum, bool gecici",
+  "donus": "TNSCollection",
+  "durum": "donusturuldu",
+  "T": "TNS.BHMv2.UcgenSatir",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "KesinHesapGiderCokYilli",
+  "param": "Kullanici kullanan, int yil, int ay, Tertip tertip, string tur, int seviye, int kacYil",
+  "donus": "TNSCollection",
+  "durum": "donusturuldu",
+  "T": "TertipBilgiler",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "KesinHesapGelirCetveliHazirlaCokYilli",
+  "param": "Kullanici kullanan, int yil, int ay, Tertip tertip, bool dinamikMi, int kacYil",
+  "donus": "TNSCollection",
+  "durum": "donusturuldu",
+  "T": "TNS.BHMv2.UcgenSatir",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "KesinHesapDevirCetveliHazirla",
+  "param": "Kullanici kullanan, int yil, int ay, Tertip tertip",
+  "donus": "TNSCollection",
+  "durum": "donusturuldu",
+  "T": "TNS.BHMv2.UcgenSatir",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "YilIciIptalListele",
+  "param": "Kullanici kullanan, int yil, string[] kodlar",
+  "donus": "TNSCollection",
+  "durum": "donusturuldu",
+  "T": "TertipOdenekBilgi",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "GiderTertipDegerListele",
+  "param": "Kullanici kullanan, int yil, Tertip tertip",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "TertipBilgi",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "GiderTertipListele",
+  "param": "Kullanici kullanan, int yil, Tertip tertip",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "TNS.BKD.Tertip",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "GiderGerekceListeleDetay",
+  "param": "Kullanici kullanan, int yil, Tertip tertip",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "GiderGerekceDetay",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "ItaAmirleriListele",
+  "param": "Kullanici kullanan, int yil, string kurum, int derece",
+  "donus": "TNSCollection",
+  "durum": "donusturuldu",
+  "T": "KHItaAmiri",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "FaaliyetAciklamaDamgaSayBul",
+  "param": "Kullanici kullanan, Tertip tertip",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "GiderGerekceDetay",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "ListeleOnBulgu",
+  "param": "Kullanici kullanan, SayBulgu form",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "SayBulgu",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "OkuOnBulgu",
+  "param": "Kullanici kullanan, SayBulgu form",
+  "donus": "ObjectVAN",
+  "durum": "donusturuldu",
+  "T": "SayBulgu",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "BulguIliskiliBirimListele",
+  "param": "Kullanici kullanan, int onBulguId",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "TNS.MUH.MuhasebeBirim",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "OnBulguCevapListele",
+  "param": "Kullanici kullanan, int yil, string birimKod",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "SayBulgu",
+  "tipler": []
+ },
+ {
+  "modul": "KHM",
+  "arayuz": "IKHMServis",
+  "metot": "BirimGirisIzniListele",
+  "param": "Kullanici kullanan, int yil, int tur",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "BirimGirisIzni",
+  "tipler": []
+ },
+ {
+  "modul": "KYM",
+  "arayuz": "IKYMServis",
+  "metot": "KullaniciAra",
+  "param": "Kullanici aramaBilgisi, int basla, int say",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "Kullanici",
+  "tipler": []
+ },
+ {
+  "modul": "KYM",
+  "arayuz": "IKYMServis",
+  "metot": "KullaniciRaporla",
+  "param": "Kullanici aramaBilgisi",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "Kullanici",
+  "tipler": []
+ },
+ {
+  "modul": "KYM",
+  "arayuz": "IKYMServis",
+  "metot": "KullaniciAdOner",
+  "param": "Kullanici kullanici",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "Kullanici",
+  "tipler": []
+ },
+ {
+  "modul": "KYM",
+  "arayuz": "IKYMServis",
+  "metot": "KullaniciSessionListele",
+  "param": "string kullaniciKodu, int sure, string hostName, string sayfaAd, string bilgi1, string bilgi2, string bilgi3, string bilgi4, string bilgi5",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "KullaniciIslemYapan",
+  "tipler": []
+ },
+ {
+  "modul": "KYM",
+  "arayuz": "IKYMServis",
+  "metot": "KullaniciSessionGrafik",
+  "param": "string kullaniciKodu, ENUMKullanimBilgiZaman grafikZamanAraligi, TNSDateTime tarih1, TNSDateTime tarih2, string sayfaAd",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "KullaniciIslemYapan",
+  "tipler": []
+ },
+ {
+  "modul": "KYM",
+  "arayuz": "IKYMServis",
+  "metot": "DegiskenleriListele",
+  "param": "string kullaniciKodu, string degisken",
+  "donus": "TNSCollection",
+  "durum": "donusturuldu",
+  "T": "string",
+  "tipler": []
+ },
+ {
+  "modul": "KYM",
+  "arayuz": "IKYMServis",
+  "metot": "DUYListesi",
+  "param": "Kullanici kullanan, Duyuru aramaBilgisi, bool modulDuyurulari",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "Duyuru",
+  "tipler": []
+ },
+ {
+  "modul": "KYM",
+  "arayuz": "IKYMServis",
+  "metot": "EPostaGonderOncekiGonderiler",
+  "param": "",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "Posta",
+  "tipler": []
+ },
+ {
+  "modul": "KYM",
+  "arayuz": "IKYMServis",
+  "metot": "EPostaGonderilenlerListele",
+  "param": "int mesajId, int gonderildiMi",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "Posta",
+  "tipler": []
+ },
+ {
+  "modul": "KYM",
+  "arayuz": "IKYMServis",
+  "metot": "HataDosyaListele",
+  "param": "Kullanici kullanan",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "EkliDosyalar",
+  "tipler": []
+ },
+ {
+  "modul": "KYM",
+  "arayuz": "IKYMServis",
+  "metot": "LogoListele",
+  "param": "Kullanici kullanan, Logo bilgi",
+  "donus": "ObjectArray",
+  "durum": "bilinmiyor",
+  "tipler": []
+ },
+ {
+  "modul": "KYM",
+  "arayuz": "IKYMServis",
+  "metot": "BuyukMetinListele",
+  "param": "Kullanici kullanan, string modulKod, string anahtar, string dilKod",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "TNS.StrKodStrAd",
+  "tipler": []
+ },
+ {
+  "modul": "KYM",
+  "arayuz": "IKYMServis",
+  "metot": "ListeleEvrakAktarim",
+  "param": "Kullanici kullanan, string evrakKodu",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "EvrakAktarimMeta",
+  "tipler": []
+ },
+ {
+  "modul": "KYM",
+  "arayuz": "IKYMServis",
+  "metot": "ListeleBirimMesajlari",
+  "param": "Kullanici kullanan, BirimMesaj form",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "BirimMesaj",
+  "tipler": []
+ },
+ {
+  "modul": "KYM",
+  "arayuz": "IKYMServis",
+  "metot": "ListeleEkliDosyalar",
+  "param": "Kullanici kullanan, EkliDosyalar form, bool birimAdOlsun",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "EkliDosyalar",
+  "tipler": []
+ },
+ {
+  "modul": "KYM",
+  "arayuz": "IKYMServis",
+  "metot": "OkuEkliDosyaIcerik",
+  "param": "Kullanici kullanan, EkliDosyalar form",
+  "donus": "ObjectVAN",
+  "durum": "donusturuldu",
+  "T": "EkliDosyalar",
+  "tipler": []
+ },
+ {
+  "modul": "KYM",
+  "arayuz": "IKYMServis",
+  "metot": "YerleskeOdaListele",
+  "param": "Kullanici kullanan, YerleskeOda yerleskeOda",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "YerleskeOda",
+  "tipler": []
+ },
+ {
+  "modul": "KYM",
+  "arayuz": "IKYMServis",
+  "metot": "KullaniciIslemTarihceListele",
+  "param": "Kullanici kullanan, TNSDateTime tarih1, TNSDateTime tarih2, string islemYapilanTCNo, string islemYapilanAd, string islemiYapanKullaniciAdi, int kullaniciTipi",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "Kullanici",
+  "tipler": []
+ },
+ {
+  "modul": "UZY",
+  "arayuz": "IUZYServis",
+  "metot": "UzayDegeriToplu",
+  "param": "Kullanici kullanan, TNSCollection uzaySorgulari",
+  "donus": "ObjectArray",
+  "durum": "karisik",
+  "tipler": [
+   "double",
+   "string"
+  ]
+ },
+ {
+  "modul": "UZY",
+  "arayuz": "IUZYServis",
+  "metot": "UzaylariListele",
+  "param": "",
+  "donus": "TNSCollection",
+  "durum": "bilinmiyor",
+  "tipler": []
+ },
+ {
+  "modul": "ORG",
+  "arayuz": "IORGServis",
+  "metot": "GorevListele",
+  "param": "Gorev p",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "Gorev",
+  "tipler": []
+ },
+ {
+  "modul": "ORG",
+  "arayuz": "IORGServis",
+  "metot": "GorevSorgula",
+  "param": "Gorev p",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "Gorev",
+  "tipler": []
+ },
+ {
+  "modul": "ORG",
+  "arayuz": "IORGServis",
+  "metot": "GorevYerTarihListele",
+  "param": "GorevYerTarih p",
+  "donus": "ObjectArray",
+  "durum": "karisik",
+  "tipler": [
+   "TNS.ORG.GorevYerTarih",
+   "TNS.PER.GorevYerTarih"
+  ]
+ },
+ {
+  "modul": "ORG",
+  "arayuz": "IORGServis",
+  "metot": "GorevTertipListele",
+  "param": "GorevTertip p",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "GorevTertip",
+  "tipler": []
+ },
+ {
+  "modul": "ORG",
+  "arayuz": "IORGServis",
+  "metot": "GorevPersonelListele",
+  "param": "GorevPersonel p",
+  "donus": "ObjectArray",
+  "durum": "karisik",
+  "tipler": [
+   "TNS.ORG.GorevPersonel",
+   "TNS.PER.GorevPersonel"
+  ]
+ },
+ {
+  "modul": "ORG",
+  "arayuz": "IORGServis",
+  "metot": "OrganizasyonBirimListeleKullanici",
+  "param": "Kullanici kullanici, bool detayVer, bool adEkle",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "OrganizasyonBirim",
+  "tipler": []
+ },
+ {
+  "modul": "ORG",
+  "arayuz": "IORGServis",
+  "metot": "OrganizasyonBirimListele",
+  "param": "OrganizasyonBirim p, bool detayVer, bool adEkle",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "OrganizasyonBirim",
+  "tipler": []
+ },
+ {
+  "modul": "ORG",
+  "arayuz": "IORGServis",
+  "metot": "OrganizasyonBirimListele",
+  "param": "OrganizasyonBirim p, bool detayVer, int ustVeAyniSeviye, bool adEkle",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "OrganizasyonBirim",
+  "tipler": []
+ },
+ {
+  "modul": "ORG",
+  "arayuz": "IORGServis",
+  "metot": "Il_IlceBul",
+  "param": "Kullanici kullanan, string plakaKod, int ilceMernisKod, bool detayVer, bool adEkle",
+  "donus": "ObjectArray",
+  "durum": "donusturuldu",
+  "T": "OrganizasyonBirim",
+  "tipler": []
+ }
+]

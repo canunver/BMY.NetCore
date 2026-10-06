@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>KPMServisI</AssemblyName>
+    <RootNamespace>KPMServisI</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DEGServis\DEGServisI\DEGServisI.csproj" />
+    <ProjectReference Include="..\..\GNLServis\GNLServis.csproj" />
+    <ProjectReference Include="..\..\KYMServis\KYMServisI\KYMServisI.csproj" />
+    <ProjectReference Include="..\..\KYMServis\Mernis.KPS.Types\Mernis.KPS.Types.csproj" />
+    <ProjectReference Include="..\..\KYMServis\Mernis.KPSv2.Types\Mernis.KPSv2.Types.csproj" />
+  </ItemGroup>
+
+</Project>

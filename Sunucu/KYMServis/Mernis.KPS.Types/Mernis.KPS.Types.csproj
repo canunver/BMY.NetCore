@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>Mernis.KPS.Types</AssemblyName>
+    <RootNamespace>Mernis.KPS.Types</RootNamespace>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,1300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AvukatOdemesi001" xml:space="preserve">
+    <value>Yazma yetkiniz yok!</value>
+  </data>
+  <data name="AvukatOdemesi002" xml:space="preserve">
+    <value>Görme yetkiniz yok!</value>
+  </data>
+  <data name="DogrudanTeminPlan001" xml:space="preserve">
+    <value>Yazma yetkiniz yok!</value>
+  </data>
+  <data name="DogrudanTeminPlan002" xml:space="preserve">
+    <value>Görme yetkiniz yok!</value>
+  </data>
+  <data name="DovizOdeme001" xml:space="preserve">
+    <value>Yazma yetkiniz yok!</value>
+  </data>
+  <data name="DovizOdeme002" xml:space="preserve">
+    <value>Görme yetkiniz yok!</value>
+  </data>
+  <data name="FRMGGY056" xml:space="preserve">
+    <value>Uçak</value>
+    <comment>farpoint drop down list item</comment>
+  </data>
+  <data name="FRMGGY057" xml:space="preserve">
+    <value>Otobüs</value>
+    <comment>farpoint drop down list item</comment>
+  </data>
+  <data name="FRMGGY058" xml:space="preserve">
+    <value>Tren</value>
+    <comment>farpoint drop down list item</comment>
+  </data>
+  <data name="FRMGGY059" xml:space="preserve">
+    <value>Taksi</value>
+    <comment>farpoint drop down list item</comment>
+  </data>
+  <data name="FRMGGY060" xml:space="preserve">
+    <value>Toplu Taşıma</value>
+    <comment>farpoint drop down list item</comment>
+  </data>
+  <data name="FRMGGY061" xml:space="preserve">
+    <value>Minibüs</value>
+    <comment>farpoint drop down list item</comment>
+  </data>
+  <data name="FRMGGY062" xml:space="preserve">
+    <value>Dolmuş</value>
+    <comment>farpoint drop down list item</comment>
+  </data>
+  <data name="FRMGGY063" xml:space="preserve">
+    <value>Havaş</value>
+    <comment>farpoint drop down list item</comment>
+  </data>
+  <data name="FRMGGY064" xml:space="preserve">
+    <value>Havaş+Taksi</value>
+    <comment>farpoint drop down list item</comment>
+  </data>
+  <data name="FRMGGY065" xml:space="preserve">
+    <value>Diğer</value>
+    <comment>farpoint drop down list item</comment>
+  </data>
+  <data name="FRMGGY072" xml:space="preserve">
+    <value>Konaklama Gün Sayısı ({0})</value>
+    <comment>{0} konaklama gün sayısı</comment>
+  </data>
+  <data name="FRMGGY073" xml:space="preserve">
+    <value>Konaklama Günlük Ücreti</value>
+    <comment>çıktı metni</comment>
+  </data>
+  <data name="FRMGGY074" xml:space="preserve">
+    <value>Konaklama Tutarı</value>
+    <comment>çıktı metni</comment>
+  </data>
+  <data name="FRMGGY075" xml:space="preserve">
+    <value>Ödeme Sınırı Altında</value>
+    <comment>çıktı metni</comment>
+  </data>
+  <data name="FRMGGY076" xml:space="preserve">
+    <value>Hamal / Bagaj Ücreti</value>
+    <comment>çıktı metni</comment>
+  </data>
+  <data name="FRMGGY077" xml:space="preserve">
+    <value>Terminal - Görev Yeri</value>
+    <comment>çıktı metni</comment>
+  </data>
+  <data name="FRMGGY078" xml:space="preserve">
+    <value>Terminal - İkametgah</value>
+    <comment>çıktı metni</comment>
+  </data>
+  <data name="FRMGGY079" xml:space="preserve">
+    <value>İkametgah - Terminal</value>
+    <comment>çıktı metni</comment>
+  </data>
+  <data name="FRMGGY080" xml:space="preserve">
+    <value>Görev Yeri - Terminal</value>
+    <comment>çıktı metni</comment>
+  </data>
+  <data name="FRMIOF069" xml:space="preserve">
+    <value>Yaklaşık Maliyet, 22.d maddesi gereği toplam kullanılabilir ödeneğin %10 geçmiştir.</value>
+  </data>
+  <data name="FRMIOF070" xml:space="preserve">
+    <value>Yaklaşık Maliyet, 22.d maddesi gereği toplam kullanılabilir ödeneğin %10 aşamaz.</value>
+  </data>
+  <data name="FRMIOF071" xml:space="preserve">
+    <value>Yaklaşık maliyet, 22.d maddesi gereği büyükşehirler için {0} den büyük olamaz.</value>
+    <comment>{0} büyükşehir harcama sınırı</comment>
+  </data>
+  <data name="FRMIOF072" xml:space="preserve">
+    <value>Yaklaşık maliyet, 22.d maddesi gereği  büyükşehir sınırı dışındaki yerler için {0} den büyük olamaz.</value>
+    <comment>{0} büyükşehir dışındaki harcama sınırı</comment>
+  </data>
+  <data name="FRMIOF073" xml:space="preserve">
+    <value>Yaklaşık Maliyet, 21.f maddesi gereği toplam kullanılabilir ödeneğin %10 aşamaz.</value>
+  </data>
+  <data name="FRMIOF074" xml:space="preserve">
+    <value>21.f maddesine göre yapılan harcamalarda yaklaşık maliyet  {0} den büyük olamaz</value>
+    <comment>{0} pazarlık usulu üst sınır</comment>
+  </data>
+  <data name="HRC00001" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+    <comment>[Sonuc] nesnesi constructor hata mesajı</comment>
+  </data>
+  <data name="HRC00002" xml:space="preserve">
+    <value>Bu bölümü kullanmaya yetkili değilsiniz.</value>
+  </data>
+  <data name="HRC00003" xml:space="preserve">
+    <value>Yıl alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00004" xml:space="preserve">
+    <value>Muhasebe Kodu alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00005" xml:space="preserve">
+    <value>Birim Kodu alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00006" xml:space="preserve">
+    <value>{0}. satırdaki Abone No alanı boş bırakılamaz.</value>
+    <comment>{0} satır no</comment>
+  </data>
+  <data name="HRC00007" xml:space="preserve">
+    <value>Kayıt edilecek bilgi bulunmamaktadır.</value>
+  </data>
+  <data name="HRC00008" xml:space="preserve">
+    <value>{0} abone kaydının {1} yılı {2}. aya ait {3} numaralı süreçte fatura bilgisi bulunmaktadır.</value>
+    <comment>{0} abone no, {1} fatura yıl, {2} fatura ay, {3} süreç no</comment>
+  </data>
+  <data name="HRC00009" xml:space="preserve">
+    <value>{0} abone kaydının {1} yılı {2}. aya ait {3} numaralı süreçte faiz bilgisi bulunmaktadır.</value>
+    <comment>{0} abone no, {1} fatura yıl, {2} fatura ay, {3} süreç no</comment>
+  </data>
+  <data name="HRC00010" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla tamamlandı.</value>
+  </data>
+  <data name="HRC00011" xml:space="preserve">
+    <value>Kayıt işlemi başarısız oldu.</value>
+  </data>
+  <data name="HRC00012" xml:space="preserve">
+    <value>Belge detayı bulunamadı!</value>
+  </data>
+  <data name="HRC00013" xml:space="preserve">
+    <value>Bu bölümü kullanmaya yetkili değilsiniz.</value>
+  </data>
+  <data name="HRC00014" xml:space="preserve">
+    <value>Mail adresi boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00015" xml:space="preserve">
+    <value>Geçersiz bir mail adresi girdiniz.</value>
+  </data>
+  <data name="HRC00016" xml:space="preserve">
+    <value>Sıra numarası alınamadı.</value>
+  </data>
+  <data name="HRC00017" xml:space="preserve">
+    <value>Silmek için bir kayıt seçin.</value>
+  </data>
+  <data name="HRC00018" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="HRC00019" xml:space="preserve">
+    <value>Silme işlemi başarısız oldu.</value>
+  </data>
+  <data name="HRC00020" xml:space="preserve">
+    <value>{0}/{1} dönemi telefon (Türk Telekom) faturası ödemesi için</value>
+    <comment>{0} fatura yıl, {1} fatura ay, Değiştirmeyin</comment>
+  </data>
+  <data name="HRC00021" xml:space="preserve">
+    <value>{0}/{1} dönemi telefon (Türk Telekom) faturaları için Ödenek Gönderme Belgesi Taslağı</value>
+    <comment>{0} fatura yıl, {1} fatura ay</comment>
+  </data>
+  <data name="HRC00022" xml:space="preserve">
+    <value>{0}/{1} dönemi elektrik faturası ödemesi için</value>
+    <comment>{0} fatura yıl, {1} fatura ay, Değiştirmeyin</comment>
+  </data>
+  <data name="HRC00023" xml:space="preserve">
+    <value>{0}/{1} dönemi elektrik faturaları için Ödenek Gönderme Belgesi Taslağı</value>
+    <comment>{0} fatura yıl, {1} fatura ay</comment>
+  </data>
+  <data name="HRC00024" xml:space="preserve">
+    <value>{0}/{1} dönemi su faturası ödemesi için</value>
+    <comment>{0} fatura yıl, {1} fatura ay, Değiştirmeyin</comment>
+  </data>
+  <data name="HRC00025" xml:space="preserve">
+    <value>{0}/{1} dönemi su faturaları için Ödenek Gönderme Belgesi Taslağı</value>
+    <comment>{0} fatura yıl, {1} fatura ay</comment>
+  </data>
+  <data name="HRC00026" xml:space="preserve">
+    <value>Belge No</value>
+  </data>
+  <data name="HRC00027" xml:space="preserve">
+    <value>Saymanlık</value>
+  </data>
+  <data name="HRC00028" xml:space="preserve">
+    <value>Birim</value>
+  </data>
+  <data name="HRC00029" xml:space="preserve">
+    <value>Ödenek</value>
+  </data>
+  <data name="HRC00030" xml:space="preserve">
+    <value>Sayın Yetkili,&lt;br&gt;&lt;br&gt;&lt;b&gt;{0}/{1} dönemi telefon&lt;/b&gt; (Türk Telekom A.Ş) ödemelerinin yapılabilmesi için, birimlerinizin ihtiyaç duyduğu ödenekler, &lt;b&gt;sgb.net&lt;/b&gt; sisteminden &lt;b&gt;Ödenek Gönderme Belgesi Taslağı&lt;/b&gt; olarak hazırlanmış ve ekte bilgilerinize sunulmuştur. Bu bilgileri işleme koymak için sgb.net Ödenek Gönderme modülünü kullanabilirsiniz.&lt;br&gt;&lt;br&gt;{2}</value>
+    <comment>{0} fatura yıl, {1} fatura ay, {2} fatura listesi</comment>
+  </data>
+  <data name="HRC00031" xml:space="preserve">
+    <value>Sayın Yetkili,&lt;br&gt;&lt;br&gt;&lt;b&gt;{0}/{1} dönemi elektrik&lt;/b&gt; fatura ödemelerinin yapılabilmesi için, birimlerinizin ihtiyaç duyduğu ödenekler, &lt;b&gt;sgb.net&lt;/b&gt; sisteminden &lt;b&gt;Ödenek Gönderme Belgesi Taslağı&lt;/b&gt; olarak hazırlanmış ve ekte bilgilerinize sunulmuştur. Bu bilgileri işleme koymak için sgb.net Ödenek Gönderme modülünü kullanabilirsiniz.&lt;br&gt;&lt;br&gt;{2}</value>
+    <comment>{0} fatura yıl, {1} fatura ay, {2} fatura listesi</comment>
+  </data>
+  <data name="HRC00032" xml:space="preserve">
+    <value>Sayın Yetkili,&lt;br&gt;&lt;br&gt;&lt;b&gt;{0}/{1} dönemi su&lt;/b&gt; fatura ödemelerinin yapılabilmesi için, birimlerinizin ihtiyaç duyduğu ödenekler, &lt;b&gt;sgb.net&lt;/b&gt; sisteminden &lt;b&gt;Ödenek Gönderme Belgesi Taslağı&lt;/b&gt; olarak hazırlanmış ve ekte bilgilerinize sunulmuştur. Bu bilgileri işleme koymak için sgb.net Ödenek Gönderme modülünü kullanabilirsiniz.&lt;br&gt;&lt;br&gt;{2}</value>
+    <comment>{0} fatura yıl, {1} fatura ay, {2} fatura listesi</comment>
+  </data>
+  <data name="HRC00033" xml:space="preserve">
+    <value>{0} adresine e-posta gönderildi\r\n</value>
+    <comment>{0} eposta gönderilen adres</comment>
+  </data>
+  <data name="HRC00034" xml:space="preserve">
+    <value>Sistemde Abone Numarasına ait Ödeme Yapılacak Kurum bilgisi bulunmamaktadır.</value>
+  </data>
+  <data name="HRC00035" xml:space="preserve">
+    <value>Buraya tıklayarak</value>
+  </data>
+  <data name="HRC00036" xml:space="preserve">
+    <value>Sayın Yetkili,&lt;br&gt;&lt;br&gt;Biriminize ait, {0}/{1} dönemi Elektrik faturalarınız, TEDAŞ ile yapılan protokol kapsamında &lt;b&gt;SGB.net&lt;/b&gt; sistemine aktarılmış ve size ekte gönderilmiştir.&lt;br&gt;&lt;br&gt;&lt;b&gt;Sayaç Numaraları : &lt;/b&gt;{2}&lt;br&gt;&lt;b&gt;Toplam Tutar : &lt;/b&gt;{3} TL&lt;br&gt;&lt;br&gt;Ödeme işleminizi sgb.net sistemindeki, Harcama Yönetimi bölümünden &lt;b&gt;{4}&lt;/b&gt;numaralı Süreç ile takip edebilirsiniz. İlgili faturalar için sgb.net sistemi sizin için otomatik olarak &lt;b&gt;{5}&lt;/b&gt; numaralı Ödeme Emri belgesini oluşturmuştur. &lt;b&gt;{6}&lt;/b&gt; Ödeme Emri belgesine ulaşabilir ve gerekli değişiklikleri yapabilirsiniz.&lt;br&gt;&lt;br&gt;&lt;br&gt;İyi çalışmalar dileriz.</value>
+    <comment>{0} fatura ay, {1} fatura yıl, {2} elektrik sayaç numaraları, {3} toplam tutar, {4} süreçno, {5} ödeme emri no, {6} ödeme emri link</comment>
+  </data>
+  <data name="HRC00037" xml:space="preserve">
+    <value>{0}/{1} dönemine ait Su fatura bilgileri</value>
+    <comment>{0} fatura ay, {1} fatura yıl</comment>
+  </data>
+  <data name="HRC00038" xml:space="preserve">
+    <value>Sayın Yetkili,&lt;br&gt;&lt;br&gt;Biriminize ait, {0}/{1} dönemi Su faturalarınız, İlgili Firma ile yapılan protokol kapsamında &lt;b&gt;SGB.net&lt;/b&gt; sistemine aktarılmış ve size ekte gönderilmiştir.&lt;br&gt;&lt;br&gt;&lt;b&gt;Sayaç Numaraları : &lt;/b&gt;{2}&lt;br&gt;&lt;b&gt;Toplam Tutar : &lt;/b&gt;{3} TL&lt;br&gt;&lt;br&gt;Ödeme işleminizi sgb.net sistemindeki, Harcama Yönetimi bölümünden &lt;b&gt;{4}&lt;/b&gt; numaralı Süreç ile takip edebilirsiniz. İlgili faturalar için sgb.net sistemi sizin için otomatik olarak &lt;b&gt;{5}&lt;/b&gt; numaralı Ödeme Emri belgesini oluşturmuştur. &lt;b&gt;{6}&lt;/b&gt; Ödeme Emri belgesine ulaşabilir ve gerekli değişiklikleri yapabilirsiniz.&lt;br&gt;&lt;br&gt;&lt;br&gt;İyi çalışmalar dileriz.</value>
+    <comment>{0} fatura ay, {1} fatura yıl, {2} su sayaç numaraları, {3} toplam tutar, {4} süreçno, {5} ödeme emri no, {6} ödeme emri link</comment>
+  </data>
+  <data name="HRC00039" xml:space="preserve">
+    <value>{0} adlı telekom dosyası bulunamadı. Lütfen ilgili telekom dosyasını hazırlayıp, belirtilen adrese kopyalayın.</value>
+    <comment>{0} ilgili dosya yolu</comment>
+  </data>
+  <data name="HRC00040" xml:space="preserve">
+    <value>{0}-{1} / {2}-{3} XML dosyası seçilen Ay ve Yıla ait değildir. Lütfen işleminizi kontrol ediniz.</value>
+    <comment>{0} kontrol ay, {1} kontrol yıl,{2} fatura ay, {3} fatura yıl</comment>
+  </data>
+  <data name="HRC00041" xml:space="preserve">
+    <value>{0}/{1} dönemine ait telefon (Türk Telekom A.Ş) fatura bilgileri</value>
+    <comment>{0} fatura ay, {1} fatura yıl</comment>
+  </data>
+  <data name="HRC00042" xml:space="preserve">
+    <value>e-fatura Teyit menüsü</value>
+  </data>
+  <data name="HRC00043" xml:space="preserve">
+    <value>Sayın Yetkili,&lt;br&gt;&lt;br&gt;Biriminize ait, {0}/{1} dönemi telefon (Türk Telekom A.Ş) faturalarınız, Türk Telekom A.Ş ile yapılan protokol kapsamında &lt;b&gt;SGB.net&lt;/b&gt; sistemine aktarılmış ve size ekte gönderilmiştir.&lt;br&gt;&lt;br&gt;&lt;b&gt;Telefon Numaraları : &lt;/b&gt;{2}&lt;br&gt;&lt;b&gt;Toplam Tutar : &lt;/b&gt;{3} TL&lt;br&gt;&lt;br&gt;Ödeme işleminizi sgb.net sistemindeki, Harcama Yönetimi bölümünden &lt;b&gt;{4}&lt;/b&gt; numaralı Süreç ile takip edebilirsiniz.</value>
+    <comment>{0} fatura ay, {1} fatura yıl, {2} telefon numaraları, {3} toplam tutar, {4} süreçno</comment>
+  </data>
+  <data name="HRC00044" xml:space="preserve">
+    <value>İlgili faturalar için sgb.net sistemi sizin için otomatik olarak &lt;b&gt;{0}&lt;/b&gt; numaralı Ödeme Emri belgesini oluşturmuştur. &lt;b&gt;{1}&lt;/b&gt; Ödeme Emri belgesine ulaşabilir ve gerekli değişiklikleri yapabilirsiniz.&lt;br&gt;&lt;br&gt;&lt;br&gt;</value>
+    <comment>{0} ödeme emri no, {1} ödeme emri link</comment>
+  </data>
+  <data name="HRC00045" xml:space="preserve">
+    <value>İlgili faturalar için sgb.net sisteminde Ödeme Emri belgesi &lt;b&gt;oluşturulmamıştır&lt;/b&gt;. Ödeme Emri belgesini oluşturarak işleminizi tamamlayabilirsiniz&lt;br&gt;&lt;br&gt;&lt;br&gt;</value>
+  </data>
+  <data name="HRC00046" xml:space="preserve">
+    <value>Not: Ekteki e-imzalı faturaların doğruluğunu, sgb.net sistemindeki &lt;b&gt;{0}&lt;/b&gt; içerisinden veya &lt;a href='http://www.efatura.gov.tr/web/efatura/sorgulama'&gt;http://www.efatura.gov.tr/web/efatura/sorgulama&lt;/a&gt; adresinden teyit edebilirsiniz.&lt;br&gt;&lt;br&gt;İyi çalışmalar dileriz.</value>
+    <comment>{0} efatura kontrol link</comment>
+  </data>
+  <data name="HRC00047" xml:space="preserve">
+    <value>AboneNo alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00048" xml:space="preserve">
+    <value>Abone Adı alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00049" xml:space="preserve">
+    <value>{0} numaralı abone numarası {1}-{2} üzerine kayıtlıdır.</value>
+    <comment>{0} abone no, {1} muhasebe kod, {2} birim kod</comment>
+  </data>
+  <data name="HRC00050" xml:space="preserve">
+    <value>{0}/{1} dönemine ait telefon (TELEKOM A.Ş) ödemesi</value>
+    <comment>{0} fatura ay, {1} fatura yıl</comment>
+  </data>
+  <data name="HRC00051" xml:space="preserve">
+    <value>{0}/{1} dönemine ait elektrik ödemesi</value>
+    <comment>{0} fatura ay, {1} fatura yıl</comment>
+  </data>
+  <data name="HRC00052" xml:space="preserve">
+    <value>{0}/{1} dönemine ait su ödemesi</value>
+    <comment>{0} fatura ay, {1} fatura yıl</comment>
+  </data>
+  <data name="HRC00053" xml:space="preserve">
+    <value>{0}/{1} dönemi telefon (Türk Telekom) faturası ödemesi için</value>
+    <comment>{0} fatura ay, {1} fatura yıl</comment>
+  </data>
+  <data name="HRC00054" xml:space="preserve">
+    <value>{0}/{1} dönemi elektrik faturası ödemesi için</value>
+  </data>
+  <data name="HRC00055" xml:space="preserve">
+    <value>{0}/{1} dönemi su faturası ödemesi için</value>
+  </data>
+  <data name="HRC00056" xml:space="preserve">
+    <value>Hesaplancak bilgi bulunmamaktadır.</value>
+  </data>
+  <data name="HRC00057" xml:space="preserve">
+    <value>Gündelik bilgisi girilmeden hesaplama yapılamamaktadır.</value>
+  </data>
+  <data name="HRC00058" xml:space="preserve">
+    <value>Muhasebe Kayıt Yetkiniz Bulunmamaktadır.</value>
+  </data>
+  <data name="HRC00059" xml:space="preserve">
+    <value>Aynı tipte cevaplanmamış dilekçe SGB.Net sisteminde kayıtlıdır.&lt;/br&gt;Lütfen belge aramadan dilekçenizi takip ediniz.</value>
+  </data>
+  <data name="HRC00060" xml:space="preserve">
+    <value>Muhasebe Sorgulama Yetkiniz Bulunmamaktadır.</value>
+  </data>
+  <data name="HRC00061" xml:space="preserve">
+    <value>Kurumsal Kod alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00062" xml:space="preserve">
+    <value>Fonksiyonel Kod alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00063" xml:space="preserve">
+    <value>Finansal Kod alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00064" xml:space="preserve">
+    <value>Ekonomik Kod alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00065" xml:space="preserve">
+    <value>{0}-{1} kodlu bilgi silinmiştir.</value>
+    <comment>{0} muhasebekod, {1} birimkod</comment>
+  </data>
+  <data name="HRC00066" xml:space="preserve">
+    <value>Kayıt edilecek bilgi bulunmamaktadır.</value>
+  </data>
+  <data name="HRC00067" xml:space="preserve">
+    <value>Süreç bilgisi boş bırakılamaz</value>
+  </data>
+  <data name="HRC00068" xml:space="preserve">
+    <value>{0} olarak verilen Muhasebe Kodu hatalı</value>
+    <comment>{0} muhasebe kodu</comment>
+  </data>
+  <data name="HRC00069" xml:space="preserve">
+    <value>{0} olarak verilen Muhasebe Birim kodu hatalı</value>
+    <comment>{0} birim kodu</comment>
+  </data>
+  <data name="HRC00070" xml:space="preserve">
+    <value>Bu adım tamamlandı olarak işaretlendiği için kayıt işlemi yapılamaz.</value>
+  </data>
+  <data name="HRC00071" xml:space="preserve">
+    <value>Belge detayı bulunamadı!</value>
+  </data>
+  <data name="HRC00072" xml:space="preserve">
+    <value>Verilen kriterlere göre listelenecek bilgi &lt;b&gt;bulunamadı&lt;/b&gt;.</value>
+  </data>
+  <data name="HRC00073" xml:space="preserve">
+    <value>Kayıt edilmek istenilen birime ait Ek Ders Bordrosu hazırlanmıştır. Bu nedenle kayıt işlemi &lt;b&gt;yapılamadı&lt;/b&gt;. Eğer kayıt yapılması isteniyorsa &lt;b&gt;Bordro İptali&lt;/b&gt; işlemi yapılması gereklidir.</value>
+  </data>
+  <data name="HRC00074" xml:space="preserve">
+    <value>{0} TC Kimlik Nolu kişinin puantaj bilgisi bulunamadı.</value>
+    <comment>{0} TC Kimlik No</comment>
+  </data>
+  <data name="HRC00075" xml:space="preserve">
+    <value>{0} sicil nolu kişinin {1}. haftada ek ders saati toplamı : {2} olarak girilmiş. Fakat puantaj kısıtında belirtilen haftalik saat toplamı &lt;b&gt;{3}&lt;/b&gt; saattir.</value>
+    <comment>{0} TC Kimlik No, {1} hafta, {2} haftalık saat toplamı, {3} haftalık saat</comment>
+  </data>
+  <data name="HRC00076" xml:space="preserve">
+    <value>&lt;b&gt;TC Kimlik No : {0}&lt;/b&gt; {1}</value>
+    <comment>{0} TC Kimlik No, {1} hata mesajı</comment>
+  </data>
+  <data name="HRC00077" xml:space="preserve">
+    <value>Bordro oluşturma işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="HRC00078" xml:space="preserve">
+    <value>Bordro oluşturulamadı.</value>
+  </data>
+  <data name="HRC00079" xml:space="preserve">
+    <value>Muhasebe ve birim bilgisi bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00080" xml:space="preserve">
+    <value>{0}. satırda belirtilen TC Kimlik No ({1}) hatalı</value>
+    <comment>{0} satır no, {1} TC Kimlik No</comment>
+  </data>
+  <data name="HRC00081" xml:space="preserve">
+    <value>{0} satırda belirtilen {1} TC Kimlik Nolu personel bulunamadı.</value>
+    <comment>{0} satır no, {1} TC Kimlik No</comment>
+  </data>
+  <data name="HRC00082" xml:space="preserve">
+    <value>Açıklama bilgisi boş bırakılmış</value>
+  </data>
+  <data name="HRC00083" xml:space="preserve">
+    <value>Kayıtlı olmayan Fazla Mesai Puantaj bilgisini silemezsiniz.</value>
+  </data>
+  <data name="HRC00084" xml:space="preserve">
+    <value>Firma seçimi yapılmamış.</value>
+  </data>
+  <data name="HRC00085" xml:space="preserve">
+    <value>Fatura No alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00086" xml:space="preserve">
+    <value>Fatura Tarihi alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00087" xml:space="preserve">
+    <value>{0}. satırdaki Ürün adı alanı boş bırakılamaz.</value>
+    <comment>{0} satır no</comment>
+  </data>
+  <data name="HRC00088" xml:space="preserve">
+    <value>{0}. satırdaki Miktar alanı boş bırakılamaz.</value>
+    <comment>{0} satır no</comment>
+  </data>
+  <data name="HRC00089" xml:space="preserve">
+    <value>Hiçbir fatura detayı girilmemiş.</value>
+  </data>
+  <data name="HRC00090" xml:space="preserve">
+    <value>İskonto Tutarı ya da İskonto Oranından sadece biri ile işlem yapılmaktadır.</value>
+  </data>
+  <data name="HRC00091" xml:space="preserve">
+    <value>{0} nolu {1} tarihli {2} adlı firmaya ait kayıt bulunduğundan kayıt işlemi tamamlanmadı.&lt;br&gt; Lütfen bilgilerinizi kontrol ediniz.</value>
+    <comment>{0} fatura no, {1} fatura tarih, {2} fatura firma ad</comment>
+  </data>
+  <data name="HRC00092" xml:space="preserve">
+    <value>taşınır işlem fişi</value>
+  </data>
+  <data name="HRC00093" xml:space="preserve">
+    <value>ödeme emri belgesi</value>
+  </data>
+  <data name="HRC00094" xml:space="preserve">
+    <value>{0} nolu sürecinize bağlı {1} iptal edilemediği için {2} numaralı faturayı iptal edemezsiniz.</value>
+    <comment>{0} süreçno, {1} HRC00092 ya da HRC00093, {2} fatura no</comment>
+  </data>
+  <data name="HRC00095" xml:space="preserve">
+    <value>{0} numaralı fatura &lt;b&gt;İptal Edildi&lt;/b&gt;.&lt;br&gt;</value>
+    <comment>{0} fatura no</comment>
+  </data>
+  <data name="HRC00096" xml:space="preserve">
+    <value>{0} numaralı Harcama Pusulası İptal Edildi.</value>
+    <comment>{0} sıra no</comment>
+  </data>
+  <data name="HRC00097" xml:space="preserve">
+    <value>{0} nolu sürecinize bağlı {1} numaralı Harcama Pusulası iptal edilemedi.</value>
+    <comment>{0} süreç no, {1} sıra no</comment>
+  </data>
+  <data name="HRC00098" xml:space="preserve">
+    <value>Bu iş için, {0} TL onay alınmasına rağmen, (varsa) önceki faturalar ile birlikte {1} TL\'lik fatura kayıt edemezsiniz. (Fatura tutarı Onay tutarının %{2} fazlasını geçemez) Girilen bilgileri kontrol edin, varsa önceden girilen hatalı faturaları silin.</value>
+    <comment>{0} onay tutarı, {1} fatura toplamı, {2} limit</comment>
+  </data>
+  <data name="HRC00099" xml:space="preserve">
+    <value>Onay formunu kayıt etmediğiniz için Fatura bilgileri kayıt edilemedi. İlk önce Onay Formunu kayıt edin.</value>
+  </data>
+  <data name="HRC00100" xml:space="preserve">
+    <value>{0} TC Kimlik Nolu kişinin, dosyada birden fazla kaydı bulunmaktadır.</value>
+    <comment>{0} TC Kimlik No</comment>
+  </data>
+  <data name="HRC00101" xml:space="preserve">
+    <value>Kayıt edilmek istenilen birime ait fazla mesai bordrosu hazırlanmıştır. Bu nedenle kayıt işlemi &lt;b&gt;yapılamadı&lt;/b&gt;. Eğer kayıt yapılması isteniyorsa &lt;b&gt;Bordro İptali&lt;/b&gt; işlemi yapılması gereklidir.</value>
+  </data>
+  <data name="HRC00102" xml:space="preserve">
+    <value>{0} sicil nolu kişinin aylık saat toplamı : {1} olarak girilmiş. Fakat puantaj kısıtında belirtilen aylık saat toplamı &lt;b&gt;{2}&lt;/b&gt; saattir.</value>
+    <comment>[0} TC Kimlik No, {1} aylık saat toplamı, {2} tanımlı aylık saat toplamı</comment>
+  </data>
+  <data name="HRC00103" xml:space="preserve">
+    <value>Ayın {0}. günü Pazar : {1} saat yazılmış. Fakat Pazar günü en fazla &lt;b&gt;{2}&lt;/b&gt; saat olabilir.</value>
+    <comment>{0} Ayın günü, {1} çalışma saati, {2} saat kısıtı</comment>
+  </data>
+  <data name="HRC00104" xml:space="preserve">
+    <value>Ayın {0}. günü Cumartesi : {1} saat yazılmış. Fakat Cumartesi günü en fazla &lt;b&gt;{2}&lt;/b&gt; saat olabilir.</value>
+    <comment>{0} Ayın günü, {1} çalışma saati, {2} saat kısıtı</comment>
+  </data>
+  <data name="HRC00105" xml:space="preserve">
+    <value>Ayın {0}. günü : {1} saat yazılmış. Fakat hafta içi günlerde en fazla &lt;b&gt;{2}&lt;/b&gt; saat olabilir.</value>
+    <comment>{0} Ayın günü, {1} çalışma saati, {2} saat kısıtı</comment>
+  </data>
+  <data name="HRC00106" xml:space="preserve">
+    <value>Ad alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00107" xml:space="preserve">
+    <value>TC Kimlik/Vergi No alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00108" xml:space="preserve">
+    <value>{0} TC Kimlik/Vergi No ile kayıtlı Firma/Kişi bulunmaktadır.</value>
+    <comment>{0} TCKimlikNo/VergiNo</comment>
+  </data>
+  <data name="HRC00109" xml:space="preserve">
+    <value>Firmanın fatura girişi yapabilmesi için ilgili firmanın mail adresi bilgisi girilmesi zorunludur</value>
+  </data>
+  <data name="HRC00110" xml:space="preserve">
+    <value>Uygun olmayan mail adresi bilgisi girilmiştir.</value>
+  </data>
+  <data name="HRC00111" xml:space="preserve">
+    <value>Firmanıza ait fatura giris yetkisi tanımlanmamıştır.Lütfen ilgili Maliye birimiyle görüşünüz.</value>
+  </data>
+  <data name="HRC00112" xml:space="preserve">
+    <value>Firma mail adresi bilgisi sistemde bulunamadı.Lütfen mail adresinizi ilgili birime bildiriniz.</value>
+  </data>
+  <data name="HRC00113" xml:space="preserve">
+    <value>Firma bilgisi sistemde bulunamadı.Lütfen hatayı ilgili birime bildiriniz.</value>
+  </data>
+  <data name="HRC00114" xml:space="preserve">
+    <value>Firma kullanıcısına parola oluşturulamdı.Lütfen  daha sonra tekrar deneyiniz</value>
+  </data>
+  <data name="HRC00115" xml:space="preserve">
+    <value>Hatalı kullanıcı kodu/şifre geldi!</value>
+  </data>
+  <data name="HRC00116" xml:space="preserve">
+    <value>Yeni parolanızı eski parolanızdan farklı tanımlamalısınız!</value>
+  </data>
+  <data name="HRC00117" xml:space="preserve">
+    <value>Yeni parolalar birbirine eşit değil!</value>
+  </data>
+  <data name="HRC00118" xml:space="preserve">
+    <value>Parolanız 5 karakterden az olamaz.</value>
+  </data>
+  <data name="HRC00119" xml:space="preserve">
+    <value>Kullanıcı bilgileri okunamadı!</value>
+  </data>
+  <data name="HRC00120" xml:space="preserve">
+    <value>Tanımlı firma bulunmamaktadır.</value>
+  </data>
+  <data name="HRC00121" xml:space="preserve">
+    <value>Belirtilen vergi numarası veya Tc kimlik numarası sistemde kayıtlı değildir.</value>
+  </data>
+  <data name="HRC00122" xml:space="preserve">
+    <value>Belirtilen vergi numarasına ait fatura işlemleri yetkisi verilmemiştir.\n Lütfen Sistem yöneticiniz ile görüşünüz.</value>
+  </data>
+  <data name="HRC00123" xml:space="preserve">
+    <value>Parolayı yanlış girdiniz.</value>
+  </data>
+  <data name="HRC00124" xml:space="preserve">
+    <value>İhale tarihi bilgisini giriniz.</value>
+  </data>
+  <data name="HRC00125" xml:space="preserve">
+    <value>Sözleşme bedeli bilgisini giriniz.</value>
+  </data>
+  <data name="HRC00126" xml:space="preserve">
+    <value>Sözleşme tarihi bilgisini giriniz.</value>
+  </data>
+  <data name="HRC00127" xml:space="preserve">
+    <value>İşin bitim tarihi bilgisini giriniz.</value>
+  </data>
+  <data name="HRC00128" xml:space="preserve">
+    <value>İşyeri teslim tarihi bilgisini giriniz.</value>
+  </data>
+  <data name="HRC00129" xml:space="preserve">
+    <value>Sözleşme numarası bilgisini giriniz.</value>
+  </data>
+  <data name="HRC00130" xml:space="preserve">
+    <value>İhale karar numarası bilgisini giriniz.</value>
+  </data>
+  <data name="HRC00131" xml:space="preserve">
+    <value>İhale karar tarihi bilgisini giriniz.</value>
+  </data>
+  <data name="HRC00132" xml:space="preserve">
+    <value>Daha sonra tekrar deneyiniz.</value>
+  </data>
+  <data name="HRC00133" xml:space="preserve">
+    <value>Harcama Çeşidi boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00134" xml:space="preserve">
+    <value>Harcama Miktarı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00135" xml:space="preserve">
+    <value>Harcama Birim Fiyatı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00136" xml:space="preserve">
+    <value>Malı Satan Adı Soyadı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00137" xml:space="preserve">
+    <value>İdare Adı alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00138" xml:space="preserve">
+    <value>Adres alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00139" xml:space="preserve">
+    <value>Telefon alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00140" xml:space="preserve">
+    <value>Faks alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00141" xml:space="preserve">
+    <value>E-Posta alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00142" xml:space="preserve">
+    <value>Antet alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00143" xml:space="preserve">
+    <value>Vergi Numarası alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00144" xml:space="preserve">
+    <value>Tür bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00145" xml:space="preserve">
+    <value>Belge tipi boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00146" xml:space="preserve">
+    <value>İş türü boş gelmiştir.Lütfen seçim yapınız!</value>
+  </data>
+  <data name="HRC00147" xml:space="preserve">
+    <value>İhale usulü boş gelmiştir.Lütfen seçim yapınız!</value>
+  </data>
+  <data name="HRC00148" xml:space="preserve">
+    <value>{0}. sıradaki ad bilgisi boş gelmiştir.</value>
+  </data>
+  <data name="HRC00149" xml:space="preserve">
+    <value>Tutanak tarihi bilgisi bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00150" xml:space="preserve">
+    <value>Tutanak saati bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00151" xml:space="preserve">
+    <value>Teslim eden bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00152" xml:space="preserve">
+    <value>Teslim eden ünvan bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00153" xml:space="preserve">
+    <value>{0}. satırda  sistem parametresi -yil- boş gelmiştir.</value>
+  </data>
+  <data name="HRC00154" xml:space="preserve">
+    <value>{0}. satırda  sistem parametresi -muhasebe- boş gelmiştir.</value>
+  </data>
+  <data name="HRC00155" xml:space="preserve">
+    <value>{0}. satırda  sistem parametresi -birim kodu- boş gelmiştir.</value>
+  </data>
+  <data name="HRC00156" xml:space="preserve">
+    <value>{0}. satırda  sistem Süreç Numarası boş gelmiştir.Lütfen seçim yapınız!</value>
+  </data>
+  <data name="HRC00157" xml:space="preserve">
+    <value>{0}. satırda ihale dosyası alanın firma kodu bilgisi boş gelmiştir.</value>
+  </data>
+  <data name="HRC00158" xml:space="preserve">
+    <value>{0}. satırda ihale dosyası alanın firma adi bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00159" xml:space="preserve">
+    <value>{0}. satırda alındı belgesinin tarihi bilgisi bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00160" xml:space="preserve">
+    <value>{0}. satırda Alındı Belgesi Tarihi bugünün tarihinden sonraki bir tarih olarak seçilmiştir.</value>
+  </data>
+  <data name="HRC00161" xml:space="preserve">
+    <value>{0}. satırda alındı belgesinin alınma saat bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00162" xml:space="preserve">
+    <value>{0}. satırda saat bilgisi formatı yanlıştır. Geçerli Saat Bilgisi Formatı ss:dd şeklindedir.</value>
+  </data>
+  <data name="HRC00163" xml:space="preserve">
+    <value>{0}. satırda satış belgesinin tarih bilgisi bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00164" xml:space="preserve">
+    <value>{0}. satır Satış Belgesi Tarihi bu günün tarihinden sonraki bir tarih olarak seçilmiştir.</value>
+  </data>
+  <data name="HRC00165" xml:space="preserve">
+    <value>{0}. satırda satış belgesinin numara bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00166" xml:space="preserve">
+    <value>{0}. satırda Satın Alan Kişi bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00167" xml:space="preserve">
+    <value>{0}. satırda teklif dosyası teslim tarihi bilgisi bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00168" xml:space="preserve">
+    <value>{0}. satırda Tarih alanı bugünün tarihinden sonraki bir tarih olarak seçilmiştir.</value>
+  </data>
+  <data name="HRC00169" xml:space="preserve">
+    <value>{0}. satırda teklif dosyası geliş şekli bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00170" xml:space="preserve">
+    <value>{0}. satırda teklif dosyası elden geldiği için postada gecikemez.</value>
+  </data>
+  <data name="HRC00171" xml:space="preserve">
+    <value>{0}. satırda  firma kodu boş gelmiştir.Lütfen seçim yapınız!</value>
+  </data>
+  <data name="HRC00172" xml:space="preserve">
+    <value>Sistem parametresi yıl bilgisi boş gelmiştir.</value>
+  </data>
+  <data name="HRC00173" xml:space="preserve">
+    <value>Sistem parametresi muhasebe bilgisi boş gelmiştir.</value>
+  </data>
+  <data name="HRC00174" xml:space="preserve">
+    <value>Sistem parametresi birim bilgisi bilgisi boş gelmiştir.</value>
+  </data>
+  <data name="HRC00175" xml:space="preserve">
+    <value>Sistem parametresi surec numarası bilgisi boş gelmiştir.</value>
+  </data>
+  <data name="HRC00176" xml:space="preserve">
+    <value>İhale Tarihi İlan Tarihinden önce olamaz.</value>
+  </data>
+  <data name="HRC00177" xml:space="preserve">
+    <value>Kısmi Teklife açık olmayan ihalelerde teklif türü götürü bedel üzerinden olmak zorundadır.</value>
+  </data>
+  <data name="HRC00178" xml:space="preserve">
+    <value>İhale Tarihi ile İlan Tarihi arasında en az {0} gün olmalıdır.&lt;br&gt;İhale Tarihi {1} tarihinden önce olamaz.</value>
+    <comment>{0} zaman kısıtı, {1} tarih</comment>
+  </data>
+  <data name="HRC00179" xml:space="preserve">
+    <value>Seçtiğiniz İhale Tarihi {0} hafta sonu günüdür. Lütfen İhale Tarihi bilgisini kontrol ediniz.</value>
+    <comment>{0} tarih</comment>
+  </data>
+  <data name="HRC00180" xml:space="preserve">
+    <value>İlan tarihi bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00181" xml:space="preserve">
+    <value>İhale tarihi bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00182" xml:space="preserve">
+    <value>İhale saati bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00183" xml:space="preserve">
+    <value>Saat bilgisi formatı yanlıştır. Geçerli Saat Bilgisi Formatı ss:dd şeklindedir.</value>
+  </data>
+  <data name="HRC00184" xml:space="preserve">
+    <value>Geçerli bir tür seçiniz.</value>
+  </data>
+  <data name="HRC00185" xml:space="preserve">
+    <value>{0} adlı belge silinmiştir.</value>
+    <comment>{0} belge adı</comment>
+  </data>
+  <data name="HRC00186" xml:space="preserve">
+    <value>Silinecek belge bulunmamaktadır.</value>
+  </data>
+  <data name="HRC00187" xml:space="preserve">
+    <value>En üstteki belge seçili</value>
+  </data>
+  <data name="HRC00188" xml:space="preserve">
+    <value>Yukarı taşıma işlemi başarıyla tamamlanmıştır.</value>
+  </data>
+  <data name="HRC00189" xml:space="preserve">
+    <value>Yukarı taşıma işlemi gerçekleştirilemedi.</value>
+  </data>
+  <data name="HRC00190" xml:space="preserve">
+    <value>En alttaki belge seçili</value>
+  </data>
+  <data name="HRC00191" xml:space="preserve">
+    <value>Aşağı taşıma işlemi başarıyla tamamlanmıştır.</value>
+  </data>
+  <data name="HRC00192" xml:space="preserve">
+    <value>Aşağı işlemi gerçekleştirilemedi.</value>
+  </data>
+  <data name="HRC00193" xml:space="preserve">
+    <value>Lütfen tarih bilgisini giriniz.</value>
+  </data>
+  <data name="HRC00194" xml:space="preserve">
+    <value>Belge Tarihi bugünün tarihinden sonraki bir tarih olarak seçilmiştir.</value>
+  </data>
+  <data name="HRC00195" xml:space="preserve">
+    <value>Lütfen saat bilgisini giriniz.</value>
+  </data>
+  <data name="HRC00196" xml:space="preserve">
+    <value>İhale Numarası boş bırakılmış.</value>
+  </data>
+  <data name="HRC00197" xml:space="preserve">
+    <value>İhale Maddesi boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00198" xml:space="preserve">
+    <value>Lütfen İhale Sonuç bilgisini seçiniz.</value>
+  </data>
+  <data name="HRC00199" xml:space="preserve">
+    <value>Lütfen İptal Gerekçe bilgisini giriniz.</value>
+  </data>
+  <data name="HRC00200" xml:space="preserve">
+    <value>Tür bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00201" xml:space="preserve">
+    <value>Firma ad bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00202" xml:space="preserve">
+    <value>Firma kod bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00203" xml:space="preserve">
+    <value>İhalenin ilan edilmesi</value>
+    <comment>İhale süreç</comment>
+  </data>
+  <data name="HRC00204" xml:space="preserve">
+    <value>İhalenin davet yazısının gönderilmesi</value>
+    <comment>İhale süreç</comment>
+  </data>
+  <data name="HRC00205" xml:space="preserve">
+    <value>Teklif mektuplarının verilmesi</value>
+    <comment>İhale süreç</comment>
+  </data>
+  <data name="HRC00206" xml:space="preserve">
+    <value>Teklif geçerlilik süresi</value>
+    <comment>İhale süreç</comment>
+  </data>
+  <data name="HRC00207" xml:space="preserve">
+    <value>İhale işlem dosyasının ihale komisyonuna gönderilmesi</value>
+    <comment>İhale süreç</comment>
+  </data>
+  <data name="HRC00208" xml:space="preserve">
+    <value>İhale komisyon kararının onaylanması</value>
+  </data>
+  <data name="HRC00209" xml:space="preserve">
+    <value>Kesinleşen ihale kararının bildirilmesi(Elle)</value>
+  </data>
+  <data name="HRC00210" xml:space="preserve">
+    <value>Kesinleşen ihale kararının bildirilmesi(Mektupla)</value>
+  </data>
+  <data name="HRC00211" xml:space="preserve">
+    <value>Kod alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00212" xml:space="preserve">
+    <value>Ad alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00213" xml:space="preserve">
+    <value>{0} kodlu bilgi silinmiştir.</value>
+  </data>
+  <data name="HRC00214" xml:space="preserve">
+    <value>{0}. satırda TC Kimlik No boş gelmiş</value>
+  </data>
+  <data name="HRC00215" xml:space="preserve">
+    <value>{0}. satırda bordro yıl bilgisi boş gelmiş.</value>
+  </data>
+  <data name="HRC00216" xml:space="preserve">
+    <value>{0}. satırda bordro ay bilgisi boş gelmiş.</value>
+  </data>
+  <data name="HRC00217" xml:space="preserve">
+    <value>{0}. satırda bordro tipi bilgisi boş gelmiş.</value>
+  </data>
+  <data name="HRC00218" xml:space="preserve">
+    <value>Maaş Temel Bilgisi Kayıdı Yoktur.</value>
+  </data>
+  <data name="HRC00219" xml:space="preserve">
+    <value>Gelir Vergisi Bilgisi Kayıdı Yoktur.</value>
+  </data>
+  <data name="HRC00220" xml:space="preserve">
+    <value>Personel maaş tanım bilgisi bulunmamaktadır.</value>
+  </data>
+  <data name="HRC00221" xml:space="preserve">
+    <value>{0}. satirdaki kişinin Adı Soyadı bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00222" xml:space="preserve">
+    <value>Hesaplanacak kur bilgilerini giriniz.</value>
+  </data>
+  <data name="HRC00223" xml:space="preserve">
+    <value>Lütfen başlangıç tarihini bugünden sonraki bir tarih girmeyiniz.</value>
+  </data>
+  <data name="HRC00224" xml:space="preserve">
+    <value>Lütfen bitis tarihini bugünden sonraki bir tarih girmeyiniz.</value>
+  </data>
+  <data name="HRC00225" xml:space="preserve">
+    <value>Lütfen başlangıç tarihini bitiş tarihinden sonraki bir tarih girmeyiniz.</value>
+  </data>
+  <data name="HRC00226" xml:space="preserve">
+    <value>Görme yetkiniz yok!</value>
+  </data>
+  <data name="HRC00227" xml:space="preserve">
+    <value>Verilen kriterlere uygun kayıt bulunamadı.</value>
+  </data>
+  <data name="HRC00228" xml:space="preserve">
+    <value>Ödeme Emri Tarihi alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00229" xml:space="preserve">
+    <value>{0}. satırdaki Taşınır Hesap Kodu alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00230" xml:space="preserve">
+    <value>Belirtilen kriterlerde ödenek gönderme talebi bulunmamaktadır.</value>
+  </data>
+  <data name="HRC00231" xml:space="preserve">
+    <value>Ödeme Emri No alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00232" xml:space="preserve">
+    <value>Programatik Ödeme Emri No alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00233" xml:space="preserve">
+    <value>Bu adım tamamlandı olarak işaretlendiği için silme işlemi yapılamaz.</value>
+  </data>
+  <data name="HRC00234" xml:space="preserve">
+    <value>{0} kodlu muhasebe birimi bulunamadı.</value>
+  </data>
+  <data name="HRC00235" xml:space="preserve">
+    <value>{0} kodlu harcama birimi bulunamadı.</value>
+  </data>
+  <data name="HRC00236" xml:space="preserve">
+    <value>TC Kimlik No bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00237" xml:space="preserve">
+    <value>Adı ve Soyadı bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00238" xml:space="preserve">
+    <value>Tip bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00239" xml:space="preserve">
+    <value>Durum bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00240" xml:space="preserve">
+    <value>{0} TC Numaralı kişi Personel Bilgilerinde kayıtlıdır. Bu nedenle bu kişiyi kayıt edemezsiniz.</value>
+  </data>
+  <data name="HRC00241" xml:space="preserve">
+    <value>İşin Tanımı bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00242" xml:space="preserve">
+    <value>İş Miktarı bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00243" xml:space="preserve">
+    <value>İşin Niteliği bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00244" xml:space="preserve">
+    <value>Yaklaşık Maliyeti bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00245" xml:space="preserve">
+    <value>Avans şartları bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00246" xml:space="preserve">
+    <value>İlan şekli bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00247" xml:space="preserve">
+    <value>Maliyet miktari bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00248" xml:space="preserve">
+    <value>Makam bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00249" xml:space="preserve">
+    <value>Onaylayan kişi bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00250" xml:space="preserve">
+    <value>Onaylayan kişinin ünvan bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00251" xml:space="preserve">
+    <value>Onaya sunan kişi bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00252" xml:space="preserve">
+    <value>Onaya sunan kişinin ünvan bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00253" xml:space="preserve">
+    <value>Evrak tarihi bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00254" xml:space="preserve">
+    <value>Bütçe tertipleri aynı olamaz.</value>
+  </data>
+  <data name="HRC00255" xml:space="preserve">
+    <value>Ad alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00256" xml:space="preserve">
+    <value>Belirtilen Muhasebe/Birim için yetkiniz bulunmamaktadır.</value>
+  </data>
+  <data name="HRC00257" xml:space="preserve">
+    <value>Süreç Tarihi alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00258" xml:space="preserve">
+    <value>İşlem Adı alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00259" xml:space="preserve">
+    <value>Süreç Numarası oluşturulamamıştır. Süreç Numarası oluşturulamadığı için kayıt işlemi &lt;b&gt;gerçekleşmedi.&lt;/b&gt;</value>
+  </data>
+  <data name="HRC00260" xml:space="preserve">
+    <value>Süreç, &lt;b&gt;{0}&lt;/b&gt; numarası verilerek &lt;b&gt;başarıyla&lt;/b&gt; kayıt edildi.</value>
+    <comment>{0} süreç no</comment>
+  </data>
+  <data name="HRC00261" xml:space="preserve">
+    <value>Değişiklikler başarıyla kayıt edildi.</value>
+  </data>
+  <data name="HRC00262" xml:space="preserve">
+    <value>taşınır işlem fişi</value>
+  </data>
+  <data name="HRC00263" xml:space="preserve">
+    <value>ödeme emri belgesi</value>
+  </data>
+  <data name="HRC00264" xml:space="preserve">
+    <value>Arşive Kaldırıldı</value>
+    <comment>süreç durum</comment>
+  </data>
+  <data name="HRC00265" xml:space="preserve">
+    <value>İptal Edildi</value>
+    <comment>süreç durum</comment>
+  </data>
+  <data name="HRC00266" xml:space="preserve">
+    <value>{0} numaralı süreç {1}.</value>
+    <comment>{0} süreç no, {1} HRC00264 ya da HRC00265</comment>
+  </data>
+  <data name="HRC00267" xml:space="preserve">
+    <value>{0} nolu sürecinize bağlı {1} iptal edilemediği için süreci iptal edemezsiniz.</value>
+    <comment>{0} süreç no, {1} HRC00262 ya da HRC00263</comment>
+  </data>
+  <data name="HRC00268" xml:space="preserve">
+    <value>Silme sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="HRC00269" xml:space="preserve">
+    <value>Listeleme için yetkiniz bulunmamaktadır.</value>
+  </data>
+  <data name="HRC00270" xml:space="preserve">
+    <value>Programatik Fatura No alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00271" xml:space="preserve">
+    <value>Ambar Kodu alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00272" xml:space="preserve">
+    <value>Varlık İşlem Fişi Tarihi alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00273" xml:space="preserve">
+    <value>Programatik Taşınır No alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00274" xml:space="preserve">
+    <value>Teslimat zamanı boş bırakılmış.</value>
+  </data>
+  <data name="HRC00275" xml:space="preserve">
+    <value>{0}. satırdaki Tarih alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00276" xml:space="preserve">
+    <value>Tutanak Tarihi bugünün tarihinden sonraki bir tarih olarak seçilmiştir.</value>
+  </data>
+  <data name="HRC00277" xml:space="preserve">
+    <value>Firmanın teklif tutarı boş bırakılmış.</value>
+  </data>
+  <data name="HRC00278" xml:space="preserve">
+    <value>{0}. satırdaki Firma alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00279" xml:space="preserve">
+    <value>{0}. satırdaki Adı alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00280" xml:space="preserve">
+    <value>{0}. satirdaki Firma Adı bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="HRC00281" xml:space="preserve">
+    <value>{0}. satirdaki Uygun Görülen Firma için Değerlendirmeye Alınmama Nedeni girilemez.</value>
+  </data>
+  <data name="HRC00282" xml:space="preserve">
+    <value>Yardım için ilgili sayfa bilgisi bulunamdı.</value>
+  </data>
+  <data name="HRC00283" xml:space="preserve">
+    <value>Yardım için ilgili tür bilgisi alınamadı.</value>
+  </data>
+  <data name="HRC00284" xml:space="preserve">
+    <value>Personel seçimi yapılmamış.</value>
+  </data>
+  <data name="HRC00285" xml:space="preserve">
+    <value>{0}. satırdaki çocuk T.C. Kimlik alanı boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00286" xml:space="preserve">
+    <value>Belge bulunamadı!</value>
+  </data>
+  <data name="HRC00287" xml:space="preserve">
+    <value>Belge detayı bulunamadı!</value>
+  </data>
+  <data name="HRC00288" xml:space="preserve">
+    <value>Belge tur bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00289" xml:space="preserve">
+    <value>Aylık Kad. Der. ve Ek Göst. boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00290" xml:space="preserve">
+    <value>Gündelik boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00291" xml:space="preserve">
+    <value>Belge Bildirim Tarihi boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00292" xml:space="preserve">
+    <value>Belge Bildirim Tarihi bu günün tarihinden ileri bir tarih olamaz.</value>
+  </data>
+  <data name="HRC00293" xml:space="preserve">
+    <value>Yüzde bilgisi 0 (sıfır) girilemez.</value>
+  </data>
+  <data name="HRC00294" xml:space="preserve">
+    <value>Personel\'in T.C. Kimlik Numarası seçilmemiştir.</value>
+  </data>
+  <data name="HRC00295" xml:space="preserve">
+    <value>Aylik katsayi bilgisi alınamadı.</value>
+  </data>
+  <data name="HRC00296" xml:space="preserve">
+    <value>{0} yılı {1}.ay için Aylık katsayi bilgisi alınamadı.</value>
+  </data>
+  <data name="HRC00297" xml:space="preserve">
+    <value>{0} TC Kimlik Nolu personel için bir önceki ay maaş bilgilerine ulaşılamadı. Lütfen tanımlama ekranından bilgileri kontrol ediniz.</value>
+  </data>
+  <data name="HRC00298" xml:space="preserve">
+    <value>Değer boş bırakılamaz.</value>
+  </data>
+  <data name="HRC00299" xml:space="preserve">
+    <value>{0} kodlu Sürekli Gündelik Tanımı silinmiştir</value>
+  </data>
+  <data name="HRC00300" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="HRC00301" xml:space="preserve">
+    <value>İşlem Başarıyla Gerçekleştirildi.</value>
+  </data>
+  <data name="HRCOMKOO1" xml:space="preserve">
+    <value>Satın Alma Yönetmeliğinin 58 inci maddesine göre yasaklı olup olmadığına dair Kamu İhale Kurumundan alınan teyit belgesi</value>
+  </data>
+  <data name="HRCOMKOO10" xml:space="preserve">
+    <value>İhale üzerinde kalan isteklinin Satın Alma Yönetmeliğinin 47nci maddesinin a,b,c,ç,d,f bentleri kapsamında olmadığına dair kanıtlayıcı belgeler</value>
+  </data>
+  <data name="HRCOMKOO11" xml:space="preserve">
+    <value>Kabul komisyonu kurulmasına dair onay belgesi</value>
+  </data>
+  <data name="HRCOMKOO12" xml:space="preserve">
+    <value>Kabul tutanakları</value>
+  </data>
+  <data name="HRCOMKOO13" xml:space="preserve">
+    <value>Mal alımlarında ilgili malın teslim alındığına dair taşınır işlem fişi</value>
+  </data>
+  <data name="HRCOMKOO2" xml:space="preserve">
+    <value>Onay tarihinin belirtilmiş olması kaydıyla ihale kararının onaylandığına dair ihale yetkilisi onayı</value>
+  </data>
+  <data name="HRCOMKOO3" xml:space="preserve">
+    <value>İhale kararlarına ait damga vergisinin tahsil edildiğine ilişkin belge</value>
+  </data>
+  <data name="HRCOMKOO4" xml:space="preserve">
+    <value>Sözleşmeye ait damga vergisinin tahsil edildiğine ilişkin belge</value>
+  </data>
+  <data name="HRCOMKOO5" xml:space="preserve">
+    <value>Sözleşme</value>
+  </data>
+  <data name="HRCOMKOO6" xml:space="preserve">
+    <value>Kesin Teminata alındığına dair belge</value>
+  </data>
+  <data name="HRCOMKOO7" xml:space="preserve">
+    <value>Yapım işlerinde sözleşmede öngörülmeyen iş artışının zorunlu hale gelmesi ve bu artışın müteahhidine yaptırılması halinde buna ilişkin onay belgesi ve yaklaşık maliyet hesap cetveli ile ek kesin teminata ilişkin belge</value>
+  </data>
+  <data name="HRCOMKOO8" xml:space="preserve">
+    <value>Sözleşmelerin devri halinde devir sözleşmesi</value>
+  </data>
+  <data name="HRCOMKOO9" xml:space="preserve">
+    <value>Zeyilname yapılmış ise ilgili zeyilname</value>
+  </data>
+  <data name="HRCOMKSO1" xml:space="preserve">
+    <value>Onay belgesi</value>
+  </data>
+  <data name="HRCOMKSO10" xml:space="preserve">
+    <value>Sözleşme tasarısı</value>
+  </data>
+  <data name="HRCOMKSO11" xml:space="preserve">
+    <value>Satın Alma Yönetmeliği uyarınca düzenlenmesi gereken standart formlar ve diğer belgeler</value>
+  </data>
+  <data name="HRCOMKSO12" xml:space="preserve">
+    <value>Düzenlenmiş ise zeyilnameler, açıklamalar ve bunların isteklilere gönderildiğine dair belgeler</value>
+  </data>
+  <data name="HRCOMKSO13" xml:space="preserve">
+    <value>Satın Alma Yönetmeliğinin hükümlerine göre İdareye başvuru yapıldığı takdirde, buna ilişkin yazışmalar</value>
+  </data>
+  <data name="HRCOMKSO14" xml:space="preserve">
+    <value>Geçici teminatlara ait alındı belgesi</value>
+  </data>
+  <data name="HRCOMKSO15" xml:space="preserve">
+    <value>Üzerine ihale yapılan isteklinin, şartname hükümleri gereğince ihale komisyonuna ibraz ettiği belgelerin tamamı</value>
+  </data>
+  <data name="HRCOMKSO16" xml:space="preserve">
+    <value>İhaleye katılan bugün isteklilere ait teklif mektupları (Dosyaları)</value>
+  </data>
+  <data name="HRCOMKSO17" xml:space="preserve">
+    <value>Ön yeterlik ve/veya ihale komisyonu değerlendirmelerinde elenen isteklilere ait eleme nedeni olan bütün belgeler</value>
+  </data>
+  <data name="HRCOMKSO2" xml:space="preserve">
+    <value>Yaklaşık maliyet ve dayanağını oluşturan hesap cetvelleri</value>
+  </data>
+  <data name="HRCOMKSO3" xml:space="preserve">
+    <value>İhale komisyonlarının kurulmasına ilişkin (asil ve yedek üyelerin belirtildiği) ihale yazıları</value>
+  </data>
+  <data name="HRCOMKSO4" xml:space="preserve">
+    <value>Kamu İhale Kurumu tarafından ihale kayıt numarası verilen ihale kayıt formu</value>
+  </data>
+  <data name="HRCOMKSO5" xml:space="preserve">
+    <value>İlanın yapıldığına ilişkin belgeler ve ihale komisyonu tutanağı</value>
+  </data>
+  <data name="HRCOMKSO6" xml:space="preserve">
+    <value>İlan zorunluluğu bulunmayan ihalelerde, isteklilerin davet edildiğine dair davet yazıları</value>
+  </data>
+  <data name="HRCOMKSO7" xml:space="preserve">
+    <value>Gelecek yıllara yaygın yüklenmelerde izin alınması gereken hallerde ilgili onay</value>
+  </data>
+  <data name="HRCOMKSO8" xml:space="preserve">
+    <value>İhaleye ilişkin tüm şartnameler</value>
+  </data>
+  <data name="HRCOMKSO9" xml:space="preserve">
+    <value>Satın Alma Yönetmeliğinin 15nci maddesinin (a), (b) ve (c) bentleri kapsamında tek kaynaktan yapılan alımlara ilişkin olarak ihale mevzuatında belirlenen standart form</value>
+  </data>
+  <data name="HRCUAA001" xml:space="preserve">
+    <value>Yetkiniz Yok</value>
+  </data>
+  <data name="YuzdeOnKapat001" xml:space="preserve">
+    <value>Yazma yetkiniz yok!</value>
+  </data>
+  <data name="YuzdeOnKapat002" xml:space="preserve">
+    <value>Görme yetkiniz yok!</value>
+  </data>
+</root>

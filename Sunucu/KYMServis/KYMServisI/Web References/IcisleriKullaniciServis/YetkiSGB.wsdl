@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GirisYap">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="KullaniciID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GirisYapResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GirisYapResult" type="tns:SGBKullanici" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SGBKullanici">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="KullaniciKodu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KimlikNumarasi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Soyad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parola" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CalistigiKurumKodu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CalistigiKurumKoduAdi" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DogumTarihi" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailAdresi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telefon" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SonGirisTarihi" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="AktifMi" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CalistigiBirimKodu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CalistigiBirimAdi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SicilNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Unvan" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParolaBitisTarihi" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="SessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="kullaniciTipi" type="tns:ArrayOfKullaniciTipi" />
+          <s:element minOccurs="1" maxOccurs="1" name="GirisSonuc" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Hata" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AramadaGosterme" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfKullaniciTipi">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="KullaniciTipi" type="tns:KullaniciTipi" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="KullaniciTipi">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ad" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="kod" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="KullaniciOku">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="KullaniciID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="KullaniciOkuResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="KullaniciOkuResult" type="tns:SGBKullanici" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="KullaniciListele">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kriter" type="tns:SGBKullanici" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="KullaniciListeleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="KullaniciListeleResult">
+              <s:complexType>
+                <s:annotation>
+                  <s:appinfo>
+                    <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </s:appinfo>
+                </s:annotation>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="KullaniciListeleTest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ad" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="soyad" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="muhasebeBirimi" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kullaniciAdi" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tcno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kullanicitipi" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="KullaniciListeleTestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="KullaniciListeleTestResult">
+              <s:complexType>
+                <s:annotation>
+                  <s:appinfo>
+                    <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </s:appinfo>
+                </s:annotation>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Muhasebe">
+        <s:complexType />
+      </s:element>
+      <s:element name="MuhasebeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MuhasebeResult">
+              <s:complexType>
+                <s:annotation>
+                  <s:appinfo>
+                    <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </s:appinfo>
+                </s:annotation>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SGBMenu">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="KullaniciID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SGBMenuResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SGBMenuResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GirisYapSoapIn">
+    <wsdl:part name="parameters" element="tns:GirisYap" />
+  </wsdl:message>
+  <wsdl:message name="GirisYapSoapOut">
+    <wsdl:part name="parameters" element="tns:GirisYapResponse" />
+  </wsdl:message>
+  <wsdl:message name="KullaniciOkuSoapIn">
+    <wsdl:part name="parameters" element="tns:KullaniciOku" />
+  </wsdl:message>
+  <wsdl:message name="KullaniciOkuSoapOut">
+    <wsdl:part name="parameters" element="tns:KullaniciOkuResponse" />
+  </wsdl:message>
+  <wsdl:message name="KullaniciListeleSoapIn">
+    <wsdl:part name="parameters" element="tns:KullaniciListele" />
+  </wsdl:message>
+  <wsdl:message name="KullaniciListeleSoapOut">
+    <wsdl:part name="parameters" element="tns:KullaniciListeleResponse" />
+  </wsdl:message>
+  <wsdl:message name="KullaniciListeleTestSoapIn">
+    <wsdl:part name="parameters" element="tns:KullaniciListeleTest" />
+  </wsdl:message>
+  <wsdl:message name="KullaniciListeleTestSoapOut">
+    <wsdl:part name="parameters" element="tns:KullaniciListeleTestResponse" />
+  </wsdl:message>
+  <wsdl:message name="MuhasebeSoapIn">
+    <wsdl:part name="parameters" element="tns:Muhasebe" />
+  </wsdl:message>
+  <wsdl:message name="MuhasebeSoapOut">
+    <wsdl:part name="parameters" element="tns:MuhasebeResponse" />
+  </wsdl:message>
+  <wsdl:message name="SGBMenuSoapIn">
+    <wsdl:part name="parameters" element="tns:SGBMenu" />
+  </wsdl:message>
+  <wsdl:message name="SGBMenuSoapOut">
+    <wsdl:part name="parameters" element="tns:SGBMenuResponse" />
+  </wsdl:message>
+  <wsdl:portType name="YetkiSGBSoap">
+    <wsdl:operation name="GirisYap">
+      <wsdl:input message="tns:GirisYapSoapIn" />
+      <wsdl:output message="tns:GirisYapSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="KullaniciOku">
+      <wsdl:input message="tns:KullaniciOkuSoapIn" />
+      <wsdl:output message="tns:KullaniciOkuSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="KullaniciListele">
+      <wsdl:input message="tns:KullaniciListeleSoapIn" />
+      <wsdl:output message="tns:KullaniciListeleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="KullaniciListeleTest">
+      <wsdl:input message="tns:KullaniciListeleTestSoapIn" />
+      <wsdl:output message="tns:KullaniciListeleTestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Muhasebe">
+      <wsdl:input message="tns:MuhasebeSoapIn" />
+      <wsdl:output message="tns:MuhasebeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SGBMenu">
+      <wsdl:input message="tns:SGBMenuSoapIn" />
+      <wsdl:output message="tns:SGBMenuSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="YetkiSGBSoap" type="tns:YetkiSGBSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GirisYap">
+      <soap:operation soapAction="http://tempuri.org/GirisYap" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KullaniciOku">
+      <soap:operation soapAction="http://tempuri.org/KullaniciOku" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KullaniciListele">
+      <soap:operation soapAction="http://tempuri.org/KullaniciListele" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KullaniciListeleTest">
+      <soap:operation soapAction="http://tempuri.org/KullaniciListeleTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Muhasebe">
+      <soap:operation soapAction="http://tempuri.org/Muhasebe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SGBMenu">
+      <soap:operation soapAction="http://tempuri.org/SGBMenu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="YetkiSGBSoap12" type="tns:YetkiSGBSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GirisYap">
+      <soap12:operation soapAction="http://tempuri.org/GirisYap" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KullaniciOku">
+      <soap12:operation soapAction="http://tempuri.org/KullaniciOku" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KullaniciListele">
+      <soap12:operation soapAction="http://tempuri.org/KullaniciListele" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KullaniciListeleTest">
+      <soap12:operation soapAction="http://tempuri.org/KullaniciListeleTest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Muhasebe">
+      <soap12:operation soapAction="http://tempuri.org/Muhasebe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SGBMenu">
+      <soap12:operation soapAction="http://tempuri.org/SGBMenu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="YetkiSGB">
+    <wsdl:port name="YetkiSGBSoap" binding="tns:YetkiSGBSoap">
+      <soap:address location="https://www.e-icisleri.gov.tr/Yetki/WebService/YetkiSGB.asmx" />
+    </wsdl:port>
+    <wsdl:port name="YetkiSGBSoap12" binding="tns:YetkiSGBSoap12">
+      <soap12:address location="https://www.e-icisleri.gov.tr/Yetki/WebService/YetkiSGB.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

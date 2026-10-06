@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BHM001" xml:space="preserve">
+    <value>GİDER ÖDENEKLERİ</value>
+  </data>
+  <data name="BHM002" xml:space="preserve">
+    <value>BİRİM GİDER ÖDENEKLERİ</value>
+  </data>
+  <data name="BHM003" xml:space="preserve">
+    <value>Hatalı grup kodu</value>
+  </data>
+  <data name="BHM004" xml:space="preserve">
+    <value>Ödenek(5)</value>
+  </data>
+  <data name="BHM005" xml:space="preserve">
+    <value>Muhasebat Harcama</value>
+  </data>
+  <data name="BHM006" xml:space="preserve">
+    <value>Harcama Tahmini</value>
+  </data>
+  <data name="BHM007" xml:space="preserve">
+    <value>Gönderilen Ödenek</value>
+  </data>
+  <data name="BHM008" xml:space="preserve">
+    <value>Ödeme Emri</value>
+  </data>
+  <data name="BHM009" xml:space="preserve">
+    <value>Kullanıma alınmış bütçe (2 seviye)</value>
+  </data>
+  <data name="BHM010" xml:space="preserve">
+    <value>Gelir(3)</value>
+  </data>
+  <data name="BHM011" xml:space="preserve">
+    <value>Muhasebat Gerçekleşme</value>
+  </data>
+  <data name="BHM012" xml:space="preserve">
+    <value>Gelir Tahmini</value>
+  </data>
+  <data name="BHM013" xml:space="preserve">
+    <value>Bütçe Yılı</value>
+  </data>
+  <data name="BHM014" xml:space="preserve">
+    <value>{0} Sonraki Yıl</value>
+  </data>
+  <data name="BHM015" xml:space="preserve">
+    <value>Tertip şablonu boş olamaz</value>
+  </data>
+  <data name="BHM016" xml:space="preserve">
+    <value>Yazma yetkiniz yok!</value>
+  </data>
+  <data name="BHM017" xml:space="preserve">
+    <value>Silmek istediğiniz Alt Faaliyetleri seçiniz.</value>
+  </data>
+  <data name="BHM018" xml:space="preserve">
+    <value>Yıl boş bırakılamaz!</value>
+  </data>
+  <data name="BHM019" xml:space="preserve">
+    <value>Alt Faaliyet kodu boş bırakılamaz!</value>
+  </data>
+  <data name="BHM020" xml:space="preserve">
+    <value>Silme işlemi başarıyla sonuçlanmıştır.</value>
+  </data>
+  <data name="BHM021" xml:space="preserve">
+    <value>Aranan Kayıt bulunamadı!</value>
+  </data>
+  <data name="BHM022" xml:space="preserve">
+    <value>ADSL</value>
+  </data>
+  <data name="BHM023" xml:space="preserve">
+    <value>AVEA</value>
+  </data>
+  <data name="BHM024" xml:space="preserve">
+    <value>Elektrik</value>
+  </data>
+  <data name="BHM025" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="BHM026" xml:space="preserve">
+    <value>Turkcell</value>
+  </data>
+  <data name="BHM027" xml:space="preserve">
+    <value>Vodafone</value>
+  </data>
+  <data name="BHMASAMA0000" xml:space="preserve">
+    <value>Потолки БК РТ</value>
+  </data>
+  <data name="BHMASAMA0100" xml:space="preserve">
+    <value>Потолки кураторов секторов МФ РТ</value>
+  </data>
+  <data name="BHMASAMA0200" xml:space="preserve">
+    <value>Потолки МФ РТ</value>
+  </data>
+  <data name="BHMASAMA0300" xml:space="preserve">
+    <value>Вариант ГРБС</value>
+  </data>
+  <data name="BHMASAMA0400" xml:space="preserve">
+    <value>Вариант МФ РТ</value>
+  </data>
+  <data name="BHMASAMA0500" xml:space="preserve">
+    <value>Вариант БК ПРТ</value>
+  </data>
+  <data name="BHMASAMA0600" xml:space="preserve">
+    <value>Вариант БК Парламента РТ</value>
+  </data>
+  <data name="BHMBF001" xml:space="preserve">
+    <value>Bu tertipe yazma yetkiniz yoktur. ({0})</value>
+  </data>
+  <data name="BHMBF002" xml:space="preserve">
+    <value>Malzeme listesi boş geldi</value>
+  </data>
+  <data name="BHMBO001" xml:space="preserve">
+    <value>Lütfen bütçe senaryo bilgisi giriniz!</value>
+  </data>
+  <data name="BHMBO002" xml:space="preserve">
+    <value>Kaydedilecek tertip kümesi dolu değil!</value>
+  </data>
+  <data name="BHMBO003" xml:space="preserve">
+    <value>Tertip listesinde birden fazla yıla ait bilgi bulundu ({0}, {1}).</value>
+  </data>
+  <data name="BHMBO004" xml:space="preserve">
+    <value>Bu tertibe ({0}) veya aşamaya ({1}) yazma yetkiniz yoktur. </value>
+  </data>
+  <data name="BHMBO005" xml:space="preserve">
+    <value>Hatalı tertip geldi. ({0})</value>
+  </data>
+  <data name="BHMBO006" xml:space="preserve">
+    <value>{0} kod olarak girilen '{1}' kodunun karşılığı bulunamadı!</value>
+  </data>
+  <data name="BHMBO007" xml:space="preserve">
+    <value>Lütfen yıl bilgisi giriniz.</value>
+  </data>
+  <data name="BHMBO008" xml:space="preserve">
+    <value>Görme yetkiniz yok!</value>
+  </data>
+  <data name="BHMBO009" xml:space="preserve">
+    <value>Verilen kriterlere uygun tertip bulunamadı.</value>
+  </data>
+  <data name="BHMBO010" xml:space="preserve">
+    <value>Senaryonun kaynağı olan tasnif bilgisi bulunamadı!</value>
+  </data>
+  <data name="BHMBO011" xml:space="preserve">
+    <value>Aşama onaylı olduğu için değiştiremezsiniz!</value>
+  </data>
+  <data name="BHMBO012" xml:space="preserve">
+    <value>{0} kodlu tertip detaylandırılmadı!</value>
+  </data>
+  <data name="BHMBO013" xml:space="preserve">
+    <value>{0} ödenekleri başarı ile üretildi.</value>
+  </data>
+  <data name="BHMBO014" xml:space="preserve">
+    <value>{0} ödenekleri üretilirken hata oldu: {1}</value>
+  </data>
+  <data name="BHMBO015" xml:space="preserve">
+    <value>{0} satırına ait hiç bir detay tertip bulunamadı!</value>
+  </data>
+  <data name="BHMBO016" xml:space="preserve">
+    <value>{0} satırı için, kaydedilecek aşamada veri olduğundan bu adım atlandı!</value>
+  </data>
+  <data name="BHMBO017" xml:space="preserve">
+    <value>{0} satırı için, tertip şablonu girilmemiş!</value>
+  </data>
+  <data name="BHMBO018" xml:space="preserve">
+    <value>{0} adet kayıt kopyalandı</value>
+  </data>
+  <data name="BHMBOG001" xml:space="preserve">
+    <value>Tertip listesi dolu olmalı!</value>
+  </data>
+  <data name="BHMBOG002" xml:space="preserve">
+    <value>Farklı yıllara ait kayıt yapamazsınız!</value>
+  </data>
+  <data name="BHMBOG003" xml:space="preserve">
+    <value>Kaydedilecek veri bulunamadı!</value>
+  </data>
+  <data name="BHMBOG004" xml:space="preserve">
+    <value>Kurumsal Yapı Çözümlenemedi</value>
+  </data>
+  <data name="BHMBOG005" xml:space="preserve">
+    <value>Kayıt işlemi için en alt seviyedeki birimi seçmelisiniz!</value>
+  </data>
+  <data name="BHMBOG006" xml:space="preserve">
+    <value>Bu birime ({0}-{1}) yazma yetkiniz yok</value>
+  </data>
+  <data name="BHMBOG007" xml:space="preserve">
+    <value>Görme yetkiniz yok!</value>
+  </data>
+  <data name="BHMBOG008" xml:space="preserve">
+    <value>Tertip bulunamadı.</value>
+  </data>
+  <data name="BHMBOG009" xml:space="preserve">
+    <value>Okuma hatası: {0}</value>
+  </data>
+  <data name="BHMBS001" xml:space="preserve">
+    <value>Senaryo kayıt yetkiniz bulunmamaktadır!</value>
+  </data>
+  <data name="BHMBS002" xml:space="preserve">
+    <value>Kod alanı boş bırakılamaz.</value>
+  </data>
+  <data name="BHMBS003" xml:space="preserve">
+    <value>Kod yapısı {0} şeklinde olmalıdır.</value>
+  </data>
+  <data name="BHMBS004" xml:space="preserve">
+    <value>Ad alanı boş bırakılamaz.</value>
+  </data>
+  <data name="BHMBS005" xml:space="preserve">
+    <value>Kod alanı boş bırakılamaz.</value>
+  </data>
+  <data name="BHMBS006" xml:space="preserve">
+    <value>Senaryo için girilmiş kayıt olduğundan silme işlemi yapamazsınız!</value>
+  </data>
+  <data name="BHMBT001" xml:space="preserve">
+    <value>Yazma yetkiniz yok!</value>
+  </data>
+  <data name="BHMBT002" xml:space="preserve">
+    <value>Aranan Kayıt bulunamadı!</value>
+  </data>
+  <data name="BHMBTH001" xml:space="preserve">
+    <value>Yazma yetkiniz yok!</value>
+  </data>
+  <data name="BHMBTH002" xml:space="preserve">
+    <value>Ad alanı boş olamaz!</value>
+  </data>
+  <data name="BHMBTH003" xml:space="preserve">
+    <value>Kod alanı boş olamaz!</value>
+  </data>
+  <data name="BHMBTH004" xml:space="preserve">
+    <value>Kod alanının uzunluğu 2'nin katları olmalı!</value>
+  </data>
+  <data name="BHMBTH005" xml:space="preserve">
+    <value>Kaydedilecek veri bulunamadı!</value>
+  </data>
+  <data name="BHMBTH006" xml:space="preserve">
+    <value>{0}. satır ile {1}. arasındaki ilişki düzgün kurulmamış!</value>
+  </data>
+  <data name="BHMBTH007" xml:space="preserve">
+    <value>{0}. satırda tertip şablonu girmelisiniz!</value>
+  </data>
+  <data name="BHMBTOG001" xml:space="preserve">
+    <value>Yazma yetkiniz yok!</value>
+  </data>
+  <data name="BHMBTOG002" xml:space="preserve">
+    <value>Görme yetkiniz yok!</value>
+  </data>
+  <data name="BHMBTOG003" xml:space="preserve">
+    <value>T O P L A M</value>
+  </data>
+  <data name="BHMBTOG004" xml:space="preserve">
+    <value>EkDegerHesapla metodu yanlış parametrelerle çağrıldı</value>
+  </data>
+  <data name="BHMBTOG005" xml:space="preserve">
+    <value>EkDegerHesapla metodu sırasında dizi uzunlukları uyumsuz!</value>
+  </data>
+  <data name="BHMBTOG006" xml:space="preserve">
+    <value>EkDegerHesapla işlemi sırasında üst kod:{0} dizide bulunamadı.</value>
+  </data>
+  <data name="BHMBYST001" xml:space="preserve">
+    <value>Lütfen bütçe senaryo bilgisi giriniz.</value>
+  </data>
+  <data name="BHMBYST002" xml:space="preserve">
+    <value>Yıl sonu tahmin bilgilesi listesi boş geldi!</value>
+  </data>
+  <data name="BHMBYST003" xml:space="preserve">
+    <value>Tertip listesinde birden fazla yıla ait bilgi bulundu ({0}, {1}).</value>
+  </data>
+  <data name="BHMBYST004" xml:space="preserve">
+    <value>Bu tertibe yazma yetkiniz yoktur. ({0})</value>
+  </data>
+  <data name="BHMBYST005" xml:space="preserve">
+    <value>Hatalı tertip geldi. ({0})</value>
+  </data>
+  <data name="BHMBYST006" xml:space="preserve">
+    <value>{0} kod olarak girilen '{1}' kodunun karşılığı bulunamadı!</value>
+  </data>
+  <data name="BHMHDA001" xml:space="preserve">
+    <value>Yüzdesi olmayan tertipler var.</value>
+  </data>
+  <data name="BHMHDA002" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla tamamlandı.</value>
+  </data>
+  <data name="BHMHDA003" xml:space="preserve">
+    <value>Kayıt işlemi başarısız oldu:&lt;br&gt;{0}</value>
+  </data>
+  <data name="BHMHDA004" xml:space="preserve">
+    <value>Okuma hatası: {0}</value>
+  </data>
+  <data name="BHMHDA005" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla tamamlandı.</value>
+  </data>
+  <data name="BHMHDA006" xml:space="preserve">
+    <value>Kayıt işlemi başarısız oldu.&lt;br&gt;{0}</value>
+  </data>
+  <data name="BHMHDA007" xml:space="preserve">
+    <value>Okuma hatası:{0}</value>
+  </data>
+  <data name="BHMKY001" xml:space="preserve">
+    <value>Kod yapısı {0} şeklinde olmalıdır.</value>
+  </data>
+  <data name="BHMTT001" xml:space="preserve">
+    <value>Yazma yetkiniz yok!</value>
+  </data>
+  <data name="BHMTT002" xml:space="preserve">
+    <value>{0}. satırdaki tertibin ({1})  {2} alanındaki değer ({3}) hatalı!</value>
+  </data>
+  <data name="BHMTT003" xml:space="preserve">
+    <value>{0}. satırda silinmek istenen tertibe ({1}) ait kayıt olduğu için silme işlemi yapılamaz!</value>
+  </data>
+  <data name="BHMTT004" xml:space="preserve">
+    <value>{0}. satırdaki tertip({1}) hatalı!</value>
+  </data>
+  <data name="BHMUS001" xml:space="preserve">
+    <value>Tablo ismi bulunamadı!</value>
+  </data>
+  <data name="BHMUS002" xml:space="preserve">
+    <value>Bu bilgileri görme yetkiniz yok</value>
+  </data>
+  <data name="BHMUS003" xml:space="preserve">
+    <value>Veri tabanından beklenmeyen cevap geldi! ({0}) ({1})</value>
+  </data>
+  <data name="c:\sources" xml:space="preserve">
+    <value>En az bir eklenen alan eklemelisiniz!</value>
+  </data>
+</root>

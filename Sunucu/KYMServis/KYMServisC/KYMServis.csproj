@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>KYMServisC</AssemblyName>
+    <RootNamespace>KYMServisC</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.DirectoryServices" Version="8.0.0" />
+    <PackageReference Include="System.DirectoryServices.Protocols" Version="8.0.0" />
+    <PackageReference Include="System.ServiceModel.Http" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DEGServis\DEGServisI\DEGServisI.csproj" />
+    <ProjectReference Include="..\..\GNLServis\GNLServis.csproj" />
+    <ProjectReference Include="..\..\KPMServis\KPMServisI\KPMServisI.csproj" />
+    <ProjectReference Include="..\..\MUHServis\MUHServisI\MUHServisI.csproj" />
+    <ProjectReference Include="..\..\ORGServis\ORGServisC\ORGServisC.csproj" />
+    <ProjectReference Include="..\..\ORGServis\ORGServisI\ORGServisI.csproj" />
+    <ProjectReference Include="..\..\PERServis\PERServisI\PERServisI.csproj" />
+    <ProjectReference Include="..\..\TMMServis\TMMServisI\TMMServisI.csproj" />
+    <ProjectReference Include="..\..\UZYServis\UZYServisI\UZYServisI.csproj" />
+    <ProjectReference Include="..\..\VERServis\VERServis.csproj" />
+    <ProjectReference Include="..\KYMServisI\KYMServisI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+  </ItemGroup>
+
+</Project>

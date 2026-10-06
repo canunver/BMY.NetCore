@@ -1,0 +1,798 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DURUMTIPI_001" xml:space="preserve">
+    <value>Yeni</value>
+  </data>
+  <data name="DURUMTIPI_003" xml:space="preserve">
+    <value>Tahakkuk</value>
+  </data>
+  <data name="DURUMTIPI_005" xml:space="preserve">
+    <value>Ödendi</value>
+  </data>
+  <data name="DURUMTIPI_009" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="DURUM_1" xml:space="preserve">
+    <value>Aktif</value>
+  </data>
+  <data name="DURUM_2" xml:space="preserve">
+    <value>Pasif</value>
+  </data>
+  <data name="IstatistikKodGiris001" xml:space="preserve">
+    <value>Yazma yetkiniz yok!</value>
+  </data>
+  <data name="IstatistikKodGiris002" xml:space="preserve">
+    <value>Görme yetkiniz yok!</value>
+  </data>
+  <data name="MUH001" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="MUH002" xml:space="preserve">
+    <value>Kayıt edilmek istenilen Yansıtma bilgileri başarıyla saklandı.</value>
+  </data>
+  <data name="MUH003" xml:space="preserve">
+    <value>Yansitma bilgileri {0} yılına aktarıldı.</value>
+    <comment>{0} Yıl</comment>
+  </data>
+  <data name="MUH004" xml:space="preserve">
+    <value>Silinmesi istenilen Yansıtma bilgileri başarıyla silindi.</value>
+  </data>
+  <data name="MUH005" xml:space="preserve">
+    <value>Yansıtma bilgileri başarıyla aktarıldı.</value>
+  </data>
+  <data name="MUH006" xml:space="preserve">
+    <value>Kayıt edilmek istenilen Bütçe bilgileri başarıyla saklandı.</value>
+  </data>
+  <data name="MUH007" xml:space="preserve">
+    <value>Belge Numarası oluşturulamamıştır. Belge Numarası oluşturulamadığı için kayıt işlemi &lt;b&gt;gerçekleşmedi.&lt;/b&gt;</value>
+  </data>
+  <data name="MUH008" xml:space="preserve">
+    <value>Yeni oluşturulmak istenilen belge, &lt;b&gt;{0}&lt;/b&gt; numarası verilerek &lt;b&gt;başarıyla&lt;/b&gt; kayıt edildi.</value>
+    <comment>{0} Belge No</comment>
+  </data>
+  <data name="MUH009" xml:space="preserve">
+    <value>Değişiklik yapılmak istenilen &lt;b&gt;{0}&lt;/b&gt; numaralı belge &lt;b&gt;başarıyla&lt;/b&gt; güncellendi.</value>
+    <comment>{0} Belge No</comment>
+  </data>
+  <data name="MUH010" xml:space="preserve">
+    <value>Belgeyi düzenlemek istediğiniz kurum ile ilgili işlem yapma yetkiniz yok.</value>
+  </data>
+  <data name="MUH011" xml:space="preserve">
+    <value>{0} kodlu birim ile işlem yapma yetkiniz yok.</value>
+    <comment>{0} Birim Kod</comment>
+  </data>
+  <data name="MUH012" xml:space="preserve">
+    <value>Yıl bilgisi {0} veya daha eski bir yıl olmalıdır.</value>
+    <comment>{0} Yıl</comment>
+  </data>
+  <data name="MUH013" xml:space="preserve">
+    <value>Belge Tarihi bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="MUH014" xml:space="preserve">
+    <value>Kurum bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="MUH015" xml:space="preserve">
+    <value>kodlu kurum bulunamadı.</value>
+  </data>
+  <data name="MUH016" xml:space="preserve">
+    <value>Muhasebe birimi bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="MUH017" xml:space="preserve">
+    <value>kodlu muhasebe birimi bulunamadı.</value>
+  </data>
+  <data name="MUH018" xml:space="preserve">
+    <value>Belge numarası olarak verilen {0} hatalı. Belge numarası uzunluğu 9 karakter den küçük olamaz.</value>
+    <comment>{0} Belge No</comment>
+  </data>
+  <data name="MUH019" xml:space="preserve">
+    <value>Belge numarası olarak verilen {0} hatalı. Belge numarası kurum kodu ile başlamalı.</value>
+    <comment>{0} Belge No</comment>
+  </data>
+  <data name="MUH0196" xml:space="preserve">
+    <value>Yapılan işlemde, verilen {0} ile başlayan tertiplerin toplamı({1}), tertibin kullanabilirliğinden({2}) fazla!</value>
+  </data>
+  <data name="MUH020" xml:space="preserve">
+    <value>Verdiğiniz belge numarası ({0}) başka bir kurumun belgesine ait. Eğer YENİ bir belge düzenliyorsanız, Belge No alanını boş bırakarak kaydetme işlemi yapın.</value>
+    <comment>{0} Belge No</comment>
+  </data>
+  <data name="MUH021" xml:space="preserve">
+    <value>Bu belge daha önce Muhasebat Genel Müdürlüğüne gönderildiği için belge üzerinde herhangi bir değişiklik yapılamaz.</value>
+  </data>
+  <data name="MUH022" xml:space="preserve">
+    <value>Bu belgeyi daha önce Muhasebat Genel Müdürlüğü aldığı için belge üzerinde herhangi bir değişiklik yapılamaz.</value>
+  </data>
+  <data name="MUH023" xml:space="preserve">
+    <value>Bu belge daha önce Muhasebat tarafından onaylandığı için belge üzerinde herhangi bir değişiklik yapılamaz.</value>
+  </data>
+  <data name="MUH024" xml:space="preserve">
+    <value>Bu belge Muhasebat tarafından iade edildiği için belge üzerinde herhangi bir değişiklik yapılamaz.</value>
+  </data>
+  <data name="MUH025" xml:space="preserve">
+    <value>Bu belge iptal edildiği için belge üzerinde herhangi bir değişiklik yapılamaz.</value>
+  </data>
+  <data name="MUH026" xml:space="preserve">
+    <value>Belgenin durumu değişiklik yapılmasına uygun değil.</value>
+  </data>
+  <data name="MUH027" xml:space="preserve">
+    <value>YENİ belge düzenlerken, belge numarasını boş bırakarak kaydetme işlemi yapın.</value>
+  </data>
+  <data name="MUH028" xml:space="preserve">
+    <value>{0}. satır tertibi Performans bütçe kodu taşımıyor.</value>
+    <comment>{0} Satır No</comment>
+  </data>
+  <data name="MUH029" xml:space="preserve">
+    <value>{0}. ile {1}. satırlarda tertip {2} aynı. Bir belgede, aynı Tertibi birden fazla kullanamazsınız.</value>
+  </data>
+  <data name="MUH030" xml:space="preserve">
+    <value>Belgenin detayında kayıt edilecek herhangi bir bilgi bulunamadı.</value>
+  </data>
+  <data name="MUH031" xml:space="preserve">
+    <value>{0} nolu satırda miktar alanı boş bırakılmış.</value>
+  </data>
+  <data name="MUH032" xml:space="preserve">
+    <value>{0} nolu satırda miktar alanı sıfırdan küçük girilmiş.</value>
+  </data>
+  <data name="MUH033" xml:space="preserve">
+    <value>{0} nolu satırda tertip alanı hatalı yazılmış.</value>
+  </data>
+  <data name="MUH034" xml:space="preserve">
+    <value>{0} nolu satırda kullandığınız &lt;b&gt;{1}&lt;/b&gt; kurumsal kod ile ilgili işlem yapma yetkiniz yok</value>
+  </data>
+  <data name="MUH035" xml:space="preserve">
+    <value>{0} nolu satırda kullandığınız &lt;b&gt;{1}&lt;/b&gt; ekonomik kod ile ilgili işlem yapma yetkiniz yok</value>
+  </data>
+  <data name="MUH036" xml:space="preserve">
+    <value>Gönderilen daire kodu olarak verilen {0}, {1} kurumsal kodunu kullanamaz.</value>
+    <comment>{0} Birim Kod, {1} Kurumsal Kod</comment>
+  </data>
+  <data name="MUH037" xml:space="preserve">
+    <value>Gönderilen daire kodu boş bırakılamaz.</value>
+  </data>
+  <data name="MUH038" xml:space="preserve">
+    <value>{0} muhasebesi {1} birimine ait, {2} kurumsal koduna ait servis kurumsal yapı tanımlamasında bulunamadı.</value>
+  </data>
+  <data name="MUH039" xml:space="preserve">
+    <value>Ödenek değişim işleminde &lt;b&gt;{0}&lt;/b&gt; tertibine ait detay kodların toplamı sıfır olmalıdır.</value>
+    <comment>{0} Tertip</comment>
+  </data>
+  <data name="MUH040" xml:space="preserve">
+    <value>{0} nolu satırdaki miktar &lt;b&gt;{1}&lt;/b&gt; tertibin ({2}-{3}-{4}-{5}) serbestliğinden ({6}) fazla.</value>
+    <comment>{0} Satır No, {1} Miktar, {2} Kur Kod, {3} Fon Kod, {4} Fin Kod, {5} Eko Kod, {6} Serbest</comment>
+  </data>
+  <data name="MUH041" xml:space="preserve">
+    <value>Formda girilen {0} kodlu tertibin ödeneği masraf planına dağıtılırken, {1} liralık kısmı tutulu miktardan düşülemedi.</value>
+  </data>
+  <data name="MUH042" xml:space="preserve">
+    <value>{0} nolu satırda kullandığınız, {1}-{2}-{3}-{4} tertibi için , {5} nolu muhasebe birimine daha önce herhangi bir Gönderme Belgesi gönderilmemiş.</value>
+  </data>
+  <data name="MUH043" xml:space="preserve">
+    <value>{0} nolu satırdaki miktar &lt;b&gt;{1}&lt;/b&gt;, {2} nolu muhasebe birimindeki Göderme Belgeleri miktarından ({3}) daha fazla</value>
+  </data>
+  <data name="MUH044" xml:space="preserve">
+    <value>{0} nolu satırda kullandığınız, {1} tertibine ait , {2} nolu muhasebe birimindeki işlem görmüş Gönderme Belgesi miktarı ({3}) hazırlamak istediğiniz tenkis miktarından daha düşük.</value>
+  </data>
+  <data name="MUH045" xml:space="preserve">
+    <value>{0} nolu satırdaki miktar &lt;b&gt;{1}&lt;/b&gt; tertibin ({2}-{3}-{4}-{5}) kullanabilirliğinden ({6}) fazla.</value>
+  </data>
+  <data name="MUH046" xml:space="preserve">
+    <value>{0} nolu satırda kullandığınız, {1}-{2}-{3}-{4} tertibine ait , {5} nolu muhasebe birimindeki işlem görmüş Gönderme Belgesi miktarı ({6}) hazırlamak istediğiniz tenkis miktarından daha düşük.</value>
+  </data>
+  <data name="MUH047" xml:space="preserve">
+    <value>Listeleme sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="MUH048" xml:space="preserve">
+    <value>Kurum ile ilgili işlem yapma yetkiniz yok.</value>
+  </data>
+  <data name="MUH049" xml:space="preserve">
+    <value>Görmek istediğiniz &lt;b&gt;{0}&lt;/b&gt; nolu belge için yetkiniz yok.</value>
+  </data>
+  <data name="MUH050" xml:space="preserve">
+    <value>Görmek istediğiniz &lt;b&gt;{0}&lt;/b&gt; nolu belge bulunamadı.</value>
+  </data>
+  <data name="MUH051" xml:space="preserve">
+    <value>Verilen kriterlere uygun kayıt bulunamadı.</value>
+  </data>
+  <data name="MUH052" xml:space="preserve">
+    <value>Durum değişikliği sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="MUH053" xml:space="preserve">
+    <value>{0} nolu belgeyi Onaylama yetkiniz yok. Onaylama yetkisi kurum bazında ({1}) verilmedir.</value>
+  </data>
+  <data name="MUH054" xml:space="preserve">
+    <value>{0} nolu belge üzerinde işlem yapma yetkiniz yok.</value>
+  </data>
+  <data name="MUH055" xml:space="preserve">
+    <value>nolu belge başka bir kurumun belgesine ait.</value>
+  </data>
+  <data name="MUH056" xml:space="preserve">
+    <value>Yalnızca gönderilmiş ödenekleri değiştiren formlar onaylanabilir.</value>
+  </data>
+  <data name="MUH057" xml:space="preserve">
+    <value>Gönderilmiş ödenekleri değiştiren formlar, muhasebata gönderilemez</value>
+  </data>
+  <data name="MUH058" xml:space="preserve">
+    <value>Bu işlemi sadece sistem yöneticileri yapabilir.</value>
+  </data>
+  <data name="MUH059" xml:space="preserve">
+    <value>Bu işlem sadece Muhasebat Genel Müdürlüğü'ne gönderilmiş veya tahsis edilmiş olan belgelere uygulanır.</value>
+  </data>
+  <data name="MUH060" xml:space="preserve">
+    <value>{0} nolu belgeye İcmal Numarası verilmemiş.</value>
+  </data>
+  <data name="MUH061" xml:space="preserve">
+    <value>{0} nolu belgeye &lt;b&gt;daha önce İcmal Numarası verilmiş.&lt;/b&gt; Eğer yeni İcmal Numarası vermek istiyorsanız ilk önce &lt;b&gt;bu belgeye 0 (sıfır) numarası vererek İcmal Numarasını kaldırın.&lt;/b&gt;</value>
+  </data>
+  <data name="MUH062" xml:space="preserve">
+    <value>{0} nolu belgede hata var.</value>
+  </data>
+  <data name="MUH063" xml:space="preserve">
+    <value>{0} nolu belge bulunamadı</value>
+  </data>
+  <data name="MUH064" xml:space="preserve">
+    <value>İcmal Numarası olarak vermek istediğiniz &lt;b&gt;{0}&lt;/b&gt; numarası daha önce verilen numaralardan daha büyük. En büyük İcmal Numarası &lt;b&gt;{1}&lt;/b&gt; verebilirsiniz.</value>
+  </data>
+  <data name="MUH065" xml:space="preserve">
+    <value>İşlem başarıyla gerçekleşti.</value>
+  </data>
+  <data name="MUH066" xml:space="preserve">
+    <value>Kayıt edilmek istenilen Hesap Planı satırları başarıyla güncellendi.</value>
+  </data>
+  <data name="MUH067" xml:space="preserve">
+    <value>Hesap Planı bilgileri {0} yılına aktarıldı.</value>
+  </data>
+  <data name="MUH068" xml:space="preserve">
+    <value>Silme sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="MUH069" xml:space="preserve">
+    <value>Silmek istenilen Hesap Planı satırları başarıyla silindi.</value>
+  </data>
+  <data name="MUH070" xml:space="preserve">
+    <value>Yıl bilgisini boş bırakamazsınız.</value>
+  </data>
+  <data name="MUH071" xml:space="preserve">
+    <value>Belge kontrolü sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="MUH072" xml:space="preserve">
+    <value>Yıl bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="MUH073" xml:space="preserve">
+    <value>Hesap Kodu bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="MUH074" xml:space="preserve">
+    <value>Açıklama bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="MUH075" xml:space="preserve">
+    <value>Verilen hesap kodu ({0}) uygun formatta değil. Format : {1} şeklinde olmalı.</value>
+  </data>
+  <data name="MUH076" xml:space="preserve">
+    <value>{0} nolu hesap kodunun detay kayıtları olduğu için silinemez. Lütfen ilk önce detay kayıtları silin.</value>
+  </data>
+  <data name="MUH077" xml:space="preserve">
+    <value>{0} nolu hesap kodu Ödeme Emri/MİF belgelerinde kullanıldığı için silinemez.</value>
+  </data>
+  <data name="MUH078" xml:space="preserve">
+    <value>Hesap Planı bilgileri başarıyla aktarıldı.</value>
+  </data>
+  <data name="MUH079" xml:space="preserve">
+    <value>Kayıt edilmek istenilen İmza bilgileri başarıyla saklandı.</value>
+  </data>
+  <data name="MUH080" xml:space="preserve">
+    <value>Bu bölümü kullanmaya yetkili değilsiniz.</value>
+  </data>
+  <data name="MUH081" xml:space="preserve">
+    <value>Belgeyi düzenlemek istediğiniz birim ile ilgili işlem yapma yetkiniz yok.</value>
+  </data>
+  <data name="MUH082" xml:space="preserve">
+    <value>Yıl alanı boş bırakılamaz.</value>
+  </data>
+  <data name="MUH083" xml:space="preserve">
+    <value>Muhasebe Kodu alanı boş bırakılamaz.</value>
+  </data>
+  <data name="MUH084" xml:space="preserve">
+    <value>Birim Kodu alanı boş bırakılamaz.</value>
+  </data>
+  <data name="MUH085" xml:space="preserve">
+    <value>Makbuz Tipi alanı boş bırakılamaz.</value>
+  </data>
+  <data name="MUH086" xml:space="preserve">
+    <value>Kişi Adı alanı boş bırakılamaz.</value>
+  </data>
+  <data name="MUH087" xml:space="preserve">
+    <value>Düzenleyen alanı boş bırakılamaz.</value>
+  </data>
+  <data name="MUH088" xml:space="preserve">
+    <value>Bu muhasebe-birime yetkili değilsiniz.</value>
+  </data>
+  <data name="MUH089" xml:space="preserve">
+    <value>&lt;b&gt;{0}&lt;/b&gt; kodlu harcama birimi bulunamadı.</value>
+  </data>
+  <data name="MUH090" xml:space="preserve">
+    <value>{0} nolu hesap, hesap planında yok veya detay hesap kodu değil.</value>
+  </data>
+  <data name="MUH091" xml:space="preserve">
+    <value>Kayıt edilmek istenilen Makbuz başarıyla saklandı.</value>
+  </data>
+  <data name="MUH092" xml:space="preserve">
+    <value>Yıl boş bırakılamaz.</value>
+  </data>
+  <data name="MUH093" xml:space="preserve">
+    <value>Muhasebe Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="MUH094" xml:space="preserve">
+    <value>Yevmiye No boş bırakılamaz.</value>
+  </data>
+  <data name="MUH095" xml:space="preserve">
+    <value>Durum boş bırakılamaz.</value>
+  </data>
+  <data name="MUH096" xml:space="preserve">
+    <value>{0} nolu makbuz muhasebeleştiği için durumu değiştirilemez. Ödeme Emri Belge No:{1} Durum:{2}</value>
+  </data>
+  <data name="MUH097" xml:space="preserve">
+    <value>Seçilen Makbuzların durumu başarıyla değiştirildi.</value>
+  </data>
+  <data name="MUH098" xml:space="preserve">
+    <value>Belge listelemek istediğiniz birim ile ilgili işlem yapma yetkiniz yok.</value>
+  </data>
+  <data name="MUH099" xml:space="preserve">
+    <value>Kasa Hesap Kodu alanı boş bırakılamaz.</value>
+  </data>
+  <data name="MUH100" xml:space="preserve">
+    <value>Açıklama alanı boş bırakılamaz.</value>
+  </data>
+  <data name="MUH101" xml:space="preserve">
+    <value>Kayıt edilmek istenilen Makbuz Tipi bilgileri başarıyla saklandı.</value>
+  </data>
+  <data name="MUH102" xml:space="preserve">
+    <value>Silinmesi istenilen Makbuz Tipi daha önce kullanıldığı için silinemez.</value>
+  </data>
+  <data name="MUH103" xml:space="preserve">
+    <value>Silinmesi istenilen Makbuz Tipi bilgileri seçilmemiş.</value>
+  </data>
+  <data name="MUH104" xml:space="preserve">
+    <value>Silinmesi istenilen Makbuz Tipi bilgileri başarıyla silindi.</value>
+  </data>
+  <data name="MUH105" xml:space="preserve">
+    <value>Hatalı yıl bilgisi</value>
+  </data>
+  <data name="MUH106" xml:space="preserve">
+    <value>Hatalı kurum bilgisi</value>
+  </data>
+  <data name="MUH107" xml:space="preserve">
+    <value>Bu işlemi görme yetkiniz yok</value>
+  </data>
+  <data name="MUH108" xml:space="preserve">
+    <value>Listelenecek Kayıt Bulunamadı!</value>
+  </data>
+  <data name="MUH109" xml:space="preserve">
+    <value>Başlangıç tarihi hatalı</value>
+  </data>
+  <data name="MUH110" xml:space="preserve">
+    <value>Bitiş tarihi hatalı!</value>
+  </data>
+  <data name="MUH111" xml:space="preserve">
+    <value>Seviye hatalı!</value>
+  </data>
+  <data name="MUH112" xml:space="preserve">
+    <value>830 hesabı bulunamadı</value>
+  </data>
+  <data name="MUH113" xml:space="preserve">
+    <value>905 hesap kodu bulunamadı.</value>
+  </data>
+  <data name="MUH114" xml:space="preserve">
+    <value>905 hesap kodunun tertibi hatalı.</value>
+  </data>
+  <data name="MUH115" xml:space="preserve">
+    <value>Borç veya Alacak tutarları eşit değil</value>
+  </data>
+  <data name="MUH116" xml:space="preserve">
+    <value>900 hesap kodu bulunamadı.</value>
+  </data>
+  <data name="MUH117" xml:space="preserve">
+    <value>900 hesap kodunun tertibi hatalı.</value>
+  </data>
+  <data name="MUH118" xml:space="preserve">
+    <value>900 hesabın miktarı 830 dan büyük</value>
+  </data>
+  <data name="MUH119" xml:space="preserve">
+    <value>Kurum bilgisi alınamadığı için liste oluşturulamadı</value>
+  </data>
+  <data name="MUH120" xml:space="preserve">
+    <value>Muhasebe bilgisi alınamadığı için liste oluşturulamadı</value>
+  </data>
+  <data name="MUH121" xml:space="preserve">
+    <value>Birim bilgisi alınamadığı için liste oluşturulamadı</value>
+  </data>
+  <data name="MUH122" xml:space="preserve">
+    <value>Kayıt edilecek bilgilerde eksiklik var.</value>
+  </data>
+  <data name="MUH123" xml:space="preserve">
+    <value>Kayıt edilmek istenilen Muhasebe Birim bilgileri başarıyla saklandı.</value>
+  </data>
+  <data name="MUH124" xml:space="preserve">
+    <value>Silinecek bilgilerde eksiklik var.</value>
+  </data>
+  <data name="MUH125" xml:space="preserve">
+    <value>Silinmesi istenilen Muhasebe Birim bilgileri başarıyla silindi.</value>
+  </data>
+  <data name="MUH126" xml:space="preserve">
+    <value>Muhasebe Birim bilgileri başarıyla aktarıldı.</value>
+  </data>
+  <data name="MUH127" xml:space="preserve">
+    <value>Muhasebe Birim bilgileri e-bütçeden alınamadı.</value>
+  </data>
+  <data name="MUH128" xml:space="preserve">
+    <value>Kayıt edilmek istenilen Muhasebe bilgileri başarıyla saklandı.</value>
+  </data>
+  <data name="MUH129" xml:space="preserve">
+    <value>Silinmesi istenilen Muhasebe bilgileri başarıyla silindi.</value>
+  </data>
+  <data name="MUH130" xml:space="preserve">
+    <value>Muhasebe boş bırakılamaz.</value>
+  </data>
+  <data name="MUH131" xml:space="preserve">
+    <value>Ad Soyad alanı boş bırakılamaz.</value>
+  </data>
+  <data name="MUH132" xml:space="preserve">
+    <value>Kayıt bilgileri başarıyla saklandı.</value>
+  </data>
+  <data name="MUH133" xml:space="preserve">
+    <value>Silmek için bir kayıt seçin</value>
+  </data>
+  <data name="MUH134" xml:space="preserve">
+    <value>Silinmesi istenilen kayıt başarıyla silindi.</value>
+  </data>
+  <data name="MUH135" xml:space="preserve">
+    <value>Kayıt edilmek istenilen bilgiler başarıyla saklandı.</value>
+  </data>
+  <data name="MUH136" xml:space="preserve">
+    <value>Birimi ile ilgili işlem yapma yetkiniz yok</value>
+  </data>
+  <data name="MUH137" xml:space="preserve">
+    <value>Ay bilgisi boş bırakılamaz</value>
+  </data>
+  <data name="MUH138" xml:space="preserve">
+    <value>Teşkilat bilgisi boş bırakılamaz</value>
+  </data>
+  <data name="MUH139" xml:space="preserve">
+    <value>Birim bilgisi boş bırakılamaz</value>
+  </data>
+  <data name="MUH140" xml:space="preserve">
+    <value>İlgili belge numarası olan {0} nolu belge bulunamadı.</value>
+  </data>
+  <data name="MUH141" xml:space="preserve">
+    <value>Değişiklik yapılmak istenilen &lt;b&gt;{0}&lt;/b&gt; numaralı belge &lt;b&gt;başarıyla&lt;/b&gt; güncellendi.</value>
+  </data>
+  <data name="MUH142" xml:space="preserve">
+    <value>Yetki kontrolü için gerekli olan birime ait kurumsal kod bilgisi alınamadı.</value>
+  </data>
+  <data name="MUH143" xml:space="preserve">
+    <value>Yetki kontrolü yapılamadı.</value>
+  </data>
+  <data name="MUH144" xml:space="preserve">
+    <value>Yıl bilgisi {0} veya daha eski bir yıl olmalıdır.</value>
+  </data>
+  <data name="MUH145" xml:space="preserve">
+    <value>İşlem yapılan Yıl ({0}) ile belge tarihi ({1}) arasında uyuşmazlık var.</value>
+  </data>
+  <data name="MUH146" xml:space="preserve">
+    <value>Fiş girişi {0} tarihi öncesi için kapatılmıştır. Belge tarihini değiştirerek giriş yapabilirsiniz.</value>
+  </data>
+  <data name="MUH147" xml:space="preserve">
+    <value>Ödeme Emri belgesinde Harcama birimi bilgisi boş bırakılamaz veya 000 yazılamaz.</value>
+  </data>
+  <data name="MUH148" xml:space="preserve">
+    <value>Değiştirilmek istenilen belgenin eski birim kodu : {0}. Bu birim kodlu belgeyi değiştirme yetkiniz yok.</value>
+  </data>
+  <data name="MUH149" xml:space="preserve">
+    <value>{0} nolu belge daha önce onaylandığı için belge üzerinde herhangi bir değişiklik yapılamaz.</value>
+  </data>
+  <data name="MUH150" xml:space="preserve">
+    <value>{0} nolu belgeye daha önce yevmiye numarası verildiği için belge üzerinde herhangi bir değişiklik yapılamaz.</value>
+  </data>
+  <data name="MUH151" xml:space="preserve">
+    <value>{0} nolu satırda borç ve alacak kısmının her ikisine de miktar girilmiş.</value>
+  </data>
+  <data name="MUH152" xml:space="preserve">
+    <value>{0} nolu satırda hesap no alanı boş bırakılmış.</value>
+  </data>
+  <data name="MUH153" xml:space="preserve">
+    <value>{0} nolu satırda verilen hesap no ({1}) hesap planında yok.</value>
+  </data>
+  <data name="MUH154" xml:space="preserve">
+    <value>nolu satırda tertip alanı {0}:{1}-{2}-{3}-{4} hatalı yazılmış.</value>
+  </data>
+  <data name="MUH155" xml:space="preserve">
+    <value>{0} nolu satırda, {1} hesabı için tertip girilmesi zorunluluğu vardır.</value>
+  </data>
+  <data name="MUH156" xml:space="preserve">
+    <value>{0} nolu satırda verilen &lt;b&gt;{1} kurumsal kodu {2} harcama birimine&lt;/b&gt; ait olmadığı için kullanılamaz.</value>
+  </data>
+  <data name="MUH157" xml:space="preserve">
+    <value>{0} nolu satırda verilen &lt;b&gt;{1}&lt;/b&gt; hesap kodu ile ekonomik kod eşit değil.</value>
+  </data>
+  <data name="MUH158" xml:space="preserve">
+    <value>Belgede kullandığınız kurumsal kod ile ilgili işlem yapma yetkiniz yok</value>
+  </data>
+  <data name="MUH159" xml:space="preserve">
+    <value>Belgede kullandığınız ekonomik kod ile ilgili işlem yapma yetkiniz yok</value>
+  </data>
+  <data name="MUH160" xml:space="preserve">
+    <value>{0} nolu satırda ödenek üstü harcama yapılmak isteniyor. &lt;b&gt;Ödenek : {1}&lt;/b&gt; Harcama : {2} &lt;b&gt;Avans : {3}&lt;/b&gt; Bloke Edilen : {4} &lt;b&gt;Kalan : {5}&lt;/b&gt;</value>
+  </data>
+  <data name="MUH161" xml:space="preserve">
+    <value>Ödeneğiniz yetersiz olduğu için, sistem tarafından {0} nolu belge ile, {1} TL tutarında Ödenek Gönderme Talebi düzenlenmiştir.</value>
+  </data>
+  <data name="MUH162" xml:space="preserve">
+    <value>{0} nolu satırda verilen hesap numarası detay hesap numarası olmadığı için kullanılamaz. Lütfen detay hesap numaraları kullanın.</value>
+  </data>
+  <data name="MUH163" xml:space="preserve">
+    <value>Borç ve Alacak toplam tutarı eşit değil.</value>
+  </data>
+  <data name="MUH164" xml:space="preserve">
+    <value>Yazmış olduğunuz fatura bilgileri {0} nolu belge ile daha önce kayıt edilmiştir. Lütfen kontrol edin.</value>
+  </data>
+  <data name="MUH165" xml:space="preserve">
+    <value>Eksik tertip bilgisi nedeniyle Ödenek Gönderme Talebi oluşturulamadı.</value>
+  </data>
+  <data name="MUH166" xml:space="preserve">
+    <value>Ödenek üstü harcama yapılmak isteniyor. &lt;b&gt;Ödenek : {0}&lt;/b&gt; Harcama : {1} &lt;b&gt;Avans : {2}&lt;/b&gt; Bloke Edilen : {3} &lt;b&gt;Kalan : {4}&lt;/b&gt;</value>
+  </data>
+  <data name="MUH167" xml:space="preserve">
+    <value>Ödenek Üstü İzni kontrolü etkin değil.</value>
+  </data>
+  <data name="MUH168" xml:space="preserve">
+    <value>Ödenek tutarı yeterlidir.</value>
+  </data>
+  <data name="MUH169" xml:space="preserve">
+    <value>{0} nolu belge {1}</value>
+  </data>
+  <data name="MUH170" xml:space="preserve">
+    <value>{0} nolu belge ile bu süreç için yapılan {1} TL Ödenek Talebi sistemde işleme alındı olarak görünmektedir. İlgili kişi talebi onaylamadan Ödeme Emri Belgesi oluşturulamaz.</value>
+  </data>
+  <data name="MUH171" xml:space="preserve">
+    <value>Belirtilen kriterlerde kayıtlı Ödenek Gönderme Talebi bulunmaktadır.</value>
+  </data>
+  <data name="MUH172" xml:space="preserve">
+    <value>Görmek istediğiniz &lt;b&gt;{0}&lt;/b&gt; nolu belge bulunamadı</value>
+  </data>
+  <data name="MUH173" xml:space="preserve">
+    <value>{0} nolu belgeyi Onaylama yetkiniz yok.</value>
+  </data>
+  <data name="MUH174" xml:space="preserve">
+    <value>{0} nolu belgenin Yevmiye Numarası olduğu için belge üzerinde herhangi bir değişiklik yapılamaz.</value>
+  </data>
+  <data name="MUH175" xml:space="preserve">
+    <value>{0} nolu belgenin durumu değişiklik yapılmasına uygun değil.</value>
+  </data>
+  <data name="MUH176" xml:space="preserve">
+    <value>Belge Tür değişikliği sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="MUH177" xml:space="preserve">
+    <value>İşlemi yapma yetkiniz yoktur.</value>
+  </data>
+  <data name="MUH178" xml:space="preserve">
+    <value>{0} yılında Bütçe işlemi olarak,(Gelir) Ekleme veya Düşme işlemi yapılmıştır. Bu nedenle aktarım işlemi gerçekleştirilemez. İlk önce bu bütçe işlemlerini iptal edin.</value>
+  </data>
+  <data name="MUH179" xml:space="preserve">
+    <value>{0} yılı için Bütçe hazırlık tablosunda (Gelir) Kanun aşamasına ait bilgi bulunmamaktadır.</value>
+  </data>
+  <data name="MUH180" xml:space="preserve">
+    <value>{0} yılı için Bütçe hazırlık tablosunda (Gelir) Kesintili Başlangıç Ödeneği aşamasına ait bilgi bulunmamaktadır.</value>
+  </data>
+  <data name="MUH181" xml:space="preserve">
+    <value>{0} yılında Bütçe işlemi olarak, Ekleme veya Düşme işlemi yapılmıştır. Bu nedenle aktarım işlemi gerçekleştirilemez. İlk önce bu bütçe işlemlerini iptal edin.</value>
+  </data>
+  <data name="MUH182" xml:space="preserve">
+    <value>{0} yılı için Bütçe hazırlık tablosunda Kanun aşamasına ait bilgi bulunmamaktadır.</value>
+  </data>
+  <data name="MUH183" xml:space="preserve">
+    <value>{0} yılı için Bütçe hazırlık tablosunda Kesintili Başlangıç Ödeneği aşamasına ait bilgi bulunmamaktadır.</value>
+  </data>
+  <data name="MUH184" xml:space="preserve">
+    <value>Birim kod alanı boş bırakılamaz.</value>
+  </data>
+  <data name="MUH185" xml:space="preserve">
+    <value>{0} birimi için Ödenek İhtiyacı kaydı yapılmamış.</value>
+  </data>
+  <data name="MUH186" xml:space="preserve">
+    <value>Onay bilgileri başarıyla saklandı.</value>
+  </data>
+  <data name="MUH187" xml:space="preserve">
+    <value>Yeni oluşturulmak istenilen şablon, &lt;b&gt;{0} başarıyla&lt;/b&gt; kayıt edildi.</value>
+  </data>
+  <data name="MUH188" xml:space="preserve">
+    <value>Değişiklik yapılmak istenilen &lt;b&gt;{0} başarıyla&lt;/b&gt; güncellendi.</value>
+  </data>
+  <data name="MUH189" xml:space="preserve">
+    <value>Şablon listeleme için Kod, Belge Türü, Bütçe Türü, İçerik Türü veya Kullanıcı Adı bilgilerinden en az bir tanesini girmelisiniz.</value>
+  </data>
+  <data name="MUH190" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla tamamlandı.</value>
+  </data>
+  <data name="MUH191" xml:space="preserve">
+    <value>Kayıt işlemi başarısız oldu.</value>
+  </data>
+  <data name="MUH192" xml:space="preserve">
+    <value>Durum değiştirme işlemi başarıyla tamamlandı.</value>
+  </data>
+  <data name="MUH193" xml:space="preserve">
+    <value>Durum değiştirme işlemi başarısız oldu.</value>
+  </data>
+  <data name="MUH194" xml:space="preserve">
+    <value>Detay tertip kullanıldığından ebütçe aktarımı yapılamaz!</value>
+  </data>
+  <data name="MUH195" xml:space="preserve">
+    <value>Yapılan işlemde, verilen {0} ile başlayan tertiplerin toplamı({1}), tertibin serbestliğinden({2}) fazla!</value>
+  </data>
+  <data name="MUH196" xml:space="preserve">
+    <value>Yapılan işlemde, verilen {0} ile başlayan tertiplerin toplamı({1}), tertibin kullanılabilirliğinden({2}) fazla!</value>
+  </data>
+  <data name="MUH197" xml:space="preserve">
+    <value>{0} ekonomik koduna ait Ödenek Gönderme talebinde bulunamazsınız. Bu tertip ile ilgili talepler &lt;font color=Blue&gt;&lt;b&gt;Harcama Yönetimi&lt;/b&gt;&lt;/font&gt; Modülünden Süreç oluşturarak gerçekleştirmeniz gerekmektedir.</value>
+  </data>
+  <data name="MUH198" xml:space="preserve">
+    <value>{0} kodlu saymanlıkta, {1} kodlu birim veya ilişkilindirilmiş {2} kodlu kurumsal kod bulunamadı</value>
+  </data>
+  <data name="MUH199" xml:space="preserve">
+    <value>{0} nolu hesap kodunun detay kayıtları olduğu için değişiklik yapılamaz.</value>
+  </data>
+  <data name="MUH200" xml:space="preserve">
+    <value>{0} nolu hesap kodu Ödeme Emri/MİF belgelerinde kullanıldığı için değişiklik yapılamaz.</value>
+  </data>
+  <data name="MUH201" xml:space="preserve">
+    <value>Kayıt işlemi tamamlandı.</value>
+  </data>
+  <data name="MUH202" xml:space="preserve">
+    <value>Tür kodu boş bırakılamaz.</value>
+  </data>
+  <data name="MUH203" xml:space="preserve">
+    <value>Dosya kapatıldı.</value>
+  </data>
+  <data name="MUH204" xml:space="preserve">
+    <value>Kapalı dosya üzerinde işlem yapılamaz.</value>
+  </data>
+  <data name="MUH205" xml:space="preserve">
+    <value>Belge numarası olarak verilen {0} hatalı. Belge sıra numarası uzunluğu (kurum kodu hariç) 6 karakterden küçük olamaz.</value>
+  </data>
+  <data name="MUH206" xml:space="preserve">
+    <value>Belge numarası olarak verilen {0} hatalı. Belge numarası sayılardan oluşmalı.</value>
+  </data>
+  <data name="MUH207" xml:space="preserve">
+    <value>Silinmesi istenilen kayıt bilgileri başarıyla silindi.</value>
+  </data>
+  <data name="OdenekGondermeIcmal001" xml:space="preserve">
+    <value>Yazma yetkiniz yok!</value>
+  </data>
+  <data name="OdenekGondermeIcmal002" xml:space="preserve">
+    <value>Görme yetkiniz yok!</value>
+  </data>
+  <data name="TKDKTALEPDURUM_01" xml:space="preserve">
+    <value>Yeni</value>
+  </data>
+  <data name="TKDKTALEPDURUM_02" xml:space="preserve">
+    <value>İşleme Alındı</value>
+  </data>
+  <data name="TKDKTALEPDURUM_03" xml:space="preserve">
+    <value>Tamamlandı</value>
+  </data>
+  <data name="TKDKTALEPDURUM_09" xml:space="preserve">
+    <value>Reddedildi</value>
+  </data>
+</root>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>Mernis.KPSv2.Types</AssemblyName>
+    <RootNamespace>Mernis.KPSv2.Types</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ServiceModel.Http" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\GNLServis\GNLServis.csproj" />
+  </ItemGroup>
+
+</Project>

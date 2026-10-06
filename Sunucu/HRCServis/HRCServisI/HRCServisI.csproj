@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>HRCServisI</AssemblyName>
+    <RootNamespace>HRCServisI</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BHMv2Servis\BKDServisI\BKDServisI.csproj" />
+    <ProjectReference Include="..\..\DEGServis\DEGServisI\DEGServisI.csproj" />
+    <ProjectReference Include="..\..\GNLServis\GNLServis.csproj" />
+    <ProjectReference Include="..\..\IKYServis\IKYServisI\IKYServisI.csproj" />
+    <ProjectReference Include="..\..\KYMServis\KYMServisI\KYMServisI.csproj" />
+    <ProjectReference Include="..\..\MUHServis\MUHServisI\MUHServisI.csproj" />
+    <ProjectReference Include="..\..\UZYServis\UZYServisI\UZYServisI.csproj" />
+  </ItemGroup>
+
+</Project>

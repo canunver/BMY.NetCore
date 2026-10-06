@@ -1,0 +1,552 @@
+﻿
+
+
+
+/*
+        string SQLCalistir(Kullanici kullanan, string sql);
+
+ * //string MailAt(string from, string to, string konu, string bilgi, bool html, bool replyVar, TNSCollection ekDosyaIsimleri);
+ //[Serializable()]
+    //public class Muhasebe
+    //{
+    //    public string kod = string.Empty;
+    //    public string ad = string.Empty;
+
+    //}
+
+    //[Serializable()]
+    //public class MuhasebeVAN
+    //{
+    //    public Sonuc sonuc;
+    //    public Muhasebe muhasebe;
+
+    //    public MuhasebeVAN()
+    //    {
+    //        sonuc = new Sonuc();
+    //        muhasebe = new Muhasebe();
+    //    }
+    //}
+
+
+    //[Serializable()]
+    //public class KullaniciTipiVAN
+    //{
+    //    public Sonuc sonuc;
+    //    public KullaniciTipi kullaniciTipi;
+
+    //    public KullaniciTipiVAN()
+    //    {
+    //        sonuc = new Sonuc();
+    //        kullaniciTipi = new KullaniciTipi();
+    //    }
+
+    //    public KullaniciTipiVAN(KullaniciTipi pKullaniciTipi)
+    //    {
+    //        sonuc = new Sonuc();
+    //        kullaniciTipi = pKullaniciTipi;
+    //    }
+    //}
+
+    //[Serializable()]
+    //public class KullaniciTipleriVAN
+    //{
+    //    public Sonuc sonuc;
+    //    public TNSCollection kullaniciTipleri; //KullaniciTipi
+
+    //    public KullaniciTipleriVAN()
+    //    {
+    //        sonuc = new Sonuc();
+    //        kullaniciTipleri = new TNSCollection();
+    //    }
+    //}
+
+    //[Serializable()]
+    //public class YTGirisListesiVAN
+    //{
+    //    public Sonuc sonuc;
+    //    public YTGirisListesi ytGirisListesi;
+
+    //    public YTGirisListesiVAN()
+    //    {
+    //        sonuc = new Sonuc();
+    //        ytGirisListesi = new YTGirisListesi();
+    //    }
+
+    //    public YTGirisListesiVAN(YTGirisListesi pYTGirisListesi)
+    //    {
+    //        sonuc = new Sonuc();
+    //        ytGirisListesi = pYTGirisListesi;
+    //    }
+    //}
+
+    //[Serializable()]
+    //public class YTGirisListeleriVAN
+    //{
+    //    public Sonuc sonuc;
+    //    public TNSCollection YTGirisListeleri; //YTGirisListesi
+
+    //    public YTGirisListeleriVAN()
+    //    {
+    //        sonuc = new Sonuc();
+    //        YTGirisListeleri = new TNSCollection();
+    //    }
+    //}
+
+
+        //Sonuc YTSil(Kullanici kullanan, int tipKodu);
+
+        //KullaniciTipiVAN KTOku(int kullaniciTipKodu);
+        //Sonuc KTKaydet(Kullanici kullanan, KullaniciTipi kullaniciTipi);
+        //Sonuc KTSil(Kullanici kullanan, int kullaniciTipKodu);
+
+        //ListeVAN MuhasebeListesi();
+        //MuhasebeVAN MuhasebeOku(string kod);
+        //MuhasebeVAN MuhasebeOkuAd(string ad);
+        //Sonuc MuhasebeKaydet(Kullanici kullanan, Muhasebe muhasebe);
+        //Sonuc MuhasebeSil(Kullanici kullanan, string kod);
+
+        //YTGirisListeleriVAN YTGListesi();
+        //YTGirisListesiVAN YTGOku(int YTGirisListesiKodu);
+        //Sonuc YTGKaydet(Kullanici kullanan, YTGirisListesi ytGirisListesi);
+        //Sonuc YTGSil(Kullanici kullanan, int ytGirisListesiKodu);
+
+        //ListeVAN KurumListesi(int yil);
+        //ListeVAN YTGirisListesiIcerik(Kullanici kullanan, int yil, string kod, string kriter);
+        //ListeVAN YTGirisListesiIcerik(int yil, string kod, string kriter);
+
+        //KullaniciListesiVAN KurumKullanicilari(string kurum, int basla, int say);
+        //KullaniciListesiVAN MerkezKullanicilari(int basla, int say);
+
+    ////--
+    //[Serializable()]
+    //public class YTGirisListesi
+    //{
+    //    public int kod;
+    //    public string ad;
+    //    public string tabloAd;
+
+    //    public YTGirisListesi()
+    //    {
+    //    }
+
+    //    public YTGirisListesi(int pKod, string pAd, string pTabloAd)
+    //    {
+    //        kod = pKod;
+    //        ad = pAd;
+    //        tabloAd = pTabloAd;
+    //    }
+    //}
+
+    //[Serializable()]
+    //public class YetkiTipleriVAN
+    //{
+    //    public Sonuc sonuc;
+    //    public TNSCollection yetkiTipleri; //YetkiTipi 
+
+    //    public YetkiTipleriVAN()
+    //    {
+    //        sonuc = new Sonuc();
+    //        yetkiTipleri = new TNSCollection();
+    //    }
+    //}
+
+    //[Serializable()]
+    //public class YetkiTipiVAN
+    //{
+    //    public Sonuc sonuc = new Sonuc();
+    //    public YetkiTipi yetkiTipi;
+
+    //    public YetkiTipiVAN(YetkiTipi pYetkiTipi)
+    //    {
+    //        yetkiTipi = pYetkiTipi;
+    //    }
+
+    //    public YetkiTipiVAN()
+    //    {
+    //        yetkiTipi = null;
+    //    }
+    //}
+
+
+        //ObjectArray TabloIsimleriListe(Kullanici kullanan, string baglantiYolu, string tip);
+        //Sonuc TabloIcerikKaydet(Kullanici kullanan, string baglantiYoluKaynak, string tipKaynak, string baglantiYoluHedef, string tipHedef, string tabloAd);
+        //Sonuc KurumlaraMailAt(Kullanici kullanan, string konu, string mesaj, ObjectArray kurumlar, int ktKod);
+
+    [Serializable()]
+    public class KullaniciListesiVAN
+    {
+        public Sonuc sonuc;
+        public TNSCollection kullanicilar; //Kullanici
+
+        public KullaniciListesiVAN()
+        {
+            sonuc = new Sonuc();
+            kullanicilar = new TNSCollection();
+        }
+    }
+        //void YTKaydet(YetkiTipi yetkiTipi);
+
+
+    //--
+    //[Serializable()]
+    //public class KullaniciTipi
+    //{
+    //    public ENUMKullaniciTipi kod;
+    //    public string ad;
+    //    //public YetkiTipi[] yetkiTipleri = null; //YetkiTipi 
+
+    //    //public static ENUMKullaniciTipi KullaniciTipiAdi(int kt)
+    //    //{
+    //    //    if (kt == (int)ENUMKullaniciTipi.SISTEMYONETICISI) return ENUMKullaniciTipi.SISTEMYONETICISI;
+    //    //    else if (kt == (int)ENUMKullaniciTipi.KULLANICIYONETICISI) return ENUMKullaniciTipi.KULLANICIYONETICISI;
+    //    //    else return ENUMKullaniciTipi.TANIMSIZ;
+    //    //}
+
+    //    public KullaniciTipi()
+    //    {
+    //    }
+
+    //    //public KullaniciTipi(ENUMKullaniciTipi pKod, string pAd)
+    //    //{
+    //    //    kod = pKod;
+    //    //    ad = pAd;
+    //    //}
+    //}
+        //ENUMKullaniciTipi[] KTListesi(Kullanici kullanan);
+
+        ///// <summary>
+        ///// Kullanıcılar için saklanan değişkenleri bulan ve dizi olarak döndüren yordam. Değişkenler veri tabanından okunacağı için sunucuya bağlanmak gerekecektir.
+        ///// </summary>
+        ///// <param name="degiskenAd">Değeri bulunacak değişken.</param>
+        ///// <returns>Bu değişken için girilmiş tüm değerler dizi olarak listelenir.</returns>
+        //public TNSCollection DegiskenBulx(string degiskenAd)
+        //{
+        //    IKYMServis kymServis = Arac.Tanimla();
+        //    return kymServis.DegiskenleriListele(this.kullaniciKodu, degiskenAd);
+        //}
+
+        //public string DegiskenDegerBulx(string degiskenAd)
+        //{
+        //    TNSCollection tut = DegiskenBul(degiskenAd);
+        //    if (tut == null) return null;
+        //    if (0 >= tut.Count) return null;
+        //    return (string)tut[0];
+        //}
+
+        //KullaniciVAN KullaniciOkuSession(string sessionId);
+        //Sonuc KullaniciSessionSil(string sessionId);
+
+
+
+*/
+
+
+
+
+/*
+        public string SQLCalistir(Kullanici kullanan, string sql)
+        {
+            string bilgi = "";
+            try
+            {
+                bilgi = SQLCalistirServis.SQLCalistir(kullanan, sql);
+            }
+            catch (Exception e)
+            {
+                bilgi = e.ToString();
+            }
+            return bilgi;
+        }
+
+        //public ObjectArray TabloIsimleriListe(Kullanici kullanan, string baglantiYolu, string tip)
+        //{
+        //    ObjectArray donusDeger = new ObjectArray();
+        //    try
+        //    {
+        //        donusDeger = new KullaniciServis().TabloIsimleriListe(kullanan, baglantiYolu, tip);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        donusDeger.sonuc.hataStr = e.ToString();
+        //        donusDeger.sonuc.islemSonuc = false;
+        //    }
+
+        //    return donusDeger;
+        //}
+
+        //public Sonuc TabloIcerikKaydet(Kullanici kullanan, string baglantiYoluKaynak, string tipKaynak, string baglantiYoluHedef, string tipHedef, string tabloAd)
+        //{
+        //    try
+        //    {
+        //        return new KullaniciServis().TabloIcerikKaydet(kullanan, baglantiYoluKaynak, tipKaynak, baglantiYoluHedef, tipHedef, tabloAd);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Sonuc donusDeger = new Sonuc();
+        //        donusDeger.islemSonuc = false;
+        //        donusDeger.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+
+        /*
+            Parametre olarak gelen yetki tipini kaydeder.
+            Eğer yetki tipi zaten var olan bir yetki tipi ise üzerine yazar,
+            Yetki tipini yeni ise, Yetki tipi kodu üretir.
+        * /
+        //public void YTKaydet(YetkiTipi yetkiTipi)
+        //{
+        //    YTServis.Kaydet(null, yetkiTipi);
+        //}
+
+        /*
+            Kodu parametre olarak verilen yetki tipini siler. 
+            Silme işlemi başarılı olursa, doğru, silemezse yanlış döndürür. 
+            Silme sırasında verilen yetki tipinin, kullanıcı tipi ve kullanıcı için kullanıp, 
+            kullanılmadığına bakar. İkisinden birinde kullanılmışsa, silme işlemi yapılmaz.
+        * /
+        //public Sonuc YTSil(Kullanici kullanan, int tipKodu)
+        //{
+        //    try
+        //    {
+        //        return new YTServis().Sil(null, kullanan, tipKodu);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Sonuc donusDeger = new Sonuc();
+        //        donusDeger.islemSonuc = false;
+        //        donusDeger.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+        //public MuhasebeVAN MuhasebeOku(string kod)
+        //{
+        //    try
+        //    {
+        //        return new MuhasebeServis().Oku(null, kod);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        MuhasebeVAN donusDeger = new MuhasebeVAN();
+        //        donusDeger.sonuc.islemSonuc = false;
+        //        donusDeger.sonuc.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+        //public MuhasebeVAN MuhasebeOkuAd(string ad)
+        //{
+        //    try
+        //    {
+        //        return new MuhasebeServis().OkuAd(null, ad);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        MuhasebeVAN donusDeger = new MuhasebeVAN();
+        //        donusDeger.sonuc.islemSonuc = false;
+        //        donusDeger.sonuc.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+        //public Sonuc MuhasebeKaydet(Kullanici kullanan, Muhasebe muhasebe)
+        //{
+        //    try
+        //    {
+        //        return new MuhasebeServis().Kaydet(null, kullanan, muhasebe);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Sonuc donusDeger = new Sonuc();
+        //        donusDeger.islemSonuc = false;
+        //        donusDeger.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+        //public Sonuc MuhasebeSil(Kullanici kullanan, string kod)
+        //{
+        //    try
+        //    {
+        //        return new MuhasebeServis().Sil(null, kullanan, kod);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Sonuc donusDeger = new Sonuc();
+        //        donusDeger.islemSonuc = false;
+        //        donusDeger.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+        /*
+            Parametre olarak geçirilen kullanıcı tipi kodunu kullanarak, 
+            kullanıcı tipi bilgilerini okur ve döndürür.
+        * /
+        //public KullaniciTipi KTOku(int kullaniciTipKodu)
+        //{
+        //    return KTServis.Oku(kullaniciTipKodu);
+        //}
+
+        /*
+            Parametre olarak gelen kullanıcı tipi ve bu tipile ilişkilendirilmiş yetki tiplerini kaydeder. 
+            Eğer kullanıcı tipi zaten var olan bir tip ise önce eski yetki tipleri siler ve üzerine yazar. 
+            Kullanıcı tipi ise, kullanıcı tipi kodu üretir.
+        * /
+        //public Sonuc KTKaydet(Kullanici kullanan, KullaniciTipi kullaniciTipi)
+        //{
+        //    KTServis.Kaydet(null, kullanan, kullaniciTipi);
+        //}
+
+        /*
+            Kodu parametre olarak verilen kullanıcı tipini siler.
+            Silme işlemi başarılı olursa, doğru, silemezse yanlış döndürür.
+            Silme sırasında verilen kullanıcı tipinin,
+            kullanıcı içkullanıp, kullanılmadığına bakar.
+            Kullanılmışsa, silme işlemi yapılmaz.
+        * /
+        //public Sonuc KTSil(Kullanici kullanan, int kullaniciTipKodu)
+        //{
+        //    try
+        //    {
+        //        return new KTServis().Sil(null, kullanan, kullaniciTipKodu);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Sonuc donusDeger = new Sonuc();
+        //        donusDeger.islemSonuc = false;
+        //        donusDeger.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+         public KullaniciVAN KullaniciOkuSession(string sessionId)
+        {
+            try
+            {
+                return new KullaniciServis().OkuSession(null, sessionId);
+            }
+            catch (Exception e)
+            {
+                KullaniciVAN donusDeger = new KullaniciVAN();
+                donusDeger.sonuc.islemSonuc = false;
+                donusDeger.sonuc.hataStr = e.ToString();
+                return donusDeger;
+            }
+        }
+
+        public Sonuc KullaniciSessionSil(string sessionId)
+        {
+            try
+            {
+                return new KullaniciServis().SessionSil(null, sessionId);
+            }
+            catch (Exception e)
+            {
+                Sonuc sonuc = new Sonuc();
+                sonuc.islemSonuc = false;
+                sonuc.hataStr = e.ToString();
+                return sonuc;
+            }
+        }
+
+        ///*
+        //    Sistem kayıtlı, ve paremetre olarak kendisine geçirilen kuruma ait kullanıcıları liste halinde döndürür
+        //*/
+//public KullaniciListesiVAN KurumKullanicilari(string kurum, int basla, int say)
+//{
+//    try
+//    {
+//        return new KullaniciServis().KurumKullanicilari(null, kurum, basla, say);
+//    }
+//    catch (Exception e)
+//    {
+//        KullaniciListesiVAN donusDeger = new KullaniciListesiVAN();
+//        donusDeger.sonuc.islemSonuc = false;
+//        donusDeger.sonuc.hataStr = e.ToString();
+//        return donusDeger;
+//    }
+//}
+
+//*
+//    Sistem kayıtlı, merkez kullanıcılarını liste halinde getirir.
+//*/
+//public KullaniciListesiVAN MerkezKullanicilari(int basla, int say)
+//{
+//    try
+//    {
+//        return new KullaniciServis().MerkezKullanicilari(null, basla, say);
+//    }
+//    catch (Exception e)
+//    {
+//        KullaniciListesiVAN donusDeger = new KullaniciListesiVAN();
+//        donusDeger.sonuc.islemSonuc = false;
+//        donusDeger.sonuc.hataStr = e.ToString();
+//        return donusDeger;
+//    }
+//}
+
+
+
+/*
+    Sisteme tanıtılmış olan ve kod ad şeklinde değer döndüren sınıfların, 
+    kullanıcılar tarafından anlaşılabilecek, isimlerini döndürür. 
+* /
+//public ListeVAN YTGirisListesiIcerik(Kullanici kullanan, int yil, string kod, string kriter)
+//{
+//    try
+//    {
+//        return TNS.KYM.IsKurallari.Liste.ListeFabrikasi.ListeOlustur(kullanan, yil, kod, kriter);
+//    }
+//    catch (Exception e)
+//    {
+//        ListeVAN donusDeger = new ListeVAN();
+//        donusDeger.sonuc.islemSonuc = false;
+//        donusDeger.sonuc.hataStr = e.ToString();
+//        return donusDeger;
+//    }
+//}
+
+//public ListeVAN YTGirisListesiIcerik(int yil, string kod, string kriter)
+//{
+//    return YTGirisListesiIcerik(null, yil, kod, kriter);
+//}
+
+///*
+//    Kurum listesi
+//* /
+//public ListeVAN KurumListesi(int yil)
+//{
+//    return YTGirisListesiIcerik(null, yil, "2", "");
+//}
+
+/// <summary>
+/// Sgb entegrasyonu için ekledim
+/// </summary>
+/// <param name="kullanan"></param>
+/// <param name="kullanici"></param>
+/// <returns></returns>
+//public bool YonetiyorMu(Kullanici kullanan, SGBKullanici kullanici)
+//{
+//    try
+//    {
+//        return new KullaniciServis().YonetiyorMu(kullanan, kullanici);
+//    }
+//    catch (Exception)
+//    {
+//        return false;
+//    }
+//}
+
+        //public string MailAt(string from, string to, string konu, string bilgi, bool html, bool replyVar, TNSCollection ekDosyaIsimleri)
+        //{
+        //    return TNS.OrtakFonksiyonlar.MailAt(from, to, konu, bilgi, html, replyVar, ekDosyaIsimleri);
+        //}
+
+
+
+
+ 
+*/

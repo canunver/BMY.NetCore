@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://kps.nvi.gov.tr/2016/10/01" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="KimlikNoSorgulaAdresServis" targetNamespace="http://kps.nvi.gov.tr/2016/10/01" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="CustomBinding_KimlikNoSorgulaAdresServis_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:EndorsingSupportingTokens xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <wsp:Policy>
+            <sp:IssuedToken sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+              <Issuer xmlns="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+                <Address xmlns="http://www.w3.org/2005/08/addressing">https://kimlikdogrulama.nvi.gov.tr/Services/Issuer.svc/IWSTrust13</Address>
+                <Metadata xmlns="http://www.w3.org/2005/08/addressing">
+                  <Metadata xmlns="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <wsx:MetadataSection xmlns="" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex">
+                      <wsx:MetadataReference>
+                        <Address xmlns="http://www.w3.org/2005/08/addressing">https://kimlikdogrulama.nvi.gov.tr/Services/Issuer.svc/mex</Address>
+                      </wsx:MetadataReference>
+                    </wsx:MetadataSection>
+                  </Metadata>
+                </Metadata>
+              </Issuer>
+              <sp:RequestSecurityTokenTemplate>
+                <trust:KeyType xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512">http://docs.oasis-open.org/ws-sx/ws-trust/200512/SymmetricKey</trust:KeyType>
+              </sp:RequestSecurityTokenTemplate>
+              <wsp:Policy>
+                <sp:RequireInternalReference />
+              </wsp:Policy>
+            </sp:IssuedToken>
+          </wsp:Policy>
+        </sp:EndorsingSupportingTokens>
+        <sp:Wss11 xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <wsp:Policy />
+        </sp:Wss11>
+        <sp:Trust13 xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust13>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://kps.nvi.gov.tr/2016/10/01">
+      <xsd:element name="Sorgula">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element xmlns:q1="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="kriterListesi" nillable="true" type="q1:ArrayOfKimlikNoileAdresSorguKriteri" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SorgulaResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" name="SorgulaResult" nillable="true" type="tns:KimlikNoileKisiAdresBilgileriSonucu" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="KimlikNoileKisiAdresBilgileriSonucu">
+        <xsd:sequence>
+          <xsd:element xmlns:q2="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="HataBilgisi" nillable="true" type="q2:Parametre" />
+          <xsd:element minOccurs="0" name="SorguSonucu" nillable="true" type="tns:ArrayOfKimlikNoileKisiAdresBilgileri" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="KimlikNoileKisiAdresBilgileriSonucu" nillable="true" type="tns:KimlikNoileKisiAdresBilgileriSonucu" />
+      <xsd:complexType name="ArrayOfKimlikNoileKisiAdresBilgileri">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="KimlikNoileKisiAdresBilgileri" nillable="true" type="tns:KimlikNoileKisiAdresBilgileri" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfKimlikNoileKisiAdresBilgileri" nillable="true" type="tns:ArrayOfKimlikNoileKisiAdresBilgileri" />
+      <xsd:complexType name="KimlikNoileKisiAdresBilgileri">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="DigerAdresBilgileri" nillable="true" type="tns:ArrayOfKimlikNoileKisiAdresBilgisi" />
+          <xsd:element xmlns:q3="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="HataBilgisi" nillable="true" type="q3:Parametre" />
+          <xsd:element minOccurs="0" name="KimlikNo" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" name="YerlesimYeriAdresi" nillable="true" type="tns:KimlikNoileKisiAdresBilgisi" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="KimlikNoileKisiAdresBilgileri" nillable="true" type="tns:KimlikNoileKisiAdresBilgileri" />
+      <xsd:complexType name="ArrayOfKimlikNoileKisiAdresBilgisi">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="KimlikNoileKisiAdresBilgisi" nillable="true" type="tns:KimlikNoileKisiAdresBilgisi" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfKimlikNoileKisiAdresBilgisi" nillable="true" type="tns:ArrayOfKimlikNoileKisiAdresBilgisi" />
+      <xsd:complexType name="KimlikNoileKisiAdresBilgisi">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="AcikAdres" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="AdresNo" nillable="true" type="xsd:long" />
+          <xsd:element xmlns:q4="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="AdresTip" nillable="true" type="q4:Parametre" />
+          <xsd:element minOccurs="0" name="BeldeAdresi" nillable="true" type="tns:KimlikNoileBeldeAdresi" />
+          <xsd:element xmlns:q5="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="BeyanTarihi" nillable="true" type="q5:TarihBilgisi" />
+          <xsd:element minOccurs="0" name="BeyandaBulunanKimlikNo" nillable="true" type="xsd:long" />
+          <xsd:element xmlns:q6="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="HataBilgisi" nillable="true" type="q6:Parametre" />
+          <xsd:element minOccurs="0" name="IlIlceMerkezAdresi" nillable="true" type="tns:KimlikNoileIlIlceMerkezi" />
+          <xsd:element minOccurs="0" name="KoyAdresi" nillable="true" type="tns:KimlikNoileKoyAdresi" />
+          <xsd:element xmlns:q7="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="TasinmaNeden" nillable="true" type="q7:Parametre" />
+          <xsd:element xmlns:q8="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="TasinmaTarihi" nillable="true" type="q8:TarihBilgisi" />
+          <xsd:element xmlns:q9="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="TescilTarihi" nillable="true" type="q9:TarihBilgisi" />
+          <xsd:element xmlns:q10="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="YurtDisiAdresi" nillable="true" type="q10:KimlikNoileYurtDisiAdresi" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="KimlikNoileKisiAdresBilgisi" nillable="true" type="tns:KimlikNoileKisiAdresBilgisi" />
+      <xsd:complexType name="KimlikNoileBeldeAdresi">
+        <xsd:sequence>
+          <xsd:element xmlns:q11="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="BagimsizBolumDurum" nillable="true" type="q11:Parametre" />
+          <xsd:element xmlns:q12="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="BagimsizBolumTipi" nillable="true" type="q12:Parametre" />
+          <xsd:element minOccurs="0" name="BinaAda" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BinaBlokAdi" nillable="true" type="xsd:string" />
+          <xsd:element xmlns:q13="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="BinaDurum" nillable="true" type="q13:Parametre" />
+          <xsd:element minOccurs="0" name="BinaKodu" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" name="BinaNo" nillable="true" type="xsd:int" />
+          <xsd:element xmlns:q14="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="BinaNumaratajTipi" nillable="true" type="q14:Parametre" />
+          <xsd:element minOccurs="0" name="BinaPafta" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BinaParsel" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BinaSiteAdi" nillable="true" type="xsd:string" />
+          <xsd:element xmlns:q15="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="BinaYapiTipi" nillable="true" type="q15:Parametre" />
+          <xsd:element minOccurs="0" name="Csbm" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="CsbmKodu" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="DisKapiNo" nillable="true" type="xsd:string" />
+          <xsd:element xmlns:q16="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="HataBilgisi" nillable="true" type="q16:Parametre" />
+          <xsd:element minOccurs="0" name="IcKapiNo" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="Il" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="IlKodu" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="Ilce" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="IlceKodu" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="KatNo" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="Koy" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="KoyKayitNo" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" name="KoyKodu" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" name="Mahalle" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="MahalleKodu" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="TapuBagimsizBolumNo" nillable="true" type="xsd:string" />
+          <xsd:element xmlns:q17="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="YapiKullanimAmac" nillable="true" type="q17:Parametre" />
+          <xsd:element minOccurs="0" name="YolAltiKatSayisi" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="YolUstuKatSayisi" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="KimlikNoileBeldeAdresi" nillable="true" type="tns:KimlikNoileBeldeAdresi" />
+      <xsd:complexType name="KimlikNoileIlIlceMerkezi">
+        <xsd:sequence>
+          <xsd:element xmlns:q18="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="BagimsizBolumDurum" nillable="true" type="q18:Parametre" />
+          <xsd:element xmlns:q19="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="BagimsizBolumTipi" nillable="true" type="q19:Parametre" />
+          <xsd:element minOccurs="0" name="BinaAda" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BinaBlokAdi" nillable="true" type="xsd:string" />
+          <xsd:element xmlns:q20="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="BinaDurum" nillable="true" type="q20:Parametre" />
+          <xsd:element minOccurs="0" name="BinaKodu" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" name="BinaNo" nillable="true" type="xsd:int" />
+          <xsd:element xmlns:q21="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="BinaNumaratajTipi" nillable="true" type="q21:Parametre" />
+          <xsd:element minOccurs="0" name="BinaPafta" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BinaParsel" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BinaSiteAdi" nillable="true" type="xsd:string" />
+          <xsd:element xmlns:q22="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="BinaYapiTipi" nillable="true" type="q22:Parametre" />
+          <xsd:element minOccurs="0" name="Csbm" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="CsbmKodu" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="DisKapiNo" nillable="true" type="xsd:string" />
+          <xsd:element xmlns:q23="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="HataBilgisi" nillable="true" type="q23:Parametre" />
+          <xsd:element minOccurs="0" name="IcKapiNo" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="Il" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="IlKodu" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="Ilce" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="IlceKodu" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="KatNo" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="Mahalle" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="MahalleKodu" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="TapuBagimsizBolumNo" nillable="true" type="xsd:string" />
+          <xsd:element xmlns:q24="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="YapiKullanimAmac" nillable="true" type="q24:Parametre" />
+          <xsd:element minOccurs="0" name="YolAltiKatSayisi" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="YolUstuKatSayisi" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="KimlikNoileIlIlceMerkezi" nillable="true" type="tns:KimlikNoileIlIlceMerkezi" />
+      <xsd:complexType name="KimlikNoileKoyAdresi">
+        <xsd:sequence>
+          <xsd:element xmlns:q25="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="BagimsizBolumDurum" nillable="true" type="q25:Parametre" />
+          <xsd:element xmlns:q26="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="BagimsizBolumTipi" nillable="true" type="q26:Parametre" />
+          <xsd:element minOccurs="0" name="BinaAda" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BinaBlokAdi" nillable="true" type="xsd:string" />
+          <xsd:element xmlns:q27="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="BinaDurum" nillable="true" type="q27:Parametre" />
+          <xsd:element minOccurs="0" name="BinaKodu" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" name="BinaNo" nillable="true" type="xsd:int" />
+          <xsd:element xmlns:q28="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="BinaNumaratajTipi" nillable="true" type="q28:Parametre" />
+          <xsd:element minOccurs="0" name="BinaPafta" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BinaParsel" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="BinaSiteAdi" nillable="true" type="xsd:string" />
+          <xsd:element xmlns:q29="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="BinaYapiTipi" nillable="true" type="q29:Parametre" />
+          <xsd:element minOccurs="0" name="Csbm" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="CsbmKodu" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="DisKapiNo" nillable="true" type="xsd:string" />
+          <xsd:element xmlns:q30="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="HataBilgisi" nillable="true" type="q30:Parametre" />
+          <xsd:element minOccurs="0" name="IcKapiNo" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="Il" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="IlKodu" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="Ilce" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="IlceKodu" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="KatNo" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="Koy" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="KoyKayitNo" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" name="KoyKodu" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" name="Mahalle" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" name="MahalleKodu" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="TapuBagimsizBolumNo" nillable="true" type="xsd:string" />
+          <xsd:element xmlns:q31="http://kps.nvi.gov.tr/2011/01/01" minOccurs="0" name="YapiKullanimAmac" nillable="true" type="q31:Parametre" />
+          <xsd:element minOccurs="0" name="YolAltiKatSayisi" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="YolUstuKatSayisi" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="KimlikNoileKoyAdresi" nillable="true" type="tns:KimlikNoileKoyAdresi" />
+    </xsd:schema>
+    <xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="anyType" nillable="true" type="xs:anyType" />
+      <xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+      <xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+      <xs:element name="boolean" nillable="true" type="xs:boolean" />
+      <xs:element name="byte" nillable="true" type="xs:byte" />
+      <xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+      <xs:element name="decimal" nillable="true" type="xs:decimal" />
+      <xs:element name="double" nillable="true" type="xs:double" />
+      <xs:element name="float" nillable="true" type="xs:float" />
+      <xs:element name="int" nillable="true" type="xs:int" />
+      <xs:element name="long" nillable="true" type="xs:long" />
+      <xs:element name="QName" nillable="true" type="xs:QName" />
+      <xs:element name="short" nillable="true" type="xs:short" />
+      <xs:element name="string" nillable="true" type="xs:string" />
+      <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+      <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+      <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+      <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort" />
+      <xs:element name="char" nillable="true" type="tns:char" />
+      <xs:simpleType name="char">
+        <xs:restriction base="xs:int" />
+      </xs:simpleType>
+      <xs:element name="duration" nillable="true" type="tns:duration" />
+      <xs:simpleType name="duration">
+        <xs:restriction base="xs:duration">
+          <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+          <xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+          <xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="guid" nillable="true" type="tns:guid" />
+      <xs:simpleType name="guid">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:attribute name="FactoryType" type="xs:QName" />
+      <xs:attribute name="Id" type="xs:ID" />
+      <xs:attribute name="Ref" type="xs:IDREF" />
+    </xs:schema>
+    <xs:schema xmlns:tns="http://kps.nvi.gov.tr/2011/01/01" elementFormDefault="qualified" targetNamespace="http://kps.nvi.gov.tr/2011/01/01" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="ArrayOfKimlikNoileAdresSorguKriteri">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="KimlikNoileAdresSorguKriteri" nillable="true" type="tns:KimlikNoileAdresSorguKriteri" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfKimlikNoileAdresSorguKriteri" nillable="true" type="tns:ArrayOfKimlikNoileAdresSorguKriteri" />
+      <xs:complexType name="KimlikNoileAdresSorguKriteri">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="KimlikNo" nillable="true" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="KimlikNoileAdresSorguKriteri" nillable="true" type="tns:KimlikNoileAdresSorguKriteri" />
+      <xs:complexType name="Parametre">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Aciklama" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Kod" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Parametre" nillable="true" type="tns:Parametre" />
+      <xs:complexType name="TarihBilgisi">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Ay" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Gun" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Yil" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="TarihBilgisi" nillable="true" type="tns:TarihBilgisi" />
+      <xs:complexType name="KimlikNoileYurtDisiAdresi">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DisTemsDuzeltmeBeyanTarih" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DisTemsDuzeltmeKararTarih" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DisTemsDuzeltmeNeden" nillable="true" type="tns:Parametre" />
+          <xs:element minOccurs="0" name="DisTemsilcilik" nillable="true" type="tns:Parametre" />
+          <xs:element minOccurs="0" name="HataBilgisi" nillable="true" type="tns:Parametre" />
+          <xs:element minOccurs="0" name="YabanciAdres" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="YabanciSehir" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="YabanciUlke" nillable="true" type="tns:Parametre" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="KimlikNoileYurtDisiAdresi" nillable="true" type="tns:KimlikNoileYurtDisiAdresi" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="KimlikNoSorgulaAdresServis_Sorgula_InputMessage">
+    <wsdl:part name="parameters" element="tns:Sorgula" />
+  </wsdl:message>
+  <wsdl:message name="KimlikNoSorgulaAdresServis_Sorgula_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SorgulaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="KimlikNoSorgulaAdresServis">
+    <wsdl:operation name="Sorgula">
+      <wsdl:input wsaw:Action="http://kps.nvi.gov.tr/2016/10/01/KimlikNoSorgulaAdresServis/Sorgula" message="tns:KimlikNoSorgulaAdresServis_Sorgula_InputMessage" />
+      <wsdl:output wsaw:Action="http://kps.nvi.gov.tr/2016/10/01/KimlikNoSorgulaAdresServis/SorgulaResponse" message="tns:KimlikNoSorgulaAdresServis_Sorgula_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CustomBinding_KimlikNoSorgulaAdresServis" type="tns:KimlikNoSorgulaAdresServis">
+    <wsp:PolicyReference URI="#CustomBinding_KimlikNoSorgulaAdresServis_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Sorgula">
+      <soap12:operation soapAction="http://kps.nvi.gov.tr/2016/10/01/KimlikNoSorgulaAdresServis/Sorgula" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="KimlikNoSorgulaAdresServis">
+    <wsdl:port name="CustomBinding_KimlikNoSorgulaAdresServis" binding="tns:CustomBinding_KimlikNoSorgulaAdresServis">
+      <soap12:address location="https://kpsv2.nvi.gov.tr/Services/RoutingService.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>https://kpsv2.nvi.gov.tr/Services/RoutingService.svc</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

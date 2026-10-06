@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>SGBServisler</AssemblyName>
+    <RootNamespace>SGBServisler</RootNamespace>
+  </PropertyGroup>
+
+  <!-- Taşınan her iş kuralları (C) projesi buraya eklenir -->
+  <ItemGroup>
+    <ProjectReference Include="..\GNLServis\GNLServis.csproj" />
+    <ProjectReference Include="..\DEGServis\DEGServis\DEGServis.csproj" />
+    <ProjectReference Include="..\UZYServis\UZYServisC\UZYServisC.csproj" />
+    <ProjectReference Include="..\KYMServis\KYMServisC\KYMServis.csproj" />
+    <ProjectReference Include="..\KHMServis\KHMServisC\KHMServisC.csproj" />
+  </ItemGroup>
+
+</Project>
