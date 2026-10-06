@@ -3,7 +3,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Data.OleDb;
 using System.Data.Odbc;
-using Oracle.ManagedDataAccess.Client;
 
 namespace TNS.Veri
 {

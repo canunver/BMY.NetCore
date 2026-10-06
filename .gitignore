@@ -35,6 +35,7 @@ TestResults/
 
 # --- Parola ve bağlantı satırı içeren ayar dosyaları (depoya girmez) ---
 Sunucu/SGBApi/App.config
+SGB.Net/App.config
 [Ww]eb.config
 [Ww]eb.*.config
 appsettings.Development.json
@@ -45,6 +46,7 @@ appsettings.*.local.json
 !*.ornek.config
 
 # --- Çalışma zamanı dosyaları ---
+App_Data/
 [Hh]ata/
 VTLog/
 *.log

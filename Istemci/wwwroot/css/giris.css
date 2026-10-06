@@ -1,0 +1,100 @@
+/* Giriş sayfası */
+html, body.giris {
+    height: 100%;
+}
+
+body.giris {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    /* Klasörde resim yoksa görünen arka plan */
+    background-color: #1f3a52;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Resmin üzerine hafif koyuluk: kutu her resimde okunaklı kalsın */
+.giris-perde {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(12, 26, 40, 0.45);
+}
+
+.giris-kutu {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    padding: 32px 32px 20px;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 6px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.giris-baslik {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.giris-logo {
+    max-height: 72px;
+    max-width: 100%;
+    margin-bottom: 12px;
+}
+
+.giris-kurum {
+    font-size: 14px;
+    color: #5a6773;
+    margin-bottom: 4px;
+}
+
+.giris-baslik h1 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 600;
+    color: #1f3a52;
+}
+
+.giris-kutu label {
+    font-weight: 600;
+    color: #33414e;
+}
+
+.giris-kutu .alert {
+    margin-bottom: 16px;
+}
+
+.giris-kod {
+    text-align: center;
+    letter-spacing: 0.4em;
+    font-size: 24px;
+}
+
+.giris-alt-islem {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.giris-surum {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #8a96a3;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 480px) {
+    .giris-kutu {
+        padding: 24px 20px 16px;
+    }
+}

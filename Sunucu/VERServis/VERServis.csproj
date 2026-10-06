@@ -5,11 +5,7 @@
     <RootNamespace>VERServis</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="23.6.1" />
-  </ItemGroup>
-
-  <ItemGroup>
+<ItemGroup>
     <ProjectReference Include="..\GNLServis\GNLServis.csproj" />
   </ItemGroup>
 

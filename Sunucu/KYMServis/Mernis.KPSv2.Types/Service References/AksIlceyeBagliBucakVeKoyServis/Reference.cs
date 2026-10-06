@@ -475,21 +475,6 @@ namespace Mernis.KPSv2.Types.AksIlceyeBagliBucakVeKoyServis {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class AksIlceyeBagliBucakVeKoyServisClient : System.ServiceModel.ClientBase<Mernis.KPSv2.Types.AksIlceyeBagliBucakVeKoyServis.AksIlceyeBagliBucakVeKoyServis>, Mernis.KPSv2.Types.AksIlceyeBagliBucakVeKoyServis.AksIlceyeBagliBucakVeKoyServis {
         
-        public AksIlceyeBagliBucakVeKoyServisClient() {
-        }
-        
-        public AksIlceyeBagliBucakVeKoyServisClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
-        }
-        
-        public AksIlceyeBagliBucakVeKoyServisClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
-        }
-        
-        public AksIlceyeBagliBucakVeKoyServisClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
-        }
-        
         public AksIlceyeBagliBucakVeKoyServisClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }

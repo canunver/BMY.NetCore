@@ -1370,14 +1370,6 @@ namespace TNS
             SAG, SOL
         }
 
-        class CertificatePolicy : System.Net.ICertificatePolicy
-        {
-            public bool CheckValidationResult(ServicePoint servicepoint, System.Security.Cryptography.X509Certificates.X509Certificate certificate, WebRequest request, int problem)
-            {
-                return true;
-            }
-        }
-
         public static async Task<string> WebdenOkuAsync(string webAdres, string postData = null, string cookieHeader = null,
             string cokGizliAnahtar = null, string contentType = "application/x-www-form-urlencoded", string authorization = null)
         {

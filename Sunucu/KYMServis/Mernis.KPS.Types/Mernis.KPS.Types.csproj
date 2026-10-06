@@ -5,4 +5,8 @@
     <RootNamespace>Mernis.KPS.Types</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\GNLServis\GNLServis.csproj" />
+  </ItemGroup>
+
 </Project>

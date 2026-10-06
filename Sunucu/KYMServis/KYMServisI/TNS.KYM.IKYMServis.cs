@@ -3695,6 +3695,25 @@ namespace TNS.KYM
         Sonuc KullaniciSessionAta(string kullaniciKodu, TNSDateTime tarih, string hostName, string sayfaAd, string bilgi1, string bilgi2, string bilgi3, string bilgi4, string bilgi5);
 
         /// <summary>
+        /// Web uygulamasının oturum verisini KYMOTURUM tablosuna yazar (varsa günceller).
+        /// </summary>
+        /// <param name="oturumNo">Oturumun rastgele üretilmiş numarası</param>
+        /// <param name="kullaniciKodu">Oturumun sahibi kullanıcı</param>
+        /// <param name="veri">Oturum verisi (JSON)</param>
+        /// <param name="sureDakika">Oturumun, işlem yapılmazsa kaç dakika sonra düşeceği</param>
+        Sonuc OturumYaz(string oturumNo, string kullaniciKodu, string veri, int sureDakika);
+
+        /// <summary>
+        /// Oturum verisini okur ve oturumun süresini sureDakika kadar uzatır. Oturum yoksa ya da süresi dolmuşsa null döner.
+        /// </summary>
+        string OturumOku(string oturumNo, int sureDakika);
+
+        /// <summary>
+        /// Oturumu siler (çıkış).
+        /// </summary>
+        Sonuc OturumSil(string oturumNo);
+
+        /// <summary>
         /// Verilen kıstaslara göre sistemde yapılan son işlemleri listeleyen yordam. 
         /// </summary>
         /// <param name="kullaniciKodu">Verilen kullanıcının işlemleri listelenir.</param>

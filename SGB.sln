@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.0.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGB.Net", "SGB.Net\SGB.Net.csproj", "{C5E0E08D-B5DD-54CB-BCEE-37D34E06EE24}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Istemci", "Istemci\Istemci.csproj", "{7273AE68-0AFF-5D1B-9DF8-386F8FC2CCDA}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BHMv2ServisI", "Sunucu\BHMv2Servis\BHMv2ServisI\BHMv2ServisI.csproj", "{9E975718-8CD3-5A7C-9CC9-1C0234A9F681}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BKDServisI", "Sunucu\BHMv2Servis\BKDServisI\BKDServisI.csproj", "{1A42EADD-ED2D-5CE5-8456-A74C06110106}"
@@ -59,6 +63,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5E0E08D-B5DD-54CB-BCEE-37D34E06EE24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5E0E08D-B5DD-54CB-BCEE-37D34E06EE24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5E0E08D-B5DD-54CB-BCEE-37D34E06EE24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5E0E08D-B5DD-54CB-BCEE-37D34E06EE24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7273AE68-0AFF-5D1B-9DF8-386F8FC2CCDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7273AE68-0AFF-5D1B-9DF8-386F8FC2CCDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7273AE68-0AFF-5D1B-9DF8-386F8FC2CCDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7273AE68-0AFF-5D1B-9DF8-386F8FC2CCDA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9E975718-8CD3-5A7C-9CC9-1C0234A9F681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9E975718-8CD3-5A7C-9CC9-1C0234A9F681}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E975718-8CD3-5A7C-9CC9-1C0234A9F681}.Release|Any CPU.ActiveCfg = Release|Any CPU

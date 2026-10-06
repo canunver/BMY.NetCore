@@ -1,0 +1,122 @@
+// Giriş sayfası: bütün sunucu çağrıları buradan (fetch + JSON) yapılır.
+// Adresler görelidir; uygulama IIS'te bir alt klasörde (sanal dizin) çalışsa da doğru yere gider.
+(function () {
+    'use strict';
+
+    var jeton = document.querySelector('meta[name="istek-jetonu"]').content;
+    var frmParola = document.getElementById('frmParola');
+    var frmKod = document.getElementById('frmKod');
+    var txtKullanici = document.getElementById('txtKullanici');
+    var txtParola = document.getElementById('txtParola');
+    var txtKod = document.getElementById('txtKod');
+    var chkHatirla = document.getElementById('chkHatirla');
+    var kutuHata = document.getElementById('hata');
+    var kutuBilgi = document.getElementById('bilgi');
+    var buyukHarf = document.getElementById('buyukHarf');
+
+    function goster(kutu, metin) {
+        kutu.textContent = metin || '';
+        kutu.hidden = !metin;
+    }
+
+    function mesajlariTemizle() {
+        goster(kutuHata, '');
+        goster(kutuBilgi, '');
+    }
+
+    function mesgul(form, durum) {
+        var dugmeler = form.querySelectorAll('button');
+        for (var i = 0; i < dugmeler.length; i++) dugmeler[i].disabled = durum;
+    }
+
+    // Sunucudaki hata metinleri <br> içerebiliyor; düz metne çevrilir.
+    function duzMetin(html) {
+        return (html || '').replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]*>/g, '').trim();
+    }
+
+    function istek() {
+        return {
+            kullaniciKodu: txtKullanici.value.trim(),
+            parola: txtParola.value,
+            ikinciKod: txtKod.value.trim(),
+            hatirla: chkHatirla.checked,
+            donusAdresi: new URLSearchParams(window.location.search).get('ReturnUrl')
+        };
+    }
+
+    function gonder(adres, form) {
+        mesajlariTemizle();
+        mesgul(form, true);
+        return fetch(adres, {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: { 'Content-Type': 'application/json', 'RequestVerificationToken': jeton },
+            body: JSON.stringify(istek())
+        })
+            .then(function (yanit) {
+                if (!yanit.ok) throw new Error('HTTP ' + yanit.status);
+                return yanit.json();
+            })
+            .catch(function () {
+                return { basarili: false, hata: 'Sunucuya ulaşılamadı. Lütfen tekrar deneyiniz.' };
+            })
+            .then(function (sonuc) {
+                mesgul(form, false);
+                return sonuc;
+            });
+    }
+
+    function sonucuIsle(sonuc) {
+        if (!sonuc.basarili) {
+            goster(kutuHata, duzMetin(sonuc.hata));
+            return;
+        }
+        if (sonuc.yonlen) {
+            window.location.href = sonuc.yonlen;
+            return;
+        }
+        if (sonuc.ikinciFaktorGerekli) {
+            frmParola.hidden = true;
+            frmKod.hidden = false;
+            goster(kutuBilgi, sonuc.bilgi);
+            txtKod.value = '';
+            txtKod.focus();
+        }
+    }
+
+    frmParola.addEventListener('submit', function (olay) {
+        olay.preventDefault();
+        if (!txtKullanici.value.trim() || !txtParola.value) {
+            goster(kutuHata, 'Kullanıcı kodu ve parola giriniz.');
+            return;
+        }
+        gonder('api/giris/parola', frmParola).then(sonucuIsle);
+    });
+
+    frmKod.addEventListener('submit', function (olay) {
+        olay.preventDefault();
+        if (!txtKod.value.trim()) {
+            goster(kutuHata, 'Doğrulama kodunu giriniz.');
+            return;
+        }
+        gonder('api/giris/tamamla', frmKod).then(sonucuIsle);
+    });
+
+    document.getElementById('btnKodYenile').addEventListener('click', function () {
+        gonder('api/giris/kod-yenile', frmKod).then(sonucuIsle);
+    });
+
+    document.getElementById('btnGeri').addEventListener('click', function () {
+        mesajlariTemizle();
+        frmKod.hidden = true;
+        frmParola.hidden = false;
+        txtParola.value = '';
+        txtParola.focus();
+    });
+
+    txtParola.addEventListener('keyup', function (olay) {
+        if (olay.getModifierState) buyukHarf.hidden = !olay.getModifierState('CapsLock');
+    });
+
+    (txtKullanici.value ? txtParola : txtKullanici).focus();
+})();

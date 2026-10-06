@@ -305,21 +305,6 @@ namespace Mernis.KPSv2.Types.AksOkuBucakServis {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class AksOkuBucakServisClient : System.ServiceModel.ClientBase<Mernis.KPSv2.Types.AksOkuBucakServis.AksOkuBucakServis>, Mernis.KPSv2.Types.AksOkuBucakServis.AksOkuBucakServis {
         
-        public AksOkuBucakServisClient() {
-        }
-        
-        public AksOkuBucakServisClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
-        }
-        
-        public AksOkuBucakServisClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
-        }
-        
-        public AksOkuBucakServisClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
-        }
-        
         public AksOkuBucakServisClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }

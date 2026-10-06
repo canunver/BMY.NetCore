@@ -3289,21 +3289,6 @@ namespace Mernis.KPSv2.Types.BilesikKutukSorgulaKimlikNoServis {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class BilesikKutukSorgulaKimlikNoServisClient : System.ServiceModel.ClientBase<Mernis.KPSv2.Types.BilesikKutukSorgulaKimlikNoServis.BilesikKutukSorgulaKimlikNoServis>, Mernis.KPSv2.Types.BilesikKutukSorgulaKimlikNoServis.BilesikKutukSorgulaKimlikNoServis {
         
-        public BilesikKutukSorgulaKimlikNoServisClient() {
-        }
-        
-        public BilesikKutukSorgulaKimlikNoServisClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
-        }
-        
-        public BilesikKutukSorgulaKimlikNoServisClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
-        }
-        
-        public BilesikKutukSorgulaKimlikNoServisClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
-        }
-        
         public BilesikKutukSorgulaKimlikNoServisClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }

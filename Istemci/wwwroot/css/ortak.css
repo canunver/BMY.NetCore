@@ -1,0 +1,46 @@
+/* Giriş sonrası sayfaların ortak görünümü */
+body.sayfa {
+    background-color: #eef1f4;
+}
+
+.ust-serit {
+    margin-bottom: 16px;
+    border-radius: 0;
+}
+
+.ust-serit .navbar-brand {
+    font-weight: 600;
+    color: #1f3a52;
+}
+
+.ust-serit-sag {
+    margin-right: 0;
+}
+
+.ust-serit-sag .navbar-text {
+    margin-right: 12px;
+}
+
+/* Bilgi ekranı (eski portal penceresi) */
+.bilgi-ekran {
+    margin-bottom: 16px;
+}
+
+.bilgi-ekran .panel-heading {
+    font-weight: 600;
+    padding: 8px 12px;
+}
+
+.bilgi-ekran .panel-body {
+    padding: 0;
+}
+
+.bilgi-ekran iframe {
+    display: block;
+    width: 100%;
+    border: 0;
+}
+
+[hidden] {
+    display: none !important;
+}

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <!-- Çalıştırılabilir uygulama (SGB.Net.exe). Yalnızca Program.cs ve ayar dosyasını içerir;
+       sayfalar, uçlar ve bütün uygulama mantığı Istemci.dll içindedir. -->
+  <PropertyGroup>
+    <AssemblyName>SGB.Net</AssemblyName>
+    <RootNamespace>SGBNet</RootNamespace>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Istemci\Istemci.csproj" />
+  </ItemGroup>
+
+</Project>

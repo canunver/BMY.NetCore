@@ -9,7 +9,6 @@ SKIPD={'bin','obj','.vs','packages'}
 SKIPE={'.user','.suo','.csproj','.cd','.dll','.pdb','.cache','.vspscc','.scc'}
 PKG={ # eski Reference adi -> NuGet paketi
  'Renci.SshNet':('SSH.NET','2024.2.0'),'Newtonsoft.Json':('Newtonsoft.Json','13.0.3'),
- 'System.Data.OracleClient':('Oracle.ManagedDataAccess.Core','23.6.1'),
  'System.DirectoryServices':('System.DirectoryServices','8.0.0'),
  'System.DirectoryServices.Protocols':('System.DirectoryServices.Protocols','8.0.0'),
  'System.ServiceModel':('System.ServiceModel.Http','8.0.0'),

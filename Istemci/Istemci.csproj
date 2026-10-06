@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <!-- Web uygulamasının kendisi: sayfalar (cshtml), JSON uçları, oturum ve wwwroot dosyaları.
+       Kitaplık (Istemci.dll) olarak derlenir; SGB.Net.exe tarafından çalıştırılır. -->
+  <PropertyGroup>
+    <AssemblyName>Istemci</AssemblyName>
+    <RootNamespace>Istemci</RootNamespace>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <!-- wwwroot dosyaları /_content/Istemci/... yerine doğrudan kökten sunulur: /css/giris.css -->
+    <StaticWebAssetBasePath>/</StaticWebAssetBasePath>
+    <!-- Giriş sayfasında gösterilen sürüm -->
+    <Version>3.0.0</Version>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Birinci aşama (tek katman): iş kuralları aynı süreçte çalışır -->
+    <ProjectReference Include="..\Sunucu\SGBServisler\SGBServisler.csproj" />
+  </ItemGroup>
+
+</Project>

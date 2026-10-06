@@ -678,6 +678,35 @@ namespace TNS.KYM.IsKurallari
             }
         }
 
+        public Sonuc OturumYaz(string oturumNo, string kullaniciKodu, string veri, int sureDakika)
+        {
+            try
+            {
+                return OturumDeposu.Yaz(oturumNo, kullaniciKodu, veri, sureDakika);
+            }
+            catch (Exception e)
+            {
+                return new Sonuc(e.ToString());
+            }
+        }
+
+        public string OturumOku(string oturumNo, int sureDakika)
+        {
+            return OturumDeposu.Oku(oturumNo, sureDakika);
+        }
+
+        public Sonuc OturumSil(string oturumNo)
+        {
+            try
+            {
+                return OturumDeposu.Sil(oturumNo);
+            }
+            catch (Exception e)
+            {
+                return new Sonuc(e.ToString());
+            }
+        }
+
         /// <summary>
         /// Verilen kıstaslara göre sistemde yapılan son işlemleri listeleyen yordam. 
         /// </summary>

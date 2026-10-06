@@ -1,0 +1,80 @@
+@page
+@model GirisModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="istek-jetonu" content="@Model.IstekJetonu" />
+    <title>@Model.YazilimAd</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/giris.css" asp-append-version="true" />
+</head>
+<body class="giris" style="@(Model.ArkaPlan != null ? "background-image:url('" + Model.ArkaPlan + "')" : null)">
+    <div class="giris-perde"></div>
+
+    <main class="giris-kutu">
+        <header class="giris-baslik">
+            @if (Model.Logo != null)
+            {
+                <img src="@Model.Logo" alt="" class="giris-logo" />
+            }
+            @if (!string.IsNullOrEmpty(Model.KurumAdi))
+            {
+                <div class="giris-kurum">@Model.KurumAdi</div>
+            }
+            <h1>@Model.YazilimAd</h1>
+        </header>
+
+        @if (!string.IsNullOrEmpty(Model.SistemUyarisi))
+        {
+            <div class="alert alert-warning" role="alert">@Html.Raw(Model.SistemUyarisi)</div>
+        }
+
+        <div id="hata" class="alert alert-danger" role="alert" hidden></div>
+        <div id="bilgi" class="alert alert-info" role="status" hidden></div>
+
+        <!-- 1. adım: kullanıcı kodu ve parola -->
+        <form id="frmParola" autocomplete="on" novalidate>
+            <div class="form-group">
+                <label for="txtKullanici">Kullanıcı kodu</label>
+                <input type="text" id="txtKullanici" class="form-control input-lg" autocomplete="username"
+                       maxlength="50" value="@Model.HatirlananKullanici" required />
+            </div>
+            <div class="form-group">
+                <label for="txtParola">Parola</label>
+                <input type="password" id="txtParola" class="form-control input-lg" autocomplete="current-password" required />
+                <span id="buyukHarf" class="help-block" hidden>Büyük harf kilidi (Caps Lock) açık.</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="chkHatirla" checked="@(!string.IsNullOrEmpty(Model.HatirlananKullanici))" />
+                    Kullanıcı kodumu hatırla
+                </label>
+            </div>
+            <button type="submit" id="btnGiris" class="btn btn-primary btn-lg btn-block">Giriş</button>
+        </form>
+
+        <!-- 2. adım: doğrulama kodu -->
+        <form id="frmKod" autocomplete="off" novalidate hidden>
+            <div class="form-group">
+                <label for="txtKod">Doğrulama kodu</label>
+                <input type="text" id="txtKod" class="form-control input-lg giris-kod" inputmode="numeric"
+                       autocomplete="one-time-code" maxlength="6" required />
+            </div>
+            <button type="submit" id="btnKod" class="btn btn-primary btn-lg btn-block">Doğrula ve giriş yap</button>
+            <div class="giris-alt-islem">
+                <button type="button" id="btnKodYenile" class="btn btn-link">Yeni kod gönder</button>
+                <button type="button" id="btnGeri" class="btn btn-link">Geri dön</button>
+            </div>
+        </form>
+
+        <footer class="giris-surum">Sürüm @Model.Surum</footer>
+    </main>
+
+    <script src="~/js/giris.js" asp-append-version="true"></script>
+</body>
+</html>

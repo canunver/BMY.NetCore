@@ -48,6 +48,38 @@ Bundan sonra `TNS.KHM.Arac.Tanimla()` ağ çağrısı yapmadan doğrudan `KHMSer
 - Çok katmanlı yapıya dönmek için kod değişmez: servis `ServisKayit`'tan çıkarılır, `...ServisURL` ayarı API adresine çevrilir.
   Aşağıdaki `SGBApi` projesi ve `ServisIstemci` bu ikinci aşama için hazır bekliyor.
 
+## Web uygulaması (`SGB.Net` + `Istemci`)
+
+- **`SGB.Net`** çalıştırılabilir projedir (`SGB.Net.exe`); başlangıç projesi budur. İçinde yalnızca `Program.cs` ve `App.config` vardır
+  ve neredeyse hiç değişmez.
+- **`Istemci`** uygulamanın kendisidir ve kitaplık olarak derlenir (`Istemci.dll`): sayfalar (cshtml derlenmiş olarak dll'in içindedir),
+  JSON uçları, oturum ve `wwwroot` dosyaları. Kurulum `IstemciBaslangic.cs` içindedir; yeni sayfa/uç/servis buraya eklenir.
+
+Şu an yalnızca giriş akışı var. Aşağıdaki yollar `Istemci` projesine göredir.
+
+| Yol | Açıklama |
+|---|---|
+| `Pages/Giris.cshtml` | Giriş sayfası (kullanıcı kodu + parola, ardından doğrulama kodu). Razor yalnızca birkaç değeri basar; işlemler `wwwroot/js/giris.js` içinde |
+| `Pages/OrtakSayfa/GirisBilgi.cshtml` | Girişten sonra açılan sayfa: bilgi ekranları (eski portal pencereleri) üç sütunda, her biri kendi çerçevesinde. Liste ve yerleşim eskisi gibi `TNS.KYM.Arac.bilgiEkranlar` / `ModulYerlesimBul`'dan gelir (`OrtakSayfa/GirisBilgiUclari.cs`, `wwwroot/js/girisbilgi.js`). Eski yapıdaki gibi giriş kökte, diğer bütün sayfalar bir alt klasörde durur; sayfalar birbirine `../Modul/Sayfa` ile başvurur |
+| `Giris/GirisUclari.cs` | Giriş sayfasının çağırdığı JSON uçları: `/api/giris/parola`, `/tamamla`, `/kod-yenile`, `/cikis` |
+| `Oturum/OturumBilgisi.cs` | Oturum: tarayıcıda şifreli çerez; oturum verisi kullanıcı veri tabanındaki `KYMOTURUM` tablosunda (State Server yerine). Uygulama yeniden başlasa da oturumlar korunur. Süre: `OturumSuresiDakika` (varsayılan 40) |
+| `wwwroot/img/giris/` | Giriş arka planları. Her açılışta klasördeki resimlerden biri rastgele seçilir; resim eklemek/çıkarmak yeterlidir |
+| `wwwroot/img/kurumlogo.jpg` | Kurum logosu (dosya yoksa logo gösterilmez) |
+| `../SGB.Net/App.config` | Ayarlar: eski sunucu ve istemci `web.config` appSettings birleşimi (exe projesinde; depoya girmez) |
+
+Çerez şifreleme anahtarları `App_Data/anahtarlar` klasöründe tutulur (`AnahtarKlasoru` ayarıyla değiştirilebilir); bu klasör
+güncellemelerde silinmemeli ve yalnızca uygulama havuzu kimliğinin erişimine açık olmalıdır.
+
+Adresler: sayfa içi bağlantılar ve JavaScript çağrıları görelidir, uygulama IIS'te alt klasörde (sanal dizin) de çalışır.
+Eski `Sayfa.aspx` adresleri uzantısı atılarak aynı sayfaya gider (`giris.aspx` -> `Giris`).
+
+Giriş ile ilgili ayarlar: `ikiAsamaliGiris` (1/2 = doğrulama kodu istenir), `sistemUyarisi`, `yazilimAd`;
+sistem değişkenleri `/KURUMAD`, `/TEKKULLANICI` (bakım modu), `/GirisDenemeSayi` (hatalı deneme sınırı).
+
+Eski `Giris.aspx`'ten bilerek alınmayanlar: oturum numarasıyla şifresiz giriş (Entegrasyon), SSO1/SSO2 eklentileri,
+dil bağlantıları, yardım/çağrı merkezi bağlantıları, "parolamı unuttum", güvenlik resmi (yerine hatalı deneme
+sınırı aşılınca 15 dakikalık bekleme), parola süresi dolunca parola değiştirme sayfasına yönlendirme (sayfa henüz taşınmadı).
+
 ## API (`Sunucu/SGBApi`)
 
 ```
@@ -76,11 +108,14 @@ Dönen nesne arayüzü çalışma zamanında uygular: her metot çağrısını A
 
 ## Bilinen eksikler ve beklenen derleme sorunları
 
-1. **KPM / Mernis** (`Mernis.KPS.Types`, `Mernis.KPSv2.Types`): WSE ve WIF kullanan SOAP istemcileri .NET 8'de yok.
-   `dotnet-svcutil` ile yeniden üretilmeli ya da KPM pilot dışında bırakılmalı.
-2. **KYMServisI `Web References\IcisleriKullaniciServis`**: ASMX istemcisi (`SoapHttpClientProtocol`) .NET 8'de yok;
-   `KullaniciServis.cs` bunu kullanıyor.
-3. **Oracle**: `System.Data.OracleClient` yerine `Oracle.ManagedDataAccess.Core` konuldu (`VERServis`). Oracle kullanan kurum varsa denenmeli.
+1. **Dış web servisleri** (İçişleri `YetkiSGB`, Mernis KPS v1, Mernis KPS v2): .NET Framework'e özgü altyapılar
+   (ASMX istemcisi, WSE 2.0, WIF) .NET 8 karşılıklarıyla yeniden yazıldı; **gerçek servislere karşı henüz denenmedi**.
+   - `YetkiSGB` ve KPS v1: `GNLServis/TNS.Soap.SoapIstemci.cs` tabanlı (HttpClient + XmlSerializer). KPS v1'de WS-Security
+     başlığı elle üretiliyor.
+   - KPS v2: `System.ServiceModel.Federation` ile; bağlamalar `Mernis.KPSv2.Types/KPSServiceFactory.cs` içinde kodla tanımlı
+     (eski `app.config` içindeki `system.serviceModel` bölümü .NET 8'de okunmaz).
+2. Diğer eski web referansları `_araclar/asmx_istemci_uret.py <Reference.cs>` ile aynı şekilde çevrilebilir.
+3. **Oracle**: Oracle desteği çıkarıldı (`VERServis`). `ConnectionString.Data = ORACLE` ayarı artık hata verir; SQL Server, OleDb ve Odbc duruyor.
 4. **`GNLServis/Calculator.cs`**: çalışma zamanında C# derliyor (CodeDom). Derlenir ama .NET 8'de çalışırken hata verir; Roslyn'e çevrilmeli.
 5. **Henüz taşınmayan servisler**: KHM ve KYM iş kuralları MUH, BKD, BHMv2, BUM, PER, TMM, KPM servislerini çağırıyor.
    Bunların iş kuralları taşınana kadar o kod yolları "servis henüz yeni API'ye taşınmadı" hatası verir.

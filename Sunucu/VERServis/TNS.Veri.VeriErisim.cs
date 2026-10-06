@@ -3,7 +3,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Data.OleDb;
 using System.Data.Odbc;
-using Oracle.ManagedDataAccess.Client;
 
 namespace TNS.Veri
 {
@@ -576,94 +575,6 @@ namespace TNS.Veri
         }
     }
 
-    class VeriErisimOracle : VeriErisim, IDisposable
-    {
-        public VeriErisimOracle(string cnStr)
-        {
-            cn = new OracleConnection(cnStr);
-            cn.Open();
-        }
-
-        private void ParamEkle(OracleCommand cmd)
-        {
-            //**Parameter için***************
-            if (param != null)
-            {
-                for (int i = 0; i < param.Count; i++)
-                {
-                    VeriPara vp = (VeriPara)param[i];
-                    OracleParameter p = new OracleParameter();
-
-                    p.DbType = vp.dbType;
-                    p.Value = vp.value;
-                    p.Size = vp.size;
-                    p.ParameterName = vp.paraName;
-                    cmd.Parameters.Add(p);
-                }
-            }
-            //*****************
-        }
-
-        public override IDataReader DataReaderDondur(String sql)
-        {
-            Logla(sql, 2);
-
-            OracleCommand cmd;
-            IDataReader dr;
-
-            dr = null;
-            try
-            {
-                if (transactionSay > 0)
-                    cmd = new OracleCommand(sql, (OracleConnection)cn, (OracleTransaction)tran);
-                else
-                    cmd = new OracleCommand(sql, (OracleConnection)cn);
-                ParamEkle(cmd);
-                cmd.CommandTimeout = this.sureAsimi;
-                dr = cmd.ExecuteReader();
-            }
-            catch (Exception e)
-            {
-                HataEkle(e.Message, sql);
-            }
-            param.Clear();
-            return dr;
-        }
-
-        public override int ExecuteNonquery(string sql, int timeOut)
-        {
-            Logla(sql, 1);
-
-            OracleCommand cmd;
-            int EtkilenenSatir;
-
-            EtkilenenSatir = -1;
-            //cn=new SqlConnection(cnStr);
-
-            try
-            {
-                if (transactionSay > 0)
-                    cmd = new OracleCommand(sql, (OracleConnection)cn, (OracleTransaction)tran);
-                else
-                    cmd = new OracleCommand(sql, (OracleConnection)cn);
-                ParamEkle(cmd);
-                cmd.CommandTimeout = timeOut;
-                EtkilenenSatir = cmd.ExecuteNonQuery();
-            }
-            catch (Exception Ex)
-            {
-                HataEkle(Ex.Message, sql);
-            }
-            param.Clear();
-            return EtkilenenSatir;
-        }
-    }
-
-    public enum ENUMAlanTip : int
-    {
-        NUMERIC = 0, STRING = 1, DATETIME = 2
-    }
-
     public class VeriErisim : IDisposable
     {
         protected string cnStr;
@@ -1003,11 +914,6 @@ namespace TNS.Veri
             }
             catch (Exception ex)
             {
-                if (r.GetType() == typeof(OracleDataReader))
-                {
-                    Oracle.ManagedDataAccess.Types.OracleDecimal on = ((OracleDataReader)r).GetOracleDecimal(kolonNo);
-                    return on.Value;
-                }
                 object o = r.GetValue(kolonNo);
                 throw new Exception(o.GetType() + ex.Message);
             }
@@ -1166,7 +1072,7 @@ namespace TNS.Veri
                 }
                 else if (p_tip.Equals("ORACLE"))
                 {
-                    donusDeger = new VeriErisimOracle(cnStr);
+                    throw new NotSupportedException("Oracle desteği .NET 8 sürümünden çıkarıldı (ConnectionString.Data = ORACLE).");
                 }
                 else if (p_tip.Equals("ODBC"))
                 {
@@ -1297,7 +1203,7 @@ namespace TNS.Veri
             }
             else if (p_tip.Equals("ORACLE"))
             {
-                donusDeger = new VeriErisimOracle(cnStr);
+                throw new NotSupportedException("Oracle desteği .NET 8 sürümünden çıkarıldı (ConnectionString.Data = ORACLE).");
             }
             else if (p_tip.Equals("ODBC"))
             {

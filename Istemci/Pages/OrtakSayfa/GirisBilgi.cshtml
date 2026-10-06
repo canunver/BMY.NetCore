@@ -1,0 +1,43 @@
+@page
+@model GirisBilgiModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="istek-jetonu" content="@Model.IstekJetonu" />
+    <title>@Model.YazilimAd</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/ortak.css" asp-append-version="true" />
+</head>
+<body class="sayfa">
+    <nav class="navbar navbar-default navbar-static-top ust-serit">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <span class="navbar-brand">@Model.YazilimAd</span>
+            </div>
+            <div class="navbar-right ust-serit-sag">
+                <span id="lblKullanici" class="navbar-text"></span>
+                <button type="button" id="btnCikis" class="btn btn-default navbar-btn">Çıkış</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div id="uyari" class="alert alert-warning" role="alert" hidden></div>
+        <div id="hata" class="alert alert-danger" role="alert" hidden></div>
+
+        <!-- Eski yerleşim: üç sütun, genişlikleri %50 / %30 / %20 -->
+        <div class="row" id="ekranlar">
+            <div class="col-md-6" data-sutun="0"></div>
+            <div class="col-md-4" data-sutun="1"></div>
+            <div class="col-md-2" data-sutun="2"></div>
+        </div>
+    </div>
+
+    <script src="~/js/girisbilgi.js" asp-append-version="true"></script>
+</body>
+</html>

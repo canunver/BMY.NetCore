@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BHMv2Servis\BHMv2ServisI\BHMv2ServisI.csproj" />
     <ProjectReference Include="..\..\BHMv2Servis\BKDServisI\BKDServisI.csproj" />
     <ProjectReference Include="..\..\GNLServis\GNLServis.csproj" />
     <ProjectReference Include="..\..\KYMServis\KYMServisI\KYMServisI.csproj" />

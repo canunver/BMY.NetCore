@@ -1,33 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ServiceModel;
-using System.ServiceModel.Security;
-using System.ServiceModel.Channels;
+using System;
+using System.Collections.Concurrent;
 using System.IdentityModel.Tokens;
-using Microsoft.IdentityModel.Protocols.WSTrust;
-using Microsoft.IdentityModel.SecurityTokenService;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+using System.ServiceModel.Federation;
 
 namespace Mernis.KPSv2.Types
 {
+    /// <summary>
+    /// KPS v2 servislerine bağlanan WCF kanallarını üretir.
+    ///
+    /// Kimlik doğrulama akışı (eski app.config içindeki system.serviceModel bölümünün kod karşılığı):
+    ///   1. Kullanıcı adı / parola ile NVİ kimlik doğrulama servisinden (STS, WS-Trust 1.3) simetrik anahtarlı jeton alınır.
+    ///   2. Bu jeton ile KPS servisi (RoutingService.svc) çağrılır (IssuedTokenOverTransport).
+    ///
+    /// .NET Framework sürümünde bu iş Windows Identity Foundation (Microsoft.IdentityModel) ile elle yapılıyordu;
+    /// .NET 8'de System.ServiceModel.Federation paketi jetonu kendisi alır, saklar ve süresi dolunca yeniler.
+    /// </summary>
     public class KPSServiceFactory
     {
-        #region Constructors
-
-        private KPSServiceFactory() { }
-
-        #endregion
-
-        #region Fields
+        /// <summary>NVİ kimlik doğrulama (jeton) servisi adresi.</summary>
+        public const string IssuerAddress = "https://kimlikdogrulama.nvi.gov.tr/Services/Issuer.svc/IWSTrust13";
 
         private static KPSServiceFactory instance;
+        private static readonly ConcurrentDictionary<string, ChannelFactory> fabrikalar = new ConcurrentDictionary<string, ChannelFactory>();
 
-        private SecurityToken token;
-
-        #endregion
-
-        #region Properties
+        private KPSServiceFactory() { }
 
         public static KPSServiceFactory Instance
         {
@@ -35,35 +33,52 @@ namespace Mernis.KPSv2.Types
             {
                 if (instance == null)
                     instance = new KPSServiceFactory();
-
                 return instance;
             }
         }
 
-        #endregion
-
-        #region Methods
-
-        public SecurityToken CreateToken()
+        /// <summary>Jeton servisine (STS) bağlanırken kullanılan bağlama: eski "stsIssuerServiceBinding".</summary>
+        public Binding CreateIssuerBinding()
         {
-            if (token == null || token.ValidTo <= DateTime.Now.ToUniversalTime())
-            {
-                Microsoft.IdentityModel.Protocols.WSTrust.WSTrustChannelFactory trustChannelFactory = new Microsoft.IdentityModel.Protocols.WSTrust.WSTrustChannelFactory("STSIssuerService");
-                trustChannelFactory.TrustVersion = TrustVersion.WSTrust13;
-                trustChannelFactory.Credentials.UserName.UserName = KPSConfiguration.Instance.Username;
-                trustChannelFactory.Credentials.UserName.Password = KPSConfiguration.Instance.Password;
-
-                Microsoft.IdentityModel.Protocols.WSTrust.WSTrustChannel channel = (Microsoft.IdentityModel.Protocols.WSTrust.WSTrustChannel)trustChannelFactory.CreateChannel();
-                RequestSecurityToken rst = new RequestSecurityToken(RequestTypes.Issue);
-                rst.AppliesTo = new EndpointAddress(KPSConfiguration.Instance.EndPoint);
-                RequestSecurityTokenResponse rstr;
-
-                token = channel.Issue(rst, out rstr);
-            }
-
-            return token;
+            WS2007HttpBinding b = new WS2007HttpBinding(SecurityMode.TransportWithMessageCredential);
+            b.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
+            b.Security.Message.ClientCredentialType = MessageCredentialType.UserName;
+            b.Security.Message.EstablishSecurityContext = false;
+            return b;
         }
 
-        #endregion
+        /// <summary>KPS servislerine bağlanırken kullanılan bağlama: eski "CustomBinding_..." tanımları.</summary>
+        public Binding CreateServiceBinding()
+        {
+            WSTrustTokenParameters jeton = WSTrustTokenParameters.CreateWS2007FederationTokenParameters(
+                CreateIssuerBinding(), new EndpointAddress(IssuerAddress));
+            jeton.KeyType = SecurityKeyType.SymmetricKey;
+            jeton.CacheIssuedTokens = true;
+
+            WSFederationHttpBinding b = new WSFederationHttpBinding(jeton);
+            b.MaxReceivedMessageSize = 1024 * 1024;
+            b.SendTimeout = TimeSpan.FromMinutes(1);
+            return b;
+        }
+
+        /// <summary>
+        /// Verilen servis sözleşmesi için kanal üretir. Kanal fabrikası (ve onunla birlikte alınmış jeton)
+        /// sözleşme + adres + kullanıcı başına bir kez oluşturulup saklanır.
+        /// </summary>
+        public TChannel CreateChannel<TChannel>()
+        {
+            KPSConfiguration ayar = KPSConfiguration.Instance;
+            string anahtar = typeof(TChannel).FullName + "|" + ayar.EndPoint + "|" + ayar.Username + "|" + (ayar.Password ?? "").GetHashCode();
+
+            ChannelFactory<TChannel> fabrika = (ChannelFactory<TChannel>)fabrikalar.GetOrAdd(anahtar, delegate(string a)
+            {
+                ChannelFactory<TChannel> f = new ChannelFactory<TChannel>(CreateServiceBinding(), new EndpointAddress(ayar.EndPoint));
+                f.Credentials.UserName.UserName = ayar.Username;
+                f.Credentials.UserName.Password = ayar.Password;
+                return f;
+            });
+
+            return fabrika.CreateChannel();
+        }
     }
 }

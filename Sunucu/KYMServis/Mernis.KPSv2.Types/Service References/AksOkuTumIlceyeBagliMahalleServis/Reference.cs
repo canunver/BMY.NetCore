@@ -338,21 +338,6 @@ namespace Mernis.KPSv2.Types.AksOkuTumIlceyeBagliMahalleServis {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class AksOkuTumIlceyeBagliMahalleServisClient : System.ServiceModel.ClientBase<Mernis.KPSv2.Types.AksOkuTumIlceyeBagliMahalleServis.AksOkuTumIlceyeBagliMahalleServis>, Mernis.KPSv2.Types.AksOkuTumIlceyeBagliMahalleServis.AksOkuTumIlceyeBagliMahalleServis {
         
-        public AksOkuTumIlceyeBagliMahalleServisClient() {
-        }
-        
-        public AksOkuTumIlceyeBagliMahalleServisClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
-        }
-        
-        public AksOkuTumIlceyeBagliMahalleServisClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
-        }
-        
-        public AksOkuTumIlceyeBagliMahalleServisClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
-        }
-        
         public AksOkuTumIlceyeBagliMahalleServisClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }

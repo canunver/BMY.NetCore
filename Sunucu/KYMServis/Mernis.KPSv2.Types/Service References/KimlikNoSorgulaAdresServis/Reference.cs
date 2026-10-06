@@ -2287,21 +2287,6 @@ namespace Mernis.KPSv2.Types.KimlikNoSorgulaAdresServis {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class KimlikNoSorgulaAdresServisClient : System.ServiceModel.ClientBase<Mernis.KPSv2.Types.KimlikNoSorgulaAdresServis.KimlikNoSorgulaAdresServis>, Mernis.KPSv2.Types.KimlikNoSorgulaAdresServis.KimlikNoSorgulaAdresServis {
         
-        public KimlikNoSorgulaAdresServisClient() {
-        }
-        
-        public KimlikNoSorgulaAdresServisClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
-        }
-        
-        public KimlikNoSorgulaAdresServisClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
-        }
-        
-        public KimlikNoSorgulaAdresServisClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
-        }
-        
         public KimlikNoSorgulaAdresServisClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }

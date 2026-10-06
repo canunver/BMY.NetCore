@@ -1,5 +1,4 @@
-﻿using Microsoft.Web.Services2.Security.Tokens;
-
+﻿
 namespace Mernis.KPS.Types
 {
     public abstract class KPSServis
@@ -23,8 +22,10 @@ namespace Mernis.KPS.Types
             string kullanici = System.Configuration.ConfigurationManager.AppSettings.Get("MernisUser") + "";
             string parola = System.Configuration.ConfigurationManager.AppSettings.Get("MernisPassword") + "";
 
-            UsernameToken userName = new UsernameToken(kullanici, parola, PasswordOption.SendHashed);
-            service.RequestSoapContext.Security.Tokens.Add(userName);
+            // WSE 2.0 UsernameToken (PasswordOption.SendHashed) karşılığı: SoapIstemci parola özetli güvenlik başlığını ekler.
+            service.KullaniciAdi = kullanici;
+            service.Parola = parola;
+            service.ParolaOzetiGonder = true;
             return service;
         }
 
