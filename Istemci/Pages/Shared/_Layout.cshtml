@@ -1,0 +1,44 @@
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Sahtecilik
+@{
+    // Eski SayfaUstAltBolumYaz'ın karşılığı. Sayfa yalnızca kendi içeriğini yazar; üst şerit (yazılım ikonu, bulunulan
+    // sayfa, kullanıcı), sol menü ve alt bilgi tarayıcıda saklanan menü verisinden wwwroot/js/menu.js tarafından
+    // çizilir (sunucu her sayfada menü üretmez). Üst şeritteki sayfa adı menüden, menüde yoksa ViewData["Title"]'dan gelir.
+    // ?menuYok=1 ile açılan sayfalar (çerçeve içinde gösterilenler) ve ViewData["MenuYok"] = true diyen sayfalar
+    // (ör. yalnızca bilgi ekranı olarak açılan Duyuru/Duyuru) menüsüz gelir.
+    bool menuYok = !string.IsNullOrEmpty(Context.Request.Query["menuYok"]) || Equals(ViewData["MenuYok"], true);
+    string kullanici = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+}
+<!DOCTYPE html>
+<html lang="@Dil.Aktif">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="istek-jetonu" content="@Sahtecilik.GetAndStoreTokens(Context).RequestToken" />
+    <meta name="kullanici" content="@kullanici" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/menu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ortak.css" asp-append-version="true" />
+    <!-- Tema ve menü görünümü (açık / ikon / gizli), sayfa çizilmeden önce uygulanır -->
+    <script src="~/js/menu-on.js" asp-append-version="true"></script>
+    @RenderSection("Baslik", required: false)
+</head>
+<body class="sayfa @(menuYok ? "menusuz" : "") @ViewData["GovdeSinif"]" data-menu-yenile="@ViewData["MenuYenile"]">
+    @if (!menuYok)
+    {
+        <header id="menuUst" class="menu-ust"></header>
+        <aside id="menuYan" class="menu-yan"></aside>
+    }
+    <main class="sayfa-icerik">
+        @RenderBody()
+    </main>
+    @if (!menuYok)
+    {
+        <footer id="menuAlt" class="menu-alt"></footer>
+        <script src="~/js/menu.js" asp-append-version="true"></script>
+    }
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/js/ortak.js" asp-append-version="true"></script>
+    @RenderSection("Betikler", required: false)
+</body>
+</html>

@@ -1,0 +1,436 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Nodes>
+
+  <Node ID="Menu1" Tip="Grup" Text="Organizasyon ve Planlama" Modul="ORG,PEB,STRKur"  >
+    <Node ID="Menu1_1" Tip="UstMenu" Text="Organizasyon Yapı" Genislik="120" Yukseklik="100" Modul="ORG">
+      <Node Tip="Kolon">
+        <Node ID="Menu1_1_1" Text="Organizasyon Şeması" URL="../Organizasyon/ORGAna.aspx?tur=1" Yetki="1,2,11" ></Node>
+        <Node ID="Menu1_1_3" Text="Birim Tür Tanımlama" URL="../ButceHazirlikv2/GenelKodTanimla.aspx?Tur=21" Yetki="1"></Node>
+        <Node ID="Menu1_1_4" Text="Genel Görev Tanımlama" URL="../Organizasyon/GenelGorevAna.aspx" Yetki="1"></Node>
+      </Node>
+    </Node>
+    <Node ID="Menu1_2" Tip="UstMenu" Text="Stratejik Plan" Genislik="85" Yukseklik="320" Modul="STRKur">
+      <Node Tip="Kolon">
+        <Node ID="Menu1_2_0" Tip="AltBolum" Text="Kurum Stratejik Planı" Modul="STRKur">
+          <Node ID="Menu1_2_1" Text="Misyon" URL="../PerformansButce/Misyon.aspx" Yetki="1,26" ></Node>
+          <Node ID="Menu1_2_2" Text="Vizyon" URL="../PerformansButce/Vizyon.aspx" Yetki="1,26" ></Node>
+          <Node ID="Menu1_2_4" Text="Stratejik Amaç" URL="../PerformansButce/StratejikAmac.aspx" Yetki="1,26" ></Node>
+          <Node ID="Menu1_2_5" Text="Stratejik Hedef" URL="../PerformansButce/StratejikHedef.aspx" Yetki="1,26" ></Node>
+        </Node>
+      </Node>
+    </Node>
+    <Node ID="Menu1_3" Tip="UstMenu" Text="Performans Programı" Genislik="130" Yukseklik="150" Modul="PEB" >
+      <Node Tip="Kolon">
+        <Node ID="Menu1_3_0" Tip="AltBolum" Text="Kurum Performans Programı" Modul="PEB">
+          <Node ID="Menu1_3_1" Text="Strateji Ağacı" URL="../PerformansButce/CascadeAna.aspx" Yetki="1,27" ></Node>
+          <Node ID="Menu1_3_2" Text="Performans Hedefi" URL="../PerformansButce/PerformansHedefAna.aspx" Yetki="1,27" ></Node>
+          <Node ID="Menu1_3_3" Text="Faaliyet/GYG/Transfer" URL="../PerformansButce/PerformansFaaliyet.aspx" Yetki="1,27" ></Node>
+          <Node ID="Menu1_3_4" Text="Performans Göstergesi Hedeflenen" URL="../PerformansButce/PerformansGostergeHedeflenen.aspx" Yetki="1,27" ></Node>
+          <Node ID="Menu1_3_5" Text="Faaliyet/Proje" URL="../PerformansButce/FaaliyetProjeAna.aspx" Yetki="1,27" Gizli="1" ></Node>
+          <Node ID="Menu1_3_6" Text="Sabit Maliyet" URL="../PerformansButce/SabitMaliyetAna.aspx" Yetki="1,27" Gizli="1" ></Node>
+          <Node ID="Menu1_3_7" Text="Tedbirler" URL="../PerformansButce/Tedbirler.aspx" Yetki="1,27" Gizli="1" ></Node>
+          <Node ID="Menu1_3_8" Text="Harcama Dağıtım" URL="../PerformansButce/HarcamaDagit.aspx" Yetki="1,27" ></Node>
+        </Node>
+      </Node>
+    </Node>
+    <Node ID="Menu1_4" Tip="UstMenu" Text="Operasyonel Plan" Genislik="110" Yukseklik="150" Modul="PEB">
+      <Node Tip="Kolon">
+        <Node ID="Menu1_4_1" Tip="AltBolum" Text="Performans Bütçe Operasyonel Plan">
+          <Node ID="Menu1_4_1_1" Text="Daire Tanımlama" URL="../PerformansButce/TanimDaire.aspx" Yetki="1" Gizli="1"></Node>
+          <Node ID="Menu1_4_1_2" Text="Personel İşlemleri" URL="../PerformansButce/PersonelAna.aspx" Yetki="1,27" Gizli="1"></Node>
+          <Node ID="Menu1_4_1_3" Text="Alt Faliyet Giriş/Sorgulama" URL="../PerformansButce/AltFaaliyet.aspx" Yetki="1,27" Gizli="1"></Node>
+          <Node ID="Menu1_4_1_4" Text="İş/Görev İşlemleri" URL="../PerformansButce/IsGorevAgac.aspx" Yetki="1,27" ></Node>
+        </Node>
+      </Node>
+    </Node>
+    <Node ID="Menu1_6" Tip="UstMenu" Text="İzleme Değerlendirme" Genislik="140" Yukseklik="250" Modul="PEB">
+      <Node Tip="Kolon">
+        <Node ID="Menu1_6_1" Text ="Gösterge Gerçekleşmeleri" URL="../PerformansButce/PerformansGostergeGerceklesen.aspx" Yetki="1,27" ></Node>
+        <Node ID="Menu1_6_2" Text="Ön Mali Kontrol" URL="" Yetki="1" Gizli="1"></Node>
+        <Node ID="Menu1_6_3" Tip="AltBolum" Text="Raporlar">
+          <Node ID="Menu1_6_3_1" Text="Birim Göstergeleri İzleme ve Değerlendirme Raporu" URL="../PerformansButce/RaporlarPerformansGosterge.aspx?raporTur=BirimGosterge" Yetki="1,27" ></Node>
+          <Node ID="Menu1_6_3_2" Text="Performans Göstergesi Gerçekleşen İzleme Raporu" URL="../PerformansButce/RaporlarPerformansGosterge.aspx?raporTur=GostergeDetayIzleme" Yetki="1,27" ></Node>
+          <Node ID="Menu1_6_3_3" Text="Performans Göstergerlerinin Gerçekleşmelerinin Hedefe Ulaşma Durumu Raporu" URL="../PerformansButce/RaporlarPerformansGosterge.aspx?raporTur=GostergeHedefUlasma" Yetki="1,27" ></Node>
+          <Node ID="Menu1_6_3_4" Text="Faaliyet Raporu" URL="" Yetki="1" Gizli="1"></Node>
+          <Node ID="Menu1_6_3_5" Text="Performans Bütçe Raporları" URL="../Raporlama/RaporGrupListe.aspx?raporGrup=2000" Yetki="1,20"></Node>
+        </Node>
+      </Node>
+    </Node>
+    <Node ID="Menu4_7_pb" Tip="UstMenu" Text="Faaliyet Yönetimi" Genislik="100" Yukseklik="100" Modul="GRV" URL="../GorevYonetimi/Gorev.aspx?yetki=0" Yetki="1,2,47,48">
+    </Node>
+  </Node>
+
+  <Node ID="Menu2" Tip="Grup" Text="Bütçeleme" Modul="BHM">
+    <Node ID="Menu2_2" Tip="UstMenu" Text="Bütçe Hazırlık" Genislik="100" Yukseklik="110" Modul="BHM" >
+      <Node Tip="Kolon">
+        <Node ID="MenuPB_1_1" Text="Teklif Edilen Programlar" URL="../ProgramButce/ProgramTeklifListe.aspx" Yetki="1,20"></Node>
+        <Node ID="MenuPB_1_2" Text="Teklif Edilen Alt Programlar" URL="../ProgramButce/AltProgramTeklifListe.aspx" Yetki="1,20"></Node>
+        <Node ID="MenuPB_1_3" Text="Teklif Edilen Faaliyetler" URL="../ProgramButce/FaalProjeTeklifListe.aspx?tur=1" Yetki="1,20"></Node>
+        <Node ID="MenuPB_1_4" Text="Teklif Edilen Projeler" URL="../ProgramButce/FaalProjeTeklifListe.aspx?tur=2" Yetki="1,20"></Node>
+        <Node ID="Menu2_2_2"  Text="Gider Teklifi" URL="../ButceHazirlikv2/ButceRakamDuzenle.aspx?odenekTur=1" Yetki="1,20"></Node>
+      </Node>
+    </Node>
+    <Node ID="Menu2_2a" Tip="UstMenu" Text="Veri Zarflama" Genislik="100" Yukseklik="110" Modul="BHM" >
+      <Node Tip="Kolon">
+        <Node ID="Menu2_1_4" URL="../ButceHazirlikv2/TanimBirimDegisken.aspx" Yetki="1"></Node>
+        <Node ID="Menu3_2_28" Text="BirimDegiskenForm" URL="../ButceHazirlikv2/BirimDegiskenForm.aspx?birim=1" Yetki="1,2,18,19,21" Modul="MUH,BHM,HRC"></Node>
+      </Node>
+    </Node>
+    <Node ID="Menutj2_2" Tip="UstMenu" Text="Codes" Genislik="100" Yukseklik="260" Modul="BHM">
+      <Node Tip="Kolon">
+        <Node ID="Menu2_1_0" URL="../ButceHazirlikv2/ButceAsamaIslemleri.aspx" Yetki="1"></Node>
+        <Node ID="Menutj2_2_1"  Text="Org Codes"      URL="../ButceHazirlikv2/GenelKodTanimla.aspx?Tur=1"  Yetki="1"></Node>
+        <Node ID="Menutj2_2_2"  Text="Func Codes"     URL="../ButceHazirlikv2/GenelKodTanimla.aspx?Tur=2"  Yetki="1"></Node>
+        <Node ID="Menutj2_2_3"  Text="Fund Codes"     URL="../ButceHazirlikv2/GenelKodTanimla.aspx?Tur=3"  Yetki="1"></Node>
+        <Node ID="Menutj2_2_4"  Text="Eco Codes"      URL="../ButceHazirlikv2/GenelKodTanimla.aspx?Tur=4"  Yetki="1"></Node>
+        <Node ID="Menutj2_2_14" Text="Prog Codes"     URL="../ButceHazirlikv2/GenelKodTanimla.aspx?Tur=14" Yetki="1"></Node>
+        <Node ID="Menu5_1_1_1" Text="Analitik Bütçe Raporları" URL="../Raporlama/RaporGrupListe.aspx?raporGrup=0" Yetki="1,20"></Node>
+        <Node ID="Menu5_1_1_2" Text="Performans Bütçe Raporları" URL="../Raporlama/RaporGrupListe.aspx?raporGrup=2000" Yetki="1,20"></Node>
+      </Node>
+    </Node>
+  </Node>
+
+  <Node ID="Menu6" Tip="Grup" Text="Ayarlar">
+    <Node ID="Menu6_1" Tip="UstMenu" Text="Kullanıcı Yönetimi" Genislik="120" Yukseklik="200" >
+      <Node Tip="Kolon">
+        <Node ID="Menu6_1_1" Text="Kullanıcı Arama" URL="../KYM/KullaniciArama.aspx" Yetki="1,2,39" ></Node>
+        <Node ID="Menu6_1_2" Text="Yeni Kullanıcı Girişi" URL="../KYM/KullaniciGiris.aspx" Yetki="1,2,39" ></Node>
+        <Node ID="Menu6_1_3" Text="Parola Değiştirme" URL="../KYM/ParolaDegistir.aspx" Yetki="" ></Node>
+        <Node ID="Menu6_1_4" Text="Tema Değiştirme" URL="../KYM/TemaDegistir.aspx" Yetki="" ></Node>
+        <Node ID="Menu6_1_5" Text="Sık Kullanılan İşlemler" URL="../KYM/MenuSikKullanilan.aspx" Yetki="" ></Node>
+        <Node ID="Menu6_1_6" Text="Kullanıcılara e-posta Gönder" URL="../KYM/ePostaAt.aspx" Yetki="1,39" ></Node>
+        <Node ID="Menu6_1_7" Text="Duyuru Girişi" URL="../Duyuru/DuyuruGiris.aspx" Yetki="1,39" ></Node>
+      </Node>
+    </Node>
+    <Node ID="Menu5_4" Tip="UstMenu" Text="Sistem Raporları" Genislik="120" Yukseklik="100"  >
+      <Node Tip="Kolon">
+        <Node ID="Menu5_4_1" Text="Sistem Durum Dosya Listesi" URL="../KYM/HataDosya.aspx" Yetki="1" ></Node>
+        <Node ID="Menu5_4_2" Text="Sistemi Kullanan Kişilerin Listesi" URL="../KYM/CalisanKullaniciListe.aspx" Yetki="1,39" ></Node>
+        <Node ID="Menu5_4_3" Text="Sistem Kullanım Grafiği" URL="../KYM/CalisanKullaniciGrafik.aspx" Yetki="1" ></Node>
+        <Node ID="Menu5_4_4" Text="Sürüm Bilgisi" URL="../OrtakSayfa/SurumBilgi.aspx" Yetki="1" ></Node>
+      </Node>
+    </Node>
+    <Node ID="Menu6_2" Tip="UstMenu" Text="Guncelleme" Genislik="100" Yukseklik="200">
+      <Node Tip="Kolon">
+        <Node ID="Menu6_2_1" Text="Veri Tabanı Güncelle" URL="../VeriTabaniGuncelle/VTGGuncelle.aspx" Yetki="1" ></Node>
+        <Node ID="Menu6_2_2" Text="Yazılım Güncelle" URL="../YazilimGuncelle/YazilimGuncelle.aspx" Yetki="1" ></Node>
+        <Node ID="Menu6_2_3" Text="Xml Formatı Oluştur" URL="../VeriTabaniGuncelle/VTGXmlOlustur.aspx" Yetki="1" ></Node>
+      </Node>
+    </Node>
+  </Node>
+</Nodes>
+
+<!--
+  TANIMSIZ = -1,
+
+        /// <summary>
+        /// Misafir kullanıcı tipi
+        /// </summary>
+        MISAFIR = 0,
+
+        /// <summary>
+        /// Sistem yöneticisi kullanıcı tipi.
+        /// </summary>
+        SISTEMYONETICISI = 1,
+
+        /// <summary>
+        /// Kullanıcı yöneticisi kullanıcı tipi.
+        /// </summary>
+        KULLANICIYONETICISI = 2,
+
+        /// <summary>
+        /// Personel uygulaması kullanıcı tipi.
+        /// </summary>
+        PERSONEL = 11,
+
+        /// <summary>
+        /// Kadro uygulaması kullanıcı tipi.
+        /// </summary>
+        KADRO = 12,
+
+        /// <summary>
+        /// İç kontrol uygulaması kullanıcı tipi.
+        /// </summary>
+        ICKONTROL = 13,
+
+        /// <summary>
+        /// Ön mali kontrol uygulaması kullanıcı tipi.
+        /// </summary>
+        ONMALIKONTROL = 14,
+
+        /// <summary>
+        /// Taşınır mal işlem fişi giren kullanıcı tipi.
+        /// </summary>
+        TASINIRMALKAYDI = 15,
+
+        /// <summary>
+        /// Kütüphane uygulaması kullanıcı tipi.
+        /// </summary>
+        KUTUPHANE = 16,
+
+        /// <summary>
+        /// Ödenek gönderebilen kullanıcı tipi.
+        /// </summary>
+        ODENEKGONDERME = 17,
+
+        /// <summary>
+        /// Ödeme emri mif kesebilen/görüntüleyebilen kullanıcı tipi.
+        /// </summary>
+        ODEMEEMRI_MIF = 18,
+
+        /// <summary>
+        /// MUhasebe birimi yöneticisi kullanıcı tipi.
+        /// </summary>
+        MUHASEBEYONETICISI = 19,
+
+        /// <summary>
+        /// Bütçe hazırlık modülü kullanıcı tipi.
+        /// </summary>
+        BUTCEHAZIRLIK = 20,
+
+        /// <summary>
+        /// Bütçe uygulama modülü kullanıcı tipi.
+        /// </summary>
+        BUTCEUYGULAMA = 21,
+
+        /// <summary>
+        /// DPT Yatırım projeleri uygulaması kullanıcı tipi.
+        /// </summary>
+        YATIRIMPROJELERI = 22,
+
+        /// <summary>
+        /// Alacak takip uygulaması kullanıcı tipi.
+        /// </summary>
+        ALACAKTAKIP = 23,
+
+        /// <summary>
+        /// Ekonomik gösterge uygulaması kullanıcı tipi.
+        /// </summary>
+        EKONOMIKGOSTERGE = 24,
+
+        /// <summary>
+        /// Kesin hesap uygulaması kullanıcı tipi.
+        /// </summary>
+        KESINHESAP = 25,
+
+        /// <summary>
+        /// Stratejik plan modülü kullanıcı tipi.
+        /// </summary>
+        STRATEJIKPLAN = 26,
+
+        /// <summary>
+        /// Performans bütçe modülü kullanıcı tipi.
+        /// </summary>
+        PERFORMANSBUTCE = 27,
+
+        /// <summary>
+        /// Taşınır mal yöneticisi kullanıcı tipi.
+        /// </summary>
+        TASINIRMALYONETICISI = 28,
+
+        /// <summary>
+        /// Taşınır mal konsolide yetkilisi kullanıcı tipi.
+        /// </summary>
+        TASINIRMALKONSOLIDEYETKILISI = 29,
+
+        /// <summary>
+        /// Performans bütçe tedbir girişi kullanıcı tipi.
+        /// </summary>
+        PERFORMANSBUTCETEDBIR = 30,
+
+        /// <summary>
+        /// Makbuz kullanıcısı kullanıcı tipi.
+        /// </summary>
+        MAKBUZKULLANICISI = 31,
+
+        /// <summary>
+        /// Bütçe yöneticisi kullanıcı tipi.
+        /// </summary>
+        BUTCEYONETICISI = 32,
+
+        /// <summary>
+        /// Kimlik paylaşımı kullanıcı tipi.
+        /// </summary>
+        KIMLIKPAYLASIMI = 33,
+
+        /// <summary>
+        /// Kalite kullanıcısı kullanıcı tipi.
+        /// </summary>
+        KALITEKULLANICISI = 34,
+
+        /// <summary>
+        /// Proje yönetimi kullanıcı tipi.
+        /// </summary>
+        PROJEYONETIMI = 35,
+
+        /// <summary>
+        /// Evrak kullanıcısı kullanıcı tipi.
+        /// </summary>
+        EVRAK = 36,
+
+        /// <summary>
+        /// Taşınır Mal Kullanıcı Birimi kullanıcı tipi
+        /// </summary>
+        TASINIRKULLANICIBIRIM = 38,
+
+        /// <summary>
+        /// Tarım bakanlığı Destek Başvuru işlemleri Kullanıcısı (Yonetici)
+        /// </summary>
+        DESTEKBASVURUYONETICI = 39,
+
+        /// <summary>
+        /// Tarım bakanlığı Destek Başvuru işlemleri Kullanıcısı (Uzman)
+        /// </summary>
+        DESTEKBASVURUUZMAN = 40,
+
+        /// <summary>
+        /// Tarım bakanlığı Destek Başvuru işlemleri Kullanıcısı
+        /// </summary>
+        DESTEKBASVURUTASRA = 41,
+        //Aşağıda destek başvuru kullanıcı tipleri mevcut
+
+        /// <summary>
+        /// Tacikistan bütçe kurumlarındaki kullanıcılar
+        /// </summary>
+        TJKBUDGETORGUSER = 42,
+
+        /// <summary>
+        /// Tacikistan bütçe kurumlarındaki yöneticiler
+        /// </summary>
+        TJKBUDGETORGHEAD = 43,
+
+        /// <summary>
+        /// Tacikistan Maliye Bakanlığı Bütçe Uzmanları 
+        /// (1-2. seviye tavan girebilen, 3. seviye tavan gierbilen ve Bütçe Talepleri girebilen olmak üzere 3 grup olmalı)
+        /// </summary>
+        TJKMOFBUDGETCURATOR = 44,
+
+        /// <summary>
+        /// Tacikistan Maliye Bakanlığı Bütçe Yöneticileri
+        /// </summary>
+        TJKMOFBUDGETHEAD = 45,
+
+
+        /// <summary>
+        /// Sınav işlemleri için
+        /// ekleyen:ht
+        /// </summary>
+        SINAVISLEMLERI = 46,
+
+        /// <summary>
+        /// Tarım bakanlığı Görevlendirme Sistemi Kullanıcısı (Yonetici)
+        /// </summary>
+        GOREVLENDIRMEYONETICI = 47,
+
+        /// <summary>
+        /// Tarım bakanlığı Görevlendirme Kullanıcısı 
+        /// </summary>
+        GOREVLENDIRMEKULLANICI = 48,
+
+        /// <summary>
+        /// Taşınmaz işlemleri kullanıcısı
+        /// </summary>
+        GELIRYONETIMIKULLANICI = 49,
+
+        /// <summary>
+        /// Tarım bakanlığı Destek Başvuru sadece raporlama yapmak için
+        /// </summary>
+        DESTEKBASVURURAPORLAMA = 50,
+
+        /// <summary>
+        /// Tarım bakanlığı Destek Başvuru bakanlık merkez kullanıcısı
+        /// </summary>
+        DESTEKBASVURUMERKEZ = 51,
+
+        /// <summary>
+        /// Teminat mektubu ile ilgili
+        /// </summary>
+        TEMINATMEKTUBU = 52,
+
+        /// <summary>
+        /// Evrak belge yöneticisi ile ilgili
+        /// </summary>
+        EVRAKKURUMBELGEYONETICISI = 53,
+
+        /// <summary>
+        /// Evrak belge yöneticisi ile ilgili
+        /// </summary>
+        EVRAKBELGEYONETICISI = 54,
+
+        /// <summary>
+        /// Evrak Arşivci ile ilgili
+        /// </summary>
+        EVRAKARSIVCI = 55,
+
+        /// <summary>
+        /// Evrak Misafir ile ilgili
+        /// </summary>
+        EVRAKMISAFIR = 56,
+
+        /// <summary>
+        /// Teftiş Modülü
+        /// </summary>
+        TEFTISBASKAN = 57,
+
+        /// <summary>
+        /// Teftiş Modülü
+        /// </summary>
+        TEFTISBASKANYARDIMCISI = 58,
+
+        /// <summary>
+        /// Teftiş Modülü
+        /// </summary>
+        TEFTISMUFETTIS = 59,
+
+        /// <summary>
+        /// Teftiş Modülü
+        /// </summary>
+        TEFTISBURO = 60,
+
+        /// <summary>
+        /// Teftiş Modülü
+        /// </summary>
+        TEFTISKALITE = 61,
+
+        /// <summary>
+        /// Teftiş Modülü
+        /// </summary>
+        TEFTISYONETICI = 62,
+
+        ///
+        ///Kütüphane etiket basım yetkisi
+        ///
+        ETIKETYETKISI = 63,
+
+        ///
+        ///Harcama Süreç işlemleri yetkisi
+        ///
+        HARCAMAISLEMLERI = 64,
+
+        ///
+        ///Taşınmaz işlemleri yetkisi
+        ///
+        TASINMAZISLEMLERIYETKISI = 65,
+
+        ///
+        ///Taşınmaz işlemleri yetkisi
+        ///
+        TASINMAZYONETICIYETKISI = 66,
+
+
+        ///
+        ///İnsan Kaynakları yetkisi
+        ///
+        INSANKAYNAKLARIYONETICISI = 67,
+        INSANKAYNAKLARIYETKILISI = 68,
+        INSANKAYNAKLARIUZMANI = 69,
+
+        /// <summary>
+        /// Taşınır mal modülünde yıl devri giriş ve çıkışlara 
+        /// müdahale etme yetkisidir
+        /// </summary>
+        TASINIR_MAL_YIL_DEVRI_MUDAHALE_YETKISI = 70,
+
+
+-->

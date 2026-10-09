@@ -4,6 +4,9 @@
     'use strict';
 
     var jeton = document.querySelector('meta[name="istek-jetonu"]').content;
+    // Sayfanın dilindeki metinler sunucudan gelir.
+    var metin = {};
+    try { metin = JSON.parse(document.getElementById('metinler').textContent) || {}; } catch (e) { }
     var frmParola = document.getElementById('frmParola');
     var frmKod = document.getElementById('frmKod');
     var txtKullanici = document.getElementById('txtKullanici');
@@ -58,7 +61,7 @@
                 return yanit.json();
             })
             .catch(function () {
-                return { basarili: false, hata: 'Sunucuya ulaşılamadı. Lütfen tekrar deneyiniz.' };
+                return { basarili: false, hata: metin.sunucuYok || 'Sunucuya ulaşılamadı. Lütfen tekrar deneyiniz.' };
             })
             .then(function (sonuc) {
                 mesgul(form, false);
@@ -87,7 +90,7 @@
     frmParola.addEventListener('submit', function (olay) {
         olay.preventDefault();
         if (!txtKullanici.value.trim() || !txtParola.value) {
-            goster(kutuHata, 'Kullanıcı kodu ve parola giriniz.');
+            goster(kutuHata, metin.kodParolaGir || 'Kullanıcı kodu ve parola giriniz.');
             return;
         }
         gonder('api/giris/parola', frmParola).then(sonucuIsle);
@@ -96,7 +99,7 @@
     frmKod.addEventListener('submit', function (olay) {
         olay.preventDefault();
         if (!txtKod.value.trim()) {
-            goster(kutuHata, 'Doğrulama kodunu giriniz.');
+            goster(kutuHata, metin.kodGir || 'Doğrulama kodunu giriniz.');
             return;
         }
         gonder('api/giris/tamamla', frmKod).then(sonucuIsle);
@@ -117,6 +120,9 @@
     txtParola.addEventListener('keyup', function (olay) {
         if (olay.getModifierState) buyukHarf.hidden = !olay.getModifierState('CapsLock');
     });
+
+    // Giriş sayfası açıldıysa önceki kullanıcıdan kalan menü verisi (menü vb.) silinir.
+    try { localStorage.removeItem('sgb.menu'); } catch (e) { }
 
     (txtKullanici.value ? txtParola : txtKullanici).focus();
 })();

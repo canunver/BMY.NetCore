@@ -4,7 +4,7 @@
     Layout = null;
 }
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="@Dil.Aktif">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -40,41 +40,60 @@
         <!-- 1. adım: kullanıcı kodu ve parola -->
         <form id="frmParola" autocomplete="on" novalidate>
             <div class="form-group">
-                <label for="txtKullanici">Kullanıcı kodu</label>
+                <label for="txtKullanici">@Metin.Menu("Giris_KullaniciKodu")</label>
                 <input type="text" id="txtKullanici" class="form-control input-lg" autocomplete="username"
                        maxlength="50" value="@Model.HatirlananKullanici" required />
             </div>
             <div class="form-group">
-                <label for="txtParola">Parola</label>
+                <label for="txtParola">@Metin.Menu("Giris_Parola")</label>
                 <input type="password" id="txtParola" class="form-control input-lg" autocomplete="current-password" required />
-                <span id="buyukHarf" class="help-block" hidden>Büyük harf kilidi (Caps Lock) açık.</span>
+                <span id="buyukHarf" class="help-block" hidden>@Metin.Menu("Giris_BuyukHarf")</span>
             </div>
             <div class="checkbox">
                 <label>
                     <input type="checkbox" id="chkHatirla" checked="@(!string.IsNullOrEmpty(Model.HatirlananKullanici))" />
-                    Kullanıcı kodumu hatırla
+                    @Metin.Menu("Giris_Hatirla")
                 </label>
             </div>
-            <button type="submit" id="btnGiris" class="btn btn-primary btn-lg btn-block">Giriş</button>
+            <button type="submit" id="btnGiris" class="btn btn-primary btn-lg btn-block">@Metin.Menu("Giris_Giris")</button>
         </form>
 
         <!-- 2. adım: doğrulama kodu -->
         <form id="frmKod" autocomplete="off" novalidate hidden>
             <div class="form-group">
-                <label for="txtKod">Doğrulama kodu</label>
+                <label for="txtKod">@Metin.Menu("Giris_DogrulamaKodu")</label>
                 <input type="text" id="txtKod" class="form-control input-lg giris-kod" inputmode="numeric"
                        autocomplete="one-time-code" maxlength="6" required />
             </div>
-            <button type="submit" id="btnKod" class="btn btn-primary btn-lg btn-block">Doğrula ve giriş yap</button>
+            <button type="submit" id="btnKod" class="btn btn-primary btn-lg btn-block">@Metin.Menu("Giris_Dogrula")</button>
             <div class="giris-alt-islem">
-                <button type="button" id="btnKodYenile" class="btn btn-link">Yeni kod gönder</button>
-                <button type="button" id="btnGeri" class="btn btn-link">Geri dön</button>
+                <button type="button" id="btnKodYenile" class="btn btn-link">@Metin.Menu("Giris_YeniKod")</button>
+                <button type="button" id="btnGeri" class="btn btn-link">@Metin.Menu("Giris_Geri")</button>
             </div>
         </form>
 
-        <footer class="giris-surum">Sürüm @Model.Surum</footer>
+        <footer class="giris-alt">
+            @if (Model.Diller.Count > 1)
+            {
+                <nav class="giris-diller" aria-label="@Metin.Menu("Dil")">
+                    @foreach (var d in Model.Diller)
+                    {
+                        if (d.Secili)
+                        {
+                            <span class="giris-dil secili" lang="@d.Kod">@d.Ad</span>
+                        }
+                        else
+                        {
+                            <a class="giris-dil" lang="@d.Kod" href="@d.Adres">@d.Ad</a>
+                        }
+                    }
+                </nav>
+            }
+            <div class="giris-surum">@Metin.Menu("Surum") @Model.Surum</div>
+        </footer>
     </main>
 
+    <script type="application/json" id="metinler">@Json.Serialize(Model.Metinler)</script>
     <script src="~/js/giris.js" asp-append-version="true"></script>
 </body>
 </html>

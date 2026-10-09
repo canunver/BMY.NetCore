@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="HosGeldiniz" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="RenkTemasi" xml:space="preserve">
+    <value>Color theme</value>
+  </data>
+  <data name="Tema" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="Dil" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Surum" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="MenuYuklenemedi" xml:space="preserve">
+    <value>The menu could not be loaded. Please refresh the page.</value>
+  </data>
+  <data name="MenuGruplari" xml:space="preserve">
+    <value>Menu groups</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="EkranAra" xml:space="preserve">
+    <value>Search screens</value>
+  </data>
+  <data name="SonucYok" xml:space="preserve">
+    <value>No matching screen.</value>
+  </data>
+  <data name="MenuSabitle" xml:space="preserve">
+    <value>Keep the menu open</value>
+  </data>
+  <data name="MenuGosterGizle" xml:space="preserve">
+    <value>Show / hide the menu</value>
+  </data>
+  <data name="Modul" xml:space="preserve">
+    <value>Module</value>
+  </data>
+  <data name="ModulSec" xml:space="preserve">
+    <value>Select module</value>
+  </data>
+  <data name="Giris_KullaniciKodu" xml:space="preserve">
+    <value>User code</value>
+  </data>
+  <data name="Giris_Parola" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Giris_Hatirla" xml:space="preserve">
+    <value>Remember my user code</value>
+  </data>
+  <data name="Giris_Giris" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
+  <data name="Giris_BuyukHarf" xml:space="preserve">
+    <value>Caps Lock is on.</value>
+  </data>
+  <data name="Giris_DogrulamaKodu" xml:space="preserve">
+    <value>Verification code</value>
+  </data>
+  <data name="Giris_Dogrula" xml:space="preserve">
+    <value>Verify and sign in</value>
+  </data>
+  <data name="Giris_YeniKod" xml:space="preserve">
+    <value>Send a new code</value>
+  </data>
+  <data name="Giris_Geri" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Giris_KodParolaGir" xml:space="preserve">
+    <value>Enter your user code and password.</value>
+  </data>
+  <data name="Giris_KodGir" xml:space="preserve">
+    <value>Enter the verification code.</value>
+  </data>
+  <data name="Giris_SunucuYok" xml:space="preserve">
+    <value>The server could not be reached. Please try again.</value>
+  </data>
+  <data name="Giris_SayfaSuresi" xml:space="preserve">
+    <value>This page has expired. Please refresh the page and try again.</value>
+  </data>
+  <data name="Giris_CokDeneme" xml:space="preserve">
+    <value>Too many failed sign-in attempts. Please try again in {0} minutes.</value>
+  </data>
+  <data name="Giris_Bakim" xml:space="preserve">
+    <value>The system is under maintenance. Please try again later.</value>
+  </data>
+  <data name="Giris_Yapilamadi" xml:space="preserve">
+    <value>Sign-in failed.</value>
+  </data>
+  <data name="Giris_KodGonderildi" xml:space="preserve">
+    <value>A verification code was sent to {0}.</value>
+  </data>
+  <data name="Giris_YeniKodGonderildi" xml:space="preserve">
+    <value>A new verification code was sent to {0}.</value>
+  </data>
+  <data name="Giris_KodAzOnce" xml:space="preserve">
+    <value>A new code was sent a moment ago. Please try again in a minute.</value>
+  </data>
+  <data name="Giris_KodSuresi" xml:space="preserve">
+    <value>The verification code has expired. Please request a new code.</value>
+  </data>
+  <data name="Giris_KodHatali" xml:space="preserve">
+    <value>The verification code is incorrect. Please try again.</value>
+  </data>
+  <data name="Giris_KayitliEposta" xml:space="preserve">
+    <value>your registered e-mail</value>
+  </data>
+  <data name="Giris_EpostaKonu" xml:space="preserve">
+    <value>{0} Verification E-mail</value>
+  </data>
+  <data name="Giris_EpostaMesaj" xml:space="preserve">
+    <value>Your sign-in code for {0}: &lt;b&gt;{1}&lt;/b&gt;&lt;br /&gt;This code is valid for {2} hours; you can use the same code for sign-ins during this time.</value>
+  </data>
+</root>

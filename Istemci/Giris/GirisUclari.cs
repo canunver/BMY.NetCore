@@ -90,7 +90,7 @@ namespace Istemci.Giris
             GirisYaniti yanit = new GirisYaniti();
             yanit.Basarili = true;
             yanit.IkinciFaktorGerekli = true;
-            yanit.Bilgi = "Doğrulama kodu " + EPostaMaskele(kv.kullanici.EPOSTA) + " adresine gönderildi.";
+            yanit.Bilgi = string.Format(Metin.Menu("Giris_KodGonderildi"), EPostaMaskele(kv.kullanici.EPOSTA));
             return Results.Json(yanit);
         }
 
@@ -119,7 +119,7 @@ namespace Istemci.Giris
             string yenilemeAnahtari = "kodyenile|" + kv.kullanici.kullaniciKodu;
             object dolu;
             if (bellek.TryGetValue(yenilemeAnahtari, out dolu))
-                return Results.Json(Hatali("Yeni kod az önce gönderildi. Lütfen bir dakika sonra tekrar deneyiniz."));
+                return Results.Json(Hatali(Metin.Menu("Giris_KodAzOnce")));
             bellek.Set(yenilemeAnahtari, true, KodYenilemeAraligi);
 
             IkinciKodGonder(servisKym, kv.kullanici, true);
@@ -127,7 +127,7 @@ namespace Istemci.Giris
             GirisYaniti yanit = new GirisYaniti();
             yanit.Basarili = true;
             yanit.IkinciFaktorGerekli = true;
-            yanit.Bilgi = "Yeni doğrulama kodu " + EPostaMaskele(kv.kullanici.EPOSTA) + " adresine gönderildi.";
+            yanit.Bilgi = string.Format(Metin.Menu("Giris_YeniKodGonderildi"), EPostaMaskele(kv.kullanici.EPOSTA));
             return Results.Json(yanit);
         }
 
@@ -150,20 +150,20 @@ namespace Istemci.Giris
         private static async Task<GirisYaniti> OnKontrol(HttpContext baglam, GirisIstegi istek, IAntiforgery sahtecilik, IMemoryCache bellek)
         {
             if (!await sahtecilik.IsRequestValidAsync(baglam))
-                return Hatali("Sayfanın süresi dolmuş. Lütfen sayfayı yenileyip tekrar deneyiniz.");
+                return Hatali(Metin.Menu("Giris_SayfaSuresi"));
 
             if (istek == null || string.IsNullOrWhiteSpace(istek.KullaniciKodu) || string.IsNullOrEmpty(istek.Parola))
-                return Hatali("Kullanıcı kodu ve parola giriniz.");
+                return Hatali(Metin.Menu("Giris_KodParolaGir"));
 
             istek.KullaniciKodu = istek.KullaniciKodu.Trim();
 
             if (KilitliMi(baglam, bellek))
-                return Hatali("Çok fazla hatalı giriş denemesi yapıldı. Lütfen " + (int)KilitSuresi.TotalMinutes + " dakika sonra tekrar deneyiniz.");
+                return Hatali(string.Format(Metin.Menu("Giris_CokDeneme"), (int)KilitSuresi.TotalMinutes));
 
             // Bakım modu: sistem değişkeni /TEKKULLANICI doluysa yalnızca o kullanıcı girebilir.
             string tekKullanici = Ayar.Degisken(0, "/TEKKULLANICI");
             if (!string.IsNullOrEmpty(tekKullanici) && tekKullanici != istek.KullaniciKodu)
-                return Hatali("Sistem bakıma alınmıştır. Lütfen daha sonra deneyiniz.");
+                return Hatali(Metin.Menu("Giris_Bakim"));
 
             return null;
         }
@@ -218,7 +218,7 @@ namespace Istemci.Giris
         {
             GirisYaniti yanit = new GirisYaniti();
             yanit.Basarili = false;
-            yanit.Hata = string.IsNullOrWhiteSpace(hata) ? "Giriş yapılamadı." : hata;
+            yanit.Hata = string.IsNullOrWhiteSpace(hata) ? Metin.Menu("Giris_Yapilamadi") : hata;
             return yanit;
         }
 
@@ -291,9 +291,8 @@ namespace Istemci.Giris
             kullanici.DegiskenleriSakla(servisKym, "IkinciParola", degerler);
 
             string yazilimAd = Ayar.Oku("yazilimAd", "SGB.net");
-            string mesaj = yazilimAd + " sistemine giriş kodunuz: <b>" + kod + "</b><br />Bu kod " + (int)KodGecerlilikSuresi.TotalHours
-                + " saat süre ile geçerli olacaktır; bu süre içinde yapacağınız girişlerde aynı kodu kullanabilirsiniz.";
-            servisKym.EPostaGonder("", kullanici.EPOSTA, yazilimAd + " Doğrulama Postası", mesaj, true, false, null);
+            string mesaj = string.Format(Metin.Menu("Giris_EpostaMesaj"), yazilimAd, kod, (int)KodGecerlilikSuresi.TotalHours);
+            servisKym.EPostaGonder("", kullanici.EPOSTA, string.Format(Metin.Menu("Giris_EpostaKonu"), yazilimAd), mesaj, true, false, null);
         }
 
         private static bool KodSuresiDolmus(IKYMServis servisKym, Kullanici kullanici, out string kod)
@@ -319,21 +318,21 @@ namespace Istemci.Giris
             string kod;
             if (KodSuresiDolmus(servisKym, kv.kullanici, out kod))
             {
-                kv.sonuc.DegerAta("Doğrulama kodunun süresi dolmuştur, lütfen yeni kod isteyiniz.");
+                kv.sonuc.DegerAta(Metin.Menu("Giris_KodSuresi"));
                 return;
             }
 
             girilenKod = (girilenKod ?? "").Trim();
             if (girilenKod.Length == 0 || !CryptographicOperations.FixedTimeEquals(
                     System.Text.Encoding.UTF8.GetBytes(girilenKod), System.Text.Encoding.UTF8.GetBytes(kod)))
-                kv.sonuc.DegerAta("Doğrulama kodunu hatalı girdiniz, lütfen tekrar deneyiniz.");
+                kv.sonuc.DegerAta(Metin.Menu("Giris_KodHatali"));
         }
 
         private static string EPostaMaskele(string eposta)
         {
-            if (string.IsNullOrWhiteSpace(eposta)) return "kayıtlı e-posta";
+            if (string.IsNullOrWhiteSpace(eposta)) return Metin.Menu("Giris_KayitliEposta");
             int at = eposta.IndexOf('@');
-            if (at < 1) return "kayıtlı e-posta";
+            if (at < 1) return Metin.Menu("Giris_KayitliEposta");
             return eposta.Substring(0, 1) + new string('*', Math.Min(at - 1, 5)) + eposta.Substring(at);
         }
     }

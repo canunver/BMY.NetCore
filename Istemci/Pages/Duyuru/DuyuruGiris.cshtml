@@ -1,0 +1,137 @@
+@page
+@model DuyuruGirisModel
+@{
+    ViewData["Title"] = Metin.Duyuru("FRMDYG012");
+    // Geniş ekranda sayfa pencereye sığar, üç bölme kendi içinde kayar (duyuru.css).
+    ViewData["GovdeSinif"] = "duyuru-giris-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">@Metin.Duyuru("Yetkisiz")</div>
+    return;
+}
+
+<!-- Üç bölme yan yana (eski yerleşim): arama ve liste | duyuru bilgileri | ekli dosyalar. Dar ekranda alt alta. -->
+<div class="duyuru-giris">
+    <!-- Sol: arama ve liste -->
+    <section class="duyuru-sol">
+        <div class="kutu">
+            <h2 class="kutu-baslik">@Metin.Duyuru("FRMDYG014")</h2>
+            <form id="frmArama" class="form-horizontal duyuru-arama" novalidate>
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-3 control-label" for="aramaBasla">@Metin.Duyuru("FRMDYG006")</label>
+                    <div class="col-sm-9 tarih-araligi">
+                        <input type="date" id="aramaBasla" class="form-control" />
+                        <span aria-hidden="true">–</span>
+                        <input type="date" id="aramaBitis" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-3 control-label" for="aramaKonu">@Metin.Duyuru("Konu")</label>
+                    <div class="col-sm-9"><input type="text" id="aramaKonu" class="form-control" maxlength="500" /></div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-3 control-label" for="aramaOnem">@Metin.Duyuru("FRMDYG002")</label>
+                    <div class="col-sm-9">
+                        <select id="aramaOnem" class="form-control"><option value="0">@Metin.Duyuru("Hepsi")</option></select>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <span class="col-sm-3 control-label">@Metin.Duyuru("Gizlilik")</span>
+                    <div class="col-sm-9" role="radiogroup">
+                        <label class="radio-inline"><input type="radio" name="aramaGizle" value="0" /> @Metin.Duyuru("Hepsi")</label>
+                        <label class="radio-inline"><input type="radio" name="aramaGizle" value="1" checked /> @Metin.Duyuru("Acik")</label>
+                        <label class="radio-inline"><input type="radio" name="aramaGizle" value="2" /> @Metin.Duyuru("Gizli")</label>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <span class="col-sm-3 control-label">@Metin.Duyuru("Pencere")</span>
+                    <div class="col-sm-9" role="radiogroup">
+                        <label class="radio-inline"><input type="radio" name="aramaPencere" value="0" checked /> @Metin.Duyuru("Hepsi")</label>
+                        <label class="radio-inline"><input type="radio" name="aramaPencere" value="1" /> @Metin.Duyuru("Pencerede")</label>
+                        <label class="radio-inline"><input type="radio" name="aramaPencere" value="2" /> @Metin.Duyuru("PencereDisi")</label>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="submit" id="btnListele" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> @Metin.Duyuru("Listele")
+                    </button>
+                </div>
+            </form>
+            <div id="grdListe" class="duyuru-grid"></div>
+        </div>
+    </section>
+
+    <!-- Sağ: seçili duyurunun bilgileri -->
+    <section class="duyuru-orta">
+        <div class="kutu">
+            <div class="btn-toolbar duyuru-arac" role="toolbar">
+                <button type="button" id="btnYeni" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> @Metin.Duyuru("FRMDYG018")
+                </button>
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> @Metin.Duyuru("FRMDYG010")
+                </button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm" disabled>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> @Metin.Duyuru("FRMDYG011")
+                </button>
+            </div>
+
+            <form id="frmDuyuru" class="form-horizontal" novalidate>
+                <input type="hidden" id="txtKod" value="0" />
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-3 control-label" for="txtTarih">@Metin.Duyuru("FRMDYG006")</label>
+                    <div class="col-sm-4"><input type="date" id="txtTarih" class="form-control" required /></div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-3 control-label" for="txtKonu">@Metin.Duyuru("Konu")</label>
+                    <div class="col-sm-9"><input type="text" id="txtKonu" class="form-control" maxlength="500" /></div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-3 control-label" for="ddlOnem">@Metin.Duyuru("FRMDYG002")</label>
+                    <div class="col-sm-4"><select id="ddlOnem" class="form-control"></select></div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-3 control-label" for="lstKullaniciTipi">@Metin.Duyuru("FRMDYG007")</label>
+                    <div class="col-sm-9">
+                        <select id="lstKullaniciTipi" class="form-control" multiple size="7"></select>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <label class="checkbox-inline"><input type="checkbox" id="chkGizli" /> @Metin.Duyuru("FRMDYG008")</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="chkPencere" /> @Metin.Duyuru("PenceredeGoster")</label>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Duyuru metni: ortak HTML editörü (wwwroot/js/editor.js) -->
+            <div class="duyuru-editor">
+                <textarea id="txtEditor" aria-label="@Metin.Duyuru("FRMDYG009")"></textarea>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sağ: duyurunun ekli dosyaları -->
+    <section class="duyuru-sag">
+        <div class="kutu">
+            <h2 class="kutu-baslik">@Metin.EkliDosya("Baslik")</h2>
+            <div id="dosyalar"></div>
+        </div>
+    </section>
+</div>
+
+<script type="application/json" id="metinler">@Html.Raw(Model.MetinlerJson)</script>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/lib/jodit/jodit.min.css" />
+    <link rel="stylesheet" href="~/css/eklidosya.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/duyuru.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/lib/jodit/jodit.min.js"></script>
+    <script src="~/js/editor.js" asp-append-version="true"></script>
+    <script src="~/js/eklidosya.js" asp-append-version="true"></script>
+    <script src="~/js/duyurugiris.js" asp-append-version="true"></script>
+}

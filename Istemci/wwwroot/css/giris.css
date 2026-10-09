@@ -82,8 +82,32 @@ body.giris {
     margin-top: 8px;
 }
 
-.giris-surum {
+.giris-alt {
     margin-top: 20px;
+    text-align: center;
+}
+
+.giris-diller {
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.giris-dil {
+    display: inline-block;
+    padding: 2px 10px;
+    color: #5a6773;
+}
+
+.giris-dil + .giris-dil {
+    border-left: 1px solid #d5dbe1;
+}
+
+.giris-dil.secili {
+    font-weight: 600;
+    color: #1f3a52;
+}
+
+.giris-surum {
     text-align: center;
     font-size: 12px;
     color: #8a96a3;

@@ -1,0 +1,22 @@
+/* Ortak ekli dosyalar bileşeni (js/eklidosya.js) */
+
+.ekli-dosya-yukle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.ekli-dosya-yukle .ed-aciklama {
+    flex: 2 1 180px;
+}
+
+.ekli-dosya-yukle .ed-dosya {
+    flex: 3 1 220px;
+    height: auto;
+}
+
+.ed-islemler .btn-link {
+    padding: 0 4px;
+}
+

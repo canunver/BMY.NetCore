@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FRMDYG001" xml:space="preserve">
+    <value>Kod</value>
+  </data>
+  <data name="FRMDYG002" xml:space="preserve">
+    <value>Önem Derecesi</value>
+  </data>
+  <data name="FRMDYG003" xml:space="preserve">
+    <value>Çok Önemli</value>
+  </data>
+  <data name="FRMDYG004" xml:space="preserve">
+    <value>Önemli</value>
+  </data>
+  <data name="FRMDYG005" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="FRMDYG006" xml:space="preserve">
+    <value>Tarih</value>
+  </data>
+  <data name="FRMDYG007" xml:space="preserve">
+    <value>Kullanıcı Grubu</value>
+  </data>
+  <data name="FRMDYG008" xml:space="preserve">
+    <value>Gizle</value>
+  </data>
+  <data name="FRMDYG009" xml:space="preserve">
+    <value>Duyuru</value>
+  </data>
+  <data name="FRMDYG010" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="FRMDYG011" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="FRMDYG012" xml:space="preserve">
+    <value>Duyuru Bilgileri Düzenleme Sayfası</value>
+  </data>
+  <data name="FRMDYG013" xml:space="preserve">
+    <value>Bütün Kullanıcılar</value>
+  </data>
+  <data name="FRMDYG014" xml:space="preserve">
+    <value>Duyuru Listesi</value>
+  </data>
+  <data name="FRMDYG015" xml:space="preserve">
+    <value>Duyuru metnini boş bırakamazsınız.</value>
+  </data>
+  <data name="FRMDYG016" xml:space="preserve">
+    <value>&lt;b&gt;Duyuru Kaydetme&lt;/b&gt; işlemi &lt;font color=red&gt;başarıyla tamamlanmıştır&lt;/font&gt;.</value>
+  </data>
+  <data name="FRMDYG017" xml:space="preserve">
+    <value>&lt;br&gt;&lt;br&gt;Lütfen sonraki işleminiz için aşağıdaki seçenekleri veya &lt;b&gt;Yukarıdaki&lt;/b&gt; menüyü kullanın.&lt;br&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMDYG018" xml:space="preserve">
+    <value>Yeni</value>
+  </data>
+  <data name="FRMDYG019" xml:space="preserve">
+    <value>Duyuru Listesi</value>
+  </data>
+  <data name="FRMDYG020" xml:space="preserve">
+    <value>no lu duyuru bilgilerine geri dön</value>
+  </data>
+  <data name="FRMDYG021" xml:space="preserve">
+    <value>Kayıtlı olmayan bir duyuruyu silemezsiniz.</value>
+  </data>
+  <data name="FRMDYG022" xml:space="preserve">
+    <value>&lt;b&gt;Duyuru Silme&lt;/b&gt; işlemi &lt;font color=red&gt;başarıyla tamamlanmıştır&lt;/font&gt;.</value>
+  </data>
+  <data name="FRMDYG023" xml:space="preserve">
+    <value>&lt;br&gt;&lt;br&gt;Lütfen sonraki işleminiz için aşağıdaki seçenekleri veya &lt;b&gt;Yukarıdaki&lt;/b&gt; menüyü kullanın.&lt;br&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMDYG024" xml:space="preserve">
+    <value>Yeni Duyuru Kaydetme</value>
+  </data>
+  <data name="FRMDYG025" xml:space="preserve">
+    <value>Duyuru Listesi</value>
+  </data>
+  <data name="FRMDYG026" xml:space="preserve">
+    <value>Duyuru ile ilgili kullanıcı Grubunu seçiniz.</value>
+  </data>
+  <data name="FRMDYG027" xml:space="preserve">
+    <value>Bu duyuru ile ilgili işlem yapmaya yetkili değilsiniz.</value>
+  </data>
+  <data name="FRMDYL001" xml:space="preserve">
+    <value>Kodu</value>
+  </data>
+  <data name="FRMDYL002" xml:space="preserve">
+    <value>Duyuru</value>
+  </data>
+  <data name="FRMDYL003" xml:space="preserve">
+    <value>Yeni Duyuru Oluştur</value>
+  </data>
+  <data name="FRMDYL004" xml:space="preserve">
+    <value>Değiştirmek yada silmek istediğiniz&amp;nbsp;duyuruyu listeden seçiniz 
+		veya yeni duyuru oluşturmak için "Yeni Duyuru Oluştur" düğmesine basınız.</value>
+  </data>
+  <data name="FRMDYL005" xml:space="preserve">
+    <value>Duyuru Listesi</value>
+  </data>
+  <data name="FRMDYL006" xml:space="preserve">
+    <value>Kayıtlı bilgi bulunamadı.</value>
+  </data>
+  <data name="FRMDYU001" xml:space="preserve">
+    <value>Kayıtlı herhangi bir duyuru bulunmamaktadır.</value>
+  </data>
+  <data name="FRMDYU002" xml:space="preserve">
+    <value>Çok Önemli</value>
+  </data>
+  <data name="FRMDYU003" xml:space="preserve">
+    <value>Önemli</value>
+  </data>
+  <data name="FRMDYU004" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="Konu" xml:space="preserve">
+    <value>Konusu</value>
+  </data>
+  <data name="Onem" xml:space="preserve">
+    <value>Önem</value>
+  </data>
+  <data name="Gizlilik" xml:space="preserve">
+    <value>Gizlilik</value>
+  </data>
+  <data name="Pencere" xml:space="preserve">
+    <value>Pencere</value>
+  </data>
+  <data name="PenceredeGoster" xml:space="preserve">
+    <value>Pencerede göster</value>
+  </data>
+  <data name="Hepsi" xml:space="preserve">
+    <value>Hepsi</value>
+  </data>
+  <data name="Acik" xml:space="preserve">
+    <value>Açık</value>
+  </data>
+  <data name="Gizli" xml:space="preserve">
+    <value>Gizli</value>
+  </data>
+  <data name="Pencerede" xml:space="preserve">
+    <value>Pencerede</value>
+  </data>
+  <data name="PencereDisi" xml:space="preserve">
+    <value>Pencere dışı</value>
+  </data>
+  <data name="Listele" xml:space="preserve">
+    <value>Listele</value>
+  </data>
+  <data name="Arama" xml:space="preserve">
+    <value>Arama</value>
+  </data>
+  <data name="SilOnay" xml:space="preserve">
+    <value>Seçili duyuru silinecek. Onaylıyor musunuz?</value>
+  </data>
+  <data name="Kaydedildi" xml:space="preserve">
+    <value>Duyuru kaydedildi.</value>
+  </data>
+  <data name="Silindi" xml:space="preserve">
+    <value>Duyuru silindi.</value>
+  </data>
+  <data name="Tehlikeli" xml:space="preserve">
+    <value>Girdiğiniz duyuru metninde tehlikeli olabilecek kod bulundu, temizleyip tekrar deneyiniz!</value>
+  </data>
+  <data name="Yetkisiz" xml:space="preserve">
+    <value>Bu sayfayı kullanmaya yetkiniz yok.</value>
+  </data>
+  <data name="IslemHata" xml:space="preserve">
+    <value>İşlem yapılamadı. Lütfen tekrar deneyiniz.</value>
+  </data>
+  <data name="Bekleyin" xml:space="preserve">
+    <value>Lütfen bekleyiniz...</value>
+  </data>
+  <data name="Kapat" xml:space="preserve">
+    <value>Kapat</value>
+  </data>
+  <data name="KayitSay" xml:space="preserve">
+    <value>{0} duyuru</value>
+  </data>
+  <data name="Kalin" xml:space="preserve">
+    <value>Kalın</value>
+  </data>
+  <data name="Italik" xml:space="preserve">
+    <value>İtalik</value>
+  </data>
+  <data name="AltiCizili" xml:space="preserve">
+    <value>Altı çizili</value>
+  </data>
+  <data name="Madde" xml:space="preserve">
+    <value>Madde işaretli liste</value>
+  </data>
+  <data name="Numara" xml:space="preserve">
+    <value>Numaralı liste</value>
+  </data>
+  <data name="Baglanti" xml:space="preserve">
+    <value>Bağlantı</value>
+  </data>
+  <data name="BaglantiAdres" xml:space="preserve">
+    <value>Bağlantı adresi:</value>
+  </data>
+  <data name="Renk" xml:space="preserve">
+    <value>Yazı rengi</value>
+  </data>
+  <data name="BicimTemizle" xml:space="preserve">
+    <value>Biçimi temizle</value>
+  </data>
+  <data name="DosyaYok" xml:space="preserve">
+    <value>Ekli dosyalar bu sürümde henüz taşınmadı.</value>
+  </data>
+</root>

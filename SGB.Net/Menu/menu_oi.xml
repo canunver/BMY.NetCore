@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="windows-1254" ?>
+
+<Nodes>
+  <Node ID="Menu3" Tip="Grup" Text="Muhasebe">
+    <Node ID="Menu3_2" Tip="UstMenu" Text="Muhasebe" Genislik="120" Yukseklik="290">
+      <Node Tip="Kolon">
+        <Node ID="Menu3_2_2" Text="Ödeme Emri/MİF Belgesi" URL="../ButceMuhasebe/OdemeEmriMIFFrame.aspx?yeni=1" Yetki="1,2,18,21" ></Node>
+        <Node ID="Menu3_1_10" Text="Muhasebe Kayıt İşlemi Tarih Sınırlaması" URL="../ButceMuhasebe/YilKapat.aspx" Yetki="1" ></Node>
+        <Node ID="Menu5_2_1_3" Text="Muhasebe Raporları" URL="../ButceMuhasebe/MizanBilanco.aspx" Yetki="1,2,17,18,21" ></Node>
+		<Node ID="Menu5_2_1_6" Text="Sayıştay Verileri" URL="../ButceMuhasebe/SayistayVerileri.aspx" Yetki="1,2,17,18,21" Modul="MUH"></Node>
+        <Node ID="Menu3_2_20" Text="Yilsonu Kapatma islemleri" URL="../ButceMuhasebe/YilSonuIslemleri.aspx" Yetki="1,19" Modul="MUH"></Node>
+      </Node>
+    </Node>
+
+		<Node ID="Menu6_5" Tip="UstMenu" Text="Tanımlar" Genislik="100" SayfadaGoster="1" Yetki="1,2,11,15,16,18,19,21,22,23,28,36,39,40,46,53,54,55"  >
+		  <Node Tip="Kolon">
+			<Node ID="Menu6_5_2" Tip="AltBolum" Text="Kaynak Yönetimi" Modul="BHM,PEB,YAT,HRC,MUH,TMM,ATM,KTP">
+			  <Node ID="Menu6_5_2_1" Tip="AltBolum" Text="Muhasebe Tanımları" Modul="HRC,MUH">
+				<Node ID="Menu6_3_2" Text="Muhasebe Bilgileri" URL="../ButceMuhasebe/TanimMuhasebe.aspx" Yetki="1,19" Modul="HRC,MUH"></Node>
+				<Node ID="Menu6_3_3" Text="Muhasebe Birim Bilgileri" URL="../ButceMuhasebe/TanimMuhasebeBirim.aspx" Yetki="1,19" Modul="HRC,MUH"></Node>
+				<Node ID="Menu6_5_2_1_9" Text="Kapalı Birim Bilgileri" URL="../ButceMuhasebe/KapaliMuhasebeBirimForm.aspx" Yetki="1,19" Modul="HRC,MUH"></Node>
+				<Node ID="Menu6_3_4" Text="Hesap Planı Bilgileri" URL="../ButceMuhasebe/TanimHesapPlani.aspx" Yetki="1,19" Modul="HRC,MUH"></Node>
+				<Node ID="Menu6_5_2_1_2" Text="İmza Bilgileri" URL="../ButceMuhasebe/Imza.aspx" Yetki="1,2,18,19" Modul="HRC,MUH"></Node>
+				<Node ID="Menu6_6_5" Text="Firma Tanımlama" URL="../HarcamaSurecleri/TanimFirmaKisi.aspx" Yetki="1,2,15,28" ></Node>
+				<Node ID="Menu6_6_7" Text="Kur Değerleri" URL="../HarcamaSurecleri/TanimGunlukKur.aspx" Yetki="1,19" ></Node>
+				<Node ID="Menu6_6_8" Text="Para Birimi Tanımlama" URL="../HarcamaSurecleri/TanimParaBirimi.aspx" Yetki="1,19" ></Node>
+				 <Node ID="Menu6_3_10" Text="KBS Aktarım" URL="../ButceMuhasebe/TanimKBSAktarim.aspx" Yetki="1,19"  Modul="HRC,MUH"></Node>
+			  </Node>
+			</Node>
+		  </Node>
+		</Node>
+  </Node>
+
+  <Node ID="Menu6" Tip="Grup" Text="Ayarlar">
+
+    <Node ID="Menu6_1" Tip="UstMenu" Text="Kullanıcı Yönetimi" Genislik="120" Yukseklik="200" >
+      <Node Tip="Kolon">
+        <Node ID="Menu6_1_1" Text="Kullanıcı Arama" URL="../KYM/KullaniciArama.aspx" Yetki="1,2,39" ></Node>
+        <Node ID="Menu6_1_2" Text="Yeni Kullanıcı Girişi" URL="../KYM/KullaniciGiris.aspx" Yetki="1,2,39" ></Node>
+        <Node ID="Menu6_1_3" Text="Parola Değiştirme" URL="../KYM/ParolaDegistir.aspx" Yetki="" ></Node>
+        <Node ID="Menu6_1_7" Text="Duyuru Girişi" URL="../Duyuru/DuyuruGiris.aspx" Yetki="1,39" ></Node>
+      </Node>
+    </Node>
+</Node>
+
+</Nodes>

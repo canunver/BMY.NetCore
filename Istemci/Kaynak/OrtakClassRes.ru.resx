@@ -1,0 +1,2652 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ORT002" xml:space="preserve">
+    <value>Yapmak istediğiniz işlem, aşağıda listelenen nedenden dolayı hata ile sonuçlandı. Lütfen hatayı düzelterek işleminizi tekrar deneyin.</value>
+  </data>
+  <data name="ORT003" xml:space="preserve">
+    <value>Произошла ошибка БД. Пожалуйста, обратитесь к системному администратору.</value>
+  </data>
+  <data name="ORT004" xml:space="preserve">
+    <value>Не имеют право на просмотр этой страницы!</value>
+  </data>
+  <data name="ORT005" xml:space="preserve">
+    <value>{0} значения в файле Web.config не найден!</value>
+  </data>
+  <data name="ORT006" xml:space="preserve">
+    <value>Срок</value>
+  </data>
+  <data name="ORTAY01" xml:space="preserve">
+    <value>Январь</value>
+  </data>
+  <data name="ORTAY02" xml:space="preserve">
+    <value>Февраль</value>
+  </data>
+  <data name="ORTAY03" xml:space="preserve">
+    <value>Март</value>
+  </data>
+  <data name="ORTAY04" xml:space="preserve">
+    <value>Апрель</value>
+  </data>
+  <data name="ORTAY05" xml:space="preserve">
+    <value>Май</value>
+  </data>
+  <data name="ORTAY06" xml:space="preserve">
+    <value>Июнь</value>
+  </data>
+  <data name="ORTAY07" xml:space="preserve">
+    <value>Июль</value>
+  </data>
+  <data name="ORTAY08" xml:space="preserve">
+    <value>Август</value>
+  </data>
+  <data name="ORTAY09" xml:space="preserve">
+    <value>Сентябрь</value>
+  </data>
+  <data name="ORTAY10" xml:space="preserve">
+    <value>Октябрь</value>
+  </data>
+  <data name="ORTAY11" xml:space="preserve">
+    <value>Ноябрь</value>
+  </data>
+  <data name="ORTAY12" xml:space="preserve">
+    <value>Декабрь</value>
+  </data>
+  <data name="ORTGUN07" xml:space="preserve">
+    <value>воскресенье</value>
+  </data>
+  <data name="ORTGUN01" xml:space="preserve">
+    <value>понедельник</value>
+  </data>
+  <data name="ORTGUN02" xml:space="preserve">
+    <value>вторник</value>
+  </data>
+  <data name="ORTGUN03" xml:space="preserve">
+    <value>среда</value>
+  </data>
+  <data name="ORTGUN04" xml:space="preserve">
+    <value>четверг</value>
+  </data>
+  <data name="ORTGUN05" xml:space="preserve">
+    <value>пятница</value>
+  </data>
+  <data name="ORTGUN06" xml:space="preserve">
+    <value>суббота</value>
+  </data>
+  <data name="REP_0_1" xml:space="preserve">
+    <value>Форма  2: Функциональная классификация по ассигнованию кратких предложений</value>
+  </data>
+  <data name="REP_0_10" xml:space="preserve">
+    <value>Форма 13: Gelir Bütçe Fişi</value>
+  </data>
+  <data name="REP_0_11" xml:space="preserve">
+    <value>Форма 14: Çok Yıllı Bütçe</value>
+  </data>
+  <data name="REP_0_12" xml:space="preserve">
+    <value>Форма 15: B Cetveli</value>
+  </data>
+  <data name="REP_0_13" xml:space="preserve">
+    <value>Форма 16: F Cetveli</value>
+  </data>
+  <data name="REP_0_14" xml:space="preserve">
+    <value>Форма 22: Temizlik Hizmetine İlişkin Bilgi Formu</value>
+  </data>
+  <data name="REP_0_15" xml:space="preserve">
+    <value>Форма 25: Tavan İçerisinde Teklif Edilemeyen Ödenekler</value>
+  </data>
+  <data name="REP_0_16" xml:space="preserve">
+    <value>Форма 6: İlk defa yapılması planlanan hizmetler</value>
+  </data>
+  <data name="REP_0_17" xml:space="preserve">
+    <value>Форма 7: Услуги планируется завершить</value>
+  </data>
+  <data name="REP_0_18" xml:space="preserve">
+    <value>Форма 1: Hizmet Gerekçesi</value>
+  </data>
+  <data name="REP_0_19" xml:space="preserve">
+    <value>Форма 11: Fiziksel Değerler Bilgi Tablosu</value>
+  </data>
+  <data name="REP_0_2" xml:space="preserve">
+    <value>Форма 3: Ekonomik Sınıflandırmaya Göre Ödenek Teklifleri İcmali</value>
+  </data>
+  <data name="REP_0_20" xml:space="preserve">
+    <value>Форма 17: Uluslararası Kuruluşlar Bilgi Formu</value>
+  </data>
+  <data name="REP_0_21" xml:space="preserve">
+    <value>Форма 18: Edinilecek Taşıtlar</value>
+  </data>
+  <data name="REP_0_22" xml:space="preserve">
+    <value>Форма 21: Özel Güvenlik Hizmetine İlişkin Bilgi Formu</value>
+  </data>
+  <data name="REP_0_23" xml:space="preserve">
+    <value>Форма 23: Döner Sermaye Gelir-Gider Cetveli</value>
+  </data>
+  <data name="REP_0_24" xml:space="preserve">
+    <value>Форма 24: Fon Gelir-Gider Cetveli</value>
+  </data>
+  <data name="REP_0_3" xml:space="preserve">
+    <value>Форма 4: Ekonomik Sınıflandırmaya Göre Ödenek Teklifleri İcmali (İki Düzey)</value>
+  </data>
+  <data name="REP_0_4" xml:space="preserve">
+    <value>Форма 5: Fonksiyonel ve Ekonomik Sınıflandırma Düzeyinde Bütçe Teklifi</value>
+  </data>
+  <data name="REP_0_5" xml:space="preserve">
+    <value>Форма 8: Расписание ассигнований (4 Düzey)</value>
+  </data>
+  <data name="REP_0_6" xml:space="preserve">
+    <value>Форма 9: Расписание ассигнований (2 Düzey)</value>
+  </data>
+  <data name="REP_0_7" xml:space="preserve">
+    <value>Форма 10: Hizmet Maliyeti Tespit Formu</value>
+  </data>
+  <data name="REP_0_8" xml:space="preserve">
+    <value>Форма 12: Cari Giderler Özet Tablosu</value>
+  </data>
+  <data name="REP_0_9" xml:space="preserve">
+    <value>Форма 13: Gider Bütçe Fişi</value>
+  </data>
+  <data name="REP_2000_1" xml:space="preserve">
+    <value>Stratejik Amaç Raporu</value>
+  </data>
+  <data name="REP_2000_10" xml:space="preserve">
+    <value>Stratejik Amaç Ödenek Dağılım Raporu (Ekonomik)</value>
+  </data>
+  <data name="REP_2000_11" xml:space="preserve">
+    <value>Stratejik Amaç Ödenek Dağılım Raporu (Fonksiyonel)</value>
+  </data>
+  <data name="REP_2000_12" xml:space="preserve">
+    <value>Performans Hedefi Ödenek Raporu</value>
+  </data>
+  <data name="REP_2000_13" xml:space="preserve">
+    <value>Stratejik Plan Özet Raporu</value>
+  </data>
+  <data name="REP_2000_2" xml:space="preserve">
+    <value>Stratejik Hedef Raporu</value>
+  </data>
+  <data name="REP_2000_3" xml:space="preserve">
+    <value>Ödenek Durum Raporu (2 Düzey)</value>
+  </data>
+  <data name="REP_2000_4" xml:space="preserve">
+    <value>Ödenek Durum Raporu (4 Düzey)</value>
+  </data>
+  <data name="REP_2000_5" xml:space="preserve">
+    <value>Доклад годового распределения бюджета</value>
+  </data>
+  <data name="REP_2000_6" xml:space="preserve">
+    <value>Performans Hedefi Dağılım Raporu</value>
+  </data>
+  <data name="REP_2000_7" xml:space="preserve">
+    <value>Performans Bütçe Özet Raporu</value>
+  </data>
+  <data name="REP_2000_8" xml:space="preserve">
+    <value>Stratejik Hedef Ödenek Dağılım Raporu (Ekonomik)</value>
+  </data>
+  <data name="REP_2000_9" xml:space="preserve">
+    <value>Stratejik Hedef Ödenek Dağılım Raporu (Fonksiyonel)</value>
+  </data>
+  <data name="REP_2002_1" xml:space="preserve">
+    <value>Tablo 1 - Yatırım Teklifleri Özet Tablosu</value>
+  </data>
+  <data name="REP_2002_10" xml:space="preserve">
+    <value>Tablo 12/13 - Yapılması Düşünülen Projeler Tablosu (YİD)</value>
+  </data>
+  <data name="REP_2002_11" xml:space="preserve">
+    <value>Tablo 12/13 - Yapılması Düşünülen Projeler Tablosu (Yİ)</value>
+  </data>
+  <data name="REP_2002_12" xml:space="preserve">
+    <value>Tablo 12/13 - Yapılması Düşünülen Projeler Tablosu (NORMAL)</value>
+  </data>
+  <data name="REP_2002_2" xml:space="preserve">
+    <value>Tablo 2 - Yatırım Projeleri Tablosu</value>
+  </data>
+  <data name="REP_2002_3" xml:space="preserve">
+    <value>Tablo 2 - Yatırım Projeleri Tablosu (Düzey 2 Bölge Kodlu)</value>
+  </data>
+  <data name="REP_2002_4" xml:space="preserve">
+    <value>Tablo 3 - Yatırım Ödenek ve Harcamaları Tablosu</value>
+  </data>
+  <data name="REP_2002_5" xml:space="preserve">
+    <value>Tablo 4 - Proje Türüne Göre Yatırım Projeleri Tablosu</value>
+  </data>
+  <data name="REP_2002_6" xml:space="preserve">
+    <value>Tablo 5 - Proje İzleme Tablosu</value>
+  </data>
+  <data name="REP_2002_7" xml:space="preserve">
+    <value>Tablo 6 - Halen İşlemde Olan Dış Proje Kredileri Tablosu</value>
+  </data>
+  <data name="REP_2002_8" xml:space="preserve">
+    <value>Tablo 7 - Dış Kredi Sağlanması İstenen Projeler Tablosu</value>
+  </data>
+  <data name="REP_2002_9" xml:space="preserve">
+    <value>Tablo 10 - Kamulaştırma Harcamalarının Proje Bazında Dağılım Tablosu</value>
+  </data>
+  <data name="REP_2003_1" xml:space="preserve">
+    <value>Yatırım Teklifleri Dağılım Tablosu</value>
+  </data>
+  <data name="REP_2003_10" xml:space="preserve">
+    <value>DPT Vize Cetveli</value>
+  </data>
+  <data name="REP_2003_2" xml:space="preserve">
+    <value>Üst Yönetim Görüşme Tablosu - 1</value>
+  </data>
+  <data name="REP_2003_3" xml:space="preserve">
+    <value>Üst Yönetim Görüşme Tablosu - 2</value>
+  </data>
+  <data name="REP_2003_4" xml:space="preserve">
+    <value>Karakteristik Dağılımı Tablosu</value>
+  </data>
+  <data name="REP_2003_5" xml:space="preserve">
+    <value>Konsolide Yatırım Tablosu</value>
+  </data>
+  <data name="REP_2003_6" xml:space="preserve">
+    <value>Proje Takip Tablosu</value>
+  </data>
+  <data name="REP_2003_7" xml:space="preserve">
+    <value>Projeler Arası Ödenek Aktarması</value>
+  </data>
+  <data name="REP_2003_8" xml:space="preserve">
+    <value>Tertiplerin Projelere Göre Dağılımı</value>
+  </data>
+  <data name="REP_2003_9" xml:space="preserve">
+    <value>Yatırım Projeleri Listesi</value>
+  </data>
+  <data name="REP_3000_1" xml:space="preserve">
+    <value>Список растрат</value>
+  </data>
+  <data name="REP_3001_1" xml:space="preserve">
+    <value>Количество страниц</value>
+  </data>
+  <data name="REP_3001_2" xml:space="preserve">
+    <value>Konusuna Göre Evrak Sayısı</value>
+  </data>
+  <data name="REP_3001_3" xml:space="preserve">
+    <value>Geldiği/Gittiği Yere Göre Evrak Sayısı</value>
+  </data>
+  <data name="REP_3002_1" xml:space="preserve">
+    <value>Количество документов, полученных Şekline</value>
+  </data>
+  <data name="REP_3003_1" xml:space="preserve">
+    <value>Документ в режиме ожидания</value>
+  </data>
+  <data name="REP_4000_1" xml:space="preserve">
+    <value>Доклад по образованию</value>
+  </data>
+  <data name="REP_4000_2" xml:space="preserve">
+    <value>Personel Raporu</value>
+  </data>
+  <data name="REP_4000_3" xml:space="preserve">
+    <value>Годовой отчет</value>
+  </data>
+  <data name="REP_5000_1" xml:space="preserve">
+    <value>Tertip Bazında Ödenek Durum Listesi</value>
+  </data>
+  <data name="REP_5000_10" xml:space="preserve">
+    <value>График доходов</value>
+  </data>
+  <data name="REP_5000_11" xml:space="preserve">
+    <value>Birim Bazında Masraf Cetveli</value>
+  </data>
+  <data name="REP_5000_2" xml:space="preserve">
+    <value>Tertip Bazında Ödenek Durum Listesi (Sade)</value>
+  </data>
+  <data name="REP_5000_3" xml:space="preserve">
+    <value>Tertip Bazında Ödenek Durum Listesi - 2</value>
+  </data>
+  <data name="REP_5000_4" xml:space="preserve">
+    <value>Muhasebe Bazında Masraf Cetveli</value>
+  </data>
+  <data name="REP_5000_5" xml:space="preserve">
+    <value>Birim Bazında Masraf Cetveli (Alt Faaliyet)</value>
+  </data>
+  <data name="REP_5000_6" xml:space="preserve">
+    <value>Tertip Bazında %10 Listesi (4.düzey)</value>
+  </data>
+  <data name="REP_5000_7" xml:space="preserve">
+    <value>Tertip Bazında %10 Listesi (2.düzey)</value>
+  </data>
+  <data name="REP_5000_8" xml:space="preserve">
+    <value>Список расходов бюджета (функционально-экономическое преломление)</value>
+  </data>
+  <data name="REP_5000_9" xml:space="preserve">
+    <value>Ödenek Üstü Harcamalar (Birim Bazında)</value>
+  </data>
+  <data name="REP_5010_1" xml:space="preserve">
+    <value>Tertip Bazında Ödenek Durum Listesi</value>
+  </data>
+  <data name="REP_5010_2" xml:space="preserve">
+    <value>Tertip Bazında Ödenek Durum Listesi - 2</value>
+  </data>
+  <data name="REP_5010_3" xml:space="preserve">
+    <value>Tertip Bazında %10 Listesi</value>
+  </data>
+  <data name="REP_5010_4" xml:space="preserve">
+    <value>Bütçe Gideri Listesi(Fonksiyonel-Ekonomik Kırımlım)</value>
+  </data>
+  <data name="REP_5010_5" xml:space="preserve">
+    <value>График доходов</value>
+  </data>
+  <data name="REP_6010_1" xml:space="preserve">
+    <value>Форма 3 : Kesin Hesap Gider Cetveli</value>
+  </data>
+  <data name="REP_6010_10" xml:space="preserve">
+    <value>Форма 3/9 : Karşılaştırmalı Bütçe Giderleri Kesin Hesap Cetveli</value>
+  </data>
+  <data name="REP_6010_11" xml:space="preserve">
+    <value>Форма 4/2 : Şartlı Bağış ve Özel Gelirler Cetveli</value>
+  </data>
+  <data name="REP_6010_2" xml:space="preserve">
+    <value>Форма 3/1 : Fonksiyonel Sınıflandırmaya Göre Bütçe Giderleri İcmali</value>
+  </data>
+  <data name="REP_6010_3" xml:space="preserve">
+    <value>Форма 3/2 : Ekonomik Sınıflandırmaya Göre Bütçe Giderleri İcmali</value>
+  </data>
+  <data name="REP_6010_4" xml:space="preserve">
+    <value>Форма 3/3 : Kurumsal Sınıflandırmaya Göre Bütçe Giderleri İcmali</value>
+  </data>
+  <data name="REP_6010_5" xml:space="preserve">
+    <value>Форма 3/4 : Fonksiyonel ve Ekonomik Sınıflandırmaya Göre Bütçe Giderleri İcmali</value>
+  </data>
+  <data name="REP_6010_6" xml:space="preserve">
+    <value>Форма 3/5 : Geçen Yıldan Devreden Ödenekler Cetveli</value>
+  </data>
+  <data name="REP_6010_7" xml:space="preserve">
+    <value>Форма 3/6 : Ertesi Yıla Devredilen Ödenekler Cetveli</value>
+  </data>
+  <data name="REP_6010_8" xml:space="preserve">
+    <value>Форма 3/7 : Fonksiyonel Sınıflandırmaya Göre Yıl içinde ve Mahsup Döneminde Yapılan Bütçe Giderleri İcmali</value>
+  </data>
+  <data name="REP_6010_9" xml:space="preserve">
+    <value>Форма 3/8 : Fonksiyonel ve Ekonomik Sınıflandırmaya Göre Ödenek Üstü Bütçe Giderleri İcmali</value>
+  </data>
+  <data name="REP_6020_1" xml:space="preserve">
+    <value>Общие расходы по видам экономической классификации</value>
+  </data>
+  <data name="REP_6020_2" xml:space="preserve">
+    <value>Детальные расходы по видам экономической классификации</value>
+  </data>
+  <data name="REP_6020_3" xml:space="preserve">
+    <value>Детальные расходы по функциональной классификации</value>
+  </data>
+  <data name="REP_6020_4" xml:space="preserve">
+    <value>Ödenek Üstü Tertipler Cetveli</value>
+  </data>
+  <data name="REP_6020_5" xml:space="preserve">
+    <value>İptal Edilecek Tertipler Cetveli</value>
+  </data>
+  <data name="REP_6020_6" xml:space="preserve">
+    <value>Переданые участки управления</value>
+  </data>
+  <data name="REP_6020_7" xml:space="preserve">
+    <value>Yedek Ödenekten aktarma yapılan Tertipler Cetveli</value>
+  </data>
+  <data name="REP_6020_8" xml:space="preserve">
+    <value>Akreditif,Taahhütve Dış Proje Kredileri Cetveli</value>
+  </data>
+  <data name="REP_6020_9" xml:space="preserve">
+    <value>Özellikli Giderleri Karşılama Ödeneğinden yapılan Aktarmalar Cetveli</value>
+  </data>
+  <data name="REP_6030_1" xml:space="preserve">
+    <value>Форма 4/1: Kesin Hesap Gelir Cetveli/İcmali</value>
+  </data>
+  <data name="REP_6030_2" xml:space="preserve">
+    <value>Форма 2: Kesin Hesap Geçici Mizan</value>
+  </data>
+  <data name="REP_6030_3" xml:space="preserve">
+    <value>Форма 2/1: Kesin Hesap Kesin Mizan</value>
+  </data>
+  <data name="REP_6030_4" xml:space="preserve">
+    <value>Форма 4/3: Karşılaştırmalı Bütçe Gelirleri Kesin Hesap Cetveli</value>
+  </data>
+  <data name="REP_A_0_ButceYil" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="REP_A_0_CiktiYeri" xml:space="preserve">
+    <value>Точка выхода</value>
+  </data>
+  <data name="REP_A_0_KurKod" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="REP_A_0_Senaryo" xml:space="preserve">
+    <value>Сценарий</value>
+  </data>
+  <data name="REP_A_2000_ButceYil" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="REP_A_2000_CiktiYeri" xml:space="preserve">
+    <value>Точка выхода</value>
+  </data>
+  <data name="REP_A_2000_KurKod" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="REP_A_2000_Senaryo" xml:space="preserve">
+    <value>Сценарий</value>
+  </data>
+  <data name="REP_A_2002_ButceYil" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="REP_A_2002_CiktiYeri" xml:space="preserve">
+    <value>Точка выхода</value>
+  </data>
+  <data name="REP_A_2002_KurKod" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="REP_A_2002_Senaryo" xml:space="preserve">
+    <value>Сценарий</value>
+  </data>
+  <data name="REP_A_2003_ButceYil" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="REP_A_2003_DonemBYil" xml:space="preserve">
+    <value>Начальная дата года</value>
+  </data>
+  <data name="REP_A_2003_KurKod" xml:space="preserve">
+    <value>Ведомство</value>
+  </data>
+  <data name="REP_A_2003_Senaryo" xml:space="preserve">
+    <value>Сценарий</value>
+  </data>
+  <data name="REP_A_2003_StrAmacKod" xml:space="preserve">
+    <value>Stratejik Amaç</value>
+  </data>
+  <data name="REP_A_2003_StrHedefKod" xml:space="preserve">
+    <value>Stratejik Hedef</value>
+  </data>
+  <data name="REP_A_3000_HavaleBirim" xml:space="preserve">
+    <value>Havale Edilen Birim</value>
+  </data>
+  <data name="REP_A_3000_HavaleTarihi1" xml:space="preserve">
+    <value>Havele Tarihi &gt;=</value>
+  </data>
+  <data name="REP_A_3000_HavaleTarihi2" xml:space="preserve">
+    <value>Havele Tarihi &lt;=</value>
+  </data>
+  <data name="REP_A_3000_SayfaAyirac" xml:space="preserve">
+    <value>Отдельные страницы на базе группы</value>
+  </data>
+  <data name="REP_A_3000_Yil" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="REP_A_3001_EvrakTip" xml:space="preserve">
+    <value>Тип документа</value>
+  </data>
+  <data name="REP_A_3001_GeldigiYer" xml:space="preserve">
+    <value>Geldiği/Gittiği Yer</value>
+  </data>
+  <data name="REP_A_3001_Konusu" xml:space="preserve">
+    <value>Konusu</value>
+  </data>
+  <data name="REP_A_3001_Tarih1" xml:space="preserve">
+    <value>Tarih &gt;=</value>
+  </data>
+  <data name="REP_A_3001_Tarih2" xml:space="preserve">
+    <value>Tarih &lt;=</value>
+  </data>
+  <data name="REP_A_3001_Yil" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="REP_A_3002_GelisSekli" xml:space="preserve">
+    <value>Путь</value>
+  </data>
+  <data name="REP_A_3002_Tarih1" xml:space="preserve">
+    <value>Tarih &gt;=</value>
+  </data>
+  <data name="REP_A_3002_Tarih2" xml:space="preserve">
+    <value>Tarih &lt;=</value>
+  </data>
+  <data name="REP_A_3002_Yil" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="REP_A_3003_EvrakTipi" xml:space="preserve">
+    <value>Тип документа</value>
+  </data>
+  <data name="REP_A_3003_KisiAdi" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="REP_A_3003_Tarih1" xml:space="preserve">
+    <value>İşlem Tarih &gt;=</value>
+  </data>
+  <data name="REP_A_3003_Tarih2" xml:space="preserve">
+    <value>İşlem Tarih &lt;=</value>
+  </data>
+  <data name="REP_A_3003_TCNo" xml:space="preserve">
+    <value>TC Kimlik Numarası</value>
+  </data>
+  <data name="REP_A_3003_Yil" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="REP_A_4000_Adi" xml:space="preserve">
+    <value>Наименование образовательного учреждения</value>
+  </data>
+  <data name="REP_A_4000_Donem" xml:space="preserve">
+    <value>Срок</value>
+  </data>
+  <data name="REP_A_4000_Kurulus" xml:space="preserve">
+    <value>Образовательное учреждение</value>
+  </data>
+  <data name="REP_A_4000_Yer" xml:space="preserve">
+    <value>Адрес образовательного учреждения</value>
+  </data>
+  <data name="REP_A_4000_Yil" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="REP_A_5000_AyNo" xml:space="preserve">
+    <value>Месяц</value>
+  </data>
+  <data name="REP_A_5000_Birim" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="REP_A_5000_ButceYil" xml:space="preserve">
+    <value>Бюджетный год</value>
+  </data>
+  <data name="REP_A_5000_CiktiYeri" xml:space="preserve">
+    <value>Точка выхода</value>
+  </data>
+  <data name="REP_A_5000_Eko" xml:space="preserve">
+    <value>Экономический код</value>
+  </data>
+  <data name="REP_A_5000_EkoKirilim" xml:space="preserve">
+    <value>Экономическое преломление</value>
+  </data>
+  <data name="REP_A_5000_Fin" xml:space="preserve">
+    <value>Финансовый код</value>
+  </data>
+  <data name="REP_A_5000_Fon" xml:space="preserve">
+    <value>Функциональный код</value>
+  </data>
+  <data name="REP_A_5000_Kur" xml:space="preserve">
+    <value>Ведомственный код</value>
+  </data>
+  <data name="REP_A_5000_Muhasebe" xml:space="preserve">
+    <value>Бухгалтерский учет</value>
+  </data>
+  <data name="REP_A_5010_AyNo" xml:space="preserve">
+    <value>Месяц</value>
+  </data>
+  <data name="REP_A_5010_Birim" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="REP_A_5010_ButceYil" xml:space="preserve">
+    <value>Бюджетный год</value>
+  </data>
+  <data name="REP_A_5010_CiktiYeri" xml:space="preserve">
+    <value>Точка выхода</value>
+  </data>
+  <data name="REP_A_5010_Eko" xml:space="preserve">
+    <value>Экономический код</value>
+  </data>
+  <data name="REP_A_5010_EkoKirilim" xml:space="preserve">
+    <value>Экономическое преломление</value>
+  </data>
+  <data name="REP_A_5010_Fin" xml:space="preserve">
+    <value>Финансовый код</value>
+  </data>
+  <data name="REP_A_5010_Fon" xml:space="preserve">
+    <value>Функциональный код</value>
+  </data>
+  <data name="REP_A_5010_Kur" xml:space="preserve">
+    <value>Ведомственный код</value>
+  </data>
+  <data name="REP_A_5010_Muhasebe" xml:space="preserve">
+    <value>Бухгалтерский учет</value>
+  </data>
+  <data name="REP_A_6010_AyNo" xml:space="preserve">
+    <value>Месяц</value>
+  </data>
+  <data name="REP_A_6010_ButceYil" xml:space="preserve">
+    <value>Бюджетный год</value>
+  </data>
+  <data name="REP_A_6010_CiktiYeri" xml:space="preserve">
+    <value>Точка выхода</value>
+  </data>
+  <data name="REP_A_6010_Eko" xml:space="preserve">
+    <value>Экономический код</value>
+  </data>
+  <data name="REP_A_6010_Fin" xml:space="preserve">
+    <value>Финансовый код</value>
+  </data>
+  <data name="REP_A_6010_Fon" xml:space="preserve">
+    <value>Функциональный код</value>
+  </data>
+  <data name="REP_A_6010_Kur" xml:space="preserve">
+    <value>Ведомственный код</value>
+  </data>
+  <data name="REP_A_6020_AyNo" xml:space="preserve">
+    <value>Месяц</value>
+  </data>
+  <data name="REP_A_6020_ButceYil" xml:space="preserve">
+    <value>Бюджетный год</value>
+  </data>
+  <data name="REP_A_6020_CiktiYeri" xml:space="preserve">
+    <value>Точка выхода</value>
+  </data>
+  <data name="REP_A_6020_Eko" xml:space="preserve">
+    <value>Экономический код</value>
+  </data>
+  <data name="REP_A_6020_Fin" xml:space="preserve">
+    <value>Финансовый код</value>
+  </data>
+  <data name="REP_A_6020_Fon" xml:space="preserve">
+    <value>Функциональный код</value>
+  </data>
+  <data name="REP_A_6020_Kur" xml:space="preserve">
+    <value>Ведомственный код</value>
+  </data>
+  <data name="REP_A_6030_AyNo" xml:space="preserve">
+    <value>Месяц</value>
+  </data>
+  <data name="REP_A_6030_ButceYil" xml:space="preserve">
+    <value>Бюджетный год</value>
+  </data>
+  <data name="REP_A_6030_CiktiYeri" xml:space="preserve">
+    <value>Точка выхода</value>
+  </data>
+  <data name="REP_A_6030_Eko" xml:space="preserve">
+    <value>Экономический код</value>
+  </data>
+  <data name="REP_A_6030_Kur" xml:space="preserve">
+    <value>Ведомственный код</value>
+  </data>
+  <data name="REP_A_7500_ButceYil" xml:space="preserve">
+    <value>Бюджетный год</value>
+  </data>
+  <data name="REP_A_7500_KurKod" xml:space="preserve">
+    <value>Ведомство</value>
+  </data>
+  <data name="REP_B_0_1" xml:space="preserve">
+    <value>Ödenek Raporları</value>
+  </data>
+  <data name="REP_B_2000_1" xml:space="preserve">
+    <value>Ödenek Raporları</value>
+  </data>
+  <data name="REP_B_2002_1" xml:space="preserve">
+    <value>DPT Yatırım Raporları</value>
+  </data>
+  <data name="REP_B_2003_1" xml:space="preserve">
+    <value>Yatırım Özel Raporlar</value>
+  </data>
+  <data name="REP_G_0" xml:space="preserve">
+    <value>Bütçe Hazırlık Ödenek Raporları</value>
+  </data>
+  <data name="REP_G_2000" xml:space="preserve">
+    <value>Performans Bütçe Raporları</value>
+  </data>
+  <data name="REP_G_2002" xml:space="preserve">
+    <value>DPT Yatırım Raporları</value>
+  </data>
+  <data name="REP_G_2003" xml:space="preserve">
+    <value>Yatırım Özel Raporlar</value>
+  </data>
+  <data name="REP_G_3000" xml:space="preserve">
+    <value>Отчёт</value>
+  </data>
+  <data name="REP_G_3001" xml:space="preserve">
+    <value>Отчёт</value>
+  </data>
+  <data name="REP_G_4000" xml:space="preserve">
+    <value>Personel Eğitim Raporları</value>
+  </data>
+  <data name="REP_G_5000" xml:space="preserve">
+    <value>Ödenek Durum / Masraf Cetvelleri</value>
+  </data>
+  <data name="REP_G_5010" xml:space="preserve">
+    <value>Gider-Gelir Durum Listesi / Masraf Cetveli</value>
+  </data>
+  <data name="REP_G_6010" xml:space="preserve">
+    <value>Kesin Hesap Gider Cetvelleri</value>
+  </data>
+  <data name="REP_G_6020" xml:space="preserve">
+    <value>Kesin Hesap Gider Kontrol Cetvelleri</value>
+  </data>
+  <data name="REP_G_6030" xml:space="preserve">
+    <value>Kesin Hesap Gelir Cetvelleri</value>
+  </data>
+  <data name="REP_K_0" xml:space="preserve">
+    <value>Bütçe Hazırlık Ödenek Raporları</value>
+  </data>
+  <data name="REP_K_2000" xml:space="preserve">
+    <value>Performans Bütçe Raporları</value>
+  </data>
+  <data name="REP_K_2002" xml:space="preserve">
+    <value>DPT Yatırım Raporları</value>
+  </data>
+  <data name="REP_K_2003" xml:space="preserve">
+    <value>Yatırım Özel Raporlar</value>
+  </data>
+  <data name="REP_A_2000_DonemBYil" xml:space="preserve">
+    <value>Начальная дата года</value>
+  </data>
+  <data name="REP_6010_12" xml:space="preserve">
+    <value>Форма 3/3A : Finansal Sınıflandırmaya Göre Bütçe Giderleri İcmali</value>
+  </data>
+  <data name="REP_6010_13" xml:space="preserve">
+    <value>Форма 3/3C : Finansal Sınıflandırmaya Göre Bütçe Giderleri Kesin Hesap Cetveli</value>
+  </data>
+  <data name="REP_700_1" xml:space="preserve">
+    <value>Ödenek Girilmemiş Tertipler</value>
+  </data>
+  <data name="REP_700_2" xml:space="preserve">
+    <value>Превышение ассигнования (20%)</value>
+  </data>
+  <data name="REP_700_3" xml:space="preserve">
+    <value>Минус ассигнования (20%)</value>
+  </data>
+  <data name="REP_700_4" xml:space="preserve">
+    <value>Tanımsız Tertiplere Girilmiş Ödenekler</value>
+  </data>
+  <data name="REP_8000" xml:space="preserve">
+    <value>Отчеты управления расходами</value>
+  </data>
+  <data name="REP_8000_1" xml:space="preserve">
+    <value>Kurum-İhale Firma Listesi</value>
+  </data>
+  <data name="REP_A_8000_Ay" xml:space="preserve">
+    <value>Месяц</value>
+  </data>
+  <data name="REP_A_8000_Birim" xml:space="preserve">
+    <value>Код группы</value>
+  </data>
+  <data name="REP_A_8000_FirmaSayi" xml:space="preserve">
+    <value>Количество фирм</value>
+  </data>
+  <data name="REP_A_8000_KurKod" xml:space="preserve">
+    <value>Kur Kod</value>
+  </data>
+  <data name="REP_A_8000_Muhasebe" xml:space="preserve">
+    <value>Muhasebe Kod</value>
+  </data>
+  <data name="REP_A_8000_VergiNo" xml:space="preserve">
+    <value>Vergi No</value>
+  </data>
+  <data name="REP_A_8000_Yil" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="REP_0_25" xml:space="preserve">
+    <value>Форма 25: Tavan İçerisinde Teklif Edilemeyen Ödenekler (Detaydan)</value>
+  </data>
+  <data name="REP_997_1" xml:space="preserve">
+    <value>Экономическая детализация</value>
+  </data>
+  <data name="REP_997_2" xml:space="preserve">
+    <value>Годовой экономический перекрестный</value>
+  </data>
+  <data name="REP_997_3" xml:space="preserve">
+    <value>Gider Bütçe Fişi Birleştirme Tablosu</value>
+  </data>
+  <data name="REP_10000_1" xml:space="preserve">
+    <value>Общий объем расходов гос. бюджета по ФБК</value>
+  </data>
+  <data name="REP_10000_2" xml:space="preserve">
+    <value>Объем расходов гос. бюджета по ФБК и источникам финансирования</value>
+  </data>
+  <data name="REP_10001_1" xml:space="preserve">
+    <value>Общий объем расходов РБ по ведомствам</value>
+  </data>
+  <data name="REP_10002_2" xml:space="preserve">
+    <value>Общий объем расходов Местного Бюджета по ведомствам</value>
+  </data>
+  <data name="REP_A_10000_ButceYil" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="REP_10001_8" xml:space="preserve">
+    <value>Расходы на заработную плату РБ по ведомтсвенной классификации</value>
+  </data>
+  <data name="ORT001" xml:space="preserve">
+    <value>Файл с таким именем уже существует.</value>
+  </data>
+  <data name="REP_10001_9" xml:space="preserve">
+    <value>Расходы РБ по секторам на </value>
+  </data>
+  <data name="REP_10000_5" xml:space="preserve">
+    <value>Расходы гос. бюджета по ФБК с учетом ЦКВ</value>
+  </data>
+  <data name="REP_10000_16" xml:space="preserve">
+    <value>Расходы гос. бюджета по секторам</value>
+  </data>
+  <data name="REP_10000_10" xml:space="preserve">
+    <value>Общий объем гос. бюджета по секторам с учетом развития</value>
+  </data>
+  <data name="REP_10000_11" xml:space="preserve">
+    <value>Общий объем расходов гос. бюджета по кураторам (тип 2)</value>
+  </data>
+  <data name="REP_10000_12" xml:space="preserve">
+    <value>Общий объем расходов гос. бюджета по секторам и источникам финансирования</value>
+  </data>
+  <data name="REP_10000_4" xml:space="preserve">
+    <value>Расходы гос. бюджета по ЭБК</value>
+  </data>
+  <data name="REP_10000_3" xml:space="preserve">
+    <value>Общий объем гос. бюджета развития по ФБК</value>
+  </data>
+  <data name="REP_10000_6" xml:space="preserve">
+    <value>Расходы на заработную плату гос. бюджета по ФБК</value>
+  </data>
+  <data name="REP_10000_7" xml:space="preserve">
+    <value>Объем расходов гос. бюджета по типу бюджета</value>
+  </data>
+  <data name="REP_10000_8" xml:space="preserve">
+    <value>Общий объем расходов гос. бюджета по группам бюджетных заявок</value>
+  </data>
+  <data name="REP_10000_9" xml:space="preserve">
+    <value>Общий расход гос. бюджета с разбивкой по кураторам</value>
+  </data>
+  <data name="REP_10000_13" xml:space="preserve">
+    <value>Общий объем гос. бюджета по секторам</value>
+  </data>
+  <data name="REP_10000_14" xml:space="preserve">
+    <value>Расходы по спец. средствам  гос. бюджета по ФБК</value>
+  </data>
+  <data name="REP_10000_15" xml:space="preserve">
+    <value>Расходы по спец. средствам гос. бюджета по секторам</value>
+  </data>
+  <data name="REP_10000_17" xml:space="preserve">
+    <value>Общий объем гос. бюджета по секторам (с учетом фонда соц.страх)</value>
+  </data>
+  <data name="REP_10003_1" xml:space="preserve">
+    <value>Отчет бюджетные потлоки по ведомствам</value>
+  </data>
+  <data name="REP_10003_2" xml:space="preserve">
+    <value>Отчет бюджетные потолки по ведомствам и источникам фин-е</value>
+  </data>
+  <data name="REP_10004_1" xml:space="preserve">
+    <value>Отчет бюджетные потлоки по организациям</value>
+  </data>
+  <data name="REP_10004_2" xml:space="preserve">
+    <value>Отчет бюджетные потлоки по организациям и источникам финансирования</value>
+  </data>
+  <data name="REP_10001_2" xml:space="preserve">
+    <value>Общий объем расходов РБ по ФБК</value>
+  </data>
+  <data name="REP_10001_3" xml:space="preserve">
+    <value>Общий объем расходов РБ по ведомствам и ИФ</value>
+  </data>
+  <data name="REP_10001_4" xml:space="preserve">
+    <value>Расходы РБ по ЭБК</value>
+  </data>
+  <data name="REP_10001_5" xml:space="preserve">
+    <value>Расходы РБ по ведомственной классификации(с учетом ЦКВ)</value>
+  </data>
+  <data name="REP_10001_6" xml:space="preserve">
+    <value>Расходы РБ по ФБК (с учетом ЦКВ)</value>
+  </data>
+  <data name="REP_10001_7" xml:space="preserve">
+    <value>Расходы РБ по ФБК </value>
+  </data>
+  <data name="REP_10001_10" xml:space="preserve">
+    <value>Расходы МФ РТ РБ по ведомственной классификации</value>
+  </data>
+  <data name="REP_10002_1" xml:space="preserve">
+    <value>Общий объем расходов Местного Бюджета по ведомствам и ИФ</value>
+  </data>
+  <data name="REP_10002_10" xml:space="preserve">
+    <value>Расходы на заработную плату МБ по ведомствам</value>
+  </data>
+  <data name="REP_10002_11" xml:space="preserve">
+    <value>Расходы на заработную плату МБ по ФБК</value>
+  </data>
+  <data name="REP_10002_3" xml:space="preserve">
+    <value>Общий объем расходов Местного Бюджета по ФБК</value>
+  </data>
+  <data name="REP_10002_4" xml:space="preserve">
+    <value>Расходы бюджета г. Душанбе по ЭБК</value>
+  </data>
+  <data name="REP_10002_5" xml:space="preserve">
+    <value>Расходы Местного Бюджета по ведомственной классификации</value>
+  </data>
+  <data name="REP_10002_6" xml:space="preserve">
+    <value>Расходы Местного Бюджета по ФБК (с учетом ЦКВ)</value>
+  </data>
+  <data name="REP_10002_7" xml:space="preserve">
+    <value>Расходы Местного Бюджета по ФБК</value>
+  </data>
+  <data name="REP_10002_8" xml:space="preserve">
+    <value>Расходы Местного Бюджета по ЭБК</value>
+  </data>
+  <data name="REP_10002_9" xml:space="preserve">
+    <value>Расходы Местного Бюджета в разрезе областей</value>
+  </data>
+  <data name="REP_A_10000_Senaryo" xml:space="preserve">
+    <value>Сценарий</value>
+  </data>
+  <data name="REP_A_10001_ButceYil" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="REP_A_10001_Senaryo" xml:space="preserve">
+    <value>Сценарий</value>
+  </data>
+  <data name="REP_A_10002_ButceYil" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="REP_A_10002_Senaryo" xml:space="preserve">
+    <value>Сценарий</value>
+  </data>
+  <data name="REP_A_10002_Terr" xml:space="preserve">
+    <value>Код Область.район(%-все)</value>
+  </data>
+  <data name="REP_10000_18" xml:space="preserve">
+    <value>Расходы ФСЗН  по ЭБК</value>
+  </data>
+  <data name="REP_10005_1" xml:space="preserve">
+    <value>Отчет бюджетные потолки по распределителям</value>
+  </data>
+  <data name="REP_10005_2" xml:space="preserve">
+    <value>Отчет бюджетные потолки по распределителям и источникам фин-е</value>
+  </data>
+  <data name="REP_A_10000_KurKod" xml:space="preserve">
+    <value>Ведомственный код(%-все)</value>
+  </data>
+  <data name="REP_A_10000_Terr" xml:space="preserve">
+    <value>Код Область.район(%-все)</value>
+  </data>
+  <data name="REP_A_10001_KurKod" xml:space="preserve">
+    <value>Ведомственный код(%-все)</value>
+  </data>
+  <data name="REP_A_10001_Terr" xml:space="preserve">
+    <value>Код Область.район(%-все)</value>
+  </data>
+  <data name="REP_A_10002_KurKod" xml:space="preserve">
+    <value>Ведомственный код(%-все)</value>
+  </data>
+  <data name="REP_10001_11" xml:space="preserve">
+    <value>Расходы РБ по ЭБК(прогноз)</value>
+  </data>
+  <data name="REP_10000_19" xml:space="preserve">
+    <value>Расходы по спец. средствам  гос. бюджета по ВК (АК)</value>
+  </data>
+  <data name="REP_10000_20" xml:space="preserve">
+    <value>Общие расходы ФСЗН  по ЭБК</value>
+  </data>
+  <data name="IST009" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="IST010" xml:space="preserve">
+    <value>Карта сайта</value>
+  </data>
+  <data name="IST012" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="IST023" xml:space="preserve">
+    <value>Главная страница SGB.net</value>
+  </data>
+  <data name="IST047" xml:space="preserve">
+    <value>НПД</value>
+  </data>
+  <data name="IST013" xml:space="preserve">
+    <value>Всего выделенной строки</value>
+  </data>
+  <data name="IST014" xml:space="preserve">
+    <value>Общий итог</value>
+  </data>
+  <data name="IST021" xml:space="preserve">
+    <value>Предыдущая страница</value>
+  </data>
+  <data name="IST022" xml:space="preserve">
+    <value>Следующая страница</value>
+  </data>
+    <data name="JSGEN001" xml:space="preserve">
+    <value>Документ будет отправлен в зарегистрированный центр. Отправить?</value>
+  </data>
+  <data name="JSGEN002" xml:space="preserve">
+    <value>Новые документы будут отправлены в центр. Отправить?</value>
+  </data>
+  <data name="JSGEN003" xml:space="preserve">
+    <value>{0}Заменить номер документа для отправки в центр?</value>
+  </data>
+  <data name="JSGEN004" xml:space="preserve">
+    <value>Seçili belge/ler İPTAL edilecektir. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN005" xml:space="preserve">
+    <value>Seçili belge/ler ARŞİVE KALDIRILACAKTIR. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN006" xml:space="preserve">
+    <value>Seçili belgelerin ONAYLARI KALDIRILACAK tır. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN007" xml:space="preserve">
+    <value>Seçili belgeler ONAYLANACAK tır. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN008" xml:space="preserve">
+    <value>Документ будет утвержден. Продолжить?</value>
+  </data>
+  <data name="JSGEN009" xml:space="preserve">
+    <value>Belgenin ONAYI KALDIRILACAK tır. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN010" xml:space="preserve">
+    <value>Seçili belgelerin YEVMİYE NUMARALARI KALDIRILACAK tır. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN011" xml:space="preserve">
+    <value>Seçili belgelere YEVMİYE NUMARASI VERİLECEK tir. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN012" xml:space="preserve">
+    <value>Listedeki belgeler KAYIT EDİLECEK tir. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN013" xml:space="preserve">
+    <value>Listedeki belgeler Hata Kontrol Amaçlı Merkez GÖNDERİLECEK tir. İşlem sonucunda herhangi bir kayıt işlemi gerçekleşmeyecektir. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN014" xml:space="preserve">
+    <value>Belirtilen dosyadaki bilgiler ilk önce kontrol edilecek daha sonra herhangi bir hata bulunmaz ise kayıt edilecektir. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN015" xml:space="preserve">
+    <value>Seçili belgelere İCMAL NUMARASI VERİLECEK tir. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN016" xml:space="preserve">
+    <value>İcmal Belgesi yazdırılacaktır. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN017" xml:space="preserve">
+    <value>Seçili belgeler Muhasebat Genel Müdürlüğüne GÖNDERİLECEK tir. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN018" xml:space="preserve">
+    <value>Seçili belgeler Tahsis edilecektir. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN019" xml:space="preserve">
+    <value>Информация отображённая на форме будет удалена. Хорошо?</value>
+  </data>
+  <data name="JSGEN020" xml:space="preserve">
+    <value>Seçili belgeler yazdırılmak üzere hazırlanacaktır. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN021" xml:space="preserve">
+    <value>Özellik bilgileri silinecektir. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN022" xml:space="preserve">
+    <value>Bilgiler silinecektir. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN023" xml:space="preserve">
+    <value>Bilgiler aktarılacaktır. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN024" xml:space="preserve">
+    <value>Bilgiler e-bütce den aktarılacak. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN025" xml:space="preserve">
+    <value>Belgenin, Belge Türü değiştirilecektir. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN026" xml:space="preserve">
+    <value>İlgili TİF için Ödeme Emri oluşturulacaktır. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN027" xml:space="preserve">
+    <value>Harcama Birimi değiştirilecektir. Bu işlemden önce veritabanı yedeği almanız önerilir. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN028" xml:space="preserve">
+    <value>Статус документа изменится на изменён. Хорошо?</value>
+  </data>
+  <data name="JSGEN029" xml:space="preserve">
+    <value>Seçili Kullanıcı Tiplerine e-posta gönderilecek. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN030" xml:space="preserve">
+    <value>Документы будут сохранены. Подтверждаете?</value>
+  </data>
+  <data name="JSGEN031" xml:space="preserve">
+    <value>Evraklar seçili olan birimlere/kişilere gönderilecektir. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN032" xml:space="preserve">
+    <value>Evraklar dosyaya kaldırılacaktır. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN033" xml:space="preserve">
+    <value>Seçili olan Evraklar Dosyadan alınacaktır. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN034" xml:space="preserve">
+    <value>Seçili olan Evraklar için Giden Evrak Numarası alınacaktır. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN035" xml:space="preserve">
+    <value>Seçili olan Evraklar havale edildiklerin yerden Geri alınacaktır. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN036" xml:space="preserve">
+    <value>Выбранные документы будут отменены. Хорошо?</value>
+  </data>
+  <data name="JSGEN037" xml:space="preserve">
+    <value>Seçili olan Evrakların İptal işlemi geri alınacaktır. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN038" xml:space="preserve">
+    <value>Seçili olan Evraklar Teslim alınacaktır. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN039" xml:space="preserve">
+    <value>Документы, которые выделены, будут отправлены обратно. Хорошо?</value>
+  </data>
+  <data name="JSGEN040" xml:space="preserve">
+    <value>Документы будут подписаны выбранной подписью. Подтверждаете?</value>
+  </data>
+  <data name="JSGEN041" xml:space="preserve">
+    <value>Информация будет сохранена. Подтверждаете?</value>
+  </data>
+  <data name="JSGEN042" xml:space="preserve">
+    <value>Шаблон будет сохранен. Подтверждаете?</value>
+  </data>
+  <data name="JSGEN043" xml:space="preserve">
+    <value>Шаблон будет удален. Подтверждаете?</value>
+  </data>
+  <data name="JSGEN044" xml:space="preserve">
+    <value>Gönderilen ödenekler içi değişim belgesi onaylanacaktır. Onaylıyor musunuz?</value>
+  </data>
+  <data name="JSGEN045" xml:space="preserve">
+    <value>Kullanıcının çalıştığı kurum bilgisini değiştirdiniz. Devam etmek istiyor musunuz?</value>
+  </data>
+  <data name="JSGEN046" xml:space="preserve">
+    <value>İlk önce listeden yukarı/aşağı yönlendireceğiz bilgiyi seçin.</value>
+  </data>
+  <data name="JSGEN047" xml:space="preserve">
+    <value>Seçili olan Evraklar Elektronik İmzalanacaktır. Onaylıyor musunuz?</value>
+  </data>
+    <data name="Menu1" xml:space="preserve">
+    <value>Организация и План</value>
+  </data>
+  <data name="Menu1_1" xml:space="preserve">
+    <value>Тип организации</value>
+  </data>
+  <data name="Menu1_1_1" xml:space="preserve">
+    <value>Организационная структура</value>
+  </data>
+  <data name="Menu1_2" xml:space="preserve">
+    <value>Стратегический план</value>
+  </data>
+  <data name="Menu1_2_1" xml:space="preserve">
+    <value>Миссия</value>
+  </data>
+  <data name="Menu1_2_2" xml:space="preserve">
+    <value>Видение</value>
+  </data>
+  <data name="Menu1_2_3" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="Menu1_2_4" xml:space="preserve">
+    <value>Стратегическая цель (Amaç)</value>
+  </data>
+  <data name="Menu1_2_5" xml:space="preserve">
+    <value>Стратегическая цель (Hedef)</value>
+  </data>
+  <data name="Menu1_3" xml:space="preserve">
+    <value>Производительность программы</value>
+  </data>
+  <data name="Menu1_3_1" xml:space="preserve">
+    <value>Дерево стратегии</value>
+  </data>
+  <data name="Menu1_3_2" xml:space="preserve">
+    <value>Эффективность целей</value>
+  </data>
+  <data name="Menu1_3_3" xml:space="preserve">
+    <value>Faaliyet/GYG/Transfer</value>
+  </data>
+  <data name="Menu1_3_4" xml:space="preserve">
+    <value>Эффективность целевых индикаторов</value>
+  </data>
+  <data name="Menu1_4" xml:space="preserve">
+    <value>Оперативный план</value>
+  </data>
+  <data name="Menu1_4_1" xml:space="preserve">
+    <value>Performans Bütçe Operasyonel Plan</value>
+  </data>
+  <data name="Menu1_4_1_1" xml:space="preserve">
+    <value>Daire Tanımlama</value>
+  </data>
+  <data name="Menu1_4_1_2" xml:space="preserve">
+    <value>Действия персонала</value>
+  </data>
+  <data name="Menu1_4_1_3" xml:space="preserve">
+    <value>Ввод и запрос подпрограммы</value>
+  </data>
+  <data name="Menu1_4_1_4" xml:space="preserve">
+    <value>Работа / Задача операции</value>
+  </data>
+  <data name="Menu1_5" xml:space="preserve">
+    <value>Индикаторы</value>
+  </data>
+  <data name="Menu1_5_1" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="Menu1_6" xml:space="preserve">
+    <value>İzleme Değerlendirme</value>
+  </data>
+  <data name="Menu1_6_1" xml:space="preserve">
+    <value>Реализация индикатора</value>
+  </data>
+  <data name="Menu1_6_2" xml:space="preserve">
+    <value>Предварительный финансовый контроль</value>
+  </data>
+  <data name="Menu1_6_3" xml:space="preserve">
+    <value>Отчеты</value>
+  </data>
+  <data name="Menu1_6_3_1" xml:space="preserve">
+    <value>Birim Göstergeleri İzleme ve Değerlendirme Raporu</value>
+  </data>
+  <data name="Menu1_6_3_2" xml:space="preserve">
+    <value>Доклад по мониторингу фактических показателей</value>
+  </data>
+  <data name="Menu1_6_3_3" xml:space="preserve">
+    <value>Performans Göstergerlerinin Gerçekleşmelerinin Hedefe Ulaşma Durumu Raporu</value>
+  </data>
+  <data name="Menu1_6_3_4" xml:space="preserve">
+    <value>Годовой отчет</value>
+  </data>
+  <data name="Menu1_6_3_5" xml:space="preserve">
+    <value>Performans Bütçe Raporları</value>
+  </data>
+  <data name="Menu1_7" xml:space="preserve">
+    <value>Менеджер экрана</value>
+  </data>
+  <data name="Menu1_7_1" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="Menu2" xml:space="preserve">
+    <value>Подготовка бюджета</value>
+  </data>
+  <data name="Menu2_1" xml:space="preserve">
+    <value>Управление бюджетом</value>
+  </data>
+  <data name="Menu2_1_1" xml:space="preserve">
+    <value>Бюджетные данные</value>
+  </data>
+  <data name="Menu2_1_2" xml:space="preserve">
+    <value>Бюджетная классификация</value>
+  </data>
+  <data name="Menu2_2" xml:space="preserve">
+    <value>Подготовка бюджета</value>
+  </data>
+  <data name="Menu2_2_1" xml:space="preserve">
+    <value>Требования к обслуживанию</value>
+  </data>
+  <data name="Menu2_2_10" xml:space="preserve">
+    <value>Hizmet Maliyet Tespiti-Taşra</value>
+  </data>
+  <data name="Menu2_2_11" xml:space="preserve">
+    <value>Физические величины - областные</value>
+  </data>
+  <data name="Menu2_2_2" xml:space="preserve">
+    <value>Предложение расходов</value>
+  </data>
+  <data name="Menu2_2_3" xml:space="preserve">
+    <value>Прогнозируемый расход на конец года</value>
+  </data>
+  <data name="Menu2_2_4" xml:space="preserve">
+    <value>Поступление бюджетных средств</value>
+  </data>
+  <data name="Menu2_2_5" xml:space="preserve">
+    <value>Предложение доходов</value>
+  </data>
+  <data name="Menu2_2_6" xml:space="preserve">
+    <value>Прогноз дохода на конец года</value>
+  </data>
+  <data name="Menu2_2_7" xml:space="preserve">
+    <value>Получение доходов бюджета</value>
+  </data>
+  <data name="Menu2_2_8" xml:space="preserve">
+    <value>Финансовое предложение</value>
+  </data>
+  <data name="Menu2_2_9" xml:space="preserve">
+    <value>Дополнительные формы</value>
+  </data>
+  <data name="Menu4_5_2" xml:space="preserve">
+    <value>Инвестиционные проекты</value>
+  </data>
+  <data name="Menu3" xml:space="preserve">
+    <value>Исполнение бюджета</value>
+  </data>
+  <data name="Menu3_1" xml:space="preserve">
+    <value>Исполнение бюджета</value>
+  </data>
+  <data name="Menu3_1_1" xml:space="preserve">
+    <value>Информация статуса ассигнований</value>
+  </data>
+  <data name="Menu3_1_10" xml:space="preserve">
+    <value>Muhasebe Kayıt İşlemi Tarih Sınırlaması</value>
+  </data>
+  <data name="Menu3_1_13" xml:space="preserve">
+    <value>Вступление резюме</value>
+  </data>
+  <data name="Menu3_1_14" xml:space="preserve">
+    <value>Вход AHP</value>
+  </data>
+  <data name="Menu3_1_15" xml:space="preserve">
+    <value>Вход AGP</value>
+  </data>
+  <data name="Menu3_1_16" xml:space="preserve">
+    <value>Стоимость плана</value>
+  </data>
+  <data name="Menu3_1_17" xml:space="preserve">
+    <value>Бюджетный процесс</value>
+  </data>
+  <data name="Menu3_1_2" xml:space="preserve">
+    <value>Информация статуса ассигнований (модуль)</value>
+  </data>
+  <data name="Menu3_1_3" xml:space="preserve">
+    <value>Отправка документа ассигнований</value>
+  </data>
+  <data name="Menu3_1_4" xml:space="preserve">
+    <value>Отправка документа ассигнований (MP)</value>
+  </data>
+  <data name="Menu3_1_5" xml:space="preserve">
+    <value>Tenkis сертификат</value>
+  </data>
+  <data name="Menu3_1_6" xml:space="preserve">
+    <value>Запрос ассигнований</value>
+  </data>
+  <data name="Menu3_1_7" xml:space="preserve">
+    <value>Запрос Tenkis</value>
+  </data>
+  <data name="Menu3_1_8" xml:space="preserve">
+    <value>Nakit Talebi</value>
+  </data>
+  <data name="Menu3_1_9" xml:space="preserve">
+    <value>Получение информации</value>
+  </data>
+  <data name="Menu3_2" xml:space="preserve">
+    <value>Расходы</value>
+  </data>
+  <data name="Menu3_2_1" xml:space="preserve">
+    <value>Ввод расходов</value>
+  </data>
+  <data name="Menu3_2_2" xml:space="preserve">
+    <value>Ödeme Emri/MİF Belgesi</value>
+  </data>
+  <data name="Menu3_2_3" xml:space="preserve">
+    <value>Запрос налоговой ответственности</value>
+  </data>
+  <data name="Menu3_2_4" xml:space="preserve">
+    <value>SGK Prim Borcu Sorgulama</value>
+  </data>
+  <data name="Menu3_2_5" xml:space="preserve">
+    <value>Mahsup İşlemleri (323 Hesabı)</value>
+  </data>
+  <data name="Menu3_2_6" xml:space="preserve">
+    <value>Изменить заблокированных</value>
+  </data>
+  <data name="Menu3_2_7" xml:space="preserve">
+    <value>Запрос информации о расходах</value>
+  </data>
+  <data name="Menu3_2_8" xml:space="preserve">
+    <value>E-Fatura İşlemleri</value>
+  </data>
+  <data name="Menu3_2_9" xml:space="preserve">
+    <value>Avans Kapatma(Avans Listesi)</value>
+  </data>
+  <data name="Menu3_3" xml:space="preserve">
+    <value>Кредит</value>
+  </data>
+  <data name="Menu3_3_1" xml:space="preserve">
+    <value>Takip İşlemleri</value>
+  </data>
+  <data name="Menu3_4" xml:space="preserve">
+    <value>Kesin Hesap</value>
+  </data>
+  <data name="Menu3_4_1" xml:space="preserve">
+    <value>Отчеты о расходах</value>
+  </data>
+  <data name="Menu3_4_2" xml:space="preserve">
+    <value>Отчёты о доходах</value>
+  </data>
+  <data name="Menu3_4_3" xml:space="preserve">
+    <value>Kontrol Raporları</value>
+  </data>
+  <data name="Menu3_4_4" xml:space="preserve">
+    <value>Gider Cetveli Açıklaması Girişi</value>
+  </data>
+  <data name="Menu3_4_5" xml:space="preserve">
+    <value>Gelir Cetveli Açıklaması Girişi</value>
+  </data>
+  <data name="Menu3_4_6" xml:space="preserve">
+    <value>Аккредитив/Ввод договора передачи</value>
+  </data>
+  <data name="Menu3_4_7" xml:space="preserve">
+    <value>Yıl İçi İptal Edilen Tertiplerin Girişi</value>
+  </data>
+  <data name="Menu3_4_8" xml:space="preserve">
+    <value>Элемент таблицы министры и руководители</value>
+  </data>
+  <data name="Menu3_4_9" xml:space="preserve">
+    <value>Kesin Hesap Verilerini Güncelle</value>
+  </data>
+  <data name="Menu3_5" xml:space="preserve">
+    <value>Движимое имущество</value>
+  </data>
+  <data name="Menu3_5_1" xml:space="preserve">
+    <value>Taşınır İşlem Fişi</value>
+  </data>
+  <data name="Menu3_5_10" xml:space="preserve">
+    <value>Kayıttan Düşme Teklif ve Onay Tutanağı</value>
+  </data>
+  <data name="Menu3_5_11" xml:space="preserve">
+    <value>Taşınır İstek Belgesi</value>
+  </data>
+  <data name="Menu3_5_12" xml:space="preserve">
+    <value>Печать штрих-кодов</value>
+  </data>
+  <data name="Menu3_5_13" xml:space="preserve">
+    <value>İhtiyaç Fazlası Taşınırlar</value>
+  </data>
+  <data name="Menu3_5_13_1" xml:space="preserve">
+    <value>Форма ввода</value>
+  </data>
+  <data name="Menu3_5_13_2" xml:space="preserve">
+    <value>Форма запроса</value>
+  </data>
+  <data name="Menu3_5_2" xml:space="preserve">
+    <value>Taşınır İşlem Fişi (Kütüphane)</value>
+  </data>
+  <data name="Menu3_5_3" xml:space="preserve">
+    <value>Taşınır İşlem Fişi (Müze)</value>
+  </data>
+  <data name="Menu3_5_4" xml:space="preserve">
+    <value>Ödeme Emri/MİF Hazırlama</value>
+  </data>
+  <data name="Menu3_5_5" xml:space="preserve">
+    <value>Временная накладная</value>
+  </data>
+  <data name="Menu3_5_6" xml:space="preserve">
+    <value>Движение затрат (люди)</value>
+  </data>
+  <data name="Menu3_5_7" xml:space="preserve">
+    <value>Zimmet Fişi (Ortak Alan/Örnek-8)</value>
+  </data>
+  <data name="Menu3_5_8" xml:space="preserve">
+    <value>Dayanıklı Taşınırın Özellikleri</value>
+  </data>
+  <data name="Menu3_5_9" xml:space="preserve">
+    <value>Sayım Tutanağı</value>
+  </data>
+  <data name="Menu3_6" xml:space="preserve">
+    <value>Библиотека</value>
+  </data>
+  <data name="Menu3_6_1" xml:space="preserve">
+    <value>По издателю</value>
+  </data>
+  <data name="Menu3_6_2" xml:space="preserve">
+    <value>Kitap Bilgi Girişi</value>
+  </data>
+  <data name="Menu3_6_3" xml:space="preserve">
+    <value>Süreli Yayın Bilgi Girişi</value>
+  </data>
+  <data name="Menu3_6_4" xml:space="preserve">
+    <value>Электронные издания по вводу данных</value>
+  </data>
+  <data name="Menu3_6_5" xml:space="preserve">
+    <value>Аннулирование резервов</value>
+  </data>
+  <data name="Menu3_6_6" xml:space="preserve">
+    <value>Новые публикации</value>
+  </data>
+  <data name="Menu3_6_7" xml:space="preserve">
+    <value>Кредитные сделки</value>
+  </data>
+  <data name="Menu3_6_7_1" xml:space="preserve">
+    <value>Погашение кредита</value>
+  </data>
+  <data name="Menu3_6_7_2" xml:space="preserve">
+    <value>Кредитование</value>
+  </data>
+  <data name="Menu3_6_8" xml:space="preserve">
+    <value>Член операции</value>
+  </data>
+  <data name="Menu3_6_8_1" xml:space="preserve">
+    <value>Список пользователей</value>
+  </data>
+  <data name="Menu3_6_8_2" xml:space="preserve">
+    <value>Üye Tanımlama</value>
+  </data>
+  <data name="Menu3_6_8_3" xml:space="preserve">
+    <value>Отправить по электронной почте пользователям</value>
+  </data>
+  <data name="Menu3_6_9" xml:space="preserve">
+    <value>Этикетка</value>
+  </data>
+  <data name="Menu3_6_9_1" xml:space="preserve">
+    <value>Печать этикеток</value>
+  </data>
+  <data name="Menu4" xml:space="preserve">
+    <value>Управление б/процессами</value>
+  </data>
+  <data name="Menu4_1" xml:space="preserve">
+    <value>Персонал</value>
+  </data>
+  <data name="Menu4_1_1" xml:space="preserve">
+    <value>Персональная информация</value>
+  </data>
+  <data name="Menu4_1_2" xml:space="preserve">
+    <value>Действия персонала</value>
+  </data>
+  <data name="Menu4_1_2_1" xml:space="preserve">
+    <value>Разрешить передачу</value>
+  </data>
+  <data name="Menu4_1_2_2" xml:space="preserve">
+    <value>Комиссия</value>
+  </data>
+  <data name="Menu4_1_2_3" xml:space="preserve">
+    <value>Движение</value>
+  </data>
+  <data name="Menu4_2" xml:space="preserve">
+    <value>Kimlik Paylaşım</value>
+  </data>
+  <data name="Menu4_2_1" xml:space="preserve">
+    <value>Kimlik Paylaşım</value>
+  </data>
+  <data name="Menu4_2_2" xml:space="preserve">
+    <value>Торговый запрос</value>
+  </data>
+  <data name="Menu4_3" xml:space="preserve">
+    <value>Документ</value>
+  </data>
+  <data name="Menu4_3_1" xml:space="preserve">
+    <value>Обработка документов</value>
+  </data>
+  <data name="Menu4_3_2" xml:space="preserve">
+    <value>Поиск документов</value>
+  </data>
+  <data name="Menu4_3_3" xml:space="preserve">
+    <value>Использование почты</value>
+  </data>
+  <data name="Menu4_4" xml:space="preserve">
+    <value>Комиссия</value>
+  </data>
+  <data name="Menu4_4_1" xml:space="preserve">
+    <value>Работа / Задача операции</value>
+  </data>
+  <data name="Menu4_5" xml:space="preserve">
+    <value>Управление проектом</value>
+  </data>
+  <data name="Menu4_5_1" xml:space="preserve">
+    <value>Содержание управления проектом</value>
+  </data>
+  <data name="Menu5" xml:space="preserve">
+    <value>Отчеты</value>
+  </data>
+  <data name="Menu5_1" xml:space="preserve">
+    <value>Бюджет</value>
+  </data>
+  <data name="Menu5_1_1" xml:space="preserve">
+    <value>Отчёты подготовки бюджета</value>
+  </data>
+  <data name="Menu5_1_1_1" xml:space="preserve">
+    <value>Аналитические отчеты бюджета</value>
+  </data>
+  <data name="Menu5_1_1_2" xml:space="preserve">
+    <value>Performans Bütçe Raporları</value>
+  </data>
+  <data name="Menu5_1_1_3" xml:space="preserve">
+    <value>DPT Инвестиционные отчеты</value>
+  </data>
+  <data name="Menu5_1_1_4" xml:space="preserve">
+    <value>Инвестиционные спец. отчёты</value>
+  </data>
+  <data name="Menu5_2" xml:space="preserve">
+    <value>Управление ресурсами</value>
+  </data>
+  <data name="Menu5_2_1" xml:space="preserve">
+    <value>Отчёты исполнения бюджета</value>
+  </data>
+  <data name="Menu5_2_1_1" xml:space="preserve">
+    <value>Ödenek Durum / Masraf Cetvelleri</value>
+  </data>
+  <data name="Menu5_2_1_2" xml:space="preserve">
+    <value>Ödenek Gönderme/Tenkis Kontrol Listesi</value>
+  </data>
+  <data name="Menu5_2_1_3" xml:space="preserve">
+    <value>Бухгалтерская отчетность</value>
+  </data>
+  <data name="Menu5_2_1_4" xml:space="preserve">
+    <value>Другие отчеты</value>
+  </data>
+  <data name="Menu5_2_1_5" xml:space="preserve">
+    <value>Ödenek Gönderme/Tenkis Bilgisi</value>
+  </data>
+  <data name="Menu5_2_2" xml:space="preserve">
+    <value>Отчеты движимого имущества</value>
+  </data>
+  <data name="Menu5_2_2_1" xml:space="preserve">
+    <value>Dayanıklı Taşınırın Tarihçesi</value>
+  </data>
+  <data name="Menu5_2_2_10" xml:space="preserve">
+    <value>Taşınır Devir Çıkış Raporu</value>
+  </data>
+  <data name="Menu5_2_2_11" xml:space="preserve">
+    <value>Taşınır Kuruş Farkları Raporu</value>
+  </data>
+  <data name="Menu5_2_2_12" xml:space="preserve">
+    <value>Tüketim Malzemeleri Çıkış Kuruş Farkları Raporu</value>
+  </data>
+  <data name="Menu5_2_2_13" xml:space="preserve">
+    <value>En Çok Kullanılan Taşınırlar Raporu</value>
+  </data>
+  <data name="Menu5_2_2_14" xml:space="preserve">
+    <value>Muhasebat Kontrol Raporu</value>
+  </data>
+  <data name="Menu5_2_2_2" xml:space="preserve">
+    <value>Harcama Birimlerinin En Son Kestikleri TİF Numaraları Raporu</value>
+  </data>
+  <data name="Menu5_2_2_3" xml:space="preserve">
+    <value>Taşınır Depo Durum Raporu</value>
+  </data>
+  <data name="Menu5_2_2_4" xml:space="preserve">
+    <value>Tüketim Malzemeleri Çıkış Raporu</value>
+  </data>
+  <data name="Menu5_2_2_5" xml:space="preserve">
+    <value>Hurda ve Kullanılmaz Malzemeler Raporu</value>
+  </data>
+  <data name="Menu5_2_2_6" xml:space="preserve">
+    <value>Ortak Alana Verilmiş Taşınırların Listesi</value>
+  </data>
+  <data name="Menu5_2_2_7" xml:space="preserve">
+    <value>Kişiye Verilmiş Taşınırların Listesi</value>
+  </data>
+  <data name="Menu5_2_2_8" xml:space="preserve">
+    <value>Taşınır İşlem Bilgileri Raporu</value>
+  </data>
+  <data name="Menu5_2_2_9" xml:space="preserve">
+    <value>Taşınır Sicil Raporu</value>
+  </data>
+  <data name="Menu5_2_3" xml:space="preserve">
+    <value>Книга движимого имущества</value>
+  </data>
+  <data name="Menu5_2_3_1" xml:space="preserve">
+    <value>Tüketim Malzemeleri Defteri (Örnek 1)</value>
+  </data>
+  <data name="Menu5_2_3_2" xml:space="preserve">
+    <value>Dayanıklı Taşınırlar Defteri (Örnek 2)</value>
+  </data>
+  <data name="Menu5_2_3_3" xml:space="preserve">
+    <value>Müze Defteri (Örnek 3)</value>
+  </data>
+  <data name="Menu5_2_3_4" xml:space="preserve">
+    <value>Kütüphane Defteri (Örnek 4)</value>
+  </data>
+  <data name="Menu5_2_4" xml:space="preserve">
+    <value>Таблица движимого имущества</value>
+  </data>
+  <data name="Menu5_2_4_1" xml:space="preserve">
+    <value>Taşınır Sayım ve Döküm Cetveli (Örnek 13)</value>
+  </data>
+  <data name="Menu5_2_4_2" xml:space="preserve">
+    <value>Harcama Birimi Taşınır Yönetim Hesabı Cetveli (Örnek 14)</value>
+  </data>
+  <data name="Menu5_2_4_3" xml:space="preserve">
+    <value>Taşınır Hesap Cetveli         (Örnek 15)</value>
+  </data>
+  <data name="Menu5_2_4_4" xml:space="preserve">
+    <value>Taşınır Hesap Cetveli (İl)    (Örnek 15)</value>
+  </data>
+  <data name="Menu5_2_4_5" xml:space="preserve">
+    <value>Taşınır Hesap Cetveli (Bölge) (Örnek 15)</value>
+  </data>
+  <data name="Menu5_2_4_6" xml:space="preserve">
+    <value>Taşınır Kesin Hesap Cetveli   (Örnek 16)</value>
+  </data>
+  <data name="Menu5_2_4_7" xml:space="preserve">
+    <value>Taşınır Kesin Hesap İcmal Cetveli (Örnek 17)</value>
+  </data>
+  <data name="Menu5_2_4_8" xml:space="preserve">
+    <value>Müze / Kütüphane Yönetim Hesabı Cetveli (Örnek 18)</value>
+  </data>
+  <data name="Menu5_2_5" xml:space="preserve">
+    <value>Отчёты по кредиторской задолженности</value>
+  </data>
+  <data name="Menu5_2_6" xml:space="preserve">
+    <value>Kütüphane Raporları</value>
+  </data>
+  <data name="Menu5_2_7" xml:space="preserve">
+    <value>Отчеты управления расходами</value>
+  </data>
+  <data name="Menu5_2_7_1" xml:space="preserve">
+    <value>Службы отчетов</value>
+  </data>
+  <data name="Menu5_2_7_2" xml:space="preserve">
+    <value>Отчеты</value>
+  </data>
+  <data name="Menu5_2_7_3" xml:space="preserve">
+    <value>Отчеты подписчика</value>
+  </data>
+  <data name="Menu5_2_7_4" xml:space="preserve">
+    <value>Kiralama Raporları</value>
+  </data>
+  <data name="Menu5_2_7_5" xml:space="preserve">
+    <value>Mevzuat Bilgisi Raporları</value>
+  </data>
+  <data name="Menu5_3" xml:space="preserve">
+    <value>Упр-ние б/пр-ми</value>
+  </data>
+  <data name="Menu5_3_1" xml:space="preserve">
+    <value>Персональные отчёты</value>
+  </data>
+  <data name="Menu5_3_2" xml:space="preserve">
+    <value>Документы отчётов</value>
+  </data>
+  <data name="Menu5_3_2_1" xml:space="preserve">
+    <value>Документ отчёта</value>
+  </data>
+  <data name="Menu5_3_2_2" xml:space="preserve">
+    <value>Реестр документов</value>
+  </data>
+  <data name="Menu5_4" xml:space="preserve">
+    <value>Системные отчеты</value>
+  </data>
+  <data name="Menu5_4_1" xml:space="preserve">
+    <value>Список системных файлов</value>
+  </data>
+  <data name="Menu5_4_2" xml:space="preserve">
+    <value>Список лиц, использующих систему</value>
+  </data>
+  <data name="Menu5_4_3" xml:space="preserve">
+    <value>График использования системы</value>
+  </data>
+  <data name="Menu6" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="Menu6_1" xml:space="preserve">
+    <value>Пользователи</value>
+  </data>
+  <data name="Menu6_1_1" xml:space="preserve">
+    <value>Поиск пользователя</value>
+  </data>
+  <data name="Menu6_1_2" xml:space="preserve">
+    <value>Новый пользователь</value>
+  </data>
+  <data name="Menu6_1_3" xml:space="preserve">
+    <value>Сменить пароль</value>
+  </data>
+  <data name="Menu6_1_4" xml:space="preserve">
+    <value>Изменить тему</value>
+  </data>
+  <data name="Menu6_1_5" xml:space="preserve">
+    <value>Часто используемые операции</value>
+  </data>
+  <data name="Menu6_1_6" xml:space="preserve">
+    <value>Отправка электронной почты пользователям</value>
+  </data>
+  <data name="Menu6_1_7" xml:space="preserve">
+    <value>Ввод объявления</value>
+  </data>
+  <data name="Menu6_2" xml:space="preserve">
+    <value>Обновление</value>
+  </data>
+  <data name="Menu6_2_1" xml:space="preserve">
+    <value>Обновление базы данных</value>
+  </data>
+  <data name="Menu6_2_2" xml:space="preserve">
+    <value>Обновление программного обеспечения</value>
+  </data>
+  <data name="Menu6_2_3" xml:space="preserve">
+    <value>Создание в XML-формате</value>
+  </data>
+  <data name="Menu6_3" xml:space="preserve">
+    <value>Передача</value>
+  </data>
+  <data name="Menu6_3_1" xml:space="preserve">
+    <value>BÜMKO Aktarım</value>
+  </data>
+  <data name="Menu6_3_2" xml:space="preserve">
+    <value>Учетная информация</value>
+  </data>
+  <data name="Menu6_3_3" xml:space="preserve">
+    <value>Единица учётной информации</value>
+  </data>
+  <data name="Menu6_3_4" xml:space="preserve">
+    <value>План счетов</value>
+  </data>
+  <data name="Menu6_3_5" xml:space="preserve">
+    <value>Проекция информации</value>
+  </data>
+  <data name="Menu6_3_6" xml:space="preserve">
+    <value>е-Бюджет трансфертов</value>
+  </data>
+  <data name="Menu6_3_7" xml:space="preserve">
+    <value>Добавление стратегического плана</value>
+  </data>
+  <data name="Menu6_3_8" xml:space="preserve">
+    <value>Performans Bütçe Aktar</value>
+  </data>
+  <data name="Menu6_3_9" xml:space="preserve">
+    <value>Добавление данных бюджетного процесса</value>
+  </data>
+  <data name="Menu6_4" xml:space="preserve">
+    <value>Законопроект</value>
+  </data>
+  <data name="Menu6_4_1" xml:space="preserve">
+    <value>Экран законодательного управления</value>
+  </data>
+  <data name="Menu6_5" xml:space="preserve">
+    <value>Определения</value>
+  </data>
+  <data name="Menu6_5_1" xml:space="preserve">
+    <value>Бюджет</value>
+  </data>
+  <data name="Menu6_5_1_1" xml:space="preserve">
+    <value>Определение подготовки бюджета</value>
+  </data>
+  <data name="Menu6_5_1_10" xml:space="preserve">
+    <value>Тип проекта</value>
+  </data>
+  <data name="Menu6_5_1_11" xml:space="preserve">
+    <value>Тип документа</value>
+  </data>
+  <data name="Menu6_5_1_12" xml:space="preserve">
+    <value>Эффективность доли расходов</value>
+  </data>
+  <data name="Menu6_5_1_13" xml:space="preserve">
+    <value>Определение стратегического плана</value>
+  </data>
+  <data name="Menu6_5_1_13_1" xml:space="preserve">
+    <value>Идентификация языка</value>
+  </data>
+  <data name="Menu6_5_1_14" xml:space="preserve">
+    <value>Performans Bütçe Tanımlar</value>
+  </data>
+  <data name="Menu6_5_1_14_1" xml:space="preserve">
+    <value>Единица измерения</value>
+  </data>
+  <data name="Menu6_5_1_14_2" xml:space="preserve">
+    <value>Показатель</value>
+  </data>
+  <data name="Menu6_5_1_2" xml:space="preserve">
+    <value>Подпрограмма</value>
+  </data>
+  <data name="Menu6_5_1_3" xml:space="preserve">
+    <value>Ведомственная классификация</value>
+  </data>
+  <data name="Menu6_5_1_4" xml:space="preserve">
+    <value>Функциональная классификация</value>
+  </data>
+  <data name="Menu6_5_1_5" xml:space="preserve">
+    <value>Финансовая классификация</value>
+  </data>
+  <data name="Menu6_5_1_6" xml:space="preserve">
+    <value>Экономическая классификация</value>
+  </data>
+  <data name="Menu6_5_1_7" xml:space="preserve">
+    <value>Классификация доходов</value>
+  </data>
+  <data name="Menu6_5_1_8" xml:space="preserve">
+    <value>Финансовая классификация</value>
+  </data>
+  <data name="Menu6_5_1_9" xml:space="preserve">
+    <value>Сектор информации</value>
+  </data>
+  <data name="Menu6_5_2" xml:space="preserve">
+    <value>Управление ресурсами</value>
+  </data>
+  <data name="Menu6_5_2_1" xml:space="preserve">
+    <value>Определение исполнения бюджета</value>
+  </data>
+  <data name="Menu6_5_2_1_1" xml:space="preserve">
+    <value>Makbuz Tipi Bilgileri</value>
+  </data>
+  <data name="Menu6_5_2_1_2" xml:space="preserve">
+    <value>Подпись информации</value>
+  </data>
+  <data name="Menu6_5_2_2" xml:space="preserve">
+    <value>Описания движимого имущества</value>
+  </data>
+  <data name="Menu6_5_2_2_1" xml:space="preserve">
+    <value>Идентификация склада</value>
+  </data>
+  <data name="Menu6_5_2_2_2" xml:space="preserve">
+    <value>План счетов</value>
+  </data>
+  <data name="Menu6_5_2_2_3" xml:space="preserve">
+    <value>İşlem Tipi Tanımlama</value>
+  </data>
+  <data name="Menu6_5_2_2_4" xml:space="preserve">
+    <value>Marka Tanımlama</value>
+  </data>
+  <data name="Menu6_5_2_2_5" xml:space="preserve">
+    <value>Типовой</value>
+  </data>
+  <data name="Menu6_5_2_2_6" xml:space="preserve">
+    <value>Описание комнат</value>
+  </data>
+  <data name="Menu6_5_2_3" xml:space="preserve">
+    <value>Годовой отчёт по кредиторской задолженности</value>
+  </data>
+  <data name="Menu6_5_2_3_1" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="Menu6_5_2_3_2" xml:space="preserve">
+    <value>Процент</value>
+  </data>
+  <data name="Menu6_5_2_3_3" xml:space="preserve">
+    <value>Характер процента</value>
+  </data>
+  <data name="Menu6_5_3" xml:space="preserve">
+    <value>Определения управления расходами</value>
+  </data>
+  <data name="Menu6_5_3_1" xml:space="preserve">
+    <value>Süreç Tanımları</value>
+  </data>
+  <data name="Menu6_5_3_1_1" xml:space="preserve">
+    <value>Описание работы</value>
+  </data>
+  <data name="Menu6_5_3_1_2" xml:space="preserve">
+    <value>Parça Tanımlama</value>
+  </data>
+  <data name="Menu6_5_3_1_3" xml:space="preserve">
+    <value>İş-Parça İlişkilendirme</value>
+  </data>
+  <data name="Menu6_5_3_1_4" xml:space="preserve">
+    <value>İhale-Parça İlişkilendirme</value>
+  </data>
+  <data name="Menu6_5_3_2" xml:space="preserve">
+    <value>İhale Doküman Tanımları</value>
+  </data>
+  <data name="Menu6_5_3_2_1" xml:space="preserve">
+    <value>İhale Dosyası İçerik</value>
+  </data>
+  <data name="Menu6_5_3_2_2" xml:space="preserve">
+    <value>İhale Zarf İçerik</value>
+  </data>
+  <data name="Menu6_5_3_2_3" xml:space="preserve">
+    <value>İhale Şartname Tanımlama</value>
+  </data>
+  <data name="Menu6_5_3_2_4" xml:space="preserve">
+    <value>Teklif Zarfı Biçim Şartları</value>
+  </data>
+  <data name="Menu6_5_3_3" xml:space="preserve">
+    <value>İhale Bilgisi Tanımları</value>
+  </data>
+  <data name="Menu6_5_3_3_1" xml:space="preserve">
+    <value>İhale Usulü Tanımlama</value>
+  </data>
+  <data name="Menu6_5_3_3_2" xml:space="preserve">
+    <value>Madde Tanımlama</value>
+  </data>
+  <data name="Menu6_5_3_3_3" xml:space="preserve">
+    <value>Описание объявления</value>
+  </data>
+  <data name="Menu6_5_3_4" xml:space="preserve">
+    <value>??Бух.учёт-Отдел-Определение бюджетной статьи</value>
+  </data>
+  <data name="Menu6_5_3_5" xml:space="preserve">
+    <value>Üfe Bilgileri Tanımlama</value>
+  </data>
+  <data name="Menu6_5_4" xml:space="preserve">
+    <value>Определения персонала</value>
+  </data>
+  <data name="Menu6_5_4_1" xml:space="preserve">
+    <value>Öğrenci/Eğitmen Bilgileri Tanımları</value>
+  </data>
+  <data name="Menu6_5_4_10" xml:space="preserve">
+    <value>Geçici Sürekli Görev Gündelik Tanımı</value>
+  </data>
+  <data name="Menu6_5_4_2" xml:space="preserve">
+    <value>Maaş Temel Bilgileri Tanımları</value>
+  </data>
+  <data name="Menu6_5_4_3" xml:space="preserve">
+    <value>Налоговая информация определения дохода</value>
+  </data>
+  <data name="Menu6_5_4_4" xml:space="preserve">
+    <value>Sosyal Yardım Bilgileri Tanımları</value>
+  </data>
+  <data name="Menu6_5_4_5" xml:space="preserve">
+    <value>Sözleşmeli Bordro Bilgileri Tanımları</value>
+  </data>
+  <data name="Menu6_5_4_6" xml:space="preserve">
+    <value>4C Договорные определения заработной платы</value>
+  </data>
+  <data name="Menu6_5_4_7" xml:space="preserve">
+    <value>İşçi Bordro Bilgileri Tanımları</value>
+  </data>
+  <data name="Menu6_5_4_8" xml:space="preserve">
+    <value>Fazla Mesai Puantaj Bilgileri Tanımları</value>
+  </data>
+  <data name="Menu6_5_4_9" xml:space="preserve">
+    <value>Ek Ders Puantaj Bilgileri Tanımları</value>
+  </data>
+  <data name="Menu6_5_5" xml:space="preserve">
+    <value>Информация и цены</value>
+  </data>
+  <data name="Menu6_5_5_1" xml:space="preserve">
+    <value>Электричество</value>
+  </data>
+  <data name="Menu6_5_5_10" xml:space="preserve">
+    <value>Точка-точка</value>
+  </data>
+  <data name="Menu6_5_5_11" xml:space="preserve">
+    <value>Kiralık Hat</value>
+  </data>
+  <data name="Menu6_5_5_12" xml:space="preserve">
+    <value>Кабельное телевидение</value>
+  </data>
+  <data name="Menu6_5_5_13" xml:space="preserve">
+    <value>Jeotermal Enerji - Nükleer Enerji</value>
+  </data>
+  <data name="Menu6_5_5_2" xml:space="preserve">
+    <value>Вода</value>
+  </data>
+  <data name="Menu6_5_5_3" xml:space="preserve">
+    <value>Природный газ</value>
+  </data>
+  <data name="Menu6_5_5_4" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="Menu6_5_5_5" xml:space="preserve">
+    <value>ADSL</value>
+  </data>
+  <data name="Menu6_5_5_6" xml:space="preserve">
+    <value>Avea</value>
+  </data>
+  <data name="Menu6_5_5_7" xml:space="preserve">
+    <value>Vodafone</value>
+  </data>
+  <data name="Menu6_5_5_8" xml:space="preserve">
+    <value>Turkcell</value>
+  </data>
+  <data name="Menu6_5_5_9" xml:space="preserve">
+    <value>Özel Telefon Servisleri</value>
+  </data>
+  <data name="Menu6_5_6" xml:space="preserve">
+    <value>Kütüphane Tanımlar</value>
+  </data>
+  <data name="Menu6_5_6_1" xml:space="preserve">
+    <value>Автор информации</value>
+  </data>
+  <data name="Menu6_5_6_2" xml:space="preserve">
+    <value>Konu Bilgileri</value>
+  </data>
+  <data name="Menu6_5_6_3" xml:space="preserve">
+    <value>Опубликовано информации</value>
+  </data>
+  <data name="Menu6_5_6_5" xml:space="preserve">
+    <value>Медиа-информация</value>
+  </data>
+  <data name="Menu6_5_6_6" xml:space="preserve">
+    <value>Kütüphane Bilgileri</value>
+  </data>
+  <data name="Menu6_5_7" xml:space="preserve">
+    <value>Управление б/процессами</value>
+  </data>
+  <data name="Menu6_5_8" xml:space="preserve">
+    <value>Персональные определения</value>
+  </data>
+  <data name="Menu6_5_7_2" xml:space="preserve">
+    <value>Определяющий документ</value>
+  </data>
+  <data name="Menu6_5_7_21" xml:space="preserve">
+    <value>Название информации</value>
+  </data>
+  <data name="Menu6_5_7_2_1" xml:space="preserve">
+    <value>Paraf</value>
+  </data>
+  <data name="Menu6_5_7_2_10" xml:space="preserve">
+    <value>Нижний колонтитул</value>
+  </data>
+  <data name="Menu6_5_7_2_11" xml:space="preserve">
+    <value>Группа документов</value>
+  </data>
+  <data name="Menu6_5_7_2_12" xml:space="preserve">
+    <value>Файл-план</value>
+  </data>
+  <data name="Menu6_5_7_2_13" xml:space="preserve">
+    <value>Неприкосновенность частной жизни</value>
+  </data>
+  <data name="Menu6_5_7_2_14" xml:space="preserve">
+    <value>Статус текст</value>
+  </data>
+  <data name="Menu6_5_7_2_15" xml:space="preserve">
+    <value>Путь</value>
+  </data>
+  <data name="Menu6_5_7_2_16" xml:space="preserve">
+    <value>Тип исходящих</value>
+  </data>
+  <data name="Menu6_5_7_2_17" xml:space="preserve">
+    <value>Тип почты</value>
+  </data>
+  <data name="Menu6_5_7_2_2" xml:space="preserve">
+    <value>Evrak Özel Alan</value>
+  </data>
+  <data name="Menu6_5_7_2_3" xml:space="preserve">
+    <value>Birimlere Göre Dosya Planı</value>
+  </data>
+  <data name="Menu6_5_7_2_4" xml:space="preserve">
+    <value>Описание с учетом</value>
+  </data>
+  <data name="Menu6_5_7_2_5" xml:space="preserve">
+    <value>Gelen Yer Tanımlama</value>
+  </data>
+  <data name="Menu6_5_7_2_6" xml:space="preserve">
+    <value>Предшествующий документ</value>
+  </data>
+  <data name="Menu6_5_7_2_7" xml:space="preserve">
+    <value>Бланк</value>
+  </data>
+  <data name="Menu6_5_7_2_8" xml:space="preserve">
+    <value>Распределение</value>
+  </data>
+  <data name="Menu6_5_7_2_9" xml:space="preserve">
+    <value>Передача правила</value>
+  </data>
+  <data name="Menu6_5_7_3" xml:space="preserve">
+    <value>Организация информации</value>
+  </data>
+  <data name="Menu6_5_7_4" xml:space="preserve">
+    <value>Информация о классе</value>
+  </data>
+  <data name="Menu6_5_7_5" xml:space="preserve">
+    <value>Öğrenim Bilgileri</value>
+  </data>
+  <data name="Menu6_5_7_6" xml:space="preserve">
+    <value>Информационная группа</value>
+  </data>
+  <data name="Menu6_5_7_7" xml:space="preserve">
+    <value>Образовательная информация</value>
+  </data>
+  <data name="Menu6_5_7_8" xml:space="preserve">
+    <value>Okul-Fakülte-Bölüm Bilgileri</value>
+  </data>
+  <data name="Menu6_6" xml:space="preserve">
+    <value>Общие определения</value>
+  </data>
+  <data name="Menu6_5_8_14" xml:space="preserve">
+    <value>Идентификация языка</value>
+  </data>
+  <data name="Menu6_6_2" xml:space="preserve">
+    <value>İl-İlçe Bilgileri</value>
+  </data>
+  <data name="Menu6_6_3" xml:space="preserve">
+    <value>Описание страны</value>
+  </data>
+  <data name="Menu6_6_4" xml:space="preserve">
+    <value>Региональная идентификация</value>
+  </data>
+  <data name="Menu6_6_5" xml:space="preserve">
+    <value>Ведомственная классификация</value>
+  </data>
+  <data name="Menu6_6_6" xml:space="preserve">
+    <value>Определение единиц измерения</value>
+  </data>
+  <data name="Menu6_6_7" xml:space="preserve">
+    <value>Обменный курс</value>
+  </data>
+  <data name="Menu6_6_8" xml:space="preserve">
+    <value>Para Birimi Tanımlama</value>
+  </data>
+  <data name="Menu6_6_9" xml:space="preserve">
+    <value>Обзор вопросов</value>
+  </data>
+    <data name="Menu6_5_7_2_18" xml:space="preserve">
+    <value>Тип документа</value>
+  </data>
+  <data name="Menu3_1_18" xml:space="preserve">
+    <value>Masraf Planı Tavanı</value>
+  </data>
+  <data name="Menu4_1_3" xml:space="preserve">
+    <value>Занятость персонала</value>
+  </data>
+  <data name="Menu3_1_19" xml:space="preserve">
+    <value>План производственных затрат</value>
+  </data>
+  <data name="Menu5_3_1_1" xml:space="preserve">
+    <value>Персональные отчёты</value>
+  </data>
+  <data name="Menu5_2_5_1" xml:space="preserve">
+    <value>Отчёты по кредиторской задолженности</value>
+  </data>
+  <data name="Menu5_2_6_1" xml:space="preserve">
+    <value>Kütüphane Raporları</value>
+  </data>
+  <data name="Menu3_1_20" xml:space="preserve">
+    <value>Опрос пересмотренных</value>
+  </data>
+  <data name="Menu3_1_21" xml:space="preserve">
+    <value>Пересмотренные</value>
+  </data>
+  <data name="Menu6_5_2_2_12" xml:space="preserve">
+    <value>Обновление плана счетов</value>
+  </data>
+  <data name="Menu6_5_2_2_13" xml:space="preserve">
+    <value>Закрытие года</value>
+  </data>
+  <data name="Menu6_5_2_2_14" xml:space="preserve">
+    <value>Передача группы расходов</value>
+  </data>
+  <data name="Menu6_5_2_2_15" xml:space="preserve">
+    <value>Идентификация персонала</value>
+  </data>
+  <data name="Menu6_5_3_1_5" xml:space="preserve">
+    <value>Tanım Güncelleme</value>
+  </data>
+  <data name="Menu5_2_7_6" xml:space="preserve">
+    <value>Süreç Raporu</value>
+  </data>
+  <data name="Menu6_5_1_16" xml:space="preserve">
+    <value>Eski Kurumsal Yapı Tanımlama</value>
+  </data>
+  <data name="Menu3_2_10" xml:space="preserve">
+    <value>Telekom Fatura İşlemleri</value>
+  </data>
+  <data name="Menu6_5_2_2_10" xml:space="preserve">
+    <value>Muhasebe Birimi Tanımlama</value>
+  </data>
+  <data name="Menu6_5_2_2_11" xml:space="preserve">
+    <value>Harcama Birimi Tanımlama</value>
+  </data>
+  <data name="Menu6_5_2_2_16" xml:space="preserve">
+    <value>Контактное лицо</value>
+  </data>
+  <data name="Menu6_5_2_2_7" xml:space="preserve">
+    <value>Региональная идентификация</value>
+  </data>
+  <data name="Menu6_5_2_2_8" xml:space="preserve">
+    <value>İl Tanımlama</value>
+  </data>
+  <data name="Menu6_5_2_2_9" xml:space="preserve">
+    <value>İlçe Tanımlama</value>
+  </data>
+  <data name="Menu6_5_8_1" xml:space="preserve">
+    <value>Банковские реквизиты</value>
+  </data>
+  <data name="Menu6_5_8_2" xml:space="preserve">
+    <value>Название информации</value>
+  </data>
+  <data name="Menu6_5_8_3" xml:space="preserve">
+    <value>Организация информации</value>
+  </data>
+  <data name="Menu6_5_8_4" xml:space="preserve">
+    <value>Информация о классе</value>
+  </data>
+  <data name="Menu6_5_8_5" xml:space="preserve">
+    <value>Öğrenim Bilgileri</value>
+  </data>
+  <data name="Menu6_5_8_6" xml:space="preserve">
+    <value>Информационная группа</value>
+  </data>
+  <data name="Menu6_5_8_7" xml:space="preserve">
+    <value>Образовательная информация</value>
+  </data>
+  <data name="Menu6_5_8_8" xml:space="preserve">
+    <value>Okul-Fakülte-Bölüm Bilgileri</value>
+  </data>
+  <data name="Menu3_1_22" xml:space="preserve">
+    <value>Revize Talep Karşılama</value>
+  </data>
+  <data name="Menu6_5_8_12" xml:space="preserve">
+    <value>Информация о курсе</value>
+  </data>
+  <data name="Menu6_5_8_13" xml:space="preserve">
+    <value>Верхняя информационная группа</value>
+  </data>
+  <data name="Menu6_5_8_9" xml:space="preserve">
+    <value>Информация о филиале</value>
+  </data>
+  <data name="Menu6_5_2_2_17" xml:space="preserve">
+    <value>Ведомственная классификация</value>
+  </data>
+    <data name="Menu6_5_3_6" xml:space="preserve">
+    <value>İdare Bilgileri Tanımlama</value>
+  </data>
+  <data name="Menu1_1_2" xml:space="preserve">
+    <value>Описание шаблона</value>
+  </data>
+  <data name="Menu5_2_7_7" xml:space="preserve">
+    <value>MTK Rapor</value>
+  </data>
+  <data name="Menu6_5_5_14" xml:space="preserve">
+    <value>GSM İnternet</value>
+  </data>
+  <data name="Menu3_2_11" xml:space="preserve">
+    <value>Seyyar Görev Talep</value>
+  </data>
+  <data name="Menu1_1_3" xml:space="preserve">
+    <value>Birim Tür Tanımlama</value>
+  </data>
+  <data name="Menu3_5_14" xml:space="preserve">
+    <value>Tekrar Eden Demirbaş Sicil No İşlemleri</value>
+  </data>
+  <data name="Menu3_2_12" xml:space="preserve">
+    <value>Seyyar Görev Tespit</value>
+  </data>
+  <data name="Menu2_2_12" xml:space="preserve">
+    <value>Предложение расходов (Eko 2)</value>
+  </data>
+  <data name="Menu2_1_3" xml:space="preserve">
+    <value>Бюджетные потолки</value>
+  </data>
+  <data name="Menu3_2_13" xml:space="preserve">
+    <value>Mahsup İşlemleri (103 Hesabı)</value>
+  </data>
+  <data name="Menu3_7" xml:space="preserve">
+    <value>Доходы</value>
+  </data>
+  <data name="Menu3_7_1" xml:space="preserve">
+    <value>Ввод доходов бюджета</value>
+  </data>
+  <data name="Menu3_7_2" xml:space="preserve">
+    <value>Ввод доходов спецсредства</value>
+  </data>
+  <data name="Menu2_2_13" xml:space="preserve">
+    <value>Группа потолков</value>
+  </data>
+  <data name="Menu3_7_3" xml:space="preserve">
+    <value>Taşınmaz Talep Giriş</value>
+  </data>
+  <data name="Menu3_2_14" xml:space="preserve">
+    <value>Mahsup İşlemleri</value>
+  </data>
+  <data name="Menu5_2_7_8" xml:space="preserve">
+    <value>Другие отчеты</value>
+  </data>
+  <data name="Menu3_1_11" xml:space="preserve">
+    <value>Ödenek Durum Bilgisi (Ayrıntılı)</value>
+  </data>
+    <data name="Menu5_4_4" xml:space="preserve">
+    <value>Системные файлы: сведения о версии</value>
+  </data>
+  <data name="Menu6_5_1_17" xml:space="preserve">
+    <value>Параметры подготовки бюджета</value>
+  </data>
+  <data name="Menu6_5_1_18" xml:space="preserve">
+    <value>Глоссарий бюджетных операций</value>
+  </data>
+  <data name="Menu2_2_14" xml:space="preserve">
+    <value>Tavan Üstü Karşılama</value>
+  </data>
+  <data name="Menu3_5_15" xml:space="preserve">
+    <value>Talep Karşılama İşlemleri</value>
+  </data>
+  <data name="Menu1_2_6" xml:space="preserve">
+    <value>Katalog Yönetimi</value>
+  </data>
+  <data name="Menu1_2_6_1" xml:space="preserve">
+    <value>Tema Katalogu</value>
+  </data>
+  <data name="Menu1_2_6_2" xml:space="preserve">
+    <value>Gelişim Alanı Katalogu</value>
+  </data>
+  <data name="Menu1_2_6_3" xml:space="preserve">
+    <value>Hizmet Katalogu</value>
+  </data>
+  <data name="Menu1_2_6_4" xml:space="preserve">
+    <value>Üst Belge Katalogu</value>
+  </data>
+  <data name="Menu1_2_6_5" xml:space="preserve">
+    <value>Faaliyet Katalogu</value>
+  </data>
+  <data name="Menu1_2_6_6" xml:space="preserve">
+    <value>Alt Faaliyet Katalogu</value>
+  </data>
+  <data name="Menu1_2_6_7" xml:space="preserve">
+    <value>İş/Görev Katalogu</value>
+  </data>
+  <data name="Menu1_2_6_8" xml:space="preserve">
+    <value>Anket Tanım</value>
+  </data>
+  <data name="Menu1_2_7" xml:space="preserve">
+    <value>Stratejik Plan Hazırlama Süreci</value>
+  </data>
+  <data name="Menu1_2_8" xml:space="preserve">
+    <value>Mevcut Durum Analiz Süreci</value>
+  </data>
+  <data name="Menu1_1_4" xml:space="preserve">
+    <value>Genel Görev Tanımlama</value>
+  </data>
+  <data name="Menu1_2_9" xml:space="preserve">
+    <value>Stratejik Modelleme Süreci</value>
+  </data>
+  <data name="Menu2_2_15" xml:space="preserve">
+    <value>Предложение расходов (Eko 4)</value>
+  </data>
+  <data name="Menu1_2_10" xml:space="preserve">
+    <value>Операции контроля фазы</value>
+  </data>
+  <data name="Menu1_1_5" xml:space="preserve">
+    <value>Схема организационной диаграммы</value>
+  </data>
+  <data name="Menu1_2_6_0" xml:space="preserve">
+    <value>Dönem Katalogu</value>
+  </data>
+  <data name="Menu3_5_16" xml:space="preserve">
+    <value>Dağıtım/İade Belgesi</value>
+  </data>
+  <data name="Menu3_5_17" xml:space="preserve">
+    <value>Tüketim/Üretim İşlemleri</value>
+  </data>
+  <data name="Menu6_7" xml:space="preserve">
+    <value>Определения управления доходами</value>
+  </data>
+  <data name="Menu6_7_1_1" xml:space="preserve">
+    <value>Описание работы</value>
+  </data>
+  <data name="Menu6_7_1_2" xml:space="preserve">
+    <value>Parça Tanımlama</value>
+  </data>
+  <data name="Menu6_7_1_3" xml:space="preserve">
+    <value>İş-Parça İlişkilendirme</value>
+  </data>
+  <data name="Menu6_5_4_11" xml:space="preserve">
+    <value>Fazla Mesai Unvan Bilgileri Tanımları</value>
+  </data>
+    <data name="Menu1_2_10_1" xml:space="preserve">
+    <value>Stratejik Plan Hazırlama Süreci</value>
+  </data>
+  <data name="Menu1_2_10_2" xml:space="preserve">
+    <value>Mevcut Durum Analiz Süreci</value>
+  </data>
+  <data name="Menu1_2_10_3" xml:space="preserve">
+    <value>Stratejik Modelleme Süreci</value>
+  </data>
+  <data name="Menu1_2_7_1" xml:space="preserve">
+    <value>Назначение формы</value>
+  </data>
+  <data name="Menu1_2_7_2" xml:space="preserve">
+    <value>Форма запланированных мероприятий</value>
+  </data>
+  <data name="Menu1_2_8_1" xml:space="preserve">
+    <value>GZFT Giriş Formu</value>
+  </data>
+  <data name="Menu1_2_8_2" xml:space="preserve">
+    <value>Аналитическая форма службы</value>
+  </data>
+  <data name="Menu1_2_8_3" xml:space="preserve">
+    <value>Paydaş Analizi Formu</value>
+  </data>
+  <data name="Menu1_2_8_4" xml:space="preserve">
+    <value>PEST Analiz Formu</value>
+  </data>
+  <data name="Menu1_2_8_5" xml:space="preserve">
+    <value>Верхняя форма анализа документов</value>
+  </data>
+  <data name="Menu1_2_8_6" xml:space="preserve">
+    <value>Hizmet Paydaş İlişkisi Formu</value>
+  </data>
+  <data name="Menu1_2_8_7" xml:space="preserve">
+    <value>Gelişim Alanı Analiz Formu</value>
+  </data>
+  <data name="Menu1_2_8_8" xml:space="preserve">
+    <value>Tarihsel Gelişim Analiz Formu</value>
+  </data>
+  <data name="Menu1_2_8_9" xml:space="preserve">
+    <value>Kurumsal Analiz Formu</value>
+  </data>
+  <data name="Menu1_2_9_1" xml:space="preserve">
+    <value>Misyon Analiz Formu</value>
+  </data>
+  <data name="Menu1_2_9_10" xml:space="preserve">
+    <value>Stratejik Hedef İlişkileri Formu</value>
+  </data>
+  <data name="Menu1_2_9_2" xml:space="preserve">
+    <value>Vizyon Analiz Formu</value>
+  </data>
+  <data name="Menu1_2_9_3" xml:space="preserve">
+    <value>Tema Analiz Formu</value>
+  </data>
+  <data name="Menu1_2_9_4" xml:space="preserve">
+    <value>Stratejik Amaç - Hedef Analiz Formu</value>
+  </data>
+  <data name="Menu1_2_9_5" xml:space="preserve">
+    <value>Faaliyet Analiz Formu</value>
+  </data>
+  <data name="Menu1_2_9_6" xml:space="preserve">
+    <value>Alt Faaliyet Analiz Formu</value>
+  </data>
+  <data name="Menu1_2_9_7" xml:space="preserve">
+    <value>İş/Görev Analiz Formu</value>
+  </data>
+  <data name="Menu1_2_9_8" xml:space="preserve">
+    <value>Strateji Belirleme Formu</value>
+  </data>
+  <data name="Menu1_2_9_9" xml:space="preserve">
+    <value>Stratejik Hedef Maliyet Formu</value>
+  </data>
+  <data name="Menu1_2_0" xml:space="preserve">
+    <value>Kurum Stratejik Planı</value>
+  </data>
+  <data name="Menu6_5_1_19" xml:space="preserve">
+    <value>Связь подпрограмм</value>
+  </data>
+  <data name="Menu6_5_1_20" xml:space="preserve">
+    <value>Подпрограмма (старая форма)</value>
+  </data>
+  <data name="Menu3_5_18" xml:space="preserve">
+    <value>Одежда / Оборудование операции</value>
+  </data>
+  <data name="Menu1_2_8_10" xml:space="preserve">
+    <value>Нормативная форма анализа</value>
+  </data>
+  <data name="Menu5_3_1_2" xml:space="preserve">
+    <value>Kadro Raporları</value>
+  </data>
+  <data name="Menu6_7_1" xml:space="preserve">
+    <value>Süreç Tanımları</value>
+  </data>
+  <data name="Menu6_7_2" xml:space="preserve">
+    <value>İhale Bilgisi Tanımları</value>
+  </data>
+  <data name="Menu6_7_2_1" xml:space="preserve">
+    <value>İhale Usulü Tanımlama</value>
+  </data>
+  <data name="Menu6_7_2_2" xml:space="preserve">
+    <value>Madde Tanımlama</value>
+  </data>
+  <data name="Menu6_7_2_3" xml:space="preserve">
+    <value>Описание объявления</value>
+  </data>
+    <data name="Menu5_3_1_3" xml:space="preserve">
+    <value>Доклад о занятости</value>
+  </data>
+  <data name="Menu4_1_4" xml:space="preserve">
+    <value>Kadro Kontenjan İşlemleri</value>
+  </data>
+      <data name="Menu5_2_3_5" xml:space="preserve">
+    <value>Регистрация документа</value>
+  </data>
+  <data name="Menu1_3_8" xml:space="preserve">
+    <value>Распределение расходов</value>
+  </data>
+  <data name="Menu6_5_8_15" xml:space="preserve">
+    <value>Görev Konu Bilgileri</value>
+  </data>
+  <data name="Menu6_5_8_16" xml:space="preserve">
+    <value>İşe Başlama-Ayrılma Nedeni Bilgileri</value>
+  </data>
+  <data name="Menu3_0" xml:space="preserve">
+    <value>Доходы</value>
+  </data>
+  <data name="Menu3_0_1" xml:space="preserve">
+    <value>Реестр поступлений</value>
+  </data>
+</root>

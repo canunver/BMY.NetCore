@@ -1,37 +1,24 @@
-/* Giriş sonrası sayfaların ortak görünümü */
-body.sayfa {
-    background-color: #eef1f4;
-}
+/* Giriş sonrası sayfaların ortak bileşenleri */
 
-.ust-serit {
-    margin-bottom: 16px;
-    border-radius: 0;
-}
-
-.ust-serit .navbar-brand {
-    font-weight: 600;
-    color: #1f3a52;
-}
-
-.ust-serit-sag {
-    margin-right: 0;
-}
-
-.ust-serit-sag .navbar-text {
-    margin-right: 12px;
-}
-
-/* Bilgi ekranı (eski portal penceresi) */
+/* Bilgi ekranı (açılış sayfasındaki pencereler) */
 .bilgi-ekran {
     margin-bottom: 16px;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    box-shadow: none;
+    overflow: hidden;
 }
 
-.bilgi-ekran .panel-heading {
+.bilgi-ekran > .panel-heading {
+    padding: 12px 16px;
     font-weight: 600;
-    padding: 8px 12px;
+    color: var(--murekkep);
+    background: var(--yuzey);
+    border-bottom: 1px solid var(--cizgi);
 }
 
-.bilgi-ekran .panel-body {
+.bilgi-ekran > .panel-body {
     padding: 0;
 }
 
@@ -39,6 +26,66 @@ body.sayfa {
     display: block;
     width: 100%;
     border: 0;
+}
+
+/* Ortak tablo görünümü (Sgb.grid): küçük yazı, sık satırlar. .ag-theme-quartz kendi değişkenlerini
+   tanımladığı için birlikte seçilir. */
+.sgb-grid.ag-theme-quartz {
+    --ag-font-size: 12px;
+    --ag-row-height: 30px;
+    --ag-header-height: 32px;
+    --ag-cell-horizontal-padding: 8px;
+    --ag-active-color: var(--tema-ana);
+    --ag-selected-row-background-color: var(--tema-acik);
+}
+
+/* Ortak HTML editörü (Jodit, js/editor.js) */
+.jodit-container:not(.jodit_inline) {
+    border-color: var(--cizgi);
+    border-radius: 6px;
+}
+
+/* Bildirimler (Sgb.bildirim): sağ üstte, üst şeridin altında; sayfanın akışını değiştirmez */
+.sgb-bildirimler {
+    position: fixed;
+    top: calc(var(--ust-yukseklik, 0px) + 12px);
+    right: 16px;
+    z-index: 1060;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: min(380px, calc(100vw - 32px));
+    pointer-events: none;
+}
+
+.sgb-bildirim {
+    margin: 0;
+    padding: 12px 36px 12px 14px;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .15);
+    pointer-events: auto;
+    animation: sgb-bildirim-gel .2s ease-out;
+    transition: opacity .2s, transform .2s;
+}
+
+.sgb-bildirim .close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+}
+
+.sgb-bildirim.kapaniyor {
+    opacity: 0;
+    transform: translateX(16px);
+}
+
+@keyframes sgb-bildirim-gel {
+    from { opacity: 0; transform: translateX(16px); }
+    to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sgb-bildirim { animation: none; transition: none; }
 }
 
 [hidden] {

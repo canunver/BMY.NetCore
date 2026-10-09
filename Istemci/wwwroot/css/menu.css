@@ -1,0 +1,721 @@
+/* Sayfaların ortak çerçevesi: üst şerit, sol menü, alt bilgi.
+   Renkler değişkenlerden gelir; kullanıcı tema değiştirince yalnızca --tema-* değerleri değişir.
+   Tema rengi dolgu olarak değil vurgu olarak kullanılır: seçili öğe, bağlantı, odak. */
+
+:root {
+    --murekkep: #16202b;      /* ana yazı */
+    --soluk: #5c6875;         /* ikincil yazı */
+    --cizgi: #dfe4ea;         /* ayırıcı çizgiler */
+    --zemin: #f3f5f7;         /* sayfa zemini */
+    --yuzey: #ffffff;         /* şerit, menü, kutu zemini */
+
+    --tema-ana: #1d6f8f;
+    --tema-acik: #e4f0f5;
+
+    --ust-yukseklik: 56px;
+    --yan-dar: 60px;
+    --yan-genis: 296px;
+    --yan-genislik: var(--yan-dar);
+}
+
+html[data-tema="Theme2"] { --tema-ana: #a83f3f; --tema-acik: #f9e9e8; }
+html[data-tema="Theme3"] { --tema-ana: #3f7a26; --tema-acik: #e8f3df; }
+html[data-tema="Theme4"] { --tema-ana: #9a5b00; --tema-acik: #fbefd9; }
+
+html[data-menu="acik"] { --yan-genislik: var(--yan-genis); }
+html[data-menu="gizli"] { --yan-genislik: 0px; }
+
+body.sayfa {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: var(--yan-genislik) minmax(0, 1fr);
+    grid-template-rows: var(--ust-yukseklik) 1fr auto;
+    font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--murekkep);
+    background: var(--zemin);
+}
+
+/* Sayfa pencereye sabittir: üst şerit ve alt bilgi (durum çubuğu) hep görünür, yalnızca içerik alanı kayar. */
+body.sayfa:not(.menusuz) {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+body.sayfa:not(.menusuz) > .sayfa-icerik {
+    min-height: 0;
+    overflow: auto;
+}
+
+body.menusuz {
+    display: block;
+    background: var(--yuzey);
+}
+
+.menu-ust button,
+.menu-yan button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.menu-ust a,
+.menu-yan a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.menu-ust :focus-visible,
+.menu-yan :focus-visible {
+    outline: 2px solid var(--tema-ana);
+    outline-offset: 2px;
+}
+
+.menu-ust button:focus:not(:focus-visible),
+.menu-yan button:focus:not(:focus-visible) {
+    outline: 0;
+}
+
+/* ---------- üst şerit ---------- */
+
+.menu-ust {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    position: sticky;
+    top: 0;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: var(--ust-yukseklik);
+    padding: 0 16px 0 10px;
+    background: var(--yuzey);
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.k-dugme-kare {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    flex: none;
+    border-radius: 8px;
+    color: var(--soluk);
+}
+
+.k-dugme-kare:hover {
+    background: var(--zemin);
+    color: var(--murekkep);
+}
+
+.k-dugme-kare svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.k-marka {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: none;
+    margin-right: 16px;
+}
+
+.k-marka img {
+    height: 34px;
+    width: auto;
+}
+
+.k-yazilim {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+}
+
+.k-sayfa {
+    min-width: 0;
+    padding-left: 16px;
+    border-left: 1px solid var(--cizgi);
+    line-height: 1.25;
+}
+
+.k-sayfa-yer {
+    font-size: 12px;
+    color: var(--soluk);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.k-sayfa-ad {
+    font-size: 16px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.k-bosluk {
+    flex: 1;
+}
+
+.k-kullanici {
+    position: relative;
+    flex: none;
+}
+
+.menu-ust .k-kullanici-dugme {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 8px;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+.menu-ust .k-kullanici-dugme:hover,
+.k-kullanici.acik .k-kullanici-dugme {
+    background: var(--zemin);
+}
+
+.k-avatar {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--tema-ana);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.k-kullanici-panel {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    width: 240px;
+    padding: 6px;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(22, 32, 43, 0.16);
+}
+
+.k-kullanici.acik .k-kullanici-panel {
+    display: block;
+}
+
+.k-panel-bolum {
+    padding: 8px 10px 10px;
+}
+
+.k-panel-bolum + .k-panel-bolum,
+.k-panel-bolum + .k-panel-satir {
+    border-top: 1px solid var(--cizgi);
+}
+
+.k-panel-baslik {
+    margin-bottom: 8px;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.menu-ust .k-panel-satir {
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 7px;
+    text-align: left;
+}
+
+.menu-ust .k-panel-satir:hover {
+    background: var(--zemin);
+}
+
+.k-temalar,
+.k-diller {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.menu-ust .k-tema {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--yuzey);
+    box-shadow: 0 0 0 1px var(--cizgi);
+}
+
+.menu-ust .k-tema.secili {
+    box-shadow: 0 0 0 2px var(--murekkep);
+}
+
+.k-tema[data-tema="Theme1"] { background: #1d6f8f; }
+.k-tema[data-tema="Theme2"] { background: #a83f3f; }
+.k-tema[data-tema="Theme3"] { background: #3f7a26; }
+.k-tema[data-tema="Theme4"] { background: #9a5b00; }
+
+.menu-ust .k-dil {
+    padding: 3px 12px;
+    font-size: 13px;
+    border: 1px solid var(--cizgi);
+    border-radius: 14px;
+}
+
+.menu-ust .k-dil:hover {
+    background: var(--zemin);
+}
+
+.menu-ust .k-dil.secili {
+    color: #fff;
+    background: var(--tema-ana);
+    border-color: var(--tema-ana);
+}
+
+/* ---------- sol menü ---------- */
+
+.menu-yan {
+    grid-column: 1;
+    grid-row: 2 / 4;
+}
+
+/* Menü paneli sayfaya sabittir; ikon kipinde üzerine gelince içeriğin üstüne doğru genişler (sayfa kaymaz). */
+.y-panel {
+    position: fixed;
+    top: var(--ust-yukseklik);
+    bottom: 0;
+    left: 0;
+    z-index: 200;
+    width: var(--yan-genislik);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--yuzey);
+    border-right: 1px solid var(--cizgi);
+    transition: width 0.14s ease;
+}
+
+.menu-yan.genis .y-panel {
+    width: var(--yan-genis);
+}
+
+html[data-menu="ikon"] .menu-yan.genis .y-panel {
+    box-shadow: 8px 0 28px rgba(22, 32, 43, 0.14);
+}
+
+html[data-menu="gizli"] .menu-yan:not(.genis) .y-panel {
+    border-right: 0;
+}
+
+/* Panelin içi hep geniş çizilir; dar kipte taşan kısım kırpılır. Böylece açılıp kapanırken yazılar kıpırdamaz. */
+.y-ic {
+    width: var(--yan-genis);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    flex: 1;
+}
+
+.y-ust {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 10px 8px;
+}
+
+.y-ara {
+    position: relative;
+    flex: 1;
+}
+
+.y-ara input {
+    width: 100%;
+    height: 36px;
+    padding: 0 10px 0 34px;
+    font: inherit;
+    color: inherit;
+    background: var(--zemin);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+}
+
+.y-ara input:focus {
+    outline: 0;
+    background: var(--yuzey);
+    border-color: var(--tema-ana);
+    box-shadow: 0 0 0 3px var(--tema-acik);
+}
+
+.y-ara svg {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: var(--soluk);
+    stroke-width: 2;
+    stroke-linecap: round;
+    pointer-events: none;
+}
+
+.menu-yan .y-sabitle.secili {
+    color: var(--tema-ana);
+    background: var(--tema-acik);
+}
+
+.y-govde {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 10px 16px;
+}
+
+.menu-yan .y-menu {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 4px 8px 4px 0;
+    border-radius: 9px;
+    text-align: left;
+}
+
+.menu-yan .y-menu:hover {
+    background: var(--zemin);
+}
+
+.y-ikon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 9px;
+    background: var(--zemin);
+    color: var(--soluk);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.y-ikon img,
+.y-ikon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.y-menu:hover .y-ikon {
+    color: var(--murekkep);
+}
+
+.y-menu.burada .y-ikon {
+    background: var(--tema-ana);
+    color: #fff;
+}
+
+/* Modül seçici: menü başlıklarından ayrı, tema renginde bir kutu */
+.y-modul-kutu {
+    margin: 2px 0 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.menu-yan .y-modul {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 0 10px 0 0;
+    border-radius: 9px;
+    text-align: left;
+    background: var(--tema-acik);
+}
+
+.y-modul .y-ikon {
+    background: var(--tema-ana);
+    color: #fff;
+}
+
+.y-modul-yazi {
+    flex: 1;
+    min-width: 0;
+    line-height: 1.2;
+}
+
+.y-modul-etiket {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--tema-ana);
+}
+
+.y-modul-ad {
+    display: block;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.y-modul-degistir {
+    width: 16px;
+    height: 16px;
+    flex: none;
+    fill: none;
+    stroke: var(--tema-ana);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.y-modul-liste {
+    margin-top: 6px;
+    padding: 4px;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 9px;
+    box-shadow: 0 6px 18px rgba(16, 24, 32, 0.10);
+}
+
+.menu-yan .y-modul-secenek {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 6px 8px;
+    border-radius: 6px;
+    text-align: left;
+}
+
+.menu-yan .y-modul-secenek:hover {
+    background: var(--zemin);
+}
+
+.menu-yan .y-modul-secenek.burada {
+    background: var(--tema-acik);
+    color: var(--tema-ana);
+    font-weight: 600;
+}
+
+.y-modul-kisa {
+    flex: none;
+    width: 26px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--soluk);
+}
+
+.y-modul-secenek.burada .y-modul-kisa {
+    color: inherit;
+}
+
+.y-ad {
+    font-weight: 700;
+}
+
+.menu-yan .y-grup-liste {
+    margin-bottom: 10px;
+}
+
+.menu-yan .y-grup-liste .y-baglanti {
+    width: 100%;
+    text-align: left;
+}
+
+.y-ad {
+    flex: 1;
+    min-width: 0;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.y-sayi {
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.y-ok {
+    width: 14px;
+    height: 14px;
+    flex: none;
+    fill: none;
+    stroke: var(--soluk);
+    stroke-width: 2;
+    stroke-linecap: round;
+    transition: transform 0.14s ease;
+}
+
+.y-menu[aria-expanded="true"] .y-ok {
+    transform: rotate(90deg);
+}
+
+.y-liste {
+    margin: 2px 0 8px 19px;
+    padding-left: 22px;
+    border-left: 1px solid var(--cizgi);
+}
+
+.menu-yan .y-baglanti {
+    display: block;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.35;
+    color: #2b3743;
+}
+
+.menu-yan .y-baglanti:hover {
+    background: var(--zemin);
+}
+
+.menu-yan .y-baglanti.burada {
+    background: var(--tema-acik);
+    color: var(--tema-ana);
+    font-weight: 600;
+}
+
+.y-bolum {
+    margin: 10px 10px 2px;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.y-ayrac {
+    margin: 6px 10px;
+    border: 0;
+    border-top: 1px solid var(--cizgi);
+}
+
+/* Arama sonuçları */
+.menu-yan .y-sonuc {
+    display: block;
+    padding: 7px 10px;
+    border-radius: 7px;
+}
+
+.menu-yan .y-sonuc.secili,
+.menu-yan .y-sonuc:hover {
+    background: var(--tema-acik);
+}
+
+.y-sonuc small {
+    display: block;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.y-sonuc mark {
+    padding: 0;
+    background: none;
+    color: var(--tema-ana);
+    font-weight: 600;
+}
+
+.y-bos {
+    padding: 12px 10px;
+    color: var(--soluk);
+}
+
+/* Dar (yalnızca ikon) görünüm: yazılar ve arama gizlenir, ikonlar kalır */
+.menu-yan:not(.genis) .y-ust,
+.menu-yan:not(.genis) .y-liste,
+.menu-yan:not(.genis) .y-sonuclar {
+    visibility: hidden;
+}
+
+html[data-menu="acik"] .menu-yan .y-ust,
+html[data-menu="acik"] .menu-yan .y-liste,
+html[data-menu="acik"] .menu-yan .y-sonuclar {
+    visibility: visible;
+}
+
+html[data-menu="ikon"] .menu-yan:not(.genis) .y-ust {
+    height: 10px;
+    padding: 0;
+    overflow: hidden;
+}
+
+html[data-menu="ikon"] .menu-yan:not(.genis) .y-liste,
+html[data-menu="ikon"] .menu-yan:not(.genis) .y-modul-liste {
+    display: none;
+}
+
+/* Dar görünümde modül kutusundan yalnızca renkli ikon kalır */
+html[data-menu="ikon"] .menu-yan:not(.genis) .y-modul {
+    background: none;
+}
+
+html[data-menu="ikon"] .menu-yan:not(.genis) .y-menu:hover {
+    background: none;
+}
+
+/* ---------- içerik ve alt bilgi ---------- */
+
+.sayfa-icerik {
+    grid-column: 2;
+    grid-row: 2;
+    min-width: 0;
+    padding: 24px 28px;
+}
+
+body.menusuz .sayfa-icerik {
+    padding: 12px;
+}
+
+.menu-alt {
+    grid-column: 2;
+    grid-row: 3;
+    display: flex;
+    gap: 16px;
+    padding: 10px 28px;
+    font-size: 12px;
+    color: var(--soluk);
+    border-top: 1px solid var(--cizgi);
+}
+
+@media (max-width: 767px) {
+    /* Dar ekranda menü yer kaplamaz; menü düğmesiyle içeriğin üstünde açılır */
+    :root,
+    html[data-menu="acik"],
+    html[data-menu="ikon"] {
+        --yan-genislik: 0px;
+    }
+
+    .k-yazilim,
+    .k-kullanici-ad {
+        display: none;
+    }
+
+    .sayfa-icerik {
+        padding: 16px 12px;
+    }
+
+    .menu-alt {
+        padding: 10px 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .y-panel,
+    .y-ok {
+        transition: none;
+    }
+}

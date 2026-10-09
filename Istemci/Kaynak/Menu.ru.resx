@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="HosGeldiniz" xml:space="preserve">
+    <value>Добро пожаловать</value>
+  </data>
+  <data name="RenkTemasi" xml:space="preserve">
+    <value>Цветовая тема</value>
+  </data>
+  <data name="Tema" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="Dil" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="Surum" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="MenuYuklenemedi" xml:space="preserve">
+    <value>Не удалось загрузить меню. Обновите страницу.</value>
+  </data>
+  <data name="MenuGruplari" xml:space="preserve">
+    <value>Группы меню</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Меню</value>
+  </data>
+  <data name="EkranAra" xml:space="preserve">
+    <value>Поиск экрана</value>
+  </data>
+  <data name="SonucYok" xml:space="preserve">
+    <value>Совпадений нет.</value>
+  </data>
+  <data name="MenuSabitle" xml:space="preserve">
+    <value>Закрепить меню</value>
+  </data>
+  <data name="MenuGosterGizle" xml:space="preserve">
+    <value>Показать / скрыть меню</value>
+  </data>
+  <data name="Modul" xml:space="preserve">
+    <value>Модуль</value>
+  </data>
+  <data name="ModulSec" xml:space="preserve">
+    <value>Выбрать модуль</value>
+  </data>
+  <data name="Giris_KullaniciKodu" xml:space="preserve">
+    <value>Код пользователя</value>
+  </data>
+  <data name="Giris_Parola" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="Giris_Hatirla" xml:space="preserve">
+    <value>Запомнить код пользователя</value>
+  </data>
+  <data name="Giris_Giris" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="Giris_BuyukHarf" xml:space="preserve">
+    <value>Включён Caps Lock.</value>
+  </data>
+  <data name="Giris_DogrulamaKodu" xml:space="preserve">
+    <value>Код подтверждения</value>
+  </data>
+  <data name="Giris_Dogrula" xml:space="preserve">
+    <value>Подтвердить и войти</value>
+  </data>
+  <data name="Giris_YeniKod" xml:space="preserve">
+    <value>Отправить новый код</value>
+  </data>
+  <data name="Giris_Geri" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="Giris_KodParolaGir" xml:space="preserve">
+    <value>Введите код пользователя и пароль.</value>
+  </data>
+  <data name="Giris_KodGir" xml:space="preserve">
+    <value>Введите код подтверждения.</value>
+  </data>
+  <data name="Giris_SunucuYok" xml:space="preserve">
+    <value>Сервер недоступен. Повторите попытку.</value>
+  </data>
+  <data name="Giris_SayfaSuresi" xml:space="preserve">
+    <value>Срок действия страницы истёк. Обновите страницу и повторите попытку.</value>
+  </data>
+  <data name="Giris_CokDeneme" xml:space="preserve">
+    <value>Слишком много неудачных попыток входа. Повторите попытку через {0} мин.</value>
+  </data>
+  <data name="Giris_Bakim" xml:space="preserve">
+    <value>Система на обслуживании. Повторите попытку позже.</value>
+  </data>
+  <data name="Giris_Yapilamadi" xml:space="preserve">
+    <value>Не удалось войти.</value>
+  </data>
+  <data name="Giris_KodGonderildi" xml:space="preserve">
+    <value>Код подтверждения отправлен на адрес {0}.</value>
+  </data>
+  <data name="Giris_YeniKodGonderildi" xml:space="preserve">
+    <value>Новый код подтверждения отправлен на адрес {0}.</value>
+  </data>
+  <data name="Giris_KodAzOnce" xml:space="preserve">
+    <value>Новый код только что отправлен. Повторите попытку через минуту.</value>
+  </data>
+  <data name="Giris_KodSuresi" xml:space="preserve">
+    <value>Срок действия кода подтверждения истёк. Запросите новый код.</value>
+  </data>
+  <data name="Giris_KodHatali" xml:space="preserve">
+    <value>Неверный код подтверждения. Повторите попытку.</value>
+  </data>
+  <data name="Giris_KayitliEposta" xml:space="preserve">
+    <value>зарегистрированный адрес</value>
+  </data>
+  <data name="Giris_EpostaKonu" xml:space="preserve">
+    <value>{0}: код подтверждения</value>
+  </data>
+  <data name="Giris_EpostaMesaj" xml:space="preserve">
+    <value>Ваш код для входа в {0}: &lt;b&gt;{1}&lt;/b&gt;&lt;br /&gt;Код действителен {2} ч.; в течение этого времени его можно использовать повторно.</value>
+  </data>
+</root>

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+    <data name="Baslik" xml:space="preserve">
+    <value>Attached Files</value>
+  </data>
+  <data name="Aciklama" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Dosya" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Yukle" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="DosyaAd" xml:space="preserve">
+    <value>File Name</value>
+  </data>
+  <data name="Tur" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Boy" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="Tarih" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Yukleyen" xml:space="preserve">
+    <value>Uploaded by</value>
+  </data>
+  <data name="Birim" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="Indir" xml:space="preserve">
+    <value>Download file</value>
+  </data>
+  <data name="Sil" xml:space="preserve">
+    <value>Delete file</value>
+  </data>
+  <data name="Baglanti" xml:space="preserve">
+    <value>Copy link address</value>
+  </data>
+  <data name="Kilitle" xml:space="preserve">
+    <value>Lock (approve)</value>
+  </data>
+  <data name="KilitAc" xml:space="preserve">
+    <value>Remove approval</value>
+  </data>
+  <data name="Kilitli" xml:space="preserve">
+    <value>Locked</value>
+  </data>
+  <data name="SilOnay" xml:space="preserve">
+    <value>The file will be deleted. Do you confirm?</value>
+  </data>
+  <data name="YukleOnay" xml:space="preserve">
+    <value>Upload the file?</value>
+  </data>
+  <data name="DosyaSec" xml:space="preserve">
+    <value>Please select a file to upload.</value>
+  </data>
+  <data name="Yukleniyor" xml:space="preserve">
+    <value>Uploading...</value>
+  </data>
+  <data name="Yuklendi" xml:space="preserve">
+    <value>File uploaded.</value>
+  </data>
+  <data name="Silindi" xml:space="preserve">
+    <value>File deleted.</value>
+  </data>
+  <data name="Kopyalandi" xml:space="preserve">
+    <value>Link address copied to clipboard.</value>
+  </data>
+  <data name="OnceKaydet" xml:space="preserve">
+    <value>Save the record first to attach files.</value>
+  </data>
+  <data name="CokBuyuk" xml:space="preserve">
+    <value>The file can be at most {0} MB.</value>
+  </data>
+  <data name="Bulunamadi" xml:space="preserve">
+    <value>File not found or you are not allowed to view it.</value>
+  </data>
+  <data name="IslemHata" xml:space="preserve">
+    <value>The operation failed. Please try again.</value>
+  </data>
+  <data name="Islem" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="HataliCagri" xml:space="preserve">
+    <value>Invalid call: module and form are required.</value>
+  </data>
+</root>

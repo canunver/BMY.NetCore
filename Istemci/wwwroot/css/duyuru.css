@@ -1,0 +1,259 @@
+/* Duyuru ekranı (Duyuru/Duyuru) ve Duyuru Girişi (Duyuru/DuyuruGiris) */
+
+/* Önem renkleri: 1 çok önemli, 2 önemli, 3 normal, 0 diğer (ör. modül duyuruları) */
+.onem-1 { --onem-renk: #c62828; }
+.onem-2 { --onem-renk: #e67e00; }
+.onem-3 { --onem-renk: #1e63b5; }
+.onem-0 { --onem-renk: #2e7d32; }
+
+/* ---------------------------------------------------------------- duyuru ekranı */
+
+body.duyuru-ekran .sayfa-icerik {
+    padding: 0;
+    height: 100vh;
+}
+
+.duyuru-kutu {
+    height: 100%;
+    overflow-y: auto;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--murekkep);
+}
+
+.duyuru-liste {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.duyuru {
+    padding: 10px 0 12px;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.duyuru:last-child {
+    border-bottom: 0;
+}
+
+.duyuru-ust {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.duyuru-bayrak {
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--onem-renk);
+}
+
+.duyuru-tarih {
+    font-weight: 600;
+}
+
+.duyuru-onem {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--onem-renk);
+}
+
+.duyuru-konu {
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.duyuru-metin {
+    overflow-wrap: anywhere;
+}
+
+.duyuru-metin img {
+    max-width: 100%;
+    height: auto;
+}
+
+.duyuru-bos {
+    padding: 12px 0;
+    color: var(--soluk);
+}
+
+/* Açılış sayfasında "pencerede göster" duyurularının penceresi */
+.duyuru-pencere .modal-body {
+    padding: 0;
+}
+
+.duyuru-pencere iframe {
+    display: block;
+    width: 100%;
+    height: min(60vh, 520px);
+    border: 0;
+}
+
+/* ---------------------------------------------------------------- Duyuru Girişi */
+
+.duyuru-giris {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+}
+
+.duyuru-giris .kutu {
+    padding: 16px;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.duyuru-giris .kutu-baslik {
+    margin: 0 0 12px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.duyuru-giris .control-label {
+    font-weight: 600;
+}
+
+.tarih-araligi {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.duyuru-arama {
+    margin-bottom: 12px;
+}
+
+.duyuru-grid {
+    height: 460px;
+}
+
+.duyuru-onem-isaret {
+    font-weight: 600;
+    color: var(--onem-renk);
+}
+
+.duyuru-arac {
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+/* Duyuru metnindeki tablolar (editörde ve duyuru ekranında) */
+.duyuru-metin table {
+    border-collapse: collapse;
+    max-width: 100%;
+}
+
+.duyuru-metin td,
+.duyuru-metin th {
+    border: 1px solid var(--cizgi);
+    padding: 4px 6px;
+}
+
+/* Arama formu: etiketler solda, dar ve sıkı (listeye daha çok yer kalsın) */
+.duyuru-arama .form-group {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    align-items: center;
+    column-gap: 8px;
+    margin: 0 0 6px;
+}
+
+/* Bootstrap'in clearfix sözde öğeleri ızgarada hücre yer kaplamasın */
+.duyuru-arama .form-group::before,
+.duyuru-arama .form-group::after {
+    display: none;
+}
+
+.duyuru-arama .form-group > .control-label,
+.duyuru-arama .form-group > [class*="col-sm-"] {
+    float: none;
+    width: auto;
+    padding: 0;
+    text-align: left;
+}
+
+.duyuru-arama .form-group > .control-label {
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+.duyuru-arama .form-control {
+    height: 28px;
+    padding: 3px 6px;
+    font-size: 12px;
+}
+
+.duyuru-arama .tarih-araligi .form-control {
+    min-width: 0;
+    flex: 1 1 0;
+}
+
+.duyuru-arama .radio-inline {
+    padding-top: 0;
+    font-size: 12px;
+    margin-right: 6px;
+}
+
+.duyuru-arama .radio-inline + .radio-inline {
+    margin-left: 0;
+}
+
+/* Üç sütun yan yana: %25 liste, %50 duyuru, %25 ekli dosyalar (eski Duyuru Girişi yerleşimi). Dar ekranda alt alta.
+   Sayfa pencereye sığar; her bölme kendi içinde kayar, liste kalan yüksekliğin tamamını kullanır. */
+@media (min-width: 992px) {
+    body.duyuru-giris-sayfa > .sayfa-icerik {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .duyuru-giris {
+        flex: 1 1 auto;
+        min-height: 0;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+        grid-template-rows: minmax(0, 1fr);
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .duyuru-giris > section {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .duyuru-giris .kutu {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: 12px;
+    }
+
+    /* Sol bölme: form sabit, liste kalan alanı doldurur ve kendi içinde kayar */
+    .duyuru-sol .kutu {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .duyuru-sol .duyuru-grid {
+        flex: 1 1 auto;
+        min-height: 160px;
+        height: auto;
+    }
+}
+
+/* Dar tarih alanları: takvim simgesi yer kaplamasın diye iç boşluk azaltılır */
+.duyuru-arama input[type="date"] {
+    padding-right: 2px;
+}

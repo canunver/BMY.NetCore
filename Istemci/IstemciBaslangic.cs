@@ -4,6 +4,8 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Istemci.Duyuru;
+using Istemci.EkliDosya;
 using Istemci.Giris;
 using Istemci.OrtakSayfa;
 using Istemci.Oturum;
@@ -131,11 +133,20 @@ namespace Istemci
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
+            // İsteğin dili: oturumdaki kullanıcının dili ya da (giriş öncesi) KulDil çerezi.
+            app.Use((baglam, sonraki) =>
+            {
+                Dil.Uygula(baglam);
+                return sonraki(baglam);
+            });
             app.UseAuthorization();
 
             app.MapRazorPages();
             GirisUclari.Ekle(app);
             GirisBilgiUclari.Ekle(app);
+            MenuUclari.Ekle(app);
+            DuyuruUclari.Ekle(app);
+            EkliDosyaUclari.Ekle(app);
         }
     }
 }

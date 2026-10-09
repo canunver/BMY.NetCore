@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Istemci.Pages.OrtakSayfa
@@ -9,20 +8,8 @@ namespace Istemci.Pages.OrtakSayfa
     /// </summary>
     public class GirisBilgiModel : PageModel
     {
-        private readonly IAntiforgery sahtecilik;
-
-        public GirisBilgiModel(IAntiforgery sahtecilik)
-        {
-            this.sahtecilik = sahtecilik;
-        }
-
-        public string YazilimAd { get; private set; }
-        public string IstekJetonu { get; private set; }
-
         public void OnGet()
         {
-            YazilimAd = Ayar.Oku("yazilimAd", "SGB.net");
-            IstekJetonu = sahtecilik.GetAndStoreTokens(HttpContext).RequestToken;
         }
     }
 }

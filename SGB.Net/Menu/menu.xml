@@ -1,0 +1,1345 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Nodes>
+
+
+  <Node ID="Menu1" Tip="Grup" Text="Organizasyon ve Planlama" Modul="ORG,PEB,STRKur,GRV"  >
+    <Node ID="Menu1_1" Tip="UstMenu" Text="Organizasyon Yapı" Genislik="120" Yukseklik="100" Modul="ORG">
+      <Node Tip="Kolon">
+        <Node ID="Menu1_1_1" Text="Organizasyon Şeması" URL="../Organizasyon/ORGAna.aspx?tur=1" Yetki="1" ></Node>
+        <Node ID="Menu1_1_5" Text="Organizasyon Şema Grafiği" URL="../Organizasyon/ORGGrafik.aspx" Yetki="1" ></Node>
+        <Node ID="Menu1_1_2" Text="Şablon Tanımlama" URL="../Organizasyon/ORGAna.aspx?tur=1&#38;sablon=1" Yetki="1" ></Node>
+        <Node ID="Menu1_1_3" Text="Birim Tür Tanımlama" URL="../ButceHazirlikv2/GenelKodTanimla.aspx?Tur=21" Yetki="1"></Node>
+        <Node ID="Menu1_1_4" Text="Genel Görev Tanımlama" URL="../Organizasyon/GenelGorevAna.aspx" Yetki="1"></Node>
+      </Node>
+    </Node>
+    <Node ID="Menu1_2" Tip="UstMenu" Text="Stratejik Plan" Genislik="85" Yukseklik="150" Modul="STRKur">
+      <Node Tip="Kolon">
+        <Node ID="Menu1_2_0" Tip="AltBolum" Text="Kurum Stratejik Planı" Modul="STRKur">
+          <Node ID="Menu1_2_1" Text="Stratejik Plan" URL="../PerformansButce/StratejikPlanAna.aspx" Yetki="1,26" ></Node>
+          <Node ID="Menu1_2_12" Text="İzleme Tablosu" URL="../PerformansButce/StratejikGostGerc.aspx" Yetki="1,26" ></Node>
+          <Node ID="Menu1_2_13" Text="Genel Değerlendirme" URL="../PerformansButce/SPIzlemeGenel.aspx" Yetki="1" ></Node>
+          <Node ID="Menu1_2_14" Text="Kurum Değerlendirme" URL="../PerformansButce/SPIzlemeKurum.aspx" Yetki="1,26" ></Node>
+        </Node>
+      </Node>
+    </Node>
+    <Node ID="Menu4_7" Tip="UstMenu" Text="Eylem Planı" Genislik="100" Yukseklik="100" Modul="GRV" Yetki="">
+      <Node Tip="Kolon">
+        <Node ID="Menu1_2_11g" Tip="AltBolum" Text="Eylem Planı" Modul="GRV">
+          <Node ID="Menu1_2_11i" Text="Eylem Planı (2023 Önc.)" URL="../GorevYonetimi/Gorev01.aspx?yetki=0" Yetki="1,26,27" ></Node>
+          <Node ID="Menu1_2_11" Text="Eylem Planı" URL="../PerformansButce/EylemPlaniForm.aspx?eylemTur=1" Yetki="" ></Node>
+          <Node ID="Menu1_2_11a" Text="Eylem Planı (Üst Yön.)" URL="../PerformansButce/EylemPlaniForm.aspx?eylemTur=2" Yetki="1,26,27" ></Node>
+        </Node>
+      </Node>
+    </Node>
+    <Node ID="Menu1_3" Tip="UstMenu" Text="Performans Programı" Genislik="130" Yukseklik="150" Modul="PEB" >
+      <Node Tip="Kolon">
+        <Node ID="Menu1_3_0" Tip="AltBolum" Text="Kurum Performans Programı" Modul="PEB">
+          <Node ID="Menu1_3_1" Text="Strateji Ağacı" URL="../PerformansButce/CascadeAna.aspx" Yetki="1,27" ></Node>
+          <Node ID="Menu1_3_2" Text="Performans Hedefi" URL="../PerformansButce/PerformansHedefAna.aspx" Yetki="1,27" ></Node>
+          <Node ID="Menu1_3_3" Text="Faaliyet/GYG/Transfer" URL="../PerformansButce/PerformansFaaliyet.aspx" Yetki="1,27" ></Node>
+          <Node ID="Menu1_3_4" Text="Performans Göstergesi Hedeflenen" URL="../PerformansButce/PerformansGostergeHedeflenen.aspx" Yetki="1,27" ></Node>
+          <Node ID="Menu1_3_5" Text="Faaliyet/Proje" URL="../PerformansButce/FaaliyetProjeAna.aspx" Yetki="1,27" Gizli="1" ></Node>
+          <Node ID="Menu1_3_6" Text="Sabit Maliyet" URL="../PerformansButce/SabitMaliyetAna.aspx" Yetki="1,27" Gizli="1" ></Node>
+          <Node ID="Menu1_3_7" Text="Tedbirler" URL="../PerformansButce/Tedbirler.aspx" Yetki="1,27" Gizli="1" ></Node>
+          <Node ID="Menu1_3_8" Text="Harcama Dağıtım" URL="../PerformansButce/HarcamaDagit.aspx" Yetki="1,27" ></Node>
+        </Node>
+      </Node>
+    </Node>
+    <Node ID="Menu1_4" Tip="UstMenu" Text="Operasyonel Plan" Genislik="110" Yukseklik="150" Modul="PEB">
+      <Node Tip="Kolon">
+        <Node ID="Menu1_4_1" Tip="AltBolum" Text="Performans Bütçe Operasyonel Plan">
+          <Node ID="Menu1_4_1_1" Text="Daire Tanımlama" URL="../PerformansButce/TanimDaire.aspx" Yetki="1" Gizli="1"></Node>
+          <Node ID="Menu1_4_1_2" Text="Personel İşlemleri" URL="../PerformansButce/PersonelAna.aspx" Yetki="1,27" Gizli="1"></Node>
+          <Node ID="Menu1_4_1_3" Text="Alt Faliyet Giriş/Sorgulama" URL="../PerformansButce/AltFaaliyet.aspx" Yetki="1,11,27" Gizli="1"></Node>
+          <Node ID="Menu1_4_1_4" Text="İş/Görev İşlemleri" URL="../PerformansButce/IsGorevAgac.aspx" Yetki="1,11,27" ></Node>
+        </Node>
+      </Node>
+    </Node>
+    <Node ID="Menu1_6" Tip="UstMenu" Text="İzleme Değerlendirme" Genislik="140" Yukseklik="250" Modul="PEB">
+      <Node Tip="Kolon">
+        <Node ID="Menu1_6_1" Text ="Gösterge Gerçekleşmeleri" URL="../PerformansButce/PerformansGostergeGerceklesen.aspx" Yetki="1,27" ></Node>
+        <Node ID="Menu1_6_2" Text="Ön Mali Kontrol" URL="" Yetki="1" Gizli="1"></Node>
+        <Node ID="Menu1_6_3" Tip="AltBolum" Text="Raporlar">
+          <Node ID="Menu1_6_3_1" Text="Birim Göstergeleri İzleme ve Değerlendirme Raporu" URL="../PerformansButce/RaporlarPerformansGosterge.aspx?raporTur=BirimGosterge" Yetki="1,27" ></Node>
+          <Node ID="Menu1_6_3_2" Text="Performans Göstergesi Gerçekleşen İzleme Raporu" URL="../PerformansButce/RaporlarPerformansGosterge.aspx?raporTur=GostergeDetayIzleme" Yetki="1,27" ></Node>
+          <Node ID="Menu1_6_3_3" Text="Performans Göstergerlerinin Gerçekleşmelerinin Hedefe Ulaşma Durumu Raporu" URL="../PerformansButce/RaporlarPerformansGosterge.aspx?raporTur=GostergeHedefUlasma" Yetki="1,27" ></Node>
+          <Node ID="Menu1_6_3_4" Text="Faaliyet Raporu" URL="" Yetki="1" Gizli="1"></Node>
+          <Node ID="Menu1_6_3_5" Text="Performans Bütçe Raporları" URL="../Raporlama/RaporGrupListe.aspx?raporGrup=2000" Yetki="1,20"></Node>
+        </Node>
+      </Node>
+    </Node>
+  </Node>
+
+  <Node ID="Menu2" Tip="Grup" Text="Bütçeleme" Modul="BHM">
+    <Node ID="Menu2_1" Tip="UstMenu" Text="Bütçe Senaryosu" Genislik="100" Yukseklik="90" Modul="BHM">
+      <Node Tip="Kolon">
+        <Node ID="Menu2_1_0" URL="../ButceHazirlikv2/ButceAsamaIslemleri.aspx" Yetki="1"></Node>
+        <Node ID="Menu2_1_5" URL="../ButceHazirlikv2/TavanEkoSektorBirim.aspx" Yetki="1"></Node>
+        <Node ID="Menu2_1_1" URL="../ButceHazirlikv2/ButceSenaryoSec.aspx" Yetki="1"></Node>
+        <Node ID="Menu2_1_3" URL="../ButceHazirlikv2/ButceTasnifAna.aspx?tavan=1" Yetki="1" Gizli="1"></Node>
+        <Node ID="Menu2_1_2" URL="../ButceHazirlikv2/ButceTasnifAna.aspx" Yetki="1" Gizli="1"></Node>
+        <Node ID="Menu2_1_4" URL="../ButceHazirlikv2/TanimBirimDegisken.aspx" Yetki="1" Gizli="1"></Node>
+      </Node>
+    </Node>
+    <Node ID="Menu2_2" Tip="UstMenu" Text="Bütçe Hazırlık" Genislik="100" Yukseklik="290" Modul="BHM" >
+      <Node Tip="Kolon">
+        <Node ID="Menu2_2_1"  Text="Hizmet Gerekçeleri"  URL="../ButceForm/HizmetGerekcesiv2.aspx" Yetki="1,20" ></Node>
+        <Node ID="Menu2_1_6"  URL="../ButceHazirlikv2/TavanEkoFaaliyet.aspx" Yetki="1,20"></Node>
+        <Node ID="Menu2_2_21" URL="../ButceHazirlikv2/TavanTertip.aspx" Yetki="1,20"></Node>
+        <Node ID="Menu2_2_13" Text="Birim Tavanları" URL="../ButceHazirlikv2/ButceTavan.aspx" Yetki="1,20" Gizli="1"></Node>
+        <Node ID="Menu2_2_14" Text="Tavan Üstü Karşılama" URL="../ButceHazirlikv2/TavanUstuOdenekKabul.aspx" Yetki="1"></Node>
+        <Node ID="Menu2_2_2"  Text="Gider Teklifi" URL="../ButceHazirlikv2/ButceRakamDuzenleYeni.aspx?odenekTur=1" Yetki="1,20"></Node>
+        <Node ID="Menu2_2_12" Text="Gider Teklifi (Eko 2)" URL="../ButceHazirlikv2/ButceRakamDuzenleYeni.aspx?odenekTur=3" Yetki="1,20"></Node>
+        <Node ID="Menu2_2_15" Text="Gider Teklifi (Eko 4)" URL="../ButceHazirlikv2/ButceRakamDuzenleYeni.aspx?odenekTur=4" Yetki="1,20"></Node>
+        <Node ID="Menu2_2_3"  Text="Gider Yılsonu Tahmini" URL="../ButceHazirlikv2/ButceRakamDuzenleYeni.aspx?odenekTur=1&#38;tahmin=1" Yetki="1,20"></Node>
+        <Node ID="Menu2_2_3a"  Text="Gider Yılsonu Tahmini (Eko 2)" URL="../ButceHazirlikv2/ButceRakamDuzenleYeni.aspx?odenekTur=3&#38;tahmin=1" Yetki="1"></Node>
+        <Node ID="Menu2_2_4"  Text="Bütçe Gider Fişi" URL="../ButceHazirlikv2/ButceFisiGiris.aspx?odenekTur=1" Yetki="1,20"></Node>
+        <Node ID="Menu2_2_4a" Text="Bütçe Gider Fişi (e Bütçe)" URL="../ButceHazirlikv2/ButceFisiGirisEski.aspx?odenekTur=1" Yetki="1,20"></Node>
+        <Node ID="Menu2_2_5"  Text="Gelir Teklifi" URL="../ButceHazirlikv2/ButceRakamDuzenleYeni.aspx?odenekTur=2" Yetki="1,20"></Node>
+        <Node ID="Menu2_2_6"  Text="Gelir Yılsonu Tahmini" URL="../ButceHazirlikv2/ButceRakamDuzenleYeni.aspx?odenekTur=2&#38;tahmin=1" Yetki="1,20"></Node>
+        <Node ID="Menu2_2_7"  Text="Bütçe Gelir Fişi" URL="../ButceHazirlikv2/ButceFisiGiris.aspx?odenekTur=2" Yetki="1,20"></Node>
+        <Node ID="Menu2_2_8"  Text="Finansman Teklifi" URL="../ButceHazirlikv2/ButceFinansGiris.aspx" Yetki="1,20"></Node>
+      </Node>
+      <Node Tip="Kolon">
+        <Node ID="Menu2_2_9"  Text="Ek Formlar" URL="../ButceHazirlikv2/EkFormAna.aspx" Yetki="1,20"></Node>
+        <Node ID="Menu2_2_25" URL="../ButceHazirlikv2/ProjeGerekceAnaForm.aspx" Yetki="1,22"></Node>
+        <Node ID="Menu2_2_29" Text="Yolluk Planlama Formu" URL="../ButceHazirlikv2/YollukPlanlamaForm.aspx" Yetki="1,20"></Node>
+        <Node ID="Menu2_2_10" Text="Hizmet Maliyet Tespiti-Taşra" URL="../ButceForm/HizmetMaliyetiTespitiTasra.aspx" Yetki="1" Gizli="1" ></Node>
+        <Node ID="Menu2_2_11" Text="Fiziksel Değerler-Taşra" URL="../ButceForm/FizikselDegerlerTasra.aspx" Yetki="1" Gizli="1"></Node>
+        <Node ID="Menu3_1_31" Text="Deprem Harcamaları" URL="../ButceForm/DepremHarcamaForm.aspx" Yetki="1,2,17,18,19,21"></Node>
+        <Node ID="Menu3_1_32" Text="Kiralık Taşıt Planlama Formu" URL="../ButceForm/AracKiralamaPlaniForm.aspx" Yetki="1,2,17,18,19,21"></Node>
+        <Node ID="Menu2_2_30" Text="" URL="../ButceHazirlikv2/ButceCalismasiPersoneliForm.aspx" Yetki="1,20"></Node>
+        <Node ID="Menu2_2_19" Text="Faaliyet - Birim İlişkilendirme" URL="../ButceHazirlikv2/FaaliyetinYapildigiYerForm.aspx" Yetki="1,20"></Node>
+      </Node>
+    </Node>
+    <Node ID="Menu4_5" Tip="UstMenu" Text="Proje Yönetimi" Genislik="140" Yukseklik="240" Modul="YAT">
+      <Node Tip="Kolon">
+        <Node ID="Menu4_5_2" Text="Yatırım Projeleri" URL="../ButceHazirlikv2/ProjeGiris.aspx" Yetki="1,22"></Node>
+        <Node ID="Menu4_5_3" Text="İl ve İlçe Tanımı" URL="../ButceHazirlikv2/IlIlceTanimla.aspx" Yetki="1"></Node>
+        <Node ID="Menu4_5_4" Text="Toplu Veri Giriş" URL="../ButceHazirlikv2/YatTopluVeriGirisForm.aspx" Yetki="1"></Node>
+        <Node ID="Menu4_5_5" Text="Proje Yönetimi" URL="../ButceHazirlikv2/YatProjeYonetim.aspx" Yetki="1"></Node>
+        <Node ID="Menu5_1_1_3" Text="DPT Yatırım Raporları" URL="../Raporlama/RaporGrupListe.aspx?raporGrup=2002" Yetki="1,22"></Node>
+        <Node ID="Menu5_1_1_4" Text="Yatırım Özel Raporları" URL="../Raporlama/RaporGrupListe.aspx?raporGrup=2003" Yetki="1,22"></Node>
+        <Node ID="Menu6_5_1_19b" Text="Alt Faaliyet İlişkileri" URL="../ButceHazirlikv2/AltFaaliyetIliski.aspx?tur=2" Yetki="1,19,20"></Node>
+        <Node ID="Menu4_5_6" Text="Faaliyet Raporu" URL="../ButceHazirlikv2/FaaliyetRaporuForm.aspx" Yetki="1"></Node>
+        <Node ID="Menu4_5_9" Text="Faaliyet Raporları" URL="../ButceHazirlikv2/FaaliyetRaporuAl.aspx" Yetki="1,22"></Node>
+        <Node ID="Menu4_5_7" Text="Deflator Form" URL="../ButceHazirlikv2/DeflatorForm.aspx" Yetki="1"></Node>
+        <Node ID="Menu4_5_8" Text="Izleme Degerlendirme" URL="../ButceHazirlikv2/ProjeGiris.aspx?islemKod=1" Yetki="1,22"></Node>
+        <Node ID="Menu4_5_10" Text="Kurum Projeleri" URL="../Proje/ProjeKayit.aspx" Yetki="1,92"></Node>
+        <Node ID="Menu4_5_11" Text="Kurum Proje İzleme" URL="../Proje/ProjeIzleme.aspx" Yetki="1,92"></Node>
+      </Node>
+    </Node>
+    <Node ID="Menu3_4" Tip="UstMenu" Text="Hesap Verme" Genislik="100" Yukseklik="200" Modul="KHM, SBY">
+      <Node Tip="Kolon" Modul="KHM">
+        <Node ID="Menu3_4_1" Text="Gider Raporları" URL="../Raporlama/RaporGrupListe.aspx?raporGrup=6010" Yetki="1,25" ></Node>
+        <Node ID="Menu3_4_2" Text="Gelir Raporları" URL="../Raporlama/RaporGrupListe.aspx?raporGrup=6030" Yetki="1,25" ></Node>
+        <Node ID="Menu3_4_3" Text="Kontrol Raporları" URL="../Raporlama/RaporGrupListe.aspx?raporGrup=6020" Yetki="1,25" ></Node>
+        <Node ID="Menu3_4_4" Text="Gider Cetveli Açıklaması Girişi" URL="../KesinHesap/FisGiderGerekce.aspx" Yetki="1,25" ></Node>
+        <Node ID="Menu3_4_5" Text="Gelir Cetveli Açıklaması Girişi" URL="../KesinHesap/GelirGerekce.aspx" Yetki="1,25" ></Node>
+        <Node ID="Menu3_4_6" Text="Akreditif/Devir Tertipleri Girişi" URL="../KesinHesap/KHAkreditifGiris.aspx" Yetki="1,25" ></Node>
+        <Node ID="Menu3_4_7" Text="Yıl İçi İptal Edilen Tertiplerin Girişi" URL="../KesinHesap/KHYilIciIptalGiris.aspx" Yetki="1,25" ></Node>
+        <Node ID="Menu3_4_8" Text="Bakanlar ve Üst Yöneticiler Cetveli Girişi" URL="../KesinHesap/KHItaAmirleri.aspx" Yetki="1,25" ></Node>
+        <Node ID="Menu3_4_9" Text="Kesin Hesap Verilerini Güncelle" URL="../KesinHesap/KHGiderCetveliOlustur.aspx" Yetki="1,25" ></Node>
+      </Node>
+
+      <Node Tip="Kolon" Modul="SBY">
+        <Node ID="Menu3_4_41" Text="Ön Bulgular" URL="../SayistayBulgu/SayBulgu.aspx" Yetki="1,95" ></Node>
+        <Node ID="Menu3_4_42" Text="Ön Bulgular" URL="../SayistayBulgu/SayBulguCevap.aspx" Yetki="1,95,96" ></Node>
+      </Node>
+    </Node>
+  </Node>
+
+  <Node ID="Menu3" Tip="Grup" Text="Kaynak Yönetimi" Modul="BUM,MUH,HRC,ATM,KHM,TMM,KTP,GEL">
+    <Node ID="Menu3_1" Tip="UstMenu" Text="Bütçe Uygulama" Genislik="120" Yukseklik="350" Modul="HRC,BUM" >
+      <Node Tip="Kolon" Modul="HRC">
+        <Node ID="Menu3_1_1"  Text="Ödenek Durum Bilgisi"             URL="../ButceMuhasebe/OdenekDurumTertip.aspx"    Yetki="1,2,17,18,19,21"></Node>
+        <Node ID="Menu3_1_11" Text="Ödenek Durum Bilgisi (Ayrıntılı)" URL="../ButceHazirlikv2/OdenekYonetimTasra.aspx" Yetki="1" ></Node>
+        <Node ID="Menu3_1_2" Text="Ödenek Durum Bilgisi (Birim)" URL="../ButceMuhasebe/OdenekDurumHarcamaBirim.aspx" Yetki="1,2,17,18,19,21" ></Node>
+        <Node ID="Menu3_1_3" Text="Ödenek Gönderme Belgesi" URL="../ButceMuhasebe/OdenekGondermeTenkisFrame.aspx?belgetur=3" Yetki="1,17,19" ></Node>
+        <Node ID="Menu3_1_5" Text="Tenkis Belgesi" URL="../ButceMuhasebe/OdenekGondermeTenkisFrame.aspx?belgetur=4" Yetki="1,17" ></Node>
+        <Node ID="Menu3_1_6" Text="Ödenek Talebi" URL="../ButceMuhasebe/OdenekGondermeTenkisFrame.aspx?belgetur=3&#38;talep=1" Yetki="1,2,17,18,19,21" ></Node>
+        <Node ID="Menu3_1_7" Text="Tenkis Talebi" URL="../ButceMuhasebe/OdenekGondermeTenkisFrame.aspx?belgetur=4&#38;talep=1" Yetki="1,2,17,18,19,21"></Node>
+        <Node ID="Menu3_1_25" URL="../ButceMuhasebe/OdenekGondermeIcmalFrame.aspx" Yetki="1,17,19"></Node>
+        <Node ID="Menu3_1_34" Text="Günlük Nakit İhtiyacı" URL="../ButceUygulama/GunlukNakitIhtiyaci.aspx" Yetki="1,2,17,19" ></Node>
+        <Node ID="Menu3_1_9" Text="Makbuz Bilgileri" URL="../ButceMuhasebe/Makbuz.aspx" Yetki="1,18,19,21,31" ></Node>
+        <Node ID="Menu3_1_12" Text="Ödenek Planlaması" URL="../ButceHazirlikv2/BirimButceHazirlikForm.aspx" Yetki="1,2,17,18,19,21" ></Node>
+        <Node ID="Menu3_1_23" Text="Hizmet Maliyeti Tesbiti" URL="../ButceForm/HizmetMaliyetiTespitiTasra.aspx" Yetki="1,2,17,18,19,21" ></Node>
+      </Node>
+      <Node Tip="Kolon" Modul="BUM">
+        <Node ID="Menu3_1_13" Text="İcmal Girişi" URL="" Yetki="1" Gizli="1"></Node>
+        <Node ID="Menu3_1_14" Text="AHP Girişi" URL="../ButceUygulama/APGiris.aspx?tur=gider" Yetki="1,2,17,20,21" ></Node>
+        <Node ID="Menu3_1_27" Text="Ödenek Bloke Girişi" URL="../ButceUygulama/OdenekBlokeKontrol.aspx" Yetki="1,2,17,20,21" ></Node>
+        <Node ID="Menu3_1_15" Text="AGP Girişi" URL="../ButceUygulama/APGiris.aspx?tur=gelir" Yetki="1,2,17,20,21" ></Node>
+        <Node ID="Menu3_1_18" Text="Masraf Planı Tavan" URL="../ButceHazirlikv2/MPTavanAna.aspx" Yetki="1,2,17,20,21" ></Node>
+        <Node ID="Menu3_1_33" Text="Masraf Planı Tavan" URL="../ButceHazirlikv2/MPDagitim.aspx" Yetki="1,2" ></Node>
+        <Node ID="Menu3_1_19" Text="Masraf Planı Üret" URL="../ButceHazirlikv2/MasrafPlaniGenelUret.aspx" Yetki="1,2" ></Node>
+        <Node ID="Menu3_1_16" Text="Masraf Planı" URL="../ButceHazirlikv2/MasrafPlaniGenel.aspx" Yetki="1,2,17,18,19,20,21" ></Node>
+        <Node ID="Menu3_1_20" Text="Revize Talep" URL="../ButceHazirlikv2/MasrafPlaniRevizeTalep.aspx" Yetki="1,2,17,18,19,20,21" ></Node>
+        <Node ID="Menu3_1_22" Text="Revize Talep Karşılama" URL="../ButceHazirlikv2/MasrafPlaniRTKarsilama.aspx" Yetki="1,2,17,20,21" ></Node>
+        <Node ID="Menu3_1_21" Text="Revize" URL="../ButceHazirlikv2/MasrafPlaniRevizeFrame.aspx" Yetki="1,2,17" ></Node>
+        <Node ID="Menu3_1_17" Text="Bütçe İşlemi" URL="../ButceHazirlikv2/MasrafPlaniButceIslemFrame.aspx" Yetki="1,2,17"></Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu3_2" Tip="UstMenu" Text="Harcama Yönetimi" Genislik="120" Yukseklik="500" Modul="HRC,MUH,BUM">
+      <Node Tip="Kolon">
+        <Node ID="Menu3_2_1"  Text="Harcama Girişi"         URL="../GelirSurecleri/SurecFormAna.aspx?tur=1" Yetki="1,2,15,18,19,21,64,28" Modul="HRC"></Node>
+        <Node ID="Menu3_2_2"  Text="Ödeme Emri/MİF Belgesi" URL="../ButceMuhasebe/OdemeEmriMIFFrame.aspx"   Yetki="1,2,18,19,21"    Modul="MUH,HRC"></Node>
+        <Node ID="Menu3_2_15" Text="Ödeme Emri/MİF Belgesi (Yeni)" URL="../ButceMuhasebe/OdemeEmriMIFFrame.aspx?yeni=1" Yetki="1,2,18,19,21" Modul="HRC,MUH"></Node>
+        <Node ID="Menu3_2_37" Text="Ödeme Emri Başlık Bilgileri" URL="../ButceMuhasebe/OdemeEmriMIFFrame.aspx?yeni=1&#38;baslikSayfasi=1" Yetki="1,2,18,19,21" Modul="HRC,MUH"></Node>
+        <Node ID="Menu3_2_3"  Text="Vergi Borcu Sorgulama" URL="../HarcamaSurecleri/BorcuYokAna.aspx" Yetki="1,2,18,19,21"  Modul="HRC,MUH"></Node>
+        <Node ID="Menu3_2_4"  Text="SGK Prim Borcu Sorgulama" URL="../HarcamaSurecleri/BorcuYokSGKAna.aspx" Yetki="1" Modul="HRC" Gizli="1"></Node>
+        <Node ID="Menu3_2_25" Text="Banka Listesi" URL="../ButceMuhasebe/BankaListesiAna.aspx" Yetki="1,2,19,89" Modul="MUH"></Node>
+        <Node ID="Menu3_2_47" Text="Çek Listesi" URL="../ButceMuhasebe/CekKocaniForm.aspx" Yetki="1,2,19" Modul="MUH"></Node>
+        <Node ID="Menu3_2_29" Text="Faturalar" URL="../HarcamaSurecleri/FaturaTum.aspx" Yetki="1,2,18,19,21" Modul="MUH,HRC"></Node>
+        <Node ID="Menu3_2_14" Text="Mahsup İşlemleri" URL="../ButceMuhasebe/Kapatma.aspx" Yetki="1,2,18,19,21" Modul="MUH"></Node>
+        <Node ID="Menu3_2_5"  Text="Mahsup İşlemleri (323 Hesabı)" URL="../ButceMuhasebe/Kapatma.aspx?hesap=323" Yetki="1,2,18,19,21" Modul="MUH"></Node>
+        <Node ID="Menu3_2_13" Text="Mahsup İşlemleri (103 Hesabı)" URL="../ButceMuhasebe/Kapatma.aspx?hesap=103" Yetki="1,2,18,19,21" Modul="MUH"></Node>
+        <Node ID="Menu3_2_6"  Text="Bloke Düzenle" URL="../HarcamaSurecleri/BlokeDuzenle.aspx" Yetki="1,18,19" Modul="HRC"></Node>
+        <Node ID="Menu3_2_17" Text="Bütçe Ödenekleri Kapatma İşlemi" URL="../ButceMuhasebe/OdenekKapatma.aspx" Yetki="1,2,18,19,21" Modul="MUH"></Node>
+        <Node ID="Menu3_2_18" Text="Bütçe Ödenekleri Açılış İşlemi" URL="../ButceMuhasebe/OdenekAcilis.aspx" Yetki="1,2,18,19,21" Modul="MUH"></Node>
+        <Node ID="Menu3_2_7"  Text="Harcama Bilgi Sorgulama" URL="../HarcamaSurecleri/HRCBilgi.aspx" Yetki="1" Modul="HRC"></Node>
+        <Node ID="Menu3_2_8"  Text="E-Fatura İşlemleri" URL="../EFatura/ListeFatura.aspx?pGrid=1" Yetki="1,2,18,19,21" Modul="HRC" Gizli="1"></Node>
+        <Node ID="Menu3_2_9a" Text="Avans Sorgulama" URL="../ButceMuhasebe/AvansSorgulaForm.aspx" Yetki="1,2,17,18,19,21" Modul="MUH"></Node>
+        <Node ID="Menu3_2_9"  Text="Avans Kapatma(Avans Listesi)" URL="../ButceMuhasebe/AvansListeYeni.aspx" Yetki="1,2,17,18,19,21" Modul="MUH"></Node>
+        <Node ID="Menu3_2_11a" Text="Seyyar Görev Talep" URL="../HarcamaSurecleri/SeyyarGorev.aspx" Yetki="1,2" Modul="HRC"></Node>
+        <Node ID="Menu3_2_36" Text="İl Özel İdaresi Projeleri" URL="../ButceHazirlikv2/IOIProjeListeForm.aspx" Yetki="1,2" Modul="BUM"></Node>
+        <Node ID="Menu3_2_38" Text="YIKOB Projeleri" URL="../ButceHazirlikv2/YIKOBProjeListeForm.aspx" Yetki="1,2" Modul="BUM"></Node>
+        <Node ID="Menu3_2_10" Text="Telekom Fatura İşlemleri" URL="../HarcamaSurecleri/AboneTelekomXML.aspx" Yetki="1" Modul="HRC"></Node>
+        <Node ID="Menu3_1_10" Text="Muhasebe Kayıt İşlemi Tarih Sınırlaması" URL="../ButceMuhasebe/YilKapat.aspx" Yetki="1,19" Modul="MUH"></Node>
+        <Node ID="Menu3_2_16" Text="İl / İlçe Ödenek Dağıtım" URL="../ButceHazirlikv2/MPTavanIlAna.aspx" Yetki="1,2,17,18,21" Modul="BUM"></Node>
+        <Node ID="Menu3_2_52" Text="Unvana Göre Yolluk Girişi" URL="../HarcamaSurecleri/TanimGundelik.aspx" Yetki="1,18,19" Modul="HRC"></Node>
+        <Node ID="Menu3_2_53" Text="Toplu Sözleşme" URL="../InsanKaynaklari/PersonelSozlesmeToplu.aspx" Yetki="1,2,18,19"></Node>
+      </Node>
+      <Node Tip="Kolon">
+        <Node ID="Menu3_2_11" Text="Seyyar Görev Talep" URL="../HarcamaSurecleri/SeyyarGorev.aspx" Yetki="1,2,18,19,21" Modul="HRC"></Node>
+        <Node ID="Menu3_2_12" Text="Seyyar Görev Tespit" URL="../HarcamaSurecleri/SeyyarGorevTespitAna.aspx" Yetki="1,19" Modul="HRC"></Node>
+        <Node ID="Menu3_2_19" Text="Teminat Mektubu" URL="../HarcamaSurecleri/TeminatMektubuAna.aspx" Yetki="19,52" Modul="HRC"></Node>
+        <Node ID="Menu3_2_20" Text="Yilsonu Kapatma islemleri" URL="../ButceMuhasebe/YilSonuIslemleri.aspx" Yetki="1,19" Modul="MUH"></Node>
+        <Node ID="Menu3_2_21" Text="Satınalma Talep Formu" URL="../HarcamaSurecleri/SatinAlmaTalepFormuAna.aspx" Yetki="1,2,15,18,19,21,64,28" Modul="HRC"></Node>
+        <Node ID="Menu3_2_24" Text="Kısmi Gecici Kabul" URL="../HarcamaSurecleri/UAKismiGeciciKabul.aspx" Yetki="1,2,15,18,19,21,64,28" Modul="HRC"></Node>
+        <Node ID="MenuHB_1_1" Text="Banka Hareketi" URL="../ButceMuhasebe/BankaHareketForm.aspx" Yetki="1,18,19" Modul="MUH"></Node>
+        <Node ID="Menu3_2_28" Text="BirimDegiskenForm" URL="../ButceHazirlikv2/BirimDegiskenForm.aspx?birim=1" Yetki="1,2,18,19,21" Modul="MUH,BHM,HRC"></Node>
+        <Node ID="Menu3_2_26" Text="Kullanıcı Yöneticisi Talebi" URL="../KYM/YoneticiBildirimFormuForm.aspx?onay=0" Yetki="1,2,18,19,21" Modul="MUH" Gizli="1"></Node>
+        <Node ID="Menu3_2_27" Text="Kullanıcı Yöneticisi Talep Karşılama" URL="../KYM/YoneticiBildirimFormuForm.aspx?onay=1" Yetki="1,19" Modul="MUH" Gizli="1"></Node>
+        <Node ID="Menu3_2_35" Text="Taahhüt Kartı" URL="../ButceMuhasebe/TaahhutKarti.aspx" Yetki="1,2,18,19,90" Modul="MUH"></Node>
+        <Node ID="Menu3_2_35a" Text="Personel Taahhütleri" URL="../ButceMuhasebe/TaahhutKarti.aspx?tur=2" Yetki="1,2,18,19,90" Modul="MUH"></Node>
+        <Node ID="Menu3_2_39" Text="Temlik Tanımlama" URL="../ButceMuhasebe/TaahhutBorclarVeTemliklerKayit.aspx" Yetki="1,2,18,19,21" Modul="MUH"></Node>
+        <Node ID="Menu3_2_40" Text="Damga Vergisi Aktarımı" URL="../ButceMuhasebe/DamgaVergisiAktarimi.aspx" Yetki="1,2,18,19,21" Modul="MUH"></Node>
+        <Node ID="Menu3_2_44" Text="KDV Tevkifatı Aktarımı" URL="../ButceMuhasebe/KDVTevkifatiAktarimi.aspx" Yetki="1,2,18,19,21" Modul="MUH"></Node>
+        <Node ID="Menu3_2_49" Text="KDV Aktarımı" URL="../ButceMuhasebe/KDVAktarimi.aspx" Yetki="1,2,18,19,21" Modul="MUH"></Node>
+        <Node ID="Menu3_2_50" Text="Muhtasar Aktarımı" URL="../ButceMuhasebe/MuhtasarAktarimi.aspx" Yetki="1,2,18,19,21" Modul="MUH"></Node>
+        <Node ID="Menu3_2_56" Text="Muhtasar Bordro Akt." URL="../ButceMuhasebe/MuhtasarBordroAktarimi.aspx" Yetki="1,2,18,19,21" Modul="MUH"></Node>
+        <Node ID="Menu3_2_41" Text="Taşınır Ekonomik Kod" URL="../ButceMuhasebe/TasinirEkonomikKod.aspx" Yetki="1,2,18,19,21" Modul="MUH"></Node>
+        <Node ID="Menu3_2_42" Text="Taşıt Bilgi Formu" URL="../ButceForm/TasitListeForm.aspx" Yetki="1,2,18,19,21" Modul="BUM"></Node>
+        <Node ID="Menu3_2_48" Text="Kiralık Araç Bilgi Formu" URL="../ButceForm/KiralikAraclarForm.aspx" Yetki="1,2,18,19,21" Modul="BUM"></Node>
+        <Node ID="Menu3_2_30" Text="KİK %10 Doğrudan Alım Girişi" URL="../HarcamaSurecleri/DogrudanTeminPlanForm.aspx"   Yetki="1,2,18,19,21"    Modul="HRC"></Node>
+        <Node ID="Menu3_2_43" Text="Fatura Hazırlama" URL="../ButceMuhasebe/FaturaListesi.aspx"   Yetki="1,2,18,19,21"    Modul="HRC,MUH"></Node>
+        <Node ID="Menu3_2_55" Text="Fatura Takip" URL="../ButceMuhasebe/FaturaTakipSorgu.aspx" Yetki="1,2,17,18,19,21" Modul="MUH"></Node>
+        <Node ID="Menu3_2_45" Text="Satın Alma Süreci" URL="../HarcamaSurecleri/ManasSatinAlma.aspx"   Yetki="87"    Modul="HRC"></Node>
+        <Node ID="Menu3_2_46" Text="Aktarma Girişi" URL="../HarcamaSurecleri/HRCButceBildirim.aspx"   Yetki="1,18,19"    Modul="HRC"></Node>
+        <Node ID="Menu3_2_51" Text="İş Tanımları" URL="../ButceMuhasebe/TanimIs.aspx"   Yetki="1,2,19"  Modul="MUH"></Node>
+        <Node ID="Menu3_2_54" Text="İl Koordinatörlüğü Ödenek Talep İşlemleri" URL="../ButceMuhasebe/TKDKTalepListesi.aspx"   Yetki="1,2,18,19"  Modul="MUH"></Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu3_3" Tip="UstMenu" Text="Alacak Takip" Genislik="100" Yukseklik="80" Modul="ATM">
+      <Node Tip="Kolon">
+        <Node ID="Menu3_3_1" Text="Takip İşlemleri" URL="../AlacakTakip/AlacakTakipListe.aspx" Yetki="1,2,23" ></Node>
+        <Node ID="Menu3_3_2" Text="Saklı Raporlar" URL="../AlacakTakip/SakliRaporlar.aspx" Yetki="1" Gizli="1"></Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu3_5" Tip="UstMenu" Text="Taşınır Mal" Genislik="100" Yukseklik="400" Modul="TMM">
+      <Node Tip="Kolon">
+        <Node ID="Menu3_5_1" Text="Varlık İşlem Fişi" URL="../TasinirMal/TasinirislemFormAna.aspx" Yetki="1,2,15,28" ></Node>
+        <Node ID="Menu3_5_2" Text="Varlık İşlem Fişi (Kütüphane)" URL="../TasinirMal/TasinirislemFormAna.aspx?kutuphane=1" Yetki="1,2,15,28" ></Node>
+        <Node ID="Menu3_5_3" Text="Varlık İşlem Fişi (Müze)" URL="../TasinirMal/TasinirislemFormAna.aspx?muze=1" Yetki="1,2,15,28" ></Node>
+        <Node ID="Menu3_5_1GM" Text="Gayrimenkul Fişi" URL="../TasinirMal/TasinirislemFormAna.aspx?gm=1" Yetki="1,2,15,28" ></Node>
+        <Node ID="Menu3_5_16" Text="Dağıtım/İade Belgesi" URL="../TasinirMal/TasinirislemFormAna.aspx?dagitimIade=1" Yetki="1,2,15,38,28" Gizli="1"></Node>
+        <Node ID="Menu3_5_4" Text="Ödeme Emri/MİF Hazırlama" URL="../TasinirMal/TasinirOdemeEmri.aspx" Yetki="1,2,15,28" ></Node>
+        <Node ID="Menu3_5_6" Text="Zimmet Fişi (Kişi)" URL="../TasinirMal/ZimmetFormAna.aspx?Tur=10" Yetki="1,2,15,38,28" ></Node>
+        <Node ID="Menu3_5_7" Text="Zimmet Fişi (Ortak Alan/Örnek-8)" URL="../TasinirMal/ZimmetFormAna.aspx?Tur=20" Yetki="1,2,15,38,28" ></Node>
+        <Node ID="Menu3_5_5" Text="Geçici Alındı Fişi" URL="../TasinirMal/GeciciAlindiFormAna.aspx" Yetki="1,2,15,28" ></Node>
+        <Node ID="Menu3_5_9" Text="Sayım Tutanağı" URL="../TasinirMal/SayimAna.aspx" Yetki="1,2,15,28" ></Node>
+        <Node ID="Menu3_5_10" Text="Kayıttan Düşme Teklif ve Onay Tutanağı" URL="../TasinirMal/KayittanDusmeAna.aspx" Yetki="1,2,15,28" ></Node>
+        <Node ID="Menu3_5_11" Text="Taşınır İstek Belgesi" URL="../TasinirMal/TasinirIstekAna.aspx" Yetki="1,2,15,28" ></Node>
+        <Node ID="Menu3_5_15" Text="Taşınır Talep Karşılama İşlemleri" URL="../TasinirMal/TalepKarsilamaAna.aspx" Yetki="1,2,15,28" ></Node>
+        <Node ID="Menu3_5_27" Text="Ana Depodan Talep İşlemleri" URL="../TasinirMal/TalepKarsilamaAnaAnaDepo.aspx" Yetki="1,2,15,28" ></Node>
+        <Node ID="Menu3_5_28" Text="Ana Depodan Karşılama İşlemleri" URL="../TasinirMal/TalepKarsilamaAnaAnaDepo.aspx?karsilama=1" Yetki="1,2,29,28" ></Node>
+        <Node ID="Menu3_5_8" Text="Dayanıklı Taşınırın Özellikleri" URL="../TasinirMal/SicilNoOzellik.aspx" Yetki="1,2,15,28" ></Node>
+        <Node ID="Menu3_5_13_3" Text="Dayanıklı Taşınırın Resimleri" URL="../TasinirMal/TanimDemirbasResim.aspx" Yetki="1,2,15,28" ></Node>
+        <Node ID="Menu3_5_12" Text="Barkod Yazdırma" URL="../TasinirMal/BarkodYazdir.aspx" Yetki="1,2,15,38,28" ></Node>
+        <Node ID="Menu3_5_14" Text="Tekrar Eden Demirbaş Sicil No İşlemleri" URL="../TasinirMal/TekrarEdenSicil.aspx" Yetki="1,28" Gizli="1"></Node>
+        <Node ID="Menu3_5_31" Text="B/A Onay İşlemi" URL="../TasinirMal/TasinirIslemFormOnay.aspx" Yetki="1,2,15,28" ></Node>
+        <Node ID="Menu3_5_34" Text="Malzeme İlişkilendirme" URL="../TasinirMal/BisKayit.aspx" Yetki="1,2,15,28" ></Node>
+        <Node ID="Menu3_5_17" Text="Taşınır Tüketim Üretim İşlemleri" URL="../TasinirMal/TuketimUretimAna.aspx" Yetki="1,2,38,28" Gizli="1"></Node>
+        <Node ID="Menu3_5_18" Text="Taşınır Giyecek Techizat İşlemleri" URL="../TasinirMal/GiyecekTechizatAna.aspx" Yetki="1,2,38,28" Gizli="1"></Node>
+        <Node ID="Menu3_5_19" Text="Hediyelik İstek Belgesi" URL="../TasinirMal/TasinirIstekAna.aspx?hediyelik=1" Yetki="1,2,15,28" Gizli="1"></Node>
+        <Node ID="Menu3_5_25" Text="KHK Kapsamında Yapılan İşlemler (Giriş)" URL="../TasinirMal/TasinirMalKHK.aspx" Gizli="1" Yetki="1,2,15"></Node>
+        <Node ID="Menu3_5_26" Text="KHK Kapsamında Yapılan İşlemler (Çıkış)" URL="../TasinirMal/TasinirMalKHKCikis.aspx" Gizli="1" Yetki="1,2,15"></Node>
+      </Node>
+      <Node Tip="Kolon">
+        <Node ID="Menu3_5_13" Tip="AltBolum" Text="İhtiyaç Fazlası Taşınırlar">
+          <Node ID="Menu3_5_13_1" Text="Giriş Formu" URL="../TasinirMal/AcikPazarForm.aspx" Yetki="1,2,15,28"  Gizli="1"></Node>
+          <Node ID="Menu3_5_13_2" Text="İstek Formu" URL="../TasinirMal/AcikPazarIstek.aspx" Yetki="1,2,15,28"  Gizli="1"></Node>
+        </Node>
+        <Node ID="Menu3_5_20" Tip="AltBolum" Text="Amortisman İşlemleri">
+          <Node ID="Menu3_5_20_1" Text="Amortisman/Değerleme İşlemleri" URL="../TasinirMal/Amortisman.aspx" Yetki="1,2,15,28" ></Node>
+          <Node ID="Menu3_5_20_3" Text="Dayanıklı Taşınırlar Defteri" URL="../TasinirMal/AmortismanRaporlar.aspx?tur=DTD" Yetki="1,2,15,28" Gizli="1"></Node>
+          <Node ID="Menu3_5_20_4" Text="Amortisman Raporu" URL="../TasinirMal/AmortismanRaporlar.aspx?tur=AR" Yetki="1,2,15,28" Gizli="1"></Node>
+        </Node>
+        <Node ID="Menu3_5_22" Tip="AltBolum" Text="RFID ve KGS İşlemleri">
+          <Node ID="Menu3_5_22_1" Text="Hesap Planı Resim Bilgileri" URL="../TasinirMal/TanimHesapPlaniResim.aspx" Yetki="1,2,15,28" Gizli="1"></Node>
+          <Node ID="Menu3_5_22_2" Text="RFID Sayım Raporu" URL="../TasinirMal/SayimRFIDListe.aspx" Yetki="1,2,15,28" Gizli="1"></Node>
+          <Node ID="Menu3_5_22_3" Text="KGS Demirbaş Seçim Formu" URL="../TasinirMal/TanimKapiGecisSicil.aspx" Yetki="1,2,15,28" Gizli="1"></Node>
+          <Node ID="Menu3_5_22_4" Text="KGS Cep Telefonu Tanımlama Formu" URL="../TasinirMal/TanimKapiGecisSms.aspx" Yetki="1,2,15,28" Gizli="1"></Node>
+          <Node ID="Menu3_5_22_5" Text="RFID Eşleme İşlemleri" URL="../TasinirMal/TanimDemirbasRFIDEsleme.aspx" Yetki="1,2,15,28" ></Node>
+          <Node ID="Menu3_5_30" Text="RFID Barkod Yazdırma" URL="../TasinirMal/TanimDemirbasRFIDBarkod.aspx" Yetki="1,2,15,28,38" ></Node>
+        </Node>
+        <Node ID="Menu3_5_23" Tip="AltBolum" Text="Sayım İşlemleri">
+          <Node ID="Menu3_5_23_1" Text="Sayım İşlemi (Kişi)" URL="../TasinirMal/SayimKisi.aspx" Yetki="1,2,15,28" ></Node>
+          <Node ID="Menu3_5_23_2" Text="Sayım İşlemi (Ambar)" URL="../TasinirMal/SayimAmbar.aspx" Yetki="1,2,15,28" ></Node>
+        </Node>
+        <Node ID="Menu3_5_24" Tip="AltBolum" Text="Üzerimdeki Zimmetler">
+          <Node ID="Menu3_5_24_1" Text="Üzerimdeki Zimmetler" URL="../TasinirMal/ZimmetKisiListele.aspx" Yetki="" ></Node>
+          <Node ID="Menu3_5_24_2" Text="Tesis Bileşenler Cetveli" URL="../TasinirMal/TesisBilesenleriCetveli.aspx" Yetki="" ></Node>
+          <Node ID="Menu3_5_13_5" Text="Toplu Fiş Üretimi" URL="../TasinirMal/Aktarim.aspx" Yetki="1,2,15,28" ></Node>
+          <Node ID="Menu3_5_13_4" Text="Toplu İşlem" URL="../TasinirMal/TopluIslem.aspx" Yetki="1,2,15,28" Gizli="" ></Node>
+          <Node ID="Menu3_5_13_6" Text="Üretim Formu" URL="../TasinirMal/UretimFormuAna.aspx" Yetki="1,2,15,28" Gizli="" ></Node>
+        </Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu3_2a" Tip="UstMenu" Text="Seyyar Görev" Genislik="100" Yukseklik="150" Modul="HRC">
+      <Node Tip="Kolon">
+        <Node ID="Menu3_2_11" Text="Seyyar Görev Talep" URL="../HarcamaSurecleri/SeyyarGorev.aspx" Yetki="1,2,18,21" Modul="HRC"></Node>
+        <Node ID="Menu3_2_11b" Text="Seyyar Görev Revize Talep" URL="../HarcamaSurecleri/SeyyarGorevRevizeAna.aspx?tur=3" Yetki="1,2,18,21" Modul="HRC"></Node>
+        <Node ID="Menu3_2_12" Text="Seyyar Görev Tespit" URL="../HarcamaSurecleri/SeyyarGorevTespitAna.aspx" Yetki="1" Modul="HRC"></Node>
+        <Node ID="Menu3_2_32" Text="Seyyar Görev İl Tavan" URL="../HarcamaSurecleri/SeyyarGorevIlTavan.aspx" Yetki="1" Modul="HRC"></Node>
+        <Node ID="Menu3_2_34" Text="Seyyar Görev Revize" URL="../HarcamaSurecleri/SeyyarGorevRevizeAna.aspx?tur=2" Yetki="1" Modul="HRC"></Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu3_6" Tip="UstMenu" Text="Kütüphane" Genislik="80" Yukseklik="320" Modul="KTP">
+      <Node Tip="Kolon">
+        <Node ID="Menu3_6_1" Text="Yayın Arama" URL="../Kutuphane/YayinArama.aspx" Yetki="1,16"></Node>
+        <Node ID="Menu3_6_2" Text="Kitap Bilgi Girişi" URL="../Kutuphane/KitapGiris.aspx" Yetki="1,16" ></Node>
+        <Node ID="Menu3_6_3" Text="Süreli Yayın Bilgi Girişi" URL="../Kutuphane/SureliYayinGiris.aspx" Yetki="1,16" ></Node>
+        <Node ID="Menu3_6_4" Text="Elektronik Yayın Bilgi Girişi" URL="../Kutuphane/ElektronikYayinGiris.aspx" Yetki="1,16" ></Node>
+        <Node ID="Menu3_6_5" Text="Rezerve İşlemleri" URL="../Kutuphane/RezerveIptal.aspx" Yetki="1,16" ></Node>
+        <Node ID="Menu3_6_6" Text="Yeni Yayınlar" URL="../Kutuphane/YeniYayinlar.aspx" Yetki="1,16" ></Node>
+        <Node ID="Menu3_6_7" Tip="AltBolum" Text="Ödünç İşlemleri">
+          <Node ID="Menu3_6_7_1" Text="Ödünç Geri Alım" URL="../Kutuphane/OduncGeriAlim.aspx" Yetki="1,16" ></Node>
+          <Node ID="Menu3_6_7_2" Text="Ödünç Verme" URL="../Kutuphane/OduncIslemleri.aspx" Yetki="1,16" ></Node>
+          <Node ID="Menu3_6_7_3" Text="Üye Ödünç Yayın Sorgulama" URL="../Kutuphane/UyeOduncKitapListesi.aspx" Yetki="1,16" ></Node>
+        </Node>
+        <Node ID="Menu3_6_8" Tip="AltBolum"  Text="Üye İşlemleri">
+          <Node ID="Menu3_6_8_1" Text="Üye Listesi" URL="../Kutuphane/UyeArama.aspx" Yetki="1,16" ></Node>
+          <Node ID="Menu3_6_8_2" Text="Üye Tanımlama" URL="../Kutuphane/UyeGiris.aspx" Yetki="1,16" ></Node>
+          <Node ID="Menu3_6_8_3" Text="Üyelere e-posta Gönder" URL="../Kutuphane/UyePostaAt.aspx" Yetki="1,16" ></Node>
+        </Node>
+        <Node ID="Menu3_6_9" Tip="AltBolum" Text="Etiket">
+          <Node ID="Menu3_6_9_1" Text="Etiket Basımı" URL="http://uygulama.sgb.gov.tr/Etiket/AboneEtiket/Default.aspx" Yetki="63" ></Node>
+          <Node ID="Menu3_6_9_2" Text="Etiket Basımı(Yeni)" URL="http://uygulama.sgb.gov.tr/Kutuphane/EtiketBasimi.aspx" Yetki="63" ></Node>
+
+        </Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu3_7" Tip="UstMenu" Text="Gelir Yönetimi" Genislik="100" Yukseklik="250" Modul="GEL" Gizli="1">
+      <Node Tip="Kolon">
+        <Node ID="Menu3_7_1" Text="Gelir Girişi" URL="../GelirSurecleri/SurecFormAna.aspx?tur=2" Yetki="1,49" ></Node>
+        <Node ID="Menu3_7_2" Text="Taşınmaz Tanım" URL="../GelirSurecleri/TasinmazFormAna.aspx" Yetki="1,49" ></Node>
+        <Node ID="Menu3_7_3" Text="Taşınmaz Talep Giriş" URL="../GelirSurecleri/TasinmazTalepAna.aspx" Yetki="1,49" ></Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu3_8" Tip="UstMenu" Text="Taşınmaz Yönetimi" Genislik="110" Yukseklik="250" Modul="TMZ">
+      <Node Tip="Kolon">
+        <Node ID="Menu3_8_1" Text="Taşınmaz Belge Girişi" URL="../TasinmazYonetimi/TasinmazFormAna.aspx" Yetki="1,65,66" ></Node>
+        <Node ID="Menu3_8_2" Text="Taşınmaz Talep Girişi" URL="../TasinmazYonetimi/TasinmazTalepAna.aspx" Yetki="1,65,66" Gizli="1"></Node>
+        <Node ID="Menu3_8_3" Text="Amortisman" URL="../TasinmazYonetimi/Amortisman.aspx" Yetki="1,65,66"></Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu3_9" Tip="UstMenu" Text="Dış Kredili Prj." Genislik="110" Yukseklik="250" Modul="DBP">
+      <Node Tip="Kolon">
+        <Node ID="Menu3_9_7" Text="Eklenecek Dosyalar" URL="../HarcamaSurecleri/DBEklenecekDosyalar.aspx" Yetki="1,93" ></Node>
+        <Node ID="Menu3_9_8" Text="İmza Tanımları" URL="../HarcamaSurecleri/DBImzalar.aspx" Yetki="1,93" ></Node>
+        <Node ID="Menu3_9_1" Text="İkraz Anlaşmaları" URL="../HarcamaSurecleri/DBIkrazlar.aspx" Yetki="1,93" ></Node>
+        <Node ID="Menu3_9_4" Text="Satın Alma Planı" URL="../HarcamaSurecleri/DBSatinAlmaPlani.aspx" Yetki="1,93,94"></Node>
+        <Node ID="Menu3_9_2" Text="Bütçe Referansları" URL="../HarcamaSurecleri/DBButceRefler.aspx" Yetki="1,93,94"></Node>
+        <Node ID="Menu3_9_3" Text="Sözleşmeler" URL="../HarcamaSurecleri/DBSozlesmeListesi.aspx" Yetki="1,93,94"></Node>
+        <Node ID="Menu3_9_5" Text="Hakedişler" URL="../HarcamaSurecleri/DBHakedisSayfa.aspx" Yetki="1,93,94"></Node>
+        <Node ID="Menu3_9_6" Text="Merkez Bankası İşlemleri" URL="../HarcamaSurecleri/DBMerkezBankasiSayfa.aspx" Yetki="1,93,94"></Node>
+        <Node ID="Menu3_9_10" Text="Merkez Bankası Ekstre İşlemleri" URL="../HarcamaSurecleri/DBEkstreler.aspx" Yetki="1,93"></Node>
+      </Node>
+    </Node>
+  </Node>
+
+  <Node ID="Menu4" Tip="Grup" Text="İş/Görev Yönetimi" Modul="PER,KPS,EVR,PEB,YAT,EKG,GRV,KDS,IKY,TRM" >
+    <Node ID="Menu4_1" Tip="UstMenu" Text="Personel" Genislik="80" Yukseklik="200" Modul="PER" >
+      <Node Tip="Kolon">
+        <Node ID="Menu4_1_1"   Text="Personel Bilgileri"        URL="../Personel/Personel.aspx"  Gizli="1" Yetki="1,2,11"></Node>
+        <Node ID="Menu4_1_3"   Text="Personel Özlük"            URL="../Personelv2/PersonelBilgi.aspx"     Yetki="1,2,11"></Node>
+        <Node ID="Menu4_1_4"   Text="Kadro Kontenjan İşlemleri" URL="../Personelv2/KadroKontenjanAna.aspx" Yetki="1,2,11"></Node>
+        <Node ID="Menu4_1_2"   Text="Personel İşlemleri"        Tip="AltBolum">
+          <Node ID="Menu4_1_2_1" Text="İzin-Devir"                URL="../Personelv2/PersonelIzinDevir.aspx" Yetki="1,2,11" ></Node>
+          <Node ID="Menu4_1_2_2" Text="Görevlendirme"             URL="../Personelv2/GorevlendirmeAna.aspx"  Yetki="1,2,11" ></Node>
+        </Node>
+        <Node ID="Menu4_97"   Text="Yıllık İzin Planı"        Tip="AltBolum"  Modul="PER">
+          <Node ID="Menu4_97_1" Text="Yıllık İzin Planı İşlemleri"  URL="../Personelv2/PersonelIzinTalep.aspx" Yetki="1,11" ></Node>
+          <Node ID="Menu4_97_2" Text="Yıllık İzin Plan Raporları"  URL="../Personelv2/PersonelIzinTalepRapor.aspx" Gizli="1"  Yetki="1,11" ></Node>
+        </Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu9_1" Tip="UstMenu" Text="İnsan Kaynakları" Genislik="100" Yukseklik="250" Modul="IKY" >
+      <Node Tip="Kolon">
+        <Node ID="Menu9_1_1" Text="Personel İşlemleri" URL="../InsanKaynaklari/PersonelBilgi.aspx" Yetki="1,2,11"></Node>
+        <Node ID="Menu9_1_4" Text="Kadro Kontenjan İşlemleri" URL="../InsanKaynaklari/KadroKontenjanAna.aspx?personelTur=1" Yetki="1,11"></Node>
+        <Node ID="Menu9_1_3" Text="İzin-Devir" URL="../InsanKaynaklari/PersonelIzinDevir.aspx" Yetki="1" ></Node>
+        <Node ID="Menu4_1_5"   Text="Maaş Parametre Girişi"     URL="../InsanKaynaklari/ListePersonelMaasParam.aspx" Yetki="1,2,11"></Node>
+        <Node ID="Menu5_3_3_1" Text="Personel Raporları" URL="../InsanKaynaklari/RaporPersonel.aspx" Yetki="1,2,11"></Node>
+        <Node ID="Menu6_5_9_18" Text="Lojman Site Tanımları" URL="../InsanKaynaklari/LojmanSiteForm.aspx" Yetki="1,11" />
+        <Node ID="Menu6_5_9_19" Text="Sözlük Gider Tanımı" URL="../InsanKaynaklari/TanimSozlukGider.aspx" Yetki="1,11" />
+        <Node ID="Menu6_5_9_20" Text="Site Gider Tanımı" URL="../InsanKaynaklari/LojmanSiteGideri.aspx" Yetki="1,11" Gizli="1" />
+        <Node ID="Menu9_1_6" Text="Personel Lojman Site Kesintisi" URL="../InsanKaynaklari/PersonelSiteKesintisi.aspx" Yetki="1,2,11"></Node>
+        <Node ID="Menu9_1_7" Text="Lojman Komisyon Kararı" URL="../InsanKaynaklari/Komisyon.aspx" Yetki="1"></Node>
+        <Node ID="Menu9_1_8" Text="Terfiye Hak Kazananlar" URL="../InsanKaynaklari/TerfiyeHakKazananlar.aspx" Yetki="1,88"></Node>
+        <Node ID="Menu9_1_9" Text="Terfi Onaylama" URL="../InsanKaynaklari/PersonelTerfiOnaylama.aspx" Yetki="1,88"></Node>
+        <Node ID="Menu9_1_10" Text="Sendika" URL="../InsanKaynaklari/SendikaBilgiForm.aspx" Yetki="1,2,11"></Node>
+
+      </Node>
+    </Node>
+
+    <Node ID="Menu4_2" Tip="UstMenu" Text="Kimlik Paylaşım" Genislik="90" Yukseklik="100" Modul="KPS">
+      <Node Tip="Kolon">
+        <Node ID="Menu4_2_1" Text="Kimlik Paylaşım" URL="../KimlikPaylasim/Istek.aspx" Yetki="1,33" ></Node>
+        <Node ID="Menu4_2_2" Text="İşlem Sorgulama" URL="../KimlikPaylasim/Sorgulama.aspx" Yetki="1,33" ></Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu4_3" Tip="UstMenu" Text="Evrak" Genislik="80" Yukseklik="320" Modul="EVR">
+      <Node Tip="Kolon">
+        <Node ID="Menu4_3_1" Text="Evrak İşlemleri" URL="../Evrak/EvrakSorgu.aspx" Yetki="1,36"></Node>
+        <Node ID="Menu4_3_2" Text="Evrak Arama" URL="../Evrak/EvrakAraYeni.aspx" Yetki="1,36,54,56"></Node>
+        <Node ID="Menu4_3_11" Text="Evrak Durum Sorgulama" URL="../Evrak/ListeEvrakDurumu.aspx" Yetki="1,36,54"></Node>
+        <Node ID="Menu4_3_12" Text="Evrak Taşıma" URL="../Evrak/EvrakTasima.aspx" Yetki="1,83"></Node>
+        <Node ID="Menu4_3_13" Text="Kep İşlemleri" URL="../Evrak/PttKepSorgu.aspx" Yetki="99,84"></Node>
+        <Node ID="Menu4_3_9" Text="Evrak Tasfiye İşlemleri" URL="../Evrak/ListeEvrakTasfiye.aspx" Yetki="53,54"></Node>
+        <Node ID="Menu4_3_7" Text="Evrak Tasfiye Tanımlama" URL="../Evrak/EvrakAraYeni.aspx?evrSakTafPlan=1" Yetki="53,54"></Node>
+        <Node ID="Menu4_3_3" Text="Posta İşlemleri" URL="../Evrak/EvrakPostaIslemYeni.aspx" Yetki="1,36,54"></Node>
+        <Node ID="Menu4_3_5" Text="E-Posta İşlemleri" URL="../Evrak/EPostaSorgu.aspx" Yetki="1,36"></Node>
+        <Node ID="Menu4_3_6" Text="Faks İşlemleri" URL="../Evrak/FaksSorgu.aspx" Yetki="1"></Node>
+        <Node ID="Menu4_3_8" Text="Gizlilik Süresi Evrak Listesi" URL="../Evrak/EvrakAraSureSonu.aspx" Yetki="53,54"></Node>
+        <Node ID="Menu4_3_4" Text="Raporlar" URL="../Evrak/EvrakRaporlar.aspx" Yetki="1,36,53,54"></Node>
+        <Node ID="Menu4_3_10" Text="Ortak Alan" Tip="AltBolum">
+          <Node ID="Menu4_3_10_1" Text="İşlemler" URL="../Evrak/OrtakDosyalarAnaSayfa.aspx" Yetki="1,36,53,54,56"></Node>
+        </Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu4_4" Tip="UstMenu" Text="Görevlendirme" Genislik="100" Yukseklik="100" Modul="PEB">
+      <Node Tip="Kolon">
+        <Node ID="Menu4_4_1" Text="İş/Görev İşlemleri" URL="../PerformansButce/IsGorevAna.aspx" Yetki="1,27" Gizli="1" ></Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu4_6" Tip="UstMenu" Text="Ekonomik Gösterge" Genislik="125" Yukseklik="200" Modul="EKG">
+      <Node Tip="Kolon">
+        <Node ID="Menu4_6_1" Text="Yıllık Veri Girişi" URL="../EkonomikGosterge/EKGVeriGirisiYillik.aspx" Yetki="1,2"></Node>
+        <Node ID="Menu4_6_2" Text="Aylık Veri Girişi" URL="../EkonomikGosterge/EKGVeriGirisiAylik.aspx" Yetki="1,2"></Node>
+        <Node ID="Menu4_6_5" Text="Altı Aylık Veri Girişi" URL="../EkonomikGosterge/EKGVeriGirisiAltiAylik.aspx" Yetki="1,2"></Node>
+        <Node ID="Menu4_6_6" Text="Üç Aylık Veri Girişi" URL="../EkonomikGosterge/EKGVeriGirisiUcAylik.aspx" Yetki="1,2"></Node>
+        <Node ID="Menu4_6_3" Text="Günlük Veri Girişi" URL="../EkonomikGosterge/EKGVeriGirisiGunluk.aspx" Yetki="1,2"></Node>
+        <Node ID="Menu4_6_4" Text="Veri Sorgulama/Ayar" URL="../EkonomikGosterge/EKGSorguIslemleri.aspx" Yetki="1,2"></Node>
+        <Node ID="Menu4_6_8" Text="Rapor Şablonu" URL="../EkonomikGosterge/EKGSablonAna.aspx" Yetki="1,2"></Node>
+        <Node ID="Menu4_6_7" Text="Raporlar" URL="../EkonomikGosterge/EKGRaporlar.aspx" Yetki="1,2"></Node>
+        <Node ID="Menu4_6_9" Text="Grafikler" URL="../EkonomikGosterge/EKGGrafikler.aspx" Yetki="1,2"></Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu4_8" Tip="UstMenu" Text="Online Sınav Başvuru" Genislik="125" Yukseklik="200" Modul="SB">
+      <Node Tip="Kolon">
+        <Node ID="Menu4_8_1" Text="Aday Sınav Giriş Durumu" URL="../SinavBasvuru/SinavGirisDurumListe.aspx" Yetki="1,46"></Node>
+        <Node ID="Menu4_8_2" Text="Sınav Sonucu Puan Durumu" URL="../SinavBasvuru/SinavSonucPuanListe.aspx" Yetki="1,46"></Node>
+        <Node ID="Menu4_8_3" Text="Aday Sınav Kaydı" URL="../SinavBasvuru/AdaySinavKaydi.aspx" Yetki="1,46"></Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu4_99" Tip="UstMenu" Text="Hibe İşlemleri" Genislik="100" Yukseklik="360" Modul="TRM">
+      <Node Tip="Kolon">
+        <Node ID="Menu4_99_3" Tip="AltBolum" Text="Ekonomik Yatırım">
+          <Node ID="Menu4_99_3_1" Text="İşlemler" URL="../Tarim/HibeYatirimSorgu.aspx" Yetki="1,39,40,41,51"></Node>
+          <Node ID="Menu4_99_3_7" Text="Hakedişler" URL="../Tarim/HibeYatirimHakedisOdemeIslemleri.aspx" Yetki="1,39,40,41,51"></Node>
+          <Node ID="Menu4_99_3_6" Text="Ödeme İşlemleri" URL="../Tarim/HibeMakineSulamaOdemeIslemleri.aspx?Tipi=3" Yetki="1,40"></Node>
+          <Node ID="Menu4_99_3_3_1" Text="Değerlendirme (Yatırımlar)" URL="../Tarim/HibeYatirimAnket.aspx?k=1" Yetki="1,39,76,77"></Node>
+          <Node ID="Menu4_99_3_3_2" Text="Değerlendirme (Altyapı)" URL="../Tarim/HibeYatirimAnket.aspx?k=2" Yetki="1,39,76,77"></Node>
+          <Node ID="Menu4_99_3_3_3" Text="Değerlendirme (Merkez Yatırım)" URL="../Tarim/HibeYatirimAnket.aspx?k=3" Yetki="1,39,40"></Node>
+          <Node ID="Menu4_99_3_3_4" Text="Değerlendirme (Merkez Altyapı)" URL="../Tarim/HibeYatirimAnket.aspx?k=4" Yetki="1,39,40"></Node>
+          <Node ID="Menu4_99_3_4_1" Text="Kabul (Yatırımlar)" URL="../Tarim/HibeYatirimKabul.aspx?k=1" Yetki="1,39,40"></Node>
+          <Node ID="Menu4_99_3_4_2" Text="Kabul (Altyapı)" URL="../Tarim/HibeYatirimKabul.aspx?k=2" Yetki="1,39,40"></Node>
+          <Node ID="Menu4_99_3_2" Text="Raporlar" URL="../Tarim/HibeYatirimRaporlar.aspx" Yetki="1,39,40,41,50,51"></Node>
+          <Node ID="Menu4_99_3_8" Text="Eski Etap İşlemleri" URL="../Tarim/HibeYatirimSorgu.aspx?eski=1" Yetki="1,39,40,41,51"></Node>
+          <Node ID="Menu4_99_3_10" Text="Veri Toplama" URL="../Tarim/VeriToplama.aspx" Yetki="1,39,40,41,51"></Node>
+          <Node ID="Menu4_99_3_9" Text="Değerlendirme Komisyonu Oluştur" URL="../Tarim/HibeDegerlendirmeKomisyonu.aspx?hibeTur=3" Yetki="1,39,40,41"></Node>
+          <Node ID="Menu4_99_3_5" Text="Öncelik" URL="../Tarim/HibeYatirimOncelikBelirle.aspx" Yetki="1,39,40,51"></Node>
+          <Node ID="Menu6_99_108" Text="Üyelik Bilgileri" URL="../Tarim/HibeUyeBilgileriListesi.aspx" Yetki="1,39,41"></Node>
+          <Node ID="Menu6_99_117" Text="Başvuruyu Online Durumuna Getir" URL="../Tarim/HibeOnlineDurumaGetir.aspx" Yetki="1,39,41"></Node>
+          <Node ID="Menu4_99_1_8" Text="Referans Fiyat Listesi" URL="../Tarim/HibeYatirimReferansFiyat.aspx" Yetki="1,39,40,41,51"></Node>
+          <Node ID="Menu4_99_1_7" Text="14.2 Etap Başvuru/Malzeme Bilgisi" URL="../Tarim/HibeYatirimBasvuruMalzeme.aspx" Yetki="1,39,40,41,51"></Node>
+        </Node>
+      </Node>
+
+      <Node Tip="Kolon">
+        <Node ID="Menu4_99_10" Tip="AltBolum" Text="Genel">
+          <Node ID="Menu4_99_10_1" Text="Başvuru Haritası" URL="../Tarim/Harita.aspx" Yetki="1,39,40,50,51"></Node>
+          <Node ID="Menu4_99_10_2" Text="Cezalı Kişileri Sorgulama" URL="../Tarim/TanimHibeCeza.aspx" Yetki="1,39,40"></Node>
+          <Node ID="Menu4_99_10_3" Text="Cezalı Kişi Kaydet" URL="../Tarim/TRMHibeCeza.aspx" Yetki="1,39,40"></Node>
+        </Node>
+        <Node ID="Menu4_99_2" Tip="AltBolum" Text="Sulama">
+          <Node ID="Menu4_99_2_1" Text="İşlemler" URL="../Tarim/HibeSulamaSorgu.aspx" Yetki="1,39,40,41,51"></Node>
+          <Node ID="Menu4_99_2_2" Text="Ödeme İşlemleri" URL="../Tarim/HibeMakineSulamaOdemeIslemleri.aspx?Tipi=2" Yetki="1,40"></Node>
+          <Node ID="Menu4_99_2_3" Text="Raporlar" URL="../Tarim/HibeSulamaRaporlar.aspx" Yetki="1,39,40,41,50,51"></Node>
+          <Node ID="Menu4_99_2_4" Text="Bankadan Kredi Alan Yatırımcılar" URL="../Tarim/HibeSulamaBankaKredi.aspx" Yetki="1,39,40,41,50,51"></Node>
+        </Node>
+
+        <Node ID="Menu4_99_1" Tip="AltBolum" Text="Makine Ekipman">
+          <Node ID="Menu4_99_1_1" Text="İşlemler" URL="../Tarim/HibeMakineSorgu.aspx" Yetki="1,39,40,41,51"></Node>
+          <Node ID="Menu4_99_1_2" Text="Referans Fiyat Listesi" URL="../Tarim/HibeMakineReferansFiyat.aspx" Yetki="1,39,40,41,51"></Node>
+          <Node ID="Menu6_99_2"    Text="Malzeme Tanımlama" URL="../Tarim/TanimHibeMakina.aspx" Yetki="1,39,40,41"></Node>
+          <Node ID="Menu4_99_1_3" Text="Ödeme İşlemleri" URL="../Tarim/HibeMakineSulamaOdemeIslemleri.aspx?Tipi=1" Yetki="1,40"></Node>
+          <Node ID="Menu4_99_1_4" Text="Raporlar" URL="../Tarim/HibeMakineRaporlar.aspx" Yetki="1,39,40,41,50,51"></Node>
+        </Node>
+
+      </Node>
+    </Node>
+
+    <Node ID="Menu4_98" Tip="UstMenu" Text="Teftiş" Genislik="80" Yukseklik="100" Modul="TFT" URL="../Teftis/AnaSayfaTeftis.aspx" Yetki="1,57,58,59,60,61"></Node>
+    <Node ID="Menu4_11" Tip="UstMenu" Text="Görev Yönetimi Sistemi" Genislik="120" Yukseklik="380" Modul="GIT" URL="../OrtakSayfa/GorevYonetimiEntegrasyon.aspx" Yetki="86"></Node>
+    <Node ID="Menu4_10" Tip="UstMenu" Text="Kalite Dokümantasyon" Genislik="120" Yukseklik="380" Modul="KDS" URL="../OrtakSayfa/KaliteEntegrasyon.aspx" Yetki="79"></Node>
+  </Node>
+
+  <Node ID="Menu5" Tip="Grup" Text="Raporlar" >
+    <Node ID="Menu5_1" Tip="UstMenu" Text="Bütçeleme" Genislik="100" Yukseklik="200" Modul="BUM">
+      <Node Tip="Kolon">
+        <Node ID="Menu5_1_1" Tip="AltBolum" Text="Bütçe Hazırlık Raporları">
+          <Node ID="Menu5_1_1_1" Text="Analitik Bütçe Raporları" URL="../Raporlama/RaporGrupListe.aspx?raporGrup=0" Yetki="1,20"></Node>
+          <Node ID="Menu5_1_1_2" Text="Performans Bütçe Raporları" URL="../Raporlama/RaporGrupListe.aspx?raporGrup=2000" Yetki="1,20"></Node>
+          <Node ID="Menu5_1_1_3" Text="DPT Yatırım Raporları" URL="../Raporlama/RaporGrupListe.aspx?raporGrup=2002" Yetki="1,22"></Node>
+          <Node ID="Menu5_1_1_4" Text="Yatırım Özel Raporları" URL="../Raporlama/RaporGrupListe.aspx?raporGrup=2003" Yetki="1,22"></Node>
+        </Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu5_2" Tip="UstMenu" Text="Kaynak Yönetimi" Genislik="140" Yukseklik="380"  Modul="BUM,ATM,KTP,HRC,MUH,TMM" >
+      <Node Tip="Kolon">
+        <Node ID="Menu5_2_1" Tip="AltBolum" Text="Bütçe Muhasebe Raporları" Modul="BUM,MUH,HRC">
+          <Node ID="Menu5_2_1_1" Text="Ödenek Durum / Masraf Cetvelleri" URL="../Raporlama/RaporGrupListe.aspx?RaporGrup=5000" Yetki="1,2,18,19,21" Modul="HRC"></Node>
+          <Node ID="Menu5_2_1_2" Text="Ödenek Gönderme/Tenkis Kontrol Listesi" URL="../ButceMuhasebe/OdenekGondermeTenkisKontrol.aspx" Yetki="1,17,19" Modul="HRC"></Node>
+          <Node ID="Menu5_2_1_3" Text="Muhasebe Raporları" URL="../ButceMuhasebe/MizanBilanco.aspx" Yetki="1,2,17,18,19,21" Modul="MUH,HRC"></Node>
+          <Node ID="Menu5_2_1_6" Text="Sayıştay Verileri" URL="../ButceMuhasebe/SayistayVerileri.aspx" Yetki="1,2,17,18,19,21" Modul="HRC"></Node>
+          <Node ID="Menu5_2_1_4" Text="Diğer Raporlar" URL="../Raporlama/RaporGrupListe.aspx?raporGrup=5010" Yetki="1,2,17,18,19,21" Modul="HRC"></Node>
+          <Node ID="Menu5_2_1_5" Text="Ödenek Gönderme/Tenkis Bilgisi" URL="../ButceMuhasebe/OdenekGondermeTenkisEkonomik.aspx" Yetki="1,2,18,19,21" Modul="HRC"></Node>
+          <Node ID="Menu5_2_7_10" Text="Muhasebat Aktarım İşlemleri" URL="../ButceMuhasebe/MuhasebatAktarimAna.aspx" Yetki="1,18,19" ></Node>
+          <Node ID="Menu5_2_7_11" Text="Çapraz Tablo" URL="../ButceMuhasebe/CaprazTablo.aspx" Yetki="1,18,19" ></Node>
+        </Node>
+        <Node ID="Menu5_2_5" Tip="AltBolum" Text="Alacak Takip Raporları" Modul="ATM">
+          <Node ID="Menu5_2_5_1" Text="Alacak Takip Raporları" URL="../AlacakTakip/Rapor.aspx" Yetki="1,2,23" ></Node>
+        </Node>
+        <Node ID="Menu5_2_6" Tip="AltBolum" Text="Kütüphane Raporları" Modul="KTP">
+          <Node ID="Menu5_2_6_1" Text="Kütüphane Raporları" URL="../Kutuphane/Raporlar.aspx" Yetki="1,16" ></Node>
+        </Node>
+        <Node ID="Menu5_2_7" Tip="AltBolum" Text="Harcama Yönetimi Raporları" Modul="HRC">
+          <Node ID="Menu5_2_7_1" Text="Servis Raporları" URL="../Raporlama/RaporServis.aspx" Yetki="1" ></Node>
+          <Node ID="Menu5_2_7_2" Text="Raporlar" URL="../HarcamaSurecleri/Raporlar.aspx" Yetki="1" ></Node>
+          <Node ID="Menu5_2_7_6" Text="Raporlarv2" URL="../HarcamaSurecleri/Raporlarv2.aspx" Yetki="1" Gizli="1" ></Node>
+          <Node ID="Menu5_2_7_7" Text="Rapor MTK" URL="../HarcamaSurecleri/RaporlarMTK.aspx" Yetki="1,18"  Gizli="1"></Node>
+          <Node ID="Menu5_2_7_3" Text="Abone Raporları" URL="../HarcamaSurecleri/AboneRapor.aspx" Yetki="1,17" ></Node>
+          <Node ID="Menu5_2_7_4" Text="Kiralama Raporları" URL="../HarcamaSurecleri/KiralamaRapor.aspx" Yetki="1,17"  Gizli="1"></Node>
+          <Node ID="Menu5_2_7_5" Text="Mevzuat Bilgisi Raporları" URL="../HarcamaSurecleri/MevzuatBilgisiRapor.aspx" Yetki="1,17"  Gizli="1"></Node>
+          <Node ID="Menu5_2_7_8" Text="Diğer Raporlar" URL="../Raporlama/RaporGrupListe.aspx?RaporGrup=8000" Yetki="1" ></Node>
+          <Node ID="Menu5_2_7_9" Text="Bordro Raporları" URL="../HarcamaSurecleri/PSLDinBordroRaporlar.aspx" Yetki="1,18,19" ></Node>
+        </Node>
+      </Node>
+      <Node Tip="Kolon">
+        <Node ID="Menu5_2_2" Tip="AltBolum" Text="Taşınır Mal Raporları" Modul="TMM">
+          <Node ID="Menu5_2_2_1" Text="Dayanıklı Taşınırın Tarihçesi" URL="../TasinirMal/SicilNoTarihce.aspx" Yetki="1,2,15,28" ></Node>
+          <Node ID="Menu3_5_35" Text="Raporlar" URL="../TasinirMal/Raporlar.aspx" Yetki="1,2,15,28" ></Node>
+          <Node ID="Menu5_2_2_2" Text="Harcama Birimlerinin En Son Kestikleri TİF Numaraları Raporu" URL="../TasinirMal/HarcamaSonTIF.aspx" Yetki="1,2,15,28,29" ></Node>
+          <Node ID="Menu5_2_2_4" Text="Tüketim Malzemeleri Çıkış Raporu" URL="../TasinirMal/TuketimCikis.aspx" Yetki="1,2,15,28" ></Node>
+          <Node ID="Menu5_2_2_6" Text="Ortak Alana Verilmiş Taşınırların Listesi" URL="../TasinirMal/ZimmetOrtakAlan.aspx" Yetki="1,2,15,28" ></Node>
+          <Node ID="Menu5_2_2_11" Text="Taşınır Kuruş Farkları Raporu" URL="../TasinirMal/KurusFarkRaporu.aspx" Yetki="1,2,15,28" ></Node>
+          <Node ID="Menu5_2_2_12" Text="Tüketim Malzemeleri Çıkış Kuruş Farkları Raporu" URL="../TasinirMal/TuketimCikis.aspx?fark=1" Yetki="1,2,15,28" ></Node>
+          <Node ID="Menu5_2_2_14" Text="Muhasebat Kontrol Raporu" URL="../TasinirMal/MuhasebatKontrol.aspx" Yetki="1,2,15,28" ></Node>
+        </Node>
+      </Node>
+      <Node Tip="Kolon">
+        <Node ID="Menu5_2_2" Tip="AltBolum" Text="Taşınır Mal Raporları" Modul="TMM">
+          <Node ID="Menu5_2_3" Text="Taşınır Mal Defterleri" URL="../TasinirMal/Defterler2.aspx" Yetki="1,2,15,29,28" ></Node>
+          <Node ID="Menu5_2_4" Text="Taşınır Mal Cetvelleri" URL="../TasinirMal/Cetveller2.aspx" Yetki="1,2,15,29,28" ></Node>
+        </Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu5_3" Tip="UstMenu" Text="İş/Görev Yönetimi" Genislik="120" Yukseklik="200" Modul="PER,IKY,EVR">
+      <Node Tip="Kolon">
+        <Node ID="Menu5_3_1" Text="Personel Raporları" Tip="AltBolum"  Modul="PER">
+          <Node ID="Menu5_3_1_1" Text="Personel Raporları" URL="../Personelv2/RaporPersonel.aspx" Yetki="1,2,11"></Node>
+          <Node ID="Menu5_3_1_1" Text="Personel Raporları" URL="../Raporlama/RaporGrupListe.aspx?raporGrup=4000" Yetki="1,2,11" Gizli="1"></Node>
+          <Node ID="Menu5_3_1_2" Text="Kadro Raporları" URL="../Personel/KadroRapor.aspx" Yetki="1,2,11" Gizli="1"></Node>
+          <Node ID="Menu5_3_1_3" Text="Personel Özlük Raporu" URL="../Personelv2/PersonelRaporOzluk.aspx" Yetki="1,2,11" Gizli="1"></Node>
+        </Node>
+        <Node ID="Menu5_3_3" Text="İnsan Kaynakları Raporları" Tip="AltBolum"  Modul="IKY">
+          <Node ID="Menu5_3_3_1" Text="Personel Raporları" URL="../InsanKaynaklari/RaporPersonel.aspx" Yetki="1,2,11"></Node>
+        </Node>
+        <Node ID="Menu5_3_2" Text="Evrak Raporları" Tip="AltBolum"  Modul="EVR">
+          <Node ID="Menu5_3_2_1" Text="Raporlar" URL="../Evrak/EvrakRaporlar.aspx" Yetki="1,36,54"></Node>
+          <Node ID="Menu5_3_2_2" Text="Evrak Kayıt Defteri" URL="../Evrak/EvrakAraYeni.aspx?defterOlustur=1" Yetki="1,36,54" ></Node>
+          <Node ID="Menu5_3_2_3" Text="Evrak Tasfiye Raporu" URL="../Evrak/ListeEvrakTasfiye.aspx" Yetki="53,54" ></Node>
+        </Node>
+      </Node>
+
+    </Node>
+
+    <Node ID="Menu5_4" Tip="UstMenu" Text="Sistem Raporları" Genislik="120" Yukseklik="100"  >
+      <Node Tip="Kolon">
+        <Node ID="Menu5_4_1" Text="Sistem Durum Dosya Listesi" URL="../KYM/HataDosya.aspx" Yetki="1" ></Node>
+        <Node ID="Menu5_4_2" Text="Sistemi Kullanan Kişilerin Listesi" URL="../KYM/CalisanKullaniciListe.aspx" Yetki="1,39" ></Node>
+        <Node ID="Menu5_4_3" Text="Sistem Kullanım Grafiği" URL="../KYM/CalisanKullaniciGrafik.aspx" Yetki="1" ></Node>
+        <Node ID="Menu5_4_4" Text="Sürüm Bilgisi" URL="../OrtakSayfa/SurumBilgi.aspx" Yetki="1" ></Node>
+      </Node>
+    </Node>
+  </Node>
+
+  <Node ID="Menu6" Tip="Grup" Text="Ayarlar">
+
+    <Node ID="Menu6_1" Tip="UstMenu" Text="Kullanıcı Yönetimi" Genislik="120" Yukseklik="200" >
+      <Node Tip="Kolon">
+        <Node ID="Menu6_1_1" Text="Kullanıcı Arama" URL="../KYM/KullaniciArama.aspx" Yetki="1,2,39" ></Node>
+        <Node ID="Menu6_1_2" Text="Yeni Kullanıcı Girişi" URL="../KYM/KullaniciGiris.aspx" Yetki="1,2,39" ></Node>
+        <Node ID="Menu6_1_3" Text="Parola Değiştirme" URL="../KYM/ParolaDegistir.aspx" Yetki="" ></Node>
+        <Node ID="Menu6_1_4" Text="Tema Değiştirme" URL="../KYM/TemaDegistir.aspx" Yetki="" ></Node>
+        <Node ID="Menu6_1_5" Text="Sık Kullanılan İşlemler" URL="../KYM/MenuSikKullanilan.aspx" Yetki="" ></Node>
+        <Node ID="Menu6_1_6" Text="Kullanıcılara e-posta Gönder" URL="../KYM/ePostaAt.aspx" Yetki="1,39" ></Node>
+        <Node ID="Menu6_1_7" Text="Duyuru Girişi" URL="../Duyuru/DuyuruGiris.aspx" Yetki="1,39" ></Node>
+        <Node ID="Menu6_1_8" Text="Raporlar" URL="../KYM/Raporlar.aspx" Yetki="1,2,39,54" ></Node>
+        <Node ID="Menu6_1_9" Text="Kullanıcı Birimleri" URL="../KYM/MuhasebeListe.aspx" Yetki="1" ></Node>
+        <Node ID="Menu6_1_10" Text="Birim Duyuruları" URL="../Duyuru/BirimMesajlariForm.aspx" Yetki="1"></Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu6_2" Tip="UstMenu" Text="Guncelleme" Genislik="100" Yukseklik="200">
+      <Node Tip="Kolon">
+        <Node ID="Menu6_2_1" Text="Veri Tabanı Güncelle" URL="../VeriTabaniGuncelle/VTGGuncelle.aspx" Yetki="1" ></Node>
+        <Node ID="Menu6_2_2" Text="Yazılım Güncelle" URL="../YazilimGuncelle/YazilimGuncelle.aspx" Yetki="1" ></Node>
+        <Node ID="Menu6_2_3" Text="Xml Formatı Oluştur" URL="../VeriTabaniGuncelle/VTGXmlOlustur.aspx" Yetki="1" ></Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu6_3" Tip="UstMenu" Text="Aktarım" Genislik="80" Yukseklik="200" Modul="BUM,HRC,BHM,STRKur,PEB">
+      <Node Tip="Kolon">
+        <Node ID="Menu6_3_6" Text="e-bütçe Aktarımları" URL="../ButceMuhasebe/Aktar.aspx" Yetki="1" Modul="BUM,HRC,BHM,STRKur,PEB"></Node>
+        <Node ID="Menu6_3_2" Text="Muhasebe Bilgileri" URL="../ButceMuhasebe/TanimMuhasebe.aspx" Yetki="1" Modul="HRC"></Node>
+        <Node ID="Menu6_3_3" Text="Muhasebe Birim Bilgileri" URL="../ButceMuhasebe/TanimMuhasebeBirim.aspx" Yetki="1"  Modul="HRC"></Node>
+        <Node ID="Menu6_3_4" Text="Hesap Planı Bilgileri" URL="../ButceMuhasebe/TanimHesapPlani.aspx" Yetki="1"  Modul="HRC"></Node>
+        <Node ID="Menu6_3_5" Text="Yansıtma Bilgileri" URL="../ButceMuhasebe/TanimYansitma.aspx" Yetki="1"  Modul="HRC"></Node>
+        <Node ID="Menu6_3_7" Text="Stratejik Plan Aktar" URL="../PerformansButce/StratejikPlanAktar.aspx" Yetki="1" Modul="PEB"></Node>
+        <Node ID="Menu6_3_8" Text="Performans Bütçe Aktar" URL="../PerformansButce/PerformansButceAktar.aspx" Yetki="1" Modul="PEB"></Node>
+        <Node ID="Menu6_3_1" Text="BÜMKO Aktarım" URL="../ButceHazirlikv2/BUMKOVeriGonder.aspx" Yetki="1" Modul="BHM"></Node>
+        <Node ID="Menu6_3_9" Text="Bütçe İşlem Veri Aktarımı" URL="../ButceUygulama/BUMVeriAktarim.aspx" Yetki="1" Modul="BUM"></Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu6_4" Tip="UstMenu" Text="Mevzuat Yönetimi" Genislik="100" Yukseklik="60" Modul="MVZ">
+      <Node Tip="Kolon">
+        <Node ID="Menu6_4_1" Text="Mevzuat Yönetim Ekranı" URL="../KYM/MevzuatTanimla.aspx" Yetki="1"></Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu6_5" Tip="UstMenu" Text="Tanımlar" Genislik="100" SayfadaGoster="1" Yetki="1,2,11,15,16,18,19,21,22,23,28,36,39,40,46,53,54,55"  >
+      <Node Tip="Kolon">
+        <Node ID="Menu6_5_7" Tip="AltBolum" Text="İş/Görev Yönetimi" Modul="HRC,PER,EVR">
+          <Node ID="Menu6_5_4" Tip="AltBolum" Text="Personel Tanımları" Modul="HRC">
+            <Node ID="Menu6_5_4_1"  Text="Öğrenci/Eğitmen Bilgileri Tanımları" URL="../HarcamaSurecleri/TanimOgrenciEgitmen.aspx" Yetki="1,2,18,19,21" ></Node>
+            <Node ID="Menu6_5_4_2"  Text="Maaş Temel Bilgileri Tanımları" URL="../HarcamaSurecleri/TanimPSLMaasTemelBilgi.aspx" Yetki="1,19,88" ></Node>
+            <Node ID="Menu6_5_4_3"  Text="Gelir Vergisi Bilgileri Tanımları" URL="../HarcamaSurecleri/TanimPSLGelirVergisi.aspx" Yetki="1,19,88" ></Node>
+            <Node ID="Menu6_5_4_4"  Text="Sosyal Yardım Bilgileri Tanımları" URL="../HarcamaSurecleri/TanimPSLSosyalYardimTemelBilgi.aspx" Yetki="1,19" ></Node>
+            <Node ID="Menu6_5_4_5"  Text="Sözleşmeli Bordro Bilgileri Tanımları" URL="../HarcamaSurecleri/TanimPSLSozlesmeliBordro.aspx?tur=2" Yetki="1,2,18,19,21" ></Node>
+            <Node ID="Menu6_5_4_6"  Text="4C Sözleşmeli Bordro Bilgileri Tanımları" URL="../HarcamaSurecleri/TanimPSLSozlesmeliBordro.aspx?tur=3" Yetki="1,2,18,19,21" ></Node>
+            <Node ID="Menu6_5_4_7"  Text="İşçi Bordro Bilgileri Tanımları" URL="../HarcamaSurecleri/TanimPSLIsciBordro.aspx" Yetki="1,2,18,19,21" ></Node>
+            <Node ID="Menu6_5_4_8"  Text="Fazla Mesai Puantaj Bilgileri Tanımları" URL="../HarcamaSurecleri/TanimFazlaMesaiPuantaj.aspx" Yetki="1,19" ></Node>
+            <Node ID="Menu6_5_4_9"  Text="Ek Ders Puantaj Bilgileri Tanımları" URL="../HarcamaSurecleri/TanimEkDersPuantaj.aspx" Yetki="1,19" ></Node>
+            <Node ID="Menu6_5_4_10"  Text="Geçici Sürekli Görev Gündelik Tanımı" URL="../HarcamaSurecleri/TanimPSLSurekliGeciciGorevGundelik.aspx" Yetki="1,19" ></Node>
+            <Node ID="Menu6_5_4_14"  Text="Unvan-Ülke Bazlı Gündelik Tanımı" URL="../HarcamaSurecleri/TanimGundelik.aspx" Yetki="1,19" ></Node>
+            <Node ID="Menu6_5_4_11"  Text="Fazla Mesai Unvan Bilgileri Tanımları" URL="../HarcamaSurecleri/TanimFazlaMesaiUnvan.aspx" Yetki="1,19" ></Node>
+            <Node ID="Menu6_5_4_12"  Text="B./K. Şehir Sınır tanımlama" URL="../HarcamaSurecleri/TanimBKSehir.aspx" Yetki="1,19" AltPencere="1"></Node>
+            <Node ID="Menu6_5_4_13"  Text="Yüzde On Açma/Kapatma" URL="../HarcamaSurecleri/YuzdeOnKapatForm.aspx" Yetki="1,19" ></Node>
+            <Node ID="Menu6_5_8_1" Text="Banka Bilgileri" URL="../Personelv2/TanimBanka.aspx" Yetki="1,19,88" />
+            <Node ID="Menu6_5_8_9" Text="Banka Şube Bilgileri" URL="../Personelv2/TanimBankaSube.aspx" Yetki="1,19,88" />
+          </Node>
+
+          <Node ID="Menu6_5_8" Tip="AltBolum" Text="Personel Tanımlar" Modul="PER">
+            <Node ID="Menu6_5_8_14" Text="Dil Bilgileri" URL="../Personelv2/TanimDil.aspx" Yetki="1,88" />
+            <Node ID="Menu6_5_8_7" Text="Eğitim Bilgileri" URL="../Personelv2/TanimKurs.aspx" Yetki="1,88" />
+            <Node ID="Menu6_5_8_4" Text="Sınıf Bilgileri" URL="../Personelv2/TanimSinif.aspx" Yetki="1,19,88" />
+            <Node ID="Menu6_5_8_2" Text="Unvan Bilgileri" URL="../Personelv2/TanimUnvan.aspx" Yetki="1,19,88" />
+            <Node ID="Menu6_5_8_13" Text="Üst Birim Bilgileri" URL="../Personel/TanimUstBirim.aspx" Yetki="1" Gizli="1"/>
+            <Node ID="Menu6_5_8_15" Text="Görev Konu Bilgileri" URL="../Personelv2/TanimGorevKonu.aspx" Yetki="1,88" />
+            <Node ID="Menu6_5_8_16" Text="İşe Başlama-Ayrılma Nedeni Bilgileri" URL="../Personelv2/TanimNeden.aspx" Yetki="1,88" />
+            <Node ID="Menu6_5_8_17" Text="İzin Türleri Bilgileri" URL="../Personelv2/TanimIzinTur.aspx" Yetki="1,88" />
+
+            <Node ID="Menu6_5_8_3" Text="Teşkilat Bilgileri" URL="../Personelv2/TanimTeskilat.aspx" Yetki="1,19" Gizli="1,88" />
+            <Node ID="Menu6_5_8_5" Text="Öğrenim Bilgileri" URL="../Personelv2/TanimOgrenim.aspx" Yetki="1,88" />
+            <Node ID="Menu6_5_8_6" Text="Birim Bilgileri" URL="../Personelv2/TanimBirim.aspx" Yetki="1" Gizli="1,88" />
+            <Node ID="Menu6_5_8_8" Text="Okul-Fakülte-Bölüm Bilgileri" URL="../Personelv2/TanimOkulFakulteBolum.aspx" Yetki="1" Gizli="1,88" />
+            <Node ID="Menu6_5_8_18" Text="Eğitim Grubu Tanımlama" URL="../Personelv2/PersonelEgitimTanim.aspx?egitimSeviyesi=1" Yetki="1,88" />
+            <Node ID="Menu6_5_8_19" Text="Eğitim Türü Tanımlama" URL="../Personelv2/PersonelEgitimTanim.aspx?egitimSeviyesi=2" Yetki="1,88" />
+            <Node ID="Menu6_5_8_20" Text="Eğitim Adı Tanımlama" URL="../Personelv2/PersonelEgitimTanim.aspx?egitimSeviyesi=3" Yetki="1,88" />
+          </Node>
+
+          <Node ID="Menu6_5_9" Tip="AltBolum" Text="İnsan Kaynakları Tanımları" Modul="IKY">
+            <Node ID="Menu6_5_9_13" Text="Sözlük Bilgileri" URL="../InsanKaynaklari/TanimSozluk.aspx" Yetki="1,88" />
+            <Node ID="Menu6_5_9_1" Text="Askerlik Durum Bilgileri" URL="../InsanKaynaklari/TanimSozluk.aspx?anaKayitKod=07" Yetki="1,88" />
+            <Node ID="Menu6_5_9_2" Text="Askerlik Rütbe Bilgileri" URL="../InsanKaynaklari/TanimSozluk.aspx?anaKayitKod=13" Yetki="1,88" />
+            <Node ID="Menu6_5_9_3" Text="Askerlik Sınıf Bilgileri" URL="../InsanKaynaklari/TanimSozluk.aspx?anaKayitKod=14" Yetki="1,88" />
+            <Node ID="Menu6_5_9_4" Text="Öğrenim Bilgileri" URL="../InsanKaynaklari/TanimSozluk.aspx?anaKayitKod=08" Yetki="1,88" />
+            <Node ID="Menu6_5_9_5" Text="Öğrenim Bilgileri (LisansÜstü)" URL="../InsanKaynaklari/TanimSozluk.aspx?anaKayitKod=17" Yetki="1,88" />
+            <Node ID="Menu6_5_9_6" Text="Öğrenim Belge Türü Bilgileri" URL="../InsanKaynaklari/TanimSozluk.aspx?anaKayitKod=18" Yetki="1,88" />
+            <Node ID="Menu6_5_9_7" Text="Üniversite Bilgileri" URL="../InsanKaynaklari/TanimSozluk.aspx?anaKayitKod=09" Yetki="1,88" />
+            <Node ID="Menu6_5_9_8" Text="Fakülte Bilgileri" URL="../InsanKaynaklari/TanimSozluk.aspx?anaKayitKod=10" Yetki="1,88" />
+            <Node ID="Menu6_5_9_9" Text="Bölüm Bilgileri" URL="../InsanKaynaklari/TanimSozluk.aspx?anaKayitKod=11" Yetki="1,88" />
+            <Node ID="Menu6_5_9_10" Text="Dil Bilgileri" URL="../InsanKaynaklari/TanimSozluk.aspx?anaKayitKod=15" Yetki="1,88" />
+            <Node ID="Menu6_5_9_11" Text="Dil Belge Türü Bilgileri" URL="../InsanKaynaklari/TanimSozluk.aspx?anaKayitKod=16" Yetki="1,88" />
+            <Node ID="Menu6_5_9_12" Text="Eğitim Bilgileri" URL="../InsanKaynaklari/TanimSozluk.aspx?anaKayitKod=19" Yetki="1,88" />
+            <Node ID="Menu6_5_9_14" Text="Sınıf Bilgileri" URL="../InsanKaynaklari/TanimSozluk.aspx?anaKayitKod=22" Yetki="1,88" />
+            <Node ID="Menu6_5_9_15" Text="Unvan Bilgileri" URL="../InsanKaynaklari/TanimUnvan.aspx" Yetki="1,88" />
+            <Node ID="Menu6_5_9_22" Text="Hizmet Sebepleri" URL="../InsanKaynaklari/HizmetSebebiForm.aspx" Yetki="1,88" />
+            <Node ID="Menu6_5_9_18" Text="Lojman Site Tanımları" URL="../InsanKaynaklari/LojmanSiteForm.aspx" Yetki="1,88" />
+            <Node ID="Menu6_5_9_19" Text="Sözlük Gider Tanımı" URL="../InsanKaynaklari/TanimSozlukGider.aspx" Yetki="1,88" />
+            <Node ID="Menu6_5_9_20" Text="Site Gider Tanımı" URL="../InsanKaynaklari/LojmanSiteGideri.aspx" Yetki="1,88" />
+            <Node ID="Menu6_5_9_23" Text="İzin Tanımları" URL="../InsanKaynaklari/TanimIzinTur.aspx" Yetki="1,88" />
+          </Node>
+
+          <Node ID="Menu6_5_7_2" Tip="AltBolum" Text="Evrak Tanımları" Modul="EVR">
+            <Node ID="Menu6_5_7_2_11" Text="Evrak Birimi" URL="../Evrak/TanimBirim.aspx" Yetki="1,53" ></Node>
+            <Node ID="Menu6_5_7_2_7" Text="Antet" URL="../Evrak/TanimAntet.aspx" Yetki="1,54" ></Node>
+            <Node ID="Menu6_5_7_2_10" Text="Alt Bilgi" URL="../Evrak/TanimAltbilgi.aspx" Yetki="1,36" ></Node>
+            <Node ID="Menu6_5_7_2_19" Text="İmza Yolu Tanımlama" URL="../Evrak/TanimImzaYolu.aspx" Yetki="1,36" ></Node>
+            <Node ID="Menu6_5_7_2_22" Text="Vekalet Tanımlama" URL="../Evrak/TanimVekalet.aspx" Yetki="1,36" ></Node>
+            <Node ID="Menu6_5_7_2_8" Text="Dağıtım" URL="../Evrak/TanimDagitim.aspx" Yetki="1,36" ></Node>
+            <Node ID="Menu6_5_7_2_29" Text="Havale Grup Tanımla" URL="../Evrak/TanimHavaleGrubu.aspx" Yetki="1,36" ></Node>
+            <Node ID="Menu6_5_7_2_9" Text="Havale Kural" URL="../Evrak/TanimHavaleKural.aspx" Yetki="1,36" ></Node>
+            <Node ID="Menu6_5_7_2_6" Text="Evrak Habercisi" URL="../Evrak/TanimHaberci.aspx" Yetki="1,36" Gizli="1"></Node>
+            <Node ID="Menu6_5_7_2_4" Text="Gelen Konu Tanımlama" URL="../Evrak/TanimGelenKonu.aspx" Yetki="1,54" ></Node>
+            <Node ID="Menu6_5_7_2_5" Text="Gelen Yer Tanımlama" URL="../Evrak/TanimGelenYer.aspx" Yetki="1,54" ></Node>
+            <Node ID="Menu6_5_7_2_24" Text="Dosya Tasnif Plan Gruplari" URL="../Evrak/Tanimlama.aspx?Tur=8" Yetki="1,53" ></Node>
+            <Node ID="Menu6_5_7_2_12" Text="Dosya Tasnif Planı" URL="../Evrak/TanimDosyaPlani.aspx" Yetki="1,53" ></Node>
+            <Node ID="Menu6_5_7_2_3" Text="Dosya Tasnif Planı (Birimlere Göre)" URL="../Evrak/TanimDosyaPlaniBirim.aspx" Yetki="1,54" ></Node>
+            <Node ID="Menu6_5_7_2_27" Text="Etiket Tanımlama (Kişisel)" URL="../Evrak/TanimEvrakEtiket.aspx" Yetki="1,36,54,56" ></Node>
+            <Node ID="Menu6_5_7_2_28" Text="Etiket Tanımlama (Kurumsal)" URL="../Evrak/TanimEvrakEtiket.aspx?tip=birim" Yetki="1,36,54,56" ></Node>
+            <Node ID="Menu6_5_7_2_13" Text="Gizlilik" URL="../Evrak/Tanimlama.aspx?Tur=4" Yetki="1,53" ></Node>
+            <Node ID="Menu6_5_7_2_14" Text="Yazı Durumu" URL="../Evrak/Tanimlama.aspx?Tur=3" Yetki="1,53" ></Node>
+            <Node ID="Menu6_5_7_2_15" Text="Geliş Şekli" URL="../Evrak/Tanimlama.aspx?Tur=2" Yetki="1,53" ></Node>
+            <Node ID="Menu6_5_7_2_16" Text="Giden Tür" URL="../Evrak/Tanimlama.aspx?Tur=1" Yetki="1,53" ></Node>
+            <Node ID="Menu6_5_7_2_17" Text="Posta Tür" URL="../Evrak/Tanimlama.aspx?Tur=5" Yetki="1,53" ></Node>
+            <Node ID="Menu6_5_7_2_18" Text="Evrak Cinsi" URL="../Evrak/Tanimlama.aspx?Tur=6" Yetki="1,53" ></Node>
+            <Node ID="Menu6_5_7_2_20" Text="Arşiv Klasör Tanımlama" URL="../Evrak/TanimArsiv.aspx" Yetki="1,54,55" ></Node>
+            <Node ID="Menu6_5_7_2_26" Text="Meta Grup Tanımlama" URL="../Evrak/TanimMetaGrup.aspx" Yetki="1,54,55" ></Node>
+            <Node ID="Menu6_5_7_2_21" Text="Meta Bilgileri Tanımlama" URL="../Evrak/TanimMetaBilgileri.aspx" Yetki="1,54,55" ></Node>
+            <Node ID="Menu6_5_7_2_23" Text="DTVT Birim Bilgileri" URL="../Evrak/TanimDtvtBirimKaydet.aspx" Yetki="1,53" ></Node>
+            <Node ID="Menu6_5_7_2_25" Text="Dinamik Form Oluştur" URL="../Evrak/TanimDinamikForm.aspx" Yetki="1,53" ></Node>
+          </Node>
+        </Node>
+      </Node>
+
+      <Node Tip="Kolon">
+        <Node ID="Menu6_5_2" Tip="AltBolum" Text="Kaynak Yönetimi" Modul="BHM,PEB,YAT,HRC,MUH,TMM,ATM,KTP">
+          <Node ID="Menu6_5_1" Tip="AltBolum" Text="Bütçeleme" Modul="BHM,PEB,YAT,HRC">
+            <Node ID="Menu6_5_1_1" Text="Bütçe Hazırlık Tanımları" URL="" Yetki="1,19,22" Gizli="1"></Node>
+            <Node ID="Menu6_5_1_2" Text="Alt Faaliyetler" URL="../ButceHazirlikv2/GenelKodTanimla.aspx?Tur=14" Yetki="1,19"></Node>
+            <Node ID="Menu6_5_1_19" Text="Alt Faaliyet - Faaliyet Bağı" URL="../ButceHazirlikv2/AltFaaliyetIliski.aspx?tur=1" Yetki="1,19,20"></Node>
+            <Node ID="Menu6_5_1_19b" Text="Alt Faaliyet - Proje Bağı" URL="../ButceHazirlikv2/AltFaaliyetIliski.aspx?tur=2" Yetki="1,19,20"></Node>
+            <Node ID="Menu6_5_1_3" Text="Kurumsal Sınıflandırma" URL="../ButceHazirlikv2/GenelKodTanimla.aspx?Tur=1" Yetki="1,19"></Node>
+            <Node ID="Menu6_5_1_4" Text="Fonksiyonel Sınıflandırma" URL="../ButceHazirlikv2/GenelKodTanimla.aspx?Tur=2" Yetki="1,19"></Node>
+            <Node ID="Menu6_5_1_5" Text="Finansal Sınıflandırma" URL="../ButceHazirlikv2/GenelKodTanimla.aspx?Tur=3" Yetki="1,19"></Node>
+            <Node ID="Menu6_5_1_6" Text="Ekonomik Sınıflandırma" URL="../ButceHazirlikv2/GenelKodTanimla.aspx?Tur=4" Yetki="1,19"></Node>
+            <Node ID="Menu6_5_1_7" Text="Gelir Sınıflandırma" URL="../ButceHazirlikv2/GenelKodTanimla.aspx?Tur=5" Yetki="1,19"></Node>
+            <Node ID="Menu6_5_1_8" Text="Finansman Sınıflandırma" URL="../ButceHazirlikv2/GenelKodTanimla.aspx?Tur=6" Yetki="1,19"></Node>
+            <Node ID="Menu6_5_1_9" Text="Sektör Bilgileri" URL="../ButceHazirlikv2/GenelKodTanimla.aspx?Tur=7" Yetki="1,19"></Node>
+            <Node ID="Menu6_5_1_10" Text="Proje Türü" URL="../ButceHazirlikv2/ProjeTurTanimla.aspx" Yetki="1"></Node>
+            <Node ID="Menu6_5_1_11" Text="Döküman Türü" URL="../ButceHazirlikv2/DokumanTurTanimla.aspx" Yetki="1"></Node>
+            <Node ID="Menu6_5_1_12" Text="Performans Harcama Yüzdesi" URL="../ButceHazirlikv2/ButceGiderSecim.aspx?senaryo=00.00&#38;yon=5" Yetki="1,19"></Node>
+            <Node ID="Menu6_5_1_16" Text="Eski Kurumsal Yapı Tanımlama" URL="../ButceHazirlikv2/TanimKurumsalYapi.aspx" Yetki="1"></Node>
+            <Node ID="Menu6_5_1_17" Text="Bütçe Hazırlık Parametreleri" URL="../ButceHazirlikv2/ButceParametre.aspx?menuYok=1" Yetki="1,19" AltPencere="1"></Node>
+            <Node ID="Menu6_5_1_18" Text="Bütçe Sözlük İşlemleri" URL="../ButceHazirlikv2/ButceSozlukYonetim.aspx?menuYok=1" Yetki="1,19" AltPencere="1"></Node>
+            <Node ID="Menu6_5_1_20" Text="Alt Faaliyetler (Eski Form)" URL="../ButceHazirlikv2/AltFaaliyetTanimla.aspx" Yetki="1"></Node>
+            <Node ID="Menu6_5_1_21" Text="Dayanaklar" URL="../ButceUygulama/DayanakListeSayfa.aspx" Yetki="1"></Node>
+            <Node ID="Menu6_5_1_27" Text="Taşıt Cetveli" URL="../ButceForm/TasitSozlukForm.aspx" Yetki="1"></Node>
+            <Node ID="Menu6_5_1_22" Text="Taşıt Marka Model" URL="../ButceForm/TasitMarkaModelForm.aspx" Yetki="1"></Node>
+            <Node ID="Menu6_5_1_23" Text="Taşıt Türleri" URL="../ButceForm/TasitTuru.aspx" Yetki="1"></Node>
+            <Node ID="Menu6_5_1_24" Text="Taşıt Cinsleri" URL="../ButceForm/TasitCinsi.aspx" Yetki="1"></Node>
+            <Node ID="Menu6_5_1_25" Text="Karakteristikler" URL="../ButceHazirlikv2/KarakteristikForm.aspx" Yetki="1"></Node>
+            <Node ID="Menu6_5_1_26" Text="Kalkınma Bölgeleri" URL="../ButceHazirlikv2/KalkinmaBolgeleriTanimForm.aspx" Yetki="1"></Node>
+
+          </Node>
+          <Node ID="Menu6_5_2_1" Tip="AltBolum" Text="Muhasebe Tanımları" Modul="HRC,MUH">
+            <Node ID="Menu6_3_2" Text="Muhasebe Bilgileri" URL="../ButceMuhasebe/TanimMuhasebe.aspx" Yetki="1,19" Modul="HRC,MUH"></Node>
+            <Node ID="Menu6_3_3" Text="Muhasebe Birim Bilgileri" URL="../ButceMuhasebe/TanimMuhasebeBirim.aspx" Yetki="1,19" Modul="HRC,MUH"></Node>
+            <Node ID="Menu6_3_11" Text="Müdürlük Bilgileri" URL="../ButceMuhasebe/TanimMudurluk.aspx" Yetki="1,19" Modul="HRC,MUH"></Node>
+            <Node ID="Menu6_5_2_1_9" Text="Kapalı Birim Bilgileri" URL="../ButceMuhasebe/KapaliMuhasebeBirimForm.aspx" Yetki="1,19" Modul="HRC,MUH"></Node>
+            <Node ID="Menu6_3_4" Text="Hesap Planı Bilgileri" URL="../ButceMuhasebe/TanimHesapPlani.aspx" Yetki="1,19" Modul="HRC,MUH"></Node>
+            <Node ID="Menu6_3_5" Text="Yansıtma Bilgileri" URL="../ButceMuhasebe/TanimYansitma.aspx" Yetki="1,2,15,18,19,21"  Modul="HRC"></Node>
+            <Node ID="Menu6_3_10" Text="KBS Aktarım" URL="../ButceMuhasebe/TanimKBSAktarim.aspx" Yetki="1,19"  Modul="HRC"></Node>
+            <Node ID="Menu6_5_2_1_1" Text="Makbuz Tipi Bilgileri" URL="../ButceMuhasebe/TanimMakbuzTipiYeni.aspx" Yetki="1,19" Modul="HRC"></Node>
+            <Node ID="Menu6_5_2_1_2" Text="İmza Bilgileri" URL="../ButceMuhasebe/Imza.aspx" Yetki="1,2,18,19" Modul="HRC,MUH"></Node>
+            <Node ID="Menu6_5_2_1_4" Text="İstatistik Kod Tanımları" URL="../ButceMuhasebe/IstatistikKodGirisForm.aspx" Yetki="1,19" Modul="MUH"></Node>
+            <Node ID="Menu6_5_2_1_5" Text="Mutemet Limit Tanımları" URL="../ButceMuhasebe/TanimMutemetLimit.aspx" Yetki="1,19" Modul="MUH"></Node>
+            <Node ID="Menu6_5_2_1_6" Text="Damga Vergisi Aktarım Tür Tanımlama" URL="../ButceMuhasebe/TanimVergiDairesiAktarimTur.aspx?tur=1" Yetki="1,19" Modul="MUH"></Node>
+            <Node ID="Menu6_5_2_1_10" Text="KDV Tevkifatı Aktarım Tür Tanımlama" URL="../ButceMuhasebe/TanimVergiDairesiAktarimTur.aspx?tur=2" Yetki="1,19" Modul="MUH"></Node>
+
+            <Node ID="Menu6_5_2_1_11" Text="KDV Aktarım Tür Tanımlama" URL="../ButceMuhasebe/TanimVergiDairesiAktarimTur.aspx?tur=3" Yetki="1,19" Modul="MUH"></Node>
+            <Node ID="Menu6_5_2_1_12" Text="Muhtasar Aktarım Tür Tanımlama" URL="../ButceMuhasebe/TanimVergiDairesiAktarimTur.aspx?tur=4" Yetki="1,19" Modul="MUH"></Node>
+            <Node ID="Menu6_5_2_1_14" Text="Bordro Muh. Akt. Tür Tanımlama" URL="../ButceMuhasebe/TanimVergiDairesiAktarimTur.aspx?tur=5" Yetki="1,19" Modul="MUH"></Node>
+
+            <Node ID="Menu6_5_2_1_7" Text="Teminat Mektubu Nevi Tanımlama" URL="../HarcamaSurecleri/TanimTeminatNevi.aspx" Yetki="1,19" Modul="MUH"></Node>
+            <Node ID="Menu6_5_2_1_8" Text="Hesap Planı Kısıtlama" URL="../ButceMuhasebe/TanimHesapPlaniKisit.aspx" Yetki="1,19" Modul="MUH"></Node>
+
+            <Node ID="Menu6_5_2_1_13" Text="TKDK İl Koordinatörlüğü Ödenek Talep Tanımlama" URL="../ButceMuhasebe/TanimTKDKTalepForm.aspx" Yetki="1,19" Modul="MUH"></Node>
+
+          </Node>
+          <Node ID="Menu6_5_2_2" Tip="AltBolum" Text="Taşınır Mal Tanımları" Modul="TMM">
+            <Node ID="Menu6_5_2_2_7" Text="Bölge Tanımlama" URL="../TasinirMal/TanimBolge.aspx" Yetki="1,28" />
+            <Node ID="Menu6_5_2_2_8" Text="İl Tanımlama" URL="../TasinirMal/TanimIl.aspx" Yetki="1,28" />
+            <Node ID="Menu6_5_2_2_9" Text="İlçe Tanımlama" URL="../TasinirMal/TanimIlce.aspx" Yetki="1,28" />
+            <Node ID="Menu6_5_2_2_10" Text="Muhasebe Birimi Tanımlama" URL="../TasinirMal/TanimMuhasebe.aspx" Yetki="1,28" />
+            <Node ID="Menu6_5_2_2_11" Text="Harcama Birimi Tanımlama" URL="../TasinirMal/TanimHarcamaBirimi.aspx" Yetki="1,28" />
+            <Node ID="Menu6_5_2_2_1" Text="Ambar Tanımlama" URL="../TasinirMal/TanimAmbar.aspx" Yetki="1,28" ></Node>
+            <Node ID="Menu6_5_2_2_2" Text="Hesap Plan Bilgileri" URL="../TasinirMal/TanimHesapPlani.aspx" Yetki="1,15,28" ></Node>
+            <Node ID="Menu6_5_2_2_3" Text="İşlem Tipi Tanımlama" URL="../TasinirMal/TanimIslemTip.aspx" Yetki="1,28" ></Node>
+            <Node ID="Menu6_5_2_2_4" Text="Marka Tanımlama" URL="../TasinirMal/TanimMarka.aspx" Yetki="1,2,15,28" ></Node>
+            <Node ID="Menu6_5_2_2_5" Text="Model Tanımlama" URL="../TasinirMal/TanimModel.aspx" Yetki="1,2,15,28" ></Node>
+            <Node ID="Menu6_5_2_2_6" Text="Oda Tanımlama" URL="../TasinirMal/TanimOda.aspx" Yetki="1,2,15,28" ></Node>
+            <Node ID="Menu6_5_2_2_12" Text="Hesap Planı Güncelle" URL="../TasinirMal/TanimHesapPlaniMuhasebat.aspx" Yetki="1,28" ></Node>
+            <Node ID="Menu6_5_2_2_13" Text="Yıl Kapatma" URL="../TasinirMal/YilKapat.aspx" Yetki="1,28" ></Node>
+            <Node ID="Menu6_5_2_2_14" Text="Harcama Birimi Aktarımı" URL="../TasinirMal/HarcamaBirimDegistir.aspx" Yetki="1,28" ></Node>
+            <Node ID="Menu6_5_2_2_15" Text="Personel Tanımlama" URL="../TasinirMal/TanimPersonel.aspx" Yetki="1,2,15,28" ></Node>
+            <Node ID="Menu6_5_2_2_16" Text="Yetkili Bilgileri Tanımlama" URL="../TasinirMal/TanimImza.aspx" Yetki="1,2,15,28" ></Node>
+            <Node ID="Menu6_5_2_2_18" Text="Yıl Devri Çıkış/Giriş İşlemleri" URL="../TasinirMal/YilDevirGirisCikis.aspx" Yetki="70,28" ></Node>
+            <Node ID="Menu6_5_2_2_19" Text="Hesap Planı Barkod İlişklendirme" URL="../TasinirMal/TanimHesapPlaniBarkod.aspx" Yetki="1,2,15,28" ></Node>
+            <Node ID="Menu6_5_2_2_20" Text="Amortisman Sınırı" URL="../TasinirMal/TanimAmortismanSinir.aspx" Yetki="1,28" ></Node>
+            <Node ID="Menu3_5_32" Text="B/A Onayı Yetkilendirme" URL="../TasinirMal/TasinirIslemFormOnayYetki.aspx" Yetki="1,2,28" ></Node>
+            <Node ID="Menu3_5_33" Text="RFID Etiket Türü" URL="../TasinirMal/TanimRFIDEtiketTuru.aspx" Yetki="1,2,28" ></Node>
+            <Node ID="Menu3_5_39" Text="Üretim Reçetesi" URL="../TasinirMal/UretimRecetesiAna.aspx" Yetki="1,2,28" ></Node>
+
+            <Node ID="Menu6_5_34" Text="Toplu Zimmetten Düşme" URL="../TasinirMal/ZimmettenDusme.aspx" Yetki="70,28" ></Node>
+
+            <Node ID="Menu6_5_36" Text="ÜFE Tanımlama" URL="../TasinirMal/TanimEnflasyonDuzeltmesi.aspx" Yetki="1,2,70,28" ></Node>
+            <Node ID="Menu6_5_35" Text="Enflasyon MUhasebesi" URL="../TasinirMal/EnflasyonDuzeltmesi.aspx" Yetki="1,2,70,28" ></Node>
+          </Node>
+
+
+          <Node ID="Menu6_5_2_10" Tip="AltBolum" Text="Program Bütçe Tanımlar" Modul="BHM,PEB">
+            <Node ID="Menu6_5_2_10_1" Text="Programlar" URL="../ButceHazirlikv2/ProgButKod.aspx?tur=1" Yetki="1" ></Node>
+            <Node ID="Menu6_5_2_10_2" Text="Alt Programlar" URL="../ButceHazirlikv2/ProgButKod.aspx?tur=2" Yetki="1" ></Node>
+            <Node ID="Menu6_5_2_10_3" Text="Faaliyetler" URL="../ButceHazirlikv2/ProgButKod.aspx?tur=3" Yetki="1" ></Node>
+            <Node ID="Menu6_5_2_10_4" Text="Alt Faaliyetler" URL="../ButceHazirlikv2/ProgButKod.aspx?tur=4" Yetki="1" ></Node>
+            <Node ID="Menu6_5_2_10_5" Text="Alt Faaliyet Bağları" URL="../ButceHazirlikv2/ProgPebIliski.aspx" Yetki="1" ></Node>
+          </Node>
+
+          <Node ID="Menu6_5_1_13" Tip="AltBolum" Text="Stratejik Plan Tanımlar" Modul="BHM,PEB">
+            <Node ID="Menu6_5_1_13_1" Text="Dil Tanımlama" URL="../PerformansButce/TanimDil.aspx" Yetki="1" ></Node>
+          </Node>
+          <Node ID="Menu6_5_1_14" Tip="AltBolum" Text="Performans Bütçe Tanımlar" Modul="BHM,PEB">
+            <Node ID="Menu6_5_1_14_1" Text="Ölçü Birimi" URL="../PerformansButce/TanimOlcuBirimYeni.aspx" Yetki="1" ></Node>
+            <Node ID="Menu6_5_1_14_2" Text="Performans Göstergesi" URL="../PerformansButce/TanimPerformansGostergeYeni.aspx" Yetki="1" ></Node>
+          </Node>
+          <Node ID="Menu6_5_6" Tip="AltBolum" Text="Kütüphane Tanımlar" Modul="KTP">
+            <Node ID="Menu6_5_6_1" Text="Yazar Bilgileri" URL="../Kutuphane/TanimYazar.aspx" Yetki="1,16" ></Node>
+            <Node ID="Menu6_5_6_2" Text="Konu Bilgileri" URL="../Kutuphane/TanimKonu.aspx" Yetki="1,16" ></Node>
+            <Node ID="Menu6_5_6_3" Text="Yayınlayan Bilgileri" URL="../Kutuphane/TanimYayinlayan.aspx" Yetki="1,16" ></Node>
+            <Node ID="Menu6_5_6_5" Text="Medya Bilgileri" URL="../Kutuphane/TanimMedya.aspx" Yetki="1,16" ></Node>
+            <Node ID="Menu6_5_6_6" Text="Kütüphane Bilgileri" URL="../Kutuphane/TanimKutuphane.aspx" Yetki="1,16" ></Node>
+          </Node>
+          <Node ID="Menu6_5_2_3" Tip="AltBolum" Text="Alacak Takip Tanımları" Modul="ATM">
+            <Node ID="Menu6_5_2_3_1" Text="Durum" URL="../AlacakTakip/TanimDurum.aspx" Yetki="1,2,23" ></Node>
+            <Node ID="Menu6_5_2_3_2" Text="Faiz" URL="../AlacakTakip/TanimFaiz.aspx" Yetki="1,2,23" Gizli="1" ></Node>
+            <Node ID="Menu6_5_2_3_3" Text="Faiz Türü" URL="../AlacakTakip/TanimFaizTur.aspx" Yetki="1,2,23" ></Node>
+            <Node ID="Menu6_5_2_3_4" Text="Hesap Hareket" URL="../AlacakTakip/HesapHareketTasarim.aspx" Yetki="1,2,23" ></Node>
+          </Node>
+        </Node>
+      </Node>
+      <Node Tip="Kolon">
+        <Node ID="Menu6_5_3" Tip="AltBolum" Text="Harcama Yönetimi Tanımları" Modul="HRC">
+          <Node ID="Menu6_5_3_1" Tip="AltBolum" Text="Süreç Tanımları">
+            <Node ID="Menu6_5_3_1_1"  Text="İş Tanımlama" URL="../HarcamaSurecleri/TanimIs.aspx?tur=1" Yetki="1,19" ></Node>
+            <Node ID="Menu6_5_3_1_2"  Text="Parça Tanımlama" URL="../HarcamaSurecleri/TanimParca.aspx?tur=1" Yetki="1,19" ></Node>
+            <Node ID="Menu6_5_3_1_3"  Text="İş-Parça İlişkilendirme" URL="../HarcamaSurecleri/TanimIsParca.aspx?tur=1" Yetki="1,19" ></Node>
+            <Node ID="Menu6_5_3_1_4"  Text="İhale-Parça İlişkilendirme" URL="../HarcamaSurecleri/TanimIhaleParca.aspx" Yetki="1,19" ></Node>
+            <Node ID="Menu6_5_3_1_5"  Text="Tanım Güncelleme" URL="../HarcamaSurecleri/HarcamaTanimGuncelle.aspx" Yetki="1" ></Node>
+            <Node ID="Menu6_5_3_1_6"  Text="İhtiyaç Planı Tanımlama" URL="../HarcamaSurecleri/TanimIhtiyacPlani.aspx" Yetki="1,19" ></Node>
+            <Node ID="Menu6_5_9_17"   Text="Bordro Tipleri" URL="../InsanKaynaklari/PersonelTipForm.aspx" Yetki="1,88" />
+            <Node ID="Menu6_5_9_16"   Text="Bordro Tanımları" URL="../HarcamaSurecleri/TanimBordroTanim.aspx" Yetki="1,88" />
+            <Node ID="Menu6_5_3_1_7"  Text="Bordro Tabloları" URL="../HarcamaSurecleri/BordroTabloForm.aspx" Yetki="1,19,88" ></Node>
+            <Node ID="Menu6_5_3_1_8"  Text="Bordro Parametreleri" URL="../HarcamaSurecleri/PersonelBordroParamForm.aspx" Yetki="1,19,88" ></Node>
+            <Node ID="Menu6_5_3_1_9"  Text="Bordro Yönetim" URL="../HarcamaSurecleri/PSLDinBordroYonetim.aspx" Yetki="1,88" ></Node>
+          </Node>
+          <Node ID="Menu6_5_3_2" Tip="AltBolum" Text="İhale Doküman Tanımları">
+            <Node ID="Menu6_5_3_2_1"  Text="İhale Dosyası İçerik" URL="../HarcamaSurecleri/IHLIcerikTanimlama.aspx" Yetki="1,19" ></Node>
+            <Node ID="Menu6_5_3_2_2"  Text="İhale Zarf İçerik" URL="../HarcamaSurecleri/TanimTeklifDosyasiIcerikFormu.aspx" Yetki="1,19" ></Node>
+            <Node ID="Menu6_5_3_2_3"  Text="İhale Şartname Tanımlama" URL="../HarcamaSurecleri/TanimIhaleSozlesme.aspx" Yetki="1,19" ></Node>
+            <Node ID="Menu6_5_3_2_4"  Text="Teklif Zarfı Biçim Şartları" URL="../HarcamaSurecleri/TanimTeklifZarfBicimi.aspx" Yetki="1,19" ></Node>
+          </Node>
+          <Node ID="Menu6_5_3_3" Tip="AltBolum" Text="İhale Bilgisi Tanımları">
+            <Node ID="Menu6_5_3_3_1"  Text="İhale Usulü Tanımlama" URL="../HarcamaSurecleri/TanimIhaleUsul.aspx" Yetki="1,19" ></Node>
+            <Node ID="Menu6_5_3_3_2"  Text="Madde Tanımlama" URL="../HarcamaSurecleri/TanimIhaleUsulMadde.aspx" Yetki="1,19" ></Node>
+            <Node ID="Menu6_5_3_3_3"  Text="İlan Tanımlama" URL="../HarcamaSurecleri/TanimIhaleIlanSekli.aspx" Yetki="1,19" ></Node>
+          </Node>
+          <Node ID="Menu6_5_5" Tip="AltBolum" Text="Abonelik Bilgileri">
+            <Node ID="Menu6_5_5_1"  Text="Elektrik" URL="../HarcamaSurecleri/TanimAboneNo.aspx?tip=1" Yetki="1,2,18,19,21" ></Node>
+            <Node ID="Menu6_5_5_2"  Text="Su" URL="../HarcamaSurecleri/TanimAboneNo.aspx?tip=2" Yetki="1,2,18,19,21" ></Node>
+            <Node ID="Menu6_5_5_3"  Text="Doğalgaz" URL="../HarcamaSurecleri/TanimAboneNo.aspx?tip=3" Yetki="1,2,18,19,21" ></Node>
+            <Node ID="Menu6_5_5_4"  Text="Telefon" URL="../HarcamaSurecleri/TanimAboneNo.aspx?tip=4" Yetki="1,2,18,19,21" ></Node>
+            <Node ID="Menu6_5_5_5"  Text="ADSL" URL="../HarcamaSurecleri/TanimAboneNo.aspx?tip=5" Yetki="1,2,18,19,21" ></Node>
+            <Node ID="Menu6_5_5_6"  Text="Avea" URL="../HarcamaSurecleri/TanimAboneNo.aspx?tip=6" Yetki="1,2,18,19,21" ></Node>
+            <Node ID="Menu6_5_5_7"  Text="Vodafone" URL="../HarcamaSurecleri/TanimAboneNo.aspx?tip=7" Yetki="1,2,18,19,21" ></Node>
+            <Node ID="Menu6_5_5_8"  Text="Turkcell" URL="../HarcamaSurecleri/TanimAboneNo.aspx?tip=8" Yetki="1,2,18,19,21" ></Node>
+            <Node ID="Menu6_5_5_9"  Text="Özel Telefon Servisleri" URL="../HarcamaSurecleri/TanimAboneNo.aspx?tip=9" Yetki="1,2,18,19,21" ></Node>
+            <Node ID="Menu6_5_5_10"  Text="Noktadan Noktaya" URL="../HarcamaSurecleri/TanimAboneNo.aspx?tip=10" Yetki="1,2,18,19,21" ></Node>
+            <Node ID="Menu6_5_5_11"  Text="Kiralık Hat" URL="../HarcamaSurecleri/TanimAboneNo.aspx?tip=11" Yetki="1,2,18,19,21" ></Node>
+            <Node ID="Menu6_5_5_12"  Text="Kablolu TV" URL="../HarcamaSurecleri/TanimAboneNo.aspx?tip=12" Yetki="1,2,18,19,21" ></Node>
+            <Node ID="Menu6_5_5_13"  Text="Jeotermal Enerji - Nükleer Enerji" URL="../HarcamaSurecleri/TanimAboneNo.aspx?tip=13" Yetki="1,2,18,19,21" ></Node>
+            <Node ID="Menu6_5_5_14"  Text="GSM İnternet" URL="../HarcamaSurecleri/TanimAboneNo.aspx?tip=14" Yetki="1,2,18,19,21" ></Node>
+          </Node>
+
+          <Node ID="Menu6_5_3_4"  Text="??Muhasebe-Birim-Tertip Tanımlama" URL="../HarcamaSurecleri/TanimMuhasebeBirimTertip.aspx" Yetki="1" Gizli="1"></Node>
+          <Node ID="Menu6_5_3_5"  Text="Üfe Bilgileri Tanımlama" URL="../HarcamaSurecleri/TanimUfe.aspx" Yetki="1,19,88" ></Node>
+          <Node ID="Menu6_5_3_6"  Text="İdare Bilgileri Tanımlama" URL="../HarcamaSurecleri/TanimIdareBilgileri.aspx" Yetki="1,2,18,19,21"  ></Node>
+          <Node ID="Menu6_5_3_7"  Text="Hizmet Hesap Planı" URL="../HarcamaSurecleri/TanimIhtiyacPlani.aspx" Yetki="1,2,18,19,21"  ></Node>
+
+        </Node>
+      </Node>
+
+      <Node Tip="Kolon">
+        <Node ID="Menu6_7" Tip="AltBolum" Text="Gelir Yönetimi Tanımları" Modul="HRC,GEL">
+          <Node ID="Menu6_7_1" Tip="AltBolum" Text="Süreç Tanımları" Modul="HRC,GEL">
+            <Node ID="Menu6_7_1_1"  Text="İş Tanımlama" URL="../HarcamaSurecleri/TanimIs.aspx?tur=2" Yetki="1" ></Node>
+            <Node ID="Menu6_7_1_2"  Text="Parça Tanımlama" URL="../HarcamaSurecleri/TanimParca.aspx?tur=2" Yetki="1"  ></Node>
+            <Node ID="Menu6_7_1_3"  Text="İş-Parça İlişkilendirme" URL="../HarcamaSurecleri/TanimIsParca.aspx?tur=2" Yetki="1"  ></Node>
+          </Node>
+          <Node ID="Menu6_7_2" Tip="AltBolum" Text="İhale Bilgisi Tanımları" Modul="GEL">
+            <Node ID="Menu6_7_2_1"  Text="İhale Usulü Tanımlama" URL="../GelirSurecleri/TanimIhaleUsul.aspx?tur=2" Yetki="1"  ></Node>
+            <Node ID="Menu6_7_2_2"  Text="Madde Tanımlama" URL="../GelirSurecleri/TanimIhaleUsulMadde.aspx?tur=2" Yetki="1"  ></Node>
+            <Node ID="Menu6_7_2_3"  Text="İlan Tanımlama" URL="../GelirSurecleri/TanimIhaleIlanSekli.aspx?tur=2" Yetki="1"  ></Node>
+          </Node>
+
+        </Node>
+        <Node ID="Menu6_6" Tip="AltBolum" Text="Genel Tanımlar">
+          <Node ID="Menu6_6_2" Text="İl-İlçe Bilgileri" URL="../ButceHazirlikv2/GenelKodTanimla.aspx?Tur=20" Yetki="1,88" Modul="TMM,HRC,PER"></Node>
+          <Node ID="Menu6_6_4" Text="Bölge Tanımlama" URL="../TasinirMal/TanimBolge.aspx" Yetki="1,28" Modul="TMM" ></Node>
+          <Node ID="Menu6_6_5" Text="Firma Tanımlama" URL="../HarcamaSurecleri/TanimFirmaKisi.aspx" Yetki="1,2,18,19,21,15,28" ></Node>
+          <Node ID="Menu6_6_6" Text="Ölçü Birimleri Tanımlama" URL="../TasinirMal/TanimOlcuBirim.aspx" Yetki="1,19,28" Modul="TMM"></Node>
+          <Node ID="Menu6_6_7" Text="Kur Değerleri" URL="../HarcamaSurecleri/TanimGunlukKur.aspx" Yetki="1,88,19" ></Node>
+          <Node ID="Menu6_6_8" Text="Para Birimi Tanımlama" URL="../HarcamaSurecleri/TanimParaBirimi.aspx" Yetki="1,19" ></Node>
+          <Node ID="Menu6_5_9_21" Text="Yerleşke Oda Tanımı" URL="../KYM/TanimOda.aspx" Yetki="1" />
+          <Node ID="Menu6_6_9" Text="Anket Soruları" URL="../KYM/AnketSoruAna.aspx" Yetki="1" Modul="STRBir"></Node>
+          <Node ID="Menu6_6_10" Text="Modüller" URL="../KYM/Moduller.aspx" Yetki="1" ></Node>
+          <Node ID="Menu6_6_11" Text="Logo Belirleme" URL="../KYM/Logo.aspx" Yetki="1" ></Node>
+          <Node ID="Menu6_6_12" Text="Evrak Aktarım Alan Tanımı" URL="../KYM/EvrakAktarimForm.aspx" Yetki="1" ></Node>
+          <Node ID="Menu6_6_13" Text="ResmiTatil" URL="../KYM/ResmiTatilXml.aspx" Yetki="1" ></Node>
+        </Node>
+      </Node>
+      <Node Tip="Kolon" >
+        <Node ID="Menu6_10" Tip="AltBolum" Text="Taşınmaz Yönetimi Tanımları" Modul="TMZ">
+          <Node ID="Menu6_10_1"  Text="Taşınmaz Cinsi Tanımlama" URL="../TasinmazYonetimi/TasinmazCinsTanim.aspx" Yetki="1,66"  ></Node>
+          <Node ID="Menu6_10_2"  Text="Taşınmaz Bölge Tanımlama" URL="../TasinmazYonetimi/TasinmazBolgeTanim.aspx" Yetki="1,66"  ></Node>
+        </Node>
+      </Node>
+      <Node Tip="Kolon">
+        <Node ID="Menu6_8" Tip="AltBolum" Text="Ekonomik Gösterge Tanımları" Modul="EKG" Yetki="1,2">
+          <Node ID="Menu6_8_1"    Text="Kod Grubu Tanımlama"  URL="../EkonomikGosterge/EKGTanimKodGrup.aspx" Yetki="1,2"/>
+          <Node ID="Menu6_8_2"    Text="Kod Tanımlama" URL="../ButceHazirlikv2/GenelKodTanimla.aspx?Tur=29" Yetki="1,2"></Node>
+        </Node>
+
+        <Node ID="Menu6_99" Tip="AltBolum" Text="Tarım Bakanlığı" Modul="TRM" Yetki="1,39">
+          <Node ID="Menu6_99_001" Tip="AltBolum" Text="Genel">
+            <Node ID="Menu6_99_3"    Text="Banka Şube Tanımlama" URL="../Tarim/TanimBankaSube.aspx" Yetki="1,39"></Node>
+            <Node ID="Menu6_99_4"    Text="Köy Tanımlama" URL="../Tarim/TanimKoy.aspx" Yetki="1,39"></Node>
+            <Node ID="Menu6_99_108"    Text="Üyelik Bilgileri" URL="../Tarim/HibeUyeBilgileriListesi.aspx" Yetki="1,39"></Node>
+          </Node>
+
+          <Node ID="Menu6_99_002" Tip="AltBolum" Text="Makine Ekipman">
+            <Node ID="Menu6_99_99"   Text="Makine Ekipman Yönetim Bilgileri" URL="../Tarim/TanimMakineYonetim.aspx" Yetki="1,39"></Node>
+            <Node ID="Menu6_99_102"  Text="Makine Ekipman Başvuru Belge Tanımlama" URL="../Tarim/TanimBasvuruBelgeleri.aspx?tip=1" Yetki="1,39,40"></Node>
+            <Node ID="Menu6_99_1"    Text="Malzeme Grubu Tanımlama"  URL="../Tarim/TanimMalzemeGrubu.aspx" Yetki="1,39"/>
+            <Node ID="Menu6_99_2"    Text="Malzeme Tanımlama" URL="../Tarim/TanimHibeMakina.aspx" Yetki="1,39,40"></Node>
+            <Node ID="Menu6_99_100"  Text="Malzeme Özelliği Tanımlama" URL="../Tarim/TanimHibeMakinaOzelligi.aspx" Yetki="1,39,40"></Node>
+            <Node ID="Menu6_99_12"   Text="Makine Ekipman Bütçe Bilgileri" URL="../Tarim/TanimButceRakamlari.aspx?tip=1" Yetki="1,39,40"></Node>
+            <Node ID="Menu4_99_1_6"  Text="Malzeme Referans Fiyat Grupla" URL="../Tarim/MalzemeReferansFiyatGrupla.aspx" Yetki="1,39,40,51"></Node>
+            <Node ID="Menu6_99_105"  Text="Puanlama Soruları" URL="../Tarim/TanimPuan.aspx?hibetur=1" Yetki="1,39,40"></Node>
+            <Node ID="Menu6_99_106"  Text="Sık Sorulan Soruları Tanımlama" URL="../Tarim/TanimSorulanSorular.aspx?tip=1" Yetki="1,39,40"></Node>
+            <Node ID="Menu6_99_107"  Text="Başvuru Belgesi İçerik Tanımlama" URL="../Tarim/TanimBasvuru.aspx?tip=1" Yetki="1,39,40"></Node>
+          </Node>
+
+          <Node ID="Menu6_99_003" Tip="AltBolum" Text="Sulama">
+            <Node ID="Menu6_99_98"   Text="Sulama Yönetim Bilgileri" URL="../Tarim/TanimSulamaYonetim.aspx" Yetki="1,39"></Node>
+            <Node ID="Menu6_99_103"  Text="Sulama Başvuru Belge Tanımlama" URL="../Tarim/TanimBasvuruBelgeleri.aspx?tip=2" Yetki="1,39,40"></Node>
+            <Node ID="Menu6_99_5"    Text="Sulama Konusu Tanımlama"  URL="../Tarim/TanimSulamaGrubu.aspx" Yetki="1,39"/>
+            <Node ID="Menu6_99_13"   Text="Sulama Bütçe Bilgileri" URL="../Tarim/TanimButceRakamlari.aspx?tip=2" Yetki="1,39,40"></Node>
+            <Node ID="Menu6_99_105"  Text="Puanlama Soruları" URL="../Tarim/TanimPuan.aspx?hibetur=2" Yetki="1,39,40"></Node>
+            <Node ID="Menu6_99_106"  Text="Sık Sorulan Soruları Tanımlama" URL="../Tarim/TanimSorulanSorular.aspx?tip=2" Yetki="1,39,40"></Node>
+            <Node ID="Menu6_99_107"  Text="Başvuru Belgesi İçerik Tanımlama" URL="../Tarim/TanimBasvuru.aspx?tip=2" Yetki="1,39,40"></Node>
+          </Node>
+
+          <Node ID="Menu6_99_004" Tip="AltBolum" Text="Ekonomik Yatırım ">
+            <Node ID="Menu6_99_97"   Text="Ekonomik Yatırım Yönetim Bilgileri" URL="../Tarim/TanimYatirimYonetim.aspx" Yetki="1,39"></Node>
+            <Node ID="Menu6_99_104"  Text="Ekonomik Yatırım Başvuru Belge Tanımlama" URL="../Tarim/TanimBasvuruBelgeleri.aspx?tip=3" Yetki="1,39,40"></Node>
+            <Node ID="Menu6_99_10"   Text="Ekonomik Yatırım Nitelik Tanımlama"  URL="../Tarim/TanimYatirimNitelik.aspx" Yetki="1,39"/>
+            <Node ID="Menu6_99_11"   Text="Konu Tanımlama"  URL="../Tarim/TanimYatirimKonu.aspx" Yetki="1,39"/>
+            <Node ID="Menu6_99_11_1" Text="Alt Konu Detay Tanımlama"  URL="../Tarim/TanimYatirimAltKonuDetay.aspx" Yetki="1,39"/>
+            <Node ID="Menu6_99_14"   Text="Bütçe Bilgileri" URL="../Tarim/TanimButceRakamlari.aspx?tip=3" Yetki="1,39,40"></Node>
+            <Node ID="Menu6_99_105"  Text="Puanlama Soruları" URL="../Tarim/TanimPuan.aspx?hibetur=3" Yetki="1,39,40"></Node>
+            <Node ID="Menu6_99_106"  Text="Sık Sorulan Soruları Tanımlama" URL="../Tarim/TanimSorulanSorular.aspx?tip=3" Yetki="1,39,40"></Node>
+            <Node ID="Menu6_99_107"  Text="Başvuru Belgesi İçerik Tanımlama" URL="../Tarim/TanimBasvuru.aspx?tip=3" Yetki="1,39,40"></Node>
+            <Node ID="Menu6_99_110"  Text="İşletme Planı İçerik Tanımlama" URL="../Tarim/TanimBasvuru.aspx?tip=4" Yetki="1,39,40"></Node>
+            <Node ID="Menu6_99_111"  Text="Konu-Destek Tutarı Tanımlama" URL="../Tarim/TanimYatirimKonuUstSinir.aspx" Yetki="1,39,40"></Node>
+            <Node ID="Menu6_99_109"  Text="İl-Konu Tanımlama" URL="../Tarim/TanimYatirimKonuIl.aspx" Yetki="1,39"/>
+            <Node ID="Menu6_99_112"  Text="İl-Alt Konu Tanımlama" URL="../Tarim/TanimYatirimAltKonuIl.aspx" Yetki="1,39,40"></Node>
+            <Node ID="Menu6_99_113"  Text="Online Durumuna Çevirme" URL="../Tarim/HibeYatirimBasvuruOnline.aspx" Yetki="1,39"></Node>
+            <Node ID="Menu6_99_114"  Text="Online Yardım Ekranı Dosya Yükleme" URL="../Tarim/HibeYatirimBasvuruDosyaYukle.aspx" Yetki="1,39,40"></Node>
+            <Node ID="Menu6_99_115"  Text="Online Yardım Ekranı Duyuru Metni Tanımlama" URL="../Tarim/HibeYatirimBasvuruDuyuruYukle.aspx" Yetki="1,39,40"></Node>
+
+            <Node ID="Menu6_99_116"   Text="Makine Grup Tanımlama (YATIRIM)"  URL="../Tarim/TanimYatirimMalzemeTur.aspx?tur=1" Yetki="1,39"/>
+
+            <Node ID="Menu6_99_121"   Text="Makine Ana Grup Tanımlama (ALTYAPI)"  URL="../Tarim/TanimYatirimAnaMalzemeGrup.aspx" Yetki="1,39"/>
+            <Node ID="Menu6_99_122"   Text="Makine Grup Tanımlama (ALTYAPI)" URL="../Tarim/TanimYatirimMalzemeTur.aspx?tur=2" Yetki="1,39"></Node>
+            <Node ID="Menu6_99_118"   Text="Makine Tanımlama (ALTYAPI)"  URL="../Tarim/TanimYatirimMalzemeTanim.aspx" Yetki="1,39,40,41"/>
+
+            <Node ID="Menu6_99_119"   Text="Konu-Nitelik Kısıtlama"  URL="../Tarim/TanimYatirimKonuNitelikKisitlama.aspx" Yetki="1,39,40,41"/>
+          </Node>
+        </Node>
+        <Node ID="Menu6_98" Tip="AltBolum" Text="Teftiş Başkanlığı" Modul="TFT" Yetki="1">
+          <Node ID="Menu6_98_5"    Text="Kontrol Listeleri"  URL="../Teftis/TanimKontrolListesi.aspx" Yetki="1"/>
+          <Node ID="Menu6_98_1"    Text="İş Konuları"  URL="../Teftis/TanimIsKonulari.aspx" Yetki="1"/>
+          <Node ID="Menu6_98_2"    Text="Kaynak Türleri"  URL="../Teftis/TanimKaynakTurleri.aspx" Yetki="1"/>
+          <Node ID="Menu6_98_3"    Text="Rapor Türleri"  URL="../Teftis/TanimRaporTurleri.aspx" Yetki="1"/>
+          <Node ID="Menu6_98_4"    Text="İnceleme Sonuçları"  URL="../Teftis/TanimIsSonucTurleri.aspx" Yetki="1"/>
+          <Node ID="Menu6_98_6"    Text="Bakanlik Birimleri"  URL="../Teftis/TanimBakanlikBirimleri.aspx" Yetki="1"/>
+          <Node ID="Menu6_98_7"    Text="Tutanak Türleri"  URL="../Teftis/TanimTutanakTurleri.aspx" Yetki="1"/>
+        </Node>
+      </Node>
+      <Node Tip="Kolon">
+        <Node ID="Menu6_11" Tip="AltBolum" Text="Sınav Tanımları" Modul="SB" Yetki="1,46">
+          <Node ID="Menu6_11_1"    Text="Sınav Tanımlama"  URL="../SinavBasvuru/SinavTanimAna.aspx" Yetki="1,46"/>
+        </Node>
+      </Node>
+    </Node>
+  </Node>
+</Nodes>
+
+<!--
+  TANIMSIZ = -1,
+
+        /// <summary>
+        /// Misafir kullanıcı tipi
+        /// </summary>
+        MISAFIR = 0,
+
+        /// <summary>
+        /// Sistem yöneticisi kullanıcı tipi.
+        /// </summary>
+        SISTEMYONETICISI = 1,
+
+        /// <summary>
+        /// Kullanıcı yöneticisi kullanıcı tipi.
+        /// </summary>
+        KULLANICIYONETICISI = 2,
+
+        /// <summary>
+        /// Personel uygulaması kullanıcı tipi.
+        /// </summary>
+        PERSONEL = 11,
+
+        /// <summary>
+        /// Kadro uygulaması kullanıcı tipi.
+        /// </summary>
+        KADRO = 12,
+
+        /// <summary>
+        /// İç kontrol uygulaması kullanıcı tipi.
+        /// </summary>
+        ICKONTROL = 13,
+
+        /// <summary>
+        /// Ön mali kontrol uygulaması kullanıcı tipi.
+        /// </summary>
+        ONMALIKONTROL = 14,
+
+        /// <summary>
+        /// Taşınır mal işlem fişi giren kullanıcı tipi.
+        /// </summary>
+        TASINIRMALKAYDI = 15,
+
+        /// <summary>
+        /// Kütüphane uygulaması kullanıcı tipi.
+        /// </summary>
+        KUTUPHANE = 16,
+
+        /// <summary>
+        /// Ödenek gönderebilen kullanıcı tipi.
+        /// </summary>
+        ODENEKGONDERME = 17,
+
+        /// <summary>
+        /// Ödeme emri mif kesebilen/görüntüleyebilen kullanıcı tipi.
+        /// </summary>
+        ODEMEEMRI_MIF = 18,
+
+        /// <summary>
+        /// MUhasebe birimi yöneticisi kullanıcı tipi.
+        /// </summary>
+        MUHASEBEYONETICISI = 19,
+
+        /// <summary>
+        /// Bütçe hazırlık modülü kullanıcı tipi.
+        /// </summary>
+        BUTCEHAZIRLIK = 20,
+
+        /// <summary>
+        /// Bütçe uygulama modülü kullanıcı tipi.
+        /// </summary>
+        BUTCEUYGULAMA = 21,
+
+        /// <summary>
+        /// DPT Yatırım projeleri uygulaması kullanıcı tipi.
+        /// </summary>
+        YATIRIMPROJELERI = 22,
+
+        /// <summary>
+        /// Alacak takip uygulaması kullanıcı tipi.
+        /// </summary>
+        ALACAKTAKIP = 23,
+
+        /// <summary>
+        /// Ekonomik gösterge uygulaması kullanıcı tipi.
+        /// </summary>
+        EKONOMIKGOSTERGE = 24,
+
+        /// <summary>
+        /// Kesin hesap uygulaması kullanıcı tipi.
+        /// </summary>
+        KESINHESAP = 25,
+
+        /// <summary>
+        /// Stratejik plan modülü kullanıcı tipi.
+        /// </summary>
+        STRATEJIKPLAN = 26,
+
+        /// <summary>
+        /// Performans bütçe modülü kullanıcı tipi.
+        /// </summary>
+        PERFORMANSBUTCE = 27,
+
+        /// <summary>
+        /// Taşınır mal yöneticisi kullanıcı tipi.
+        /// </summary>
+        TASINIRMALYONETICISI = 28,
+
+        /// <summary>
+        /// Taşınır mal konsolide yetkilisi kullanıcı tipi.
+        /// </summary>
+        TASINIRMALKONSOLIDEYETKILISI = 29,
+
+        /// <summary>
+        /// Performans bütçe tedbir girişi kullanıcı tipi.
+        /// </summary>
+        PERFORMANSBUTCETEDBIR = 30,
+
+        /// <summary>
+        /// Makbuz kullanıcısı kullanıcı tipi.
+        /// </summary>
+        MAKBUZKULLANICISI = 31,
+
+        /// <summary>
+        /// Bütçe yöneticisi kullanıcı tipi.
+        /// </summary>
+        BUTCEYONETICISI = 32,
+
+        /// <summary>
+        /// Kimlik paylaşımı kullanıcı tipi.
+        /// </summary>
+        KIMLIKPAYLASIMI = 33,
+
+        /// <summary>
+        /// Kalite kullanıcısı kullanıcı tipi.
+        /// </summary>
+        KALITEKULLANICISI = 34,
+
+        /// <summary>
+        /// Proje yönetimi kullanıcı tipi.
+        /// </summary>
+        PROJEYONETIMI = 35,
+
+        /// <summary>
+        /// Evrak kullanıcısı kullanıcı tipi.
+        /// </summary>
+        EVRAK = 36,
+
+        /// <summary>
+        /// Taşınır Mal Kullanıcı Birimi kullanıcı tipi
+        /// </summary>
+        TASINIRKULLANICIBIRIM = 38,
+
+        /// <summary>
+        /// Tarım bakanlığı Destek Başvuru işlemleri Kullanıcısı (Yonetici)
+        /// </summary>
+        DESTEKBASVURUYONETICI = 39,
+
+        /// <summary>
+        /// Tarım bakanlığı Destek Başvuru işlemleri Kullanıcısı (Uzman)
+        /// </summary>
+        DESTEKBASVURUUZMAN = 40,
+
+        /// <summary>
+        /// Tarım bakanlığı Destek Başvuru işlemleri Kullanıcısı
+        /// </summary>
+        DESTEKBASVURUTASRA = 41,
+        //Aşağıda destek başvuru kullanıcı tipleri mevcut
+
+        /// <summary>
+        /// Tacikistan bütçe kurumlarındaki kullanıcılar
+        /// </summary>
+        TJKBUDGETORGUSER = 42,
+
+        /// <summary>
+        /// Tacikistan bütçe kurumlarındaki yöneticiler
+        /// </summary>
+        TJKBUDGETORGHEAD = 43,
+
+        /// <summary>
+        /// Tacikistan Maliye Bakanlığı Bütçe Uzmanları 
+        /// (1-2. seviye tavan girebilen, 3. seviye tavan gierbilen ve Bütçe Talepleri girebilen olmak üzere 3 grup olmalı)
+        /// </summary>
+        TJKMOFBUDGETCURATOR = 44,
+
+        /// <summary>
+        /// Tacikistan Maliye Bakanlığı Bütçe Yöneticileri
+        /// </summary>
+        TJKMOFBUDGETHEAD = 45,
+
+
+        /// <summary>
+        /// Sınav işlemleri için
+        /// ekleyen:ht
+        /// </summary>
+        SINAVISLEMLERI = 46,
+
+        /// <summary>
+        /// Tarım bakanlığı Görevlendirme Sistemi Kullanıcısı (Yonetici)
+        /// </summary>
+        GOREVLENDIRMEYONETICI = 47,
+
+        /// <summary>
+        /// Tarım bakanlığı Görevlendirme Kullanıcısı 
+        /// </summary>
+        GOREVLENDIRMEKULLANICI = 48,
+
+        /// <summary>
+        /// Taşınmaz işlemleri kullanıcısı
+        /// </summary>
+        GELIRYONETIMIKULLANICI = 49,
+
+        /// <summary>
+        /// Tarım bakanlığı Destek Başvuru sadece raporlama yapmak için
+        /// </summary>
+        DESTEKBASVURURAPORLAMA = 50,
+
+        /// <summary>
+        /// Tarım bakanlığı Destek Başvuru bakanlık merkez kullanıcısı
+        /// </summary>
+        DESTEKBASVURUMERKEZ = 51,
+
+        /// <summary>
+        /// Teminat mektubu ile ilgili
+        /// </summary>
+        TEMINATMEKTUBU = 52,
+
+        /// <summary>
+        /// Evrak belge yöneticisi ile ilgili
+        /// </summary>
+        EVRAKKURUMBELGEYONETICISI = 53,
+
+        /// <summary>
+        /// Evrak belge yöneticisi ile ilgili
+        /// </summary>
+        EVRAKBELGEYONETICISI = 54,
+
+        /// <summary>
+        /// Evrak Arşivci ile ilgili
+        /// </summary>
+        EVRAKARSIVCI = 55,
+
+        /// <summary>
+        /// Evrak Misafir ile ilgili
+        /// </summary>
+        EVRAKMISAFIR = 56,
+
+        /// <summary>
+        /// Teftiş Modülü
+        /// </summary>
+        TEFTISBASKAN = 57,
+
+        /// <summary>
+        /// Teftiş Modülü
+        /// </summary>
+        TEFTISBASKANYARDIMCISI = 58,
+
+        /// <summary>
+        /// Teftiş Modülü
+        /// </summary>
+        TEFTISMUFETTIS = 59,
+
+        /// <summary>
+        /// Teftiş Modülü
+        /// </summary>
+        TEFTISBURO = 60,
+
+        /// <summary>
+        /// Teftiş Modülü
+        /// </summary>
+        TEFTISKALITE = 61,
+
+        /// <summary>
+        /// Teftiş Modülü
+        /// </summary>
+        TEFTISYONETICI = 62,
+
+        ///
+        ///Kütüphane etiket basım yetkisi
+        ///
+        ETIKETYETKISI = 63,
+
+        ///
+        ///Harcama Süreç işlemleri yetkisi
+        ///
+        HARCAMAISLEMLERI = 64,
+
+        ///
+        ///Taşınmaz işlemleri yetkisi
+        ///
+        TASINMAZISLEMLERIYETKISI = 65,
+
+        ///
+        ///Taşınmaz işlemleri yetkisi
+        ///
+        TASINMAZYONETICIYETKISI = 66,
+
+        /// <summary>
+        /// Taşınır mal modülünde yıl devri giriş ve çıkışlara 
+        /// müdahale etme yetkisidir
+        /// </summary>
+        TASINIR_MAL_YIL_DEVRI_MUDAHALE_YETKISI = 70,
+-->

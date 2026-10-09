@@ -1,0 +1,27 @@
+@page
+@model EkliDosyalarFormModel
+@{
+    ViewData["Title"] = Metin.EkliDosya("Baslik");
+}
+@if (string.IsNullOrWhiteSpace(Model.Modul) || string.IsNullOrWhiteSpace(Model.Form))
+{
+    <div class="alert alert-warning" role="alert">@Metin.EkliDosya("HataliCagri")</div>
+    return;
+}
+<div id="dosyalar" data-modul="@Model.Modul" data-form="@Model.Form" data-birim-ad="@(Model.BirimAd ? "1" : "")"></div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/eklidosya.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/eklidosya.js" asp-append-version="true"></script>
+    <script>
+        (function () {
+            var el = document.getElementById('dosyalar');
+            // Birim adı istenen liste eski sayfadaki gibi yalnızca görüntüleme içindir.
+            var birimAd = el.getAttribute('data-birim-ad') === '1';
+            Sgb.ekliDosyalar(el, { modul: el.getAttribute('data-modul'), form: el.getAttribute('data-form'), birimAd: birimAd, yuklemeYok: birimAd, onEk: birimAd });
+        })();
+    </script>
+}

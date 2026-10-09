@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="HosGeldiniz" xml:space="preserve">
+    <value>Hoş geldiniz</value>
+  </data>
+  <data name="RenkTemasi" xml:space="preserve">
+    <value>Renk teması</value>
+  </data>
+  <data name="Tema" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="Dil" xml:space="preserve">
+    <value>Dil</value>
+  </data>
+  <data name="Surum" xml:space="preserve">
+    <value>Sürüm</value>
+  </data>
+  <data name="MenuYuklenemedi" xml:space="preserve">
+    <value>Menü yüklenemedi. Lütfen sayfayı yenileyiniz.</value>
+  </data>
+  <data name="MenuGruplari" xml:space="preserve">
+    <value>Menü grupları</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menü</value>
+  </data>
+  <data name="EkranAra" xml:space="preserve">
+    <value>Ekran ara</value>
+  </data>
+  <data name="SonucYok" xml:space="preserve">
+    <value>Eşleşen ekran yok.</value>
+  </data>
+  <data name="MenuSabitle" xml:space="preserve">
+    <value>Menüyü açık tut</value>
+  </data>
+  <data name="MenuGosterGizle" xml:space="preserve">
+    <value>Menüyü göster / gizle</value>
+  </data>
+  <data name="Modul" xml:space="preserve">
+    <value>Modül</value>
+  </data>
+  <data name="ModulSec" xml:space="preserve">
+    <value>Modül seç</value>
+  </data>
+  <data name="Giris_KullaniciKodu" xml:space="preserve">
+    <value>Kullanıcı kodu</value>
+  </data>
+  <data name="Giris_Parola" xml:space="preserve">
+    <value>Parola</value>
+  </data>
+  <data name="Giris_Hatirla" xml:space="preserve">
+    <value>Kullanıcı kodumu hatırla</value>
+  </data>
+  <data name="Giris_Giris" xml:space="preserve">
+    <value>Giriş</value>
+  </data>
+  <data name="Giris_BuyukHarf" xml:space="preserve">
+    <value>Büyük harf kilidi (Caps Lock) açık.</value>
+  </data>
+  <data name="Giris_DogrulamaKodu" xml:space="preserve">
+    <value>Doğrulama kodu</value>
+  </data>
+  <data name="Giris_Dogrula" xml:space="preserve">
+    <value>Doğrula ve giriş yap</value>
+  </data>
+  <data name="Giris_YeniKod" xml:space="preserve">
+    <value>Yeni kod gönder</value>
+  </data>
+  <data name="Giris_Geri" xml:space="preserve">
+    <value>Geri dön</value>
+  </data>
+  <data name="Giris_KodParolaGir" xml:space="preserve">
+    <value>Kullanıcı kodu ve parola giriniz.</value>
+  </data>
+  <data name="Giris_KodGir" xml:space="preserve">
+    <value>Doğrulama kodunu giriniz.</value>
+  </data>
+  <data name="Giris_SunucuYok" xml:space="preserve">
+    <value>Sunucuya ulaşılamadı. Lütfen tekrar deneyiniz.</value>
+  </data>
+  <data name="Giris_SayfaSuresi" xml:space="preserve">
+    <value>Sayfanın süresi dolmuş. Lütfen sayfayı yenileyip tekrar deneyiniz.</value>
+  </data>
+  <data name="Giris_CokDeneme" xml:space="preserve">
+    <value>Çok fazla hatalı giriş denemesi yapıldı. Lütfen {0} dakika sonra tekrar deneyiniz.</value>
+  </data>
+  <data name="Giris_Bakim" xml:space="preserve">
+    <value>Sistem bakıma alınmıştır. Lütfen daha sonra deneyiniz.</value>
+  </data>
+  <data name="Giris_Yapilamadi" xml:space="preserve">
+    <value>Giriş yapılamadı.</value>
+  </data>
+  <data name="Giris_KodGonderildi" xml:space="preserve">
+    <value>Doğrulama kodu {0} adresine gönderildi.</value>
+  </data>
+  <data name="Giris_YeniKodGonderildi" xml:space="preserve">
+    <value>Yeni doğrulama kodu {0} adresine gönderildi.</value>
+  </data>
+  <data name="Giris_KodAzOnce" xml:space="preserve">
+    <value>Yeni kod az önce gönderildi. Lütfen bir dakika sonra tekrar deneyiniz.</value>
+  </data>
+  <data name="Giris_KodSuresi" xml:space="preserve">
+    <value>Doğrulama kodunun süresi dolmuştur, lütfen yeni kod isteyiniz.</value>
+  </data>
+  <data name="Giris_KodHatali" xml:space="preserve">
+    <value>Doğrulama kodunu hatalı girdiniz, lütfen tekrar deneyiniz.</value>
+  </data>
+  <data name="Giris_KayitliEposta" xml:space="preserve">
+    <value>kayıtlı e-posta</value>
+  </data>
+  <data name="Giris_EpostaKonu" xml:space="preserve">
+    <value>{0} Doğrulama Postası</value>
+  </data>
+  <data name="Giris_EpostaMesaj" xml:space="preserve">
+    <value>{0} sistemine giriş kodunuz: &lt;b&gt;{1}&lt;/b&gt;&lt;br /&gt;Bu kod {2} saat süre ile geçerli olacaktır; bu süre içinde yapacağınız girişlerde aynı kodu kullanabilirsiniz.</value>
+  </data>
+</root>

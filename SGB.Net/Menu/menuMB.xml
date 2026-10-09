@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Nodes>
+
+  <Node ID="Menu3" Tip="Grup" Text="Kaynak Yönetimi" Modul="ORG,PER,TMM">
+
+
+    <Node ID="Menu3_5MB" Tip="UstMenu" Text="Taşınır Mal" Genislik="100" Yukseklik="500" Modul="TMM">
+      <Node Tip="Kolon">
+        <Node ID="Menu3_5_3GM" Tip="AltBolum" Text="Demirbaş">
+          <Node ID="Menu3_5_1" Text="Varlık İşlem Fişi" URL="../TasinirMal/TasinirislemFormAna.aspx" Yetki="1,2,YT|TasinirIslemTuru|1" ></Node>
+          <Node ID="Menu3_5_6MB" Text="Zimmet Fişi" URL="../TasinirMal/ZimmetFormAna.aspx?Tur=10" Yetki="1,2,YT|TasinirIslemTuru|1" ></Node>
+          <Node ID="Menu3_5_10" Text="Kayıttan Düşme Teklif ve Onay Tutanağı" URL="../TasinirMal/KayittanDusmeAna.aspx" Yetki="1,2,YT|TasinirIslemTuru|1" Gizli="1"></Node>
+          <Node ID="Menu3_5_8" Text="Dayanıklı Taşınırın Özellikleri" URL="../TasinirMal/SicilNoOzellik.aspx" Yetki="1,2,YT|TasinirIslemTuru|1" ></Node>
+          <Node ID="Menu3_5_13_3" Text="Dayanıklı Taşınırın Resimleri" URL="../TasinirMal/TanimDemirbasResim.aspx" Yetki="1,2,YT|TasinirIslemTuru|1" ></Node>
+          <Node ID="Menu3_5_27" Text="Ana Depodan Talep İşlemleri" URL="../TasinirMal/TalepKarsilamaAnaAnaDepo.aspx" Yetki="1,2,YT|TasinirIslemTuru|1" ></Node>
+          <Node ID="Menu3_5_28" Text="Ana Depodan Karşılama İşlemleri" URL="../TasinirMal/TalepKarsilamaAnaAnaDepo.aspx?karsilama=1" Yetki="1,2,YT|TasinirIslemTuru|1" ></Node>
+          <Node ID="Menu3_5_34" Text="Malzeme İlişkilendirme" URL="../TasinirMal/BisKayit.aspx" Yetki="1,2,YT|TasinirIslemTuru|1" ></Node>
+          <Node ID="Menu3_5_37" Text="Değer Düzeltme" URL="../TasinirMal/SicilNoDegerArtisAna.aspx" Yetki="1,2,YT|TasinirIslemTuru|1" ></Node>
+          <Node ID="Menu3_5_40" Text="Enflasyon Düzeltmesi" URL="../TasinirMal/EnflasyonDuzeltmesiMB.aspx" Yetki="1,2,YT|TasinirIslemTuru|1" ></Node>
+        </Node>
+
+        <Node ID="Menu3_5_4GM" Tip="AltBolum" Text="Gayrimenkul">
+          <Node ID="Menu3_5_1GM" Text="Gayrimenkul İşlem Fişi" URL="../TasinirMal/TasinirislemFormAna.aspx?gm=1" Yetki="1,2,YT|TasinirIslemTuru|2" ></Node>
+          <Node ID="Menu3_5_1GM_1" Text="Gayrimenkul İşlem Fişi (Toplu İşlem)" URL="../TasinirMal/TasinirislemFormAna.aspx?gm=1&amp;coklu=1" Yetki="1,2,YT|TasinirIslemTuru|2" ></Node>
+          <Node ID="Menu3_5_37GM" Text="İşlemler" URL="../TasinirMal/GMYZIslemler.aspx?tip=1" Yetki="1,2,YT|TasinirIslemTuru|2" ></Node>
+          <Node ID="Menu3_5_20_1" Text="Amortisman/Değerleme İşlemleri" URL="../TasinirMal/Amortisman.aspx?gm=1" Yetki="1,2,YT|AmortismanYapar|2" ></Node>
+          <Node ID="Menu3_5_35GM" Text="Gayrimenkul Raporlar" URL="../TasinirMal/Raporlar.aspx?gm=1" Yetki="1,2,YT|TasinirIslemTuru|2" ></Node>
+        </Node>
+
+        <Node ID="Menu3_5_5GM" Tip="AltBolum" Text="Yazılım">
+          <Node ID="Menu3_5_2GM" Text="Yazılım İşlem Fişi" URL="../TasinirMal/TasinirislemFormAna.aspx?gm=2" Yetki="1,2,YT|TasinirIslemTuru|3" ></Node>
+          <Node ID="Menu3_5_37GM" Text="İşlemler" URL="../TasinirMal/GMYZIslemler.aspx?tip=2" Yetki="1,2,YT|TasinirIslemTuru|3" ></Node>
+          <Node ID="Menu3_5_20_1" Text="Amortisman/Değerleme İşlemleri" URL="../TasinirMal/Amortisman.aspx?gm=2" Yetki="1,2,YT|AmortismanYapar|3" ></Node>
+          <Node ID="Menu3_5_36GM" Text="Yazılım Raporlar" URL="../TasinirMal/Raporlar.aspx?gm=2" Yetki="1,2,YT|TasinirIslemTuru|3" ></Node>
+        </Node>
+
+        <Node ID="Menu1_1" Tip="AltBolum"  Text="Organizasyon Yapı" Modul="ORG">
+          <Node ID="Menu1_1_1" Text="Organizasyon Şeması" URL="../Organizasyon/ORGAna.aspx?tur=1" Yetki="1,2" ></Node>
+          <Node ID="Menu6_5_2_2_15" Text="Personel Tanımlama" URL="../TasinirMal/TanimPersonelMB.aspx" Yetki="1,2,15"></Node>
+          <Node ID="Menu1_1_4" Text="Genel Görev Tanımlama" URL="../Organizasyon/GenelGorevAna.aspx" Yetki="1,2"></Node>
+        </Node>
+      </Node>
+      <Node Tip="Kolon">
+
+        <Node ID="Menu3_5_7GM" Tip="AltBolum"  Text="Onay İşlemleri">
+          <Node ID="Menu3_5_31" Text="B/A Onay ve Sorgu İşlemi" URL="../TasinirMal/TasinirIslemFormOnayAna.aspx" Yetki="1,2,15" ></Node>
+        </Node>
+
+        <Node ID="Menu3_5_6GM" Tip="AltBolum" Text="Amortisman ve RFIDİşlemleri">
+          <Node ID="Menu3_5_20_1" Text="Amortisman/Değerleme İşlemleri" URL="../TasinirMal/Amortisman.aspx" Yetki="1,2,YT|AmortismanYapar|1" ></Node>
+          <Node ID="Menu3_5_20_3" Text="Dayanıklı Taşınırlar Defteri" URL="../TasinirMal/AmortismanRaporlar.aspx?tur=DTD" Yetki="1,2,YT|TasinirIslemTuru|1" Gizli="1"></Node>
+          <Node ID="Menu3_5_20_4" Text="Amortisman Raporu" URL="../TasinirMal/AmortismanRaporlar.aspx?tur=AR" Yetki="1,2,YT|TasinirIslemTuru|1" Gizli="1"></Node>
+          <Node ID="Menu3_5_22_5" Text="RFID Eşleme İşlemleri" URL="../TasinirMal/TanimDemirbasRFIDEsleme.aspx" Yetki="1,2,YT|TasinirIslemTuru|1" ></Node>
+          <Node ID="Menu3_5_30" Text="RFID Barkod Yazdırma" URL="../TasinirMal/TanimDemirbasRFIDBarkodMB.aspx" Yetki="1,2,YT|TasinirIslemTuru|1" ></Node>
+        </Node>
+
+        <Node ID="Menu3_5_8GM" Tip="AltBolum" Text="Demirbaş Raporları" Modul="TMM">
+          <Node ID="Menu5_2_2_1" Text="Dayanıklı Taşınırın Tarihçesi" URL="../TasinirMal/SicilNoTarihce.aspx" Yetki="1,2,YT|TasinirIslemTuru|1" ></Node>
+          <Node ID="Menu3_5_35" Text="Raporlar" URL="../TasinirMal/Raporlar.aspx" Yetki="1,2,YT|TasinirIslemTuru|1" ></Node>
+          <Node ID="Menu5_2_3" Text="Taşınır Mal Defterleri" URL="../TasinirMal/Defterler2.aspx" Yetki="1,2,YT|TasinirIslemTuru|1" ></Node>
+          <Node ID="Menu5_2_4" Text="Taşınır Mal Cetvelleri" URL="../TasinirMal/Cetveller2.aspx" Yetki="1,2,YT|TasinirIslemTuru|1" ></Node>
+          <Node ID="Menu6_1_8" Text="Raporlar" URL="../KYM/Raporlar.aspx" Yetki="1,2" ></Node>
+        </Node>
+
+        <Node ID="Menu3_5_23" Tip="AltBolum" Text="Sayım İşlemleri">
+          <Node ID="Menu3_5_23_1" Text="Sayım İşlemi (Kişi)" URL="../TasinirMal/SayimKisi.aspx" Yetki="1,2,YT|TasinirIslemTuru|1" ></Node>
+          <Node ID="Menu3_5_23_2" Text="Sayım İşlemi (Ambar)" URL="../TasinirMal/SayimAmbar.aspx" Yetki="1,2,YT|TasinirIslemTuru|1" ></Node>
+          <Node ID="Menu3_5_9" Text="Sayım Tutanağı" URL="../TasinirMal/SayimAna.aspx" Yetki="1,2,YT|TasinirIslemTuru|1" ></Node>
+        </Node>
+        <Node ID="Menu3_5_24" Tip="AltBolum" Text="Diğer">
+          <Node ID="Menu3_5_20_8" Text="Genel Ayarlar" URL="../TasinirMal/TasinirAyarlarMB.aspx" Yetki="1,2" ></Node>
+          <Node ID="Menu3_5_20_7" Text="Muhasebe İşlemleri" URL="../TasinirMal/MuhasebeBilgisi.aspx" Yetki="1,2" ></Node>
+          <Node ID="Menu3_5_24_1" Text="Üzerimdeki Zimmetler" URL="../TasinirMal/ZimmetKisiListele.aspx" Yetki="" Gizli="1"></Node>
+          <Node ID="Menu6_1_5" Text="Sık Kullanılan İşlemler" URL="../KYM/MenuSikKullanilan.aspx" Yetki="" Gizli="1"></Node>
+          <Node ID="Menu6_1_7" Text="Duyuru Girişi" URL="../Duyuru/DuyuruGiris.aspx" Yetki="1,2" ></Node>
+          <Node ID="Menu6_2_2" Text="Yazılım Güncelle" URL="../YazilimGuncelle/YazilimYukle.aspx" Yetki="1"></Node>
+        </Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu6_5" Tip="UstMenu" Text="Tanımlar" Genislik="100" SayfadaGoster="1" Yetki="1,2,15"  >
+      <Node Tip="Kolon">
+        <Node ID="Menu6_5_2" Tip="AltBolum" Text="Kaynak Yönetimi" Modul="TMM">
+          <Node ID="Menu6_5_2_2" Tip="AltBolum" Text="Taşınır Mal Tanımları" Modul="TMM">
+
+            <Node ID="Menu3_5_32" Text="B/A Onayı Yetkilendirme" URL="../TasinirMal/TasinirIslemFormOnayYetki.aspx" Yetki="1,2" ></Node>
+            <Node ID="Menu6_5_9_21" Text="Yerleşke Oda Tanımı" URL="../KYM/TanimOda.aspx" Yetki="1,2,15" />
+            <Node ID="Menu6_6_5" Text="Firma Tanımlama" URL="../HarcamaSurecleri/TanimFirmaKisi.aspx" Yetki="1,2,15" ></Node>
+
+            <Node ID="Menu6_5_2_2_7" Text="Bölge Tanımlama" URL="../TasinirMal/TanimBolge.aspx" Yetki="1,2" />
+            <Node ID="Menu6_5_2_2_8" Text="İl Tanımlama" URL="../TasinirMal/TanimIl.aspx" Yetki="1,2" />
+            <Node ID="Menu6_5_2_2_9" Text="İlçe Tanımlama" URL="../TasinirMal/TanimIlce.aspx" Yetki="1,2" />
+            <Node ID="Menu6_5_2_2_10" Text="Muhasebe Birimi Tanımlama" URL="../TasinirMal/TanimMuhasebe.aspx" Yetki="1,2" />
+            <Node ID="Menu6_5_2_2_11" Text="Harcama Birimi Tanımlama" URL="../TasinirMal/TanimHarcamaBirimi.aspx" Yetki="1,2" />
+            <Node ID="Menu6_5_2_2_1" Text="Ambar Tanımlama" URL="../TasinirMal/TanimAmbar.aspx" Yetki="1,2" ></Node>
+
+            <Node ID="Menu6_5_2_2_2" Text="Hesap Plan Bilgileri" URL="../TasinirMal/TanimHesapPlani.aspx" Yetki="1,2" ></Node>
+            <Node ID="Menu6_5_2_2_3" Text="İşlem Tipi Tanımlama" URL="../TasinirMal/TanimIslemTip.aspx" Yetki="1,2" ></Node>
+            <Node ID="Menu6_6_6" Text="Ölçü Birimleri Tanımlama" URL="../TasinirMal/TanimOlcuBirim.aspx" Yetki="1,2" Modul="TMM"></Node>
+
+            <Node ID="Menu6_5_2_2_16" Text="Yetkili Bilgileri Tanımlama" URL="../TasinirMal/TanimImza.aspx" Yetki="1,2" ></Node>
+            <Node ID="Menu6_5_2_2_4" Text="Marka Tanımlama" URL="../TasinirMal/TanimMarka.aspx" Yetki="1,2,15" ></Node>
+            <Node ID="Menu6_5_2_2_5" Text="Model Tanımlama" URL="../TasinirMal/TanimModel.aspx" Yetki="1,2,15" ></Node>
+
+            <Node ID="Menu6_5_8_2" Text="Unvan Bilgileri" URL="../TasinirMal/TanimUnvanMB.aspx" Yetki="1,2,15" />
+            <Node ID="Menu3_5_33" Text="RFID Etiket Türü" URL="../TasinirMal/TanimRFIDEtiketTuru.aspx" Yetki="1,2,15" ></Node>
+
+            <Node ID="Menu6_5_2_2_20" Text="Amortisman Sınırı" URL="../TasinirMal/TanimAmortismanSinir.aspx" Yetki="1,2" ></Node>
+            <Node ID="Menu6_5_2_2_21" Text="Muhasebe İşlem Tipi" URL="../TasinirMal/TanimMuhasebeIslemTipi.aspx" Yetki="1,2" ></Node>
+          </Node>
+        </Node>
+      </Node>
+    </Node>
+
+    <Node ID="Menu5_4" Tip="UstMenu" Text="Sistem Raporları" Genislik="120" Yukseklik="100" Gizli="1" >
+      <Node Tip="Kolon">
+        <Node ID="Menu5_4_1" Text="Sistem Durum Dosya Listesi" URL="../KYM/HataDosya.aspx" Yetki="1" ></Node>
+        <Node ID="Menu5_4_2" Text="Sistemi Kullanan Kişilerin Listesi" URL="../KYM/CalisanKullaniciListe.aspx" Yetki="1" ></Node>
+        <Node ID="Menu5_4_3" Text="Sistem Kullanım Grafiği" URL="../KYM/CalisanKullaniciGrafik.aspx" Yetki="1" ></Node>
+        <Node ID="Menu5_4_4" Text="Sürüm Bilgisi" URL="../OrtakSayfa/SurumBilgi.aspx" Yetki="1" ></Node>
+      </Node>
+    </Node>
+  </Node>
+</Nodes>

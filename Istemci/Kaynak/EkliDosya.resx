@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+    <data name="Baslik" xml:space="preserve">
+    <value>Ekli Dosyalar</value>
+  </data>
+  <data name="Aciklama" xml:space="preserve">
+    <value>Açıklama</value>
+  </data>
+  <data name="Dosya" xml:space="preserve">
+    <value>Dosya</value>
+  </data>
+  <data name="Yukle" xml:space="preserve">
+    <value>Yükle</value>
+  </data>
+  <data name="DosyaAd" xml:space="preserve">
+    <value>Dosya Adı</value>
+  </data>
+  <data name="Tur" xml:space="preserve">
+    <value>Tür</value>
+  </data>
+  <data name="Boy" xml:space="preserve">
+    <value>Boyut</value>
+  </data>
+  <data name="Tarih" xml:space="preserve">
+    <value>Tarih</value>
+  </data>
+  <data name="Yukleyen" xml:space="preserve">
+    <value>Yükleyen</value>
+  </data>
+  <data name="Birim" xml:space="preserve">
+    <value>Birim</value>
+  </data>
+  <data name="Indir" xml:space="preserve">
+    <value>Dosyayı indir</value>
+  </data>
+  <data name="Sil" xml:space="preserve">
+    <value>Dosyayı sil</value>
+  </data>
+  <data name="Baglanti" xml:space="preserve">
+    <value>Bağlantı adresini kopyala</value>
+  </data>
+  <data name="Kilitle" xml:space="preserve">
+    <value>Kilitle (onayla)</value>
+  </data>
+  <data name="KilitAc" xml:space="preserve">
+    <value>Onayı kaldır</value>
+  </data>
+  <data name="Kilitli" xml:space="preserve">
+    <value>Kilitli</value>
+  </data>
+  <data name="SilOnay" xml:space="preserve">
+    <value>Dosya silinecek. Onaylıyor musunuz?</value>
+  </data>
+  <data name="YukleOnay" xml:space="preserve">
+    <value>Dosya yüklensin mi?</value>
+  </data>
+  <data name="DosyaSec" xml:space="preserve">
+    <value>Yüklenecek dosyayı seçiniz.</value>
+  </data>
+  <data name="Yukleniyor" xml:space="preserve">
+    <value>Yükleniyor...</value>
+  </data>
+  <data name="Yuklendi" xml:space="preserve">
+    <value>Dosya yüklendi.</value>
+  </data>
+  <data name="Silindi" xml:space="preserve">
+    <value>Dosya silindi.</value>
+  </data>
+  <data name="Kopyalandi" xml:space="preserve">
+    <value>Bağlantı adresi panoya kopyalandı.</value>
+  </data>
+  <data name="OnceKaydet" xml:space="preserve">
+    <value>Dosya eklemek için önce kaydı kaydediniz.</value>
+  </data>
+  <data name="CokBuyuk" xml:space="preserve">
+    <value>Dosya en fazla {0} MB olabilir.</value>
+  </data>
+  <data name="Bulunamadi" xml:space="preserve">
+    <value>Dosya bulunamadı ya da görme yetkiniz yok.</value>
+  </data>
+  <data name="IslemHata" xml:space="preserve">
+    <value>İşlem yapılamadı. Lütfen tekrar deneyiniz.</value>
+  </data>
+  <data name="Islem" xml:space="preserve">
+    <value>İşlem</value>
+  </data>
+  <data name="HataliCagri" xml:space="preserve">
+    <value>Hatalı çağrı: modül ve form bilgisi gerekli.</value>
+  </data>
+</root>

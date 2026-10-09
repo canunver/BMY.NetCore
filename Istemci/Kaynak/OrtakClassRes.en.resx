@@ -1,0 +1,2607 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ORT002" xml:space="preserve">
+    <value>Process , resulted in the error listed below.Please retry process after correcting error.</value>
+  </data>
+  <data name="ORT003" xml:space="preserve">
+    <value>An database error occured.Please contact system administrator.</value>
+  </data>
+  <data name="ORT004" xml:space="preserve">
+    <value>You don't have permission for this page.</value>
+  </data>
+  <data name="ORT005" xml:space="preserve">
+    <value>Value {0} did not found in Web.config file</value>
+  </data>
+  <data name="ORT006" xml:space="preserve">
+    <value>Term</value>
+  </data>
+  <data name="ORTAY01" xml:space="preserve">
+    <value>January</value>
+  </data>
+  <data name="ORTAY02" xml:space="preserve">
+    <value>February</value>
+  </data>
+  <data name="ORTAY03" xml:space="preserve">
+    <value>March</value>
+  </data>
+  <data name="ORTAY04" xml:space="preserve">
+    <value>April</value>
+  </data>
+  <data name="ORTAY05" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="ORTAY06" xml:space="preserve">
+    <value>June</value>
+  </data>
+  <data name="ORTAY07" xml:space="preserve">
+    <value>July</value>
+  </data>
+  <data name="ORTAY08" xml:space="preserve">
+    <value>August</value>
+  </data>
+  <data name="ORTAY09" xml:space="preserve">
+    <value>September</value>
+  </data>
+  <data name="ORTAY10" xml:space="preserve">
+    <value>October</value>
+  </data>
+  <data name="ORTAY11" xml:space="preserve">
+    <value>November</value>
+  </data>
+  <data name="ORTAY12" xml:space="preserve">
+    <value>December</value>
+  </data>
+  <data name="ORTGUN07" xml:space="preserve">
+    <value>Sunday</value>
+  </data>
+  <data name="ORTGUN01" xml:space="preserve">
+    <value>Monday</value>
+  </data>
+  <data name="ORTGUN02" xml:space="preserve">
+    <value>Tuesday</value>
+  </data>
+  <data name="ORTGUN03" xml:space="preserve">
+    <value>Wednsday</value>
+  </data>
+  <data name="ORTGUN04" xml:space="preserve">
+    <value>Thursday</value>
+  </data>
+  <data name="ORTGUN05" xml:space="preserve">
+    <value>Friday</value>
+  </data>
+  <data name="ORTGUN06" xml:space="preserve">
+    <value>Saturday</value>
+  </data>
+  <data name="REP_0_1" xml:space="preserve">
+    <value>Form  2: Budget Proposal By Functional Code</value>
+  </data>
+  <data name="REP_0_10" xml:space="preserve">
+    <value>Form 13: Revenue Budget Fiche</value>
+  </data>
+  <data name="REP_0_11" xml:space="preserve">
+    <value>Form 14: Multi Year Budget</value>
+  </data>
+  <data name="REP_0_12" xml:space="preserve">
+    <value>Form 15: B Table</value>
+  </data>
+  <data name="REP_0_13" xml:space="preserve">
+    <value>Form 16: F Table</value>
+  </data>
+  <data name="REP_0_14" xml:space="preserve">
+    <value>Form 22: Cleaning Services Information Form</value>
+  </data>
+  <data name="REP_0_15" xml:space="preserve">
+    <value>Form 25: Appropriations out of Ceiling</value>
+  </data>
+  <data name="REP_0_16" xml:space="preserve">
+    <value>Form  6: Services Planned First Time</value>
+  </data>
+  <data name="REP_0_17" xml:space="preserve">
+    <value>Form  7: Services Planned to Close</value>
+  </data>
+  <data name="REP_0_18" xml:space="preserve">
+    <value>Form  1: Service Justification</value>
+  </data>
+  <data name="REP_0_19" xml:space="preserve">
+    <value>Form 11: Physical Assets Information Table</value>
+  </data>
+  <data name="REP_0_2" xml:space="preserve">
+    <value>Form  3: Budget Proposal By Economical Code</value>
+  </data>
+  <data name="REP_0_20" xml:space="preserve">
+    <value>Form 17: International Organizations Information Form</value>
+  </data>
+  <data name="REP_0_21" xml:space="preserve">
+    <value>Form 18: Purchased Vehicles</value>
+  </data>
+  <data name="REP_0_22" xml:space="preserve">
+    <value>Form 21: Private Security Services Information Form</value>
+  </data>
+  <data name="REP_0_23" xml:space="preserve">
+    <value>Form 23: Revolving Funds Revenue-Expenditure Table</value>
+  </data>
+  <data name="REP_0_24" xml:space="preserve">
+    <value>Form 24: Fund Revenue-Expenditure Table</value>
+  </data>
+  <data name="REP_0_3" xml:space="preserve">
+    <value>Form  4: Budget Proposal By Economical Code (Two Level)</value>
+  </data>
+  <data name="REP_0_4" xml:space="preserve">
+    <value>Form  5: Budget Proposal By Functional and Economical Code</value>
+  </data>
+  <data name="REP_0_5" xml:space="preserve">
+    <value>Form  8: Budget Appropriation Hierarchical List (4 Level)</value>
+  </data>
+  <data name="REP_0_6" xml:space="preserve">
+    <value>Form  9: Budget Appropriation Hierarchical List (2 Level)</value>
+  </data>
+  <data name="REP_0_7" xml:space="preserve">
+    <value>Form 10: Service Cost Detection Form</value>
+  </data>
+  <data name="REP_0_8" xml:space="preserve">
+    <value>Form 12: Current Expenditure Summary Table</value>
+  </data>
+  <data name="REP_0_9" xml:space="preserve">
+    <value>Form 13: Expenditure  Budget Fiche</value>
+  </data>
+  <data name="REP_2000_1" xml:space="preserve">
+    <value>Strategic Goal Raporu</value>
+  </data>
+  <data name="REP_2000_10" xml:space="preserve">
+    <value>Strategic Goal - Budget Distribition Report (Economical)</value>
+  </data>
+  <data name="REP_2000_11" xml:space="preserve">
+    <value>Strategic Goal - Budget Distribition Report (Functional)</value>
+  </data>
+  <data name="REP_2000_12" xml:space="preserve">
+    <value>Performance Goal - Budget Distribition Report</value>
+  </data>
+  <data name="REP_2000_13" xml:space="preserve">
+    <value>Strategic Plan Summary Report</value>
+  </data>
+  <data name="REP_2000_2" xml:space="preserve">
+    <value>Strategic Objective Report</value>
+  </data>
+  <data name="REP_2000_3" xml:space="preserve">
+    <value>Appropration State Report (2 Level)</value>
+  </data>
+  <data name="REP_2000_4" xml:space="preserve">
+    <value>Appropration State Report (4 Level)</value>
+  </data>
+  <data name="REP_2000_5" xml:space="preserve">
+    <value>Activity - Budget Distribition Report</value>
+  </data>
+  <data name="REP_2000_6" xml:space="preserve">
+    <value>Performance Goal Dağılım Raporu</value>
+  </data>
+  <data name="REP_2000_7" xml:space="preserve">
+    <value>Performance Budget Summary Report</value>
+  </data>
+  <data name="REP_2000_8" xml:space="preserve">
+    <value>Strategic Objective - Budget Distribition Report (Economical)</value>
+  </data>
+  <data name="REP_2000_9" xml:space="preserve">
+    <value>Strategic Objective - Budget Distribition Report (Functional)</value>
+  </data>
+  <data name="REP_2002_1" xml:space="preserve">
+    <value>Table 1 - Invesment Proposal Summary Table</value>
+  </data>
+  <data name="REP_2002_10" xml:space="preserve">
+    <value>Table 12/13 - Planned Project Table (YİD)</value>
+  </data>
+  <data name="REP_2002_11" xml:space="preserve">
+    <value>Table 12/13 - Planned Project Table (Yİ)</value>
+  </data>
+  <data name="REP_2002_12" xml:space="preserve">
+    <value>Table 12/13 - Planned Project Table (NORMAL)</value>
+  </data>
+  <data name="REP_2002_2" xml:space="preserve">
+    <value>Table 2 - Table of Invesment Projects</value>
+  </data>
+  <data name="REP_2002_3" xml:space="preserve">
+    <value>Table 2 - Table of Invesment Projects (with region code)</value>
+  </data>
+  <data name="REP_2002_4" xml:space="preserve">
+    <value>Table 3 - Invesment Budget and Expenditure Table</value>
+  </data>
+  <data name="REP_2002_5" xml:space="preserve">
+    <value>Table 4 - Table of Invesment Projects by Project Type</value>
+  </data>
+  <data name="REP_2002_6" xml:space="preserve">
+    <value>Table 5 - Project Monitoring Table</value>
+  </data>
+  <data name="REP_2002_7" xml:space="preserve">
+    <value>Table 6 - Currently Active International Loan Table</value>
+  </data>
+  <data name="REP_2002_8" xml:space="preserve">
+    <value>Table 7 - Invesment Projects Which Requires International Loan Table</value>
+  </data>
+  <data name="REP_2002_9" xml:space="preserve">
+    <value>Table 10 - Confiscation Expenditure by Project</value>
+  </data>
+  <data name="REP_2003_1" xml:space="preserve">
+    <value>Invesment Proposals Distribution Table</value>
+  </data>
+  <data name="REP_2003_10" xml:space="preserve">
+    <value>DPT Vize Cetveli</value>
+  </data>
+  <data name="REP_2003_2" xml:space="preserve">
+    <value>Negotiations with Director Table - 1</value>
+  </data>
+  <data name="REP_2003_3" xml:space="preserve">
+    <value>Negotiations with Director Table - 1</value>
+  </data>
+  <data name="REP_2003_4" xml:space="preserve">
+    <value>Characteristic Distribution Table</value>
+  </data>
+  <data name="REP_2003_5" xml:space="preserve">
+    <value>Consolidated Investment Table</value>
+  </data>
+  <data name="REP_2003_6" xml:space="preserve">
+    <value>Project Monitoring  Table</value>
+  </data>
+  <data name="REP_2003_7" xml:space="preserve">
+    <value>Budget Changes Between Projects</value>
+  </data>
+  <data name="REP_2003_8" xml:space="preserve">
+    <value>Project Budget Line Items</value>
+  </data>
+  <data name="REP_2003_9" xml:space="preserve">
+    <value>List of Invesment Projects</value>
+  </data>
+  <data name="REP_3000_1" xml:space="preserve">
+    <value>List of Debits</value>
+  </data>
+  <data name="REP_3001_1" xml:space="preserve">
+    <value>Document Count</value>
+  </data>
+  <data name="REP_3001_2" xml:space="preserve">
+    <value>Document Count by Subject</value>
+  </data>
+  <data name="REP_3001_3" xml:space="preserve">
+    <value>Document Count by Incoming/Outgoing Location</value>
+  </data>
+  <data name="REP_3002_1" xml:space="preserve">
+    <value>Document Count by </value>
+  </data>
+  <data name="REP_3003_1" xml:space="preserve">
+    <value>Document Standby Time</value>
+  </data>
+  <data name="REP_4000_1" xml:space="preserve">
+    <value>Education Report</value>
+  </data>
+  <data name="REP_4000_2" xml:space="preserve">
+    <value>Personal Report</value>
+  </data>
+  <data name="REP_4000_3" xml:space="preserve">
+    <value>Activity Report</value>
+  </data>
+  <data name="REP_5000_1" xml:space="preserve">
+    <value>Appropriation List(Budget Line Based)</value>
+  </data>
+  <data name="REP_5000_10" xml:space="preserve">
+    <value>Revenue Table</value>
+  </data>
+  <data name="REP_5000_11" xml:space="preserve">
+    <value>Expense Table by Units</value>
+  </data>
+  <data name="REP_5000_2" xml:space="preserve">
+    <value>Appropriation List(Budget Line Based,Plain)</value>
+  </data>
+  <data name="REP_5000_3" xml:space="preserve">
+    <value>Appropriation List(Budget Line Based) - 2</value>
+  </data>
+  <data name="REP_5000_4" xml:space="preserve">
+    <value>Expense Table(Accounting Based)</value>
+  </data>
+  <data name="REP_5000_5" xml:space="preserve">
+    <value>Expense Table(Unit Based,Sub-Activity)</value>
+  </data>
+  <data name="REP_5000_6" xml:space="preserve">
+    <value>%10 List (Budget Line Based,Level 4)</value>
+  </data>
+  <data name="REP_5000_7" xml:space="preserve">
+    <value>%10 List (Budget Line Based,Level 2)</value>
+  </data>
+  <data name="REP_5000_8" xml:space="preserve">
+    <value>Budget Expense List(Functional - Economic Breakdown)</value>
+  </data>
+  <data name="REP_5000_9" xml:space="preserve">
+    <value>Over Appropriation Expenses(Based on Units)</value>
+  </data>
+  <data name="REP_5010_1" xml:space="preserve">
+    <value>Appropriation List(Budget Line Based)</value>
+  </data>
+  <data name="REP_5010_2" xml:space="preserve">
+    <value>Appropriation List(Budget Line Based) - 2</value>
+  </data>
+  <data name="REP_5010_3" xml:space="preserve">
+    <value>%10 List (Budget Line Based)</value>
+  </data>
+  <data name="REP_5010_4" xml:space="preserve">
+    <value>Budget Expense List(Functional - Economic Breakdown)</value>
+  </data>
+  <data name="REP_5010_5" xml:space="preserve">
+    <value>Revenue Table</value>
+  </data>
+  <data name="REP_6010_1" xml:space="preserve">
+    <value>Form 3 : Account Expense Table(Final)</value>
+  </data>
+  <data name="REP_6010_10" xml:space="preserve">
+    <value>Form 3/9 : Budget Expense Table (Comperative,Final)</value>
+  </data>
+  <data name="REP_6010_11" xml:space="preserve">
+    <value>Form 4/2 : Table of Conditional Donation and Special Revenue</value>
+  </data>
+  <data name="REP_6010_2" xml:space="preserve">
+    <value>Form 3/1 : Budget Expenses Summary(Financial Classification)</value>
+  </data>
+  <data name="REP_6010_3" xml:space="preserve">
+    <value>Form 3/2 : Budget Expenses Summary(Economic Classification)</value>
+  </data>
+  <data name="REP_6010_4" xml:space="preserve">
+    <value>Form 3/3 : Budget Expenses Summary(Instutional Classification)</value>
+  </data>
+  <data name="REP_6010_5" xml:space="preserve">
+    <value>Form 3/4 : Budget Expenses Summary( Functional Classification &amp; Economic)</value>
+  </data>
+  <data name="REP_6010_6" xml:space="preserve">
+    <value>Form 3/5 : Appropriation Table(Transferred From Last Year)</value>
+  </data>
+  <data name="REP_6010_7" xml:space="preserve">
+    <value>Form 3/5 : Appropriation List(Transferred To Next Year)</value>
+  </data>
+  <data name="REP_6010_8" xml:space="preserve">
+    <value>Form 3/7 : Budget Expenses Summary(Functional Classification in Financial Year)</value>
+  </data>
+  <data name="REP_6010_9" xml:space="preserve">
+    <value>Form 3/4 : Budget Expenses Summary( Functional Classification &amp; Economic,Over Appropriation)</value>
+  </data>
+  <data name="REP_6020_1" xml:space="preserve">
+    <value>Consolidated Expenditure (Baseline Economic Classification)</value>
+  </data>
+  <data name="REP_6020_2" xml:space="preserve">
+    <value>Consolidated Expenditure (Detailed,Baseline Economic Classification)</value>
+  </data>
+  <data name="REP_6020_3" xml:space="preserve">
+    <value>Consolidated Expenditure (Detailed,Baseline Functional Classification)</value>
+  </data>
+  <data name="REP_6020_4" xml:space="preserve">
+    <value>Over Appropriation Report</value>
+  </data>
+  <data name="REP_6020_5" xml:space="preserve">
+    <value>Budget Line Items(To Be Canceled) Report</value>
+  </data>
+  <data name="REP_6020_6" xml:space="preserve">
+    <value>Budget Line Items(To Be Passed On) Report</value>
+  </data>
+  <data name="REP_6020_7" xml:space="preserve">
+    <value>Budget Line Items(Transfer From Backup Appropriation) Report</value>
+  </data>
+  <data name="REP_6020_8" xml:space="preserve">
+    <value>Table of LC,Commitment and Foreign Project Loans</value>
+  </data>
+  <data name="REP_6020_9" xml:space="preserve">
+    <value>Transfers From Special Expenditure Appropriation</value>
+  </data>
+  <data name="REP_6030_1" xml:space="preserve">
+    <value>Form 4/1 : Account Revenue Table/Summary(Final)</value>
+  </data>
+  <data name="REP_6030_2" xml:space="preserve">
+    <value>Form 2 : Temproary Registry Control Table(Final)</value>
+  </data>
+  <data name="REP_6030_3" xml:space="preserve">
+    <value>Form 2 : Registry Control Table(Final)</value>
+  </data>
+  <data name="REP_6030_4" xml:space="preserve">
+    <value>Form 4/3: Budget Expense Table (Comperative,Final)</value>
+  </data>
+  <data name="REP_A_0_ButceYil" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="REP_A_0_CiktiYeri" xml:space="preserve">
+    <value>Type of Output</value>
+  </data>
+  <data name="REP_A_0_KurKod" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="REP_A_0_Senaryo" xml:space="preserve">
+    <value>Scenariao</value>
+  </data>
+  <data name="REP_A_2000_ButceYil" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="REP_A_2000_CiktiYeri" xml:space="preserve">
+    <value>Type of Output</value>
+  </data>
+  <data name="REP_A_2000_KurKod" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="REP_A_2000_Senaryo" xml:space="preserve">
+    <value>Scenariao</value>
+  </data>
+  <data name="REP_A_2002_ButceYil" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="REP_A_2002_CiktiYeri" xml:space="preserve">
+    <value>Type of Output</value>
+  </data>
+  <data name="REP_A_2002_KurKod" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="REP_A_2002_Senaryo" xml:space="preserve">
+    <value>Scenariao</value>
+  </data>
+  <data name="REP_A_2003_ButceYil" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="REP_A_2003_DonemBYil" xml:space="preserve">
+    <value>Strategic Period Start Year</value>
+  </data>
+  <data name="REP_A_2003_KurKod" xml:space="preserve">
+    <value>Institution</value>
+  </data>
+  <data name="REP_A_2003_Senaryo" xml:space="preserve">
+    <value>Scenariao</value>
+  </data>
+  <data name="REP_A_2003_StrAmacKod" xml:space="preserve">
+    <value>Strategic Goal</value>
+  </data>
+  <data name="REP_A_2003_StrHedefKod" xml:space="preserve">
+    <value>Strategic Objective</value>
+  </data>
+  <data name="REP_A_3000_HavaleBirim" xml:space="preserve">
+    <value>Transferred To </value>
+  </data>
+  <data name="REP_A_3000_HavaleTarihi1" xml:space="preserve">
+    <value>Commitment Date &gt;=</value>
+  </data>
+  <data name="REP_A_3000_HavaleTarihi2" xml:space="preserve">
+    <value>Commitment Date &lt;=</value>
+  </data>
+  <data name="REP_A_3000_SayfaAyirac" xml:space="preserve">
+    <value>Pages(Unit Based)</value>
+  </data>
+  <data name="REP_A_3000_Yil" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="REP_A_3001_EvrakTip" xml:space="preserve">
+    <value>Document Type</value>
+  </data>
+  <data name="REP_A_3001_GeldigiYer" xml:space="preserve">
+    <value>Incoming/Outgoing Location</value>
+  </data>
+  <data name="REP_A_3001_Konusu" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="REP_A_3001_Tarih1" xml:space="preserve">
+    <value>Date &gt;=</value>
+  </data>
+  <data name="REP_A_3001_Tarih2" xml:space="preserve">
+    <value>Date &lt;=</value>
+  </data>
+  <data name="REP_A_3001_Yil" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="REP_A_3002_GelisSekli" xml:space="preserve">
+    <value>Arrival Method</value>
+  </data>
+  <data name="REP_A_3002_Tarih1" xml:space="preserve">
+    <value>Date &gt;=</value>
+  </data>
+  <data name="REP_A_3002_Tarih2" xml:space="preserve">
+    <value>Date &lt;=</value>
+  </data>
+  <data name="REP_A_3002_Yil" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="REP_A_3003_EvrakTipi" xml:space="preserve">
+    <value>Document Type</value>
+  </data>
+  <data name="REP_A_3003_KisiAdi" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="REP_A_3003_Tarih1" xml:space="preserve">
+    <value>Date of Transaction &gt;=</value>
+  </data>
+  <data name="REP_A_3003_Tarih2" xml:space="preserve">
+    <value>Date of Transaction &lt;=</value>
+  </data>
+  <data name="REP_A_3003_TCNo" xml:space="preserve">
+    <value>Identification Number</value>
+  </data>
+  <data name="REP_A_3003_Yil" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="REP_A_4000_Adi" xml:space="preserve">
+    <value>Name of Education</value>
+  </data>
+  <data name="REP_A_4000_Donem" xml:space="preserve">
+    <value>Term</value>
+  </data>
+  <data name="REP_A_4000_Kurulus" xml:space="preserve">
+    <value>Course Provider</value>
+  </data>
+  <data name="REP_A_4000_Yer" xml:space="preserve">
+    <value>Course Location</value>
+  </data>
+  <data name="REP_A_4000_Yil" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="REP_A_5000_AyNo" xml:space="preserve">
+    <value>Monthly Expenditure</value>
+  </data>
+  <data name="REP_A_5000_Birim" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="REP_A_5000_ButceYil" xml:space="preserve">
+    <value>Budget Year</value>
+  </data>
+  <data name="REP_A_5000_CiktiYeri" xml:space="preserve">
+    <value>Output Location</value>
+  </data>
+  <data name="REP_A_5000_Eko" xml:space="preserve">
+    <value>Economical Code</value>
+  </data>
+  <data name="REP_A_5000_EkoKirilim" xml:space="preserve">
+    <value>Economic Break Down</value>
+  </data>
+  <data name="REP_A_5000_Fin" xml:space="preserve">
+    <value>Financial Code</value>
+  </data>
+  <data name="REP_A_5000_Fon" xml:space="preserve">
+    <value>Functional Code</value>
+  </data>
+  <data name="REP_A_5000_Kur" xml:space="preserve">
+    <value>Institutional Code</value>
+  </data>
+  <data name="REP_A_5000_Muhasebe" xml:space="preserve">
+    <value>Accounting</value>
+  </data>
+  <data name="REP_A_5010_AyNo" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="REP_A_5010_Birim" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="REP_A_5010_ButceYil" xml:space="preserve">
+    <value>Budget Year</value>
+  </data>
+  <data name="REP_A_5010_CiktiYeri" xml:space="preserve">
+    <value>Output Location</value>
+  </data>
+  <data name="REP_A_5010_Eko" xml:space="preserve">
+    <value>Economical Code</value>
+  </data>
+  <data name="REP_A_5010_EkoKirilim" xml:space="preserve">
+    <value>Economic Break Down</value>
+  </data>
+  <data name="REP_A_5010_Fin" xml:space="preserve">
+    <value>Financial Code</value>
+  </data>
+  <data name="REP_A_5010_Fon" xml:space="preserve">
+    <value>Functional Code</value>
+  </data>
+  <data name="REP_A_5010_Kur" xml:space="preserve">
+    <value>Institutional Code</value>
+  </data>
+  <data name="REP_A_5010_Muhasebe" xml:space="preserve">
+    <value>Accounting</value>
+  </data>
+  <data name="REP_A_6010_AyNo" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="REP_A_6010_ButceYil" xml:space="preserve">
+    <value>Budget Year</value>
+  </data>
+  <data name="REP_A_6010_CiktiYeri" xml:space="preserve">
+    <value>Output Location</value>
+  </data>
+  <data name="REP_A_6010_Eko" xml:space="preserve">
+    <value>Economical Code</value>
+  </data>
+  <data name="REP_A_6010_Fin" xml:space="preserve">
+    <value>Financial Code</value>
+  </data>
+  <data name="REP_A_6010_Fon" xml:space="preserve">
+    <value>Functional Code</value>
+  </data>
+  <data name="REP_A_6010_Kur" xml:space="preserve">
+    <value>Institutional Code</value>
+  </data>
+  <data name="REP_A_6020_AyNo" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="REP_A_6020_ButceYil" xml:space="preserve">
+    <value>Budget Year</value>
+  </data>
+  <data name="REP_A_6020_CiktiYeri" xml:space="preserve">
+    <value>Output Location</value>
+  </data>
+  <data name="REP_A_6020_Eko" xml:space="preserve">
+    <value>Economical Code</value>
+  </data>
+  <data name="REP_A_6020_Fin" xml:space="preserve">
+    <value>Financial Code</value>
+  </data>
+  <data name="REP_A_6020_Fon" xml:space="preserve">
+    <value>Functional Code</value>
+  </data>
+  <data name="REP_A_6020_Kur" xml:space="preserve">
+    <value>Institutional Code</value>
+  </data>
+  <data name="REP_A_6030_AyNo" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="REP_A_6030_ButceYil" xml:space="preserve">
+    <value>Budget Year</value>
+  </data>
+  <data name="REP_A_6030_CiktiYeri" xml:space="preserve">
+    <value>Output Location</value>
+  </data>
+  <data name="REP_A_6030_Eko" xml:space="preserve">
+    <value>Economical Code</value>
+  </data>
+  <data name="REP_A_6030_Kur" xml:space="preserve">
+    <value>Institutional Code</value>
+  </data>
+  <data name="REP_A_7500_ButceYil" xml:space="preserve">
+    <value>Budget Year</value>
+  </data>
+  <data name="REP_A_7500_KurKod" xml:space="preserve">
+    <value>Institutional Code</value>
+  </data>
+  <data name="REP_B_0_1" xml:space="preserve">
+    <value>Budget Reports</value>
+  </data>
+  <data name="REP_B_2000_1" xml:space="preserve">
+    <value>Budget Reports</value>
+  </data>
+  <data name="REP_B_2002_1" xml:space="preserve">
+    <value>Invesment Reports Of DPT</value>
+  </data>
+  <data name="REP_B_2003_1" xml:space="preserve">
+    <value>Invesment Special Reports</value>
+  </data>
+  <data name="REP_G_0" xml:space="preserve">
+    <value>Budget Preparation Reports</value>
+  </data>
+  <data name="REP_G_2000" xml:space="preserve">
+    <value>Performance Budget Reports</value>
+  </data>
+  <data name="REP_G_2002" xml:space="preserve">
+    <value>Invesment Reports Of DPT</value>
+  </data>
+  <data name="REP_G_2003" xml:space="preserve">
+    <value>Invesment Special Reports</value>
+  </data>
+  <data name="REP_G_3000" xml:space="preserve">
+    <value>Document Reports</value>
+  </data>
+  <data name="REP_G_3001" xml:space="preserve">
+    <value>Document Reports</value>
+  </data>
+  <data name="REP_G_4000" xml:space="preserve">
+    <value>Education Reports</value>
+  </data>
+  <data name="REP_G_5000" xml:space="preserve">
+    <value>Appropriation Status/Expense Tables</value>
+  </data>
+  <data name="REP_G_5010" xml:space="preserve">
+    <value>Revenue-Expense Status List / Expense Table</value>
+  </data>
+  <data name="REP_G_6010" xml:space="preserve">
+    <value>Account Expense Tables(Final)</value>
+  </data>
+  <data name="REP_G_6020" xml:space="preserve">
+    <value>Account Expense Control Tables(Final</value>
+  </data>
+  <data name="REP_G_6030" xml:space="preserve">
+    <value>Account Revenue Tables(Final)</value>
+  </data>
+  <data name="REP_K_0" xml:space="preserve">
+    <value>Budget Preparation Reports</value>
+  </data>
+  <data name="REP_K_2000" xml:space="preserve">
+    <value>Performance Budget Reports</value>
+  </data>
+  <data name="REP_K_2002" xml:space="preserve">
+    <value>Invesment Reports Of DPT</value>
+  </data>
+  <data name="REP_K_2003" xml:space="preserve">
+    <value>Invesment Special Reports</value>
+  </data>
+  <data name="REP_A_2000_DonemBYil" xml:space="preserve">
+    <value>Year of the Term's Start</value>
+  </data>
+  <data name="REP_6010_12" xml:space="preserve">
+    <value>Form 3/3A : Budget Expenses Summary(Financial Classification)</value>
+  </data>
+  <data name="REP_6010_13" xml:space="preserve">
+    <value>Form 3/3C : Budget Expenses  Table(Financial Classification,Final)</value>
+  </data>
+  <data name="REP_700_1" xml:space="preserve">
+    <value>Classifications without Appropriations</value>
+  </data>
+  <data name="REP_700_2" xml:space="preserve">
+    <value>Appropriations in Top 20%</value>
+  </data>
+  <data name="REP_700_3" xml:space="preserve">
+    <value>Appropriations in Bottom 20%</value>
+  </data>
+  <data name="REP_700_4" xml:space="preserve">
+    <value>Appropriations In Undefined Category</value>
+  </data>
+  <data name="REP_8000" xml:space="preserve">
+    <value>Expense Management Reports</value>
+  </data>
+  <data name="REP_8000_1" xml:space="preserve">
+    <value> Instution-Bid Firm List</value>
+  </data>
+  <data name="REP_A_8000_Ay" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="REP_A_8000_Birim" xml:space="preserve">
+    <value>Unit Code</value>
+  </data>
+  <data name="REP_A_8000_FirmaSayi" xml:space="preserve">
+    <value>Firm Count</value>
+  </data>
+  <data name="REP_A_8000_KurKod" xml:space="preserve">
+    <value>Institutional Code</value>
+  </data>
+  <data name="REP_A_8000_Muhasebe" xml:space="preserve">
+    <value>Accounting Code</value>
+  </data>
+  <data name="REP_A_8000_VergiNo" xml:space="preserve">
+    <value>Tax Number</value>
+  </data>
+  <data name="REP_A_8000_Yil" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="REP_0_25" xml:space="preserve">
+    <value>Form 25: Appropriations out of Ceiling(Detailed)</value>
+  </data>
+  <data name="REP_997_1" xml:space="preserve">
+    <value>Economical Detail</value>
+  </data>
+  <data name="REP_997_2" xml:space="preserve">
+    <value>Activity-Economic Crosstable</value>
+  </data>
+  <data name="REP_997_3" xml:space="preserve">
+    <value>Expense Budget Fische Combining Table</value>
+  </data>
+  <data name="REP_10000_1" xml:space="preserve">
+    <value>Report 1</value>
+  </data>
+  <data name="REP_10000_2" xml:space="preserve">
+    <value>Report 2</value>
+  </data>
+  <data name="REP_10001_1" xml:space="preserve">
+    <value>G1 rep 1</value>
+  </data>
+  <data name="REP_10002_2" xml:space="preserve">
+    <value>G2 Rep 1</value>
+  </data>
+  <data name="REP_A_10000_ButceYil" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="REP_5000_12" xml:space="preserve">
+    <value>Monthly Expenditure</value>
+  </data>
+  <data name="ORT001" xml:space="preserve">
+    <value>There is another file with the same name.</value>
+  </data>
+  <data name="REP_10001_9" xml:space="preserve">
+    <value>RB Expenditure by Sectors</value>
+  </data>
+  <data name="IST009" xml:space="preserve">
+    <value>Main Page</value>
+  </data>
+  <data name="IST010" xml:space="preserve">
+    <value>Site Map</value>
+  </data>
+  <data name="IST012" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="IST023" xml:space="preserve">
+    <value>SGB.net Home Page</value>
+  </data>
+  <data name="IST047" xml:space="preserve">
+    <value>Legislation</value>
+  </data>
+    <data name="IST013" xml:space="preserve">
+    <value>Sum of Selected Rows</value>
+  </data>
+  <data name="IST014" xml:space="preserve">
+    <value>General Sum</value>
+  </data>
+  <data name="IST021" xml:space="preserve">
+    <value>Previous Page</value>
+  </data>
+  <data name="IST022" xml:space="preserve">
+    <value>Next Page</value>
+  </data>
+    <data name="JSGEN001" xml:space="preserve">
+    <value>Document will be send to the Central to be saved.Do you confirm?</value>
+  </data>
+  <data name="JSGEN002" xml:space="preserve">
+    <value>NEW document will send to the Central in order to prepare.Do you confirm?</value>
+  </data>
+  <data name="JSGEN003" xml:space="preserve">
+    <value>Document number {0} will send to the Central in order to change.Do you confirm?</value>
+  </data>
+  <data name="JSGEN004" xml:space="preserve">
+    <value>Selected document/s will CANCEL. Do you confirm?</value>
+  </data>
+  <data name="JSGEN005" xml:space="preserve">
+    <value>Selected document/s will ARCHIVED. Do you confirm?</value>
+  </data>
+  <data name="JSGEN006" xml:space="preserve">
+    <value>Selected documents will be unchecked.Do you confirm?</value>
+  </data>
+  <data name="JSGEN007" xml:space="preserve">
+    <value>Selected documents will be confirmed.Do you confirm?</value>
+  </data>
+  <data name="JSGEN008" xml:space="preserve">
+    <value>Selected document will be confirmed.Do you confirm?</value>
+  </data>
+  <data name="JSGEN009" xml:space="preserve">
+    <value>Selected document will be unchecked.Do you confirm?</value>
+  </data>
+  <data name="JSGEN010" xml:space="preserve">
+    <value>Journal Number of selected documents will be REVOKED.Do you confirm?</value>
+  </data>
+  <data name="JSGEN011" xml:space="preserve">
+    <value>A Journal Number will be ASSIGNED to selected documents.Do you confirm?</value>
+  </data>
+  <data name="JSGEN012" xml:space="preserve">
+    <value>Documents on the list will be SAVED.Do you confirm?</value>
+  </data>
+  <data name="JSGEN013" xml:space="preserve">
+    <value>Selected documents will SEND to the Central to error check.Documents will not be saved.Do you confirm?</value>
+  </data>
+  <data name="JSGEN014" xml:space="preserve">
+    <value>Informations on the specified file will be checked first, and saved if there isn't any error.</value>
+  </data>
+  <data name="JSGEN015" xml:space="preserve">
+    <value>Summary Document Number will be ASSIGNED to the selected documents.Do you confirm?</value>
+  </data>
+  <data name="JSGEN016" xml:space="preserve">
+    <value>Summary Document will be printed.Do you confirm?</value>
+  </data>
+  <data name="JSGEN017" xml:space="preserve">
+    <value>Selected documents will SEND to General Directorate of Public Accounts.Do you confirm?</value>
+  </data>
+  <data name="JSGEN018" xml:space="preserve">
+    <value>Selected documents will be allocated.Do you confirm?</value>
+  </data>
+  <data name="JSGEN019" xml:space="preserve">
+    <value>Informations on form will be cleared.Do you confirm?</value>
+  </data>
+  <data name="JSGEN020" xml:space="preserve">
+    <value>Selected documents will be prepared to print.Do you confirm?</value>
+  </data>
+  <data name="JSGEN021" xml:space="preserve">
+    <value>Properties will be deleted.Do you confirm?</value>
+  </data>
+  <data name="JSGEN022" xml:space="preserve">
+    <value>Documents will be deleted.Do you confirm?</value>
+  </data>
+  <data name="JSGEN023" xml:space="preserve">
+    <value>Informations will be trasferred.Do you confirm?</value>
+  </data>
+  <data name="JSGEN024" xml:space="preserve">
+    <value>Informations will be transferred from e-Budget.Do you confirm?</value>
+  </data>
+  <data name="JSGEN025" xml:space="preserve">
+    <value>Document Type will be changed.Do you confirm?</value>
+  </data>
+  <data name="JSGEN026" xml:space="preserve">
+    <value>A standing order will be created for concerned TİF.Do you confirm?</value>
+  </data>
+  <data name="JSGEN027" xml:space="preserve">
+    <value>Expenditure currency will be changed.It is recommended to backup your database.Do you confirm?</value>
+  </data>
+  <data name="JSGEN028" xml:space="preserve">
+    <value>Status of document will change to 'CHANGED' Do you confirm?</value>
+  </data>
+  <data name="JSGEN029" xml:space="preserve">
+    <value>E-mail will send to selected user types.Do you confirm?</value>
+  </data>
+  <data name="JSGEN030" xml:space="preserve">
+    <value>Document will be saved.Do you confirm?</value>
+  </data>
+  <data name="JSGEN031" xml:space="preserve">
+    <value>Documents will send to selected units/persons.Do you confirm?</value>
+  </data>
+  <data name="JSGEN032" xml:space="preserve">
+    <value>Selected documents will place into folder.Do you confirm?</value>
+  </data>
+  <data name="JSGEN033" xml:space="preserve">
+    <value>Selected documents will get from folder.Do you confirm?</value>
+  </data>
+  <data name="JSGEN034" xml:space="preserve">
+    <value>An Outgoing Document Number will get for selected documents. Do you confirm?</value>
+  </data>
+  <data name="JSGEN035" xml:space="preserve">
+    <value>Selected documents will get back from transferred place.Do you confirm?</value>
+  </data>
+  <data name="JSGEN036" xml:space="preserve">
+    <value>Selected documents will cancel.Do you confirm?</value>
+  </data>
+  <data name="JSGEN037" xml:space="preserve">
+    <value>Cancellation of selected documents will revert.Do you confirm?</value>
+  </data>
+  <data name="JSGEN038" xml:space="preserve">
+    <value>Selected document will be recieved.Do you confirm?</value>
+  </data>
+  <data name="JSGEN039" xml:space="preserve">
+    <value>Selected documents will send back.Do you confirm?</value>
+  </data>
+  <data name="JSGEN040" xml:space="preserve">
+    <value>Selected documents will be signed.Do you confirm?</value>
+  </data>
+  <data name="JSGEN041" xml:space="preserve">
+    <value>Informations will be saved.Do you confirm?</value>
+  </data>
+  <data name="JSGEN042" xml:space="preserve">
+    <value>Template will be saved.Do you confirm?</value>
+  </data>
+  <data name="JSGEN043" xml:space="preserve">
+    <value>Template will be deleted.Do you confirm?</value>
+  </data>
+  <data name="JSGEN044" xml:space="preserve">
+    <value>Document of transfer(Between Sended Appropriations) will be confirmed.Do you confirm?</value>
+  </data>
+  <data name="JSGEN045" xml:space="preserve">
+    <value>You have changed users institution.Do you wish to continue?</value>
+  </data>
+  <data name="JSGEN046" xml:space="preserve">
+    <value>First,select information which you will move.</value>
+  </data>
+  <data name="JSGEN047" xml:space="preserve">
+    <value>Selected document will be signed electronically.Do you confirm?</value>
+  </data>
+    <data name="Menu1" xml:space="preserve">
+    <value>Organization and Planning</value>
+  </data>
+  <data name="Menu1_1" xml:space="preserve">
+    <value>Organizational Structure</value>
+  </data>
+  <data name="Menu1_1_1" xml:space="preserve">
+    <value>Organizational Schema</value>
+  </data>
+  <data name="Menu1_2" xml:space="preserve">
+    <value>Strategic Plan</value>
+  </data>
+  <data name="Menu1_2_1" xml:space="preserve">
+    <value>Mission</value>
+  </data>
+  <data name="Menu1_2_2" xml:space="preserve">
+    <value>Vision</value>
+  </data>
+  <data name="Menu1_2_3" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="Menu1_2_4" xml:space="preserve">
+    <value>Strategic Goal</value>
+  </data>
+  <data name="Menu1_2_5" xml:space="preserve">
+    <value>Strategic Objective</value>
+  </data>
+  <data name="Menu1_3" xml:space="preserve">
+    <value>Performance Program</value>
+  </data>
+  <data name="Menu1_3_1" xml:space="preserve">
+    <value>Strategy Tree</value>
+  </data>
+  <data name="Menu1_3_2" xml:space="preserve">
+    <value>Performance Objectives</value>
+  </data>
+  <data name="Menu1_3_3" xml:space="preserve">
+    <value>Activity/ Gen. Adminis. Exp./Transfer</value>
+  </data>
+  <data name="Menu1_3_4" xml:space="preserve">
+    <value>Targetted Performance Indicator</value>
+  </data>
+  <data name="Menu1_4" xml:space="preserve">
+    <value>Operational Plan</value>
+  </data>
+  <data name="Menu1_4_1" xml:space="preserve">
+    <value>Performance Budget Operational Plan</value>
+  </data>
+  <data name="Menu1_4_1_1" xml:space="preserve">
+    <value>Definition of Unit</value>
+  </data>
+  <data name="Menu1_4_1_2" xml:space="preserve">
+    <value>Personnel Operations</value>
+  </data>
+  <data name="Menu1_4_1_3" xml:space="preserve">
+    <value>Sub-Activity Entry/Query</value>
+  </data>
+  <data name="Menu1_4_1_4" xml:space="preserve">
+    <value>Job/Task Operations</value>
+  </data>
+  <data name="Menu1_5" xml:space="preserve">
+    <value>Indicators</value>
+  </data>
+  <data name="Menu1_5_1" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="Menu1_6" xml:space="preserve">
+    <value>Monitoring and Evaluation</value>
+  </data>
+  <data name="Menu1_6_1" xml:space="preserve">
+    <value>Realization of the Indicators</value>
+  </data>
+  <data name="Menu1_6_2" xml:space="preserve">
+    <value>Preliminary Financial Control</value>
+  </data>
+  <data name="Menu1_6_3" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="Menu1_6_3_1" xml:space="preserve">
+    <value>Unit Indicators Monitoring and Evaluation Report</value>
+  </data>
+  <data name="Menu1_6_3_2" xml:space="preserve">
+    <value>Realization of the Performance Indicators Monitoring Report</value>
+  </data>
+  <data name="Menu1_6_3_3" xml:space="preserve">
+    <value>Reaching the Objectives Status Report of Performance Indicators Realizations</value>
+  </data>
+  <data name="Menu1_6_3_4" xml:space="preserve">
+    <value>Annual Report</value>
+  </data>
+  <data name="Menu1_6_3_5" xml:space="preserve">
+    <value>Performance Budget Reports</value>
+  </data>
+  <data name="Menu1_7" xml:space="preserve">
+    <value>Executive Screen</value>
+  </data>
+  <data name="Menu1_7_1" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="Menu2" xml:space="preserve">
+    <value>Budget Preperation</value>
+  </data>
+  <data name="Menu2_1" xml:space="preserve">
+    <value>Budget Scenario</value>
+  </data>
+  <data name="Menu2_1_1" xml:space="preserve">
+    <value>Budget Scenario</value>
+  </data>
+  <data name="Menu2_1_2" xml:space="preserve">
+    <value>Budget Summary</value>
+  </data>
+  <data name="Menu2_2" xml:space="preserve">
+    <value>Budget Preperation</value>
+  </data>
+  <data name="Menu2_2_1" xml:space="preserve">
+    <value>Service Justifications</value>
+  </data>
+  <data name="Menu2_2_10" xml:space="preserve">
+    <value>Determination of Cost of Service - Provincial</value>
+  </data>
+  <data name="Menu2_2_11" xml:space="preserve">
+    <value>Physical Values - Provincial</value>
+  </data>
+  <data name="Menu2_2_2" xml:space="preserve">
+    <value>Expense Offer</value>
+  </data>
+  <data name="Menu2_2_3" xml:space="preserve">
+    <value>End of Year Expense Estimation</value>
+  </data>
+  <data name="Menu2_2_4" xml:space="preserve">
+    <value>Budget Expense Receipt</value>
+  </data>
+  <data name="Menu2_2_5" xml:space="preserve">
+    <value>End of Year Income Estimation</value>
+  </data>
+  <data name="Menu2_2_6" xml:space="preserve">
+    <value>Income End-Year Estimation</value>
+  </data>
+  <data name="Menu2_2_7" xml:space="preserve">
+    <value>Budget Income Receipt</value>
+  </data>
+  <data name="Menu2_2_8" xml:space="preserve">
+    <value>Financial Proposal</value>
+  </data>
+  <data name="Menu2_2_9" xml:space="preserve">
+    <value>Additional Forms</value>
+  </data>
+  <data name="Menu4_5_2" xml:space="preserve">
+    <value>Investment Projects</value>
+  </data>
+  <data name="Menu3" xml:space="preserve">
+    <value>Budget Execution</value>
+  </data>
+  <data name="Menu3_1" xml:space="preserve">
+    <value>Budget Execution</value>
+  </data>
+  <data name="Menu3_1_1" xml:space="preserve">
+    <value>Appropriation Status Information</value>
+  </data>
+  <data name="Menu3_1_10" xml:space="preserve">
+    <value>Accounting Registration by Date</value>
+  </data>
+  <data name="Menu3_1_13" xml:space="preserve">
+    <value>Summary of Allowances</value>
+  </data>
+  <data name="Menu3_1_14" xml:space="preserve">
+    <value>Mounthly Expenditure Program</value>
+  </data>
+  <data name="Menu3_1_15" xml:space="preserve">
+    <value>Mounthly Income Program</value>
+  </data>
+  <data name="Menu3_1_16" xml:space="preserve">
+    <value>Expenditure Plan</value>
+  </data>
+  <data name="Menu3_1_17" xml:space="preserve">
+    <value>Budget Transactions</value>
+  </data>
+  <data name="Menu3_1_2" xml:space="preserve">
+    <value>Appropriation Status Information (Units)</value>
+  </data>
+  <data name="Menu3_1_3" xml:space="preserve">
+    <value>Appropriation Sending Document</value>
+  </data>
+  <data name="Menu3_1_4" xml:space="preserve">
+    <value>Appropriation Sending Document (Cost Plan)</value>
+  </data>
+  <data name="Menu3_1_5" xml:space="preserve">
+    <value>Reduction Document</value>
+  </data>
+  <data name="Menu3_1_6" xml:space="preserve">
+    <value>Appropriation Request</value>
+  </data>
+  <data name="Menu3_1_7" xml:space="preserve">
+    <value>Reduction Request</value>
+  </data>
+  <data name="Menu3_1_8" xml:space="preserve">
+    <value>Cash Request</value>
+  </data>
+  <data name="Menu3_1_9" xml:space="preserve">
+    <value>Receipt Information</value>
+  </data>
+  <data name="Menu3_2" xml:space="preserve">
+    <value>Expenditure </value>
+  </data>
+  <data name="Menu3_2_1" xml:space="preserve">
+    <value>Expenditure Entry</value>
+  </data>
+  <data name="Menu3_2_2" xml:space="preserve">
+    <value>Payment Order//Journal Entry</value>
+  </data>
+  <data name="Menu3_2_3" xml:space="preserve">
+    <value>Tax Debt Query</value>
+  </data>
+  <data name="Menu3_2_4" xml:space="preserve">
+    <value>Prim Debt Query</value>
+  </data>
+  <data name="Menu3_2_5" xml:space="preserve">
+    <value>Accounting Appropriation(323)</value>
+  </data>
+  <data name="Menu3_2_6" xml:space="preserve">
+    <value>Arrange Block</value>
+  </data>
+  <data name="Menu3_2_7" xml:space="preserve">
+    <value>Expenditure Information Inquery</value>
+  </data>
+  <data name="Menu3_2_8" xml:space="preserve">
+    <value>E-Invoice Operations</value>
+  </data>
+  <data name="Menu3_2_9" xml:space="preserve">
+    <value>Closing Advance (Advance List)</value>
+  </data>
+  <data name="Menu3_3" xml:space="preserve">
+    <value>Receivables Follow-Up</value>
+  </data>
+  <data name="Menu3_3_1" xml:space="preserve">
+    <value>Follow-up Operations</value>
+  </data>
+  <data name="Menu3_4" xml:space="preserve">
+    <value>Final Account</value>
+  </data>
+  <data name="Menu3_4_1" xml:space="preserve">
+    <value>Expense Reports</value>
+  </data>
+  <data name="Menu3_4_2" xml:space="preserve">
+    <value>Income Reports</value>
+  </data>
+  <data name="Menu3_4_3" xml:space="preserve">
+    <value>Control Reports</value>
+  </data>
+  <data name="Menu3_4_4" xml:space="preserve">
+    <value>Expense Table Description Entry</value>
+  </data>
+  <data name="Menu3_4_5" xml:space="preserve">
+    <value>Income Table Description Entry</value>
+  </data>
+  <data name="Menu3_4_6" xml:space="preserve">
+    <value>Accredit/TransferBudget Items</value>
+  </data>
+  <data name="Menu3_4_7" xml:space="preserve">
+    <value>Entry of Cancelled Budget Items</value>
+  </data>
+  <data name="Menu3_4_8" xml:space="preserve">
+    <value>Ministers and Executives Table Entry</value>
+  </data>
+  <data name="Menu3_4_9" xml:space="preserve">
+    <value>Final Account Data Update</value>
+  </data>
+  <data name="Menu3_5" xml:space="preserve">
+    <value>Inventory</value>
+  </data>
+  <data name="Menu3_5_1" xml:space="preserve">
+    <value>Inventory Transaction Form</value>
+  </data>
+  <data name="Menu3_5_10" xml:space="preserve">
+    <value>Excluding from Registry Proposal and Approval Document</value>
+  </data>
+  <data name="Menu3_5_11" xml:space="preserve">
+    <value>Inventory Request Form</value>
+  </data>
+  <data name="Menu3_5_12" xml:space="preserve">
+    <value>Barcode Printing</value>
+  </data>
+  <data name="Menu3_5_13" xml:space="preserve">
+    <value>Surplus Movables</value>
+  </data>
+  <data name="Menu3_5_13_1" xml:space="preserve">
+    <value>Entry Form</value>
+  </data>
+  <data name="Menu3_5_13_2" xml:space="preserve">
+    <value>Request Form</value>
+  </data>
+  <data name="Menu3_5_2" xml:space="preserve">
+    <value>Inventory Transaction Form (Library)</value>
+  </data>
+  <data name="Menu3_5_3" xml:space="preserve">
+    <value>Inventory Transaction Form (Museum)</value>
+  </data>
+  <data name="Menu3_5_4" xml:space="preserve">
+    <value>Payment Order//Journal Entry Preparation</value>
+  </data>
+  <data name="Menu3_5_5" xml:space="preserve">
+    <value>Temporary Received Form</value>
+  </data>
+  <data name="Menu3_5_6" xml:space="preserve">
+    <value>Debit Form (Person)</value>
+  </data>
+  <data name="Menu3_5_7" xml:space="preserve">
+    <value>Debit Form (Common Area/Case-8)</value>
+  </data>
+  <data name="Menu3_5_8" xml:space="preserve">
+    <value>Inventory Properties</value>
+  </data>
+  <data name="Menu3_5_9" xml:space="preserve">
+    <value>Inventory Count Document</value>
+  </data>
+  <data name="Menu3_6" xml:space="preserve">
+    <value>Library</value>
+  </data>
+  <data name="Menu3_6_1" xml:space="preserve">
+    <value>Search Publications</value>
+  </data>
+  <data name="Menu3_6_2" xml:space="preserve">
+    <value>Book  Information Entry</value>
+  </data>
+  <data name="Menu3_6_3" xml:space="preserve">
+    <value>Periodicals Information Entry</value>
+  </data>
+  <data name="Menu3_6_4" xml:space="preserve">
+    <value>Electronic Publications Information Entry</value>
+  </data>
+  <data name="Menu3_6_5" xml:space="preserve">
+    <value>Reservation Cancellation</value>
+  </data>
+  <data name="Menu3_6_6" xml:space="preserve">
+    <value>New Publications</value>
+  </data>
+  <data name="Menu3_6_7" xml:space="preserve">
+    <value>Lending Process</value>
+  </data>
+  <data name="Menu3_6_7_1" xml:space="preserve">
+    <value>Book Take Back </value>
+  </data>
+  <data name="Menu3_6_7_2" xml:space="preserve">
+    <value>Lending</value>
+  </data>
+  <data name="Menu3_6_8" xml:space="preserve">
+    <value>User Operations</value>
+  </data>
+  <data name="Menu3_6_8_1" xml:space="preserve">
+    <value>User Lists</value>
+  </data>
+  <data name="Menu3_6_8_2" xml:space="preserve">
+    <value>User Definition</value>
+  </data>
+  <data name="Menu3_6_8_3" xml:space="preserve">
+    <value>Send e-mail to Users</value>
+  </data>
+  <data name="Menu3_6_9" xml:space="preserve">
+    <value>Label</value>
+  </data>
+  <data name="Menu3_6_9_1" xml:space="preserve">
+    <value>Label Printing</value>
+  </data>
+  <data name="Menu4" xml:space="preserve">
+    <value>Job/Task Management</value>
+  </data>
+  <data name="Menu4_1" xml:space="preserve">
+    <value>Personnel</value>
+  </data>
+  <data name="Menu4_1_1" xml:space="preserve">
+    <value>Personnel Information</value>
+  </data>
+  <data name="Menu4_1_2" xml:space="preserve">
+    <value>Personnel Operations</value>
+  </data>
+  <data name="Menu4_1_2_1" xml:space="preserve">
+    <value>Vacation - Transfer</value>
+  </data>
+  <data name="Menu4_1_2_2" xml:space="preserve">
+    <value>Assignments</value>
+  </data>
+  <data name="Menu4_1_2_3" xml:space="preserve">
+    <value>Movement</value>
+  </data>
+  <data name="Menu4_2" xml:space="preserve">
+    <value>ID Information Sharing</value>
+  </data>
+  <data name="Menu4_2_1" xml:space="preserve">
+    <value>ID Information Sharing</value>
+  </data>
+  <data name="Menu4_2_2" xml:space="preserve">
+    <value>Transaction Inquiry</value>
+  </data>
+  <data name="Menu4_3" xml:space="preserve">
+    <value>Document</value>
+  </data>
+  <data name="Menu4_3_1" xml:space="preserve">
+    <value>Document Operations</value>
+  </data>
+  <data name="Menu4_3_2" xml:space="preserve">
+    <value>Document Inquery</value>
+  </data>
+  <data name="Menu4_3_3" xml:space="preserve">
+    <value>E-Mailing Operations</value>
+  </data>
+  <data name="Menu4_4" xml:space="preserve">
+    <value>Assignments</value>
+  </data>
+  <data name="Menu4_4_1" xml:space="preserve">
+    <value>Job/Task Operations</value>
+  </data>
+  <data name="Menu4_5" xml:space="preserve">
+    <value>Project Management</value>
+  </data>
+  <data name="Menu4_5_1" xml:space="preserve">
+    <value>Project Management Content</value>
+  </data>
+  <data name="Menu5" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="Menu5_1" xml:space="preserve">
+    <value>Budgetting</value>
+  </data>
+  <data name="Menu5_1_1" xml:space="preserve">
+    <value>Budget Preperation Reports</value>
+  </data>
+  <data name="Menu5_1_1_1" xml:space="preserve">
+    <value>Analitical Budget Reports</value>
+  </data>
+  <data name="Menu5_1_1_2" xml:space="preserve">
+    <value>Performance Budget Reports</value>
+  </data>
+  <data name="Menu5_1_1_3" xml:space="preserve">
+    <value>Investment Reports</value>
+  </data>
+  <data name="Menu5_1_1_4" xml:space="preserve">
+    <value>Investment Special Reports</value>
+  </data>
+  <data name="Menu5_2" xml:space="preserve">
+    <value>Resource Management</value>
+  </data>
+  <data name="Menu5_2_1" xml:space="preserve">
+    <value>Budget Execution Reports</value>
+  </data>
+  <data name="Menu5_2_1_1" xml:space="preserve">
+    <value>Appropriation/Expenditure Reports</value>
+  </data>
+  <data name="Menu5_2_1_2" xml:space="preserve">
+    <value>Appropriation/Reduction Control List</value>
+  </data>
+  <data name="Menu5_2_1_3" xml:space="preserve">
+    <value>Accounting Reports</value>
+  </data>
+  <data name="Menu5_2_1_4" xml:space="preserve">
+    <value>Other Reports</value>
+  </data>
+  <data name="Menu5_2_1_5" xml:space="preserve">
+    <value>Appropriation/Reduction Information</value>
+  </data>
+  <data name="Menu5_2_2" xml:space="preserve">
+    <value>Movable Asset Reports</value>
+  </data>
+  <data name="Menu5_2_2_1" xml:space="preserve">
+    <value>Inventory History</value>
+  </data>
+  <data name="Menu5_2_2_10" xml:space="preserve">
+    <value>Inventory Transfer-Out reports</value>
+  </data>
+  <data name="Menu5_2_2_11" xml:space="preserve">
+    <value>Inventory Tenth Difference Report</value>
+  </data>
+  <data name="Menu5_2_2_12" xml:space="preserve">
+    <value>Consumable Usage Tenth Difference Report</value>
+  </data>
+  <data name="Menu5_2_2_13" xml:space="preserve">
+    <value>Most Frequently used Goods Report</value>
+  </data>
+  <data name="Menu5_2_2_14" xml:space="preserve">
+    <value>Accounting Control Report</value>
+  </data>
+  <data name="Menu5_2_2_2" xml:space="preserve">
+    <value>Expenditure Unit Last Invontory Form Identifications Reports (Sample 14)</value>
+  </data>
+  <data name="Menu5_2_2_3" xml:space="preserve">
+    <value>Inventory Storeroom Reports</value>
+  </data>
+  <data name="Menu5_2_2_4" xml:space="preserve">
+    <value>Consumable Usage Report</value>
+  </data>
+  <data name="Menu5_2_2_5" xml:space="preserve">
+    <value>Junk or Unusable Goods Report</value>
+  </data>
+  <data name="Menu5_2_2_6" xml:space="preserve">
+    <value>Inventory used by common</value>
+  </data>
+  <data name="Menu5_2_2_7" xml:space="preserve">
+    <value>Used Invontory List</value>
+  </data>
+  <data name="Menu5_2_2_8" xml:space="preserve">
+    <value>Inventory Operation Informations Report</value>
+  </data>
+  <data name="Menu5_2_2_9" xml:space="preserve">
+    <value>Inventory Registry Reports</value>
+  </data>
+  <data name="Menu5_2_3" xml:space="preserve">
+    <value>Inventory Books</value>
+  </data>
+  <data name="Menu5_2_3_1" xml:space="preserve">
+    <value>Consumable Usage Book (Sample 1)</value>
+  </data>
+  <data name="Menu5_2_3_2" xml:space="preserve">
+    <value>Inventory Registry</value>
+  </data>
+  <data name="Menu5_2_3_3" xml:space="preserve">
+    <value>Musem Registry Book (Sample 3)</value>
+  </data>
+  <data name="Menu5_2_3_4" xml:space="preserve">
+    <value>Library Registry Book (Sample 4)</value>
+  </data>
+  <data name="Menu5_2_4" xml:space="preserve">
+    <value>Inventory Sample Reports</value>
+  </data>
+  <data name="Menu5_2_4_1" xml:space="preserve">
+    <value>Inventory Counting Reports</value>
+  </data>
+  <data name="Menu5_2_4_2" xml:space="preserve">
+    <value>Expenditure Unit Invontory Accounting Table (Sample 14)</value>
+  </data>
+  <data name="Menu5_2_4_3" xml:space="preserve">
+    <value>Inventory Accounting Report (Sample 15)</value>
+  </data>
+  <data name="Menu5_2_4_4" xml:space="preserve">
+    <value>Inventory Accounting Report (Province)(Sample 15)</value>
+  </data>
+  <data name="Menu5_2_4_5" xml:space="preserve">
+    <value>Inventory Accounting Report (Region)(Sample 15)</value>
+  </data>
+  <data name="Menu5_2_4_6" xml:space="preserve">
+    <value>Inventory Final Account Report (Sample 16)</value>
+  </data>
+  <data name="Menu5_2_4_7" xml:space="preserve">
+    <value>Inventory Final Account Summary Report (Sample 17)</value>
+  </data>
+  <data name="Menu5_2_4_8" xml:space="preserve">
+    <value>Museum/Library Management Report (Sample 18)</value>
+  </data>
+  <data name="Menu5_2_5" xml:space="preserve">
+    <value>Receivables Reports</value>
+  </data>
+  <data name="Menu5_2_6" xml:space="preserve">
+    <value>Library Reports</value>
+  </data>
+  <data name="Menu5_2_7" xml:space="preserve">
+    <value>Expenditure Management Reports</value>
+  </data>
+  <data name="Menu5_2_7_1" xml:space="preserve">
+    <value>Service Reports</value>
+  </data>
+  <data name="Menu5_2_7_2" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="Menu5_2_7_3" xml:space="preserve">
+    <value>Subscriber Reports</value>
+  </data>
+  <data name="Menu5_2_7_4" xml:space="preserve">
+    <value>Renting Reports</value>
+  </data>
+  <data name="Menu5_2_7_5" xml:space="preserve">
+    <value>Legislation Reports</value>
+  </data>
+  <data name="Menu5_3" xml:space="preserve">
+    <value>Job/Task Management</value>
+  </data>
+  <data name="Menu5_3_1" xml:space="preserve">
+    <value>Personnel Reports</value>
+  </data>
+  <data name="Menu5_3_2" xml:space="preserve">
+    <value>Document Reports</value>
+  </data>
+  <data name="Menu5_3_2_1" xml:space="preserve">
+    <value>Document Report</value>
+  </data>
+  <data name="Menu5_3_2_2" xml:space="preserve">
+    <value>Document Registry</value>
+  </data>
+  <data name="Menu5_4" xml:space="preserve">
+    <value>System Reports</value>
+  </data>
+  <data name="Menu5_4_1" xml:space="preserve">
+    <value>System State File List</value>
+  </data>
+  <data name="Menu5_4_2" xml:space="preserve">
+    <value>User Lists using System</value>
+  </data>
+  <data name="Menu5_4_3" xml:space="preserve">
+    <value>System Usage Graph</value>
+  </data>
+  <data name="Menu6" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Menu6_1" xml:space="preserve">
+    <value>User Management</value>
+  </data>
+  <data name="Menu6_1_1" xml:space="preserve">
+    <value>User Search</value>
+  </data>
+  <data name="Menu6_1_2" xml:space="preserve">
+    <value>New User Entry</value>
+  </data>
+  <data name="Menu6_1_3" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="Menu6_1_4" xml:space="preserve">
+    <value>Change Theme</value>
+  </data>
+  <data name="Menu6_1_5" xml:space="preserve">
+    <value>Frequently Used Items</value>
+  </data>
+  <data name="Menu6_1_6" xml:space="preserve">
+    <value>Send e-mail to Users</value>
+  </data>
+  <data name="Menu6_1_7" xml:space="preserve">
+    <value>Announcement Entry</value>
+  </data>
+  <data name="Menu6_2" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Menu6_2_1" xml:space="preserve">
+    <value>Database Update</value>
+  </data>
+  <data name="Menu6_2_2" xml:space="preserve">
+    <value>Software Update</value>
+  </data>
+  <data name="Menu6_2_3" xml:space="preserve">
+    <value>Create XML Format</value>
+  </data>
+  <data name="Menu6_3" xml:space="preserve">
+    <value>Transfer</value>
+  </data>
+  <data name="Menu6_3_1" xml:space="preserve">
+    <value>Data Transfer to BUMKO</value>
+  </data>
+  <data name="Menu6_3_2" xml:space="preserve">
+    <value>Account Information</value>
+  </data>
+  <data name="Menu6_3_3" xml:space="preserve">
+    <value>Accounting Office Information</value>
+  </data>
+  <data name="Menu6_3_4" xml:space="preserve">
+    <value>Account Plan Information</value>
+  </data>
+  <data name="Menu6_3_5" xml:space="preserve">
+    <value>Accounting Reflection Information</value>
+  </data>
+  <data name="Menu6_3_6" xml:space="preserve">
+    <value>Data trans to eBudget</value>
+  </data>
+  <data name="Menu6_3_7" xml:space="preserve">
+    <value>Strategic Plan Transfer</value>
+  </data>
+  <data name="Menu6_3_8" xml:space="preserve">
+    <value>Performance Budget Transfer</value>
+  </data>
+  <data name="Menu6_3_9" xml:space="preserve">
+    <value>Budget Execution Data Transfer</value>
+  </data>
+  <data name="Menu6_4" xml:space="preserve">
+    <value>Legislation Management</value>
+  </data>
+  <data name="Menu6_4_1" xml:space="preserve">
+    <value>Legislation Management Form</value>
+  </data>
+  <data name="Menu6_5" xml:space="preserve">
+    <value>Definitions</value>
+  </data>
+  <data name="Menu6_5_1" xml:space="preserve">
+    <value>Budgetting</value>
+  </data>
+  <data name="Menu6_5_1_1" xml:space="preserve">
+    <value>Budget Preperation Definitions</value>
+  </data>
+  <data name="Menu6_5_1_10" xml:space="preserve">
+    <value>Project Type</value>
+  </data>
+  <data name="Menu6_5_1_11" xml:space="preserve">
+    <value>Document Type</value>
+  </data>
+  <data name="Menu6_5_1_12" xml:space="preserve">
+    <value>Performance-Expenditure Ratio</value>
+  </data>
+  <data name="Menu6_5_1_13" xml:space="preserve">
+    <value>Strategic Plan Definitions</value>
+  </data>
+  <data name="Menu6_5_1_13_1" xml:space="preserve">
+    <value>Languages</value>
+  </data>
+  <data name="Menu6_5_1_14" xml:space="preserve">
+    <value>Performance Budget Definitions</value>
+  </data>
+  <data name="Menu6_5_1_14_1" xml:space="preserve">
+    <value>Measure Unit</value>
+  </data>
+  <data name="Menu6_5_1_14_2" xml:space="preserve">
+    <value>Performance Indicators </value>
+  </data>
+  <data name="Menu6_5_1_2" xml:space="preserve">
+    <value>Sub-Activities</value>
+  </data>
+  <data name="Menu6_5_1_3" xml:space="preserve">
+    <value>Organisational Classification</value>
+  </data>
+  <data name="Menu6_5_1_4" xml:space="preserve">
+    <value>Functional Classification</value>
+  </data>
+  <data name="Menu6_5_1_5" xml:space="preserve">
+    <value>Financial Classification</value>
+  </data>
+  <data name="Menu6_5_1_6" xml:space="preserve">
+    <value>Economical Classification</value>
+  </data>
+  <data name="Menu6_5_1_7" xml:space="preserve">
+    <value>Income Offer</value>
+  </data>
+  <data name="Menu6_5_1_8" xml:space="preserve">
+    <value>Financial Offer</value>
+  </data>
+  <data name="Menu6_5_1_9" xml:space="preserve">
+    <value>Sector Information</value>
+  </data>
+  <data name="Menu6_5_2" xml:space="preserve">
+    <value>Resource Management</value>
+  </data>
+  <data name="Menu6_5_2_1" xml:space="preserve">
+    <value>Budget Execution Definitions</value>
+  </data>
+  <data name="Menu6_5_2_1_1" xml:space="preserve">
+    <value>Receipt Type Information</value>
+  </data>
+  <data name="Menu6_5_2_1_2" xml:space="preserve">
+    <value>Signature Definitions</value>
+  </data>
+  <data name="Menu6_5_2_2" xml:space="preserve">
+    <value>Inventory Definitions</value>
+  </data>
+  <data name="Menu6_5_2_2_1" xml:space="preserve">
+    <value>Storeroom Definition</value>
+  </data>
+  <data name="Menu6_5_2_2_2" xml:space="preserve">
+    <value>Account Plan Information</value>
+  </data>
+  <data name="Menu6_5_2_2_3" xml:space="preserve">
+    <value>Operation Type Definition</value>
+  </data>
+  <data name="Menu6_5_2_2_4" xml:space="preserve">
+    <value>Brand Names Definition</value>
+  </data>
+  <data name="Menu6_5_2_2_5" xml:space="preserve">
+    <value>Model Definition</value>
+  </data>
+  <data name="Menu6_5_2_2_6" xml:space="preserve">
+    <value>Room Definition</value>
+  </data>
+  <data name="Menu6_5_2_3" xml:space="preserve">
+    <value>Receivables Definition</value>
+  </data>
+  <data name="Menu6_5_2_3_1" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="Menu6_5_2_3_2" xml:space="preserve">
+    <value>Interest</value>
+  </data>
+  <data name="Menu6_5_2_3_3" xml:space="preserve">
+    <value>Interest Type</value>
+  </data>
+  <data name="Menu6_5_3" xml:space="preserve">
+    <value>Expenditure Management Definitions</value>
+  </data>
+  <data name="Menu6_5_3_1" xml:space="preserve">
+    <value>Process Definitions</value>
+  </data>
+  <data name="Menu6_5_3_1_1" xml:space="preserve">
+    <value>Job Definitions</value>
+  </data>
+  <data name="Menu6_5_3_1_2" xml:space="preserve">
+    <value>Part Definition</value>
+  </data>
+  <data name="Menu6_5_3_1_3" xml:space="preserve">
+    <value>Job-Part Relation</value>
+  </data>
+  <data name="Menu6_5_3_1_4" xml:space="preserve">
+    <value>Bidding-Part Relations</value>
+  </data>
+  <data name="Menu6_5_3_2" xml:space="preserve">
+    <value>Bidding Document Definitions</value>
+  </data>
+  <data name="Menu6_5_3_2_1" xml:space="preserve">
+    <value>Bidding Document Content</value>
+  </data>
+  <data name="Menu6_5_3_2_2" xml:space="preserve">
+    <value>Bidding Envelope Content</value>
+  </data>
+  <data name="Menu6_5_3_2_3" xml:space="preserve">
+    <value>Terms of Reference Definitions</value>
+  </data>
+  <data name="Menu6_5_3_2_4" xml:space="preserve">
+    <value>Proposal Envelope Form Requirements</value>
+  </data>
+  <data name="Menu6_5_3_3" xml:space="preserve">
+    <value>Bidding Information Definitions</value>
+  </data>
+  <data name="Menu6_5_3_3_1" xml:space="preserve">
+    <value>Bidding Type Definition</value>
+  </data>
+  <data name="Menu6_5_3_3_2" xml:space="preserve">
+    <value>Bidding Type Item Definition</value>
+  </data>
+  <data name="Menu6_5_3_3_3" xml:space="preserve">
+    <value>Announcement Definitions</value>
+  </data>
+  <data name="Menu6_5_3_4" xml:space="preserve">
+    <value>??Account Office-Unit-Budget Item Definition</value>
+  </data>
+  <data name="Menu6_5_3_5" xml:space="preserve">
+    <value>PRI Information Definition</value>
+  </data>
+  <data name="Menu6_5_4" xml:space="preserve">
+    <value>Personnel Definitions</value>
+  </data>
+  <data name="Menu6_5_4_1" xml:space="preserve">
+    <value>Student/Teacher Informations</value>
+  </data>
+  <data name="Menu6_5_4_10" xml:space="preserve">
+    <value>Temporary/Persistent Assignment Daily Fee</value>
+  </data>
+  <data name="Menu6_5_4_2" xml:space="preserve">
+    <value>Salary Base Information Definition</value>
+  </data>
+  <data name="Menu6_5_4_3" xml:space="preserve">
+    <value>Income Tax Information Definition</value>
+  </data>
+  <data name="Menu6_5_4_4" xml:space="preserve">
+    <value>Social Welfare Definitions</value>
+  </data>
+  <data name="Menu6_5_4_5" xml:space="preserve">
+    <value>Contracted Person Sallary Definition</value>
+  </data>
+  <data name="Menu6_5_4_6" xml:space="preserve">
+    <value>4C Contracted Personnel Payroll Information Definition</value>
+  </data>
+  <data name="Menu6_5_4_7" xml:space="preserve">
+    <value>Workers Salary Definitions</value>
+  </data>
+  <data name="Menu6_5_4_8" xml:space="preserve">
+    <value>Extra Hour Definitions</value>
+  </data>
+  <data name="Menu6_5_4_9" xml:space="preserve">
+    <value>Extra Lesson Information</value>
+  </data>
+  <data name="Menu6_5_5" xml:space="preserve">
+    <value>Subscription Information</value>
+  </data>
+  <data name="Menu6_5_5_1" xml:space="preserve">
+    <value>Electricty</value>
+  </data>
+  <data name="Menu6_5_5_10" xml:space="preserve">
+    <value>Point to Point</value>
+  </data>
+  <data name="Menu6_5_5_11" xml:space="preserve">
+    <value>Leased Line</value>
+  </data>
+  <data name="Menu6_5_5_12" xml:space="preserve">
+    <value>Cable TV</value>
+  </data>
+  <data name="Menu6_5_5_13" xml:space="preserve">
+    <value>Geotermal - Nuclear Energy</value>
+  </data>
+  <data name="Menu6_5_5_2" xml:space="preserve">
+    <value>Water</value>
+  </data>
+  <data name="Menu6_5_5_3" xml:space="preserve">
+    <value>Natural Gas</value>
+  </data>
+  <data name="Menu6_5_5_4" xml:space="preserve">
+    <value>Telephone</value>
+  </data>
+  <data name="Menu6_5_5_5" xml:space="preserve">
+    <value>ADSL</value>
+  </data>
+  <data name="Menu6_5_5_6" xml:space="preserve">
+    <value>Avea</value>
+  </data>
+  <data name="Menu6_5_5_7" xml:space="preserve">
+    <value>Vodafone</value>
+  </data>
+  <data name="Menu6_5_5_8" xml:space="preserve">
+    <value>Turkcell</value>
+  </data>
+  <data name="Menu6_5_5_9" xml:space="preserve">
+    <value>Special Telephone Services</value>
+  </data>
+  <data name="Menu6_5_6" xml:space="preserve">
+    <value>Library Definitions</value>
+  </data>
+  <data name="Menu6_5_6_1" xml:space="preserve">
+    <value>Author Information</value>
+  </data>
+  <data name="Menu6_5_6_2" xml:space="preserve">
+    <value>Subject Information</value>
+  </data>
+  <data name="Menu6_5_6_3" xml:space="preserve">
+    <value>Publisher Information</value>
+  </data>
+  <data name="Menu6_5_6_5" xml:space="preserve">
+    <value>Media Information</value>
+  </data>
+  <data name="Menu6_5_6_6" xml:space="preserve">
+    <value>Library Information</value>
+  </data>
+  <data name="Menu6_5_7" xml:space="preserve">
+    <value>Job/Task Management</value>
+  </data>
+  <data name="Menu6_5_8" xml:space="preserve">
+    <value>Staff Definition</value>
+  </data>
+  <data name="Menu6_5_7_2" xml:space="preserve">
+    <value>Document Definitions</value>
+  </data>
+  <data name="Menu6_5_7_21" xml:space="preserve">
+    <value>Title Information</value>
+  </data>
+  <data name="Menu6_5_7_2_1" xml:space="preserve">
+    <value>Paraph</value>
+  </data>
+  <data name="Menu6_5_7_2_10" xml:space="preserve">
+    <value>Footer</value>
+  </data>
+  <data name="Menu6_5_7_2_11" xml:space="preserve">
+    <value>Document Unit</value>
+  </data>
+  <data name="Menu6_5_7_2_12" xml:space="preserve">
+    <value>File Plan</value>
+  </data>
+  <data name="Menu6_5_7_2_13" xml:space="preserve">
+    <value>Secretness</value>
+  </data>
+  <data name="Menu6_5_7_2_14" xml:space="preserve">
+    <value>Document Status</value>
+  </data>
+  <data name="Menu6_5_7_2_15" xml:space="preserve">
+    <value>Doc. Arriving Method</value>
+  </data>
+  <data name="Menu6_5_7_2_16" xml:space="preserve">
+    <value>Outgoing Doc. Type</value>
+  </data>
+  <data name="Menu6_5_7_2_17" xml:space="preserve">
+    <value>Posting Type</value>
+  </data>
+  <data name="Menu6_5_7_2_2" xml:space="preserve">
+    <value>Document Special Field</value>
+  </data>
+  <data name="Menu6_5_7_2_3" xml:space="preserve">
+    <value>File Plan for Units</value>
+  </data>
+  <data name="Menu6_5_7_2_4" xml:space="preserve">
+    <value>Arriving Doc. Subject Definition</value>
+  </data>
+  <data name="Menu6_5_7_2_5" xml:space="preserve">
+    <value>Arriving Doc. Institution Definition</value>
+  </data>
+  <data name="Menu6_5_7_2_6" xml:space="preserve">
+    <value>Document Messenger</value>
+  </data>
+  <data name="Menu6_5_7_2_7" xml:space="preserve">
+    <value>Letter Head</value>
+  </data>
+  <data name="Menu6_5_7_2_8" xml:space="preserve">
+    <value>Distribution</value>
+  </data>
+  <data name="Menu6_5_7_2_9" xml:space="preserve">
+    <value>Delegation Rule</value>
+  </data>
+  <data name="Menu6_5_7_3" xml:space="preserve">
+    <value>Organisation Information</value>
+  </data>
+  <data name="Menu6_5_7_4" xml:space="preserve">
+    <value>Cadre Classification</value>
+  </data>
+  <data name="Menu6_5_7_5" xml:space="preserve">
+    <value>Education Informations</value>
+  </data>
+  <data name="Menu6_5_7_6" xml:space="preserve">
+    <value>Unit Information</value>
+  </data>
+  <data name="Menu6_5_7_7" xml:space="preserve">
+    <value>Education Information</value>
+  </data>
+  <data name="Menu6_5_7_8" xml:space="preserve">
+    <value>School-Faculty-Department Definitions</value>
+  </data>
+  <data name="Menu6_6" xml:space="preserve">
+    <value>General Definitions</value>
+  </data>
+  <data name="Menu6_5_8_14" xml:space="preserve">
+    <value>Languages</value>
+  </data>
+  <data name="Menu6_6_10" xml:space="preserve">
+    <value>Moduls</value>
+  </data>
+  <data name="Menu6_6_2" xml:space="preserve">
+    <value>Province-District Definitions</value>
+  </data>
+  <data name="Menu6_6_3" xml:space="preserve">
+    <value>Country Definition</value>
+  </data>
+  <data name="Menu6_6_4" xml:space="preserve">
+    <value>Georaphical Area Definition</value>
+  </data>
+  <data name="Menu6_6_5" xml:space="preserve">
+    <value>Firm Definition</value>
+  </data>
+  <data name="Menu6_6_6" xml:space="preserve">
+    <value>Measure Units Definitions</value>
+  </data>
+  <data name="Menu6_6_7" xml:space="preserve">
+    <value>Exchange Rates</value>
+  </data>
+  <data name="Menu6_6_8" xml:space="preserve">
+    <value>Currency Definitions</value>
+  </data>
+  <data name="Menu6_6_9" xml:space="preserve">
+    <value>Questionnaire Questions</value>
+  </data>
+    <data name="Menu6_5_7_2_18" xml:space="preserve">
+    <value>Document Type</value>
+  </data>
+  <data name="Menu3_1_18" xml:space="preserve">
+    <value>Expenditure Plan Upper Limit</value>
+  </data>
+  <data name="Menu4_1_3" xml:space="preserve">
+    <value>Staff Information</value>
+  </data>
+  <data name="Menu3_1_19" xml:space="preserve">
+    <value>Expenditure Plan Production</value>
+  </data>
+  <data name="Menu5_3_1_1" xml:space="preserve">
+    <value>Personnel Reports</value>
+  </data>
+  <data name="Menu5_2_5_1" xml:space="preserve">
+    <value>Recievables Reports</value>
+  </data>
+  <data name="Menu5_2_6_1" xml:space="preserve">
+    <value>Library Reports</value>
+  </data>
+  <data name="Menu3_1_20" xml:space="preserve">
+    <value>Revision Request</value>
+  </data>
+  <data name="Menu3_1_21" xml:space="preserve">
+    <value>Revision</value>
+  </data>
+  <data name="Menu6_5_2_2_12" xml:space="preserve">
+    <value>Update Account Plan</value>
+  </data>
+  <data name="Menu6_5_2_2_13" xml:space="preserve">
+    <value>End Year Operations</value>
+  </data>
+  <data name="Menu6_5_2_2_14" xml:space="preserve">
+    <value>Expanditure Currency Transfer</value>
+  </data>
+  <data name="Menu6_5_2_2_15" xml:space="preserve">
+    <value>Staff Definition</value>
+  </data>
+  <data name="Menu6_5_3_1_5" xml:space="preserve">
+    <value>Definition Update</value>
+  </data>
+  <data name="Menu5_2_7_6" xml:space="preserve">
+    <value>Process Report</value>
+  </data>
+  <data name="Menu6_5_1_16" xml:space="preserve">
+    <value>Organizational Structure Definition(Old)</value>
+  </data>
+  <data name="Menu3_2_10" xml:space="preserve">
+    <value>Telecom e-Invoice</value>
+  </data>
+  <data name="Menu6_5_2_2_10" xml:space="preserve">
+    <value>Account Unit Definition</value>
+  </data>
+  <data name="Menu6_5_2_2_11" xml:space="preserve">
+    <value>Expanditure Currency Definition</value>
+  </data>
+  <data name="Menu6_5_2_2_16" xml:space="preserve">
+    <value>Administrator Informations</value>
+  </data>
+  <data name="Menu6_5_2_2_7" xml:space="preserve">
+    <value>Sector Definition</value>
+  </data>
+  <data name="Menu6_5_2_2_8" xml:space="preserve">
+    <value>Province Definiton</value>
+  </data>
+  <data name="Menu6_5_2_2_9" xml:space="preserve">
+    <value>District Definition</value>
+  </data>
+  <data name="Menu6_5_8_1" xml:space="preserve">
+    <value>Bank Informations</value>
+  </data>
+  <data name="Menu6_5_8_2" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Menu6_5_8_3" xml:space="preserve">
+    <value>Organization</value>
+  </data>
+  <data name="Menu6_5_8_4" xml:space="preserve">
+    <value>Class</value>
+  </data>
+  <data name="Menu6_5_8_5" xml:space="preserve">
+    <value>Education</value>
+  </data>
+  <data name="Menu6_5_8_6" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="Menu6_5_8_7" xml:space="preserve">
+    <value>Training</value>
+  </data>
+  <data name="Menu6_5_8_8" xml:space="preserve">
+    <value>School-Faculty-Department</value>
+  </data>
+  <data name="Menu3_1_22" xml:space="preserve">
+    <value>Revision Request Fulfilment</value>
+  </data>
+  <data name="Menu6_5_8_12" xml:space="preserve">
+    <value>Course Informations</value>
+  </data>
+  <data name="Menu6_5_8_13" xml:space="preserve">
+    <value>Top Document Informations</value>
+  </data>
+  <data name="Menu6_5_8_9" xml:space="preserve">
+    <value>Bank Branch</value>
+  </data>
+  <data name="Menu6_5_2_2_17" xml:space="preserve">
+    <value>Firm Definition</value>
+  </data>
+    <data name="Menu6_5_3_6" xml:space="preserve">
+    <value>Administration Informations</value>
+  </data>
+  <data name="Menu1_1_2" xml:space="preserve">
+    <value>Template Definition</value>
+  </data>
+  <data name="Menu5_2_7_7" xml:space="preserve">
+    <value>FCI(MTK) Reports</value>
+  </data>
+  <data name="Menu6_5_5_14" xml:space="preserve">
+    <value>GSM Internet</value>
+  </data>
+  <data name="Menu3_2_11" xml:space="preserve">
+    <value>Field Assignments Request</value>
+  </data>
+  <data name="Menu1_1_3" xml:space="preserve">
+    <value>Unit Type Definition</value>
+  </data>
+  <data name="Menu3_5_14" xml:space="preserve">
+    <value>Recurring Asset Registry No Operations</value>
+  </data>
+  <data name="Menu3_2_12" xml:space="preserve">
+    <value>Field Assignments Request</value>
+  </data>
+  <data name="Menu2_2_12" xml:space="preserve">
+    <value>Expense Offer(Eco 2)</value>
+  </data>
+  <data name="Menu2_1_3" xml:space="preserve">
+    <value>Budget Upper Limits</value>
+  </data>
+  <data name="Menu3_2_13" xml:space="preserve">
+    <value>Accounting Appropriation(103)</value>
+  </data>
+  <data name="Menu3_7" xml:space="preserve">
+    <value>Expenditure Plan</value>
+  </data>
+  <data name="Menu3_7_1" xml:space="preserve">
+    <value>Expenditure Plan</value>
+  </data>
+  <data name="Menu3_7_2" xml:space="preserve">
+    <value>Expenditure Plan Production</value>
+  </data>
+  <data name="Menu2_2_13" xml:space="preserve">
+    <value>Unit  Upper Limits</value>
+  </data>
+  <data name="Menu3_7_3" xml:space="preserve">
+    <value>Expenditure Plan Entry</value>
+  </data>
+  <data name="Menu3_2_14" xml:space="preserve">
+    <value>Accounting Appropriation</value>
+  </data>
+  <data name="Menu5_2_7_8" xml:space="preserve">
+    <value>Other Reports</value>
+  </data>
+  <data name="Menu3_1_11" xml:space="preserve">
+    <value>Appropriation Status Information(Detailed)</value>
+  </data>
+    <data name="Menu5_4_4" xml:space="preserve">
+    <value>System Files Version Information</value>
+  </data>
+  <data name="Menu6_5_1_17" xml:space="preserve">
+    <value>Budget Preperation Options</value>
+  </data>
+  <data name="Menu6_5_1_18" xml:space="preserve">
+    <value>Budget Index Options</value>
+  </data>
+  <data name="Menu2_2_14" xml:space="preserve">
+    <value>Upper Ceiling Meets</value>
+  </data>
+  <data name="Menu3_5_15" xml:space="preserve">
+    <value>Request Fulfillment</value>
+  </data>
+    <data name="Menu1_2_6" xml:space="preserve">
+    <value>Katalog Yönetimi</value>
+  </data>
+  <data name="Menu1_2_6_1" xml:space="preserve">
+    <value>Tema Katalogu</value>
+  </data>
+  <data name="Menu1_2_6_2" xml:space="preserve">
+    <value>Gelişim Alanı Katalogu</value>
+  </data>
+  <data name="Menu1_2_6_3" xml:space="preserve">
+    <value>Hizmet Katalogu</value>
+  </data>
+  <data name="Menu1_2_6_4" xml:space="preserve">
+    <value>Üst Belge Katalogu</value>
+  </data>
+  <data name="Menu1_2_6_5" xml:space="preserve">
+    <value>Faaliyet Katalogu</value>
+  </data>
+  <data name="Menu1_2_6_6" xml:space="preserve">
+    <value>Alt Faaliyet Katalogu</value>
+  </data>
+  <data name="Menu1_2_6_7" xml:space="preserve">
+    <value>İş/Görev Katalogu</value>
+  </data>
+  <data name="Menu1_2_6_8" xml:space="preserve">
+    <value>Anket Tanım</value>
+  </data>
+  <data name="Menu1_2_7" xml:space="preserve">
+    <value>Strategic Plan Development Process</value>
+  </data>
+  <data name="Menu1_2_8" xml:space="preserve">
+    <value>Current Situation Analysis Process</value>
+  </data>
+  <data name="Menu1_1_4" xml:space="preserve">
+    <value>General Task Definiton</value>
+  </data>
+  <data name="Menu1_2_9" xml:space="preserve">
+    <value>Stratejik Modelleme Süreci</value>
+  </data>
+  <data name="Menu2_2_15" xml:space="preserve">
+    <value>Expense Offer(Eco 4)</value>
+  </data>
+  <data name="Menu1_2_10" xml:space="preserve">
+    <value>Checklist for Planning Phase</value>
+  </data>
+  <data name="Menu1_1_5" xml:space="preserve">
+    <value>Organizational Schema Graphics</value>
+  </data>
+  <data name="Menu1_2_6_0" xml:space="preserve">
+    <value>Dönem Katalogu</value>
+  </data>
+  <data name="Menu3_5_16" xml:space="preserve">
+    <value>Logistic/Refundment Document</value>
+  </data>
+  <data name="Menu3_5_17" xml:space="preserve">
+    <value>Consumption/Production</value>
+  </data>
+  <data name="Menu6_7" xml:space="preserve">
+    <value>Revenue Management</value>
+  </data>
+  <data name="Menu6_7_1_1" xml:space="preserve">
+    <value>Job Definitions</value>
+  </data>
+  <data name="Menu6_7_1_2" xml:space="preserve">
+    <value>Part Definition</value>
+  </data>
+  <data name="Menu6_7_1_3" xml:space="preserve">
+    <value>Job-Part Relation</value>
+  </data>
+  <data name="Menu6_5_4_11" xml:space="preserve">
+    <value>Overtime Title Information</value>
+  </data>
+    <data name="Menu1_2_10_1" xml:space="preserve">
+    <value>Strategic Plan Development Process</value>
+  </data>
+  <data name="Menu1_2_10_2" xml:space="preserve">
+    <value>Current Situation Analysis Process</value>
+  </data>
+  <data name="Menu1_2_10_3" xml:space="preserve">
+    <value>Strategic Modelling Process</value>
+  </data>
+  <data name="Menu1_2_7_1" xml:space="preserve">
+    <value>Tasks and Assignments Form</value>
+  </data>
+  <data name="Menu1_2_7_2" xml:space="preserve">
+    <value>Planned Activities Form</value>
+  </data>
+  <data name="Menu1_2_8_1" xml:space="preserve">
+    <value>SWOT Analysis Form</value>
+  </data>
+  <data name="Menu1_2_8_2" xml:space="preserve">
+    <value>Service Analysis Form</value>
+  </data>
+  <data name="Menu1_2_8_3" xml:space="preserve">
+    <value>Stakeholder Analysis Form</value>
+  </data>
+  <data name="Menu1_2_8_4" xml:space="preserve">
+    <value>PEST Analysis Form</value>
+  </data>
+  <data name="Menu1_2_8_5" xml:space="preserve">
+    <value>Top Document Analysis Form</value>
+  </data>
+  <data name="Menu1_2_8_6" xml:space="preserve">
+    <value>Service Stakeholder Analysis Form</value>
+  </data>
+  <data name="Menu1_2_8_7" xml:space="preserve">
+    <value>Problem Space Analysis Form</value>
+  </data>
+  <data name="Menu1_2_8_8" xml:space="preserve">
+    <value>Historical Development Analysis Form</value>
+  </data>
+  <data name="Menu1_2_8_9" xml:space="preserve">
+    <value>Organizational Analysis Form</value>
+  </data>
+  <data name="Menu1_2_9_1" xml:space="preserve">
+    <value>Misyon Analiz Formu</value>
+  </data>
+  <data name="Menu1_2_9_10" xml:space="preserve">
+    <value>Stratejik Hedef İlişkileri Formu</value>
+  </data>
+  <data name="Menu1_2_9_2" xml:space="preserve">
+    <value>Vizyon Analiz Formu</value>
+  </data>
+  <data name="Menu1_2_9_3" xml:space="preserve">
+    <value>Tema Analiz Formu</value>
+  </data>
+  <data name="Menu1_2_9_4" xml:space="preserve">
+    <value>Stratejik Amaç - Hedef Analiz Formu</value>
+  </data>
+  <data name="Menu1_2_9_5" xml:space="preserve">
+    <value>Faaliyet Analiz Formu</value>
+  </data>
+  <data name="Menu1_2_9_6" xml:space="preserve">
+    <value>Alt Faaliyet Analiz Formu</value>
+  </data>
+  <data name="Menu1_2_9_7" xml:space="preserve">
+    <value>İş/Görev Analiz Formu</value>
+  </data>
+  <data name="Menu1_2_9_8" xml:space="preserve">
+    <value>Strateji Belirleme Formu</value>
+  </data>
+  <data name="Menu1_2_9_9" xml:space="preserve">
+    <value>Stratejik Hedef Maliyet Formu</value>
+  </data>
+  <data name="Menu1_2_0" xml:space="preserve">
+    <value>Organizational Strategic Plan</value>
+  </data>
+  <data name="Menu6_5_1_19" xml:space="preserve">
+    <value>Sub-Activitiy Relations</value>
+  </data>
+  <data name="Menu6_5_1_20" xml:space="preserve">
+    <value>Sub-Activities(Old Form)</value>
+  </data>
+  <data name="Menu3_5_18" xml:space="preserve">
+    <value>Clothing/Equipment</value>
+  </data>
+  <data name="Menu1_2_8_10" xml:space="preserve">
+    <value>Legislation Analysis Form</value>
+  </data>
+  <data name="Menu5_3_1_2" xml:space="preserve">
+    <value>Staff Reports</value>
+  </data>
+  <data name="Menu6_7_1" xml:space="preserve">
+    <value>Process Definitions</value>
+  </data>
+  <data name="Menu6_7_2" xml:space="preserve">
+    <value>Bid Information</value>
+  </data>
+  <data name="Menu6_7_2_1" xml:space="preserve">
+    <value>Bid Procedure</value>
+  </data>
+  <data name="Menu6_7_2_2" xml:space="preserve">
+    <value>Article Definition</value>
+  </data>
+  <data name="Menu6_7_2_3" xml:space="preserve">
+    <value>Announcement Definitions</value>
+  </data>
+    <data name="Menu5_3_1_3" xml:space="preserve">
+    <value>Staff Information Report</value>
+  </data>
+  <data name="Menu4_1_4" xml:space="preserve">
+    <value>Staff Quota</value>
+  </data>
+  <data name="Menu5_2_3_5" xml:space="preserve">
+    <value>Document Log</value>
+  </data>
+  <data name="Menu1_3_8" xml:space="preserve">
+    <value>Expense Distribution</value>
+  </data>
+  <data name="Menu6_5_8_15" xml:space="preserve">
+    <value>Task Subject</value>
+  </data>
+  <data name="Menu6_5_8_16" xml:space="preserve">
+    <value>Commencement/Severance Reasons</value>
+  </data>
+  <data name="Menu3_5_19" xml:space="preserve">
+    <value>Gift Request Document</value>
+  </data>
+  <data name="Menu3_2_15" xml:space="preserve">
+    <value>Payment Order/Journal Entry</value>
+  </data>
+  <data name="Menu1_3_0" xml:space="preserve">
+    <value>Organizational Performance Program</value>
+  </data>
+  <data name="Menu6_5_2_2_18" xml:space="preserve">
+    <value>Input/Output Operations of Transfer Between Years</value>
+  </data>
+  <data name="Menu3_5_20" xml:space="preserve">
+    <value>Depreciation</value>
+  </data>
+  <data name="Menu3_5_20_1" xml:space="preserve">
+    <value>Depreciation/Valuation(New/Auto)</value>
+  </data>
+  <data name="Menu3_5_20_2" xml:space="preserve">
+    <value>Depreciation(Old/Manual)</value>
+  </data>
+  <data name="Menu3_5_20_3" xml:space="preserve">
+    <value>Asset Properties Registry</value>
+  </data>
+  <data name="Menu3_5_20_4" xml:space="preserve">
+    <value>Depreciation Report</value>
+  </data>
+  <data name="Menu3_5_20_6" xml:space="preserve">
+    <value>Movable Assets Duration Definition</value>
+  </data>
+  <data name="Menu1_3_10" xml:space="preserve">
+    <value>Performance Program Process</value>
+  </data>
+  <data name="Menu1_3_10_1" xml:space="preserve">
+    <value>Activities Determination</value>
+  </data>
+  <data name="Menu1_3_10_2" xml:space="preserve">
+    <value>Activity Weight Distribution</value>
+  </data>
+  <data name="Menu6_6_11" xml:space="preserve">
+    <value>Define Logo</value>
+  </data>
+  <data name="Menu3_2_16" xml:space="preserve">
+    <value>Payment Distribution by Location</value>
+  </data>
+  <data name="Menu4_6" xml:space="preserve">
+    <value>Economic Indicator</value>
+  </data>
+  <data name="Menu4_6_1" xml:space="preserve">
+    <value>Annual Data Entry</value>
+  </data>
+  <data name="Menu4_6_2" xml:space="preserve">
+    <value>Monthly Data Entry</value>
+  </data>
+  <data name="Menu6_8" xml:space="preserve">
+    <value>Economic Indicator Definitions</value>
+  </data>
+  <data name="Menu6_8_1" xml:space="preserve">
+    <value>Code Group Identification</value>
+  </data>
+  <data name="Menu4_6_3" xml:space="preserve">
+    <value>Daily Data Entry</value>
+  </data>
+  <data name="Menu4_6_4" xml:space="preserve">
+    <value>Data Query / Setup</value>
+  </data>
+  <data name="Menu4_6_5" xml:space="preserve">
+    <value>Six Month Data Entry</value>
+  </data>
+  <data name="Menu4_6_6" xml:space="preserve">
+    <value>Quarterly Data Entry</value>
+  </data>
+  <data name="Menu6_8_2" xml:space="preserve">
+    <value>Code Identification</value>
+  </data>
+  <data name="Menutj2_4" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="Menu4_6_7" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="Menu1_3_10_3" xml:space="preserve">
+    <value>Sub-Activity Definition</value>
+  </data>
+  <data name="Menu1_3_10_4" xml:space="preserve">
+    <value>Indicators Monitor</value>
+  </data>
+  <data name="Menu4_6_8" xml:space="preserve">
+    <value>Report Template</value>
+  </data>
+  <data name="Menu4_6_9" xml:space="preserve">
+    <value>Graphics</value>
+  </data>
+  <data name="Menu3_0" xml:space="preserve">
+    <value>Доходы</value>
+  </data>
+  <data name="Menu3_0_1" xml:space="preserve">
+    <value>Реестр платёжных поручений</value>
+  </data>
+  <data name="Menu3_0_3" xml:space="preserve">
+    <value>Начальные остатки по спецсредствам</value>
+  </data>
+  <data name="Menu1_3_11" xml:space="preserve">
+    <value>Graphics</value>
+  </data>
+  <data name="Menu1_3_11_1" xml:space="preserve">
+    <value>Course Succes Graphic</value>
+  </data>
+  <data name="Menu1_3_11_2" xml:space="preserve">
+    <value>Higher Level Education Instution Transition Graphic</value>
+  </data>
+  <data name="Menu1_3_11_3" xml:space="preserve">
+    <value>Attendance,Graduation,Personel Success Graphic</value>
+  </data>
+  <data name="Menu3_5_20_5" xml:space="preserve">
+    <value>Lower Limit Definition</value>
+  </data>
+</root>

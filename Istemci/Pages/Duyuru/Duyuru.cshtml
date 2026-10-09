@@ -1,0 +1,20 @@
+@page
+@model DuyuruModel
+@{
+    // Açılış sayfasındaki duyuru ekranı (eski Duyuru/Duyuru.aspx). Çerçeve içinde açıldığı için menüsüzdür.
+    // ?penceremi=1 : yalnızca "pencerede göster" işaretli duyurular (açılışta açılan pencere).
+    ViewData["Title"] = Metin.Duyuru("FRMDYG014");
+    ViewData["MenuYok"] = true;
+    ViewData["GovdeSinif"] = "duyuru-ekran";
+}
+<div id="hata" class="alert alert-danger" role="alert" hidden></div>
+<div id="duyuruKutu" class="duyuru-kutu">
+    <ul id="duyurular" class="duyuru-liste" aria-live="polite"></ul>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/duyuru.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/duyuru.js" asp-append-version="true"></script>
+}
