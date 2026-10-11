@@ -107,6 +107,33 @@ namespace Istemci.OrtakSayfa
             return gruplar;
         }
 
+        /// <summary>
+        /// Kullanıcı, menüde verilen adresle (URL niteliği; büyük-küçük harf ayrımı yok) tanımlı bir seçeneği görebiliyor mu?
+        /// Eski GenelIslemler.SayfayaGirisYapabilirMi'nin karşılığı: aynı sayfanın adresteki parametreye göre farklı
+        /// kullanıcı tiplerine açıldığı durumlarda (ör. GenelKodTanimla.aspx?Tur=21) uçlar bununla denetler.
+        /// Adres menüde hiç yoksa false döner.
+        /// </summary>
+        public bool SayfaYetkili(string dosyaYolu, string url)
+        {
+            if (kullaniciYetki.Length == 0) return false;
+            XmlDocument belge = new XmlDocument();
+            belge.Load(dosyaYolu);
+            if (belge.DocumentElement == null) return false;
+            return SayfaAra(belge.DocumentElement, url);
+        }
+
+        private bool SayfaAra(XmlNode ust, string url)
+        {
+            foreach (XmlNode dugum in ust.ChildNodes)
+            {
+                // Görünmeyen düğümün altındakiler de görünmez.
+                if (dugum.NodeType != XmlNodeType.Element || !Gorunur(dugum)) continue;
+                if (string.Equals(Ozellik(dugum, "URL"), url, StringComparison.OrdinalIgnoreCase)) return true;
+                if (SayfaAra(dugum, url)) return true;
+            }
+            return false;
+        }
+
         private MenuBaslik BaslikOku(XmlNode dugum)
         {
             MenuBaslik baslik = new MenuBaslik();

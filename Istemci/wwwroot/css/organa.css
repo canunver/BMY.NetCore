@@ -1,0 +1,185 @@
+/* Organizasyon Şeması (Organizasyon/ORGAna): solda birim ağacı, sağda Birim Bilgileri ve Görevler sekmeleri. tanim.css ile birlikte kullanılır. */
+
+.organa .kutu-baslik,
+.organa .sekmeler,
+.organa .tanim-sol .tanim-arac {
+    flex: none;
+}
+
+.organa .tanim-form {
+    --etiket-genislik: 190px;
+    max-width: 860px;
+}
+
+.organa fieldset {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.organa [hidden] {
+    display: none !important;
+}
+
+/* Sekmeler */
+.organa .sekmeler {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.organa .sekmeler [role="tab"] {
+    margin-bottom: -1px;
+    padding: 7px 14px;
+    color: var(--soluk);
+    background: none;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    border-radius: 6px 6px 0 0;
+}
+
+.organa .sekmeler [role="tab"]:hover:not(:disabled) {
+    color: var(--murekkep);
+    background: var(--tema-acik);
+}
+
+.organa .sekmeler [role="tab"][aria-selected="true"] {
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--yuzey);
+    border-color: var(--cizgi);
+    box-shadow: inset 0 3px 0 var(--tema-ana);
+}
+
+.organa .sekmeler [role="tab"]:disabled {
+    opacity: .5;
+}
+
+/* Bölümler (Yönetici Bilgileri, Bütçe Kodları, Harcama Kodları, Ambar, İletişim): eski sayfadaki sekmelerin yerine,
+   her biri çerçeveli ve renkli başlıklı ayrı bir kutu */
+.organa .bolum {
+    margin: 14px 0;
+    padding: 0 12px 6px;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.organa .alan-grubu {
+    margin: 0 -12px 12px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+/* Her bölümün kendi açık rengi vardır: başlık koyu tonda, gövde çok açık tonda; bölümler birbirinden kolay ayrılır */
+.organa .bolum {
+    --bolum-baslik: #e4f0f5;
+    --bolum-govde: #f6fafc;
+    --bolum-vurgu: #1d6f8f;
+    background: var(--bolum-govde);
+}
+
+.organa .bolum[data-kosul="yonetici"]   { --bolum-baslik: #e3edfa; --bolum-govde: #f5f8fd; --bolum-vurgu: #2f6fc4; }
+.organa .bolum[data-kosul="iletisim"]   { --bolum-baslik: #e2f3e6; --bolum-govde: #f5fbf6; --bolum-vurgu: #2e8b4e; }
+.organa .bolum[data-kosul="butce"]      { --bolum-baslik: #fbefd3; --bolum-govde: #fefaf0; --bolum-vurgu: #b07a00; }
+.organa .bolum[data-kosul="harcamaKod"] { --bolum-baslik: #ece6f8; --bolum-govde: #f9f7fd; --bolum-vurgu: #6b4fb3; }
+.organa .bolum[data-kosul="ambar"]      { --bolum-baslik: #fae5e3; --bolum-govde: #fdf6f5; --bolum-vurgu: #b3493f; }
+
+/* Unvan seçimi + atanmış kişi; muhasebe kodu + adı */
+.organa .yonetici-satir {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+}
+
+.organa .yonetici-satir .form-control {
+    flex: 1 1 220px;
+    min-width: 0;
+    max-width: 360px;
+}
+
+.organa .yonetici-satir .form-control.dar {
+    flex: none;
+    width: 110px;
+}
+
+.organa .kisi {
+    font-size: 12px;
+    color: var(--soluk);
+    overflow-wrap: anywhere;
+}
+
+/* Harcama kodu ekleme satırı ve eklenen kodlar */
+.organa .harcama-ekle {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.organa #lstHarcamaKod {
+    margin-bottom: 8px;
+}
+
+.organa #lstHarcamaKod .ad {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    font-size: 12px;
+}
+
+@media (max-width: 640px) {
+    .organa .tanim-form { --etiket-genislik: 120px; }
+    .organa .harcama-ekle,
+    .organa #lstHarcamaKod .ad { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Görevler sekmesi: Göreve Kişi Atama sayfası çerçevede */
+.organa #pnlGorev iframe {
+    width: 100%;
+    height: 560px;
+    border: 0;
+}
+
+/* Birim seçme penceresindeki ağaç */
+.birim-sec-agac {
+    height: min(52vh, 420px);
+    overflow: auto;
+    border: 1px solid var(--cizgi);
+    border-radius: 4px;
+}
+
+@media (min-width: 992px) {
+    .tanim.organa {
+        grid-template-columns: minmax(280px, 4fr) minmax(0, 9fr);
+    }
+
+    .tanim.organa .kutu {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .tanim.organa .kayan,
+    .tanim.organa .sekme-govde {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+    }
+
+    .tanim.organa #pnlGorev {
+        overflow: hidden;
+    }
+
+    .tanim.organa #pnlGorev iframe {
+        height: 100%;
+    }
+}

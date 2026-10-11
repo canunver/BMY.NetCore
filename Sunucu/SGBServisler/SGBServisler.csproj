@@ -12,6 +12,22 @@
     <ProjectReference Include="..\UZYServis\UZYServisC\UZYServisC.csproj" />
     <ProjectReference Include="..\KYMServis\KYMServisC\KYMServis.csproj" />
     <ProjectReference Include="..\KHMServis\KHMServisC\KHMServisC.csproj" />
+    <ProjectReference Include="..\MUHServis\MUHServisC\MUHServisC.csproj" />
+    <ProjectReference Include="..\BHMv2Servis\BHMv2ServisC\BHMv2ServisC.csproj" />
+    <ProjectReference Include="..\BHMv2Servis\YATServisC\YATServisC.csproj" />
+    <ProjectReference Include="..\ATMServis\ATMServisC\ATMServisC.csproj" />
+    <ProjectReference Include="..\BHFServis\BHFServisC\BHFServisC.csproj" />
+    <ProjectReference Include="..\BHMv2Servis\BKDServisC\BKDServisC.csproj" />
+    <ProjectReference Include="..\BUMServis\BUMServisC\BUMServisC.csproj" />
+    <ProjectReference Include="..\GELServis\GELServisC\GELServisC.csproj" />
+    <ProjectReference Include="..\HRCServis\HRCServisC\HRCServisC.csproj" />
+    <ProjectReference Include="..\IKYServis\IKYServisC\IKYServisC.csproj" />
+    <ProjectReference Include="..\KPMServis\KPMServisC\KPMServisC.csproj" />
+    <ProjectReference Include="..\PEBServis\PEBServisC\PEBServisC.csproj" />
+    <ProjectReference Include="..\PERServis\PERServisC\PERServisC.csproj" />
+    <ProjectReference Include="..\STRServis\STRServisC\STRServisC.csproj" />
+    <ProjectReference Include="..\TMMServis\TMMServisC\TMMServisC.csproj" />
+    <ProjectReference Include="..\TRMServis\TRMServisC\TRMServisC.csproj" />
   </ItemGroup>
 
 </Project>

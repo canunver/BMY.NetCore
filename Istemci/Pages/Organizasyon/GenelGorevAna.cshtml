@@ -1,0 +1,105 @@
+@page
+@model GenelGorevAnaModel
+@{
+    // Eski sayfadaki gibi metinler Türkçe sabittir (eski GenelGorevDetay ve YET sayfalarında da kaynak dosyası kullanılmıyordu).
+    ViewData["Title"] = "Genel Görev Tanımlama";
+    // Geniş ekranda sayfa pencereye sığar, bölmeler kendi içinde kayar (tanim.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim arama-dar">
+    <!-- Sol: görevler -->
+    <section class="tanim-sol">
+        <div class="kutu izgarali">
+            <div class="btn-toolbar tanim-arac" role="toolbar">
+                <button type="button" id="btnYeni" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni
+                </button>
+            </div>
+            <div id="grdGorevler" class="tanim-grid"></div>
+        </div>
+    </section>
+
+    <!-- Sağ: seçili görevin bilgileri ve yazılım yetkileri -->
+    <section class="tanim-sag">
+        <div class="kutu">
+            <div class="btn-toolbar tanim-arac" role="toolbar">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm" disabled>
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+            </div>
+
+            <form id="frmGorev" class="tanim-form" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="txtAd">Ad</label>
+                    <div><input type="text" id="txtAd" class="form-control" /></div>
+                </div>
+                <div class="form-group ust-hizali">
+                    <label class="control-label" for="txtAciklama">Açıklama</label>
+                    <div><textarea id="txtAciklama" class="form-control" rows="3"></textarea></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMaxGorev">Max. Görev Sayısı</label>
+                    <div><input type="number" id="txtMaxGorev" class="form-control dar" min="-1" max="100" step="1" value="-1" /></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Zorunlu</span>
+                    <div><label class="checkbox-inline"><input type="checkbox" id="chkZorunlu" /> Evet</label></div>
+                </div>
+                <div class="form-group ust-hizali" id="satirBirimTurleri">
+                    <span class="control-label">Birim Türleri</span>
+                    <div id="birimTurleri" class="tanim-secenekler" role="group" aria-label="Birim Türleri"></div>
+                </div>
+            </form>
+
+            <h2 class="kutu-baslik tanim-ara-baslik">Yazılım Yetkileri</h2>
+            <div class="tanim-ekle">
+                <select id="ddlIslem" class="form-control input-sm" aria-label="Eklenecek işlem">
+                    <option value="">Eklenecek İşlemi Seçiniz.</option>
+                </select>
+                <button type="button" id="btnYetkiEkle" class="btn btn-default btn-sm" disabled>
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekle
+                </button>
+            </div>
+            <ul id="lstYetkiler" class="tanim-liste"></ul>
+        </div>
+    </section>
+</div>
+
+<!-- Bir yazılım yetkisinin alanları (eski YETxxx.aspx sayfaları) -->
+<dialog id="dlgYetki" class="tanim-pencere genis" aria-labelledby="dlgYetkiBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgYetkiBaslik"></h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div id="yetkiUyari" class="alert alert-warning" role="alert" hidden></div>
+        <form id="frmYetki" class="tanim-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="txtYetkiAciklama">Yazılım Yetki Açıklaması</label>
+                <div><input type="text" id="txtYetkiAciklama" class="form-control" /></div>
+            </div>
+            <div id="yetkiAlanlar"></div>
+            <p id="yetkiAlanYok" class="tanim-not duz" hidden>Bu yetkinin özel alanı yoktur. Eklemek için Kaydet'e basınız.</p>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnYetkiKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/genelgorev.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,423 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ATA001" xml:space="preserve">
+    <value>Borç Doğuş Tarihi, Borç Tespit Tarihi'nden önceki bir tarih olmalıdır.&lt;br&gt;</value>
+  </data>
+  <data name="ATA002" xml:space="preserve">
+    <value>Borç Doğuş Tarihi, Borç Değerlendirme Tarihi'nden önceki bir tarih olmalıdır.&lt;br&gt;</value>
+  </data>
+  <data name="ATA003" xml:space="preserve">
+    <value>Borç Doğuş Tarihi, Tebliğ Tarihi'nden önceki bir tarih olmalıdır.&lt;br&gt;</value>
+  </data>
+  <data name="ATA004" xml:space="preserve">
+    <value>Borç Doğuş Tarihi, Faiz Başlangıç Tarihi'nden önceki bir tarih olmalıdır.&lt;br&gt;</value>
+  </data>
+  <data name="ATA005" xml:space="preserve">
+    <value>Borç Tespit Tarihi, Borç Değerlendirme Tarihi'nden önceki bir tarih olmalıdır.&lt;br&gt;</value>
+  </data>
+  <data name="ATA006" xml:space="preserve">
+    <value>Borç Tespit Tarihi, Tebliğ Tarihi'nden önceki bir tarih olmalıdır.&lt;br&gt;</value>
+  </data>
+  <data name="ATA007" xml:space="preserve">
+    <value>Borç Değerlendirme Tarihi, Tebliğ Tarihi'nden önceki bir tarih olmalıdır.&lt;br&gt;</value>
+  </data>
+  <data name="ATA008" xml:space="preserve">
+    <value>Faiz Başlangıç Tarihi, Tebliğ Tarihi'nden önceki bir tarih olmalıdır.&lt;br&gt;</value>
+  </data>
+  <data name="ATA009" xml:space="preserve">
+    <value>Borçlu Tipi girilmemiş!</value>
+  </data>
+  <data name="ATA010" xml:space="preserve">
+    <value>Vergi No girilmemiş!</value>
+  </data>
+  <data name="ATA011" xml:space="preserve">
+    <value>Mernis No girilmemiş!</value>
+  </data>
+  <data name="ATA012" xml:space="preserve">
+    <value>Borçlu Adı girilmemiş!</value>
+  </data>
+  <data name="ATA013" xml:space="preserve">
+    <value>Borçlu Adı Mernis No ile örtüşmemekte!</value>
+  </data>
+  <data name="ATA014" xml:space="preserve">
+    <value>Borç Miktarı girilmemiş!</value>
+  </data>
+  <data name="ATA015" xml:space="preserve">
+    <value>Para Birimi girilmemiş!</value>
+  </data>
+  <data name="ATA016" xml:space="preserve">
+    <value>Faiz Türü yanlış!</value>
+  </data>
+  <data name="ATA017" xml:space="preserve">
+    <value>Yıl bilgisi girilmemiş!</value>
+  </data>
+  <data name="ATA018" xml:space="preserve">
+    <value>Verilen kriterlere göre uygun kayıt bulunamadı.</value>
+  </data>
+  <data name="ATA019" xml:space="preserve">
+    <value>Yıl bilgisi girilmemiş!</value>
+  </data>
+  <data name="ATA020" xml:space="preserve">
+    <value>Verilen kriterlere göre uygun kayıt bulunamadı.</value>
+  </data>
+  <data name="ATA021" xml:space="preserve">
+    <value>Böyle bir Alacak Takip Dosyası yok!</value>
+  </data>
+  <data name="ATA022" xml:space="preserve">
+    <value>Böyle bir Alacak Takip Dosyası Durumu yok!</value>
+  </data>
+  <data name="ATA023" xml:space="preserve">
+    <value>Taksitler ödendi olarak görünmüyor! Önce taksitleri ödendi olarak kaydedin, daha sonra dosyayı kapatın.</value>
+  </data>
+  <data name="ATA024" xml:space="preserve">
+    <value>Durum değiştirme tarihi boş bırakılamaz!</value>
+  </data>
+  <data name="ATA025" xml:space="preserve">
+    <value>Kullanıcı kodu boş bırakılamaz!</value>
+  </data>
+  <data name="ATA026" xml:space="preserve">
+    <value>Yıl bilgisi girilmemiş!</value>
+  </data>
+  <data name="ATA027" xml:space="preserve">
+    <value>Dosya No bilgisi girilmemiş!</value>
+  </data>
+  <data name="ATA028" xml:space="preserve">
+    <value>Verilen kriterlere göre uygun kayıt bulunamadı.</value>
+  </data>
+  <data name="ATA029" xml:space="preserve">
+    <value>Ad bilgisi girilmemiş!</value>
+  </data>
+  <data name="ATA030" xml:space="preserve">
+    <value>Oran bilgisi girilmemiş veya girilen değer yanlış!</value>
+  </data>
+  <data name="ATA031" xml:space="preserve">
+    <value>Verilen kriterlere göre uygun kayıt bulunamadı.</value>
+  </data>
+  <data name="ATA032" xml:space="preserve">
+    <value>Yıl bilgisi girilmemiş veya girilen yıla kayıt yapılamaz!</value>
+  </data>
+  <data name="ATA033" xml:space="preserve">
+    <value>Ad bilgisi girilmemiş!</value>
+  </data>
+  <data name="ATA034" xml:space="preserve">
+    <value>Oran bilgisi girilmemiş veya girilen değer yanlış!</value>
+  </data>
+  <data name="ATA035" xml:space="preserve">
+    <value>Yıl bilgisi girilmemiş!</value>
+  </data>
+  <data name="ATA036" xml:space="preserve">
+    <value>Verilen kriterlere göre uygun kayıt bulunamadı.</value>
+  </data>
+  <data name="ATA037" xml:space="preserve">
+    <value>Taksit sayısını giriniz!</value>
+  </data>
+  <data name="ATA038" xml:space="preserve">
+    <value>Ödeme periyodunu giriniz!</value>
+  </data>
+  <data name="ATA039" xml:space="preserve">
+    <value>İlk taksitin ödeme tarihini giriniz!</value>
+  </data>
+  <data name="ATA040" xml:space="preserve">
+    <value>Böyle bir Alacak Takip Dosyası yok!</value>
+  </data>
+  <data name="ATA041" xml:space="preserve">
+    <value>Taksitler ödenmeye başlandığı için ödeme planını değiştiremezsiniz!</value>
+  </data>
+  <data name="ATA042" xml:space="preserve">
+    <value>Taksit sayısını giriniz!</value>
+  </data>
+  <data name="ATA043" xml:space="preserve">
+    <value>Böyle bir Alacak Takip Dosyası yok!</value>
+  </data>
+  <data name="ATA044" xml:space="preserve">
+    <value>Böyle bir Alacak Takip Dosyası yok!</value>
+  </data>
+  <data name="ATA045" xml:space="preserve">
+    <value>Önceki taksitler ödenmeden</value>
+  </data>
+  <data name="ATA046" xml:space="preserve">
+    <value>. taksit ödenemez!</value>
+  </data>
+  <data name="ATA047" xml:space="preserve">
+    <value>. taksitin ödeme bilgileri eksik!</value>
+  </data>
+  <data name="ATA048" xml:space="preserve">
+    <value>Verilen kriterlere göre uygun kayıt bulunamadı.</value>
+  </data>
+  <data name="ATA049" xml:space="preserve">
+    <value>Muhasebe Kodu yanlış veya boş!</value>
+  </data>
+  <data name="ATA050" xml:space="preserve">
+    <value>İlgili Daire Kodu yanlış veya boş!</value>
+  </data>
+  <data name="ATA051" xml:space="preserve">
+    <value>Bu birime yazma hakkınız yok!</value>
+  </data>
+  <data name="ATA052" xml:space="preserve">
+    <value>Yazma hakkınız yok!</value>
+  </data>
+  <data name="ATA053" xml:space="preserve">
+    <value>Yazma hakkınız yok!</value>
+  </data>
+  <data name="ATA054" xml:space="preserve">
+    <value>Bu birimin bilgilerini okuma hakkınız yok!</value>
+  </data>
+  <data name="ATA055" xml:space="preserve">
+    <value>Okuma hakkınız yok!</value>
+  </data>
+  <data name="ATA056" xml:space="preserve">
+    <value>Tarih bilgisi girilmemiş.</value>
+  </data>
+  <data name="ATA057" xml:space="preserve">
+    <value>Hesap kodu bilgisi girilmemiş.</value>
+  </data>
+  <data name="ATA058" xml:space="preserve">
+    <value>Alacak miktarı girilmemiş.</value>
+  </data>
+  <data name="ATA059" xml:space="preserve">
+    <value>Borç veya alacak miktarı giriniz.</value>
+  </data>
+  <data name="ATA060" xml:space="preserve">
+    <value>Ad bilgisi girilmemiş.</value>
+  </data>
+  <data name="ATA061" xml:space="preserve">
+    <value>Borç alacak bilgisi girilmemiş.</value>
+  </data>
+  <data name="ATA062" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA063" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA064" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA065" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA066" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA067" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA068" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA069" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA070" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA071" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA072" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA073" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA074" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA075" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA076" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA077" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA078" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA079" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA080" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA081" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA082" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA083" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA084" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA085" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA086" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA087" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA088" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA089" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA090" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA091" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA092" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA093" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA094" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA095" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA096" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA097" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA098" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="ATA099" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="DosyaAB001" xml:space="preserve">
+    <value>Yazma yetkiniz yok!</value>
+  </data>
+  <data name="DosyaAB002" xml:space="preserve">
+    <value>Görme yetkiniz yok!</value>
+  </data>
+</root>

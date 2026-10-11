@@ -1,0 +1,83 @@
+/* İzleme Tablosu (PerformansButce/StratejikGostGerc): solda arama ve hedefler, sağda gösterge gerçekleşmeleri.
+   tanim.css ve stratejikplan.css (içinde giriş alanları olan tablolar) ile birlikte kullanılır. */
+
+.izleme .kutu-baslik,
+.izleme .tanim-arac,
+.izleme .tanim-arama {
+    flex: none;
+}
+
+.izleme .tanim-sol .kutu-baslik {
+    margin-top: 6px;
+    padding-top: 10px;
+    border-top: 1px solid var(--cizgi);
+}
+
+.izleme .tanim-arac .btn-group {
+    margin-bottom: 4px;
+}
+
+.izleme [hidden] {
+    display: none !important;
+}
+
+/* Hesaplanan (değiştirilemeyen) sütunlar sarımsı zeminle ayrılır (eski sayfadaki gibi) */
+#tblGerc td.hesap {
+    font-weight: 600;
+    background: #fcfcd4;
+}
+
+#tblGerc .gosterge-ad {
+    min-width: 220px;
+    overflow-wrap: anywhere;
+}
+
+#tblGerc textarea.form-control {
+    min-width: 200px;
+    height: auto;
+    resize: vertical;
+}
+
+/* Tablo geniş olduğunda sağa sola kaydırılır; gösterge adı (ilk sütun) kaydırırken yerinde kalır */
+#tblGerc th:first-child,
+#tblGerc td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+}
+
+#tblGerc th:first-child {
+    background: var(--yuzey);
+}
+
+#tblGerc th {
+    white-space: nowrap;
+}
+
+#tblGerc input[type="number"] {
+    min-width: 96px;
+}
+
+.izleme #gercBilgi {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--cizgi);
+}
+
+@media (min-width: 992px) {
+    .tanim.izleme {
+        grid-template-columns: 380px minmax(0, 1fr);
+    }
+
+    .tanim.izleme .kutu {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .tanim.izleme .kayan {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+    }
+}

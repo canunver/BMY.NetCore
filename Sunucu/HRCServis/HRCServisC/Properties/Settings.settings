@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="HRCServisC.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="HRCServisC_tr_gov_sgb_uygulama_GIBServis" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://uygulama.sgb.gov.tr/Servis/GIBServis.asmx</Value>
+    </Setting>
+    <Setting Name="HRCServisC_tr_gov_sgb_uygulama_tedas_TedasFatura" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://uygulama.sgb.gov.tr/servis/TedasServis.asmx</Value>
+    </Setting>
+    <Setting Name="HRCServisC_tr_gov_sgb_uygulama_su_SuFatura" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://uygulama.sgb.gov.tr/servis/SuServis.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

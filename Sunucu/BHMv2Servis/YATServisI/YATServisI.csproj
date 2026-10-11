@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>YATServisI</AssemblyName>
+    <RootNamespace>YATServisI</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\GNLServis\GNLServis.csproj" />
+    <ProjectReference Include="..\..\KYMServis\KYMServisI\KYMServisI.csproj" />
+    <ProjectReference Include="..\BHMv2ServisI\BHMv2ServisI.csproj" />
+    <ProjectReference Include="..\BKDServisI\BKDServisI.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,97 @@
+@page
+@model TanimMuhasebeBirimModel
+@{
+    ViewData["Title"] = Metin.Muhasebe("FRMMUB001");
+    // Geniş ekranda sayfa pencereye sığar, bölmeler kendi içinde kayar (tanim.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">@Metin.Muhasebe("Yetkisiz")</div>
+    return;
+}
+
+<div class="tanim liste-genis">
+    <!-- Sol: arama ve liste -->
+    <section class="tanim-sol">
+        <div class="kutu">
+            <h2 class="kutu-baslik">@Metin.Muhasebe("BirimListe")</h2>
+            <form id="frmArama" class="tanim-arama" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="aramaMuhasebe">@Metin.Muhasebe("FRMMUB003")</label>
+                    <div><select id="aramaMuhasebe" class="form-control"><option value="">@Metin.Muhasebe("Hepsi")</option></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="aramaKod">@Metin.Muhasebe("MUHGNL042")</label>
+                    <div class="arama-satir">
+                        <input type="text" id="aramaKod" class="form-control" maxlength="20" />
+                        <input type="text" id="aramaAd" class="form-control genis" aria-label="@Metin.Muhasebe("FRMMUB004")" placeholder="@Metin.Muhasebe("FRMMUB004")" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="aramaKurum">@Metin.Muhasebe("MUHGNL137")</label>
+                    <div class="arama-satir">
+                        <input type="text" id="aramaKurum" class="form-control" maxlength="30" />
+                        <button type="submit" id="btnListele" class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> @Metin.Muhasebe("MUHGNL003")
+                        </button>
+                        <button type="button" id="btnDisaAktar" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> @Metin.Muhasebe("DisaAktar")
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div id="grdListe" class="tanim-grid"></div>
+        </div>
+    </section>
+
+    <!-- Sağ: seçili birimin bilgileri -->
+    <section class="tanim-sag">
+        <div class="kutu">
+            <div class="btn-toolbar tanim-arac" role="toolbar">
+                <button type="button" id="btnYeni" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> @Metin.Muhasebe("Yeni")
+                </button>
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> @Metin.Muhasebe("MUHGNL001")
+                </button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm" disabled>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> @Metin.Muhasebe("MUHGNL002")
+                </button>
+            </div>
+
+            <form id="frmBirim" class="tanim-form" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="ddlMuhasebe">@Metin.Muhasebe("FRMMUB003")</label>
+                    <div><select id="ddlMuhasebe" class="form-control" required><option value=""></option></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtKod">@Metin.Muhasebe("MUHGNL042")</label>
+                    <div><input type="text" id="txtKod" class="form-control dar" inputmode="numeric" maxlength="3" required /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAd">@Metin.Muhasebe("FRMMUB004")</label>
+                    <div><input type="text" id="txtAd" class="form-control" required /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtKurum">@Metin.Muhasebe("MUHGNL137")</label>
+                    <div><input type="text" id="txtKurum" class="form-control dar" maxlength="11" required /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtVergiNo">@Metin.Muhasebe("VergiNo")</label>
+                    <div><input type="text" id="txtVergiNo" class="form-control dar" inputmode="numeric" maxlength="10" /></div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+<script type="application/json" id="metinler">@Html.Raw(Model.MetinlerJson)</script>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/tanimmuhasebebirim.js" asp-append-version="true"></script>
+}

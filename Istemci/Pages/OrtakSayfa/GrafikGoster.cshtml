@@ -1,0 +1,11 @@
+@page
+@model GrafikGosterModel
+@{
+    ViewData["Title"] = "Grafik";
+}
+<!-- Grafik wwwroot/js/grafikgoster.js tarafından ?param=... ile /api/grafik ucundan okunup çizilir (Sgb.grafik). -->
+<div id="grafik" class="grafik-goster" aria-live="polite"></div>
+
+@section Betikler {
+    <script src="~/js/grafikgoster.js" asp-append-version="true"></script>
+}

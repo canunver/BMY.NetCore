@@ -51,6 +51,11 @@ namespace TNS.DEG
             return degisken;
         }
 
+        public static bool TKDKMi()
+        {
+            return VarsayilanKurumBul() == "5030";
+        }
+
         public static bool OdenekGondermeYasakliMi(string ekoKod)
         {
             string[] OdGondYasakEkolar = null; //12 = { "032", "033", "035201", "035202", "035401", "035910", "037190", "037301", "037302" };

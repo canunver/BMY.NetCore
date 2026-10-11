@@ -7,66 +7,15 @@
     <Node ID="Menu1_1" Tip="UstMenu" Text="Organizasyon Yapı" Genislik="120" Yukseklik="100" Modul="ORG">
       <Node Tip="Kolon">
         <Node ID="Menu1_1_1" Text="Organizasyon Şeması" URL="../Organizasyon/ORGAna.aspx?tur=1" Yetki="1" ></Node>
-        <Node ID="Menu1_1_5" Text="Organizasyon Şema Grafiği" URL="../Organizasyon/ORGGrafik.aspx" Yetki="1" ></Node>
-        <Node ID="Menu1_1_2" Text="Şablon Tanımlama" URL="../Organizasyon/ORGAna.aspx?tur=1&#38;sablon=1" Yetki="1" ></Node>
         <Node ID="Menu1_1_3" Text="Birim Tür Tanımlama" URL="../ButceHazirlikv2/GenelKodTanimla.aspx?Tur=21" Yetki="1"></Node>
         <Node ID="Menu1_1_4" Text="Genel Görev Tanımlama" URL="../Organizasyon/GenelGorevAna.aspx" Yetki="1"></Node>
       </Node>
     </Node>
     <Node ID="Menu1_2" Tip="UstMenu" Text="Stratejik Plan" Genislik="85" Yukseklik="150" Modul="STRKur">
       <Node Tip="Kolon">
-        <Node ID="Menu1_2_0" Tip="AltBolum" Text="Kurum Stratejik Planı" Modul="STRKur">
-          <Node ID="Menu1_2_1" Text="Stratejik Plan" URL="../PerformansButce/StratejikPlanAna.aspx" Yetki="1,26" ></Node>
-          <Node ID="Menu1_2_12" Text="İzleme Tablosu" URL="../PerformansButce/StratejikGostGerc.aspx" Yetki="1,26" ></Node>
-          <Node ID="Menu1_2_13" Text="Genel Değerlendirme" URL="../PerformansButce/SPIzlemeGenel.aspx" Yetki="1" ></Node>
-          <Node ID="Menu1_2_14" Text="Kurum Değerlendirme" URL="../PerformansButce/SPIzlemeKurum.aspx" Yetki="1,26" ></Node>
-        </Node>
-      </Node>
-    </Node>
-    <Node ID="Menu4_7" Tip="UstMenu" Text="Eylem Planı" Genislik="100" Yukseklik="100" Modul="GRV" Yetki="">
-      <Node Tip="Kolon">
-        <Node ID="Menu1_2_11g" Tip="AltBolum" Text="Eylem Planı" Modul="GRV">
-          <Node ID="Menu1_2_11i" Text="Eylem Planı (2023 Önc.)" URL="../GorevYonetimi/Gorev01.aspx?yetki=0" Yetki="1,26,27" ></Node>
-          <Node ID="Menu1_2_11" Text="Eylem Planı" URL="../PerformansButce/EylemPlaniForm.aspx?eylemTur=1" Yetki="" ></Node>
-          <Node ID="Menu1_2_11a" Text="Eylem Planı (Üst Yön.)" URL="../PerformansButce/EylemPlaniForm.aspx?eylemTur=2" Yetki="1,26,27" ></Node>
-        </Node>
-      </Node>
-    </Node>
-    <Node ID="Menu1_3" Tip="UstMenu" Text="Performans Programı" Genislik="130" Yukseklik="150" Modul="PEB" >
-      <Node Tip="Kolon">
-        <Node ID="Menu1_3_0" Tip="AltBolum" Text="Kurum Performans Programı" Modul="PEB">
-          <Node ID="Menu1_3_1" Text="Strateji Ağacı" URL="../PerformansButce/CascadeAna.aspx" Yetki="1,27" ></Node>
-          <Node ID="Menu1_3_2" Text="Performans Hedefi" URL="../PerformansButce/PerformansHedefAna.aspx" Yetki="1,27" ></Node>
-          <Node ID="Menu1_3_3" Text="Faaliyet/GYG/Transfer" URL="../PerformansButce/PerformansFaaliyet.aspx" Yetki="1,27" ></Node>
-          <Node ID="Menu1_3_4" Text="Performans Göstergesi Hedeflenen" URL="../PerformansButce/PerformansGostergeHedeflenen.aspx" Yetki="1,27" ></Node>
-          <Node ID="Menu1_3_5" Text="Faaliyet/Proje" URL="../PerformansButce/FaaliyetProjeAna.aspx" Yetki="1,27" Gizli="1" ></Node>
-          <Node ID="Menu1_3_6" Text="Sabit Maliyet" URL="../PerformansButce/SabitMaliyetAna.aspx" Yetki="1,27" Gizli="1" ></Node>
-          <Node ID="Menu1_3_7" Text="Tedbirler" URL="../PerformansButce/Tedbirler.aspx" Yetki="1,27" Gizli="1" ></Node>
-          <Node ID="Menu1_3_8" Text="Harcama Dağıtım" URL="../PerformansButce/HarcamaDagit.aspx" Yetki="1,27" ></Node>
-        </Node>
-      </Node>
-    </Node>
-    <Node ID="Menu1_4" Tip="UstMenu" Text="Operasyonel Plan" Genislik="110" Yukseklik="150" Modul="PEB">
-      <Node Tip="Kolon">
-        <Node ID="Menu1_4_1" Tip="AltBolum" Text="Performans Bütçe Operasyonel Plan">
-          <Node ID="Menu1_4_1_1" Text="Daire Tanımlama" URL="../PerformansButce/TanimDaire.aspx" Yetki="1" Gizli="1"></Node>
-          <Node ID="Menu1_4_1_2" Text="Personel İşlemleri" URL="../PerformansButce/PersonelAna.aspx" Yetki="1,27" Gizli="1"></Node>
-          <Node ID="Menu1_4_1_3" Text="Alt Faliyet Giriş/Sorgulama" URL="../PerformansButce/AltFaaliyet.aspx" Yetki="1,11,27" Gizli="1"></Node>
-          <Node ID="Menu1_4_1_4" Text="İş/Görev İşlemleri" URL="../PerformansButce/IsGorevAgac.aspx" Yetki="1,11,27" ></Node>
-        </Node>
-      </Node>
-    </Node>
-    <Node ID="Menu1_6" Tip="UstMenu" Text="İzleme Değerlendirme" Genislik="140" Yukseklik="250" Modul="PEB">
-      <Node Tip="Kolon">
-        <Node ID="Menu1_6_1" Text ="Gösterge Gerçekleşmeleri" URL="../PerformansButce/PerformansGostergeGerceklesen.aspx" Yetki="1,27" ></Node>
-        <Node ID="Menu1_6_2" Text="Ön Mali Kontrol" URL="" Yetki="1" Gizli="1"></Node>
-        <Node ID="Menu1_6_3" Tip="AltBolum" Text="Raporlar">
-          <Node ID="Menu1_6_3_1" Text="Birim Göstergeleri İzleme ve Değerlendirme Raporu" URL="../PerformansButce/RaporlarPerformansGosterge.aspx?raporTur=BirimGosterge" Yetki="1,27" ></Node>
-          <Node ID="Menu1_6_3_2" Text="Performans Göstergesi Gerçekleşen İzleme Raporu" URL="../PerformansButce/RaporlarPerformansGosterge.aspx?raporTur=GostergeDetayIzleme" Yetki="1,27" ></Node>
-          <Node ID="Menu1_6_3_3" Text="Performans Göstergerlerinin Gerçekleşmelerinin Hedefe Ulaşma Durumu Raporu" URL="../PerformansButce/RaporlarPerformansGosterge.aspx?raporTur=GostergeHedefUlasma" Yetki="1,27" ></Node>
-          <Node ID="Menu1_6_3_4" Text="Faaliyet Raporu" URL="" Yetki="1" Gizli="1"></Node>
-          <Node ID="Menu1_6_3_5" Text="Performans Bütçe Raporları" URL="../Raporlama/RaporGrupListe.aspx?raporGrup=2000" Yetki="1,20"></Node>
-        </Node>
+        <Node ID="Menu1_2_1" Text="Stratejik Plan" URL="../PerformansButce/StratejikPlanAna.aspx" Yetki="1,26" ></Node>
+        <Node ID="Menu1_2_12" Text="İzleme Tablosu" URL="../PerformansButce/StratejikGostGerc.aspx" Yetki="1,26" ></Node>
+        <Node ID="Menu1_2_14" Text="Kurum Değerlendirme" URL="../PerformansButce/SPIzlemeKurum.aspx" Yetki="1,26" ></Node>
       </Node>
     </Node>
   </Node>

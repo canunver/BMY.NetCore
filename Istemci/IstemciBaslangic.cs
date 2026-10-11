@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 using Istemci.Duyuru;
 using Istemci.EkliDosya;
 using Istemci.Giris;
+using Istemci.Kullanicilar;
+using Istemci.Muhasebe;
+using Istemci.ButceKod;
+using Istemci.Organizasyon;
+using Istemci.StratejikPlan;
 using Istemci.OrtakSayfa;
 using Istemci.Oturum;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -14,6 +19,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TNS.Api;
@@ -53,7 +59,18 @@ namespace Istemci
             IServiceCollection servisler = builder.Services;
 
             // Sayfalar bu kitaplığın içinden gelir; exe projesi Istemci'ye başvurduğu için kendiliğinden bulunur.
-            servisler.AddRazorPages();
+            // Sayfaların bulunması normalde exe projesine derlemede eklenen [ApplicationPart("Istemci")] satırına bağlıdır;
+            // yarım kalan bir derlemeden sonra o satır üretilmeyebiliyor ve hiçbir sayfa bulunmayınca /Giris kendine
+            // yönlenip duruyor. Bu yüzden Istemci.dll burada açıkça da eklenir (zaten ekliyse dokunulmaz).
+            Assembly sayfalar = typeof(IstemciBaslangic).Assembly;
+            servisler.AddRazorPages().ConfigureApplicationPartManager(yonetici =>
+            {
+                string ad = sayfalar.GetName().Name;
+                foreach (ApplicationPart parca in yonetici.ApplicationParts)
+                    if (parca.Name == ad) return;
+                foreach (ApplicationPart parca in ApplicationPartFactory.GetApplicationPartFactory(sayfalar).GetApplicationParts(sayfalar))
+                    yonetici.ApplicationParts.Add(parca);
+            });
             servisler.AddMemoryCache();
 
             // Giriş çerezini şifreleyen anahtarlar sabit bir klasörde tutulur; yoksa IIS'te uygulama her yeniden
@@ -147,6 +164,16 @@ namespace Istemci
             MenuUclari.Ekle(app);
             DuyuruUclari.Ekle(app);
             EkliDosyaUclari.Ekle(app);
+            MuhasebeUclari.Ekle(app);
+            KullaniciUclari.Ekle(app);
+            GenelGorevUclari.Ekle(app);
+            GorevAtaUclari.Ekle(app);
+            OrgBirimUclari.Ekle(app);
+            StratejikPlanUclari.Ekle(app);
+            IzlemeUclari.Ekle(app);
+            KurumIzlemeUclari.Ekle(app);
+            GrafikUclari.Ekle(app);
+            KodTanimUclari.Ekle(app);
         }
     }
 }

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>BHMv2ServisC</AssemblyName>
+    <RootNamespace>BHMv2ServisC</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BHFServis\BHFServisI\BHFServisI.csproj" />
+    <ProjectReference Include="..\..\BUMServis\BUMServisI\BUMServisI.csproj" />
+    <ProjectReference Include="..\..\DEGServis\DEGServisI\DEGServisI.csproj" />
+    <ProjectReference Include="..\..\GNLServis\GNLServis.csproj" />
+    <ProjectReference Include="..\..\HRCServis\HRCServisI\HRCServisI.csproj" />
+    <ProjectReference Include="..\..\KYMServis\KYMServisI\KYMServisI.csproj" />
+    <ProjectReference Include="..\..\MUHServis\MUHServisI\MUHServisI.csproj" />
+    <ProjectReference Include="..\..\PEBServis\PEBServisI\PEBServisI.csproj" />
+    <ProjectReference Include="..\..\UZYServis\UZYServisI\UZYServisI.csproj" />
+    <ProjectReference Include="..\..\VERServis\VERServis.csproj" />
+    <ProjectReference Include="..\BHMv2ServisI\BHMv2ServisI.csproj" />
+    <ProjectReference Include="..\BKDServisI\BKDServisI.csproj" />
+    <ProjectReference Include="..\YATServisC\YATServisC.csproj" />
+    <ProjectReference Include="..\YATServisI\YATServisI.csproj" />
+  </ItemGroup>
+
+</Project>

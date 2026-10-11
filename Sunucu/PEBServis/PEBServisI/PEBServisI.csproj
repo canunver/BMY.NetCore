@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>PEBServisI</AssemblyName>
+    <RootNamespace>TNS.PEB</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BHMv2Servis\BHMv2ServisI\BHMv2ServisI.csproj" />
+    <ProjectReference Include="..\..\BHMv2Servis\BKDServisI\BKDServisI.csproj" />
+    <ProjectReference Include="..\..\DEGServis\DEGServisI\DEGServisI.csproj" />
+    <ProjectReference Include="..\..\GNLServis\GNLServis.csproj" />
+    <ProjectReference Include="..\..\KYMServis\KYMServisI\KYMServisI.csproj" />
+    <ProjectReference Include="..\..\ORGServis\ORGServisI\ORGServisI.csproj" />
+    <ProjectReference Include="..\..\UZYServis\UZYServisI\UZYServisI.csproj" />
+  </ItemGroup>
+
+</Project>

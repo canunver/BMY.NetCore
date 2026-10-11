@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>BUMServisC</AssemblyName>
+    <RootNamespace>BUMKO.BUM.IsKurallari</RootNamespace>
+  </PropertyGroup>
+
+  <!-- Eski projede derlemeye dahil olmayan dosyalar -->
+  <ItemGroup>
+    <Compile Remove="Tablolar\AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BHMv2Servis\BHMv2ServisI\BHMv2ServisI.csproj" />
+    <ProjectReference Include="..\..\BHMv2Servis\BKDServisI\BKDServisI.csproj" />
+    <ProjectReference Include="..\..\DEGServis\DEGServisI\DEGServisI.csproj" />
+    <ProjectReference Include="..\..\GNLServis\GNLServis.csproj" />
+    <ProjectReference Include="..\..\KYMServis\KYMServisI\KYMServisI.csproj" />
+    <ProjectReference Include="..\..\MUHServis\MUHServisI\MUHServisI.csproj" />
+    <ProjectReference Include="..\..\UZYServis\UZYServisI\UZYServisI.csproj" />
+    <ProjectReference Include="..\..\VERServis\VERServis.csproj" />
+    <ProjectReference Include="..\BUMServisI\BUMServisI.csproj" />
+  </ItemGroup>
+
+</Project>

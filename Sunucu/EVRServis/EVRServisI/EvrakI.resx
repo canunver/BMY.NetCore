@@ -1,0 +1,663 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="EVRI001_1" xml:space="preserve">
+    <value>Yetkili Olduğu Evrak Birimleri</value>
+  </data>
+  <data name="EVRI001_2" xml:space="preserve">
+    <value>Yetkili Olduğu Evrak Birimleri (Belge Yöneticisi)</value>
+  </data>
+  <data name="EVRI001_3" xml:space="preserve">
+    <value>Yetkili Olduğu Evrak Birimleri (Arşivci)</value>
+  </data>
+  <data name="EVRI001_4" xml:space="preserve">
+    <value>Yetkili Olduğu Evrak Birimleri (Misafir)</value>
+  </data>
+  <data name="EVRI001_5" xml:space="preserve">
+    <value>Dosya Tasnif Planı</value>
+  </data>
+  <data name="EVRI001_6" xml:space="preserve">
+    <value>Yetkili Olduğu Evrak Birimleri (Bakım)</value>
+  </data>
+  <data name="EVRI001_7" xml:space="preserve">
+    <value>Yetkili Olduğu Evrak Birimleri (Kep Alma)</value>
+  </data>
+  <data name="EVRI001_8" xml:space="preserve">
+    <value>Yetkili Olduğu Evrak Birimleri (Kep Gönderme)</value>
+  </data>
+  <data name="EVRI002" xml:space="preserve">
+    <value>Evrak Yetki Şablonu</value>
+  </data>
+  <data name="EVRI003" xml:space="preserve">
+    <value>Evrak Onay Yetki Şablonu</value>
+  </data>
+  <data name="EVRI004" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="EVRI005" xml:space="preserve">
+    <value>Silme sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI006" xml:space="preserve">
+    <value>Silmek istenilen satır başarıyla silindi.</value>
+  </data>
+  <data name="EVRI007" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="EVRI008" xml:space="preserve">
+    <value>Silme sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI009" xml:space="preserve">
+    <value>Silmek istenilen satır başarıyla silindi.</value>
+  </data>
+  <data name="EVRI010" xml:space="preserve">
+    <value>Evrak Birim Kodu boş bırakılmış.</value>
+  </data>
+  <data name="EVRI011" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="EVRI012" xml:space="preserve">
+    <value>{0} nolu Birim Kodu kullanılmış olduğu için silinemez.</value>
+  </data>
+  <data name="EVRI013" xml:space="preserve">
+    <value>Silmek istenilen satır başarıyla silindi.</value>
+  </data>
+  <data name="EVRI014" xml:space="preserve">
+    <value>Belge kontrolü sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI015" xml:space="preserve">
+    <value>Evrak Birim Kodu bilgisi boş bırakılamaz</value>
+  </data>
+  <data name="EVRI016" xml:space="preserve">
+    <value>Evrak Birim Adı bilgisi boş bırakılamaz</value>
+  </data>
+  <data name="EVRI017" xml:space="preserve">
+    <value>Üst Evrak Birim bilgisi boş bırakılamaz</value>
+  </data>
+  <data name="EVRI018" xml:space="preserve">
+    <value>Genel Evrak Birimi Mi? bilgisi boş bırakılamaz</value>
+  </data>
+  <data name="EVRI019" xml:space="preserve">
+    <value>Kullanım Durum bilgisi boş bırakılamaz</value>
+  </data>
+  <data name="EVRI020" xml:space="preserve">
+    <value>Verilen Evrak Birim Kodu uygun formatta değil. Format :  {0} şeklinde olmalı.</value>
+  </data>
+  <data name="EVRI021" xml:space="preserve">
+    <value>{0} nolu Evrak Birim Kodunun detay kayıtları olduğu için silinemez. Lütfen ilk önce detay kayıtları silin.</value>
+  </data>
+  <data name="EVRI022" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="EVRI023" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="EVRI024" xml:space="preserve">
+    <value>Kayıt işlemi başarısız oldu.</value>
+  </data>
+  <data name="EVRI025" xml:space="preserve">
+    <value>Silmek istenilen bilgi başarıyla silindi.</value>
+  </data>
+  <data name="EVRI026" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="EVRI027" xml:space="preserve">
+    <value>Silme sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI028" xml:space="preserve">
+    <value>Silmek istenilen satır başarıyla silindi.</value>
+  </data>
+  <data name="EVRI029" xml:space="preserve">
+    <value>Veri tabanı sql sorgu hatası.İlgili tablo olmayabilir veya eksik alan tanımlı.</value>
+  </data>
+  <data name="EVRI030" xml:space="preserve">
+    <value>Belge kontrolü sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI031" xml:space="preserve">
+    <value>Dosya Kodu bilgisi boş bırakılamaz</value>
+  </data>
+  <data name="EVRI032" xml:space="preserve">
+    <value>Dosya Adı bilgisi boş bırakılamaz</value>
+  </data>
+  <data name="EVRI033" xml:space="preserve">
+    <value>Verilen Dosya Kodu uygun formatta değil. Format : {0} şeklinde olmalı.</value>
+  </data>
+  <data name="EVRI034" xml:space="preserve">
+    <value>{0} nolu Dosya Kodunun detay kayıtları olduğu için silinemez. Lütfen ilk önce detay kayıtları silin.</value>
+  </data>
+  <data name="EVRI035" xml:space="preserve">
+    <value>{0} nolu Dosya Kodu evrak dosya kodu olarak kullanılmış olduğu için silinemez. Lütfen ilk önce evraklardan bu dosya kodunu kaldırın.</value>
+  </data>
+  <data name="EVRI036" xml:space="preserve">
+    <value>Girilen dosya kodu yanlış.</value>
+  </data>
+  <data name="EVRI037" xml:space="preserve">
+    <value>birimi ile ilgili işlem yapma yetkiniz yok</value>
+  </data>
+  <data name="EVRI038" xml:space="preserve">
+    <value>{0} birimi ile ilgili işlem yapma yetkiniz yok</value>
+  </data>
+  <data name="EVRI039" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="EVRI040" xml:space="preserve">
+    <value>Veri tabanı sql sorgu hatası.İlgili tablo olmayabilir veya eksik alan tanımlı.</value>
+  </data>
+  <data name="EVRI041" xml:space="preserve">
+    <value>Bu Evrak ile ilgili işlem yapma yetkiniz bulunmamaktadır.</value>
+  </data>
+  <data name="EVRI042" xml:space="preserve">
+    <value>Bu Evrakın bilgilerini güncellemeyemezsiniz.</value>
+  </data>
+  <data name="EVRI043" xml:space="preserve">
+    <value>Bilgi için gönderilen Evrak üzerinde değişiklik yapamazsınız.</value>
+  </data>
+  <data name="EVRI044" xml:space="preserve">
+    <value>Evrak tipi belirsiz.</value>
+  </data>
+  <data name="EVRI045" xml:space="preserve">
+    <value>Evrakın konusu bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="EVRI046" xml:space="preserve">
+    <value>Evrakın birim kodu boş bırakılamaz.</value>
+  </data>
+  <data name="EVRI047" xml:space="preserve">
+    <value>Evrakın bulunduğu birim bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="EVRI048" xml:space="preserve">
+    <value>Geldiği Yer bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="EVRI049" xml:space="preserve">
+    <value>Gelen Evrak tarihi boş bırakılamaz.</value>
+  </data>
+  <data name="EVRI050" xml:space="preserve">
+    <value>Gelen Evrak Numarası boş bırakılamaz.</value>
+  </data>
+  <data name="EVRI051" xml:space="preserve">
+    <value>Gelen Evrak Tarihi hatalı girilmiş. Bugünden büyük olamaz.</value>
+  </data>
+  <data name="EVRI052" xml:space="preserve">
+    <value>Yazı Şekli boş bırakılamaz. (Evrak Türü)</value>
+  </data>
+  <data name="EVRI053" xml:space="preserve">
+    <value>{0} birimi kapalı durumda olduğu için işlem yapılamaz.</value>
+  </data>
+  <data name="EVRI054" xml:space="preserve">
+    <value>Bu evrakın aynısı {0} tarihinde {1} evrak numarası alınarak daha önce kaydedilmiştir.</value>
+  </data>
+  <data name="EVRI055" xml:space="preserve">
+    <value>Lütfen kontrol edip tekrar deneyiniz.</value>
+  </data>
+  <data name="EVRI056" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI057" xml:space="preserve">
+    <value>Görme yetkiniz yok.</value>
+  </data>
+  <data name="EVRI058" xml:space="preserve">
+    <value>{0} / {1} nolu evrak sizin biriminizde bulunmamaktadır.</value>
+  </data>
+  <data name="EVRI059" xml:space="preserve">
+    <value>{0} programatik nolu evrak bulunamadı.</value>
+  </data>
+  <data name="EVRI060" xml:space="preserve">
+    <value>Evrak, yapmak istenilen işlem için uygun değil.</value>
+  </data>
+  <data name="EVRI061" xml:space="preserve">
+    <value>{0} numaralı evrakın havale edileceği birim bilgisini girmek zorundasınız.</value>
+  </data>
+  <data name="EVRI062" xml:space="preserve">
+    <value>Birimde</value>
+  </data>
+  <data name="EVRI063" xml:space="preserve">
+    <value>{0} numaralı evrakın durumu bu işlemi yapmaya uygun değildir.</value>
+  </data>
+  <data name="EVRI064" xml:space="preserve">
+    <value>{0} / {1} nolu evrakı geri gönderilirken hata oluştu.</value>
+  </data>
+  <data name="EVRI065" xml:space="preserve">
+    <value>{0} / {1} nolu evrakı Geri gönderemezsiniz.</value>
+  </data>
+  <data name="EVRI067" xml:space="preserve">
+    <value>{0} numaralı evrakın durumu bu işlemi yapmaya uygun değildir.</value>
+  </data>
+  <data name="EVRI068" xml:space="preserve">
+    <value>{0} / {1} nolu evrakı teslim alınırken hata oluştu.</value>
+  </data>
+  <data name="EVRI069" xml:space="preserve">
+    <value>{0} / {1} nolu evrakı teslim alamazsınız.</value>
+  </data>
+  <data name="EVRI071" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI072" xml:space="preserve">
+    <value>{0} programatik nolu evrak imzalanamadı.</value>
+  </data>
+  <data name="EVRI073" xml:space="preserve">
+    <value>{0} programatik nolu evrak iade edilemedi.</value>
+  </data>
+  <data name="EVRI074" xml:space="preserve">
+    <value>Biriminizin evrak yetkisi yoktur.</value>
+  </data>
+  <data name="EVRI075" xml:space="preserve">
+    <value>&lt; {0} &gt; konulu evrakın durumu bu işlemi yapmaya uygun değildir.</value>
+  </data>
+  <data name="EVRI077" xml:space="preserve">
+    <value>&lt; {0} &gt; nolu evrak sizin biriminizde bulunmamaktadır.</value>
+  </data>
+  <data name="EVRI079" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI080" xml:space="preserve">
+    <value>Programatik Evrak Numarası boş bırakılmış</value>
+  </data>
+  <data name="EVRI081" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="EVRI082" xml:space="preserve">
+    <value>{0} kodu ile kayıt edilmek istenilen Dosya Kodu bulunamadı</value>
+  </data>
+  <data name="EVRI083" xml:space="preserve">
+    <value>Evrak hareketi için program evrak numarası bilgisi giriniz.(Sistem Hatası)</value>
+  </data>
+  <data name="EVRI084" xml:space="preserve">
+    <value>Evrak hareketi için program evrak numarası bilgisi giriniz.(Sistem Hatası)</value>
+  </data>
+  <data name="EVRI085" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="EVRI086" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI087" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI088" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="EVRI089" xml:space="preserve">
+    <value>Kayıt işlemi başarısız oldu.</value>
+  </data>
+  <data name="EVRI090" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI091" xml:space="preserve">
+    <value>Silmek istenilen bilgi başarıyla silindi.</value>
+  </data>
+  <data name="EVRI092" xml:space="preserve">
+    <value>Silme işlemi başarısız oldu.</value>
+  </data>
+  <data name="EVRI093" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI094" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="EVRI095" xml:space="preserve">
+    <value>Kayıt işlemi başarısız oldu.</value>
+  </data>
+  <data name="EVRI096" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI097" xml:space="preserve">
+    <value>Silmek istenilen bilgi başarıyla silindi.</value>
+  </data>
+  <data name="EVRI098" xml:space="preserve">
+    <value>Silme işlemi başarısız oldu.</value>
+  </data>
+  <data name="EVRI099" xml:space="preserve">
+    <value>Geçerli imza yok</value>
+  </data>
+  <data name="EVRI100" xml:space="preserve">
+    <value>Telefona mesaj gönderilemedi.</value>
+  </data>
+  <data name="EVRI101" xml:space="preserve">
+    <value>Time Out.</value>
+  </data>
+  <data name="EVRI102" xml:space="preserve">
+    <value>Cevap alındı ancak imza geçersiz.</value>
+  </data>
+  <data name="EVRI103" xml:space="preserve">
+    <value>Ad alanı boş bırakılamaz.</value>
+  </data>
+  <data name="EVRI104" xml:space="preserve">
+    <value>Birim kodu alanı boş bırakılamaz.</value>
+  </data>
+  <data name="EVRI105" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla tamamlandı.</value>
+  </data>
+  <data name="EVRI106" xml:space="preserve">
+    <value>Kayıt işlemi başarısız oldu.</value>
+  </data>
+  <data name="EVRI107" xml:space="preserve">
+    <value>Kod alanı boş bırakılamaz.</value>
+  </data>
+  <data name="EVRI108" xml:space="preserve">
+    <value>{0} kodlu bilgi silinmiştir.</value>
+  </data>
+  <data name="EVRI109" xml:space="preserve">
+    <value>Silme işlemi gerçekleştirilemedi.</value>
+  </data>
+  <data name="EVRI110" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI111" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="EVRI112" xml:space="preserve">
+    <value>Kayıt işlemi başarısız oldu.</value>
+  </data>
+  <data name="EVRI113" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI114" xml:space="preserve">
+    <value>Silmek istenilen bilgi başarıyla silindi.</value>
+  </data>
+  <data name="EVRI115" xml:space="preserve">
+    <value>Yetkili</value>
+  </data>
+  <data name="EVRI116" xml:space="preserve">
+    <value>Sayın {0},</value>
+  </data>
+  <data name="EVRI117" xml:space="preserve">
+    <value>İyi çalışmalar dileriz.</value>
+  </data>
+  <data name="EVRI118" xml:space="preserve">
+    <value>Evrak Numarası</value>
+  </data>
+  <data name="EVRI119" xml:space="preserve">
+    <value>Evrak Tarihi</value>
+  </data>
+  <data name="EVRI120" xml:space="preserve">
+    <value>Geldiği Yer</value>
+  </data>
+  <data name="EVRI121" xml:space="preserve">
+    <value>Konusu</value>
+  </data>
+  <data name="EVRI122" xml:space="preserve">
+    <value>Gelen Evrakın Numarası</value>
+  </data>
+  <data name="EVRI123" xml:space="preserve">
+    <value>Gelen Evrakın Tarihi</value>
+  </data>
+  <data name="EVRI124" xml:space="preserve">
+    <value>Evrak Dosya Kodu</value>
+  </data>
+  <data name="EVRI125" xml:space="preserve">
+    <value>Cevap Süresi</value>
+  </data>
+  <data name="EVRI126" xml:space="preserve">
+    <value>YENİ EVRAKINIZ VAR</value>
+  </data>
+  <data name="EVRI127" xml:space="preserve">
+    <value>{0} tarihinde, aşağıda özet bilgisi bulunan evrak size &lt;u&gt;{1}&lt;/u&gt; havale edilmiştir. Teslim alma işleminden sonra, evrak üzerinde çalışmaya başlayabilirsiniz.</value>
+  </data>
+  <data name="EVRI128" xml:space="preserve">
+    <value>{0} tarihinde, aşağıda özet bilgisi bulunan evrak size &lt;u&gt;kontrol etmeniz içinüzere &lt;/u&gt; havale edilmiştir.</value>
+  </data>
+  <data name="EVRI129" xml:space="preserve">
+    <value>EVRAK HABERCİSİ</value>
+  </data>
+  <data name="EVRI130" xml:space="preserve">
+    <value>Evrak habercisinde tanımlamış olduğunuz kriterlere uygun bir evrak sistemimize kayıt edilmiş olup, aşağıda bilgilerinize sunulmuştur.</value>
+  </data>
+  <data name="EVRI131" xml:space="preserve">
+    <value>Evrak Habercisi-{PostaTur} [{Konusu}]</value>
+  </data>
+  <data name="EVRI132" xml:space="preserve">
+    <value>gün</value>
+  </data>
+  <data name="EVRI133" xml:space="preserve">
+    <value>gereği için</value>
+  </data>
+  <data name="EVRI134" xml:space="preserve">
+    <value>bilgilendirme için</value>
+  </data>
+  <data name="EVRI135" xml:space="preserve">
+    <value>Evrak Hareketi</value>
+  </data>
+  <data name="EVRI136" xml:space="preserve">
+    <value>Yeni Evrak Kaydı</value>
+  </data>
+  <data name="EVRI137" xml:space="preserve">
+    <value>Yetkili</value>
+  </data>
+  <data name="EVRI138" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI139" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="EVRI140" xml:space="preserve">
+    <value>Kayıt işlemi başarısız oldu.</value>
+  </data>
+  <data name="EVRI141" xml:space="preserve">
+    <value>Silme sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI142" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI143" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="EVRI144" xml:space="preserve">
+    <value>Silme sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI145" xml:space="preserve">
+    <value>Silmek istenilen satır başarıyla silindi.</value>
+  </data>
+  <data name="EVRI146" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI147" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="EVRI148" xml:space="preserve">
+    <value>Silme sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI149" xml:space="preserve">
+    <value>Silmek istenilen satır başarıyla silindi.</value>
+  </data>
+  <data name="EVRI150" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI151" xml:space="preserve">
+    <value>Silme sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI152" xml:space="preserve">
+    <value>Silmek istenilen satır başarıyla silindi.</value>
+  </data>
+  <data name="EVRI153" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI154" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="EVRI155" xml:space="preserve">
+    <value>Silme sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI156" xml:space="preserve">
+    <value>Silmek istenilen satır başarıyla silindi.</value>
+  </data>
+  <data name="EVRI157" xml:space="preserve">
+    <value>Belge kontrolü sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI158" xml:space="preserve">
+    <value>Tanımlanmayan işlem.</value>
+  </data>
+  <data name="EVRI159" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="EVRI160" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI161" xml:space="preserve">
+    <value>Silme sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="EVRI162" xml:space="preserve">
+    <value>Evrak ilişkisi kaydedildi.</value>
+  </data>
+  <data name="EVRI163" xml:space="preserve">
+    <value>Evrak ilişkisi kaldırıldı.</value>
+  </data>
+  <data name="EVRI164" xml:space="preserve">
+    <value>Evrak üzerinde değişiklik yapılamaz. (Evrak elektronik olarak imzalı)</value>
+  </data>
+  <data name="EVRI165" xml:space="preserve">
+    <value>Evrak dosya kodu boş bırakılamaz.</value>
+  </data>
+  <data name="EVRI166" xml:space="preserve">
+    <value>Evrak İmza yolu boş bırakılamaz.</value>
+  </data>
+  <data name="EVRI167" xml:space="preserve">
+    <value>Evrak üzerinde değişiklik yapılamaz. (Evrak imzalı)</value>
+  </data>
+  <data name="EVRI168" xml:space="preserve">
+    <value>Dosya Açılış Tarihi bilgisi boş bırakılamaz</value>
+  </data>
+  <data name="EVRI169" xml:space="preserve">
+    <value>Kayıt edilmek istenilen dosya kodu veya adı ile uyuşan başka bir kayıt bulundu.</value>
+  </data>
+  <data name="EVRI170" xml:space="preserve">
+    <value>Lütfen tasfiye planı seçiniz</value>
+  </data>
+  <data name="EVRI171" xml:space="preserve">
+    <value>Lütfen tasfiye planı eklenecek evrak(lar)ı seçiniz</value>
+  </data>
+  <data name="EVRI172" xml:space="preserve">
+    <value>Lütfen saklama planı süresi giriniz</value>
+  </data>
+  <data name="EVRI173" xml:space="preserve">
+    <value>Lütfen saklama planı kriteri seçiniz</value>
+  </data>
+  <data name="EVRI174" xml:space="preserve">
+    <value>Lütfen saklama planı süre başlangıç kriteri seçiniz</value>
+  </data>
+  <data name="EVRI175" xml:space="preserve">
+    <value>Tasfiye planı başarı ile silindi</value>
+  </data>
+  <data name="EVRI176" xml:space="preserve">
+    <value>Lütfen ilgili faksı seçiniz</value>
+  </data>
+  <data name="EVRI177" xml:space="preserve">
+    <value>Lütfen faks gönderilecek evrak(lar)ı seçiniz</value>
+  </data>
+  <data name="EVRI178" xml:space="preserve">
+    <value>{0} tarihinde, aşağıda özet bilgisi bulunan evrak size &lt;u&gt;imza / paraf &lt;/u&gt; işlemi için gönderilmiştir.</value>
+  </data>
+</root>

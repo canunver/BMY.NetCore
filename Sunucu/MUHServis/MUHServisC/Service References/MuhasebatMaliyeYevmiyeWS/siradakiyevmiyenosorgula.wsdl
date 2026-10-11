@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:sch="http://maliye.yte.bilgem.tubitak.gov.tr/muhasebe/muhasebefisi/siradakiyevmiyenosorgula/wso" xmlns:tns="http://maliye.yte.bilgem.tubitak.gov.tr/muhasebe/muhasebefisi/siradakiyevmiyenosorgula/wso" targetNamespace="http://maliye.yte.bilgem.tubitak.gov.tr/muhasebe/muhasebefisi/siradakiyevmiyenosorgula/wso" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://maliye.yte.bilgem.tubitak.gov.tr/muhasebe/muhasebefisi/siradakiyevmiyenosorgula/wso" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="siradakiYevmiyeNoSorgulaRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="defterNo" type="xs:long" />
+            <xs:element name="maliYil" type="xs:long" />
+            <xs:element name="istenilenYevmiyeAdedi" type="xs:long" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="siradakiYevmiyeNoSorgulaResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="unbounded" name="siradakiDefterYevmiyeNoList" type="xs:long" />
+            <xs:element name="sonDefterYevmiyeTarihi" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="siradakiYevmiyeNoSorgulaRequest">
+    <wsdl:part name="siradakiYevmiyeNoSorgulaRequest" element="tns:siradakiYevmiyeNoSorgulaRequest" />
+  </wsdl:message>
+  <wsdl:message name="siradakiYevmiyeNoSorgulaResponse">
+    <wsdl:part name="siradakiYevmiyeNoSorgulaResponse" element="tns:siradakiYevmiyeNoSorgulaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SiradakiYevmiyeNoSorgulaPort">
+    <wsdl:operation name="siradakiYevmiyeNoSorgula">
+      <wsdl:input name="siradakiYevmiyeNoSorgulaRequest" message="tns:siradakiYevmiyeNoSorgulaRequest" />
+      <wsdl:output name="siradakiYevmiyeNoSorgulaResponse" message="tns:siradakiYevmiyeNoSorgulaResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SiradakiYevmiyeNoSorgulaPortSoap11" type="tns:SiradakiYevmiyeNoSorgulaPort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="siradakiYevmiyeNoSorgula">
+      <soap:operation soapAction="" />
+      <wsdl:input name="siradakiYevmiyeNoSorgulaRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="siradakiYevmiyeNoSorgulaResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SiradakiYevmiyeNoSorgulaPortService">
+    <wsdl:port name="SiradakiYevmiyeNoSorgulaPortSoap11" binding="tns:SiradakiYevmiyeNoSorgulaPortSoap11">
+      <soap:address location="http://ws_servers:80/maliye-ws/ws" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

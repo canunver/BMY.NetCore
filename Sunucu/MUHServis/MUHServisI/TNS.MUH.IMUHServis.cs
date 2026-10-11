@@ -1273,7 +1273,7 @@ namespace TNS.MUH
         public static bool OdenekGondermeYokMu(int yil)
         {
             string kurumKod = TNS.DEG.Arac.VarsayilanKurumBul().Replace(".", "");
-            if (kurumKod == "5030" || kurumKod == "460604") return true;
+            if (TNS.DEG.Arac.TKDKMi() || kurumKod == "460604") return true;
 
             return TNS.MUH.Arac.DegiskenDegerBul(yil, "/OdenekGondermeKontrol") == "1";
         }

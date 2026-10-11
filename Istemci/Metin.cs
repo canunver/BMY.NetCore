@@ -9,6 +9,8 @@ namespace Istemci
     ///   Menu          : yeni arayüzün kendi metinleri
     ///   Duyuru        : eski Duyuru kaynağı ve duyuru sayfalarının yeni metinleri
     ///   EkliDosya     : ortak ekli dosyalar bileşeni
+    ///   Kullanici     : eski Kullanici kaynağı (kullanıcı arama / giriş sayfaları) ve yeni metinler
+    ///   Muhasebe      : muhasebe tanım sayfaları (eski ButceMuhasebe kaynağından gerekenler ve yeni metinler)
     /// </summary>
     public static class Metin
     {
@@ -16,6 +18,8 @@ namespace Istemci
         private static readonly ResourceManager menu = new ResourceManager("Istemci.Kaynak.Menu", typeof(Metin).Assembly);
         private static readonly ResourceManager duyuru = new ResourceManager("Istemci.Kaynak.Duyuru", typeof(Metin).Assembly);
         private static readonly ResourceManager ekliDosya = new ResourceManager("Istemci.Kaynak.EkliDosya", typeof(Metin).Assembly);
+        private static readonly ResourceManager kullanici = new ResourceManager("Istemci.Kaynak.Kullanici", typeof(Metin).Assembly);
+        private static readonly ResourceManager muhasebe = new ResourceManager("Istemci.Kaynak.Muhasebe", typeof(Metin).Assembly);
 
         private static string Oku(ResourceManager kaynak, string anahtar, string varsayilan)
         {
@@ -47,6 +51,18 @@ namespace Istemci
         public static string Duyuru(string anahtar)
         {
             return Oku(duyuru, anahtar, anahtar);
+        }
+
+        /// <summary>Kullanici kaynağından metin; yoksa anahtarın kendisi.</summary>
+        public static string Kullanici(string anahtar)
+        {
+            return Oku(kullanici, anahtar, anahtar);
+        }
+
+        /// <summary>Muhasebe kaynağından metin; yoksa anahtarın kendisi.</summary>
+        public static string Muhasebe(string anahtar)
+        {
+            return Oku(muhasebe, anahtar, anahtar);
         }
 
         /// <summary>EkliDosya kaynağından metin; yoksa anahtarın kendisi.</summary>

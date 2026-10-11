@@ -1,0 +1,113 @@
+@page
+@model SPIzlemeKurumModel
+@{
+    ViewData["Title"] = "Kurum Değerlendirme";
+    // Geniş ekranda sayfa pencereye sığar, bölmeler kendi içinde kayar (tanim.css, spizlemekurum.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim kurum-izleme">
+    <!-- Sol: arama bölmesi -->
+    <section class="tanim-sol">
+        <div class="kutu">
+            <h2 class="kutu-baslik">Arama Bilgileri</h2>
+            <form id="frmArama" class="tanim-arama" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="ddlKurum">Kurum</label>
+                    <div><select id="ddlKurum" class="form-control"></select></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label" id="lblDonem">Dönem</span>
+                    <div class="arama-satir" role="group" aria-labelledby="lblDonem">
+                        <input type="number" id="txtYil" class="form-control" min="2000" max="2100" step="1" aria-label="Yıl" />
+                        <select id="ddlDonem" class="form-control genis" aria-label="Dönem"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label" id="lblBasarim">Başarım (%)</span>
+                    <div class="arama-satir" role="group" aria-labelledby="lblBasarim">
+                        <input type="number" id="txtAlt" class="form-control" min="0" max="1000" step="1" placeholder="En az" aria-label="Başarım alt sınırı (%)" />
+                        <input type="number" id="txtUst" class="form-control" min="0" max="1000" step="1" placeholder="En çok" aria-label="Başarım üst sınırı (%)" />
+                    </div>
+                </div>
+                <p class="tanim-not duz">Başarım sınırları boş bırakılırsa bütün hedefler listelenir.</p>
+
+                <div class="btn-toolbar tanim-arac" role="toolbar">
+                    <button type="submit" id="btnListele" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                    </button>
+                    <span class="btn-group btn-group-sm pull-right" role="group" aria-label="Raporlar">
+                        <button type="button" class="btn btn-default" data-rapor="genel" title="Hedef başarımları (Excel)">
+                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır (Genel)
+                        </button>
+                        <button type="button" class="btn btn-default" data-rapor="ozet" title="Hedefler ve göstergelerinin başarımları (Excel)">Yazdır (Özet)</button>
+                    </span>
+                </div>
+            </form>
+
+            <!-- Seçilen yılda başarı düzeylerine göre hedef sayıları; satır renklerinin de açıklamasıdır -->
+            <ul id="lstOzet" class="ozet" aria-label="Başarı düzeyleri" hidden>
+                <li class="not1"><span>%90 ve üzeri</span><b></b></li>
+                <li class="not2"><span>%75 - %90</span><b></b></li>
+                <li class="not3"><span>%50 - %75</span><b></b></li>
+                <li class="not4"><span>%50'nin altı</span><b></b></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Sağ: hedefler ve yıllara göre başarımları -->
+    <section class="tanim-sag">
+        <div class="kutu">
+            <h2 class="kutu-baslik" id="listeBaslik">Gerçekleşmeler</h2>
+            <div class="sekmeler" role="tablist">
+                <button type="button" role="tab" id="sekmeListe" aria-controls="pnlListe" aria-selected="true">Gerçekleşmeler</button>
+                <button type="button" role="tab" id="sekmeDuzey" aria-controls="pnlDuzey" aria-selected="false" data-grafik="sp1">Hedef Başarı Düzeyi</button>
+                <button type="button" role="tab" id="sekmeSeyir" aria-controls="pnlSeyir" aria-selected="false" data-grafik="sp2">Başarı Seyri</button>
+            </div>
+            <div id="pnlListe" class="kayan" role="tabpanel" aria-labelledby="sekmeListe">
+                <p id="listeBos" class="tanim-not duz">Kurumu, yılı ve dönemi seçip Listele'ye basınız.</p>
+                <div class="tablo-kaydir">
+                    <table class="table table-condensed" id="tblHedef" hidden>
+                        <thead></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Grafikler (eski GrafikGoster çerçeveleri): yıl sonu başarımlarına göre, başarım sınırlarından bağımsız -->
+            <div id="pnlDuzey" class="kayan grafik-sekme" role="tabpanel" aria-labelledby="sekmeDuzey" hidden></div>
+            <div id="pnlSeyir" class="kayan grafik-sekme" role="tabpanel" aria-labelledby="sekmeSeyir" hidden></div>
+        </div>
+    </section>
+</div>
+
+<!-- Hedefin açıklaması -->
+<dialog id="dlgAciklama" class="tanim-pencere genis" aria-labelledby="dlgAciklamaBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgAciklamaBaslik">Hedef Açıklaması</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="aciklamaHedef" class="tanim-not duz"></p>
+        <textarea id="txtAciklama" class="form-control" rows="10" aria-label="Açıklama"></textarea>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnAciklamaKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/stratejikplan.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/spizlemekurum.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/spizlemekurum.js" asp-append-version="true"></script>
+}

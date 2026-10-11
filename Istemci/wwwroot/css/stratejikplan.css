@@ -1,0 +1,302 @@
+/* Stratejik Plan (PerformansButce/StratejikPlanAna): misyon, vizyon, amaçlar ve hedefler; pencereleri. tanim.css ile birlikte kullanılır. */
+
+.strplan {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    flex: 1 1 auto;
+}
+
+.strplan-arac {
+    flex: none;
+    margin-bottom: 10px;
+}
+
+.strplan-arac .btn {
+    margin-bottom: 4px;
+}
+
+.strplan-baslik {
+    flex: none;
+    margin: 0 0 10px;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.strplan-govde {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Misyon, vizyon ve amaçlar: her biri kendi açık renginde kutu */
+.strplan-kutu {
+    --kutu-baslik: #e3edfa;
+    --kutu-govde: #f5f8fd;
+    --kutu-vurgu: #2f6fc4;
+    flex: none;
+    background: var(--kutu-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.strplan-kutu.vizyon { --kutu-baslik: #fbefd3; --kutu-govde: #fefaf0; --kutu-vurgu: #b07a00; }
+.strplan-kutu.amaclar { --kutu-baslik: #e2f3e6; --kutu-govde: #f5fbf6; --kutu-vurgu: #2e8b4e; }
+
+.strplan-kutu h3 {
+    margin: 0;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--kutu-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--kutu-vurgu);
+}
+
+.strplan-kutu > p {
+    margin: 0;
+    padding: 14px 18px;
+    font-size: 17px;
+    line-height: 1.5;
+    text-align: center;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+}
+
+.strplan-kutu > p.bos {
+    font-size: 13px;
+    color: var(--soluk);
+}
+
+/* Amaçlar ve altlarında hedefleri */
+.amac-liste,
+.amac-liste ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.amac-liste {
+    padding: 6px 10px 10px;
+}
+
+.amac-liste .satir {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 5px 6px;
+    border-radius: 6px;
+}
+
+.amac-liste .satir:hover {
+    background: var(--kutu-baslik);
+}
+
+.amac-liste .ad {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.amac-liste > li > .satir .ad {
+    font-weight: 600;
+}
+
+.amac-liste ul {
+    padding-left: 22px;
+}
+
+.amac-liste .kisa {
+    margin-right: 6px;
+    color: var(--kutu-vurgu);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.amac-liste .bos {
+    padding: 8px 6px;
+    font-size: 13px;
+    color: var(--soluk);
+}
+
+/* Pencereler */
+.tanim-pencere.cok-genis {
+    width: min(1180px, calc(100vw - 32px));
+}
+
+/* Alt çubukta solda duran düğmeler (Sil, Yeni ...): Kapat ve Kaydet sağda kalır */
+.tanim-pencere .pencere-alt:has(.sola) [data-kapat] {
+    margin-left: auto;
+}
+
+.tanim-pencere .pencere-alt {
+    flex-wrap: wrap;
+}
+
+.tanim-pencere .kopyala {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 8px;
+    margin-top: 14px;
+    padding: 8px 12px 12px;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+}
+
+.tanim-pencere .kopyala legend {
+    width: auto;
+    padding: 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.tanim-pencere .kopyala label {
+    margin: 0;
+    font-weight: 400;
+}
+
+.tanim-pencere .kopyala .form-control {
+    width: 90px;
+}
+
+/* Hedef penceresindeki sekmeler */
+#dlgHedef .sekmeler {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    margin: 14px 0 12px;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+#dlgHedef .sekmeler [role="tab"] {
+    margin-bottom: -1px;
+    padding: 6px 12px;
+    font-size: 13px;
+    color: var(--soluk);
+    background: none;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    border-radius: 6px 6px 0 0;
+}
+
+#dlgHedef .sekmeler [role="tab"]:hover {
+    color: var(--murekkep);
+    background: var(--tema-acik);
+}
+
+#dlgHedef .sekmeler [role="tab"][aria-selected="true"] {
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--yuzey);
+    border-color: var(--cizgi);
+    box-shadow: inset 0 3px 0 var(--tema-ana);
+}
+
+#dlgHedef .sekme-govde {
+    min-height: 190px;
+}
+
+#dlgHedef [hidden],
+.strplan [hidden] {
+    display: none !important;
+}
+
+/* Sıra numaralı, satır satır düzenlenen listeler (birimler, riskler ...) */
+.satir-liste {
+    margin: 0 0 8px;
+    padding: 0 0 0 26px;
+}
+
+.satir-liste > li {
+    padding: 3px 0;
+}
+
+.satir-liste .satir {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.satir-liste .satir .form-control,
+.satir-liste .satir .ad {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.satir-liste:empty::before {
+    content: "Kayıt yok.";
+    margin-left: -26px;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+/* İçinde giriş alanları olan tablolar (üst belgeler, göstergeler, ödenekler) */
+.tablo-kaydir {
+    overflow-x: auto;
+}
+
+.duzen-tablo {
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.duzen-tablo th {
+    font-weight: 600;
+    white-space: nowrap;
+    vertical-align: bottom;
+}
+
+.duzen-tablo td {
+    vertical-align: middle !important;
+}
+
+.duzen-tablo .form-control {
+    height: 28px;
+    padding: 3px 6px;
+    font-size: 12px;
+}
+
+.duzen-tablo input[type="number"] {
+    min-width: 68px;
+    text-align: right;
+}
+
+.duzen-tablo .sayi {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.duzen-tablo .dar-sutun .form-control {
+    min-width: 70px;
+}
+
+.duzen-tablo tfoot td {
+    font-weight: 600;
+}
+
+/* Göstergeler tablosu 13 sütundur; pencereye sığsın diye hücre boşlukları dardır */
+#tblGosterge th,
+#tblGosterge td {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+#tblGosterge th {
+    white-space: normal;
+}
+
+#tblGosterge .gosterge-ad {
+    min-width: 170px;
+    overflow-wrap: anywhere;
+}
+
+@media (min-width: 992px) {
+    body.tanim-sayfa > .sayfa-icerik > .strplan {
+        min-height: 0;
+    }
+}

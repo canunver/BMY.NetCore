@@ -1687,6 +1687,58 @@ namespace TNS.HRC
         }
     }
 
+    [Serializable]
+    public class DBNakitPozisyonu
+    {
+        public Sonuc sonuc { get; set; } = new Sonuc(true, "", "");
+        public DateTime sonEkstreTarihi { get; set; }
+        public DateTime kurTarihi { get; set; }
+        public double usdKuru { get; set; }
+        public double eurKuru { get; set; }
+        public double bankaBakiyesiEUR { get; set; }
+        public double numaraliToplamEUR { get; set; }
+        public double numarasizToplamEUR { get; set; }
+        public double toplamOdemeEUR { get; set; }
+        public double netPozisyonEUR { get; set; }
+        public double finansmanIhtiyaciEUR { get; set; }
+        public TNSCollection gruplar { get; set; } = new TNSCollection();
+        public TNSCollection bilesenler { get; set; } = new TNSCollection();
+        public TNSCollection detaylar { get; set; } = new TNSCollection();
+    }
+
+    [Serializable]
+    public class DBNakitPozisyonBilesen
+    {
+        public int altBilesenID { get; set; }
+        public string altBilesenNo { get; set; }
+        public string altBilesenAd { get; set; }
+        public double numaraliToplamEUR { get; set; }
+        public double numarasizToplamEUR { get; set; }
+        public double genelToplamEUR { get { return numaraliToplamEUR + numarasizToplamEUR; } }
+    }
+
+    [Serializable]
+    public class DBNakitPozisyonGrup
+    {
+        public bool numarali { get; set; }
+        public string paraBirimi { get; set; }
+        public int kayitSayisi { get; set; }
+        public double tutar { get; set; }
+        public double eurKarsiligi { get; set; }
+    }
+
+    [Serializable]
+    public class DBNakitPozisyonDetay
+    {
+        public int hakedisID { get; set; }
+        public int numarator { get; set; }
+        public string ilgiliAd { get; set; }
+        public string paraBirimi { get; set; }
+        public double tutar { get; set; }
+        public double eurKarsiligi { get; set; }
+        public bool numarali { get; set; }
+    }
+
     public class DinamikAnahtarYapisi
     {
         public int AltBilesenID { get; set; }

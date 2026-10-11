@@ -1,0 +1,74 @@
+/* Genel Kod Tanımlama (ButceHazirlikv2/GenelKodTanimla): solda kod ağacı, sağda kodun bilgileri. tanim.css ile birlikte kullanılır. */
+
+.kodtanim .kutu-baslik,
+.kodtanim .tanim-ekle {
+    flex: none;
+}
+
+.kodtanim .tanim-form {
+    max-width: 720px;
+}
+
+/* Dil başlığı: o dildeki ad ve açıklama alanlarının üstünde */
+.kodtanim .alan-grubu {
+    margin: 14px 0 8px;
+    padding-top: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--soluk);
+    border-top: 1px solid var(--cizgi);
+}
+
+.kodtanim #kodYapi {
+    margin-top: 4px;
+}
+
+@media (min-width: 992px) {
+    .tanim.kodtanim {
+        grid-template-columns: minmax(260px, 4fr) minmax(0, 8fr);
+    }
+
+    .tanim.kodtanim .tanim-sol .kutu {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .tanim.kodtanim .kayan {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+    }
+}
+
+/* Başlık satırı: [<] yıl [>] ve tür adı */
+.kodtanim .baslik-satir {
+    flex: none;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    margin-bottom: 12px;
+}
+
+.kodtanim .baslik-satir .kutu-baslik {
+    margin: 0;
+}
+
+.kodtanim .yil-gezgin {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.kodtanim .yil-gezgin[hidden] {
+    display: none;
+}
+
+.kodtanim .yil-gezgin .yil {
+    min-width: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,97 @@
+/* Göreve Kişi Atama (Organizasyon/GorevAta): birim ağacı, görevler, görevlendirilenler. tanim.css ile birlikte kullanılır. */
+
+/* Seçilen kullanıcı ve şimdiki görevleri (Kullanıcı Giriş'ten açıldığında) */
+.gorevata-kisi {
+    flex: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 8px;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.gorevata-kisi .kim {
+    font-weight: 600;
+}
+
+.gorevata-kisi .bos {
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.gorevata .kutu-baslik {
+    flex: none;
+}
+
+.gorevata .secilen {
+    flex: none;
+    margin: -6px 0 10px;
+    font-size: 12px;
+    color: var(--soluk);
+    overflow-wrap: anywhere;
+}
+
+/* Görevlendirilenler: onay kutusu + ad + T.C. no + kısıt düğmesi */
+.gorevata .tanim-liste label {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    margin: 0;
+    font-weight: 400;
+}
+
+.gorevata .tanim-liste .tc {
+    font-size: 12px;
+    color: var(--soluk);
+    white-space: nowrap;
+}
+
+.gorevata .tanim-arac .btn {
+    margin-bottom: 4px;
+}
+
+/* Kişi arama penceresi */
+#dlgKisiAra .tanim-liste {
+    height: min(40vh, 320px);
+    margin-top: 10px;
+    overflow-y: auto;
+    border: 1px solid var(--cizgi);
+    border-radius: 4px;
+}
+
+#dlgKisiAra .tanim-liste > li {
+    padding: 5px 8px;
+}
+
+@media (min-width: 992px) {
+    .tanim.gorevata {
+        grid-template-columns: minmax(0, 4fr) minmax(0, 3fr) minmax(0, 5fr);
+    }
+
+    /* Belli bir birim için açıldığında birim ağacı yoktur */
+    .tanim.gorevata.birimsiz {
+        grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
+    }
+
+    .tanim.gorevata .kutu {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .tanim.gorevata .kayan {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+    }
+}
+
+.gorevata.birimsiz > section:first-child {
+    display: none;
+}

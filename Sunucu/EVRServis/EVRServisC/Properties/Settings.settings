@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EVRServisC.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="EVRServisC_MobilImzaEvrak_MSS_Sender" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://88.247.125.212:84/MSS_ServiceTest/MSS_Sender.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

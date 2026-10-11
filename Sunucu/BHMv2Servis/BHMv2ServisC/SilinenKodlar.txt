@@ -1,0 +1,3533 @@
+﻿Interfaceden silinenler
+------------------------
+/*
+        string[] KurumsalYapiListele(string saymanlik, string birim);
+        ObjectArray SurecBilgiListele(Kullanici kullanan, BHMHarcamaSorgu kriter);
+        Sonuc ButceRaporKaydet(Kullanici kullanan, ButceRapor butceRapor);
+        ObjectArray ButceRaporListele(Kullanici kullanan, ButceRapor butceRapor);
+        ObjectArray ButceRaporListele(Kullanici kullanan, ObjectArray prButceRaporNoList);
+        Sonuc ButceRaporSil(Kullanici kullanan, ObjectArray prButceRaporNoList);
+
+        //Sonuc KaydetHarcamaSurecOnay(int yil, ObjectArray liste);
+        //Sonuc KaydetHarcamaSurecAlim(int yil, ObjectArray liste);
+        //Sonuc KaydetHarcamaSurecFatura(int yil, ObjectArray liste);
+        //Sonuc KaydetHarcamaSurecTeslim(int yil, ObjectArray liste);
+        //Sonuc KaydetHarcamaSurecOdeme(int yil, ObjectArray liste);
+        //Sonuc SilSurecBilgi(int hedefYil, int yil, string kur, string fon, string fin, string eko);
+
+        /// <summary>
+        /// ButceTasnif nesnesini veri tabanından silen fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içerenen nesne</param>
+        /// <param name="kodlar">Silinecek bütçe tasniflerini tutan liste</param>
+        /// <returns>Silme işleminin sonucunu döndürür</returns>
+        ///Sonuc ButceTasnifSil(Kullanici kullanan, TNSCollection kodlar);
+
+        //TertipOdenek[] TertipListesiBul(int yil, string senaryoKod, int teklifYil, ButceTasnifTertipSablon[] sablonlar, ENUMUretimKaynakTur metod, out double toplam);
+
+    //[System.Serializable()]
+    //public class KurumsalYapi
+    //{
+    //    public string kod = string.Empty;
+    //    public string ad = string.Empty;
+
+    //    /// <summary>
+    //    /// Saymanlık: Saymanlık kodunu giriniz.
+    //    /// </summary>
+    //    public string saymanlikKod = string.Empty;
+    //    public string saymanlikAd = string.Empty;
+
+    //    /// <summary>
+    //    /// Birim: Birim kodunu giriniz.
+    //    /// </summary>
+    //    public string birimKod = string.Empty;
+    //    public string birimAd = string.Empty;
+
+    //    /// <summary>
+    //    /// Kurumsal Kod: Kurumsal kodu giriniz.
+    //    /// </summary>
+    //    public string kurKod = string.Empty;
+    //    public string kurAd = string.Empty;
+
+    //    public string kisaAd = string.Empty;
+    //    public string evrakBirimKod = string.Empty;
+    //    public string ulkeAd = string.Empty;
+    //    public string ulkeKod = string.Empty;
+    //    public string bolgeAd = string.Empty;
+    //    public string bolgeKod = string.Empty;
+    //    public string ilAd = string.Empty;
+    //    public string ilKod = string.Empty;
+    //    public string ilceAd = string.Empty;
+    //    public string ilceKod = string.Empty;
+    //    public string fonKod = string.Empty;
+    //    public string fonAd = string.Empty;
+    //    public string finKod = string.Empty;
+    //    public string finAd = string.Empty;
+    //    public string ekoKod = string.Empty;
+    //    public string ekoAd = string.Empty;
+    //    public string pebKod = string.Empty;
+    //    public string pebAd = string.Empty;
+    //    public string vergiNo = string.Empty;
+    //    public string vergiDairesi = string.Empty;
+    //    public string adres = string.Empty;
+    //    public string telefon = string.Empty;
+    //    public string faks = string.Empty;
+    //    public string eposta = string.Empty;
+    //    public string url = string.Empty;
+    //    public string antet = string.Empty;
+    //    public int ustKod = -1;
+    //    public string teskilatKod = string.Empty;
+    //}
+
+
+        /// <summary>
+        /// TavanGenel nesnesini veri tabanından okuyan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="form">TavanGenel yapısında TavanGenel: bilgilerini tutan değişken</param>
+        //TavanGenel TavanGenelSayfaOku(Kullanici kullanan, TavanGenel form);
+
+        /// <summary>
+        /// TavanGenel nesnesini veri tabanına yazan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="form">TavanGenel yapısında TavanGenel: bilgilerini tutan değişken</param>
+        /// <returns>İşlem sonucunu döndüren, Sonuc sınıfında nesne</returns>
+        //Sonuc TavanGenelSayfaKaydet(Kullanici kullanan, TavanGenel form);
+
+        /// <summary>
+        /// TavanIl nesnesini veri tabanından okuyan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="form">TavanIl yapısında TavanIl: bilgilerini tutan değişken</param>
+        //TavanIl TavanIlSayfaOku(Kullanici kullanan, TavanIl form);
+
+        /// <summary>
+        /// TavanIl nesnesini veri tabanına yazan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="form">TavanIl yapısında TavanIl: bilgilerini tutan değişken</param>
+        /// <returns>İşlem sonucunu döndüren, Sonuc sınıfında nesne</returns>
+        //Sonuc TavanIlSayfaKaydet(Kullanici kullanan, TavanIl form);
+
+        /// <summary>
+        /// TavanDetay nesnesini veri tabanından okuyan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="form">TavanDetay yapısında TavanDetay: bilgilerini tutan değişken</param>
+        //TavanDetay TavanDetaySayfaOku(Kullanici kullanan, TavanDetay form);
+
+        /// <summary>
+        /// TavanDetay nesnesini veri tabanına yazan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="form">TavanDetay yapısında TavanDetay: bilgilerini tutan değişken</param>
+        /// <returns>İşlem sonucunu döndüren, Sonuc sınıfında nesne</returns>
+        //Sonuc TavanDetaySayfaKaydet(Kullanici kullanan, TavanDetay form);
+
+        //ObjectArray ButceTavanRakamlariDagit(Kullanici kullanan, TavanGenel tavanform, string ekoKod);
+        //ObjectArray TavanRakamlariIllereDagit(Kullanici kullanan, TavanIl tavanform);
+        //ObjectArray TavanRakamlariIlcelereDagit(Kullanici kullanan, TavanDetay tavanform);
+
+        //Sonuc KurumsalYapiKaydet(Kullanici kullanan, KurumsalYapi ky);
+        //Sonuc KurumsalYapiSil(Kullanici kullanan, KurumsalYapi ky);
+
+        //IlSaymanlikBilgisiVAN IlListele(Kullanici kullanan, IlSaymanlikBilgisi form);
+        //ObjectArray KurumsalYapidanIlListele(Kullanici kullanan);
+        //Sonuc KurumsalYapiKaydetYeni(Kullanici kullanan, KurumsalYapi ky);
+        //Sonuc KurumsalYapiSilYeni(Kullanici kullanan, KurumsalYapi ky);
+        //ObjectArray KurumsalYapiListeleYeni(Kullanici kullanan, KurumsalYapi ky);
+        //ObjectArray KurumsalYapiYolVer(KurumsalYapi ky);
+        //string[] VarsayilanKurumBilgisiVerYeni();
+
+
+        /// <summary>
+        /// ButceTasnifTertip nesnesini veri tabanından okuyan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="form">ButceTasnifTertip yapısında ButceTasnifTertip: bilgilerini tutan değişken</param>
+        //ButceTasnifTertip ButceTasnifTertipOku(Kullanici kullanan, ButceTasnifTertip form);
+
+        /// <summary>
+        /// ButceTasnifTertip nesnesini veri tabanına yazan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="form">ButceTasnifTertip yapısında ButceTasnifTertip: bilgilerini tutan değişken</param>
+        /// <returns>İşlem sonucunu döndüren, Sonuc sınıfında nesne</returns>
+        //Sonuc ButceTasnifTertipKaydet(Kullanici kullanan, ButceTasnifTertip form);
+
+        /// <summary>
+        /// ButceSenaryoKatsayiSinif[] nesnesini veri tabanından okuyan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="kaynakTur">kaynakTur 1: Ödenek , kaynakTur 2: Harcama</param>
+        /// <param name="kaynakYil">Kaynak Yıl</param>
+        /// <param name="kaynakSenaryoKod">Kaynak Senaryo Kod</param>  
+        //ButceSenaryoKatsayiSinif[] ButceEkonomikKodOdenekToplamlariniOku(Kullanici kullanan, int kaynakYil, string kaynakSenaryoKod, int kaynakTur);
+
+
+    /// <summary>
+    /// TavanGenelDetay: 
+    /// </summary>
+    [System.Serializable()]
+    public class TavanGenelDetay
+    {
+
+        /// <summary>
+        /// Birim: Birim kodunu giriniz.
+        /// </summary>
+        public string birimKod;
+
+
+        /// <summary>
+        /// Ekonomik Kod: Ekonomik kodu giriniz
+        /// </summary>
+        public string eko1;
+        public string ekoAd;
+        public string birimAd;
+        public double tavan;
+    }
+
+
+    /// <summary>
+    /// TavanGenel: 
+    /// </summary>
+    [System.Serializable()]
+    public class TavanGenel
+    {
+
+        /// <summary>
+        /// Yıl: Tavanı düzenlenecek olan yılı giriniz.
+        /// </summary>
+        public int yil;
+        public string birimKod;
+        public string birimAd;
+        public string ekoKod;
+
+
+        /// <summary>
+        /// TavanGenelDetay: 
+        /// </summary>
+        public TavanGenelDetay[] tavanGenelDetay;
+    }
+
+
+    [System.Serializable()]
+    public class TavanGenelDagilim
+    {
+        public int yil;
+        public string ekoKod;
+        public string ekoAd;
+        public double toplamTavan;
+        public double toplamHarcama;
+        public BirimlerTavan[] birimlerTavan;
+    }
+    [System.Serializable()]
+    public class BirimlerTavan
+    {
+        public string birimKod;
+        public string birimAd;
+        public int saymanlik;
+        public string saymanlikAd;
+        public double tavan;
+        public double harcama;
+        public double oran;
+    }
+
+
+    /// <summary>
+    /// TavanIlDetay: 
+    /// </summary>
+    [System.Serializable()]
+    public class TavanIlDetay
+    {
+
+        /// <summary>
+        /// Saymanlık: Saymanlık kodunu giriniz.
+        /// </summary>
+        public string kurumsalYapiKod;
+        public string kurumsalYapiAd;
+
+        /// <summary>
+        /// Ekonomik Kod: Ekonomik kodu giriniz
+        /// </summary>
+        public string eko1;
+        public string eko1Ad;
+
+        /// <summary>
+        /// Tavan ödenek: Tahmini harcama tutarı.
+        /// </summary>
+        public double tavan;
+    }
+
+
+    /// <summary>
+    /// TavanIl: 
+    /// </summary>
+    [System.Serializable()]
+    public class TavanIl
+    {
+
+        /// <summary>
+        /// Yıl: Tavanı düzenlenecek olan yılı giriniz.
+        /// </summary>
+        public int yil;
+        public string birimKod;
+        public string ilKod;
+        public string ekoKod;
+        public double toplamHarcama;
+        public double toplamTavan;
+
+        /// <summary>
+        /// TavanIlDetay: 
+        /// </summary>
+        public TavanIlDetay[] tavanIlDetay;
+    }
+
+
+    /// <summary>
+    /// TavanDetayDetay: 
+    /// </summary>
+    [System.Serializable()]
+    public class TavanDetayDetay
+    {
+
+        /// <summary>
+        /// Saymanlık: Saymanlık kodunu giriniz.
+        /// </summary>
+        public int saymanlikKod;
+        public string saymanlikAd;
+        public string birimKod;
+        public string birimAd;
+
+        /// <summary>
+        /// Ekonomik Kod: Ekonomik kodu giriniz
+        /// </summary>
+        public string eko1;
+
+        /// <summary>
+        /// Tavan ödenek: Tahmini harcama tutarı.
+        /// </summary>
+        public double tavan;
+    }
+
+
+    /// <summary>
+    /// TavanDetay: 
+    /// </summary>
+    [System.Serializable()]
+    public class TavanDetay
+    {
+
+        /// <summary>
+        /// Yıl: Tavanı düzenlenecek olan yılı giriniz.
+        /// </summary>
+        public int yil;
+        public string birimKod;
+        public string ilKod;
+        public string ekoKod;
+
+        /// <summary>
+        /// TavanDetayDetay: 
+        /// </summary>
+        public TavanDetayDetay[] tavanDetayDetay;
+    }
+
+
+    [System.Serializable()]
+    public class IlSaymanlikBilgisi
+    {
+        public string birimKod;
+        public int muhasebe;
+        public string kurum;
+        public string birimAd;
+        public string muhasebeAd;
+        public string ilKod;
+        public string ilAd;
+
+        public IlSaymanlikBilgisi()
+        {
+            birimKod = string.Empty;
+            muhasebe = 0;
+            kurum = string.Empty;
+            birimAd = string.Empty;
+            muhasebeAd = string.Empty;
+            ilKod = string.Empty;
+            ilAd = string.Empty;
+        }
+    }
+
+    [System.Serializable()]
+    public class IlSaymanlikBilgisiVAN
+    {
+        public TNSCollection ilSaymanlikBilgisi;
+        public Sonuc sonuc;
+        public IlSaymanlikBilgisiVAN()
+        {
+            sonuc = new Sonuc();
+        }
+    }
+
+    [System.Serializable()]
+    public class Yardim
+    {
+        public string sayfa;
+        public int tur;
+        public StringBuilder metin;
+        public int sira;
+        public string metinParca;
+
+        public Yardim()
+        {
+            sayfa = string.Empty;
+            tur = 0;
+            sira = 0;
+            metin = new StringBuilder();
+            metinParca = string.Empty;
+        }
+    }
+
+    ///// <summary>
+    ///// ButceTasnifTertipler: 
+    ///// </summary>
+    [System.Serializable()]
+    public class ButceTasnifTertipler
+    {
+        /// <summary>
+        /// Kur Kod: Kurumsal Kod
+        /// </summary>
+        public string kurKod;
+
+        /// <summary>
+        /// Fon Kod: Fonksiyonel Kod
+        /// </summary>
+        public string fonKod;
+
+        /// <summary>
+        /// PEB Fon Kod: Performans Fonksiyonel Kodu
+        /// </summary>
+        public string pebFonKod;
+
+        /// <summary>
+        /// Fin Kod: Finans Kodu
+        /// </summary>
+        public string finKod;
+
+        /// <summary>
+        /// Eko Kod: Ekonomik Kod
+        /// </summary>
+        public string ekoKod;
+    }
+
+    /// <summary>
+    /// ButceRapor: 
+    /// </summary>
+    [System.Serializable()]
+    public class ButceRapor
+    {
+        public int prButceRaporNo;
+        public int raporGrupNo;
+        public int raporNo;
+        public TNSDateTime raporTarih;
+        public string kullaniciKodu;
+        public string dosyaYolu;
+    }
+
+
+    /// <summary>
+    /// OdenekSinif: 
+    /// </summary>
+    [System.Serializable()]
+    public class OdenekSinif
+    {
+
+        /// <summary>
+        /// Yıl: Yıl Seçiniz
+        /// </summary>
+        public int yil;
+
+        /// <summary>
+        /// Senaryo Kodu: Senaryo Seçiniz
+        /// </summary>
+        public string senaryoKod;
+
+        /// <summary>
+        /// Teklif Yılı: Teklif Yılı Giriniz
+        /// </summary>
+        public int teklifYil = -1;
+        /// <summary>
+        /// Tertip: Tertip Bilgisi Giriniz
+        /// Beklenen Kod sırası kurKod,fonKod,finKod,ekoKod,pebFonKod
+        /// </summary>
+        public Tertip tertip;
+
+        /// <summary>
+        /// Ödenek: Ödenek Bilgisi Giriniz
+        /// </summary>
+        public double odenek;
+    }
+
+        //Sonuc OdeneklereKatsayiUygula(Kullanici kullanan, int hedefYil, string hedefSenaryo, int kaynakTur, int kaynakYil, string kaynakSenaryo, ButceSenaryoKatsayiSinif[] katsayilar);
+
+    /// <summary>
+    /// ButceSenaryoKatsayiSinif: 
+    /// </summary>
+    [System.Serializable()]
+    public class ButceSenaryoKatsayiSinif
+    {
+        /// <summary>
+        /// Kod: Kod Giriniz
+        /// </summary>
+        public string kod;
+
+        /// <summary>
+        /// Adı: Ad Giriniz
+        /// </summary>
+        public string kodAd;
+
+        /// <summary>
+        /// Kaynak Ödenek: Kaynak Ödenek Giriniz
+        /// </summary>
+        public double kaynakOdenek;
+
+        /// <summary>
+        /// Hedef Ödenek: Hedef Ödenek Giriniz
+        /// </summary>
+        public double hedefOdenek;
+
+        /// <summary>
+        /// Katsayı: Katsayı Giriniz
+        /// </summary>
+        public double katsayi;
+    }
+
+        //
+
+    ///// <summary>
+    ///// ButceTasnifTertip: 
+    ///// </summary>
+    //[System.Serializable()]
+    //public class ButceTasnifTertip
+    //{
+
+    //    /// <summary>
+    //    /// Tasnif Sıra No: Tasnif sıra nosunu giriniz.
+    //    /// </summary>
+    //    public int tasnifNo;
+
+    //    /// <summary>
+    //    /// Kod: 2 kırılımlı hiyerarşi kodunu giriniz.
+    //    /// </summary>
+    //    public string hiyerarsiKod;
+
+    //    /// <summary>
+    //    /// Yıl: Yılı giriniz.
+    //    /// </summary>
+    //    public int yil;
+
+    //    /// <summary>
+    //    /// ButceTasnifTertipler: 
+    //    /// </summary>
+    //    public ButceTasnifTertipSablon[] ButceTasnifTertipSablonlari;
+    //}
+        //Tertip[] GiderTertipListe4DuzeyOku(Kullanici kullanan, int yil, string kurKod);
+        //Sonuc ButceFisiAktarKaydet(Kullanici kullanan, int yil, string tertip, string yazi);
+        //string ButceFisiAktarYaziGetir(Kullanici kullanan, int yil, string tertip);
+
+*/
+
+
+
+
+
+BHMv2Servis'den silinenler
+--------------------------
+
+/*
+        public Sonuc ButceRaporKaydet(Kullanici kullanan, ButceRapor butceRapor)
+        {
+            Sonuc donusDeger = new Sonuc();
+            try
+            {
+                donusDeger = new BHMv2ButceRapor().Kaydet(kullanan, butceRapor);
+            }
+            catch (Exception e)
+            {
+                donusDeger.islemSonuc = false;
+                donusDeger.hataStr = e.ToString();
+            }
+
+            return donusDeger;
+        }
+        public ObjectArray ButceRaporListele(Kullanici kullanan, ButceRapor butceRapor)
+        {
+            ObjectArray donusDeger = new ObjectArray();
+            try
+            {
+                donusDeger = new BHMv2ButceRapor().Listele(kullanan, butceRapor);
+            }
+            catch (Exception e)
+            {
+                donusDeger.sonuc.islemSonuc = false;
+                donusDeger.sonuc.hataStr = e.ToString();
+            }
+
+            return donusDeger;
+        }
+        public ObjectArray ButceRaporListele(Kullanici kullanan, ObjectArray prButceRaporNoList)
+        {
+            ObjectArray donusDeger = new ObjectArray();
+            try
+            {
+                donusDeger = new BHMv2ButceRapor().Listele(kullanan, prButceRaporNoList);
+            }
+            catch (Exception e)
+            {
+                donusDeger.sonuc.islemSonuc = false;
+                donusDeger.sonuc.hataStr = e.ToString();
+            }
+
+            return donusDeger;
+        }
+        public Sonuc ButceRaporSil(Kullanici kullanan, ObjectArray prButceRaporNoList)
+        {
+            Sonuc donusDeger = new Sonuc();
+            try
+            {
+                donusDeger = new BHMv2ButceRapor().Sil(kullanan, prButceRaporNoList);
+            }
+            catch (Exception e)
+            {
+                donusDeger.islemSonuc = false;
+                donusDeger.hataStr = e.ToString();
+            }
+
+            return donusDeger;
+        }
+
+        public Sonuc KaydetHarcamaSurecOnay(int yil, ObjectArray liste)
+        {
+            Sonuc donusDeger = new Sonuc();
+            try
+            {
+                donusDeger = new ButceHarcamaSurecDeger().KaydetHarcamaSurecOnay(null, yil, liste);
+            }
+            catch (Exception e)
+            {
+                donusDeger.islemSonuc = false;
+                donusDeger.hataStr = e.ToString();
+            }
+
+            return donusDeger;
+        }
+        public Sonuc KaydetHarcamaSurecAlim(int yil, ObjectArray liste)
+        {
+            Sonuc donusDeger = new Sonuc();
+            try
+            {
+                donusDeger = new ButceHarcamaSurecDeger().KaydetHarcamaSurecAlim(null, yil, liste);
+            }
+            catch (Exception e)
+            {
+                donusDeger.islemSonuc = false;
+                donusDeger.hataStr = e.ToString();
+            }
+
+            return donusDeger;
+        }
+        public Sonuc KaydetHarcamaSurecFatura(int yil, ObjectArray liste)
+        {
+            Sonuc donusDeger = new Sonuc();
+            try
+            {
+                donusDeger = new ButceHarcamaSurecDeger().KaydetHarcamaSurecFatura(null, yil, liste);
+            }
+            catch (Exception e)
+            {
+                donusDeger.islemSonuc = false;
+                donusDeger.hataStr = e.ToString();
+            }
+
+            return donusDeger;
+        }
+        public Sonuc KaydetHarcamaSurecTeslim(int yil, ObjectArray liste)
+        {
+            Sonuc donusDeger = new Sonuc();
+            try
+            {
+                donusDeger = new ButceHarcamaSurecDeger().KaydetHarcamaSurecTeslim(null, yil, liste);
+            }
+            catch (Exception e)
+            {
+                donusDeger.islemSonuc = false;
+                donusDeger.hataStr = e.ToString();
+            }
+
+            return donusDeger;
+        }
+        public Sonuc KaydetHarcamaSurecOdeme(int yil, ObjectArray liste)
+        {
+            Sonuc donusDeger = new Sonuc();
+            try
+            {
+                donusDeger = new ButceHarcamaSurecDeger().KaydetHarcamaSurecOdeme(null, yil, liste);
+            }
+            catch (Exception e)
+            {
+                donusDeger.islemSonuc = false;
+                donusDeger.hataStr = e.ToString();
+            }
+
+            return donusDeger;
+        }
+        public Sonuc SilSurecBilgi(int hedefYil, int yil, string kur, string fon, string fin, string eko)
+        {
+            Sonuc donusDeger = new Sonuc();
+            try
+            {
+                donusDeger = new ButceHarcamaSurecDeger().SurecBilgiSil(null, hedefYil, yil, kur, fon, fin, eko);
+            }
+            catch (Exception e)
+            {
+                donusDeger.islemSonuc = false;
+                donusDeger.hataStr = e.ToString();
+            }
+
+            return donusDeger;
+        }
+
+
+        public ObjectArray SurecBilgiListele(Kullanici kullanan, BHMHarcamaSorgu kriter)
+        {
+          ObjectArray donusDeger = new ObjectArray();
+          //try
+          //{
+          //  donusDeger = ButceHarcamaSurecDeger.ListeleSurecBilgi(kullanan, kriter);
+          //  return donusDeger;
+          //}
+          //catch (Exception e)
+          //{
+          //  donusDeger.sonuc.islemSonuc = false;
+          //  donusDeger.sonuc.hataStr = e.ToString();
+          //  return donusDeger;
+          //}
+          return donusDeger;
+        }
+
+        /// <summary>
+        /// ButceTasnifTertip nesnesini veri tabanına yazan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="form">ButceTasnifTertip yapısında ButceTasnifTertip: bilgilerini tutan değişken</param>
+        /// <returns>İşlem sonucunu döndüren, Sonuc sınıfında nesne</returns>
+        //public Sonuc ButceTasnifTertipKaydet(Kullanici kullanan, ButceTasnifTertip form)
+        //{
+        //    try
+        //    {
+        //        return BHMv2ButceTasnifTertip.Kaydet(null, kullanan, form);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return new Sonuc(false, e.ToString(), string.Empty);
+        //    }
+        //}
+
+        /// <summary>
+        /// OdenekSinif nesnesini veri tabanından okuyan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="form">OdenekSinif yapısında OdenekSinif: bilgilerini tutan değişken</param>
+        //public ButceSenaryoKatsayiSinif[] ButceEkonomikKodOdenekToplamlariniOku(Kullanici kullanan, int kaynakYil, string kaynakSenaryoKod, int kaynakTur)
+        //{
+        //    return BHMv2ButceOdenek.ButceEkonomikKodOdenekToplamlariniOku(null, kullanan, kaynakYil, kaynakSenaryoKod, kaynakTur);
+        //}
+
+        /// <summary>
+        /// OdenekSinif[] dizisindeki  nesneleri veri tabanına yazan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="form">OdenekSinif[] dizisi yapısında OdenekSinif: bilgilerini tutan değişken</param>
+        /// <returns>İşlem sonucunu döndüren, Sonuc sınıfında nesne</returns>
+        /// 
+
+
+        //public TertipOdenek[] TertipListesiBul(int yil, string senaryoKod, int teklifYil, ButceTasnifTertipSablon[] sablonlar, ENUMUretimKaynakTur metod, out double toplam)
+        //{
+        //    return BHMv2ButceOdenek.TertipListesiBul(null, yil, yil, senaryoKod, teklifYil, sablonlar, metod, out toplam);
+        //}
+
+
+        //public string[] KurumsalYapiListele(string saymanlik, string birim)
+        //{
+        //    return BHMv2KurumsalYapi.Listele(null, saymanlik, birim, "");
+        //}
+
+
+
+        //public ObjectArray ButceTavanRakamlariDagit(Kullanici kullanan, TavanGenel tavanform, string ekoKod)
+        //{
+        //    try
+        //    {
+        //        return BHMv2TavanGenelSayfa.TavanRakamiOlustur(null, kullanan, tavanform, ekoKod);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ObjectArray donusDeger = new ObjectArray();
+        //        donusDeger.sonuc.islemSonuc = false;
+        //        donusDeger.sonuc.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+        //public ObjectArray TavanRakamlariIllereDagit(Kullanici kullanan, TavanIl tavanform)
+        //{
+        //    try
+        //    {
+        //        return BHMv2TavanIlSayfa.TavanRakamiIllereDagit(null, kullanan, tavanform);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ObjectArray donusDeger = new ObjectArray();
+        //        donusDeger.sonuc.islemSonuc = false;
+        //        donusDeger.sonuc.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+        //public ObjectArray TavanRakamlariIlcelereDagit(Kullanici kullanan, TavanDetay tavanform)
+        //{
+        //    try
+        //    {
+        //        return BHMv2TavanDetaySayfa.TavanRakamiIlcelereDagit(null, kullanan, tavanform);
+
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ObjectArray donusDeger = new ObjectArray();
+        //        donusDeger.sonuc.islemSonuc = false;
+        //        donusDeger.sonuc.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+        /// <summary>
+        /// TavanGenel nesnesini veri tabanından okuyan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="form">TavanGenel yapısında TavanGenel: bilgilerini tutan değişken</param>
+        //public TavanGenel TavanGenelSayfaOku(Kullanici kullanan, TavanGenel form)
+        //{
+        //    return BHMv2TavanGenelSayfa.Oku(null, kullanan, form);
+        //}
+
+        //public IlSaymanlikBilgisiVAN IlListele(Kullanici kullanan, IlSaymanlikBilgisi form)
+        //{
+        //    return BHMv2TavanIlSayfa.IlListele(null, kullanan, form);
+        //}
+
+        /// <summary>
+        /// TavanGenel nesnesini veri tabanına yazan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="form">TavanGenel yapısında TavanGenel: bilgilerini tutan değişken</param>
+        /// <returns>İşlem sonucunu döndüren, Sonuc sınıfında nesne</returns>
+        //public Sonuc TavanGenelSayfaKaydet(Kullanici kullanan, TavanGenel form)
+        //{
+        //    try
+        //    {
+        //        return BHMv2TavanGenelSayfa.Kaydet(null, kullanan, form);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return new Sonuc(false, e.ToString(), string.Empty);
+        //    }
+        //}
+
+
+        /// <summary>
+        /// TavanIl nesnesini veri tabanından okuyan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="form">TavanIl yapısında TavanIl: bilgilerini tutan değişken</param>
+        //public TavanIl TavanIlSayfaOku(Kullanici kullanan, TavanIl form)
+        //{
+        //    return BHMv2TavanIlSayfa.Oku(null, kullanan, form);
+        //}
+
+
+        /// <summary>
+        /// TavanIl nesnesini veri tabanına yazan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="form">TavanIl yapısında TavanIl: bilgilerini tutan değişken</param>
+        /// <returns>İşlem sonucunu döndüren, Sonuc sınıfında nesne</returns>
+        //public Sonuc TavanIlSayfaKaydet(Kullanici kullanan, TavanIl form)
+        //{
+        //    try
+        //    {
+        //        return BHMv2TavanIlSayfa.Kaydet(null, kullanan, form);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return new Sonuc(false, e.ToString(), string.Empty);
+        //    }
+        //}
+
+
+        /// <summary>
+        /// TavanDetay nesnesini veri tabanından okuyan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="form">TavanDetay yapısında TavanDetay: bilgilerini tutan değişken</param>
+        //public TavanDetay TavanDetaySayfaOku(Kullanici kullanan, TavanDetay form)
+        //{
+        //    return BHMv2TavanDetaySayfa.Oku(null, kullanan, form);
+        //}
+
+
+        /// <summary>
+        /// TavanDetay nesnesini veri tabanına yazan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="form">TavanDetay yapısında TavanDetay: bilgilerini tutan değişken</param>
+        /// <returns>İşlem sonucunu döndüren, Sonuc sınıfında nesne</returns>
+        //public Sonuc TavanDetaySayfaKaydet(Kullanici kullanan, TavanDetay form)
+        //{
+        //    try
+        //    {
+        //        return BHMv2TavanDetaySayfa.Kaydet(null, kullanan, form);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return new Sonuc(false, e.ToString(), string.Empty);
+        //    }
+        //}
+
+
+        public Sonuc KurumsalYapiKaydet(Kullanici kullanan, KurumsalYapi ky)
+        {
+            try
+            {
+                return BHMv2KurumsalYapi.Kaydet(null, kullanan, ky);
+            }
+            catch (Exception e)
+            {
+                return new Sonuc(false, e.ToString(), string.Empty);
+            }
+        }
+
+        public Sonuc KurumsalYapiSil(Kullanici kullanan, KurumsalYapi ky)
+        {
+            try
+            {
+                return BHMv2KurumsalYapi.Sil(null, kullanan, ky);
+            }
+            catch (Exception e)
+            {
+                return new Sonuc(false, e.ToString(), string.Empty);
+            }
+        }
+
+
+        public ObjectArray KurumsalYapidanIlListele(Kullanici kullanan)
+        {
+            try
+            {
+                return BHMv2KurumsalYapi.Listele(null, kullanan, new KurumsalYapi(), true, true);
+            }
+            catch (Exception e)
+            {
+                ObjectArray donusDeger = new ObjectArray();
+                donusDeger.sonuc.islemSonuc = false;
+                donusDeger.sonuc.hataStr = e.ToString();
+                return donusDeger;
+            }
+        }
+
+        public Sonuc KurumsalYapiKaydetYeni(Kullanici kullanan, KurumsalYapi ky)
+        {
+            try
+            {
+                return BHMv2KurumsalYapiYeni.Kaydet(null, kullanan, ky);
+            }
+            catch (Exception e)
+            {
+                return new Sonuc(false, e.ToString(), string.Empty);
+            }
+        }
+
+        public Sonuc KurumsalYapiSilYeni(Kullanici kullanan, KurumsalYapi ky)
+        {
+            try
+            {
+                return BHMv2KurumsalYapiYeni.Sil(null, kullanan, ky);
+            }
+            catch (Exception e)
+            {
+                return new Sonuc(false, e.ToString(), string.Empty);
+            }
+        }
+
+        public ObjectArray KurumsalYapiListeleYeni(Kullanici kullanan, KurumsalYapi ky)
+        {
+            try
+            {
+                return BHMv2KurumsalYapiYeni.Listele(null, kullanan, ky);
+            }
+            catch (Exception e)
+            {
+                ObjectArray donusDeger = new ObjectArray();
+                donusDeger.sonuc.islemSonuc = false;
+                donusDeger.sonuc.hataStr = e.ToString();
+                return donusDeger;
+            }
+        }
+
+        public ObjectArray KurumsalYapiYolVer(KurumsalYapi ky)
+        {
+            try
+            {
+                return BHMv2KurumsalYapiYeni.YolVer(null, ky);
+            }
+            catch (Exception e)
+            {
+                ObjectArray donusDeger = new ObjectArray();
+                donusDeger.sonuc.islemSonuc = false;
+                donusDeger.sonuc.hataStr = e.ToString();
+                return donusDeger;
+            }
+        }
+
+        public string[] VarsayilanKurumBilgisiVerYeni()
+        {
+            try
+            {
+                return BHMv2KurumsalYapiYeni.VarsayilanKurumBilgisiVer(null);
+            }
+            catch (Exception e)
+            {
+                string[] donusDeger = new string[2];
+                donusDeger[1] = e.Message.ToString();
+                return donusDeger;
+            }
+        }
+
+        public Sonuc OdeneklereKatsayiUygula(Kullanici kullanan, int hedefYil, string hedefSenaryo, int kaynakTur, int kaynakYil, string kaynakSenaryo, ButceSenaryoKatsayiSinif[] katsayilar)
+        {
+            try
+            {
+                return BHMv2ButceOdenek.OdeneklereKatsayiUygula(kullanan, null, hedefYil, hedefSenaryo, kaynakTur, kaynakYil, kaynakSenaryo, katsayilar);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        //public Tertip[] GiderTertipListe4DuzeyOku(Kullanici kullanan, int yil, string kurKod)
+        //{
+        //    return TertipListesi.Listele4Duzey(null, kullanan, yil, kurKod);
+        //}
+
+
+        /// <summary>
+        /// Butce Tasnif nesnesini veri tabanından silen fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerinin içeren nesne</param>
+        /// <param name="kodlar">Silinecek olan bütçe tasniflerini tutan nesne</param>
+        /// <returns>İşlem sonucunu döndüren parametre</returns>
+        public Sonuc ButceTasnifSil(Kullanici kullanan, TNSCollection kodlar)
+        {
+            try
+            {
+                return ButceTasnifIslemler.Sil(null, kullanan, kodlar);
+
+            }
+            catch (Exception e)
+            {
+                return new Sonuc(false, e.ToString(), string.Empty);
+            }
+        }
+
+        /// <summary>
+        /// ButceTasnifTertip nesnesini veri tabanından okuyan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="form">ButceTasnifTertip yapısında ButceTasnifTertip: bilgilerini tutan değişken</param>
+        //public ButceTasnifTertip ButceTasnifTertipOku(Kullanici kullanan, ButceTasnifTertip form)
+        //{
+        //    return BHMv2ButceTasnifTertip.Oku(null, kullanan, form);
+        //}
+
+        //public Sonuc ButceFisiAktarKaydet(Kullanici kullanan, int yil, string tertip, string yazi)
+        //{
+        //    Sonuc donusDeger = new Sonuc();
+        //    try
+        //    {
+        //        donusDeger = new BHMv2ButceFisi().KaydetGerekceAktar(kullanan, yil, tertip, yazi);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        donusDeger.islemSonuc = false;
+        //        donusDeger.hataStr = e.ToString();
+        //    }
+
+        //    return donusDeger;
+        //}
+        //public string ButceFisiAktarYaziGetir(Kullanici kullanan, int yil, string tertip)
+        //{
+        //    string donusDeger = string.Empty;
+        //    try
+        //    {
+        //        donusDeger = new BHMv2ButceFisi().ListeleGerekceAktar(kullanan, yil, tertip);
+        //    }
+        //    catch
+        //    {
+        //    }
+
+        //    return donusDeger;
+        //}
+
+
+*/
+
+MasrafPlani.cs'den silinenler
+-----------------------------
+        /*
+        private static GenelOdenekBilgi AylıkDagilimOku(Kullanici kullanan, VeriErisim veriErisim, int yil, KurumsalYapi kurumsalYapi, ENUMMasrafPlanAsama asama)
+        {
+            IDataReader dr = null;
+            TABMPGMASRAFPLANI tab = new TABMPGMASRAFPLANI(veriErisim);
+            dr = tab.ListeleTertipAy(yil, kurumsalYapi.kod, asama);
+            GenelOdenekBilgi gob = new GenelOdenekBilgi(); ;
+            if (dr != null)
+            {
+                while (dr.Read())
+                {
+                    int ay = VeriErisim.DegerAl(dr, 0, 0);
+                    gob.AyDegerAta(ay, VeriErisim.DegerAl(dr, 1, (double)0.0));
+                }
+                dr.Close();
+            }
+            return gob;
+        }
+
+        private static MPEkonomikBilgi ArrayListteEkonomikBul(ArrayList al, MPEkonomik mpEkonomik)
+        {
+            for (int i = 0; i < al.Count; i++)
+            {
+                MPEkonomikBilgi pb = (MPEkonomikBilgi)al[i];
+                if (pb.mpEkonomik.kod == mpEkonomik.kod)
+                    return pb;
+            }
+            return null;
+        }
+
+        public static Sonuc MasrafPlaniGenelOtomatikHesapla(VeriErisim veriErisim, Kullanici kullanan, int yil, string kurumsalYapiKod, string ekoKod2, double artisYuzde, bool ustuneYaz, bool bosIseYaz)
+        {
+            if (!kullanan.KullaniciTipiIceriyorMu((int)ENUMKullaniciTipi.SISTEMYONETICISI))
+            {
+                return new Sonuc(false, "Bu işlemi yapmaya yetkiniz yok!", "");
+            }
+            KurumsalYapi kY = new KurumsalYapi();
+            kY.kod = kurumsalYapiKod;
+            VeriErisim ve = VeriErisim.VeriErisimBul(veriErisim, VERIERISIMAD, kullanan.KimlikBul());
+            ObjectArray oa = TNS.BHMv2.IsKurallari.BHMv2KurumsalYapi.Listele(ve, kullanan, kY, false, false);
+            if (!oa.sonuc.islemSonuc)
+                return oa.sonuc;
+            for (int i = 0; i < oa.ObjeSayisi; i++)
+            {
+                KurumsalYapi kyIc = (KurumsalYapi)oa[i];
+                if (OrtakFonksiyonlar.ConvertToInt(kyIc.saymanlikKod, -1) > 0 && !string.IsNullOrEmpty(kyIc.birimKod) && !string.IsNullOrEmpty(kyIc.kurKod))
+                {
+                    Sonuc s = MasrafPlaniGenelOtomatikHesaplaIc(kullanan, ve, yil, kyIc, ekoKod2, artisYuzde, ustuneYaz, bosIseYaz);
+                    if (!s.islemSonuc)
+                    {
+                        ve.VeriErisimKapat();
+                        return s;
+                    }
+                }
+            }
+            ve.VeriErisimKapat();
+            return new Sonuc(true, "", "İşlem Başarı ile Tamamlandı");
+        }
+
+        private static Sonuc MasrafPlaniGenelOtomatikHesaplaIc(Kullanici kullanan, VeriErisim veriErisim, int yil, KurumsalYapi kurumsalYapi, string ekoKod2, double artisYuzde, bool ustuneYaz, bool bosIseYaz)
+        {
+            veriErisim.BeginTransaction();
+            Sonuc s = new Sonuc();
+            TABMPGMASRAFPLANI tab = new TABMPGMASRAFPLANI(veriErisim);
+
+            try
+            {
+                int durum = tab.DurumBul(yil, kurumsalYapi.kod, ENUMMasrafPlanAsama.URETIM, ekoKod2);
+                if (!(durum > 0 && bosIseYaz))
+                {
+                    durum++;
+                    s = tab.SilDurum(yil, kurumsalYapi.kod, ENUMMasrafPlanAsama.URETIM, ekoKod2);
+                    if (s.islemSonuc)
+                        s = EkonomikOHI(kullanan, veriErisim, yil, kurumsalYapi, ekoKod2, artisYuzde, ustuneYaz);
+                    if (s.islemSonuc)
+                        s = tab.EkleDurum(yil, kurumsalYapi.kod, ENUMMasrafPlanAsama.URETIM, ekoKod2, 1, kullanan.kullaniciKodu);
+                }
+            }
+            catch (Exception e)
+            {
+                s.islemSonuc = false;
+                s.hataStr = e.Message;
+            }
+            if (s.islemSonuc)
+                veriErisim.Commit();
+            else
+                veriErisim.Rollback();
+            return s;
+        }
+
+        private static Sonuc EkonomikOHI(Kullanici kullanan, VeriErisim veriErisim, int yil, KurumsalYapi kurumsalYapi, string ekoKod2, double artisYuzde, bool ustuneYaz)
+        {
+            Sonuc s = new Sonuc(true, "", "");
+            TABMPGMASRAFPLANI tab = new TABMPGMASRAFPLANI(veriErisim);
+
+            double tahmin = Math.Floor(EkonomikKodTahminiDegerBul(kullanan, yil, kurumsalYapi, ekoKod2) * Arac.YuzdeyiOranaCevir(artisYuzde));
+            s = TertipIslemleriEkonomikOHI(kullanan, veriErisim, yil, kurumsalYapi, ENUMMasrafPlanAsama.URETIM, ekoKod2, tahmin, ustuneYaz);
+
+            return s;
+        }
+
+        private static double EkonomikKodTahminiDegerBul(Kullanici kullanan, int yil, KurumsalYapi kurumsalYapi, string ekoKod2)
+        {
+            double harc = Arac.HarcamaBul(kullanan, yil, kurumsalYapi.kod, kurumsalYapi.saymanlikKod, kurumsalYapi.birimKod, kurumsalYapi.kurKod, "", "", ekoKod2);
+            double gond = Arac.OdenekGondermeBul(kullanan, yil, kurumsalYapi.kod, kurumsalYapi.saymanlikKod, kurumsalYapi.birimKod, kurumsalYapi.kurKod, "", "", ekoKod2);
+            return Math.Max(harc, gond);
+        }
+
+        private static Sonuc TertipIslemleriEkonomikOHI(Kullanici kullanan, VeriErisim ve, int yil, KurumsalYapi kurumsalYapi, ENUMMasrafPlanAsama asama, string ekoKod2, double tahmin, bool ustuneYaz)
+        {
+            TertipOdenek[] to;
+            Sonuc s = new Sonuc(true, "", "");
+
+            to = HarcamalariBul(yil, OrtakFonksiyonlar.ConvertToInt(kurumsalYapi.saymanlikKod, -1), kurumsalYapi.birimKod, kurumsalYapi.kurKod, "", "", ekoKod2, true);
+            to = TertipDagilimHesapla(kullanan, yil, to, tahmin);
+            if (to != null)
+            {
+                TABMPGMASRAFPLANI tab = new TABMPGMASRAFPLANI(ve);
+                int durum = tab.DurumBul(yil, kurumsalYapi.kod, ENUMMasrafPlanAsama.TALEP, ekoKod2);
+                bool ikiyeYaz;
+                if (durum < 2)
+                    ikiyeYaz = true;
+                else
+                    ikiyeYaz = ustuneYaz;
+
+                if (ikiyeYaz)
+                {
+                    s = tab.SilDurum(yil, kurumsalYapi.kod, ENUMMasrafPlanAsama.TALEP, ekoKod2);
+                    if (s.islemSonuc)
+                        s = tab.SilTertip(yil, kurumsalYapi.kod, ENUMMasrafPlanAsama.TALEP, ekoKod2);
+                }
+
+                if (s.islemSonuc)
+                    s = tab.SilTertip(yil, kurumsalYapi.kod, ENUMMasrafPlanAsama.URETIM, ekoKod2);
+                for (int i = 0; i < to.Length && s.islemSonuc; i++)
+                {
+                    for (int j = 0; j < 12 && s.islemSonuc; j++)
+                    {
+                        if (!to[i].tertip.TamMi())
+                            s.DegerAta("Hatalı tertip:" + to[i].tertip.TertipStrOl());
+                        if (s.islemSonuc)
+                            s = tab.EkleTertip(kurumsalYapi.kod, ENUMMasrafPlanAsama.URETIM, to[i].tertip, j, to[i].odenek[j], 0);
+                        if (ikiyeYaz && s.islemSonuc)
+                            s = tab.EkleTertip(kurumsalYapi.kod, ENUMMasrafPlanAsama.TALEP, to[i].tertip, j, to[i].odenek[j], 0);
+                    }
+                }
+                if (ikiyeYaz && s.islemSonuc)
+                    tab.EkleDurum(yil, kurumsalYapi.kod, ENUMMasrafPlanAsama.TALEP, ekoKod2, 1, kullanan.kullaniciKodu);
+            }
+            return s;
+        }
+
+        private static TertipOdenek[] TertipDagilimHesapla(Kullanici kullanan, int yil, TertipOdenek[] to, double olacakToplam)
+        {
+            if (olacakToplam != 0)
+            {
+                double gelenToplam = 0;
+
+                for (int i = 0; i < to.Length; i++)
+                {
+                    for (int j = 0; j < 12; j++)
+                    {
+                        gelenToplam += to[i].odenek[j];
+                    }
+                }
+
+                //Sonra dağıt;
+                if (gelenToplam > 0)
+                {
+                    double dagitToplam = 0;
+                    for (int i = 0; i < to.Length; i++)
+                    {
+                        for (int j = 0; j < 12; j++)
+                        {
+                            if ((i == to.Length - 1) && (j == 11))
+                            {
+                                to[i].odenek[j] = olacakToplam - dagitToplam;
+                            }
+                            else
+                            {
+                                to[i].odenek[j] = Math.Floor(to[i].odenek[j] * (olacakToplam / gelenToplam));
+                                dagitToplam += to[i].odenek[j];
+                            }
+                        }
+                    }
+                    return PerformansTertibeCevir(kullanan, yil, to, false);
+                }
+                else
+                    return null;
+            }
+            else
+                return null;
+        }
+
+        private static TertipOdenek[] PerformansTertibeCevir(Kullanici kullanan, int yil, TertipOdenek[] to, bool hataVer)
+        {
+            ArrayList al = new ArrayList();
+            for (int i = 0; i < to.Length; i++)
+            {
+                TertipOdenek[] toIc = PEBTertipleriBul(kullanan, to[i].tertip);
+                if (toIc != null && toIc.Length > 0)
+                {
+                    double odenekTop = 0;
+                    for (int j = 0; j < toIc.Length; j++)
+                    {
+                        odenekTop += toIc[j].odenek[0];
+                        toIc[j].odenek = new double[to[i].odenek.Length];
+                        al.Add(toIc[j]);
+                    }
+
+                    for (int ayIc = 0; ayIc < to[i].odenek.Length; ayIc++)
+                    {
+
+                        double dagitTerTop = to[i].odenek[ayIc];
+                        double dagitilanTerTop = 0;
+                        for (int j = 0; j < toIc.Length; j++)
+                        {
+                            double oran = 0;
+                            if (odenekTop > 0)
+                                oran = toIc[j].odenek[0] / odenekTop;
+                            else
+                                oran = 1;
+                            if ((j == toIc.Length - 1))
+                            {
+                                toIc[j].odenek[ayIc] = dagitTerTop - dagitilanTerTop;
+                            }
+                            else
+                            {
+                                toIc[j].odenek[ayIc] = Math.Floor(to[i].odenek[ayIc] * oran);
+                                dagitilanTerTop += toIc[j].odenek[ayIc];
+                            }
+                        }
+                    }
+                }
+                else if (hataVer)
+                {
+                    throw new Exception(to[i].tertip.TertipStrOl() + " Tertibine ait performans bilgileri bulunamadı!");
+                }
+            }
+            return (TertipOdenek[])al.ToArray(typeof(TertipOdenek));
+        }
+
+        private static TertipOdenek[] PEBTertipleriBul(Kullanici kullanan, Tertip tertip)
+        {
+            Tertip kistas = new Tertip(tertip.yil, ENUMTabloKod.TABPEBOdenek, tertip.kodlar[0], tertip.kodlar[1], tertip.kodlar[2], tertip.kodlar[3], "");
+            TNS.BHM.UcgenKodBilgileri ukbleri = new TNS.BHM.UcgenKodBilgileri();
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(1, 4));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(2, 4));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(3, 1));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(4, 4));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(14, 4));
+            TNSCollection ekBilgiler = new TNSCollection();
+            ekBilgiler.Add((int)ENUMTabloKod.TABPEBOdenek * 1000 + 3);
+            bool hata = false;
+            TNSCollection tc = null;
+            try
+            {
+                tc = servisBHM.ListeTertipOl(kullanan, tertip.yil, ENUMTabloKod.TABPEBOdenek, kistas, ukbleri, ekBilgiler);
+            }
+            catch { hata = true; }
+
+            if (!hata)
+            {
+                if (tc == null)
+                    hata = true;
+                else if (tc.Count == 0)
+                    hata = true;
+                else if (tc[0].GetType() != typeof(TNS.BHM.OdenekBilgi))
+                    hata = true;
+            }
+
+            TertipOdenek[] to = null;
+            if (!hata)
+            {
+                to = new TertipOdenek[tc.Count];
+                for (int i = 0; i < tc.Count; i++)
+                {
+                    TNS.BHM.OdenekBilgi ob = (TNS.BHM.OdenekBilgi)tc[i];
+                    to[i] = new TertipOdenek(1);
+                    to[i].tertip = ob.tertip;
+                    to[i].odenek[0] = (double)ob.ekRakamlar[0];
+                }
+            }
+            else
+            {
+                //to = new TertipOdenek[1];
+                //to[0] = new TertipOdenek(1);
+                //to[0].tertip = new Tertip(tertip.yil, ENUMTabloKod.TABPEBOdenek, tertip.kodlar[0], tertip.kodlar[1], tertip.kodlar[2], tertip.kodlar[3], "01.1.1.01");
+                //to[0].odenek[0] = 1;
+            }
+            return to;
+        }
+
+        private static TertipOdenek[] HarcamalariBul(int yil, int saymanlik, string birim, string kurKod, string fonKod, string finKod, string ekoKod, bool tahminli)
+        {
+            TNS.MUH.AylikDagilim kriter = new TNS.MUH.AylikDagilim();
+            if (yil - 1 == DateTime.Now.Year)
+                kriter.ay = DateTime.Now.Month - 1;
+            else
+                kriter.ay = 12;
+            kriter.yil = yil - 1;
+            kriter.muhasebe = saymanlik;
+            kriter.birim = birim;
+            kriter.tertip = new Tertip(yil - 1, ENUMTabloKod.TABOdenek, kurKod, fonKod, finKod, ekoKod);
+
+            ObjectArray oa = servisMUH.AylikDagilimHarcama(kriter);
+            if (!oa.sonuc.islemSonuc)
+                throw new Exception(oa.sonuc.hataStr);
+
+            return AylikDagilimdanTertipOdenege(yil, oa, true, tahminli, kriter.ay);
+        }
+
+        private static TertipOdenek[] AylikDagilimdanTertipOdenege(int yil, ObjectArray oa, bool artimli, bool tahminli, int artimAy)
+        {
+            ArrayList al = new ArrayList();
+            for (int i = 0; i < oa.ObjeSayisi; i++)
+            {
+                TNS.MUH.AylikDagilim ad = (TNS.MUH.AylikDagilim)oa[i];
+
+                if (!ad.tertip.TamMi())
+                    throw new Exception(ad.tertip.TertipStrOl() + " hatalı tertip geldi");
+
+                TertipOdenek aktifTo = ArrayListteTertipBul(al, ad.tertip);
+                if (aktifTo == null)
+                {
+                    aktifTo = new TertipOdenek(12);
+                    aktifTo.tertip = ad.tertip;
+                    aktifTo.tertip.yil = yil;
+                    al.Add(aktifTo);
+                }
+                aktifTo.odenek[ad.ay - 1] = ad.tutar;
+            }
+            double oncekiAyDeger = 0;
+            if (artimli)
+            {
+                for (int i = 0; i < al.Count; i++)
+                {
+                    TertipOdenek aktifTo = (TertipOdenek)al[i];
+                    oncekiAyDeger = aktifTo.odenek[0];
+                    for (int ayIc = 1; ayIc < artimAy; ayIc++)
+                    {
+                        double simdikiAyDeger = aktifTo.odenek[ayIc];
+                        aktifTo.odenek[ayIc] = simdikiAyDeger - oncekiAyDeger;
+                        oncekiAyDeger = simdikiAyDeger;
+                    }
+                    if (oncekiAyDeger == 0)
+                    {
+                        al.RemoveAt(i);
+                        i--;
+                    }
+                    else
+                    {
+                        for (int ayIc = artimAy; ayIc < 12; ayIc++)
+                        {
+                            aktifTo.odenek[ayIc] = 0;
+                        }
+                        for (int ayIc = 0; ayIc < 12; ayIc++)
+                        {
+                            if (aktifTo.odenek[ayIc] < 0)
+                            {
+                                for (int dusurAy = ayIc - 1; dusurAy >= 0 && aktifTo.odenek[ayIc] < 0; dusurAy--)
+                                {
+                                    if (aktifTo.odenek[dusurAy] + aktifTo.odenek[ayIc] >= 0)
+                                    {
+                                        aktifTo.odenek[dusurAy] = aktifTo.odenek[dusurAy] + aktifTo.odenek[ayIc];
+                                        aktifTo.odenek[ayIc] = 0;
+                                    }
+                                    else
+                                    {
+                                        aktifTo.odenek[ayIc] = aktifTo.odenek[dusurAy] + aktifTo.odenek[ayIc];
+                                        aktifTo.odenek[dusurAy] = 0;
+                                    }
+                                }
+                                aktifTo.odenek[ayIc] = 0;
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            if (tahminli)
+            {
+                for (int i = 0; i < al.Count; i++)
+                {
+                    TertipOdenek aktifTo = (TertipOdenek)al[i];
+                    oncekiAyDeger = 0;
+                    for (int ayIc = 0; ayIc < artimAy; ayIc++)
+                    {
+                        oncekiAyDeger += aktifTo.odenek[ayIc];
+                    }
+                    double tut = Math.Floor(oncekiAyDeger / artimAy);
+                    for (int ayIc = artimAy; ayIc < 12; ayIc++)
+                    {
+                        aktifTo.odenek[ayIc] = tut;
+                    }
+                }
+            }
+            return (TertipOdenek[])al.ToArray(typeof(TertipOdenek));
+        }
+
+        private static TertipOdenek ArrayListteTertipBul(ArrayList al, Tertip tertip)
+        {
+            for (int i = 0; i < al.Count; i++)
+            {
+                TertipOdenek aktifTo = (TertipOdenek)al[i];
+                if (aktifTo.tertip.TertipStrOl() == tertip.TertipStrOl())
+                    return aktifTo;
+            }
+            return null;
+        }
+
+        public static TertipOdenek[] MasrafPlaniGenelTertipListele(VeriErisim veriErisim, Kullanici kullanan, int yil, string kurumsalYapiKod, ENUMMasrafPlanAsama asama, string ekoKod2)
+        {
+            KurumsalYapi kY = BHMv2.IsKurallari.BHMv2KurumsalYapi.KurumsalYapiDondur(veriErisim, kurumsalYapiKod);
+            if (kY == null)
+                throw new Exception("Kurumsal Yapı Çözümlenemedi");
+            if (!GormeYetkisiVarMi(kullanan, yil, kY, asama, kY.kurKod))
+                throw new Exception("Bu birime ait bilgileri görme yetkiniz bulunmamaktadır!");
+            if (OrtakFonksiyonlar.ConvertToInt(kY.saymanlikKod, -1) <= 0 || string.IsNullOrEmpty(kY.birimKod) || string.IsNullOrEmpty(kY.kurKod))
+                throw new Exception("En alt seviyedeki birimi seçmelisiniz!");
+
+            VeriErisim ve = VeriErisim.VeriErisimBul(veriErisim, VERIERISIMAD, kullanan.KimlikBul());
+            TABMPGMASRAFPLANI tab = new TABMPGMASRAFPLANI(ve);
+            ArrayList al = new ArrayList();
+            ENUMMasrafPlanAsama icAsama = asama;
+            IDataReader dr = tab.ListeleTertip(yil, kurumsalYapiKod, asama, ekoKod2);
+            if (dr == null)
+            {
+                ve.VeriErisimKapat();
+                throw new Exception(ve.hata);
+            }
+
+            TertipOdenek aktifTO = null;
+            while (dr.Read())
+            {
+                Tertip t = new Tertip(yil, ENUMTabloKod.TABOdenek, VeriErisim.DegerAl(dr, 0, ""), VeriErisim.DegerAl(dr, 1, ""), VeriErisim.DegerAl(dr, 2, ""), VeriErisim.DegerAl(dr, 3, ""));
+                t.Noktala();
+                if (aktifTO == null || aktifTO.tertip.TertipStrOl() != t.TertipStrOl())
+                {
+                    aktifTO = new TertipOdenek(24);
+                    aktifTO.tertip = t;
+                    aktifTO.tertip.AdlariBul(servisUZY);
+                    TertipOdenek[] toHarcama = HarcamalariBul(yil, OrtakFonksiyonlar.ConvertToInt(kY.saymanlikKod, -1), kY.birimKod, t.kodlar[0], t.kodlar[1], t.kodlar[2], t.kodlar[3], false);
+                    if (toHarcama.Length == 1)
+                    {
+                        for (int i = 0; i < 12; i++)
+                        {
+                            aktifTO.odenek[i] = toHarcama[0].odenek[i];
+                        }
+                    }
+                    al.Add(aktifTO);
+                }
+                aktifTO.odenek[VeriErisim.DegerAl(dr, 4, 1) + 12] = VeriErisim.DegerAl(dr, 5, 0.0);
+            }
+            dr.Close();
+            ve.VeriErisimKapat();
+
+            TNSCollection pebTertipler = PEBTertipleriBul(kullanan, yil, kY.kurKod, ekoKod2);
+            if (pebTertipler != null)
+            {
+                for (int i = 0; i < pebTertipler.Count; i++)
+                {
+                    TNS.BHM.OdenekBilgi ob = (TNS.BHM.OdenekBilgi)pebTertipler[i];
+                    if (ALDeTertipBul(al, ob.tertip) == null)
+                    {
+                        aktifTO = new TertipOdenek(24);
+                        aktifTO.tertip = ob.tertip;
+
+                        TertipOdenek[] toHarcama = HarcamalariBul(yil, OrtakFonksiyonlar.ConvertToInt(kY.saymanlikKod, -1), kY.birimKod, aktifTO.tertip.kodlar[0], aktifTO.tertip.kodlar[1], aktifTO.tertip.kodlar[2], aktifTO.tertip.kodlar[3], false);
+                        if (toHarcama.Length == 1)
+                        {
+                            for (int j = 0; j < 12; j++)
+                            {
+                                aktifTO.odenek[j] = toHarcama[0].odenek[j];
+                            }
+                        }
+                        al.Add(aktifTO);
+                    }
+                }
+            }
+            return (TertipOdenek[])al.ToArray(typeof(TertipOdenek));
+        }
+
+        private static TertipOdenek ALDeTertipBul(ArrayList al, Tertip tertip)
+        {
+            for (int i = 0; i < al.Count; i++)
+            {
+                TertipOdenek to = (TertipOdenek)al[i];
+                if (to.tertip.TertipStrOl().Equals(tertip.TertipStrOl()))
+                    return to;
+            }
+            return null;
+        }
+
+        private static TNSCollection PEBTertipleriBul(Kullanici kullanan, int yil, string kurKod, string ekoKod)
+        {
+            TNS.BHM.IBHMServis bhmServis = TNS.BHM.Arac.Tanimla();
+            Tertip kistas = new Tertip(yil, ENUMTabloKod.TABPEBOdenek, kurKod, "", "", ekoKod, "");
+            TNS.BHM.UcgenKodBilgileri ukbleri = new TNS.BHM.UcgenKodBilgileri();
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(1, 4));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(2, 4));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(3, 1));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(4, 4));
+            TNSCollection ekBilgiler = new TNSCollection();
+            ekBilgiler.Add((int)ENUMTabloKod.TABPEBOdenek * 1000 + 3);
+            bool hata = false;
+            TNSCollection tc = null;
+            try
+            {
+                tc = bhmServis.ListeTertipOl(kullanan, yil, ENUMTabloKod.TABPEBOdenek, kistas, ukbleri, ekBilgiler);
+            }
+            catch { hata = true; }
+
+            if (!hata)
+            {
+                if (tc == null)
+                    hata = true;
+                else if (tc.Count == 0)
+                    hata = true;
+                else if (tc[0].GetType() != typeof(TNS.BHM.OdenekBilgi))
+                    hata = true;
+            }
+            if (!hata)
+                return tc;
+            else
+                return null;
+        }
+
+        private static void HarcamaDonemdenAya(Kullanici kullanan, int yil, int saymanlik, string birim, TertipOdenek[] tertipOdenekler)
+        {
+            for (int i = 0; i < tertipOdenekler.Length; i++)
+            {
+                TertipOdenek to = tertipOdenekler[i];
+                if (to.odenek.Length == 4)
+                {
+                    double[] yeniDegerler = new double[12];
+                    //TertipOdenek[] toDizi = HarcamalariBul(yil, saymanlik, birim, to.tertip.kodlar[0], to.tertip.kodlar[1], to.tertip.kodlar[2], to.tertip.kodlar[3], true);
+                    //if (toDizi != null && toDizi.Length > 0)
+                    //{
+                    //    for (int j = 0; j < toDizi[0].odenek.Length; j++)
+                    //    {
+                    //        if (toDizi[0].odenek[j] < 0) toDizi[0].odenek[j] = 0;
+
+                    //    }
+                    //    for (int j = 0; j < to.odenek.Length; j++)
+                    //    {
+                    //        double donemToplam = toDizi[0].odenek[j * 3] + toDizi[0].odenek[j * 3 + 1] + toDizi[0].odenek[j * 3 + 2];
+                    //        if (donemToplam != 0)
+                    //        {
+                    //            yeniDegerler[j * 3] = Math.Floor(to.odenek[j] * toDizi[0].odenek[j * 3] / donemToplam);
+                    //            yeniDegerler[j * 3 + 1] = Math.Floor(to.odenek[j] * toDizi[0].odenek[j * 3 + 1] / donemToplam);
+                    //            yeniDegerler[j * 3 + 2] = to.odenek[j] - yeniDegerler[j * 3] - yeniDegerler[j * 3 + 1];
+                    //        }
+                    //        else
+                    //        {
+                    //            yeniDegerler[j * 3] = Math.Floor(to.odenek[j] / 3);
+                    //            yeniDegerler[j * 3 + 1] = yeniDegerler[j * 3];
+                    //            yeniDegerler[j * 3 + 2] = to.odenek[j] - 2 * yeniDegerler[j * 3];
+                    //        }
+                    //    }
+                    //}
+                    //else
+                    {
+                        double dagitTop = to.odenek[0] + to.odenek[1] + to.odenek[2] + to.odenek[3];
+                        for (int j = 0; j < to.odenek.Length; j++)
+                        {
+                            if (j != 0)
+                            {
+                                yeniDegerler[j * 3] = Math.Floor(to.odenek[j] * 0.33);
+                                yeniDegerler[j * 3 + 1] = Math.Floor(to.odenek[j] * 0.33);
+                            }
+                            else
+                            {
+                                double ilkAy = 0;
+                                if (to.tertip.kodlar[3].StartsWith("01") || to.tertip.kodlar[3].StartsWith("02"))
+                                    ilkAy = 0.15;
+                                else if (to.tertip.kodlar[3].StartsWith("05.3") && to.tertip.kodlar[1].StartsWith("01.1.2.75"))
+                                    ilkAy = 1;
+                                else if (to.tertip.kodlar[3].StartsWith("05.3") && to.tertip.kodlar[1].StartsWith("01.1.2.79"))
+                                    ilkAy = 0.08;
+                                else if (to.tertip.kodlar[3].StartsWith("05.3") && to.tertip.kodlar[1].StartsWith("01.3.9.00"))
+                                    ilkAy = 0.08;
+                                else if (to.tertip.kodlar[3].StartsWith("05.3"))
+                                    ilkAy = 0.0;
+                                else if (to.tertip.kodlar[3].StartsWith("03") || to.tertip.kodlar[3].StartsWith("07") || to.tertip.kodlar[3].StartsWith("08") || to.tertip.kodlar[3].StartsWith("09"))
+                                    ilkAy = 0.08;
+                                else
+                                    ilkAy = 0;
+                                yeniDegerler[j * 3] = Math.Floor(dagitTop * ilkAy);
+                                if (yeniDegerler[j * 3] >= to.odenek[j])
+                                {
+                                    yeniDegerler[j * 3] = to.odenek[j];
+                                    yeniDegerler[j * 3 + 1] = 0;
+                                }
+                                else
+                                {
+                                    yeniDegerler[j * 3 + 1] = Math.Floor((to.odenek[j] - yeniDegerler[j * 3]) * 0.5);
+                                }
+                            }
+                            yeniDegerler[j * 3 + 2] = to.odenek[j] - (yeniDegerler[j * 3] + yeniDegerler[j * 3 + 1]);
+                        }
+                    }
+                    to.odenek = yeniDegerler;
+                }
+
+                if (to.odenek.Length != 12)
+                {
+                    throw new Exception(to.tertip.TertipStrOl() + " tertibinde hatalı miktarda ödenek girdisi var!");
+                }
+            }
+        }
+
+        public static TertipOdenek[] OdenekGondermeBul(VeriErisim veriErisim, Kullanici kullanan, int yil, string kurumsalYapiKod, string ekoKod, bool toplam)
+        {
+            KurumsalYapi kYapi = BHMv2.IsKurallari.BHMv2KurumsalYapi.KurumsalYapiDondur(veriErisim, kurumsalYapiKod);
+            TNS.MUH.AylikDagilim kriter = new TNS.MUH.AylikDagilim();
+
+            kriter.yil = yil;
+            kriter.muhasebe = OrtakFonksiyonlar.ConvertToInt(kYapi.saymanlikKod, -1);
+            kriter.birim = kYapi.birimKod;
+            kriter.tertip = new Tertip(yil, ENUMTabloKod.TABButce, kYapi.kurKod, "", "", ekoKod);
+            ObjectArray oa = servisMUH.AylikDagilimOdenekGonderme(kriter);
+            if (!oa.sonuc.islemSonuc)
+                throw new Exception(oa.sonuc.hataStr);
+
+            TertipOdenek[] to = AylikDagilimdanTertipOdenege(yil, oa, false, false, -1);
+            if (!toplam) return to;
+            TertipOdenek[] toTop = new TertipOdenek[1];
+            toTop[0] = new TertipOdenek(12);
+            for (int i = 0; i < to.Length; i++)
+            {
+                for (int ayIc = 0; ayIc < 12; ayIc++)
+                {
+                    toTop[0].odenek[ayIc] += to[i].odenek[ayIc];
+                }
+            }
+            return toTop;
+        }
+
+
+        public static Sonuc MasrafPlaniGenelKopyala(VeriErisim veriErisim, Kullanici kullanan, int kaynakYil, ENUMMasrafPlanAsama kaynakAsama, int hedefYil, ENUMMasrafPlanAsama hedefAsama, string kurumsalYapiKod, string kurKod, string ekoKod)
+        {
+            Sonuc s;
+            if (!kullanan.KullaniciTipiIceriyorMu((int)ENUMKullaniciTipi.SISTEMYONETICISI))
+                return new Sonuc(false, "Sistem yöneticisi olmalısınız!", "");
+
+            VeriErisim ve = VeriErisim.VeriErisimBul(veriErisim, VERIERISIMAD, kullanan.KimlikBul());
+            TABMPGMASRAFPLANI tab = new TABMPGMASRAFPLANI(ve);
+            if (string.IsNullOrEmpty(kurumsalYapiKod) || string.IsNullOrEmpty(kurKod) || string.IsNullOrEmpty(ekoKod))
+            {
+                int kayitSay = tab.KayitSayisiBul(hedefYil, hedefAsama);
+                if (kayitSay > 0)
+                {
+                    ve.VeriErisimKapat();
+                    return new Sonuc(false, "Hedef aşamada veri olduğu için kopyalama yapamazsınız!", "");
+                }
+            }
+            ve.BeginTransaction();
+            if (!string.IsNullOrEmpty(kurumsalYapiKod) && !string.IsNullOrEmpty(kurKod) && !string.IsNullOrEmpty(ekoKod))
+            {
+                s = tab.BirimAsamaSil(hedefYil, hedefAsama, kurumsalYapiKod, kurKod, ekoKod);
+            }
+            s = tab.AsamaKopyala(kaynakYil, kaynakAsama, hedefYil, hedefAsama, kurumsalYapiKod, kurKod, ekoKod);
+            if (s.islemSonuc)
+                ve.Commit();
+            else
+                ve.Rollback();
+            ve.VeriErisimKapat();
+            return s;
+        }
+
+        public static TertipOdenek[] TertipBilgisiOlustur(VeriErisim veriErisim, Kullanici kullanan, int yil, KurumsalYapi kY, string kurKod, string ekoKod)
+        {
+            TNS.BHM.IBHMServis bhmServis = TNS.BHM.Arac.Tanimla();
+            Tertip kistas = new Tertip(yil, ENUMTabloKod.TABPEBOdenek, kurKod, "", "", ekoKod, "");
+            TNS.BHM.UcgenKodBilgileri ukbleri = new TNS.BHM.UcgenKodBilgileri();
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(1, 4));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(2, 4));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(3, 1));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(4, 4));
+            TNSCollection ekBilgiler = new TNSCollection();
+            ekBilgiler.Add((int)ENUMTabloKod.TABPEBOdenek * 1000 + 3);
+
+            bool hata = false;
+            TNSCollection tc = null;
+            try
+            {
+                tc = bhmServis.ListeTertipOl(kullanan, yil, ENUMTabloKod.TABPEBOdenek, kistas, ukbleri, ekBilgiler);
+            }
+            catch { hata = true; }
+
+            if (!hata)
+            {
+                if (tc == null)
+                    hata = true;
+                else if (tc.Count == 0)
+                    hata = true;
+                else if (tc[0].GetType() != typeof(TNS.BHM.OdenekBilgi))
+                    hata = true;
+            }
+
+            TertipOdenek[] to = null;
+            if (!hata)
+            {
+                to = new TertipOdenek[tc.Count];
+                for (int i = 0; i < tc.Count; i++)
+                {
+                    TNS.BHM.OdenekBilgi ob = (TNS.BHM.OdenekBilgi)tc[i];
+                    to[i] = new TertipOdenek(9);
+                    to[i].tertip = ob.tertip;
+                    to[i].odenek[0] = (double)ob.ekRakamlar[0];
+                    to[i].odenek[1] = servisUZY.UzayDegeriDbl(kullanan, "ISLHARCAMAMUHASEBE", UzayKosulOl((yil - 1).ToString(), "12", "", "", ob.tertip.kodlar[0], ob.tertip.kodlar[1], ob.tertip.kodlar[2], ob.tertip.kodlar[3]), false);
+                    to[i].odenek[2] = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), "2", ob.tertip.kodlar[0], ob.tertip.kodlar[1], ob.tertip.kodlar[2], ob.tertip.kodlar[3]), false);
+                    to[i].odenek[3] = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), "3", ob.tertip.kodlar[0], ob.tertip.kodlar[1], ob.tertip.kodlar[2], ob.tertip.kodlar[3]), false);
+                    to[i].odenek[4] = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), "4", ob.tertip.kodlar[0], ob.tertip.kodlar[1], ob.tertip.kodlar[2], ob.tertip.kodlar[3]), false);
+                    to[i].odenek[5] = servisUZY.UzayDegeriDbl(kullanan, "ISLHARCAMAMUHASEBE", UzayKosulOl((yil - 1).ToString(), "12", Arac.SaymanlikKodUzayKosulOl(kY.saymanlikKod, true), kY.birimKod, ob.tertip.kodlar[0], ob.tertip.kodlar[1], ob.tertip.kodlar[2], ob.tertip.kodlar[3]), false);
+                    to[i].odenek[6] = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), "2", ob.tertip.kodlar[0], ob.tertip.kodlar[1], ob.tertip.kodlar[2], ob.tertip.kodlar[3], "", kY.kod), false);
+                    to[i].odenek[7] = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), "3", ob.tertip.kodlar[0], ob.tertip.kodlar[1], ob.tertip.kodlar[2], ob.tertip.kodlar[3], "", kY.kod), false);
+                    to[i].odenek[8] = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), "4", ob.tertip.kodlar[0], ob.tertip.kodlar[1], ob.tertip.kodlar[2], ob.tertip.kodlar[3], "", kY.kod), false);
+                }
+            }
+            return to;
+        }
+
+        private static string UzayKosulOl(params string[] parcalar)
+        {
+            string tut = "";
+            for (int i = 0; i < parcalar.Length; i++)
+            {
+                tut = tut + parcalar[i];
+                if (i != parcalar.Length - 1)
+                    tut += "-";
+            }
+            return tut;
+        }
+
+        private static double[,] AylikDagilimOlustur(VeriErisim veriErisim, Kullanici kullanan, int yil, KurumsalYapi ky, string kurKod, string ekoKod)
+        {
+            double[,] donusDeger = new double[5, 12];
+            double oncekiAy = 0;
+            for (int ayIc = 0; ayIc < 12; ayIc++)
+            {
+                donusDeger[0, ayIc] = servisUZY.UzayDegeriDbl(kullanan, "MUHGONDERMEBELGESITENKIS", UzayKosulOl((yil - 1).ToString(), "", "", "", Arac.SaymanlikKodUzayKosulOl(ky.saymanlikKod, true), ky.birimKod, (ayIc + 1).ToString(), "5", kurKod, "", "", ekoKod), false);
+                double simdikiAy = servisUZY.UzayDegeriDbl(kullanan, "ISLHARCAMAMUHASEBE", UzayKosulOl((yil - 1).ToString(), (ayIc + 1).ToString(), Arac.SaymanlikKodUzayKosulOl(ky.saymanlikKod, true), ky.birimKod, kurKod, "", "", ekoKod), false);
+                donusDeger[1, ayIc] = simdikiAy - oncekiAy;
+                oncekiAy = simdikiAy;
+                donusDeger[2, ayIc] = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), "2", kurKod, "", "", ekoKod, "", ky.kod, ayIc.ToString()), false);
+                donusDeger[3, ayIc] = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), "3", kurKod, "", "", ekoKod, "", ky.kod, ayIc.ToString()), false);
+                donusDeger[4, ayIc] = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), "4", kurKod, "", "", ekoKod, "", ky.kod, ayIc.ToString()), false);
+            }
+            return donusDeger;
+        }
+
+        private static BirimBilgi[] BirimBilgiOlustur(VeriErisim veriErisim, Kullanici kullanan, int yil, KurumsalYapi ky, string kurKod, string ekoKod, int siralamaNo)
+        {
+            VeriErisim ve = VeriErisim.VeriErisimBul(veriErisim, VERIERISIMAD, kullanan.KimlikBul());
+            KurumsalYapi kyIc = new KurumsalYapi();
+            kyIc.kod = ky.kod;
+            ObjectArray kyler = BHMv2KurumsalYapi.Listele(ve, kullanan, kyIc, true, false);
+            ArrayList al = new ArrayList();
+            foreach (KurumsalYapi k in kyler.objeler)
+            {
+                if (string.IsNullOrEmpty(k.kurKod) || k.kurKod == kurKod)
+                {
+                    BirimBilgi bb = new BirimBilgi();
+                    bb.birimKod = k.kod;
+                    bb.birimAd = k.ad;
+                    bb.personelSayisi = servisUZY.UzayDegeriDbl(kullanan, "PERPERSONELSAYISI", UzayKosulOl(Arac.SaymanlikKodUzayKosulOl(k.saymanlikKod, true), k.birimKod), false);
+                    bb.harcanan = servisUZY.UzayDegeriDbl(kullanan, "ISLHARCAMAMUHASEBE", UzayKosulOl((yil - 1).ToString(), "12", Arac.SaymanlikKodUzayKosulOl(k.saymanlikKod, true), k.birimKod, kurKod, "", "", ekoKod), false);
+                    bb.talep = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), "2", kurKod, "", "", ekoKod, "", k.kod), false);
+                    bb.sgb = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), "3", kurKod, "", "", ekoKod, "", k.kod), false);
+                    bb.merkez = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), "4", kurKod, "", "", ekoKod, "", k.kod), false);
+
+                    al.Add(bb);
+                }
+            }
+            //al.Sort(new Siralama(siralamaNo));
+            return (BirimBilgi[])al.ToArray(typeof(BirimBilgi));
+        }
+
+        private static BirimBilgi[] BirimBilgiOlustur(VeriErisim veriErisim, Kullanici kullanan, int yil, ENUMMasrafPlanAsama asama, KurumsalYapi ky, Tertip tertip)
+        {
+            VeriErisim ve = VeriErisim.VeriErisimBul(veriErisim, VERIERISIMAD, kullanan.KimlikBul());
+            KurumsalYapi kyIc = new KurumsalYapi();
+            kyIc.kod = ky.kod;
+            kyIc.kurKod = tertip.kodlar[0];
+            bool enAlt = true;
+            if (ky.kod.Replace(".", "").Length < 3)
+                enAlt = false;
+            ObjectArray kyler = BHMv2KurumsalYapi.Listele(ve, kullanan, kyIc, true, false, enAlt);
+            ArrayList al = new ArrayList();
+            foreach (KurumsalYapi k in kyler.objeler)
+            {
+                if (string.IsNullOrEmpty(k.kurKod) || k.kurKod == tertip.kodlar[0])
+                {
+                    BirimBilgi bb = new BirimBilgi();
+                    bb.birimKod = k.kod;
+                    bb.birimAd = k.ad;
+                    bb.harcanan = servisUZY.UzayDegeriDbl(kullanan, "ISLHARCAMAMUHASEBE", UzayKosulOl((yil - 1).ToString(), "12", Arac.SaymanlikKodUzayKosulOl(k.saymanlikKod, true), k.birimKod, tertip.kodlar[0], tertip.kodlar[1], tertip.kodlar[2], tertip.kodlar[3]), false);
+                    bb.talep = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), "2", tertip.kodlar[0], tertip.kodlar[1], tertip.kodlar[2], tertip.kodlar[3], "", k.kod), false);
+                    bb.sgb = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), "3", tertip.kodlar[0], tertip.kodlar[1], tertip.kodlar[2], tertip.kodlar[3], "", k.kod), false);
+                    bb.merkez = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), "4", tertip.kodlar[0], tertip.kodlar[1], tertip.kodlar[2], tertip.kodlar[3], "", k.kod), false);
+
+                    bb.donemler = new double[4];
+                    bb.donemler[0] = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), ((int)asama).ToString(), tertip.kodlar[0], tertip.kodlar[1], tertip.kodlar[2], tertip.kodlar[3], "", k.kod, "0/3"), false);
+                    bb.donemler[1] = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), ((int)asama).ToString(), tertip.kodlar[0], tertip.kodlar[1], tertip.kodlar[2], tertip.kodlar[3], "", k.kod, "3/6"), false);
+                    bb.donemler[2] = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), ((int)asama).ToString(), tertip.kodlar[0], tertip.kodlar[1], tertip.kodlar[2], tertip.kodlar[3], "", k.kod, "6/9"), false);
+                    bb.donemler[3] = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), ((int)asama).ToString(), tertip.kodlar[0], tertip.kodlar[1], tertip.kodlar[2], tertip.kodlar[3], "", k.kod, "9/12"), false);
+                    al.Add(bb);
+                }
+            }
+            //al.Sort(new Siralama(siralamaNo));
+            return (BirimBilgi[])al.ToArray(typeof(BirimBilgi));
+        }
+
+        public static MerkezMasrafPlaniGenel MerkezMasrafPlaniBul(VeriErisim veriErisim, Kullanici kullanan, int yil, string kurumsalYapiKod, ENUMMasrafPlanAsama asama, string kurKod, string ekoKod, Tertip[] tertipListesi, int siralamaNo)
+        {
+            MerkezMasrafPlaniGenel mmpg = new MerkezMasrafPlaniGenel();
+            KurumsalYapi ky = BHMv2.IsKurallari.BHMv2KurumsalYapi.KurumsalYapiDondur(veriErisim, kurumsalYapiKod);
+            if (ky == null)
+                throw new Exception("Kurumsal Yapı Çözümlenemedi");
+            if (!GormeYetkisiVarMi(kullanan, yil, ky, asama, kurKod))
+                throw new Exception("Birimi görme yetkiniz yok!");
+
+            mmpg.tertipOdenekler = TertipBilgisiOlustur(veriErisim, kullanan, yil, ky, kurKod, ekoKod);
+            mmpg.aylikDagilimlar = AylikDagilimOlustur(veriErisim, kullanan, yil, ky, kurKod, ekoKod);
+            mmpg.birimBilgileri = BirimBilgiOlustur(veriErisim, kullanan, yil, ky, kurKod, ekoKod, siralamaNo);
+            return mmpg;
+        }
+
+        public static MerkezMasrafPlaniGenel MerkezMasrafPlaniBulTertip(VeriErisim veriErisim, Kullanici kullanan, int yil, string kurumsalYapiKod, ENUMMasrafPlanAsama asama, Tertip tertip)
+        {
+            MerkezMasrafPlaniGenel mmpg = new MerkezMasrafPlaniGenel();
+            if (tertip == null)
+                throw new Exception("Bir tertip göndermelisiniz");
+            if (tertip.kodlar.Length < 4)
+                throw new Exception("Doğru tertip göndermelisiniz");
+            KurumsalYapi ky = BHMv2.IsKurallari.BHMv2KurumsalYapi.KurumsalYapiDondur(veriErisim, kurumsalYapiKod);
+            if (ky == null)
+                throw new Exception("Kurumsal Yapı Çözümlenemedi");
+            if (!GormeYetkisiVarMi(kullanan, yil, ky, asama, tertip.kodlar[0]))
+                throw new Exception("Birimi görme yetkiniz yok!");
+
+            //mmpg.tertipOdenekler = TertipBilgisiOlustur(veriErisim, kullanan, yil, ky, tertip);
+            mmpg.birimBilgileri = BirimBilgiOlustur(veriErisim, kullanan, yil, asama, ky, tertip);
+            return mmpg;
+        }
+
+
+        private static double[] HarcamalariBul(Kullanici kullanan, int yil, KurumsalYapi ky, string kurKod, string ekoKod)
+        {
+            double[] donusDeger = new double[12];
+            double oncekiAy = 0;
+            for (int ayIc = 0; ayIc < 12; ayIc++)
+            {
+                double simdikiAy = servisUZY.UzayDegeriDbl(kullanan, "ISLHARCAMAMUHASEBE", UzayKosulOl((yil).ToString(), (ayIc + 1).ToString(), Arac.SaymanlikKodUzayKosulOl(ky.saymanlikKod, true), ky.birimKod, kurKod, "", "", ekoKod), false);
+                donusDeger[ayIc] = simdikiAy - oncekiAy;
+                oncekiAy = simdikiAy;
+            }
+
+            for (int ayIc = 0; ayIc < 12; ayIc++)
+            {
+                if (donusDeger[ayIc] < 0)
+                {
+                    for (int dusurAy = ayIc - 1; dusurAy >= 0 && donusDeger[ayIc] < 0; dusurAy--)
+                    {
+                        if (donusDeger[dusurAy] + donusDeger[ayIc] >= 0)
+                        {
+                            donusDeger[dusurAy] = donusDeger[dusurAy] + donusDeger[ayIc];
+                            donusDeger[ayIc] = 0;
+                        }
+                        else
+                        {
+                            donusDeger[ayIc] = donusDeger[dusurAy] + donusDeger[ayIc];
+                            donusDeger[dusurAy] = 0;
+                        }
+                    }
+                    donusDeger[ayIc] = 0;
+                }
+            }
+            return donusDeger;
+        }
+
+        private static double[] DonemiAyaDagit(double[] ayDagilim, double[] donemler)
+        {
+            double[] aylar = new double[12];
+            for (int i = 0; i < 4; i++)
+            {
+                double donemToplam = ayDagilim[i * 3 + 0] + ayDagilim[i * 3 + 1] + ayDagilim[i * 3 + 2];
+                if (donemToplam != 0)
+                {
+                    aylar[i * 3 + 0] = Math.Floor(donemler[i] * ayDagilim[i * 3 + 0] / donemToplam);
+                    aylar[i * 3 + 1] = Math.Floor(donemler[i] * ayDagilim[i * 3 + 1] / donemToplam);
+                }
+                else
+                {
+                    aylar[i * 3 + 0] = Math.Floor(donemler[i] / 3);
+                    aylar[i * 3 + 1] = aylar[i * 3 + 0];
+                }
+                aylar[i * 3 + 2] = donemler[i] - (aylar[i * 3 + 0] + aylar[i * 3 + 1]);
+            }
+            return aylar;
+        }
+
+        public static Sonuc MasrafPlaniMerkezDagitim(VeriErisim veriErisim, Kullanici kullanan, int yil, string kurumsalYapiKod, ENUMMasrafPlanAsama asama, string kurKod, string ekoKod, string[] ekoKodlar, double[] donemler)
+        {
+            KurumsalYapi ky = BHMv2.IsKurallari.BHMv2KurumsalYapi.KurumsalYapiDondur(veriErisim, kurumsalYapiKod);
+            if (ky == null)
+                throw new Exception("Kurumsal Yapı Çözümlenemedi");
+            if (!YazmaYetkisiVarMi(kullanan, yil, ky, asama, kurKod))
+                throw new Exception("Birime yazma yetkiniz yok!");
+            if (string.IsNullOrEmpty(kurumsalYapiKod))
+                throw new Exception("Bir kurumsal birim seçmelisiniz!");
+
+            for (int i = 0; i < donemler.Length; i++)
+            {
+                if (donemler[i] < 0)
+                    throw new Exception((i + 1).ToString() + ". dönemin değeri sıfırdan küçük (" + donemler[i].ToString("#,###") + ")");
+            }
+            double[] ayDagilim = HarcamalariBul(kullanan, yil - 1, ky, kurKod, ekoKod);
+            ayDagilim = DonemiAyaDagit(ayDagilim, donemler);
+
+            //string tut = "";
+            //for (int i = 0; i < 12; i++)
+            //{
+            //    tut += i.ToString() + ":" + ayDagilim[i].ToString("#,##0.00") + "; ";
+            //}
+            VeriErisim ve = VeriErisim.VeriErisimBul(veriErisim, VERIERISIMAD, kullanan.KimlikBul());
+            double[] eldekiAyDagilim = new double[12];
+            for (int i = 0; i < 12; i++)
+            {
+                eldekiAyDagilim[i] = 0;
+            }
+            string hataStr = "";
+            TABMPGMASRAFPLANI tab = new TABMPGMASRAFPLANI(ve);
+            IDataReader dr = tab.AylikDagilimBul(yil, kurumsalYapiKod, asama, kurKod, ekoKod, ekoKodlar);
+            if (dr != null)
+            {
+                while (dr.Read())
+                {
+                    eldekiAyDagilim[VeriErisim.DegerAl(dr, 0, -1)] = VeriErisim.DegerAl(dr, 1, (double)0.0);
+                }
+                dr.Close();
+            }
+            else
+                hataStr += "Veri tabanı hatası:" + ve.hata + "<br>";
+            for (int i = 0; i < 12; i++)
+            {
+                if (ayDagilim[i] > 0 && eldekiAyDagilim[i] == 0)
+                {
+                    int bak1;
+                    int bak2;
+                    if (i == 0 || i == 3 || i == 6 || i == 9)
+                    {
+                        bak1 = i + 1;
+                        bak2 = i + 2;
+                    }
+                    else if (i == 1 || i == 4 || i == 7 || i == 10)
+                    {
+                        bak1 = i - 1;
+                        bak2 = i + 1;
+                    }
+                    else
+                    {
+                        bak1 = i - 1;
+                        bak2 = i - 2;
+                    }
+                    int bulduk = -1;
+                    if (eldekiAyDagilim[bak1] != 0) bulduk = bak1;
+                    else if (eldekiAyDagilim[bak2] != 0) bulduk = bak2;
+
+                    if (bulduk == -1)
+                        hataStr += (i + 1).ToString() + ". ay için hesaplanan rakam: " + ayDagilim[i].ToString("#.###") + " iken, eski girilen verilerdeki toplamı sıfır olduğundan dağıtılamadı!<br>";
+                    else
+                    {
+                        ayDagilim[bulduk] += ayDagilim[i];
+                        ayDagilim[i] = 0;
+                    }
+                }
+            }
+            Sonuc s = new Sonuc();
+            s.DegerAta(hataStr);
+            if (s.islemSonuc)
+            {
+                ve.BeginTransaction();
+                for (int i = 0; i < 12 && s.islemSonuc; i++)
+                {
+                    if (ayDagilim[i] != 0)
+                        if (eldekiAyDagilim[i] != 0)
+                            s = tab.AylikDagilimYap(yil, kurumsalYapiKod, asama, kurKod, ekoKod, ekoKodlar, i, eldekiAyDagilim[i], ayDagilim[i]);
+                        else
+                        {
+                            s.islemSonuc = false;
+                            s.hataStr = (i + 1).ToString() + ". ay için hesaplanan rakam: " + ayDagilim[i].ToString("#.###") + " iken, eski girilen verilerdeki toplamı sıfır olduğundan dağıtılamadı!<br>";
+                        }
+                    else if (ayDagilim[i] == 0)
+                        s = tab.AylikDagilimSil(yil, kurumsalYapiKod, asama, kurKod, ekoKod, ekoKodlar, i);
+                }
+                if (s.islemSonuc)
+                    ve.Commit();
+                else
+                    ve.Rollback();
+            }
+            ve.VeriErisimKapat();
+            return s;
+        }
+
+        public static TertipOdenek[] MasrafPlaniGenelDagitilmayanListele(VeriErisim ve, Kullanici kullanan, int yil, ENUMMasrafPlanAsama asama, string kurKod, string ekoKod2)
+        {
+            Tertip kistas = new Tertip(yil, ENUMTabloKod.TABPEBOdenek, kurKod, "", "", ekoKod2, "");
+            TNS.BHM.UcgenKodBilgileri ukbleri = new TNS.BHM.UcgenKodBilgileri();
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(1, 4));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(2, 4));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(3, 1));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(4, 4));
+            TNSCollection ekBilgiler = new TNSCollection();
+            ekBilgiler.Add((int)ENUMTabloKod.TABPEBOdenek * 1000 + 3);
+            bool hata = false;
+            TNSCollection tc = null;
+            try
+            {
+                tc = servisBHM.ListeTertipOl(kullanan, yil, ENUMTabloKod.TABPEBOdenek, kistas, ukbleri, ekBilgiler);
+            }
+            catch { hata = true; }
+            if (!hata)
+            {
+                if (tc == null)
+                    hata = true;
+                else if (tc.Count == 0)
+                    hata = true;
+                else if (tc[0].GetType() != typeof(TNS.BHM.OdenekBilgi))
+                    hata = true;
+            }
+
+            TertipOdenek[] to = null;
+            if (!hata)
+            {
+                to = new TertipOdenek[tc.Count];
+                for (int i = 0; i < tc.Count; i++)
+                {
+                    TNS.BHM.OdenekBilgi ob = (TNS.BHM.OdenekBilgi)tc[i];
+                    to[i] = new TertipOdenek(25);
+                    to[i].tertip = ob.tertip;
+                    to[i].odenek[0] = (double)ob.ekRakamlar[0];
+                    for (int ay = 0; ay < 12; ay++)
+                    {
+                        to[i].odenek[1 + ay] = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), ((int)asama).ToString(), ob.tertip.kodlar[0], ob.tertip.kodlar[1], ob.tertip.kodlar[2], ob.tertip.kodlar[3], "", "0/9", ay.ToString(), "", "0"), false);
+                        to[i].odenek[13 + ay] = servisUZY.UzayDegeriDbl(kullanan, "MPGMASRAFPLANITERTIP", UzayKosulOl(yil.ToString(), ((int)asama).ToString(), ob.tertip.kodlar[0], ob.tertip.kodlar[1], ob.tertip.kodlar[2], ob.tertip.kodlar[3], "", "9" + "00" + kurKod.Replace(".", ""), ay.ToString(), "", "0"), false);
+                    }
+                }
+            }
+
+            return to;
+        }
+
+        public static TertipOdenek[] TertipListele(VeriErisim veriErisim, Kullanici kullanan, int yil, string kurKod, string ekoKod2, bool pebli)
+        {
+            Tertip kistas = new Tertip(yil, ENUMTabloKod.TABPEBOdenek, kurKod, "", "", ekoKod2, "");
+            TNS.BHM.UcgenKodBilgileri ukbleri = new TNS.BHM.UcgenKodBilgileri();
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(1, 4));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(2, 4));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(3, 1));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(4, 4));
+            if (pebli)
+                ukbleri.Add(new TNS.BHM.UcgenKodBilgi(14, 4));
+            TNSCollection ekBilgiler = new TNSCollection();
+            ekBilgiler.Add((int)ENUMTabloKod.TABPEBOdenek * 1000 + 3);
+            bool hata = false;
+            TNSCollection tc = null;
+            try
+            {
+                tc = servisBHM.ListeTertipOl(kullanan, yil, ENUMTabloKod.TABPEBOdenek, kistas, ukbleri, ekBilgiler);
+            }
+            catch { hata = true; }
+            if (!hata)
+            {
+                if (tc == null)
+                    hata = true;
+                else if (tc.Count == 0)
+                    hata = true;
+                else if (tc[0].GetType() != typeof(TNS.BHM.OdenekBilgi))
+                    hata = true;
+            }
+
+            TertipOdenek[] to = null;
+            if (!hata)
+            {
+                to = new TertipOdenek[tc.Count];
+                for (int i = 0; i < tc.Count; i++)
+                {
+                    TNS.BHM.OdenekBilgi ob = (TNS.BHM.OdenekBilgi)tc[i];
+                    to[i] = new TertipOdenek(1);
+                    to[i].tertip = ob.tertip;
+                    to[i].odenek[0] = (double)ob.ekRakamlar[0];
+                }
+            }
+            return to;
+        }
+
+        public static Sonuc MasrafPlaniMerkezTertipKaydet(VeriErisim veriErisim, Kullanici kullanan, int yil, ENUMMasrafPlanAsama asama, Tertip tertip, BirimBilgi[] birimBilgileri)
+        {
+            Sonuc s = new Sonuc(true, "", "");
+
+            VeriErisim ve = VeriErisim.VeriErisimBul(veriErisim, VERIERISIMAD, kullanan.KimlikBul());
+            VeriErisim veOku = VeriErisim.VeriErisimBul(null, VERIERISIMAD);
+            TABMPGMASRAFPLANI tab = new TABMPGMASRAFPLANI(ve);
+            ve.BeginTransaction();
+            for (int i = 0; i < birimBilgileri.Length && s.islemSonuc; i++)
+            {
+                TertipOdenek[] to = new TertipOdenek[1];
+                to[0] = new TertipOdenek(birimBilgileri[i].donemler.Length);
+                to[0].tertip = tertip;
+                for (int j = 0; j < to[0].odenek.Length; j++)
+                {
+                    to[0].odenek[j] = birimBilgileri[i].donemler[j];
+                }
+                KurumsalYapi kY = BHMv2.IsKurallari.BHMv2KurumsalYapi.KurumsalYapiDondur(veriErisim, birimBilgileri[i].birimKod);
+                if (YazmaYetkisiVarMi(kullanan, yil, kY, asama, tertip.kodlar[0]))
+                {
+                    HarcamaDonemdenAya(kullanan, yil, OrtakFonksiyonlar.ConvertToInt(kY.saymanlikKod, -1), kY.birimKod, to);
+                    to = PerformansTertibeCevir(kullanan, yil, to, true);
+                    for (int j = 0; j < to.Length && s.islemSonuc; j++)
+                    {
+                        if (!to[j].tertip.TamMi())
+                            s.DegerAta("Hatalı tertip:" + to[j].tertip.TertipStrOl());
+                        if (s.islemSonuc)
+                            s = tab.SilTertip(yil, asama, to[j].tertip.kodlar[0], to[j].tertip.kodlar[1], to[j].tertip.kodlar[2], to[j].tertip.kodlar[3], to[j].tertip.kodlar[4], kY.kod);
+                        to[j].tertip.yil = yil;
+                        for (int ayIc = 0; ayIc < to[j].odenek.Length && s.islemSonuc; ayIc++)
+                        {
+                            s = tab.EkleTertip(kY.kod, asama, to[j].tertip, ayIc, to[j].odenek[ayIc], 0);
+                        }
+                    }
+                }
+                else
+                {
+                    s.islemSonuc = false;
+                    s.hataStr = kY.kod + " birimine yazma yetkiniz bulunmamaktadır.";
+                }
+            }
+
+            veOku.VeriErisimKapat();
+            if (s.islemSonuc)
+                ve.Commit();
+            else
+                ve.Rollback();
+            ve.VeriErisimKapat();
+            return s;
+        }
+
+        public static void OdenekGondermeBelgesiUret(string tw, VeriErisim veriErisim, Kullanici kullanan, int yil, int ayBasla, int ayBitis, string kurkod, string ekoKod1)
+        {
+            DosyayaYaz(tw, "--------------------------------------------------------------");
+            DosyayaYaz(tw, kurkod + " birimi, " + ekoKod1 + " ekonomik kodu için işlemler başladı!");
+            Tertip kistas = new Tertip(yil, ENUMTabloKod.TABPEBOdenek, kurkod, "", "", ekoKod1, "");
+            TNS.BHM.UcgenKodBilgileri ukbleri = new TNS.BHM.UcgenKodBilgileri();
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(1, 4));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(2, 4));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(3, 1));
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(4, 4));
+            TNSCollection ekBilgiler = new TNSCollection();
+            bool hata = false;
+            ekBilgiler.Add((int)ENUMTabloKod.TABPEBOdenek * 1000 + 4);
+            TNSCollection tc = null;
+            try
+            {
+                tc = servisBHM.ListeTertipOl(kullanan, yil, ENUMTabloKod.TABPEBOdenek, kistas, ukbleri, ekBilgiler);
+            }
+            catch { hata = true; }
+            if (!hata)
+            {
+                if (tc == null)
+                    hata = true;
+                else if (tc.Count == 0)
+                    hata = true;
+                else if (tc[0].GetType() != typeof(TNS.BHM.OdenekBilgi))
+                    hata = true;
+            }
+            if (hata)
+            {
+                DosyayaYaz(tw, kurkod + " birimi, " + ekoKod1 + " ekonomik kodu için tertip listesi alınamadı!");
+                return;
+            }
+
+            string eskiKod = "";
+            string hataStr = "";
+            foreach (TNS.BHM.OdenekBilgi ob in tc)
+            {
+                string yeniKod = ob.tertip.kodlar[0] + "-" + ob.tertip.kodlar[1] + "-" + ob.tertip.kodlar[2] + "-" + ob.tertip.kodlar[1].Substring(0, 4);
+                if (eskiKod != yeniKod)
+                {
+                    double serbest = 1;
+                    double mp = 0;
+                    if (mp > serbest)
+                        hataStr += yeniKod + " ??? tertibinde serbest miktar (" + serbest.ToString("#,##0") + ") Masraf planından(" + mp.ToString("#,##0") + ") küçük!";
+                }
+            }
+
+            if (!string.IsNullOrEmpty(hataStr))
+            {
+                DosyayaYaz(tw, "   H:" + hataStr);
+                return;
+            }
+
+            VeriErisim ve = VeriErisim.VeriErisimBul(veriErisim, VERIERISIMAD, kullanan.KimlikBul());
+            TABMPGMASRAFPLANI tab = new TABMPGMASRAFPLANI(ve);
+            VeriErisim veIc = VeriErisim.VeriErisimBul(null, VERIERISIMAD);
+            TABMPGMASRAFPLANI tabIc = new TABMPGMASRAFPLANI(veIc);
+            IDataReader dr = tab.MasrafPlaniBirimleriBul(yil, ayBasla, ayBitis, kurkod, ekoKod1);
+            if (dr == null)
+            {
+                ve.VeriErisimKapat();
+                DosyayaYaz(tw, "   H:" + ve.hata);
+                return;
+            }
+
+            int sayGond = 0;
+            int hataSayGond = 0;
+            int sayTenkis = 0;
+            int hataSayTenkis = 0;
+            while (dr.Read())
+            {
+                string kurumsalYapiKod = VeriErisim.DegerAl(dr, 0, "");
+                string saymanlikKod = VeriErisim.DegerAl(dr, 1, "");
+                string birimKod = VeriErisim.DegerAl(dr, 2, "");
+
+                GondermeTenkisForm formGonderme = null;
+                GondermeTenkisForm formTenkis = null;
+
+                IDataReader drIc = tabIc.ListeleTertipOG(yil, kurumsalYapiKod, kurkod, ekoKod1, ayBasla, ayBitis);
+                if (drIc != null)
+                {
+                    while (drIc.Read())
+                    {
+                        GondermeTenkisDetay detay = new GondermeTenkisDetay(yil, true);
+                        detay.tertip.kodlar[0] = VeriErisim.DegerAl(drIc, 0, "");
+                        detay.tertip.kodlar[1] = VeriErisim.DegerAl(drIc, 1, "");
+                        detay.tertip.kodlar[2] = VeriErisim.DegerAl(drIc, 2, "");
+                        detay.tertip.kodlar[3] = VeriErisim.DegerAl(drIc, 3, "");
+                        detay.tertip.kodlar[4] = VeriErisim.DegerAl(drIc, 4, "");
+                        detay.miktar = VeriErisim.DegerAl(drIc, 5, 0.0);
+                        if (detay.miktar < 0)
+                        {
+                            detay.miktar = 0 - detay.miktar;
+                            if (formTenkis == null)
+                                formTenkis = GondermeTenkisFormOl(ENUMBelgeTuru.TENKIS, yil, Tertip.KurumsaldanKuruma(kurkod), OrtakFonksiyonlar.ConvertToInt(saymanlikKod, 0), birimKod, kullanan.kullaniciKodu);
+                            formTenkis.detay.Add(detay);
+                        }
+                        else if (detay.miktar > 0)
+                        {
+                            if (formGonderme == null)
+                                formGonderme = GondermeTenkisFormOl(ENUMBelgeTuru.ODENEKGONDERME, yil, Tertip.KurumsaldanKuruma(kurkod), OrtakFonksiyonlar.ConvertToInt(saymanlikKod, 0), birimKod, kullanan.kullaniciKodu);
+                            formGonderme.detay.Add(detay);
+                        }
+                    }
+                    drIc.Close();
+                }
+                else
+                {
+                    string hataIc = veIc.hata;
+                }
+
+                bool geriAl = false;
+                Sonuc gondSonuc = new Sonuc(true, "", "");
+                Sonuc gondTenkis = new Sonuc(true, "", "");
+
+                if (formGonderme != null && formGonderme.detay.Count > 0)
+                {
+                    gondSonuc = servisMUH.GondermeTenkisKaydet(kullanan, formGonderme);
+                    if (gondSonuc.islemSonuc)
+                    {
+                        formGonderme.belgeNo = gondSonuc.anahtar;
+                        sayGond++;
+                    }
+                    else
+                    {
+                        DosyayaYaz(tw, "   H:" + gondSonuc.hataStr + "\r\n");
+                        hataSayGond++;
+                    }
+                }
+
+                if (formTenkis != null && formTenkis.detay.Count > 0)
+                {
+                    gondTenkis = servisMUH.GondermeTenkisKaydet(kullanan, formTenkis);
+                    if (gondTenkis.islemSonuc)
+                    {
+                        formTenkis.belgeNo = gondTenkis.anahtar;
+                        sayTenkis++;
+                    }
+                    else
+                    {
+                        DosyayaYaz(tw, "   H:" + gondTenkis.hataStr + "\r\n");
+                        hataSayTenkis++;
+                    }
+                }
+
+                if (gondSonuc.islemSonuc && gondTenkis.islemSonuc)
+                {
+                    veIc.BeginTransaction();
+                    Sonuc s = tabIc.OdemeEmriOlusturulduYap(yil, kurumsalYapiKod, kurkod, ekoKod1, ayBasla, ayBitis);
+                    if (s.islemSonuc)
+                        veIc.Commit();
+                    else
+                    {
+                        veIc.Rollback();
+                        geriAl = true;
+                    }
+                }
+                else
+                    geriAl = true;
+
+                if (geriAl)
+                {
+                    GondermeTenkisFormlar fler = new GondermeTenkisFormlar();
+                    if (gondSonuc.islemSonuc && formGonderme != null)
+                    {
+                        formGonderme.formDurum = (int)ENUMBelgeDurumu.IPTAL;
+                        fler.formDizi.Add(formGonderme);
+                    }
+                    if (gondTenkis.islemSonuc && formTenkis != null)
+                    {
+                        formTenkis.formDurum = (int)ENUMBelgeDurumu.IPTAL;
+                        fler.formDizi.Add(formTenkis);
+                    }
+                    if (fler.formDizi.Count > 0)
+                        servisMUH.BelgeDurumDegistir(kullanan, fler);
+                }
+            }
+
+            DosyayaYaz(tw, "   B:" + sayGond + " adet Gönderme kaydedildi; " + hataSayGond + " adedi kaydedilemedi!");
+            DosyayaYaz(tw, "   B:" + sayTenkis + " adet Tenkis   kaydedildi; " + hataSayTenkis + " adedi kaydedilemedi!");
+            DosyayaYaz(tw, "--------------------------------------------------------------");
+            DosyayaYaz(tw, "");
+        }
+
+        private static GondermeTenkisForm GondermeTenkisFormOl(ENUMBelgeTuru eNUMBelgeTuru, int yil, string kurumKod, int saymanlikKod, string birimKod, string kullaniciKodu)
+        {
+            GondermeTenkisForm form = new GondermeTenkisForm();
+
+            form.belgeTur = eNUMBelgeTuru;
+            form.yil = yil;
+            form.islemTarih = new TNSDateTime(DateTime.Now);
+            form.belgeNo = "";
+            form.kurum = kurumKod;
+            form.muhasebe = saymanlikKod;
+            form.birim = birimKod;
+            form.aciklama = "";
+            form.islemYapan = kullaniciKodu;
+            form.yaziNo = "";
+            form.yaziTarih = form.islemTarih;
+            form.istekYaziNo = "";
+            form.istekYaziTarih = form.islemTarih;
+            form.icmalNo = 0;
+            return form;
+        }
+
+        public static void OdenekGondermeBelgeleriOlustur(Kullanici kullanan, int yil, string ekoKod1)
+        {
+
+            string tw = "OGO" + DateTime.Now.Ticks.ToString() + ".txt";
+
+            Tertip kistas = new Tertip(yil, ENUMTabloKod.TABPEBOdenek, "", "", "", ekoKod1, "");
+            TNS.BHM.UcgenKodBilgileri ukbleri = new TNS.BHM.UcgenKodBilgileri();
+            ukbleri.Add(new TNS.BHM.UcgenKodBilgi(1, 4));
+            TNSCollection ekBilgiler = new TNSCollection();
+            ekBilgiler.Add((int)ENUMTabloKod.TABPEBOdenek * 1000 + 4);
+            bool hata = false;
+            TNSCollection tc = null;
+            try
+            {
+                tc = servisBHM.ListeTertipOl(kullanan, yil, ENUMTabloKod.TABPEBOdenek, kistas, ukbleri, ekBilgiler);
+            }
+            catch { hata = true; }
+            if (!hata)
+            {
+                if (tc == null)
+                    hata = true;
+                else if (tc.Count == 0)
+                    hata = true;
+                else if (tc[0].GetType() != typeof(TNS.BHM.OdenekBilgi))
+                    hata = true;
+            }
+
+            if (!hata)
+            {
+                foreach (TNS.BHM.OdenekBilgi ob in tc)
+                {
+                    OdenekGondermeBelgesiUret(tw, null, kullanan, yil, 0, 0, ob.tertip.kodlar[0], ekoKod1);
+                }
+            }
+        }
+
+        private static void DosyayaYaz(string dosyaAd, string mesaj)
+        {
+            try
+            {
+                TNS.OrtakFonksiyonlar.HataDosyaYaz(dosyaAd, mesaj, false);
+                //tw.WriteLine(mesaj);
+            }
+            catch { }
+        }
+
+        public static double[] TertipMPBilgiGetir(Tertip tertip, string birimKod)
+        {
+            double[] ayDeger = new double[12];
+            for (int i = 0; i < ayDeger.Length; i++)
+            {
+                ayDeger[i] = 0;
+            }
+            if (string.IsNullOrEmpty(birimKod))
+                birimKod = "900" + tertip.kodlar[0].Replace(".", "");
+            VeriErisim ve = VeriErisim.VeriErisimBul(null, VERIERISIMAD);
+            TABMPGMASRAFPLANI tab = new TABMPGMASRAFPLANI(ve);
+
+            IDataReader dr = tab.TertipAylikDagilimBul(tertip.yil, birimKod, tertip.kodlar[0], tertip.kodlar[1], tertip.kodlar[2], tertip.kodlar[3], tertip.kodlar[4]);
+            if (dr != null)
+            {
+                while (dr.Read())
+                {
+                    ayDeger[VeriErisim.DegerAl(dr, 0, 0)] = VeriErisim.DegerAl(dr, 1, 0.0);
+                }
+                dr.Close();
+            }
+
+            return ayDeger;
+        }
+
+        public static Sonuc MasrafPlaniGenelAHPKaydet(VeriErisim veriErisim, Kullanici kullanan, int yil, bool dagitilanMi, ENUMMasrafPlanAsama asama, string tertipAHP, double[] ayDizi)
+        {
+            if (!kullanan.KullaniciTipiIceriyorMu(1))
+                return new Sonuc(false, "Yetkiniz yok!", "");
+            Sonuc s = new Sonuc(true, "", "");
+            TNS.UZY.IUZYServis servisUZY = TNS.UZY.Arac.Tanimla();
+
+            string[] tertipStr = tertipAHP.Split('-');
+            VeriErisim ve = VeriErisim.VeriErisimBul(veriErisim, VERIERISIMAD, kullanan.KimlikBul());
+            string kurumsalBasla;
+            if (dagitilanMi)
+            {
+                kurumsalBasla = "0/8";
+            }
+            else
+            {
+                kurumsalBasla = "9";
+            }
+            TABMPGMASRAFPLANI tab = new TABMPGMASRAFPLANI(ve);
+            for (int ay = 0; ay < ayDizi.Length && s.islemSonuc; ay++)
+            {
+                string sql = servisUZY.UzayKosulStr(kullanan, "MPGMASRAFPLANITERTIP", TNS.UZY.Arac.UzayKosulOl(yil.ToString(), ((int)asama).ToString(), tertipStr[0], tertipStr[1], tertipStr[2], tertipStr[3], "", kurumsalBasla, ay.ToString(), "", "0"), false, "");
+                double ayAHPToplam = ve.TekKolonSQLDbl(sql);
+                ayDizi[ay] = Math.Floor(ayDizi[ay]);
+                if (ayAHPToplam != ayDizi[ay])
+                {
+                    if (ayAHPToplam == 0)
+                    {
+                        s.DegerAta((ay + 1).ToString() + ". ay var olan değeri 0 olduğundan oransal artış yapılamadı!");
+                    }
+                    else if (ayAHPToplam < 0 || ayDizi[ay] < 0)
+                    {
+                        s.DegerAta((ay + 1).ToString() + ". ay var olan değeri (" + ayAHPToplam.ToString("#,##0") + ") sıfırdan küçük olduğundan veya girdiğiniz rakam (" + ayDizi[ay].ToString("#,##0") + ") sıfırdan küçük olduğundan işlem yapılamadı!");
+                    }
+                    else
+                    {
+                        double bolunen = ayDizi[ay];
+                        double bolen = ayAHPToplam;
+                        if (bolen > 1000000 || bolunen > 1000000)
+                        {
+                            bolunen = bolunen / bolen;
+                            bolen = 1;
+                        }
+                        s = tab.AHPKatsayiUygula(yil, asama, tertipStr, dagitilanMi, ay, bolunen, bolen);
+                        if (s.islemSonuc)
+                        {
+                            ayAHPToplam = ve.TekKolonSQLDbl(sql);
+                            double fark = ayAHPToplam - ayDizi[ay];
+                            if (fark != 0)
+                            {
+                                string ekoKod = "";
+                                string pebFonKod = "";
+                                string kurumsalYapiKod = "";
+                                double mevcutOdenek = 0;
+                                IDataReader dr = tab.AHPEnYuksekSatirBul(yil, asama, tertipStr, dagitilanMi, ay);
+                                if (dr != null)
+                                {
+                                    if (dr.Read())
+                                    {
+                                        ekoKod = VeriErisim.DegerAl(dr, 0, "");
+                                        pebFonKod = VeriErisim.DegerAl(dr, 1, "");
+                                        kurumsalYapiKod = VeriErisim.DegerAl(dr, 2, "");
+                                        mevcutOdenek = VeriErisim.DegerAl(dr, 3, 0.0);
+                                    }
+                                    else
+                                        s.DegerAta("Farkı işleyecek kayıt bulunamadı!");
+                                    dr.Close();
+                                }
+                                else
+                                    s.DegerAta("Farkı bulacak komut çalıştırılamadı!" + ve.hata);
+                                if (s.islemSonuc)
+                                {
+                                    s = tab.DegerGuncelle(yil, asama, tertipStr[0], tertipStr[1], tertipStr[2], ekoKod, pebFonKod, kurumsalYapiKod, ay, 0, mevcutOdenek - fark);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (s.islemSonuc)
+                ve.Commit();
+            else
+                ve.Rollback();
+            ve.VeriErisimKapat();
+            return s;
+        }
+
+        public static TertipOdenek[] MasrafPlaniTertipToplamGonderilen(VeriErisim veriErisim, Kullanici kullanan, int yil, int ay, string birimKod, string ekoKod)
+        {
+        }
+
+         */
+        /*
+#region IComparer Members
+
+class Siralama : IComparer
+{
+    int siralamaNo;
+    public Siralama(int siralamaNo)
+    {
+        this.siralamaNo = siralamaNo;
+    }
+
+    public int Compare(object x, object y)
+    {
+        if (x.GetType() == typeof(BirimBilgi) && y.GetType() == typeof(BirimBilgi))
+        {
+            BirimBilgi bbx = (BirimBilgi)x;
+            BirimBilgi bby = (BirimBilgi)y;
+            int donusDeger = 0;
+            if (siralamaNo == 1)
+                donusDeger = Kiyasla(bbx.talep, bbx.harcanan, bby.talep, bby.harcanan);
+            else if (siralamaNo == 2)
+                donusDeger = Kiyasla(bbx.sgb, bbx.harcanan, bby.sgb, bby.harcanan);
+            else if (siralamaNo == 3)
+                donusDeger = Kiyasla(bbx.merkez, bbx.harcanan, bby.merkez, bby.harcanan);
+            else if (siralamaNo == 4)
+                donusDeger = Kiyasla(bbx.talep, bbx.personelSayisi, bby.talep, bby.personelSayisi);
+            else if (siralamaNo == 5)
+                donusDeger = Kiyasla(bbx.sgb, bbx.personelSayisi, bby.sgb, bby.personelSayisi);
+            else if (siralamaNo == 6)
+                donusDeger = Kiyasla(bbx.merkez, bbx.personelSayisi, bby.merkez, bby.personelSayisi);
+
+            if (donusDeger == 0)
+                donusDeger = bbx.birimKod.CompareTo(bby.birimKod);
+            return donusDeger;
+        }
+        return 0;
+    }
+
+    private int Kiyasla(double xbolunen, double xbolen, double ybolunen, double ybolen)
+    {
+        if (xbolen != 0 && ybolen != 0)
+        {
+            xbolunen = xbolunen / xbolen;
+            ybolunen = ybolunen / ybolen;
+        }
+        if (xbolunen == ybolunen) return 0;
+        else if (xbolunen > ybolunen) return 1;
+        else return -1;
+    }
+}
+#endregion
+*/
+
+Ekdegerler.cs
+-------------
+/*
+
+        private static string DizidenDegerAl(string[] dizi, int indis)
+        {
+            if (dizi == null) return string.Empty;
+            if (indis < dizi.Length) return dizi[indis];
+            return string.Empty;
+        }
+
+        public static string EkDegerGrupAdBul(int grupNo)
+        {
+            if (grupNo == 1)
+                return ButceHazirlikResI.BHM001;
+            else if (grupNo == 2)
+                return ButceHazirlikResI.BHM002;
+            return ButceHazirlikResI.BHM003;
+        }
+
+        public static IntKodStrAd[] EkDegerBilgileriBul(int grupNo, int tertipTur)
+        {
+            if (grupNo == 1) //Gider
+            {
+                if (tertipTur == 1) //Gider Odenek
+                {
+                    IntKodStrAd[] donusDeger = new IntKodStrAd[1];
+                    donusDeger[0] = new IntKodStrAd((int)ENUMTabloKod.TABPEBOdenek, TabloAciklamaBul(ENUMTabloKod.TABPEBOdenek));
+                    //donusDeger[1] = new IntKodStrAd((int)ENUMTabloKod.TABOdenek, TabloAciklamaBul(ENUMTabloKod.TABOdenek));
+                    //donusDeger[2] = new IntKodStrAd((int)ENUMTabloKod.TABButce, TabloAciklamaBul(ENUMTabloKod.TABButce));
+                    //donusDeger[2] = new IntKodStrAd((int)ENUMTabloKod.TABDPTVizeCetveli, TabloAciklamaBul(ENUMTabloKod.TABDPTVizeCetveli));
+                    //donusDeger[4] = new IntKodStrAd((int)ENUMTabloKod.TABGiderIcmal, TabloAciklamaBul(ENUMTabloKod.TABGiderIcmal));
+                    return donusDeger;
+                }
+                else if (tertipTur == 2) //Gider Tahmin
+                {
+                    IntKodStrAd[] donusDeger = new IntKodStrAd[1];
+                    donusDeger[0] = new IntKodStrAd((int)ENUMTabloKod.TABHarcamaTahmin, TabloAciklamaBul(ENUMTabloKod.TABHarcamaTahmin));
+                    return donusDeger;
+                }
+                else //Gider Gerçekleşme
+                {
+                    IntKodStrAd[] donusDeger = new IntKodStrAd[3];
+                    donusDeger[0] = new IntKodStrAd((int)ENUMTabloKod.TABOdenekGonderme, TabloAciklamaBul(ENUMTabloKod.TABOdemeEmri));
+                    donusDeger[1] = new IntKodStrAd((int)ENUMTabloKod.TABOdemeEmri, TabloAciklamaBul(ENUMTabloKod.TABOdemeEmri));
+                    donusDeger[2] = new IntKodStrAd((int)ENUMTabloKod.TABHarcama, TabloAciklamaBul(ENUMTabloKod.TABHarcama));
+                    return donusDeger;
+                }
+            }
+            else if (grupNo == 2) //Birim Gider
+            {
+                if (tertipTur == 1) //Gider Odenek
+                {
+                    IntKodStrAd[] donusDeger = new IntKodStrAd[1];
+                    donusDeger[0] = new IntKodStrAd((int)ENUMTabloKod.TABTasraOdenek, TabloAciklamaBul(ENUMTabloKod.TABTasraOdenek));
+                    return donusDeger;
+                }
+                else if (tertipTur == 2) //Gider Tahmin
+                {
+                    IntKodStrAd[] donusDeger = new IntKodStrAd[0];
+                    return donusDeger;
+                }
+                else //Gider Gerçekleşme
+                {
+                    IntKodStrAd[] donusDeger = new IntKodStrAd[3];
+                    donusDeger[1] = new IntKodStrAd((int)ENUMTabloKod.TABOdemeEmri, TabloAciklamaBul(ENUMTabloKod.TABOdemeEmri));
+                    donusDeger[2] = new IntKodStrAd((int)ENUMTabloKod.TABHarcama, TabloAciklamaBul(ENUMTabloKod.TABHarcama));
+                    donusDeger[0] = new IntKodStrAd((int)ENUMTabloKod.TABOdenekGonderme, TabloAciklamaBul(ENUMTabloKod.TABOdenekGonderme));
+                    return donusDeger;
+                }
+            }
+            return null;
+        }
+
+
+        public string AciklamaOl(int yil, IBHMv2Servis servis)
+        {
+            return BaslikBul(yil, servis);
+        }
+
+
+        public string KisaStringOl(int yil, bool yilEkle)
+        {
+            int icYil;
+            if (yilEkle)
+                icYil = yil - butceYilFark;
+            else
+                icYil = butceYilFark;
+            return ((int)tabloKod).ToString() + "-" + icYil.ToString() + "-" + senaryoKodVeyaAy + "-" + teklifYil.ToString();
+        }
+        public string BaslikBul(int yil, IBHMv2Servis servis)
+        {
+            string retVal = TabloAciklamaBul(this.tabloKod) + " " + (yil - butceYilFark).ToString();
+            if (this.tabloKod == ENUMTabloKod.TABPEBOdenek || this.tabloKod == ENUMTabloKod.TABOdenek || this.tabloKod == ENUMTabloKod.TABGiderIcmal || this.tabloKod == ENUMTabloKod.TABButce)
+            {
+                // || this.tabloKod == ENUMTabloKod.TABDPTVizeCetveli
+                retVal += " (" + servis.ButceSenaryoAdBul(null, senaryoKodVeyaAy) + ", " + TeklifYilAdBul(this.teklifYil) + ")";
+            }
+            else if (this.tabloKod == ENUMTabloKod.TABHarcama || this.tabloKod == ENUMTabloKod.TABOdemeEmri)
+            {
+                retVal += " (" + TNS.BKD.Asamalar.AyAdBul(OrtakFonksiyonlar.ConvertToInt(senaryoKodVeyaAy, 0)) + ")";
+            }
+            else
+            {
+                retVal += " (" + servis.ButceSenaryoAdBul(null, senaryoKodVeyaAy) + ")";
+            }
+
+            return retVal;
+        }
+
+        public static string TeklifYilAdBul(int teklifYil)
+        {
+            if (teklifYil == 0) return ButceHazirlikResI.BHM013;
+            else return string.Format(ButceHazirlikResI.BHM014, TNS.OrtakFonksiyonlar.YaziylaParasiz(teklifYil));
+        }
+        public static string TabloAciklamaBul(ENUMTabloKod tabKod)
+        {
+            if (tabKod == ENUMTabloKod.TABPEBOdenek || tabKod == ENUMTabloKod.TABOdenek) return ButceHazirlikResI.BHM004;
+            if (tabKod == ENUMTabloKod.TABHarcama || tabKod == ENUMTabloKod.TABPEBHarcama) return ButceHazirlikResI.BHM005;
+            if (tabKod == ENUMTabloKod.TABHarcamaTahmin) return ButceHazirlikResI.BHM006;
+            if (tabKod == ENUMTabloKod.TABOdenekGonderme) return ButceHazirlikResI.BHM007;
+            if (tabKod == ENUMTabloKod.TABOdemeEmri) return ButceHazirlikResI.BHM008;
+            if (tabKod == ENUMTabloKod.TABButce) return ButceHazirlikResI.BHM009;
+
+
+            if (tabKod == ENUMTabloKod.TABPEBGelir || tabKod == ENUMTabloKod.TABGelir) return ButceHazirlikResI.BHM010;
+            if (tabKod == ENUMTabloKod.TABPEBGelirGerceklesmesi || tabKod == ENUMTabloKod.TABGelirGerceklesmesi) return ButceHazirlikResI.BHM011;
+            if (tabKod == ENUMTabloKod.TABGelirTahmini) return ButceHazirlikResI.BHM012;
+            return string.Empty;
+            //if (tabKod == ENUMTabloKod.TABTasraOdenek) return "Birim Ödenek";
+            //if (tabKod == ENUMTabloKod.TABDPTVizeCetveli) return "DPT Vize Cetveli";
+            //if (tabKod == ENUMTabloKod.TABGiderIcmal) return "Gider İcmali";
+        }
+
+
+
+*/
+
+
+YetkiServis.cs
+--------------
+        //public static string YetkiTipiDegeriBul(Hashtable yetkiTipiDegerleri, int yetkiTipiKodu)
+        //{
+        //    foreach (YetkiTipiDegeri ytd in yetkiTipiDegerleri)
+        //    {
+        //        if (ytd.yetkiTipi.kod == yetkiTipiKodu)
+        //            return ytd.deger;
+        //    }
+        //    return "";
+        //}
+
+        //public static string YetkiTipiDegeriBul(Hashtable yetkiTipiDegerleri, string yetkiTipiAdi)
+        //{
+        //    string[] yetkiler = yetkiTipiAdi.Split(';');
+        //    string donusDeger = "";
+
+        //    foreach (DictionaryEntry de in yetkiTipiDegerleri)
+        //    {
+        //        for (int j = 0; j < yetkiler.Length; j++)
+        //        {
+        //            if (yetkiler[j].Equals((string)de.Key))
+        //            {
+        //                if (donusDeger != "")
+        //                    donusDeger += ";";
+        //                donusDeger += (string)de.Value;
+        //                break;
+        //            }
+        //        }
+
+        //    }
+        //    return donusDeger;
+        //}
+
+        //public static bool GormeYetkisiVarMi(Kullanici kullanan, String tertip)
+        //{
+        //    return OGYYetkisiVarMi(kullanan, -1, tertip, ENUMOGY.Gorme, false);
+        //}
+
+        //public static bool YazmaYetkisiVarMi(Kullanici kullanan, int asama, String tertip)
+        //{
+        //    return OGYYetkisiVarMi(kullanan, asama, tertip, ENUMOGY.Yazma, false);
+        //}
+
+        //public static bool OnaylamaYetkisiVarMi(Kullanici kullanan, String tertip)
+        //{
+        //    return OGYYetkisiVarMi(kullanan, -1, tertip, ENUMOGY.Onaylama, false);
+        //}
+
+        //public static bool OnaylamaYetkisiVarMi(Kullanici kullanan, int asama, String tertip)
+        //{
+        //    return OGYYetkisiVarMi(kullanan, asama, tertip, ENUMOGY.Onaylama, false);
+        //}
+
+        //public static bool YazmaYetkisiVarMiKurumsal(Kullanici kullanan, int asama, String tertip)
+        //{
+        //    return OGYYetkisiVarMi(kullanan, asama, tertip, ENUMOGY.Yazma, true);
+        //}
+
+        //public static bool YazmaYetkisiVarMiKurumsal(Kullanici kullanan, String tertip)
+        //{
+        //    return OGYYetkisiVarMi(kullanan, 3, tertip, ENUMOGY.Yazma, true);
+        //}
+
+        //public static bool YazmaYetkisiVarMi(Kullanici kullanan, String tertip)
+        //{
+        //    //return false;
+        //    return OGYYetkisiVarMi(kullanan, 3, tertip, ENUMOGY.Yazma, false);
+        //}
+
+        //private static string KodKosul(int kodNo, string alanAd, string kod)
+        //{
+        //    if (kodNo == 1 && kod.Length == 2)
+        //        return "(" + alanAd + " >= '" + kod + "' AND " + alanAd + " < '" + kod + Tertip.BagimsizKurumBaslangic() + "')";
+        //    else
+        //        return alanAd + " LIKE " + "'" + kod + "%'";
+
+        //}
+
+        //private static string YetkiKosuluTertipOl(string tabloOnEk, string tertip, bool kurumMu)
+        //{
+        //    string kurum;
+        //    string icKosul = "";
+        //    string[] alanlar = { "KURKOD", "FONKOD", "FINKOD", "EKOKOD" };
+        //    tertip = tertip.Replace(".", "");
+        //    string[] d = tertip.Split('-');
+        //    int parca = d.Length;
+        //    if (kurumMu && parca > 0)
+        //    {
+        //        kurum = Tertip.KurumsaldanKuruma(d[0]).Replace(".", "");
+        //        if (kurum != "")
+        //            icKosul = KodKosul(1, tabloOnEk + alanlar[0], kurum);
+        //    }
+        //    else
+        //        for (int i = 0; i < parca; i++)
+        //        {
+        //            kurum = d[i];
+        //            if (kurum != "")
+        //            {
+        //                if (icKosul != "") icKosul += " AND ";
+        //                icKosul += KodKosul(i + 1, tabloOnEk + alanlar[i], kurum);
+        //            }
+
+        //        }
+        //    if (icKosul != "") icKosul = "(" + icKosul + ")";
+        //    return icKosul;
+        //}
+
+        //private static string EkKosulOlustur(string tabloOnEk, Kullanici kullanan, bool kurumMu)
+        //{
+        //    int parca;
+        //    string icKosul;
+        //    if (kullanan.KullaniciTipiIceriyorMu((int)ENUMKullaniciTipi.SISTEMYONETICISI))
+        //        return "";
+
+        //    if (tabloOnEk != "") tabloOnEk += ".";
+
+        //    string yetkiTipiAdi;
+
+        //    if (!kullanan.KullaniciTipiIceriyorMu((int)ENUMKullaniciTipi.SISTEMYONETICISI))
+        //        yetkiTipiAdi = "Bütçe Hazırlık Tertip Şablonu;Ödeme Emri/MİF Yetki Şablonu;Gönderme Belgesi Yetki Şablonu;Bütçe İşlem Yetki Şablonu";
+        //    else
+        //        yetkiTipiAdi = "";
+        //    if (yetkiTipiAdi != "")
+        //    {
+        //        string kosul = "";
+        //        string yetkiTipiDegeri = YetkiTipiDegeriBul(kullanan.yetkiTipiDegerleri, yetkiTipiAdi);
+        //        string[] d = yetkiTipiDegeri.Split(';');
+        //        parca = d.Length;
+        //        foreach (string yetkiTipiDegeriParca in d)
+        //        {
+        //            icKosul = YetkiKosuluTertipOl(tabloOnEk, yetkiTipiDegeriParca, kurumMu);
+        //            if (icKosul != "")
+        //            {
+        //                if (kosul != "") kosul += " OR ";
+
+        //                kosul += icKosul;
+        //            }
+        //        }
+        //        if (kosul != "")
+        //            kosul = "(" + kosul + ")";
+        //        return kosul;
+        //    }
+        //    else
+        //        return "(" + tabloOnEk + "KURKOD = '0'" + ")";
+        //}
+
+        //public static string EkKosulOlustur(Kullanici kullanan)
+        //{
+        //    return EkKosulOlustur("", kullanan, false);
+        //}
+
+        //public static string EkKosulOlusturKurumsal(Kullanici kullanan)
+        //{
+        //    return EkKosulOlustur("", kullanan, true);
+        //}
+
+        //public static string EkKosulOlustur(string tabloOnEk, Kullanici kullanan)
+        //{
+        //    return EkKosulOlustur(tabloOnEk, kullanan, false);
+        //}
+
+        //public static string EkKosulOlusturKurumsal(string tabloOnEk, Kullanici kullanan)
+        //{
+        //    return EkKosulOlustur(tabloOnEk, kullanan, true);
+        //}
+
+        //public static bool YetkisiVarMi(Kullanici kullanan, ENUMOGY ogy)
+        //{
+        //    string yetkiTipiYetkiDegeri = OrtakFonksiyonlar.YetkiTipiDegeriBul(kullanan.yetkiTipiDegerleri, "Bütçe Hazırlığı Yetkisi");
+
+        //    yetkiTipiYetkiDegeri = yetkiTipiYetkiDegeri.Replace(";", "");
+        //    int yetkiTipiYetkiDegeriInt = OrtakFonksiyonlar.ConvertToInt(yetkiTipiYetkiDegeri, -1);
+        //    if (ogy == ENUMOGY.Gorme && yetkiTipiYetkiDegeriInt > 0)
+        //        return true;
+        //    if (ogy == ENUMOGY.Yazma && yetkiTipiYetkiDegeriInt > 1)
+        //        return true;
+        //    if (ogy == ENUMOGY.Onaylama && yetkiTipiYetkiDegeriInt > 2)
+        //        return true;
+        //    if (ogy == ENUMOGY.OnayKaldir && yetkiTipiYetkiDegeriInt == 5)
+        //        return true;
+
+        //    return false;
+        //}
+
+
+        //public static bool GormeYetkisiVarMi(Kullanici kullanan, int asama, String tertip)
+        //{
+        //    return OGYYetkisiVarMi(kullanan, asama, tertip, ENUMOGY.Gorme, false);
+        //}
+
+        //public static bool GormeYetkisiVarMiKurum(Kullanici kullanan, int asama, String tertip)
+        //{
+        //    return OGYYetkisiVarMi(kullanan, asama, tertip, ENUMOGY.Gorme, true);
+        //}
+
+        //public static bool YazmaYetkisiVarMiKurum(Kullanici kullanan, int asama, String tertip)
+        //{
+        //    return OGYYetkisiVarMi(kullanan, asama, tertip, ENUMOGY.Yazma, true);
+        //}
+
+        //public static bool GormeYetkisiVarMiKurumsal(Kullanici kullanan, int asama, String tertip)
+        //{
+        //    return OGYYetkisiVarMi(kullanan, asama, tertip, ENUMOGY.Gorme, true);
+        //}
+
+        //public static bool GormeYetkisiVarMiKurumsal(Kullanici kullanan, String tertip)
+        //{
+        //    return OGYYetkisiVarMi(kullanan, -1, tertip, ENUMOGY.Gorme, true);
+        //}
+
+
+
+
+TABMPGMASRAFPLANI
+-----------------
+        //public IDataReader ListeleGenel(int yil, string kurumsalYapikod, ENUMMasrafPlanAsama asama, string kurKod, string kurumsalYapiEk)
+        //{
+        //    string sql = "SELECT LEFT(EKOKOD, 3), AY, SUM(ODENEK) FROM " + TABLOADTERTIP;
+        //    sql += " WHERE " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.YIL], "=", yil);
+        //    if (!string.IsNullOrEmpty(kurumsalYapikod))
+        //        sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURUMSALYAPIKOD], "LIKE", kurumsalYapikod.Replace(".", "") + "%");
+        //    else if (!string.IsNullOrEmpty(kurumsalYapiEk))
+        //    {
+        //        if (kurumsalYapiEk == "9")
+        //        {
+        //            sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURUMSALYAPIKOD], "LIKE", "9%");
+        //        }
+        //        else
+        //            sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURUMSALYAPIKOD], "<", "9");
+        //    }
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ASAMA], "=", (int)asama);
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.REVIZENO], "=", (int)0);
+        //    if (!string.IsNullOrEmpty(kurKod))
+        //        sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURKOD], "LIKE", kurKod.Replace(".", "") + "%");
+        //    sql += " GROUP BY LEFT(EKOKOD, 3), AY ORDER BY LEFT(EKOKOD, 3), AY";
+        //    return this.veriErisim.DataReaderDondur(sql);
+        //}
+
+        //public IDataReader ListeleTertipAy(int yil, string kurumsalYapiKod, ENUMMasrafPlanAsama asama)
+        //{
+        //    string sql = "SELECT AY, SUM(ODENEK) FROM " + TABLOADTERTIP;
+        //    sql += " WHERE " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.YIL], "=", yil);
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURUMSALYAPIKOD], "=", kurumsalYapiKod.Replace(".", ""));
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ASAMA], "=", (int)asama);
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.REVIZENO], "=", (int)0);
+        //    sql += " GROUP BY AY ORDER BY AY";
+        //    return this.veriErisim.DataReaderDondur(sql);
+        //}
+
+        //public IDataReader ListeleTertip(int yil, string kurumsalYapiKod, ENUMMasrafPlanAsama asama, string ekoKod2)
+        //{
+        //    string sql = "SELECT KURKOD, FONKOD, FINKOD, EKOKOD, AY, SUM(ODENEK) FROM " + TABLOADTERTIP;
+        //    sql += " WHERE " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.YIL], "=", yil);
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURUMSALYAPIKOD], "=", kurumsalYapiKod.Replace(".", ""));
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ASAMA], "=", (int)asama);
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.REVIZENO], "=", (int)0);
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.EKOKOD], "LIKE", ekoKod2.Replace(".", "") + "%");
+        //    sql += " GROUP BY KURKOD, FONKOD, FINKOD, EKOKOD, AY ORDER BY 1,2,3,4,5";
+        //    return this.veriErisim.DataReaderDondur(sql);
+        //}
+
+        //public int KayitSayisiBul(int yil, ENUMMasrafPlanAsama asama)
+        //{
+        //    string sql = "SELECT COUNT(*) FROM " + TABLOADTERTIP;
+        //    sql += " WHERE " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.YIL], "=", yil);
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ASAMA], "=", (int)asama);
+        //    sql += " GROUP BY AY ORDER BY 1";
+        //    return this.veriErisim.TekKolonSQLInt(sql);
+        //}
+
+        //public Sonuc AsamaKopyala(int kaynakYil, ENUMMasrafPlanAsama kaynakAsama, int hedefYil, ENUMMasrafPlanAsama hedefAsama, string kurumsalYapiKod, string kurKod, string ekoKod)
+        //{
+        //    string sql = "INSERT INTO " + TABLOADTERTIP + " ";
+
+        //    sql += "SELECT " + VeriErisim.DegerYap(hedefYil) + " as " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.YIL] + ", " +
+        //    VeriErisim.DegerYap((int)hedefAsama) + " as " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ASAMA] + ", " +
+        //    ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURKOD] + ", " +
+        //    ALANLARTERTIP[(int)ENUMAlanlarTERTIP.FONKOD] + ", " +
+        //    ALANLARTERTIP[(int)ENUMAlanlarTERTIP.FINKOD] + ", " +
+        //    ALANLARTERTIP[(int)ENUMAlanlarTERTIP.EKOKOD] + ", " +
+        //    ALANLARTERTIP[(int)ENUMAlanlarTERTIP.PEBKOD] + ", " +
+        //    ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURUMSALYAPIKOD] + ", " +
+        //    ALANLARTERTIP[(int)ENUMAlanlarTERTIP.AY] + ", " +
+        //    ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ODENEK] + ", " +
+        //    ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ODENEKGONDERME] + " FROM " + TABLOADTERTIP;
+
+        //    sql += " WHERE " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.YIL], "=", kaynakYil);
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ASAMA], "=", (int)kaynakAsama);
+        //    if (kurumsalYapiKod != "")
+        //        sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURUMSALYAPIKOD], "LIKE", kurumsalYapiKod.Replace(".", "") + "%");
+        //    if (kurKod != "")
+        //        sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURKOD], "LIKE", kurKod.Replace(".", "") + "%");
+        //    if (ekoKod != "")
+        //        sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.EKOKOD], "LIKE", ekoKod.Replace(".", "") + "%");
+        //    return KomutCalistir(sql, 0);
+        //}
+
+        //public string AylikDagilimKosulOl(int yil, string kurumsalYapiKod, ENUMMasrafPlanAsama asama, string kurKod, string ekoKod, string[] ekoKodlar, int ay)
+        //{
+        //    string sql = "";
+        //    sql += " WHERE " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.YIL], "=", yil);
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURUMSALYAPIKOD], "LIKE", kurumsalYapiKod.Replace(".", "") + "%");
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ASAMA], "=", (int)asama);
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURKOD], "LIKE", kurKod.Replace(".", "") + "%");
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.EKOKOD], "LIKE", ekoKod.Replace(".", "") + "%");
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.REVIZENO], "=", 0);
+        //    if (ay >= 0)
+        //        sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.AY], "=", ay);
+        //    if (ekoKodlar != null && ekoKodlar.Length > 0)
+        //    {
+        //        string icSql = "";
+        //        for (int i = 0; i < ekoKodlar.Length; i++)
+        //        {
+        //            if (!string.IsNullOrEmpty(icSql)) icSql += " OR ";
+        //            icSql += VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.EKOKOD], "=", ekoKodlar[i].Replace(".", ""));
+        //        }
+        //        sql += " AND (" + icSql + ")";
+        //    }
+
+        //    return sql;
+        //}
+
+        //public Sonuc AylikDagilimYap(int yil, string kurumsalYapiKod, ENUMMasrafPlanAsama asama, string kurKod, string ekoKod, string[] ekoKodlar, int ay, double eskiDeger, double yeniDeger)
+        //{
+        //    string sql = "UPDATE " + TABLOADTERTIP + " ";
+        //    sql += "SET " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ODENEK] + "= ROUND(" + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ODENEK] + "*" + yeniDeger.ToString() + "/" + eskiDeger.ToString() + ",0) ";
+        //    sql += AylikDagilimKosulOl(yil, kurumsalYapiKod, asama, kurKod, ekoKod, ekoKodlar, ay);
+        //    return KomutCalistir(sql, 0);
+        //}
+
+        //public Sonuc AylikDagilimSil(int yil, string kurumsalYapiKod, ENUMMasrafPlanAsama asama, string kurKod, string ekoKod, string[] ekoKodlar, int ay)
+        //{
+        //    string sql = "DELETE FROM " + TABLOADTERTIP + " " + AylikDagilimKosulOl(yil, kurumsalYapiKod, asama, kurKod, ekoKod, ekoKodlar, ay);
+        //    return KomutCalistir(sql, 0);
+        //}
+
+        //public Sonuc BirimAsamaSil(int hedefYil, ENUMMasrafPlanAsama hedefAsama, string kurumsalYapiKod, string kurKod, string ekoKod)
+        //{
+        //    string sql = "DELETE FROM " + TABLOADTERTIP;
+
+        //    sql += " WHERE " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.YIL], "=", hedefYil);
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ASAMA], "=", (int)hedefAsama);
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURUMSALYAPIKOD], "LIKE", kurumsalYapiKod.Replace(".", "") + "%");
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURKOD], "LIKE", kurKod.Replace(".", "") + "%");
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.EKOKOD], "LIKE", ekoKod.Replace(".", "") + "%");
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.REVIZENO], "=", 0);
+        //    return KomutCalistir(sql, 0);
+        //}
+
+        //public IDataReader MasrafPlaniBirimleriBul(int yil, int ayBasla, int ayBitis, string kurKod, string ekoKod1)
+        //{
+        //    string sql = "SELECT DISTINCT " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURUMSALYAPIKOD] + ", " + TABBHMKURUMSALYAPI.ALANLAR[(int)TABBHMKURUMSALYAPI.ENUMAlanlar.SAYMANLIKKOD] + ", " + TABBHMKURUMSALYAPI.ALANLAR[(int)TABBHMKURUMSALYAPI.ENUMAlanlar.BIRIMKOD];
+        //    sql += " FROM " + TABLOADTERTIP + ", " + TABBHMKURUMSALYAPI.TABLOAD;
+        //    sql += " WHERE " + TABLOADTERTIP + "." + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURUMSALYAPIKOD] + "=" + TABBHMKURUMSALYAPI.TABLOAD + "." + TABBHMKURUMSALYAPI.ALANLAR[(int)TABBHMKURUMSALYAPI.ENUMAlanlar.KOD];
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.YIL], "=", yil);
+        //    //sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ASAMA], "=", (int)ENUMMasrafPlanAsama.MERKEZ);
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURKOD], "LIKE", kurKod.Replace(".", "") + "%");
+        //    sql += " AND " + VeriErisim.KosulOl(TABBHMKURUMSALYAPI.TABLOAD, TABBHMKURUMSALYAPI.ALANLAR[(int)TABBHMKURUMSALYAPI.ENUMAlanlar.KURKOD], "LIKE", kurKod.Replace(".", "") + "%");
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.EKOKOD], "LIKE", ekoKod1.Replace(".", "") + "%");
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.AY], ">=", ayBasla);
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.AY], "<=", ayBitis);
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ODENEKGONDERME], "=", 0);
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.DURUM], "=", 5);
+        //    return this.veriErisim.DataReaderDondur(sql);
+        //}
+
+        //public IDataReader ListeleTertipOG(int yil, string kurumsalYapiKod, string kurKod, string ekoKod1, int ayBasla, int ayBitis)
+        //{
+        //    string sql = "SELECT " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURKOD] + ", " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.FONKOD] + ", " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.FINKOD] + ", " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.EKOKOD] + ", " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.PEBKOD] + ", SUM(" + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ODENEK] + ")";
+        //    sql += " FROM " + TABLOADTERTIP;
+        //    sql += " WHERE " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.YIL], "=", yil);
+        //    //sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ASAMA], "=", (int)ENUMMasrafPlanAsama.MERKEZ);
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURUMSALYAPIKOD], "=", kurumsalYapiKod.Replace(".", ""));
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURKOD], "LIKE", kurKod.Replace(".", "") + "%");
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.EKOKOD], "LIKE", ekoKod1.Replace(".", "") + "%");
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.AY], ">=", ayBasla);
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.AY], "<=", ayBitis);
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ODENEKGONDERME], "=", 0);
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.DURUM], "=", 5);
+        //    sql += " GROUP BY " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURKOD] + ", " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.FONKOD] + ", " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.FINKOD] + ", " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.EKOKOD] + ", " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.PEBKOD];
+        //    sql += " ORDER BY " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURKOD] + ", " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.FONKOD] + ", " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.FINKOD] + ", " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.EKOKOD] + ", " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.PEBKOD];
+        //    return this.veriErisim.DataReaderDondur(sql);
+        //}
+
+        //public Sonuc OdemeEmriOlusturulduYap(int yil, string kurumsalYapiKod, string kurKod, string ekoKod1, int ayBasla, int ayBitis)
+        //{
+        //    string sql = " UPDATE " + TABLOADTERTIP;
+        //    sql += " SET " + ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ODENEKGONDERME] + " = 1 ";
+        //    sql += " WHERE " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.YIL], "=", yil);
+        //    //sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ASAMA], "=", (int)ENUMMasrafPlanAsama.MERKEZ);
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURUMSALYAPIKOD], "=", kurumsalYapiKod.Replace(".", ""));
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURKOD], "LIKE", kurKod.Replace(".", "") + "%");
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.EKOKOD], "LIKE", ekoKod1.Replace(".", "") + "%");
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.AY], ">=", ayBasla);
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.AY], "<=", ayBitis);
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ODENEKGONDERME], "=", 0);
+        //    sql += " AND " + VeriErisim.KosulOl(TABLOADTERTIP, ALANLARTERTIP[(int)ENUMAlanlarTERTIP.DURUM], "=", 5);
+        //    return KomutCalistir(sql, 0);
+        //}
+
+        //public IDataReader AylikDagilimBul(int yil, string kurumsalYapiKod, ENUMMasrafPlanAsama asama, string kurKod, string ekoKod, string[] ekoKodlar)
+        //{
+        //    string sql = "SELECT AY,SUM(ODENEK) FROM " + TABLOADTERTIP + " " + AylikDagilimKosulOl(yil, kurumsalYapiKod, asama, kurKod, ekoKod, ekoKodlar, -1) + " GROUP BY AY";
+        //    return veriErisim.DataReaderDondur(sql);
+        //}
+
+        //public IDataReader TertipAylikDagilimBul(int yil, string kurumsalYapikod, string kur, string fon, string fin, string eko, string peb)
+        //{
+        //    string sql = "SELECT AY, SUM(ODENEK) FROM " + TABLOADTERTIP;
+        //    sql += " WHERE " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.YIL], "=", yil);
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURUMSALYAPIKOD], "=", kurumsalYapikod.Replace(".", ""));
+        //    //            sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.ASAMA], "=", (int)asama);
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.KURKOD], "=", kur.Replace(".", ""));
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.FONKOD], "=", fon.Replace(".", ""));
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.FINKOD], "=", fin.Replace(".", ""));
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.EKOKOD], "=", eko.Replace(".", ""));
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.PEBKOD], "=", peb.Replace(".", ""));
+        //    sql += " AND " + VeriErisim.KosulOl("", ALANLARTERTIP[(int)ENUMAlanlarTERTIP.DURUM], "<=", 5);
+
+        //    sql += " GROUP BY AY ORDER BY AY";
+        //    return this.veriErisim.DataReaderDondur(sql);
+        //}
+
+
+/*
+
+        /// <summary>
+        /// Form yapısında duran alanları kıstas olarak kullanarak,
+        /// select sql cümlesini oluşturup, çalıştıran ve sonucunu DataReader olarak döndüren fonksiyon
+        /// </summary>
+        /// <param name="form">Select edilecek kayıtlara ait kıstas bilgisini tutan, OdenekSinifyapısında nesne</param>
+        /// <returns>Select komutunun çalıştırılması sonucu elde edilen DataReader nesnesini döndürür</returns>
+        //public override IDataReader Oku(OdenekSinif form)
+        //{
+        //    string sql = "SELECT " + VeriErisim.TumAlanlar(TABLOAD, ALANLAR) + " FROM " + TABLOAD;
+        //    sql = VeriErisim.KosulEkle(sql, "WHERE", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.YIL], "=", form.yil));
+        //    sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.SENARYOKOD], "=", form.senaryoKod.Replace(".", "")));
+        //    sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.TEKLIFYIL], "=", form.teklifYil));
+        //    sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.KURKOD], "=", form.tertip.kodlar[0].Replace(".", "")));
+        //    sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.FONKOD], "=", form.tertip.kodlar[1].Replace(".", "")));
+        //    sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.FINKOD], "=", form.tertip.kodlar[2].Replace(".", "")));
+        //    sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.EKOKOD], "=", form.tertip.kodlar[3].Replace(".", "")));
+        //    sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.PEBKOD], "=", form.tertip.kodlar[4].Replace(".", "")));
+        //    return veriErisim.DataReaderDondur(sql);
+        //}
+
+        // ekKosula ve verilen kistas tertibe uyan sql koşul oluşturulur.
+        public static string KistasKosulOl(int yil, string senaryoKod, TertipOdenek tertip, bool cokYil, string tabloAd)
+        {
+            string kosul = "";
+
+            if (yil != -1)
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(tabloAd, ALANLAR[(int)ENUMAlanlar.YIL], "=", yil));
+
+            if (!string.IsNullOrEmpty(senaryoKod))
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(tabloAd, ALANLAR[(int)ENUMAlanlar.SENARYOKOD], "=", senaryoKod.Replace(".", "")));
+
+
+            if (tertip.tertip.kodlar.Length >= 1 && !String.IsNullOrEmpty(tertip.tertip.kodlar[0]))
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(tabloAd, ALANLAR[(int)ENUMAlanlar.KURKOD], "LIKE", tertip.tertip.kodlar[0].Replace(".", "") + "%"));
+            if (tertip.tertip.kodlar.Length >= 2 && !String.IsNullOrEmpty(tertip.tertip.kodlar[1]))
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(tabloAd, ALANLAR[(int)ENUMAlanlar.FONKOD], "LIKE", tertip.tertip.kodlar[1].Replace(".", "") + "%"));
+            if (tertip.tertip.kodlar.Length >= 3 && !String.IsNullOrEmpty(tertip.tertip.kodlar[2]))
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(tabloAd, ALANLAR[(int)ENUMAlanlar.FINKOD], "LIKE", tertip.tertip.kodlar[2].Replace(".", "") + "%"));
+            if (tertip.tertip.kodlar.Length >= 4 && !String.IsNullOrEmpty(tertip.tertip.kodlar[3]))
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(tabloAd, ALANLAR[(int)ENUMAlanlar.EKOKOD], "LIKE", tertip.tertip.kodlar[3].Replace(".", "") + "%"));
+            if (tertip.tertip.kodlar.Length >= 5 && !String.IsNullOrEmpty(tertip.tertip.kodlar[4]))
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(tabloAd, ALANLAR[(int)ENUMAlanlar.PEBKOD], "LIKE", tertip.tertip.kodlar[4].Replace(".", "") + "%"));
+
+
+            return kosul;
+        }
+
+
+*/
+/*
+
+        /// <summary>
+        /// Form yapısında duran anahtar alanları kullanarak, ilgili kaydı veri tabanından silen
+        /// sql cümlesini oluşturup, çalıştıran ve sonucunu döndüren fonksiyon
+        /// </summary>
+        /// <param name="form">Anahtar değişkenleri tutan, OdenekSinifyapısında nesne</param>
+        /// <returns>Sil komutunun çalıştırılması sonucu Sonuc yapısında döndürür</returns>
+        //public override Sonuc Sil(OdenekSinif form)
+        //{
+        //    string sql = "DELETE FROM " + TABLOAD;
+        //    sql = VeriErisim.KosulEkle(sql, "WHERE", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.YIL], "=", form.yil));
+        //    sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.SENARYOKOD], "=", form.senaryoKod.Replace(".", "")));
+        //    sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.TEKLIFYIL], "=", form.teklifYil));
+        //    sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.KURKOD], "=", form.tertip.kodlar[0].Replace(".", "")));
+        //    sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.EKOKOD], "=", form.tertip.kodlar[1].Replace(".", "")));
+        //    sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.PEBKOD], "=", form.tertip.kodlar[2].Replace(".", "")));
+        //    return KomutCalistir(sql, 0);
+        //}
+
+
+        /// <summary>
+        /// Form yapısında duran alanları kıstas olarak kullanarak,
+        /// select sql cümlesini oluşturup, çalıştıran ve sonucunu DataReader olarak döndüren fonksiyon
+        /// </summary>
+        /// <param name="form">Select edilecek kayıtlara ait kıstas bilgisini tutan, OdenekSinifyapısında nesne</param>
+        /// <returns>Select komutunun çalıştırılması sonucu elde edilen DataReader nesnesini döndürür</returns>
+        //public override IDataReader Oku(OdenekSinif form)
+        //{
+        //    string sql = "SELECT " + VeriErisim.TumAlanlar(TABLOAD, ALANLAR) + " FROM " + TABLOAD;
+        //    sql = VeriErisim.KosulEkle(sql, "WHERE", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.YIL], "=", form.yil));
+        //    sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.SENARYOKOD], "=", form.senaryoKod.Replace(".", "")));
+        //    sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.TEKLIFYIL], "=", form.teklifYil));
+        //    sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.KURKOD], "=", form.tertip.kodlar[0].Replace(".", "")));
+        //    sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.EKOKOD], "=", form.tertip.kodlar[1].Replace(".", "")));
+        //    sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.PEBKOD], "=", form.tertip.kodlar[2].Replace(".", "")));
+        //    return veriErisim.DataReaderDondur(sql);
+        //}
+
+        // ekKosula ve verilen kistas tertibe uyan sql koşul oluşturulur.
+        public static string KistasKosulOl(int yil, string senaryoKod, Tertip tertip, bool cokYil, string tabloAd)
+        {
+            string kosul = "";
+
+            if (yil != -1)
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(tabloAd, ALANLAR[(int)ENUMAlanlar.YIL], "=", yil));
+
+            if (!string.IsNullOrEmpty(senaryoKod))
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(tabloAd, ALANLAR[(int)ENUMAlanlar.SENARYOKOD], "=", senaryoKod.Replace(".", "")));
+
+
+            if (tertip.kodlar.Length >= 1 && !String.IsNullOrEmpty(tertip.kodlar[0]))
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(tabloAd, ALANLAR[(int)ENUMAlanlar.KURKOD], "LIKE", tertip.kodlar[0].Replace(".", "") + "%"));
+            if (tertip.kodlar.Length >= 2 && !String.IsNullOrEmpty(tertip.kodlar[1]))
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(tabloAd, ALANLAR[(int)ENUMAlanlar.EKOKOD], "LIKE", tertip.kodlar[1].Replace(".", "") + "%"));
+            if (tertip.kodlar.Length >= 3 && !String.IsNullOrEmpty(tertip.kodlar[2]))
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(tabloAd, ALANLAR[(int)ENUMAlanlar.PEBKOD], "LIKE", tertip.kodlar[2].Replace(".", "") + "%"));
+
+
+            return kosul;
+        }
+
+
+*/
+
+
+/*
+
+        /// <summary>
+        /// Kullanıcının verilen nesneyi veri tabanına yazma yetkisinin var olup olmadığına bakan fonksiyon
+        /// <param name="kullanan">Yetkisi kontrol edilecek kullanıcı bilgilerini tutan nesne</param>
+        /// <param name="form">Kullanıcının kaydetmeye çalıştığı verileri tutan nesne</param>
+        /// </summary>
+        /// <returns>Yazma yetkisi varsa true, yoksa false döndürür.</returns>
+
+        //public static bool YazmaYetkisiVarMi(Kullanici kullanan, OdenekSinif form)
+        //{
+        //    return true;
+        //}
+
+
+        /// <summary>
+        /// Verilen formdaki alanların tutarlılığını kontrol eden fonksiyon
+        /// <param name="kullanan">Alan tutarlılığı kontrol edilirken, kullanıcılara göre farklılık olacaksa, kullanıcı bilgisini tutan nesne</param>
+        /// <param name="form">Alan tutarlılığı kontrol edilecek nesne</param>
+        /// </summary>
+        /// <returns>Alanlar tutarlı ise, Sonuc yapısında true, değilse false ve açıklaması döndürülür.</returns>
+        //public static Sonuc AlanlarGecerliMi(Kullanici kullanan, OdenekSinif form)
+        //{
+        //    return new Sonuc(true, string.Empty, string.Empty);
+        //}
+
+        /// <summary>
+        /// ButceSenaryoKatsayiSinif nesnelerini veri tabanından okuyan fonksiyon
+        /// Hata olursa Exception oluşturur
+        /// </summary>
+        /// <param name="veriErisim">Veri tabanı bağlantı nesnesi, fonksiyon başlarken veritabanı bağlantısı 'VeriErisim.VeriErisimBul' çağrısı yapılarak açılmalıdır.</param>
+        /// <param name="kullanan">Kullanıcı bilgilerini içeren nesne</param>
+        /// <param name="kaynakTur">kaynakTur 1: Ödenek , kaynakTur 2: Harcama</param>
+        /// <param name="kaynakYil">Kaynak Yıl</param>
+        /// <param name="kaynakSenaryoKod">Kaynak Senaryo Kod</param>  
+        //public static ButceSenaryoKatsayiSinif[] ButceEkonomikKodOdenekToplamlariniOku(VeriErisim veriErisim, Kullanici kullanan, int kaynakYil, string kaynakSenaryoKod, int kaynakTur)
+        //{
+        //    ButceSenaryoKatsayiSinif[] gonderilecekListe = null;
+
+        //    ArrayList al;
+
+        //    ABSKodlarVAN absList = bkdServis.KodListeleSeviye(kaynakYil, "4", string.Empty, 1, false);
+
+        //    al = new ArrayList();
+
+        //    foreach (ABSKod kod in absList.absKodlar)
+        //    {
+        //        ButceSenaryoKatsayiSinif ekoKatSayi = new ButceSenaryoKatsayiSinif();
+
+        //        ekoKatSayi.kod = kod.kod;
+        //        ekoKatSayi.kodAd = kod.ad;
+        //        string kosul = string.Empty;
+        //        switch (kaynakTur)
+        //        {
+        //            case 1:
+        //                kosul = (kaynakYil).ToString() + "-" + kaynakSenaryoKod + "-----" + kod.kod;
+        //                ekoKatSayi.kaynakOdenek = BHMv2Genel.UzayDoubleDegerGetir("BHMv2ODENEKSENARYO", kosul, false, string.Empty);
+        //                break;
+        //            case 2:
+        //                kosul = (kaynakYil).ToString() + "-" + kaynakSenaryoKod + "-------" + kod.kod;
+        //                ekoKatSayi.kaynakOdenek = BHMv2Genel.UzayDoubleDegerGetir("PEBTERTIP", kosul, false, string.Empty);
+        //                break;
+        //        }
+
+        //        al.Add(ekoKatSayi);
+        //    }
+
+        //    gonderilecekListe = (ButceSenaryoKatsayiSinif[])al.ToArray(typeof(ButceSenaryoKatsayiSinif));
+
+        //    return gonderilecekListe;
+        //}
+
+        /// <summary>
+        /// Tertip Ödenek dizisi oluşturulurken verilerin Harcama'dan alınması için kullanılacak fonksiyon
+        /// </summary>
+        /// <param name="al">TertipOdenek dizisini tutan ArrayList</param>
+        /// <param name="veriErisim">Veri tabanı bağlantı nesnesi</param>
+        /// <param name="yil">Kaynak Yıl</param>
+        /// <param name="senaryoKod">Kaynak Senaryo Kod</param>
+        /// <param name="teklifYil">Teklif Yıl</param>
+        /// <param name="sablon">ButceTasnifTertipSablon</param>
+        /// <param name="toplam">Tertip şablonunun ödeneklerinin toplamı</param>
+        //private static void PEBHarcamaDanAl(ArrayList al, VeriErisim veriErisim, int yil, string senaryoKod, int teklifYil, ButceTasnifTertipSablon sablon, ref double toplam)
+        //{
+
+        //    VeriErisim ve = VeriErisim.VeriErisimBul(veriErisim, "BaglantiSatiriPEB");
+        //    TABBHMODENEKGIDER TABBHMODENEK = new TABBHMODENEKGIDER(ve);
+
+        //    TABBHMODENEK.TABLOAD = "PEBHARCAMA";
+        //    TABBHMODENEK.ALANLAR.SetValue("AY", 1);
+        //    TABBHMODENEK.ALANLAR.SetValue("MALIYETKURKOD", 2);
+        //    TABBHMODENEK.ALANLAR.SetValue("MALIYETFONKOD", 7);
+        //    TABBHMODENEK.ALANLAR.SetValue("HARCAMA", 8);
+
+
+        //    TertipOdenek to;
+        //    IDataReader dr = TABBHMODENEK.TertipListesi(yil, senaryoKod, teklifYil, sablon.tertipSablon.Split('-'));
+
+        //    if (dr != null)
+        //    {
+        //        while (dr.Read())
+        //        {
+        //            to = new TertipOdenek();
+        //            to.tertip = new TNS.BKD.Tertip(yil, TNS.BKD.ENUMTabloKod.TABPEBHarcama);
+        //            to.tertip.TertipAta(VeriErisim.DegerAl(dr, (int)TABBHMODENEK.ENUMAlanlar.KURKOD, string.Empty) + "-" +
+        //            VeriErisim.DegerAl(dr, (int)TABBHMODENEK.ENUMAlanlar.FONKOD, string.Empty) + "-" +
+        //            VeriErisim.DegerAl(dr, (int)TABBHMODENEK.ENUMAlanlar.FINKOD, string.Empty) + "-" +
+        //            VeriErisim.DegerAl(dr, (int)TABBHMODENEK.ENUMAlanlar.EKOKOD, string.Empty) + "-" +
+        //            VeriErisim.DegerAl(dr, (int)TABBHMODENEK.ENUMAlanlar.PEBFONKOD, string.Empty));
+        //            to.tertip.Noktala();
+        //            to.odenek[0] = VeriErisim.DegerAl(dr, (int)TABBHMODENEK.ENUMAlanlar.ODENEK, 0.0);
+        //            toplam += to.odenek[0];
+        //            al.Add(to);
+        //        }
+        //        dr.Close();
+        //    }
+        //    ve.VeriErisimKapat();
+        //}
+
+        //public static Sonuc OdeneklereKatsayiUygula(Kullanici kullanan, VeriErisim veriErisim, int hedefYil, string hedefSenaryoKod, int kaynakTur, int kaynakYil, string kaynakSenaryoKod, ButceSenaryoKatsayiSinif[] katsayilar)
+        //{
+        //    Sonuc sonuc = new Sonuc();
+
+        //    VeriErisim ve = VeriErisim.VeriErisimBul(veriErisim, BHMv2Genel.VeriErisimAdBul(hedefYil));
+
+        //    ArrayList al = new ArrayList();
+        //    foreach (ButceSenaryoKatsayiSinif katsayiSinif in katsayilar)
+        //    {
+        //        ButceTasnifTertipSablon sablon = new ButceTasnifTertipSablon("---" + katsayiSinif.kod);
+        //        double toplamKontrol = 0;
+        //        al.Clear();
+        //        switch (kaynakTur)
+        //        {
+        //            case 1:
+        //                BHMOdenekDenAl(al, veriErisim, hedefYil, kaynakYil, kaynakSenaryoKod, 0, sablon, ref toplamKontrol);
+        //                break;
+        //            case 2:
+        //                //PEBHarcamaDanAl(al, veriErisim, kaynakYil, kaynakSenaryoKod, -1, sablon, ref toplamKontrol);
+        //                break;
+        //        }
+
+        //        TertipOdenek[] tolist = (TertipOdenek[])al.ToArray(typeof(TertipOdenek));
+
+        //        if (toplamKontrol > 0)
+        //        {
+        //            toplamKontrol = 0;
+        //            foreach (TertipOdenek to in tolist)
+        //            {
+        //                to.odenek[0] = to.odenek[0] * katsayiSinif.katsayi;
+        //                toplamKontrol += to.odenek[0];
+        //            }
+
+        //        }
+
+        //        sonuc = BHMv2ButceOdenek.Kaydet(ve, kullanan, hedefYil, hedefSenaryoKod, tolist);
+
+        //        if (!sonuc.islemSonuc)
+        //            break;
+
+        //    }
+        //    return sonuc;
+        //}
+
+*/

@@ -1,0 +1,116 @@
+@page
+@model GorevAtaModel
+@{
+    // Eski sayfalardaki gibi metinler Türkçe sabittir (OrgGorev ve OrgGorevKisit kaynak dosyası kullanmıyordu).
+    ViewData["Title"] = "Göreve Kişi Atama";
+    // Geniş ekranda sayfa pencereye sığar, bölmeler kendi içinde kayar (tanim.css, gorevata.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<!-- Kullanıcı Giriş'ten açıldığında: kullanıcı ve şimdiki görevleri -->
+<div id="kisiSerit" class="gorevata-kisi" hidden>
+    <span class="kim" id="kisiAd"></span>
+    <span id="kisiGorevler" class="tanim-etiketler"></span>
+</div>
+
+<div class="tanim gorevata">
+    <!-- Sol: birim ağacı -->
+    <section>
+        <div class="kutu">
+            <h2 class="kutu-baslik">Birimler</h2>
+            <ul id="agacBirim" class="kayan" aria-label="Birimler"></ul>
+        </div>
+    </section>
+
+    <!-- Orta: seçili birimde verilebilecek görevler -->
+    <section>
+        <div class="kutu">
+            <h2 class="kutu-baslik">Görevler</h2>
+            <p id="secilenBirim" class="secilen">Önce soldan bir birim seçiniz.</p>
+            <ul id="lstGorevler" class="kayan" aria-label="Görevler"></ul>
+        </div>
+    </section>
+
+    <!-- Sağ: seçili göreve atanmış kişiler -->
+    <section>
+        <div class="kutu">
+            <h2 class="kutu-baslik">Görevlendirilenler</h2>
+            <p id="secilenGorev" class="secilen">Bir görev seçiniz.</p>
+            <div class="btn-toolbar tanim-arac" role="toolbar">
+                <button type="button" id="btnKisiyiEkle" class="btn btn-primary btn-sm" disabled hidden>
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <span id="btnKisiyiEkleMetin"></span>
+                </button>
+                <button type="button" id="btnKisiEkle" class="btn btn-primary btn-sm" disabled>
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Göreve Kişi Ekle
+                </button>
+                <button type="button" id="btnKisiSil" class="btn btn-danger btn-sm" disabled>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Seçilenleri Görevden Sil
+                </button>
+            </div>
+            <ul id="lstKisiler" class="tanim-liste kayan"></ul>
+        </div>
+    </section>
+</div>
+
+<!-- Göreve eklenecek kişileri kullanıcılar arasında arama (eski ListeKullaniciSec) -->
+<dialog id="dlgKisiAra" class="tanim-pencere genis" aria-labelledby="dlgKisiAraBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKisiAraBaslik">Göreve Kişi Ekle</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmKisiAra" class="tanim-arama" novalidate>
+            <div class="arama-satir">
+                <input type="text" id="txtAraAd" class="form-control" placeholder="Ad" aria-label="Ad" />
+                <input type="text" id="txtAraSoyad" class="form-control" placeholder="Soyad" aria-label="Soyad" />
+                <input type="text" id="txtAraKod" class="form-control" placeholder="Kullanıcı kodu" aria-label="Kullanıcı kodu" />
+                <button type="submit" id="btnAra" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Ara
+                </button>
+            </div>
+        </form>
+        <ul id="lstBulunan" class="tanim-liste"></ul>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnBulunanEkle" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Seçilenleri Göreve Ekle
+        </button>
+    </div>
+</dialog>
+
+<!-- Kişinin bu görevdeki kısıtı (eski OrgGorevKisit) -->
+<dialog id="dlgKisit" class="tanim-pencere" aria-labelledby="dlgKisitBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKisitBaslik">Görev Kısıtı</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="kisitKisi" class="tanim-not duz"></p>
+        <div class="tanim-form" style="--etiket-genislik: 110px">
+            <div class="form-group">
+                <label class="control-label" for="txtFaaliyet">Faaliyet Kod</label>
+                <div><input type="text" id="txtFaaliyet" class="form-control" /></div>
+            </div>
+        </div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnKisitKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/gorevata.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/gorevata.js" asp-append-version="true"></script>
+}

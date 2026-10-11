@@ -1,0 +1,319 @@
+@page
+@model ORGAnaModel
+@{
+    // Eski sayfalardaki metinler OrganizasyonSema kaynağından geliyordu; burada Türkçe sabittir.
+    ViewData["Title"] = "Organizasyon Şeması";
+    // Geniş ekranda sayfa pencereye sığar, bölmeler kendi içinde kayar (tanim.css, organa.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim organa">
+    <!-- Sol: birim ağacı -->
+    <section class="tanim-sol">
+        <div class="kutu">
+            <!-- Tek araç çubuğu: solda şemayı değiştiren tuşlar (yalnızca değiştirebilene görünür), sağda raporlar (Excel).
+                 Yazdır seçili birimi ve altını (seçili yoksa bütün şemayı), Görev Yaz kullanıcıların görevlerini verir. -->
+            <div class="btn-toolbar tanim-arac" role="toolbar">
+                <button type="button" id="btnYeni" class="btn btn-default btn-sm yazma" title="Seçili birimin altına yeni birim ekler" hidden>
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Birim
+                </button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm yazma" disabled hidden>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+                </button>
+                <button type="button" id="btnBirimAc" class="btn btn-default btn-sm yazma" title="Kapatılmış bir birimi yeniden açar" hidden>
+                    <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Birim Aç
+                </button>
+                <span class="btn-group btn-group-sm pull-right" role="group" aria-label="Raporlar">
+                    <button type="button" id="btnYazdir" class="btn btn-default" title="Seçili birim ve altındaki birimlerin listesi (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                    </button>
+                    <button type="button" id="btnGorevYaz" class="btn btn-default" title="Kullanıcıların birimlere göre görevleri (Excel)" hidden>
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Görev Yaz
+                    </button>
+                </span>
+            </div>
+            <ul id="agacBirim" class="kayan" aria-label="Organizasyon şeması"></ul>
+        </div>
+    </section>
+
+    <!-- Sağ: seçili birim -->
+    <section class="tanim-sag">
+        <div class="kutu">
+            <h2 class="kutu-baslik" id="birimBaslik">Soldan bir birim seçiniz.</h2>
+            <div class="sekmeler" role="tablist">
+                <button type="button" role="tab" id="sekmeBilgi" aria-controls="pnlBilgi" aria-selected="true">Birim Bilgileri</button>
+                <button type="button" role="tab" id="sekmeGorev" aria-controls="pnlGorev" aria-selected="false" disabled>Görevler</button>
+            </div>
+
+            <!-- Birim Bilgileri -->
+            <div id="pnlBilgi" class="sekme-govde kayan" role="tabpanel" aria-labelledby="sekmeBilgi">
+                <div class="btn-toolbar tanim-arac yazma" role="toolbar" hidden>
+                    <button type="button" id="btnKaydet" class="btn btn-primary btn-sm" disabled>
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                    </button>
+                    <button type="button" id="btnBirimKapat" class="btn btn-default btn-sm" disabled>
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span> Birim Kapat
+                    </button>
+                </div>
+                <div id="formUyari" class="alert alert-warning" role="alert" hidden></div>
+
+                <form id="frmBirim" class="tanim-form" novalidate>
+                    <fieldset id="alanlar" disabled>
+                        <div class="form-group ust-hizali">
+                            <span class="control-label">Birim Özellikleri</span>
+                            <div class="tanim-secenekler" role="group" aria-label="Birim Özellikleri">
+                                <label><input type="checkbox" id="chkYonetici" /> Yönetici Bilgileri</label>
+                                <label><input type="checkbox" id="chkKurum" /> Kurum</label>
+                                <label><input type="checkbox" id="chkHarcama" /> Harcama Birimi</label>
+                                <label><input type="checkbox" id="chkButce" /> Bütçe Birimi</label>
+                                <label><input type="checkbox" id="chkTasinir" /> Taşınır Birimi</label>
+                                <label><input type="checkbox" id="chkAmbar" /> Ambar</label>
+                                <label><input type="checkbox" id="chkPersonel" /> Personel Birimi</label>
+                                <label><input type="checkbox" id="chkEvrak" /> Evrak Birimi</label>
+                                <label><input type="checkbox" id="chkIletisim" /> İletişim Bilgisi</label>
+                                <label><input type="checkbox" id="chkCizimCikis" /> Çizim Çıkış Noktası</label>
+                                <label><input type="checkbox" id="chkCizimdeGorunme" /> Çizimde Görünme</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="ddlCografya">Coğrafi Birim</label>
+                            <div>
+                                <select id="ddlCografya" class="form-control dar">
+                                    <option value="">Değil</option>
+                                    <option value="ulke">Ülke</option>
+                                    <option value="bolge">Bölge</option>
+                                    <option value="il">İl</option>
+                                    <option value="ilce">İlçe</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="txtAd">Adı</label>
+                            <div><input type="text" id="txtAd" class="form-control" required /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtEntegreKod">Kurum Bağlantı Kodu</label>
+                            <div><input type="text" id="txtEntegreKod" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtKisaAd">Kısa Adı</label>
+                            <div><input type="text" id="txtKisaAd" class="form-control" /></div>
+                        </div>
+                        <div class="form-group" data-kosul="kurum">
+                            <label class="control-label" for="txtKurumKod">Kurum Kodu</label>
+                            <div><input type="text" id="txtKurumKod" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="ddlBirimTur">Birim Türü</label>
+                            <div><select id="ddlBirimTur" class="form-control"><option value=""></option></select></div>
+                        </div>
+                        <div class="form-group">
+                            <span class="control-label" id="lblMerkez">Merkez Birimi</span>
+                            <div class="tanim-ekle bitisik">
+                                <input type="text" id="txtMerkezAd" class="form-control" readonly aria-labelledby="lblMerkez" />
+                                <button type="button" id="btnMerkezSec" class="btn btn-default btn-sm">Seç</button>
+                                <button type="button" id="btnMerkezSil" class="btn btn-default btn-sm" title="Merkez birimini kaldır" aria-label="Merkez birimini kaldır">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Yönetici bilgileri -->
+                        <div class="bolum" data-kosul="yonetici">
+                            <div class="alan-grubu">Yönetici Bilgileri</div>
+                            <div class="form-group" data-yonetici="yonetici">
+                                <label class="control-label" for="ddlYonetici">Birim Yöneticisi</label>
+                                <div class="yonetici-satir">
+                                    <select id="ddlYonetici" class="form-control"><option value="0"></option></select>
+                                    <span class="kisi" id="kisiYonetici"></span>
+                                </div>
+                            </div>
+                            <div class="form-group" data-yonetici="ust1">
+                                <label class="control-label" for="ddlUstYonetici1">Üst Yönetici (I)</label>
+                                <div class="yonetici-satir">
+                                    <select id="ddlUstYonetici1" class="form-control"><option value="0"></option></select>
+                                    <span class="kisi" id="kisiUstYonetici1"></span>
+                                </div>
+                            </div>
+                            <div class="form-group" data-yonetici="ust2">
+                                <label class="control-label" for="ddlUstYonetici2">Üst Yönetici (II)</label>
+                                <div class="yonetici-satir">
+                                    <select id="ddlUstYonetici2" class="form-control"><option value="0"></option></select>
+                                    <span class="kisi" id="kisiUstYonetici2"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Muhasebe: harcama, taşınır ya da ambar birimi -->
+                        <div class="form-group" data-kosul="muhasebe">
+                            <label class="control-label" for="txtMuhasebe">Muhasebe Kodu</label>
+                            <div class="yonetici-satir">
+                                <input type="text" id="txtMuhasebe" class="form-control dar" inputmode="numeric" />
+                                <span class="kisi" id="lblMuhasebeAd"></span>
+                            </div>
+                        </div>
+
+                        <!-- Vergi: harcama birimi -->
+                        <div data-kosul="harcama">
+                            <div class="form-group">
+                                <label class="control-label" for="txtVergiNo">Vergi No</label>
+                                <div><input type="text" id="txtVergiNo" class="form-control dar" inputmode="numeric" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtVergiDairesi">Vergi Dairesi</label>
+                                <div><input type="text" id="txtVergiDairesi" class="form-control" /></div>
+                            </div>
+                        </div>
+
+                        <!-- Evrak -->
+                        <div data-kosul="evrak">
+                            <div class="form-group">
+                                <label class="control-label" for="txtEvrakBirim">Evrak Birim</label>
+                                <div><input type="text" id="txtEvrakBirim" class="form-control" /></div>
+                            </div>
+                            <div class="form-group ust-hizali">
+                                <label class="control-label" for="txtAntet">Antet</label>
+                                <div><textarea id="txtAntet" class="form-control" rows="2"></textarea></div>
+                            </div>
+                        </div>
+
+                        <!-- Coğrafya: seçilen türe kadar olan düzeyler gösterilir -->
+                        <div data-kosul="cografya">
+                            <div class="form-group" data-cografya="ulke bolge il ilce">
+                                <label class="control-label" for="ddlUlke">Ülke</label>
+                                <div><select id="ddlUlke" class="form-control"></select></div>
+                            </div>
+                            <div class="form-group" data-cografya="bolge">
+                                <label class="control-label" for="ddlBolge">Bölge</label>
+                                <div><select id="ddlBolge" class="form-control"></select></div>
+                            </div>
+                            <div class="form-group" data-cografya="il ilce">
+                                <label class="control-label" for="ddlIl">İl</label>
+                                <div><select id="ddlIl" class="form-control"></select></div>
+                            </div>
+                            <div class="form-group" data-cografya="ilce">
+                                <label class="control-label" for="ddlIlce">İlçe</label>
+                                <div><select id="ddlIlce" class="form-control"></select></div>
+                            </div>
+                        </div>
+
+                        <!-- İletişim -->
+                        <div class="bolum" data-kosul="iletisim">
+                            <div class="alan-grubu">İletişim Bilgisi</div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtAdres">Adres</label>
+                                <div><input type="text" id="txtAdres" class="form-control" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtTelefon">Telefon</label>
+                                <div><input type="tel" id="txtTelefon" class="form-control" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtFaks">Faks</label>
+                                <div><input type="tel" id="txtFaks" class="form-control" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtEposta">E-Posta</label>
+                                <div><input type="email" id="txtEposta" class="form-control" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtUrl">URL</label>
+                                <div><input type="url" id="txtUrl" class="form-control" /></div>
+                            </div>
+                        </div>
+
+                        <!-- Bütçe, harcama ve ambar kodları en altta durur: üstteki alanlarla karışmasın -->
+                        <!-- Bütçe kodları -->
+                        <div class="bolum" data-kosul="butce">
+                            <div class="alan-grubu">Bütçe Kodları</div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtMerkezKur">Merkez Kurumsal Kodu</label>
+                                <div><input type="text" id="txtMerkezKur" class="form-control kod-ara" data-tur="1" autocomplete="off" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtTasraKur">Taşra Kurumsal Kodu</label>
+                                <div><input type="text" id="txtTasraKur" class="form-control kod-ara" data-tur="1" autocomplete="off" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtYurtDisiKur">Yurtdışı Kurumsal Kodu</label>
+                                <div><input type="text" id="txtYurtDisiKur" class="form-control kod-ara" data-tur="1" autocomplete="off" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtFaaliyet">Birime Ait Faaliyet Kodları</label>
+                                <div><input type="text" id="txtFaaliyet" class="form-control" /></div>
+                            </div>
+                        </div>
+
+                        <!-- Harcama kodları: harcama ya da taşınır birimi -->
+                        <div class="bolum" data-kosul="harcamaKod">
+                            <div class="alan-grubu">Harcama Kodları</div>
+                            <div class="harcama-ekle">
+                                <input type="text" id="txtHkKur" class="form-control input-sm kod-ara" data-tur="1" placeholder="Kurumsal kod" aria-label="Kurumsal kod" autocomplete="off" />
+                                <input type="text" id="txtHkBirim" class="form-control input-sm" placeholder="Harcama birimi" aria-label="Harcama birimi" autocomplete="off" />
+                                <input type="text" id="txtHkFon" class="form-control input-sm kod-ara" data-tur="2" placeholder="Fonksiyonel kod" aria-label="Fonksiyonel kod" autocomplete="off" />
+                                <button type="button" id="btnHkEkle" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekle
+                                </button>
+                            </div>
+                            <ul id="lstHarcamaKod" class="tanim-liste"></ul>
+                        </div>
+
+                        <!-- Ambar -->
+                        <div class="bolum" data-kosul="ambar">
+                            <div class="alan-grubu">Ambar</div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtAmbarKur">Kurumsal Kod</label>
+                                <div><input type="text" id="txtAmbarKur" class="form-control kod-ara" data-tur="1" autocomplete="off" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtAmbarBirim">Harcama Birimi</label>
+                                <div><input type="text" id="txtAmbarBirim" class="form-control" autocomplete="off" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtAmbarKod">Ambar Kodu</label>
+                                <div><input type="text" id="txtAmbarKod" class="form-control dar" /></div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+            <!-- Görevler: seçili birimin görevleri ve göreve atanan kişiler (Organizasyon/GorevAta, çerçevede) -->
+            <div id="pnlGorev" class="sekme-govde" role="tabpanel" aria-labelledby="sekmeGorev" hidden>
+                <iframe id="cerceveGorev" title="Görevler"></iframe>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Kod arama kutularının önerileri (kurumsal / fonksiyonel kod, harcama birimi) -->
+<datalist id="dlKodlar"></datalist>
+
+<!-- Birim seçme: merkez birimi ya da açılacak (kapatılmış) birim -->
+<dialog id="dlgBirimSec" class="tanim-pencere" aria-labelledby="dlgBirimSecBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgBirimSecBaslik"></h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <ul id="agacBirimSec" class="birim-sec-agac" aria-labelledby="dlgBirimSecBaslik"></ul>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnBirimSecTamam" class="btn btn-primary btn-sm" disabled>Seç</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/organa.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/organa.js" asp-append-version="true"></script>
+}

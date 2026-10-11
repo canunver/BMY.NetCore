@@ -1,0 +1,1095 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PEB001" xml:space="preserve">
+    <value>Yazma hakkınız yok!</value>
+  </data>
+  <data name="PEB002" xml:space="preserve">
+    <value>Bu birime yazma hakkınız yok!</value>
+  </data>
+  <data name="PEB003" xml:space="preserve">
+    <value>Okuma hakkınız yok!</value>
+  </data>
+  <data name="PEB004" xml:space="preserve">
+    <value>Bu birimin bilgilerini okuma hakkınız yok!</value>
+  </data>
+  <data name="PEB005" xml:space="preserve">
+    <value>Birim boş bırakılamaz.</value>
+  </data>
+  <data name="PEB006" xml:space="preserve">
+    <value>Birim sistemde kayıtlı değil.</value>
+  </data>
+  <data name="PEB007" xml:space="preserve">
+    <value>Daire boş bırakılamaz.</value>
+  </data>
+  <data name="PEB008" xml:space="preserve">
+    <value>Faaliyet/Proje No veya Sabit Maliyet No alanlarından birinin girilmesi gerekiyor.</value>
+  </data>
+  <data name="PEB009" xml:space="preserve">
+    <value>Faaliyet/Proje No veya Sabit Maliyet No alanlarından sadece birinin girilmesi gerekiyor.</value>
+  </data>
+  <data name="PEB010" xml:space="preserve">
+    <value>Alt Faaliyet boş bırakılamaz.</value>
+  </data>
+  <data name="PEB011" xml:space="preserve">
+    <value>Seçilen Daire sistemde kayıtlı değil.</value>
+  </data>
+  <data name="PEB012" xml:space="preserve">
+    <value>Seçilen Faaliyet/Proje sistemde kayıtlı değil.</value>
+  </data>
+  <data name="PEB013" xml:space="preserve">
+    <value>Seçilen Sabit Maliyet sistemde kayıtlı değil.</value>
+  </data>
+  <data name="PEB014" xml:space="preserve">
+    <value>Böyle bir Alt Faaliyet sistemde kayıtlı değil.</value>
+  </data>
+  <data name="PEB015" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PEB016" xml:space="preserve">
+    <value>Kayıt işlemi gerçekleştirilemedi.</value>
+  </data>
+  <data name="PEB017" xml:space="preserve">
+    <value>Verilen kriterlere uygun kayıt bulunamadı.</value>
+  </data>
+  <data name="PEB018" xml:space="preserve">
+    <value>Alt Faaliyet No boş bırakılamaz.</value>
+  </data>
+  <data name="PEB019" xml:space="preserve">
+    <value>Daha önce kullanıldığı için {0} kodlu birimin {1} adlı Alt Faaliyeti silinemez!</value>
+  </data>
+  <data name="PEB020" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PEB021" xml:space="preserve">
+    <value>Silme işlemi gerçekleştirilemedi.</value>
+  </data>
+  <data name="PEB022" xml:space="preserve">
+    <value>Bu işlemi yapmaya yetkili değilsiniz.</value>
+  </data>
+  <data name="PEB023" xml:space="preserve">
+    <value>Faaliyet Proje Aktarımında hata. {0}</value>
+  </data>
+  <data name="PEB024" xml:space="preserve">
+    <value>Performans Hedef Aktarımında hata. {0}</value>
+  </data>
+  <data name="PEB025" xml:space="preserve">
+    <value>Faaliyet Proje Ağırlık Aktarımında hata. {0}</value>
+  </data>
+  <data name="PEB026" xml:space="preserve">
+    <value>Gösterge Hedef Aktarımında hata. {0}</value>
+  </data>
+  <data name="PEB027" xml:space="preserve">
+    <value>Performans Hedef Ağırlık Aktarımında hata. {0}</value>
+  </data>
+  <data name="PEB028" xml:space="preserve">
+    <value>Sabit Maliyet Aktarımında hata. {0}</value>
+  </data>
+  <data name="PEB029" xml:space="preserve">
+    <value>Sabit Maliyet Ağırlık Aktarımında hata. {0}</value>
+  </data>
+  <data name="PEB030" xml:space="preserve">
+    <value>Kopyalama işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PEB031" xml:space="preserve">
+    <value>Kopyalama işlemi gerçekleştirilemedi.</value>
+  </data>
+  <data name="PEB032" xml:space="preserve">
+    <value>Böyle bir Daire sistemde kayıtlı değil.</value>
+  </data>
+  <data name="PEB033" xml:space="preserve">
+    <value>Daha önce kullanıldığı için {0} kodlu birimin {1} adlı Dairesi silinemez!</value>
+  </data>
+  <data name="PEB034" xml:space="preserve">
+    <value>Faaliyet/Proje Adı boş bırakılamaz.</value>
+  </data>
+  <data name="PEB035" xml:space="preserve">
+    <value>Faaliyet/Proje Ağırlık bilgileri boş bırakılamaz.</value>
+  </data>
+  <data name="PEB036" xml:space="preserve">
+    <value>Böyle bir Faaliyet/Proje sistemde kayıtlı değil.</value>
+  </data>
+  <data name="PEB037" xml:space="preserve">
+    <value>Faaliyet/Proje No boş bırakılamaz.</value>
+  </data>
+  <data name="PEB038" xml:space="preserve">
+    <value>Veri tabanı okuma hatası! ({0})</value>
+  </data>
+  <data name="PEB039" xml:space="preserve">
+    <value>Yıl boş bırakılamaz.</value>
+  </data>
+  <data name="PEB040" xml:space="preserve">
+    <value>İşlem yapılırken denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="PEB041" xml:space="preserve">
+    <value>Daha önce kullanıldığı için {0} kodlu birimin {1} kodlu Faaliyet/Projesi silinemez!</value>
+  </data>
+  <data name="PEB042" xml:space="preserve">
+    <value>Girilen ağırlıklarda sıfırdan küçük değer var. Lütfen kontrol ediniz.</value>
+  </data>
+  <data name="PEB043" xml:space="preserve">
+    <value>Girilen Ağırlıkların toplamı 100 olmalı. Lütfen kontrol ediniz. Şu anki Toplam = {0}</value>
+  </data>
+  <data name="PEB044" xml:space="preserve">
+    <value>{0} nolu Performans Hedefi kayıtlı değil.</value>
+  </data>
+  <data name="PEB045" xml:space="preserve">
+    <value>Senaryo boş bırakılamaz.</value>
+  </data>
+  <data name="PEB046" xml:space="preserve">
+    <value>Ay boş bırakılamaz.</value>
+  </data>
+  <data name="PEB047" xml:space="preserve">
+    <value>Faaliyet/Proje boş bırakılamaz.</value>
+  </data>
+  <data name="PEB048" xml:space="preserve">
+    <value>Kurumsal Kod boş bırakılamaz.</value>
+  </data>
+  <data name="PEB049" xml:space="preserve">
+    <value>{0} Kurumsal Kodu sistemde kayıtlı değil.</value>
+  </data>
+  <data name="PEB050" xml:space="preserve">
+    <value>{0} Kurumsal Kodu uygun uzunlukta değil.</value>
+  </data>
+  <data name="PEB051" xml:space="preserve">
+    <value>Fonksiyonel Kod boş bırakılamaz.</value>
+  </data>
+  <data name="PEB052" xml:space="preserve">
+    <value>{0} Fonksiyonel Kodu sistemde kayıtlı değil.</value>
+  </data>
+  <data name="PEB053" xml:space="preserve">
+    <value>{0} Fonksiyonel Kodu uygun uzunlukta değil.</value>
+  </data>
+  <data name="PEB054" xml:space="preserve">
+    <value>Finans Kod boş bırakılamaz.</value>
+  </data>
+  <data name="PEB055" xml:space="preserve">
+    <value>{0} Finans Kodu sistemde kayıtlı değil.</value>
+  </data>
+  <data name="PEB056" xml:space="preserve">
+    <value>{0} Finans Kodu uygun uzunlukta değil.</value>
+  </data>
+  <data name="PEB057" xml:space="preserve">
+    <value>Ekonomik Kod boş bırakılamaz.</value>
+  </data>
+  <data name="PEB058" xml:space="preserve">
+    <value>{0} Ekonomik Kodu sistemde kayıtlı değil.</value>
+  </data>
+  <data name="PEB059" xml:space="preserve">
+    <value>{0} Ekonomik Kodu uygun uzunlukta değil.</value>
+  </data>
+  <data name="PEB060" xml:space="preserve">
+    <value>Gösterge Adı boş bırakılamaz.</value>
+  </data>
+  <data name="PEB061" xml:space="preserve">
+    <value>Ölçü Birimi boş bırakılamaz.</value>
+  </data>
+  <data name="PEB062" xml:space="preserve">
+    <value>Gösterge türü boş bırakılamaz.</value>
+  </data>
+  <data name="PEB063" xml:space="preserve">
+    <value>Kullanım Şekli boş bırakılamaz.</value>
+  </data>
+  <data name="PEB064" xml:space="preserve">
+    <value>Seviye boş bırakılamaz.</value>
+  </data>
+  <data name="PEB065" xml:space="preserve">
+    <value>İlerleme Yönü boş bırakılamaz.</value>
+  </data>
+  <data name="PEB066" xml:space="preserve">
+    <value>Böyle bir Performans Gösterge sistemde kayıtlı değil.</value>
+  </data>
+  <data name="PEB067" xml:space="preserve">
+    <value>Gösterge Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PEB068" xml:space="preserve">
+    <value>Daha önce kullanıldığı için bu performans göstergesi silinemez!</value>
+  </data>
+  <data name="PEB069" xml:space="preserve">
+    <value>Performans Hedefi boş bırakılamaz.</value>
+  </data>
+  <data name="PEB070" xml:space="preserve">
+    <value>Dönem boş bırakılamaz.</value>
+  </data>
+  <data name="PEB071" xml:space="preserve">
+    <value>Detay boş bırakılamaz.</value>
+  </data>
+  <data name="PEB072" xml:space="preserve">
+    <value>Seçilen Performans Hedefi yanlış veya kayıtlı değil.</value>
+  </data>
+  <data name="PEB073" xml:space="preserve">
+    <value>{0} kodlu performans göstergesi sistemde kayıtlı değil veya kullanım şekli Hizmet değil.</value>
+  </data>
+  <data name="PEB074" xml:space="preserve">
+    <value>Önce, Performans Göstergesi Hedeflenen değerlerini girmelisiniz.</value>
+  </data>
+  <data name="PEB075" xml:space="preserve">
+    <value>Aşama boş bırakılamaz.</value>
+  </data>
+  <data name="PEB076" xml:space="preserve">
+    <value>Bu işlemi yapmaya yetkiniz yok!</value>
+  </data>
+  <data name="PEB077" xml:space="preserve">
+    <value>Ağırlıklar boş bırakılamaz.</value>
+  </data>
+  <data name="PEB078" xml:space="preserve">
+    <value>İş/Görev boş bırakılamaz.</value>
+  </data>
+  <data name="PEB079" xml:space="preserve">
+    <value>Seçilen Alt Faaliyet sistemde kayıtlı değil.</value>
+  </data>
+  <data name="PEB080" xml:space="preserve">
+    <value>Böyle bir İş/Görev sistemde kayıtlı değil.</value>
+  </data>
+  <data name="PEB081" xml:space="preserve">
+    <value>İş/Görev No boş bırakılamaz.</value>
+  </data>
+  <data name="PEB082" xml:space="preserve">
+    <value>{0} kodlu performans göstergesi sistemde kayıtlı değil veya kullanım şekli Operasyonel Plan değil.</value>
+  </data>
+  <data name="PEB083" xml:space="preserve">
+    <value>{0} T.C. Kimlik nolu kişi kayıtlı değil.</value>
+  </data>
+  <data name="PEB084" xml:space="preserve">
+    <value>Ölçü Birimi adı boş bırakılamaz.</value>
+  </data>
+  <data name="PEB085" xml:space="preserve">
+    <value>e-bütçe Ölçü Birimi boş bırakılamaz.</value>
+  </data>
+  <data name="PEB086" xml:space="preserve">
+    <value>Böyle bir Ölçü Birim sistemde kayıtlı değil.</value>
+  </data>
+  <data name="PEB087" xml:space="preserve">
+    <value>Ölçü Birimi Kodu boş bırakılamaz.</value>
+  </data>
+  <data name="PEB088" xml:space="preserve">
+    <value>Daha önce kullanıldığı için bu ölçü birimi silinemez!</value>
+  </data>
+  <data name="PEB089" xml:space="preserve">
+    <value>Performans Hedefi Adı boş bırakılamaz.</value>
+  </data>
+  <data name="PEB090" xml:space="preserve">
+    <value>Performans Hedefinin Ağırlık bilgileri boş bırakılamaz.</value>
+  </data>
+  <data name="PEB091" xml:space="preserve">
+    <value>Böyle bir Performans Hedefi sistemde kayıtlı değil.</value>
+  </data>
+  <data name="PEB092" xml:space="preserve">
+    <value>Daha önce kullanıldığı için {0} kodlu birimin {1} nolu Performans Hedefi silinemez!</value>
+  </data>
+  <data name="PEB093" xml:space="preserve">
+    <value>Performans Hedefi No boş bırakılamaz.</value>
+  </data>
+  <data name="PEB094" xml:space="preserve">
+    <value>{0} kodlu Stratejik Hedef kayıtlı değil.</value>
+  </data>
+  <data name="PEB095" xml:space="preserve">
+    <value>T.C. Kimlik No boş bırakılamaz.</value>
+  </data>
+  <data name="PEB096" xml:space="preserve">
+    <value>Personelle ilgili herhangi bir bilgi girilmemiş.</value>
+  </data>
+  <data name="PEB097" xml:space="preserve">
+    <value>{0} T.C. Kimlik No'lu kişi önce Personel modülüne kayıt edilmeli.</value>
+  </data>
+  <data name="PEB098" xml:space="preserve">
+    <value>Sabit Maliyet No boş bırakılamaz.</value>
+  </data>
+  <data name="PEB099" xml:space="preserve">
+    <value>Performans Göstergesi boş bırakılamaz.</value>
+  </data>
+  <data name="PEB100" xml:space="preserve">
+    <value>Dönem Baş. Yılı boş bırakılamaz.</value>
+  </data>
+  <data name="PEB101" xml:space="preserve">
+    <value>Sabit Maliyet Adı boş bırakılamaz.</value>
+  </data>
+  <data name="PEB102" xml:space="preserve">
+    <value>Sabit Maliyet türü boş bırakılamaz.</value>
+  </data>
+  <data name="PEB103" xml:space="preserve">
+    <value>Seçilen Performans Hedefi sistemde kayıtlı değil.</value>
+  </data>
+  <data name="PEB104" xml:space="preserve">
+    <value>Böyle bir Sabit Maliyet sistemde kayıtlı değil.</value>
+  </data>
+  <data name="PEB105" xml:space="preserve">
+    <value>Sabit Maliyet boş bırakılamaz.</value>
+  </data>
+  <data name="PEB106" xml:space="preserve">
+    <value>Sabit Maliyet Ağırlık bilgileri girilmemiş.</value>
+  </data>
+  <data name="PEB107" xml:space="preserve">
+    <value>{0} kodlu Faaliyet/Proje kayıtlı değil.</value>
+  </data>
+  <data name="PEB108" xml:space="preserve">
+    <value>Başlangıç Durum Tarihi boş bırakılamaz.</value>
+  </data>
+  <data name="PEB109" xml:space="preserve">
+    <value>Mevcut/Yeni Durum Tarihi boş bırakılamaz.</value>
+  </data>
+  <data name="PEB110" xml:space="preserve">
+    <value>Onaylama / Onay kaldırma hakkınız yok!</value>
+  </data>
+  <data name="PEB111" xml:space="preserve">
+    <value>Bu birime onaylama / onay kaldırma hakkınız yok!</value>
+  </data>
+  <data name="PEB112" xml:space="preserve">
+    <value>Onaylamaya çalıştığınız bilgiler zaten onaylı!</value>
+  </data>
+  <data name="PEB113" xml:space="preserve">
+    <value>Onayını kaldırmaya çalıştığınız bilgiler zaten onaysız!</value>
+  </data>
+  <data name="PEB114" xml:space="preserve">
+    <value>Onaylama / Onay kaldırma işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="PEB115" xml:space="preserve">
+    <value>Onaylama / Onay kaldırma işlemi gerçekleştirilemedi.</value>
+  </data>
+  <data name="PEB116" xml:space="preserve">
+    <value>Onay kaldırma işlemini yalnızca sistem yöneticileri yapabilir.</value>
+  </data>
+  <data name="PEB117" xml:space="preserve">
+    <value>Onaylanmış bilgileri değiştiremezsiniz!</value>
+  </data>
+  <data name="PEB118" xml:space="preserve">
+    <value>Ad alanı boş bırakılamaz.</value>
+  </data>
+  <data name="PEB119" xml:space="preserve">
+    <value>Birim bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="PEB120" xml:space="preserve">
+    <value>Başarım türü boş bırakılamaz.</value>
+  </data>
+  <data name="PEB121" xml:space="preserve">
+    <value>Hesaplama yöntemi / formülasyon boş bırakılamaz.</value>
+  </data>
+  <data name="PEB122" xml:space="preserve">
+    <value>Veri kaynağı, veri kaynağı sistemi veya ek parametre alanlarından en az biri doldurulmalı.</value>
+  </data>
+  <data name="PEB123" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="PEB124" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="PEB125" xml:space="preserve">
+    <value>Hiçbir ağırlık girilmemiş.</value>
+  </data>
+  <data name="PEB126" xml:space="preserve">
+    <value>Faaliyet boş bırakılamaz.</value>
+  </data>
+  <data name="PEB127" xml:space="preserve">
+    <value>Girilen ağırlıklar sıfırdan büyük olmalı. Lütfen kontrol ediniz.</value>
+  </data>
+  <data name="PEB128" xml:space="preserve">
+    <value>Hiçbir faaliyet girilmemiş.</value>
+  </data>
+  <data name="PEB129" xml:space="preserve">
+    <value>Hiçbir alt faaliyet girilmemiş.</value>
+  </data>
+  <data name="PEB130" xml:space="preserve">
+    <value>Faaliyet boş olamaz.</value>
+  </data>
+  <data name="PEB131" xml:space="preserve">
+    <value>Alt faaliyet adı boş bırakılamaz.</value>
+  </data>
+  <data name="PEB132" xml:space="preserve">
+    <value>Dönem bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="PEB133" xml:space="preserve">
+    <value>Organizasyon kod bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="PEB134" xml:space="preserve">
+    <value>Yıl bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="PEB135" xml:space="preserve">
+    <value>Metrik bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="PEB136" xml:space="preserve">
+    <value>Performans gösterge bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="PEB137" xml:space="preserve">
+    <value>Stratejik hedef gösterge bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="PEB138" xml:space="preserve">
+    <value>Süreç/Açıklama alanı boş bırakılamaz.</value>
+  </data>
+  <data name="PEB139" xml:space="preserve">
+    <value>Özel Hedef (İş/Görevin Yapılma Amacı) boş bırakılamaz!</value>
+  </data>
+  <data name="STR001" xml:space="preserve">
+    <value>Yazma hakkınız yok!</value>
+  </data>
+  <data name="STR002" xml:space="preserve">
+    <value>Okuma hakkınız yok!</value>
+  </data>
+  <data name="STR003" xml:space="preserve">
+    <value>Dönem başlangıç yılı boş bırakılamaz.</value>
+  </data>
+  <data name="STR004" xml:space="preserve">
+    <value>Dil boş bırakılamaz.</value>
+  </data>
+  <data name="STR005" xml:space="preserve">
+    <value>Tema boş bırakılamaz.</value>
+  </data>
+  <data name="STR006" xml:space="preserve">
+    <value>Stratejik Amaç (Kısa) boş bırakılamaz.</value>
+  </data>
+  <data name="STR007" xml:space="preserve">
+    <value>Stratejik Amaç boş bırakılamaz.</value>
+  </data>
+  <data name="STR008" xml:space="preserve">
+    <value>Vizyon kayıtlı değil.</value>
+  </data>
+  <data name="STR009" xml:space="preserve">
+    <value>Böyle bir Stratejik Amaç sistemde kayıtlı değil.</value>
+  </data>
+  <data name="STR010" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="STR011" xml:space="preserve">
+    <value>Kayıt işlemi gerçekleştirilemedi.</value>
+  </data>
+  <data name="STR012" xml:space="preserve">
+    <value>Verilen kriterlere uygun kayıt bulunamadı.</value>
+  </data>
+  <data name="STR013" xml:space="preserve">
+    <value>Daha önce kullanıldığı için {0} nolu Stratejik Amaç silinemez!</value>
+  </data>
+  <data name="STR014" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="STR015" xml:space="preserve">
+    <value>Silme işlemi gerçekleştirilemedi.</value>
+  </data>
+  <data name="STR016" xml:space="preserve">
+    <value>Ad boş bırakılamaz.</value>
+  </data>
+  <data name="STR017" xml:space="preserve">
+    <value>Böyle bir Dil sistemde kayıtlı değil.</value>
+  </data>
+  <data name="STR018" xml:space="preserve">
+    <value>Kod boş bırakılamaz.</value>
+  </data>
+  <data name="STR019" xml:space="preserve">
+    <value>Daha önce kullanıldığı için bu dil silinemez!</value>
+  </data>
+  <data name="STR020" xml:space="preserve">
+    <value>Stratejik Hedef (Kısa) boş bırakılamaz.</value>
+  </data>
+  <data name="STR021" xml:space="preserve">
+    <value>Stratejik Hedef boş bırakılamaz.</value>
+  </data>
+  <data name="STR022" xml:space="preserve">
+    <value>Seçilen Stratejik Amaç kayıtlı değil.</value>
+  </data>
+  <data name="STR023" xml:space="preserve">
+    <value>Böyle bir Stratejik Hedef sistemde kayıtlı değil.</value>
+  </data>
+  <data name="STR024" xml:space="preserve">
+    <value>Daha önce kullanıldığı için {0} nolu Stratejik Hedef silinemez!</value>
+  </data>
+  <data name="STR025" xml:space="preserve">
+    <value>Misyon boş bırakılamaz.</value>
+  </data>
+  <data name="STR026" xml:space="preserve">
+    <value>Tema (Kısa) boş bırakılamaz.</value>
+  </data>
+  <data name="STR027" xml:space="preserve">
+    <value>Önce Vizyonu kaydetmelisiniz.</value>
+  </data>
+  <data name="STR028" xml:space="preserve">
+    <value>Böyle bir Tema sistemde kayıtlı değil.</value>
+  </data>
+  <data name="STR029" xml:space="preserve">
+    <value>Daha önce kullanıldığı için {0} nolu Tema silinemez!</value>
+  </data>
+  <data name="STR030" xml:space="preserve">
+    <value>Vizyon boş bırakılamaz.</value>
+  </data>
+  <data name="STR031" xml:space="preserve">
+    <value>Önce Misyonu kaydetmelisiniz.</value>
+  </data>
+  <data name="STR032" xml:space="preserve">
+    <value>Dönem boş bırakılamaz.</value>
+  </data>
+  <data name="STR033" xml:space="preserve">
+    <value>Birim boş bırakılamaz.</value>
+  </data>
+  <data name="STR034" xml:space="preserve">
+    <value>Ekip boş bırakılamaz.</value>
+  </data>
+  <data name="STR035" xml:space="preserve">
+    <value>Hiçbir görev girilmemiş.</value>
+  </data>
+  <data name="STR036" xml:space="preserve">
+    <value>T. C. Kimlik No boş bırakılamaz.</value>
+  </data>
+  <data name="STR037" xml:space="preserve">
+    <value>Görev açıklaması boş bırakılamaz.</value>
+  </data>
+  <data name="STR038" xml:space="preserve">
+    <value>Dönem başlama yılı boş bırakılamaz.</value>
+  </data>
+  <data name="STR039" xml:space="preserve">
+    <value>Dönem bitiş yılı boş bırakılamaz.</value>
+  </data>
+  <data name="STR040" xml:space="preserve">
+    <value>Birimle ilişkilendirilmiş hiçbir katalog bulunamadı.</value>
+  </data>
+  <data name="STR041" xml:space="preserve">
+    <value>Katalog türü boş bırakılamaz.</value>
+  </data>
+  <data name="STR042" xml:space="preserve">
+    <value>Analiz yöntemi boş bırakılamaz.</value>
+  </data>
+  <data name="STR043" xml:space="preserve">
+    <value>PEST analizinin detay bilgileri boş bırakılamaz.</value>
+  </data>
+  <data name="STR044" xml:space="preserve">
+    <value>GZFT analizinin detay bilgileri boş bırakılamaz.</value>
+  </data>
+  <data name="STR045" xml:space="preserve">
+    <value>Üst Belge analizinin detay bilgileri boş bırakılamaz.</value>
+  </data>
+  <data name="STR046" xml:space="preserve">
+    <value>Hiçbir hizmet ile paydaş ilişkisi girilmemiş.</value>
+  </data>
+  <data name="STR047" xml:space="preserve">
+    <value>Paydaş boş bırakılamaz.</value>
+  </data>
+  <data name="STR048" xml:space="preserve">
+    <value>Hizmet boş bırakılamaz.</value>
+  </data>
+  <data name="STR049" xml:space="preserve">
+    <value>Planlanan Çalışmalar formunun detay bilgileri boş bırakılamaz.</value>
+  </data>
+  <data name="STR050" xml:space="preserve">
+    <value>Paydaş analizinin detay bilgileri boş bırakılamaz.</value>
+  </data>
+  <data name="STR051" xml:space="preserve">
+    <value>Temel Eğilimler boş bırakılamaz.</value>
+  </data>
+  <data name="STR052" xml:space="preserve">
+    <value>Açıklama boş bırakılamaz.</value>
+  </data>
+  <data name="STR053" xml:space="preserve">
+    <value>Paydaş bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="STR054" xml:space="preserve">
+    <value>Açıklama boş bırakılamaz.</value>
+  </data>
+  <data name="STR055" xml:space="preserve">
+    <value>Kategori seçiniz.</value>
+  </data>
+  <data name="STR056" xml:space="preserve">
+    <value>Önemi / Önceliği seçiniz</value>
+  </data>
+  <data name="STR057" xml:space="preserve">
+    <value>Etkisini seçiniz.</value>
+  </data>
+  <data name="STR058" xml:space="preserve">
+    <value>Paydaş Stratejisi seçiniz.</value>
+  </data>
+  <data name="STR059" xml:space="preserve">
+    <value>Öncelik seçiniz.</value>
+  </data>
+  <data name="STR060" xml:space="preserve">
+    <value>Yararlanma seçiniz.</value>
+  </data>
+  <data name="STR061" xml:space="preserve">
+    <value>Başlangıç tarihini belirtin.</value>
+  </data>
+  <data name="STR062" xml:space="preserve">
+    <value>Bitiş tarihini belirtin.</value>
+  </data>
+  <data name="STR063" xml:space="preserve">
+    <value>Gerçek başlangıç tarihini belirtin.</value>
+  </data>
+  <data name="STR064" xml:space="preserve">
+    <value>Gerçek bitiş tarihini belirtin.</value>
+  </data>
+  <data name="STR065" xml:space="preserve">
+    <value>Çalışma Adımı boş bırakılamaz.</value>
+  </data>
+  <data name="STR066" xml:space="preserve">
+    <value>{0}. satırdaki hizmet ve paydaş ile {1}. satırdakiler aynı. Lütfen kontrol ediniz.</value>
+  </data>
+  <data name="STR067" xml:space="preserve">
+    <value>Aşama boş bırakılamaz.</value>
+  </data>
+  <data name="STR068" xml:space="preserve">
+    <value>Bütün formlar onaylanmadan onaylama işlemi gerçekleştirilemez.</value>
+  </data>
+  <data name="STR069" xml:space="preserve">
+    <value>Onaylamadığınız her form için bir açıklama girmelisiniz.</value>
+  </data>
+  <data name="STR070" xml:space="preserve">
+    <value>En az bir formu reddetmeden reddetme işlemi gerçekleştirilemez.</value>
+  </data>
+  <data name="STR071" xml:space="preserve">
+    <value>Statu belirtiniz.</value>
+  </data>
+  <data name="STR072" xml:space="preserve">
+    <value>Başlama Tarihi belirtiniz.</value>
+  </data>
+  <data name="STR073_1" xml:space="preserve">
+    <value>Kaydedildi</value>
+  </data>
+  <data name="STR073_2" xml:space="preserve">
+    <value>Birim onayı verildi</value>
+  </data>
+  <data name="STR073_3" xml:space="preserve">
+    <value>Birim reddetti (Revizyonda)</value>
+  </data>
+  <data name="STR073_4" xml:space="preserve">
+    <value>Üst birim onayı verildi (Tamamlandı)</value>
+  </data>
+  <data name="STR073_5" xml:space="preserve">
+    <value>Üst birim reddetti (Revizyonda)</value>
+  </data>
+  <data name="STR074" xml:space="preserve">
+    <value>Form listesi boş olamaz.</value>
+  </data>
+  <data name="STR075_0" xml:space="preserve">
+    <value>Başlanmadı</value>
+  </data>
+  <data name="STR075_1" xml:space="preserve">
+    <value>Devam Ediyor</value>
+  </data>
+  <data name="STR075_2" xml:space="preserve">
+    <value>Revizyonda</value>
+  </data>
+  <data name="STR075_3" xml:space="preserve">
+    <value>Onayda</value>
+  </data>
+  <data name="STR075_4" xml:space="preserve">
+    <value>Üst Onayda</value>
+  </data>
+  <data name="STR075_5" xml:space="preserve">
+    <value>Tamamlandı</value>
+  </data>
+  <data name="STR076" xml:space="preserve">
+    <value>İşlem yapılırken denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="STR077" xml:space="preserve">
+    <value>Hedef belirtiniz.</value>
+  </data>
+  <data name="STR078" xml:space="preserve">
+    <value>Strateji adı belirtiniz.</value>
+  </data>
+  <data name="STR079" xml:space="preserve">
+    <value>Strateji açıklaması giriniz.</value>
+  </data>
+  <data name="STR080" xml:space="preserve">
+    <value>Strateji girilmemiş.</value>
+  </data>
+  <data name="STR081" xml:space="preserve">
+    <value>Form onaylı olduğu için işlem yapamazsınız.</value>
+  </data>
+  <data name="STR082" xml:space="preserve">
+    <value>Hiçbir ekip girilmemiş.</value>
+  </data>
+  <data name="STR083" xml:space="preserve">
+    <value>Ekip adı boş bırakılamaz.</value>
+  </data>
+  <data name="STR084" xml:space="preserve">
+    <value>Ad soyad boş bırakılamaz.</value>
+  </data>
+  <data name="STR085" xml:space="preserve">
+    <value>Tür bilgisi boş geliyor.</value>
+  </data>
+  <data name="STR086" xml:space="preserve">
+    <value>Hiçbir maliyet girilmemiş.</value>
+  </data>
+  <data name="STR087" xml:space="preserve">
+    <value>{0} isimli {1}; {2} isimli {3} ile bağlı olduğu için seçili kalmak zorunda. İlgili {4} seçimini kaldırmak istiyorsanız, önce bağlı olduğu {5} seçimini kaldırmalısınız.</value>
+  </data>
+  <data name="STR088_01" xml:space="preserve">
+    <value>tema(lar)</value>
+  </data>
+  <data name="STR088_02" xml:space="preserve">
+    <value>stratejik amaç(lar)</value>
+  </data>
+  <data name="STR088_03" xml:space="preserve">
+    <value>stratejik hedef(ler)</value>
+  </data>
+  <data name="STR088_04" xml:space="preserve">
+    <value>faaliyet(ler)</value>
+  </data>
+  <data name="STR088_06" xml:space="preserve">
+    <value>hizmet(ler)</value>
+  </data>
+  <data name="STR088_07" xml:space="preserve">
+    <value>gelişim alan(ı/ları)</value>
+  </data>
+  <data name="STR089_01" xml:space="preserve">
+    <value>gelişim alan(ı/ları)</value>
+  </data>
+  <data name="STR089_02" xml:space="preserve">
+    <value>stratejik hedef(ler)</value>
+  </data>
+  <data name="STR089_03" xml:space="preserve">
+    <value>faaliyet(ler) ve/veya gösterge(ler)</value>
+  </data>
+  <data name="STR089_04" xml:space="preserve">
+    <value>iş/görev(ler)</value>
+  </data>
+  <data name="STR089_06" xml:space="preserve">
+    <value>faaliyet(ler)</value>
+  </data>
+  <data name="STR089_07" xml:space="preserve">
+    <value>faaliyet(ler)</value>
+  </data>
+  <data name="STR090_01" xml:space="preserve">
+    <value>tema(nın/ların)</value>
+  </data>
+  <data name="STR090_02" xml:space="preserve">
+    <value>stratejik amaç(ın/ların)</value>
+  </data>
+  <data name="STR090_03" xml:space="preserve">
+    <value>stratejik hedef(in/lerin)</value>
+  </data>
+  <data name="STR090_04" xml:space="preserve">
+    <value>faaliyet(in/lerin)</value>
+  </data>
+  <data name="STR090_06" xml:space="preserve">
+    <value>hizmet(in/lerin)</value>
+  </data>
+  <data name="STR090_07" xml:space="preserve">
+    <value>gelişim alan(ının/larının)</value>
+  </data>
+  <data name="STR091_01" xml:space="preserve">
+    <value>gelişim alan(ının/larının)</value>
+  </data>
+  <data name="STR091_02" xml:space="preserve">
+    <value>stratejik hedef(in/lerin)</value>
+  </data>
+  <data name="STR091_03" xml:space="preserve">
+    <value>faaliyet(in/lerin) ve/veya gösterge(nin/lerin)</value>
+  </data>
+  <data name="STR091_04" xml:space="preserve">
+    <value>iş/görev(in/lerin)</value>
+  </data>
+  <data name="STR091_06" xml:space="preserve">
+    <value>faaliyet(in/lerin)</value>
+  </data>
+  <data name="STR091_07" xml:space="preserve">
+    <value>faaliyet(in/lerin)</value>
+  </data>
+  <data name="STR092" xml:space="preserve">
+    <value>Verilen yıllar arası aktif bir dönem var.</value>
+  </data>
+  <data name="STR093" xml:space="preserve">
+    <value>Güncelleme işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="STR094" xml:space="preserve">
+    <value>Şablon seçilmemiş.</value>
+  </data>
+  <data name="STR095" xml:space="preserve">
+    <value>Şablon adı boş bırakılamaz.</value>
+  </data>
+  <data name="STR096" xml:space="preserve">
+    <value>Şablon olarak kayıt edilecek bir bilgi bulunamadı.</value>
+  </data>
+  <data name="STR100" xml:space="preserve">
+    <value>Onaylama hakkınız yok!</value>
+  </data>
+  <data name="STR101" xml:space="preserve">
+    <value>Katalog bilgisi boş geliyor.</value>
+  </data>
+  <data name="STR102" xml:space="preserve">
+    <value>Birim türü bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="STR103" xml:space="preserve">
+    <value>Aynı ada sahip kayıt bulunmaktadır. Adı değiştirip tekrar deneyiniz.</value>
+  </data>
+  <data name="STR104" xml:space="preserve">
+    <value>Katalog aktif dönemde kullanılmakta olduğu için pasif yapılamadı.</value>
+  </data>
+  <data name="STR105" xml:space="preserve">
+    <value>Koordine birimler arasında mükerrer kayıt ya da birden fazla sadece açıklama var. Lütfen kontrol ediniz.</value>
+  </data>
+  <data name="STR106" xml:space="preserve">
+    <value>Seçilmiş olan Birim Türler ile {0} uyumlu değil.</value>
+  </data>
+  <data name="STR107_01" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="STR107_02" xml:space="preserve">
+    <value>Stratejik Amaç</value>
+  </data>
+  <data name="STR107_03" xml:space="preserve">
+    <value>Stratejik Hedef</value>
+  </data>
+  <data name="STR107_04" xml:space="preserve">
+    <value>Faaliyet</value>
+  </data>
+  <data name="STR107_05" xml:space="preserve">
+    <value>Gösterge</value>
+  </data>
+  <data name="STR107_06" xml:space="preserve">
+    <value>Hizmet</value>
+  </data>
+  <data name="STR107_07" xml:space="preserve">
+    <value>Gelişim Alanı</value>
+  </data>
+  <data name="STR107_08" xml:space="preserve">
+    <value>Üst Belge</value>
+  </data>
+  <data name="STR107_09" xml:space="preserve">
+    <value>İş/Görev</value>
+  </data>
+  <data name="STR108" xml:space="preserve">
+    <value>Gelişim Alanı seçiniz.</value>
+  </data>
+  <data name="STR109" xml:space="preserve">
+    <value>Tema alanı boş bırakılamaz.</value>
+  </data>
+  <data name="STR110" xml:space="preserve">
+    <value>Açıklama alanı boş bırakılamaz.</value>
+  </data>
+  <data name="STR111" xml:space="preserve">
+    <value>Gelişim Alanı boş bırakılamaz.</value>
+  </data>
+  <data name="STR112" xml:space="preserve">
+    <value>{0}. satırda aşağıdaki hata oluştu.</value>
+  </data>
+  <data name="STR113" xml:space="preserve">
+    <value>Silinmek istenen stratejik amaç seçilmelidir.</value>
+  </data>
+  <data name="STR114" xml:space="preserve">
+    <value>Önce, gelişim alanlarını ve temaları belirlemelisiniz.</value>
+  </data>
+  <data name="STR115" xml:space="preserve">
+    <value>Amaç - Hedef üretim işlemi başarıyla gerçekleştirildi.</value>
+  </data>
+  <data name="STR116" xml:space="preserve">
+    <value>Amaç - Hedef üretim işlemi gerçekleştirilemedi.</value>
+  </data>
+  <data name="STR117" xml:space="preserve">
+    <value>Daha önceden amaç - hedef kaydı yapıldığı için otomatik üretimi kullanamazsınız.</value>
+  </data>
+  <data name="STR118" xml:space="preserve">
+    <value>Faaliyet boş bırakılamaz.</value>
+  </data>
+  <data name="STR119" xml:space="preserve">
+    <value>Yıl boş bırakılamaz.</value>
+  </data>
+  <data name="STR120" xml:space="preserve">
+    <value>Ekonomik kod boş bırakılamaz.</value>
+  </data>
+  <data name="STR121" xml:space="preserve">
+    <value>Maliyet türü boş bırakılamaz.</value>
+  </data>
+  <data name="STR122" xml:space="preserve">
+    <value>Hiçbir ağırlık girilmemiş.</value>
+  </data>
+  <data name="STR123" xml:space="preserve">
+    <value>Faaliyet boş bırakılamaz.</value>
+  </data>
+  <data name="STR124" xml:space="preserve">
+    <value>Girilen ağırlıklar sıfırdan büyük olmalı. Lütfen kontrol ediniz.</value>
+  </data>
+  <data name="STR125" xml:space="preserve">
+    <value>Girilen Ağırlıkların toplamı 100 olmalı. Lütfen kontrol ediniz. Şu anki Toplam = {0}</value>
+  </data>
+  <data name="STR126" xml:space="preserve">
+    <value>Fakat, birime ait faaliyetler yedeklenirken bir hata oluştu.</value>
+  </data>
+  <data name="STR127" xml:space="preserve">
+    <value>Ad alanı boş bırakılamaz.</value>
+  </data>
+  <data name="STR128" xml:space="preserve">
+    <value>Birim bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="STR129" xml:space="preserve">
+    <value>Başarım türü boş bırakılamaz.</value>
+  </data>
+  <data name="STR130" xml:space="preserve">
+    <value>Hesaplama yöntemi / formülasyon boş bırakılamaz.</value>
+  </data>
+  <data name="STR131" xml:space="preserve">
+    <value>Veri kaynağı, veri kaynağı sistemi veya ek parametre alanlarından en az biri doldurulmalı.</value>
+  </data>
+  <data name="STR132" xml:space="preserve">
+    <value>Gösterge bilgisi boş bırakılamaz.</value>
+  </data>
+  <data name="STR133" xml:space="preserve">
+    <value>{0} seçmeniz gerekmektedir.</value>
+  </data>
+  <data name="STR134" xml:space="preserve">
+    <value>Önerilen stratejik amaç metni boş bırakılamaz.</value>
+  </data>
+  <data name="STR135" xml:space="preserve">
+    <value>Önerilen stratejik hedef metni boş bırakılamaz.</value>
+  </data>
+  <data name="STR136" xml:space="preserve">
+    <value>Gelişim Alanı seçmeniz gerekmektedir.</value>
+  </data>
+  <data name="STR137" xml:space="preserve">
+    <value>İş/Görev boş bırakılamaz.</value>
+  </data>
+  <data name="STR138" xml:space="preserve">
+    <value>Hiçbir değer girilmemiş.</value>
+  </data>
+  <data name="STR139" xml:space="preserve">
+    <value>Stratejik hedef boş bırakılamaz.</value>
+  </data>
+  <data name="STR140" xml:space="preserve">
+    <value>Gösterge boş bırakılamaz.</value>
+  </data>
+  <data name="STR141" xml:space="preserve">
+    <value>Faaliyet boş bırakılamaz.</value>
+  </data>
+  <data name="STR142" xml:space="preserve">
+    <value>Dönem bitiş yılı, dönem başlama yılından küçük olamaz.</value>
+  </data>
+  <data name="STR143" xml:space="preserve">
+    <value>Ay boş bırakılamaz.</value>
+  </data>
+  <data name="STR144" xml:space="preserve">
+    <value>Sistemde, kayıtlı hiç gösterge gerçekleşen değeri yok.</value>
+  </data>
+  <data name="STR145" xml:space="preserve">
+    <value>Sistemde, kayıtlı hiç gösterge hedeflenen değeri yok.</value>
+  </data>
+  <data name="STR146" xml:space="preserve">
+    <value>Performans hedefi boş bırakılamaz.</value>
+  </data>
+  <data name="STR147" xml:space="preserve">
+    <value>Hesaplama yöntemi / formülasyon ile ilgili bir hata var. Lütfen kontrol ediniz.</value>
+  </data>
+  <data name="STR148" xml:space="preserve">
+    <value>{0} sırası daha önce başka bir amaç için kullanılmış, lütfen başka bir sıra veriniz.</value>
+  </data>
+  <data name="STR149" xml:space="preserve">
+    <value>Sıra numarası her hedef için farklı olmalıdır.</value>
+  </data>
+  <data name="STR150" xml:space="preserve">
+    <value>Dönem adı boş bırakılamaz.</value>
+  </data>
+  <data name="StratejikFaaliyet001" xml:space="preserve">
+    <value>Yazma yetkiniz yok!</value>
+  </data>
+  <data name="StratejikFaaliyet002" xml:space="preserve">
+    <value>Listeleme yetkiniz yok!</value>
+  </data>
+</root>

@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>HRCServisC</AssemblyName>
+    <RootNamespace>HRCServisC</RootNamespace>
+  </PropertyGroup>
+
+  <!-- Eski projede derlemeye dahil olmayan dosyalar -->
+  <ItemGroup>
+    <Compile Remove="TNS.HRC.IsKurallari.HRCOrtakBelge.cs.cs" />
+    <Compile Remove="Tablolar\TNS.HRC.IsKurallari.Veri.TABOrtakBelge.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BHMv2Servis\BHMv2ServisI\BHMv2ServisI.csproj" />
+    <ProjectReference Include="..\..\BHMv2Servis\BKDServisI\BKDServisI.csproj" />
+    <ProjectReference Include="..\..\DEGServis\DEGServisI\DEGServisI.csproj" />
+    <ProjectReference Include="..\..\GNLServis\GNLServis.csproj" />
+    <ProjectReference Include="..\..\IKYServis\IKYServisI\IKYServisI.csproj" />
+    <ProjectReference Include="..\..\KYMServis\KYMServisI\KYMServisI.csproj" />
+    <ProjectReference Include="..\..\MUHServis\MUHServisI\MUHServisI.csproj" />
+    <ProjectReference Include="..\..\PERServis\PERServisI\PERServisI.csproj" />
+    <ProjectReference Include="..\..\TMMServis\TMMServisI\TMMServisI.csproj" />
+    <ProjectReference Include="..\..\UZYServis\UZYServisI\UZYServisI.csproj" />
+    <ProjectReference Include="..\..\VERServis\VERServis.csproj" />
+    <ProjectReference Include="..\HRCServisI\HRCServisI.csproj" />
+  </ItemGroup>
+
+</Project>

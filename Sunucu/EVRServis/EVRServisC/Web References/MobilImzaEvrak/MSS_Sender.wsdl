@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://mss_sender.ega.com.tr/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://mss_sender.ega.com.tr/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://mss_sender.ega.com.tr/">
+      <s:element name="GetHash">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="telNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHashResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHashResult" type="tns:HashResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="HashResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Result">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ParmakIzi" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ApTransId" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Result" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsSuccessful" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSignature">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dataToBeDisplayed" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="apTransId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSignatureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSignatureResult" type="tns:SignatureResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SignatureResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Result">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SignerName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TcKimlikNo" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="GsmOperator" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PlaceOfBirth" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SignedData" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TransId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MonetaryLimit" type="tns:MonetaryLimit" />
+              <s:element minOccurs="1" maxOccurs="1" name="SignatureDate" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="SignatureValue" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SignerCerticate" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SignedAttributes" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SignerCertificateSerialNo" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="MonetaryLimit">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Exponent" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSignatureByte">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dataToBeDisplayed" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="apTransId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSignatureByteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSignatureByteResult" type="tns:SignatureByteResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SignatureByteResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Result">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SignerName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TcKimlikNo" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="GsmOperator" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PlaceOfBirth" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SignedData" type="s:base64Binary" />
+              <s:element minOccurs="0" maxOccurs="1" name="TransId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MonetaryLimit" type="tns:MonetaryLimit" />
+              <s:element minOccurs="1" maxOccurs="1" name="SignatureDate" type="s:dateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetFingerPrint">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="telNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFingerPrintResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFingerPrintResult" type="tns:HashResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSignatureByHash">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dataToBeDisplayed" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="apTransId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSignatureByHashResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSignatureByHashResult" type="tns:SignatureResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHashForSignedData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="signedData" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="telNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHashForSignedDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHashForSignedDataResult" type="tns:HashResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSignature">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dataToBeDisplayed" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="apTransId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSignatureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddSignatureResult" type="tns:SignatureResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSignatureByte">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dataToBeDisplayed" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="apTransId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSignatureByteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddSignatureByteResult" type="tns:SignatureByteResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHashForGsmOperator">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="telNo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="gsmOperator" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHashForGsmOperatorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHashForGsmOperatorResult" type="tns:HashResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFingerPrintForGsmOperator">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hash" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="telNo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="gsmOperator" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFingerPrintForGsmOperatorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFingerPrintForGsmOperatorResult" type="tns:HashResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHashForSignedDataForGsmOperator">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="signedData" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="telNo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="gsmOperator" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHashForSignedDataForGsmOperatorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHashForSignedDataForGsmOperatorResult" type="tns:HashResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCertificateReference">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="telNo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="gsmOperator" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCertificateReferenceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCertificateReferenceResult" type="tns:CertificateReference" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CertificateReference">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Result">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SerialNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DigestValue" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IssuerDN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CertificateBytes" type="s:base64Binary" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="SignDigest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="digestValue" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="telNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dataToBeDisplayed" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="gsmOperator" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignDigestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SignDigestResult" type="tns:SignatureValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SignatureValue">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Result">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Signature" type="s:base64Binary" />
+              <s:element minOccurs="0" maxOccurs="1" name="Certificate" type="s:base64Binary" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetHashForXMLSign">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="signedData" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="telNo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isEnveloping" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHashForXMLSignResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHashForXMLSignResult" type="tns:HashResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHashForXMLSignForGsmOperator">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="signedData" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="tbsNodeId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tbsNodeNS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentNodeName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentNodeNS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="telNo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="gsmOperator" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="isEnveloping" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHashForXMLSignForGsmOperatorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHashForXMLSignForGsmOperatorResult" type="tns:HashResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetHashSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHash" />
+  </wsdl:message>
+  <wsdl:message name="GetHashSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHashResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSignatureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSignature" />
+  </wsdl:message>
+  <wsdl:message name="GetSignatureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSignatureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSignatureByteSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSignatureByte" />
+  </wsdl:message>
+  <wsdl:message name="GetSignatureByteSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSignatureByteResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFingerPrintSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFingerPrint" />
+  </wsdl:message>
+  <wsdl:message name="GetFingerPrintSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFingerPrintResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSignatureByHashSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSignatureByHash" />
+  </wsdl:message>
+  <wsdl:message name="GetSignatureByHashSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSignatureByHashResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHashForSignedDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHashForSignedData" />
+  </wsdl:message>
+  <wsdl:message name="GetHashForSignedDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHashForSignedDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddSignatureSoapIn">
+    <wsdl:part name="parameters" element="tns:AddSignature" />
+  </wsdl:message>
+  <wsdl:message name="AddSignatureSoapOut">
+    <wsdl:part name="parameters" element="tns:AddSignatureResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddSignatureByteSoapIn">
+    <wsdl:part name="parameters" element="tns:AddSignatureByte" />
+  </wsdl:message>
+  <wsdl:message name="AddSignatureByteSoapOut">
+    <wsdl:part name="parameters" element="tns:AddSignatureByteResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHashForGsmOperatorSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHashForGsmOperator" />
+  </wsdl:message>
+  <wsdl:message name="GetHashForGsmOperatorSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHashForGsmOperatorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFingerPrintForGsmOperatorSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFingerPrintForGsmOperator" />
+  </wsdl:message>
+  <wsdl:message name="GetFingerPrintForGsmOperatorSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFingerPrintForGsmOperatorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHashForSignedDataForGsmOperatorSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHashForSignedDataForGsmOperator" />
+  </wsdl:message>
+  <wsdl:message name="GetHashForSignedDataForGsmOperatorSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHashForSignedDataForGsmOperatorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCertificateReferenceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCertificateReference" />
+  </wsdl:message>
+  <wsdl:message name="GetCertificateReferenceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCertificateReferenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="SignDigestSoapIn">
+    <wsdl:part name="parameters" element="tns:SignDigest" />
+  </wsdl:message>
+  <wsdl:message name="SignDigestSoapOut">
+    <wsdl:part name="parameters" element="tns:SignDigestResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHashForXMLSignSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHashForXMLSign" />
+  </wsdl:message>
+  <wsdl:message name="GetHashForXMLSignSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHashForXMLSignResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHashForXMLSignForGsmOperatorSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHashForXMLSignForGsmOperator" />
+  </wsdl:message>
+  <wsdl:message name="GetHashForXMLSignForGsmOperatorSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHashForXMLSignForGsmOperatorResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MSS_SenderSoap">
+    <wsdl:operation name="GetHash">
+      <wsdl:input message="tns:GetHashSoapIn" />
+      <wsdl:output message="tns:GetHashSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSignature">
+      <wsdl:input message="tns:GetSignatureSoapIn" />
+      <wsdl:output message="tns:GetSignatureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSignatureByte">
+      <wsdl:input message="tns:GetSignatureByteSoapIn" />
+      <wsdl:output message="tns:GetSignatureByteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFingerPrint">
+      <wsdl:input message="tns:GetFingerPrintSoapIn" />
+      <wsdl:output message="tns:GetFingerPrintSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSignatureByHash">
+      <wsdl:input message="tns:GetSignatureByHashSoapIn" />
+      <wsdl:output message="tns:GetSignatureByHashSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHashForSignedData">
+      <wsdl:input message="tns:GetHashForSignedDataSoapIn" />
+      <wsdl:output message="tns:GetHashForSignedDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSignature">
+      <wsdl:input message="tns:AddSignatureSoapIn" />
+      <wsdl:output message="tns:AddSignatureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSignatureByte">
+      <wsdl:input message="tns:AddSignatureByteSoapIn" />
+      <wsdl:output message="tns:AddSignatureByteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHashForGsmOperator">
+      <wsdl:input message="tns:GetHashForGsmOperatorSoapIn" />
+      <wsdl:output message="tns:GetHashForGsmOperatorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFingerPrintForGsmOperator">
+      <wsdl:input message="tns:GetFingerPrintForGsmOperatorSoapIn" />
+      <wsdl:output message="tns:GetFingerPrintForGsmOperatorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHashForSignedDataForGsmOperator">
+      <wsdl:input message="tns:GetHashForSignedDataForGsmOperatorSoapIn" />
+      <wsdl:output message="tns:GetHashForSignedDataForGsmOperatorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCertificateReference">
+      <wsdl:input message="tns:GetCertificateReferenceSoapIn" />
+      <wsdl:output message="tns:GetCertificateReferenceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SignDigest">
+      <wsdl:input message="tns:SignDigestSoapIn" />
+      <wsdl:output message="tns:SignDigestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHashForXMLSign">
+      <wsdl:input message="tns:GetHashForXMLSignSoapIn" />
+      <wsdl:output message="tns:GetHashForXMLSignSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHashForXMLSignForGsmOperator">
+      <wsdl:input message="tns:GetHashForXMLSignForGsmOperatorSoapIn" />
+      <wsdl:output message="tns:GetHashForXMLSignForGsmOperatorSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MSS_SenderSoap" type="tns:MSS_SenderSoap">
+    <wsdl:documentation>
+      <wsi:Claim conformsTo="http://ws-i.org/profiles/basic/1.1" xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" />
+    </wsdl:documentation>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetHash">
+      <soap:operation soapAction="http://mss_sender.ega.com.tr/GetHash" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSignature">
+      <soap:operation soapAction="http://mss_sender.ega.com.tr/GetSignature" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSignatureByte">
+      <soap:operation soapAction="http://mss_sender.ega.com.tr/GetSignatureByte" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFingerPrint">
+      <soap:operation soapAction="http://mss_sender.ega.com.tr/GetFingerPrint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSignatureByHash">
+      <soap:operation soapAction="http://mss_sender.ega.com.tr/GetSignatureByHash" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHashForSignedData">
+      <soap:operation soapAction="http://mss_sender.ega.com.tr/GetHashForSignedData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSignature">
+      <soap:operation soapAction="http://mss_sender.ega.com.tr/AddSignature" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSignatureByte">
+      <soap:operation soapAction="http://mss_sender.ega.com.tr/AddSignatureByte" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHashForGsmOperator">
+      <soap:operation soapAction="http://mss_sender.ega.com.tr/GetHashForGsmOperator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFingerPrintForGsmOperator">
+      <soap:operation soapAction="http://mss_sender.ega.com.tr/GetFingerPrintForGsmOperator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHashForSignedDataForGsmOperator">
+      <soap:operation soapAction="http://mss_sender.ega.com.tr/GetHashForSignedDataForGsmOperator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCertificateReference">
+      <soap:operation soapAction="http://mss_sender.ega.com.tr/GetCertificateReference" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignDigest">
+      <soap:operation soapAction="http://mss_sender.ega.com.tr/SignDigest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHashForXMLSign">
+      <soap:operation soapAction="http://mss_sender.ega.com.tr/GetHashForXMLSign" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHashForXMLSignForGsmOperator">
+      <soap:operation soapAction="http://mss_sender.ega.com.tr/GetHashForXMLSignForGsmOperator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MSS_SenderSoap12" type="tns:MSS_SenderSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetHash">
+      <soap12:operation soapAction="http://mss_sender.ega.com.tr/GetHash" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSignature">
+      <soap12:operation soapAction="http://mss_sender.ega.com.tr/GetSignature" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSignatureByte">
+      <soap12:operation soapAction="http://mss_sender.ega.com.tr/GetSignatureByte" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFingerPrint">
+      <soap12:operation soapAction="http://mss_sender.ega.com.tr/GetFingerPrint" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSignatureByHash">
+      <soap12:operation soapAction="http://mss_sender.ega.com.tr/GetSignatureByHash" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHashForSignedData">
+      <soap12:operation soapAction="http://mss_sender.ega.com.tr/GetHashForSignedData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSignature">
+      <soap12:operation soapAction="http://mss_sender.ega.com.tr/AddSignature" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSignatureByte">
+      <soap12:operation soapAction="http://mss_sender.ega.com.tr/AddSignatureByte" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHashForGsmOperator">
+      <soap12:operation soapAction="http://mss_sender.ega.com.tr/GetHashForGsmOperator" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFingerPrintForGsmOperator">
+      <soap12:operation soapAction="http://mss_sender.ega.com.tr/GetFingerPrintForGsmOperator" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHashForSignedDataForGsmOperator">
+      <soap12:operation soapAction="http://mss_sender.ega.com.tr/GetHashForSignedDataForGsmOperator" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCertificateReference">
+      <soap12:operation soapAction="http://mss_sender.ega.com.tr/GetCertificateReference" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignDigest">
+      <soap12:operation soapAction="http://mss_sender.ega.com.tr/SignDigest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHashForXMLSign">
+      <soap12:operation soapAction="http://mss_sender.ega.com.tr/GetHashForXMLSign" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHashForXMLSignForGsmOperator">
+      <soap12:operation soapAction="http://mss_sender.ega.com.tr/GetHashForXMLSignForGsmOperator" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MSS_Sender">
+    <wsdl:port name="MSS_SenderSoap" binding="tns:MSS_SenderSoap">
+      <soap:address location="http://88.247.125.212:84/MSS_ServiceTest/MSS_Sender.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MSS_SenderSoap12" binding="tns:MSS_SenderSoap12">
+      <soap12:address location="http://88.247.125.212:84/MSS_ServiceTest/MSS_Sender.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

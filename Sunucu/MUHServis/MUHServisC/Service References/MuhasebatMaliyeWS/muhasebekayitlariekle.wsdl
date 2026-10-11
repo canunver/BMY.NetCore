@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:sch5="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/muhasebebirimi" xmlns:sch0="http://maliye.yte.bilgem.tubitak.gov.tr/muhasebe/muhasebekayitlariekle/wso" xmlns:sch3="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/dokuman" xmlns:sch7="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/kayitaltdetaybilgileri" xmlns:sch4="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/sahis" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:sch6="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/harcamabirimi" xmlns:sch1="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/genelelemanlar" xmlns:sch2="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/enums" xmlns:tns="http://maliye.yte.bilgem.tubitak.gov.tr/muhasebe/muhasebekayitlariekle/wso" targetNamespace="http://maliye.yte.bilgem.tubitak.gov.tr/muhasebe/muhasebekayitlariekle/wso" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema xmlns:sahis="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/sahis" xmlns:kayitaltdetaybilgileri="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/kayitaltdetaybilgileri" xmlns:genelelemanlar="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/genelelemanlar" xmlns:harcamabirimi="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/harcamabirimi" xmlns:dokuman="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/dokuman" xmlns:enums="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/enums" xmlns:muhasebebirimi="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/muhasebebirimi" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://maliye.yte.bilgem.tubitak.gov.tr/muhasebe/muhasebekayitlariekle/wso" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/genelelemanlar" />
+      <xs:import namespace="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/enums" />
+      <xs:import namespace="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/dokuman" />
+      <xs:import namespace="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/sahis" />
+      <xs:import namespace="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/muhasebebirimi" />
+      <xs:import namespace="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/harcamabirimi" />
+      <xs:import namespace="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/kayitaltdetaybilgileri" />
+      <xs:element name="muhasebeKayitlariEkleRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="muhasebeKayitlari" type="tns:muhasebeKayitlari" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="muhasebeKayitlariEkleResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ETTN" type="xs:string" />
+            <xs:element name="sonuc" type="enums:sonuc" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="muhasebeKayitlari">
+        <xs:sequence>
+          <xs:element name="dokumanBilgileri" type="tns:dokumanBilgileri" />
+          <xs:element name="kamuIdaresiBilgileri" type="tns:kamuIdaresiBilgileri" />
+          <xs:element maxOccurs="unbounded" name="kayitBilgileri" type="tns:kayitBilgileri" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="dokumanBilgileri">
+        <xs:sequence>
+          <xs:element name="kayitTurKodu" type="enums:kayitTurKodlari" />
+          <xs:element name="ETTN" type="xs:string" />
+          <xs:element name="dokumanTarihi" type="xs:dateTime" />
+          <xs:element name="aciklama" type="genelelemanlar:aciklama" />
+          <xs:element name="donemBaslangici" type="xs:dateTime" />
+          <xs:element name="donemSonu" type="xs:dateTime" />
+          <xs:element name="olusturanBilgisi" type="tns:olusturanBilgisi" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="olusturanBilgisi">
+        <xs:sequence>
+          <xs:element name="sahis" type="sahis:sahis" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="kamuIdaresiBilgileri">
+        <xs:sequence>
+          <xs:element name="kamuIdaresiVergiKimlikNumarasi" type="harcamabirimi:vergiKimlikNumarasi" />
+          <xs:element name="kamuIdaresiAdi" type="xs:string" />
+          <xs:element name="defterNumarasi" type="xs:long" />
+          <xs:element name="defterAdi" type="xs:string" />
+          <xs:element name="maliYil" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="kayitBilgileri">
+        <xs:sequence>
+          <xs:element name="muhasebeIslemFisiTurKodu" type="enums:yevmiyeTuru" />
+          <xs:element name="kayitTarihi" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="muhasebeBirimi" type="muhasebebirimi:muhasebeBirimi" />
+          <xs:element minOccurs="0" name="adinaIslemYapilanBirim" type="xs:string" />
+          <xs:element minOccurs="0" name="kayitNumarasi" type="xs:long" />
+          <xs:element minOccurs="0" name="disSistemNumarasi" type="xs:string" />
+          <xs:element name="aciklama" type="genelelemanlar:aciklama" />
+          <xs:element name="toplamBorc" type="genelelemanlar:kurusCinsindenTL" />
+          <xs:element name="toplamAlacak" type="genelelemanlar:kurusCinsindenTL" />
+          <xs:element name="kayitAdedi" type="xs:int" />
+          <xs:element name="olusturanBilgisi" type="tns:olusturanBilgisi" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="dokuman" type="dokuman:dokuman" />
+          <xs:element maxOccurs="unbounded" name="kayitDetayBilgileri" type="tns:kayitDetayBilgileri" />
+          <xs:element minOccurs="0" name="raporTarihi" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="kayitDetayBilgileri">
+        <xs:sequence>
+          <xs:element name="harcamaBirimi" type="harcamabirimi:harcamaBirimi" />
+          <xs:element name="aciklama" type="genelelemanlar:aciklama" />
+          <xs:element minOccurs="0" name="iliskiliKayitTuru" type="enums:muhasebeKaydiIliskiliKayitTuru" />
+          <xs:element minOccurs="0" name="iliskiliKayitNumarasi" type="xs:long" />
+          <xs:element maxOccurs="unbounded" name="kayitAltDetayBilgileri" type="kayitaltdetaybilgileri:kayitAltDetayBilgileri" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/genelelemanlar" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/genelelemanlar" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:simpleType name="aciklama">
+        <xs:restriction base="xs:string">
+          <xs:minLength value="1" />
+          <xs:maxLength value="256" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="hesapKodu">
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[1-9][0-9][0-9](\.[0-9][0-9])*" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="kurusCinsindenTL">
+        <xs:sequence>
+          <xs:element name="kurus" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/enums" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/enums" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:simpleType name="borcAlacakTuru">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="BORC" />
+          <xs:enumeration value="ALACAK" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="yevmiyeTuru">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ACILIS" />
+          <xs:enumeration value="GECICI_ACILIS" />
+          <xs:enumeration value="KAPANIS" />
+          <xs:enumeration value="DONEM_ICI_ISLEM" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="sonuc">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="BASARILI" />
+          <xs:enumeration value="BASARISIZ" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="kayitTurKodlari">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="YEVMIYE" />
+          <xs:enumeration value="ONMUHASEBE" />
+          <xs:enumeration value="KEBIR" />
+          <xs:enumeration value="DIGER" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="muhasebeKaydiIliskiliKayitTuru">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="TAHSILAT" />
+          <xs:enumeration value="ODEME" />
+          <xs:enumeration value="ODENEK" />
+          <xs:enumeration value="EMANET" />
+          <xs:enumeration value="VARLIK" />
+          <xs:enumeration value="ALACAK_ODEME_PLANI" />
+          <xs:enumeration value="BUTCE" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/dokuman" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/dokuman" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="dokuman">
+        <xs:sequence>
+          <xs:element name="ilgiliveyaEkGostergesi" type="tns:ilgiliveyaEkGosterge" />
+          <xs:element name="dokumanTurKodu" type="xs:string" />
+          <xs:element name="dokumanNumarasi" type="xs:string" />
+          <xs:element name="ETTN" type="xs:string" />
+          <xs:element name="dokumanTarihi" type="xs:dateTime" />
+          <xs:element name="aciklama" type="xs:string" />
+          <xs:element name="ek" type="tns:ek" />
+          <xs:element name="hariciReferans" type="tns:hariciReferans" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ek">
+        <xs:sequence>
+          <xs:element name="formatKodu" type="xs:string" />
+          <xs:element name="eklenmisDokuman" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="hariciReferans">
+        <xs:sequence>
+          <xs:element name="URI" type="xs:string" />
+          <xs:element name="dokumanHashBilgisi" type="xs:string" />
+          <xs:element name="dokumanVadeBitisTarihi" type="xs:date" />
+          <xs:element name="dokumanVadeBitisZamani" type="xs:time" />
+          <xs:element name="formatKodu" type="xs:string" />
+          <xs:element name="dosyaIsmi" type="xs:string" />
+          <xs:element name="aciklama" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="ilgiliveyaEkGosterge">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ILGILI" />
+          <xs:enumeration value="EK" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/sahis" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/sahis" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="sahis">
+        <xs:sequence>
+          <xs:element name="ad" type="xs:string" />
+          <xs:element name="soyad" type="xs:string" />
+          <xs:element name="unvan" type="xs:string" />
+          <xs:element name="vatandaslikNumarasi" type="tns:vatandaslikNumarasi" />
+          <xs:element name="uyruk" type="tns:uyruk" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="uyruk">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="YERLI" />
+          <xs:enumeration value="YABANCI" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="vatandaslikNumarasi">
+        <xs:restriction base="xs:string">
+          <xs:minLength value="11" />
+          <xs:maxLength value="11" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/muhasebebirimi" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/muhasebebirimi" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="muhasebeBirimi">
+        <xs:sequence>
+          <xs:element name="muhasebeBirimiVergiKimlikNumarasi" type="tns:vergiKimlikNumarasi" />
+          <xs:element name="muhasebeBirimiAdi" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="vergiKimlikNumarasi">
+        <xs:restriction base="xs:string">
+          <xs:minLength value="10" />
+          <xs:maxLength value="10" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/harcamabirimi" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/harcamabirimi" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="harcamaBirimi">
+        <xs:sequence>
+          <xs:element name="harcamaBirimiVergiKimlikNumarasi" type="tns:vergiKimlikNumarasi" />
+          <xs:element name="harcamaBirimiAdi" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="vergiKimlikNumarasi">
+        <xs:restriction base="xs:string">
+          <xs:minLength value="10" />
+          <xs:maxLength value="10" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/kayitaltdetaybilgileri" xmlns:enums="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/enums" xmlns:genelelemanlar="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/genelelemanlar" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/kayitaltdetaybilgileri" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/enums" />
+      <xs:import namespace="http://maliye.yte.bilgem.tubitak.gov.tr/common/items/genelelemanlar" />
+      <xs:complexType name="kayitAltDetayBilgileri">
+        <xs:sequence>
+          <xs:element name="siraNumarasi" type="xs:positiveInteger" />
+          <xs:element name="hesap" type="tns:hesap" />
+          <xs:element name="borcAlacakKodu" type="enums:borcAlacakTuru" />
+          <xs:element name="tutar" type="genelelemanlar:kurusCinsindenTL" />
+          <xs:element minOccurs="0" name="butceTertibi" type="xs:string" />
+          <xs:element name="kurumsalKod" type="xs:string" />
+          <xs:element minOccurs="0" name="aciklama" type="genelelemanlar:aciklama" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="hesap">
+        <xs:sequence>
+          <xs:element name="anaHesapKodu" type="genelelemanlar:hesapKodu" />
+          <xs:element name="anaHesapAdi" type="xs:string" />
+          <xs:element name="yardimciHesapKodu" type="genelelemanlar:hesapKodu" />
+          <xs:element name="yardimciHesapAdi" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="muhasebeKayitlariEkleRequest">
+    <wsdl:part name="muhasebeKayitlariEkleRequest" element="tns:muhasebeKayitlariEkleRequest" />
+  </wsdl:message>
+  <wsdl:message name="muhasebeKayitlariEkleResponse">
+    <wsdl:part name="muhasebeKayitlariEkleResponse" element="tns:muhasebeKayitlariEkleResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MuhasebeKayitlariEklePort">
+    <wsdl:operation name="muhasebeKayitlariEkle">
+      <wsdl:input name="muhasebeKayitlariEkleRequest" message="tns:muhasebeKayitlariEkleRequest" />
+      <wsdl:output name="muhasebeKayitlariEkleResponse" message="tns:muhasebeKayitlariEkleResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MuhasebeKayitlariEklePortSoap11" type="tns:MuhasebeKayitlariEklePort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="muhasebeKayitlariEkle">
+      <soap:operation soapAction="" />
+      <wsdl:input name="muhasebeKayitlariEkleRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="muhasebeKayitlariEkleResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MuhasebeKayitlariEklePortService">
+    <wsdl:port name="MuhasebeKayitlariEklePortSoap11" binding="tns:MuhasebeKayitlariEklePortSoap11">
+      <soap:address location="http://ws_servers:80/maliye-ws/ws" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,149 @@
+@page
+@model TanimMuhasebeModel
+@{
+    ViewData["Title"] = Metin.Muhasebe("FRMMUH001");
+    // Geniş ekranda sayfa pencereye sığar, bölmeler kendi içinde kayar (tanim.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">@Metin.Muhasebe("Yetkisiz")</div>
+    return;
+}
+
+<div class="tanim">
+    <!-- Sol: arama ve liste -->
+    <section class="tanim-sol">
+        <div class="kutu">
+            <h2 class="kutu-baslik">@Metin.Muhasebe("MuhasebeListe")</h2>
+            <form id="frmArama" class="tanim-arama" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="aramaMetin">@Metin.Muhasebe("Arama")</label>
+                    <div class="arama-satir">
+                        <input type="search" id="aramaMetin" class="form-control" placeholder="@Metin.Muhasebe("AramaIpucu")" />
+                        <button type="submit" id="btnListele" class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> @Metin.Muhasebe("MUHGNL003")
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div id="grdListe" class="tanim-grid"></div>
+        </div>
+    </section>
+
+    <!-- Sağ: seçili muhasebenin bilgileri -->
+    <section class="tanim-sag">
+        <div class="kutu">
+            <div class="btn-toolbar tanim-arac" role="toolbar">
+                <button type="button" id="btnYeni" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> @Metin.Muhasebe("Yeni")
+                </button>
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> @Metin.Muhasebe("MUHGNL001")
+                </button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm" disabled>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> @Metin.Muhasebe("MUHGNL002")
+                </button>
+                <button type="button" id="btnTasi" class="btn btn-default btn-sm pull-right">
+                    <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> @Metin.Muhasebe("MUHGNL005")
+                </button>
+            </div>
+
+            <form id="frmMuhasebe" class="tanim-form" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="txtKod">@Metin.Muhasebe("MUHGNL040")</label>
+                    <div><input type="text" id="txtKod" class="form-control dar" inputmode="numeric" maxlength="9" required /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAd">@Metin.Muhasebe("MUHGNL191")</label>
+                    <div><input type="text" id="txtAd" class="form-control" required /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtIlgili1">@Metin.Muhasebe("Ilgili1")</label>
+                    <div><input type="text" id="txtIlgili1" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtIlgili1Unvan">@Metin.Muhasebe("Ilgili1Unvan")</label>
+                    <div><input type="text" id="txtIlgili1Unvan" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtIlgili2">@Metin.Muhasebe("Ilgili2")</label>
+                    <div><input type="text" id="txtIlgili2" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtIlgili2Unvan">@Metin.Muhasebe("Ilgili2Unvan")</label>
+                    <div><input type="text" id="txtIlgili2Unvan" class="form-control" /></div>
+                </div>
+                <div class="form-group ust-hizali">
+                    <label class="control-label" for="txtAdres">@Metin.Muhasebe("Adres")</label>
+                    <div><textarea id="txtAdres" class="form-control" rows="3"></textarea></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtTelefon">@Metin.Muhasebe("Telefon")</label>
+                    <div><input type="tel" id="txtTelefon" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtFaks">@Metin.Muhasebe("Faks")</label>
+                    <div><input type="tel" id="txtFaks" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtVergiNo">@Metin.Muhasebe("VergiNo")</label>
+                    <div><input type="text" id="txtVergiNo" class="form-control dar" inputmode="numeric" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtEPosta">@Metin.Muhasebe("EPosta")</label>
+                    <div><input type="email" id="txtEPosta" class="form-control" /></div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+<!-- Saymanlık taşıma: bir saymanlık/birimin seçilen türdeki kayıtlarını başka bir saymanlık/birime aktarır -->
+<dialog id="dlgTasi" class="tanim-pencere" aria-labelledby="dlgTasiBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgTasiBaslik">@Metin.Muhasebe("TasiBaslik")</h2>
+        <button type="button" class="close" data-kapat aria-label="@Metin.Muhasebe("Kapat")"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div id="tasiHazirDegil" class="alert alert-warning" role="alert" hidden>@Metin.Muhasebe("TasiHazirDegil")</div>
+        <form id="frmTasi" class="tanim-form" novalidate>
+            <div class="form-group">
+                <span class="control-label">@Metin.Muhasebe("TasiEski")</span>
+                <div class="cift-alan">
+                    <input type="text" id="tsSaymanlik" class="form-control" inputmode="numeric" maxlength="9" aria-label="@Metin.Muhasebe("TasiEski"): @Metin.Muhasebe("TasiSaymanlik")" placeholder="@Metin.Muhasebe("TasiSaymanlik")" />
+                    <input type="text" id="tsBirim" class="form-control" maxlength="10" aria-label="@Metin.Muhasebe("TasiEski"): @Metin.Muhasebe("TasiBirim")" placeholder="@Metin.Muhasebe("TasiBirim")" />
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="control-label">@Metin.Muhasebe("TasiYeni")</span>
+                <div class="cift-alan">
+                    <input type="text" id="ynSaymanlik" class="form-control" inputmode="numeric" maxlength="9" aria-label="@Metin.Muhasebe("TasiYeni"): @Metin.Muhasebe("TasiSaymanlik")" placeholder="@Metin.Muhasebe("TasiSaymanlik")" />
+                    <input type="text" id="ynBirim" class="form-control" maxlength="10" aria-label="@Metin.Muhasebe("TasiYeni"): @Metin.Muhasebe("TasiBirim")" placeholder="@Metin.Muhasebe("TasiBirim")" />
+                </div>
+            </div>
+            <fieldset>
+                <legend class="control-label">@Metin.Muhasebe("TasiIslemler")</legend>
+                <div id="tasiIslemler" class="secenekler" role="radiogroup"></div>
+            </fieldset>
+        </form>
+        <div id="tasiSonuc" class="alert sonuc" role="status" hidden></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>@Metin.Muhasebe("Kapat")</button>
+        <button type="button" id="btnTasiYap" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> @Metin.Muhasebe("TasiYap")
+        </button>
+    </div>
+</dialog>
+
+<script type="application/json" id="metinler">@Html.Raw(Model.MetinlerJson)</script>
+<script type="application/json" id="tanimlar">@Html.Raw(Model.TanimlarJson)</script>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/tanimmuhasebe.js" asp-append-version="true"></script>
+}

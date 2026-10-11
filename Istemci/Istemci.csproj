@@ -18,6 +18,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Raporlar eskisi gibi Aspose ile üretilir (OrtakClass\TabloAspose.cs, hedef kartı vb.). Kitaplıklar eski projedekilerdir;
+         .NET 8'de çalışmaları için System.Drawing.Common ve System.Security.Permissions gerekir. -->
+    <Reference Include="Aspose.Cells">
+      <HintPath>..\Sunucu\OrtakDLL\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Words">
+      <HintPath>..\Sunucu\OrtakDLL\Aspose.Words.dll</HintPath>
+    </Reference>
+    <PackageReference Include="System.Drawing.Common" Version="8.0.8" />
+    <PackageReference Include="System.Security.Permissions" Version="8.0.0" />
+    <!-- Lisans dosyası depoda yoktur (.gitignore: *.lic); eski projedeki Istemci\Properties\Aspose.Total.lic buraya elle kopyalanır.
+         Varsa derlemeye gömülür; yoksa derleme yine geçer ama Aspose deneme kipinde çalışır (raporlara damga basar). -->
+    <EmbeddedResource Include="Properties\Aspose.Total.lic" Condition="Exists('Properties\Aspose.Total.lic')" />
+  </ItemGroup>
+
+  <ItemGroup>
     <!-- Birinci aşama (tek katman): iş kuralları aynı süreçte çalışır -->
     <ProjectReference Include="..\Sunucu\SGBServisler\SGBServisler.csproj" />
   </ItemGroup>

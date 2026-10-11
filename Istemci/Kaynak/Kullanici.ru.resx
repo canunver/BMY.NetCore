@@ -1,0 +1,630 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FRMCKG001" xml:space="preserve">
+    <value>Имя страницы</value>
+  </data>
+  <data name="FRMCKG002" xml:space="preserve">
+    <value>Диапазон дат</value>
+  </data>
+  <data name="FRMCKG003" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="FRMCKG004" xml:space="preserve">
+    <value>15 минут</value>
+  </data>
+  <data name="FRMCKG005" xml:space="preserve">
+    <value>1 час</value>
+  </data>
+  <data name="FRMCKG006" xml:space="preserve">
+    <value>1 день</value>
+  </data>
+  <data name="FRMCKG007" xml:space="preserve">
+    <value>1 неделя</value>
+  </data>
+  <data name="FRMCKG008" xml:space="preserve">
+    <value>1 месяц</value>
+  </data>
+  <data name="FRMCKG009" xml:space="preserve">
+    <value>Список</value>
+  </data>
+  <data name="FRMCKG010" xml:space="preserve">
+    <value>Производительность системы</value>
+  </data>
+  <data name="FRMCKL001" xml:space="preserve">
+    <value>Имя страницы</value>
+  </data>
+  <data name="FRMCKL002" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="FRMCKL003" xml:space="preserve">
+    <value>Пользователи в течение заданного времени</value>
+  </data>
+  <data name="FRMCKL004" xml:space="preserve">
+    <value>Список</value>
+  </data>
+  <data name="FRMCKL005" xml:space="preserve">
+    <value>№</value>
+  </data>
+  <data name="FRMCKL006" xml:space="preserve">
+    <value>Имя и фамилия</value>
+  </data>
+  <data name="FRMCKL007" xml:space="preserve">
+    <value>Дата совершения сделки</value>
+  </data>
+  <data name="FRMCKL008" xml:space="preserve">
+    <value>IP-адрес</value>
+  </data>
+  <data name="FRMCKL009" xml:space="preserve">
+    <value>Страница транзакций пользователя</value>
+  </data>
+  <data name="FRMCKL010" xml:space="preserve">
+    <value>Список лиц, использующих систему</value>
+  </data>
+  <data name="FRMCKL011" xml:space="preserve">
+    <value>человек в списке.</value>
+  </data>
+  <data name="FRMEPA001" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="FRMEPA002" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
+  <data name="FRMEPA003" xml:space="preserve">
+    <value>Направить группе пользователей</value>
+  </data>
+  <data name="FRMEPA004" xml:space="preserve">
+    <value>Отправка почты</value>
+  </data>
+  <data name="FRMEPA005" xml:space="preserve">
+    <value>Предыдущие сообщения</value>
+  </data>
+  <data name="FRMEPA006" xml:space="preserve">
+    <value>Отправка электронной почты пользователям</value>
+  </data>
+  <data name="FRMEPA007" xml:space="preserve">
+    <value>Все пользовательские типы</value>
+  </data>
+  <data name="FRMEPA008" xml:space="preserve">
+    <value>Ваш адрес электронной почты</value>
+  </data>
+  <data name="FRMEPA009" xml:space="preserve">
+    <value>будет использован для отправки.</value>
+  </data>
+  <data name="FRMEPA010" xml:space="preserve">
+    <value>Пожалуйста, заполните поле темы!</value>
+  </data>
+  <data name="FRMEPA011" xml:space="preserve">
+    <value>Пожалуйста, заполните область сообщения!</value>
+  </data>
+  <data name="FRMEPG001" xml:space="preserve">
+    <value>№ сообщения</value>
+  </data>
+  <data name="FRMEPG002" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="FRMEPG003" xml:space="preserve">
+    <value>По</value>
+  </data>
+  <data name="FRMEPG004" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="FRMEPG005" xml:space="preserve">
+    <value>Количество людей для отправки</value>
+  </data>
+  <data name="FRMEPG006" xml:space="preserve">
+    <value>Количество людей, послал</value>
+  </data>
+  <data name="FRMEPG007" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="FRMEPG008" xml:space="preserve">
+    <value>Повторите</value>
+  </data>
+  <data name="FRMEPG009" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="FRMEPG010" xml:space="preserve">
+    <value>Önceki e-posta Gönderimleri Durum İzleme Sayfası</value>
+  </data>
+  <data name="FRMEPG011" xml:space="preserve">
+    <value>номер для отправки сообщений обновлён. Нажмите кнопку Обновить, чтобы увидеть изменения.</value>
+  </data>
+  <data name="FRMHTD001" xml:space="preserve">
+    <value>Показать ошибку файлов</value>
+  </data>
+  <data name="FRMHTD002" xml:space="preserve">
+    <value>Папка состояния системы пуста</value>
+  </data>
+  <data name="FRMKUA001" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="FRMKUA002" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="FRMKUA003" xml:space="preserve">
+    <value>Единица учета</value>
+  </data>
+  <data name="FRMKUA004" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="FRMKUA005" xml:space="preserve">
+    <value>ИНН</value>
+  </data>
+  <data name="FRMKUA006" xml:space="preserve">
+    <value>Отдел</value>
+  </data>
+  <data name="FRMKUA007" xml:space="preserve">
+    <value>Тип пользователя</value>
+  </data>
+  <data name="FRMKUA008" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="FRMKUA009" xml:space="preserve">
+    <value>Тип полномочий</value>
+  </data>
+  <data name="FRMKUA010" xml:space="preserve">
+    <value>Поиск для пользователей сервера интеграции</value>
+  </data>
+  <data name="FRMKUA011" xml:space="preserve">
+    <value>Список</value>
+  </data>
+  <data name="FRMKUA012" xml:space="preserve">
+    <value>Создайте нового пользователя</value>
+  </data>
+  <data name="FRMKUA013" xml:space="preserve">
+    <value>Новый поиск</value>
+  </data>
+  <data name="FRMKUA014" xml:space="preserve">
+    <value>Печать</value>
+  </data>
+  <data name="FRMKUA015" xml:space="preserve">
+    <value>Имя и фамилия</value>
+  </data>
+  <data name="FRMKUA016" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+  <data name="FRMKUA017" xml:space="preserve">
+    <value>Отдел</value>
+  </data>
+  <data name="FRMKUA018" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="FRMKUA019" xml:space="preserve">
+    <value> e-mail</value>
+  </data>
+  <data name="FRMKUA020" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="FRMKUA021" xml:space="preserve">
+    <value>Дата последнего посещения</value>
+  </data>
+  <data name="FRMKUA022" xml:space="preserve">
+    <value>Страница поиска пользователя</value>
+  </data>
+  <data name="FRMKUA023" xml:space="preserve">
+    <value>Пожалуйста, введите информацию пользователя которому вы хотите позвонить.</value>
+  </data>
+  <data name="FRMKUA024" xml:space="preserve">
+    <value>Результаты поиска</value>
+  </data>
+  <data name="FRMKUA025" xml:space="preserve">
+    <value>найденной записи.</value>
+  </data>
+  <data name="FRMKUA026" xml:space="preserve">
+    <value>Пользователь с данными критериями не найден.</value>
+  </data>
+  <data name="FRMKUG001" xml:space="preserve">
+    <value>ИНН</value>
+  </data>
+  <data name="FRMKUG002" xml:space="preserve">
+    <value>Новый пользователь. После нажатия ввода имени файла поле идентификационного номера заполнится автоматически.</value>
+  </data>
+  <data name="FRMKUG003" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="FRMKUG004" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="FRMKUG005" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="FRMKUG006" xml:space="preserve">
+    <value> e-mail</value>
+  </data>
+  <data name="FRMKUG007" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+  <data name="FRMKUG008" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="FRMKUG009" xml:space="preserve">
+    <value>Отдел</value>
+  </data>
+  <data name="FRMKUG010" xml:space="preserve">
+    <value>№ реестра</value>
+  </data>
+  <data name="FRMKUG011" xml:space="preserve">
+    <value>Единица учета</value>
+  </data>
+  <data name="FRMKUG012" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="FRMKUG013" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="FRMKUG014" xml:space="preserve">
+    <value>Смена пароля</value>
+  </data>
+  <data name="FRMKUG015" xml:space="preserve">
+    <value>Сделать пассивным</value>
+  </data>
+  <data name="FRMKUG016" xml:space="preserve">
+    <value>После ввода правильного пароля необходимо ввести адрес для отправки электронной почты.</value>
+  </data>
+  <data name="FRMKUG017" xml:space="preserve">
+    <value>Пароль будет отправлен на Ваш адрес электронной почты</value>
+  </data>
+  <data name="FRMKUG018" xml:space="preserve">
+    <value>Поля красного цвета обязательны.</value>
+  </data>
+  <data name="FRMKUG019" xml:space="preserve">
+    <value>Oluşturulacak kullanıcının T.C. Kimlik Numarası bilinmiyorsa yukarıdaki</value>
+  </data>
+  <data name="FRMKUG020" xml:space="preserve">
+    <value>можно узнать, нажав на изображение.</value>
+  </data>
+  <data name="FRMKUG021" xml:space="preserve">
+    <value>Oluşturulacak kullanıcının T.C. Kimlik Numarası girildikten sonra yukarıdaki</value>
+  </data>
+  <data name="FRMKUG022" xml:space="preserve">
+    <value>автоматически заполнить, нажав первое и последнее поля.</value>
+  </data>
+  <data name="FRMKUG023" xml:space="preserve">
+    <value>Страница редактирования профиля пользователя</value>
+  </data>
+  <data name="FRMKUG024" xml:space="preserve">
+    <value>Сделать пассивным</value>
+  </data>
+  <data name="FRMKUG025" xml:space="preserve">
+    <value>Активный логин пользователя</value>
+  </data>
+  <data name="FRMKUG026" xml:space="preserve">
+    <value>Поиск пользователя</value>
+  </data>
+  <data name="FRMKUG027" xml:space="preserve">
+    <value>Работа единицы бухгалтерского учета, не может быть пустой</value>
+  </data>
+  <data name="FRMKUG028" xml:space="preserve">
+    <value>Зарегистрируйтесь, чтобы быть желаемой информации о пользователях не могут быть получены с сервера.</value>
+  </data>
+  <data name="FRMKUG029" xml:space="preserve">
+    <value>&lt;b&gt;Сохранение информации о пользователе&lt;/b&gt;&lt;font color=red&gt; успешно завершено&lt;/font&gt;.</value>
+  </data>
+  <data name="FRMKUG030" xml:space="preserve">
+    <value>&lt;br&gt;&lt;br&gt;Параметры для вашей сделки, или используйте меню&lt;b&gt;выше&lt;/b&gt;.&lt;br&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMKUG031" xml:space="preserve">
+    <value>Создание нового пользователя</value>
+  </data>
+  <data name="FRMKUG032" xml:space="preserve">
+    <value>Поиск пользователя</value>
+  </data>
+  <data name="FRMKUG033" xml:space="preserve">
+    <value>Вернуться к пользовательской информации</value>
+  </data>
+  <data name="FRMKUG034" xml:space="preserve">
+    <value>для пользователя &lt;b&gt;Назначение нового пароля &lt;/b&gt;&lt;font color=red&gt;успешно завершен&lt;/font&gt;. Пользовательский пароль выслан по электронной почте.</value>
+  </data>
+  <data name="FRMKUG035" xml:space="preserve">
+    <value>&lt;br&gt;&lt;br&gt;Параметры для вашей сделки, или используйте меню&lt;b&gt;выше&lt;/b&gt;.&lt;br&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMKUG036" xml:space="preserve">
+    <value>Создание нового пользователя</value>
+  </data>
+  <data name="FRMKUG037" xml:space="preserve">
+    <value>Поиск пользователя</value>
+  </data>
+  <data name="FRMKUG038" xml:space="preserve">
+    <value>&lt;/b&gt; чтобы подружиться с новым процессом&lt;/a&gt;&lt;/li&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMKUG039" xml:space="preserve">
+    <value>ее пользователи &lt;b&gt;</value>
+  </data>
+  <data name="FRMKUG040" xml:space="preserve">
+    <value>&lt;/b&gt; состояние процесса приведения &lt;font color=red&gt;успешно завершено&lt;/font&gt;.</value>
+  </data>
+  <data name="FRMKUG041" xml:space="preserve">
+    <value>&lt;br&gt;&lt;br&gt;Следующие параметры для вашей сделки, либо используйте меню&lt;b&gt; выше&lt;/b&gt;.&lt;br&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMKUG042" xml:space="preserve">
+    <value>Создание нового пользователя</value>
+  </data>
+  <data name="FRMKUG043" xml:space="preserve">
+    <value>Поиск пользователя</value>
+  </data>
+  <data name="FRMKUG044" xml:space="preserve">
+    <value>&lt;/b&gt; чтобы подружиться с новым процессом&lt;/a&gt;&lt;/li&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMKUG045" xml:space="preserve">
+    <value>&lt;b&gt;Ошибка : &lt;/b&gt;</value>
+  </data>
+  <data name="FRMKUG046" xml:space="preserve">
+    <value>Новый идентификатор неизвестен, может нажать пиктограмму для регистрации.</value>
+  </data>
+  <data name="FRMKUG047" xml:space="preserve">
+    <value>Страница поиска пользователя</value>
+  </data>
+  <data name="FRMKUG048" xml:space="preserve">
+    <value>К предложениям логина</value>
+  </data>
+  <data name="FRMKUG049" xml:space="preserve">
+    <value>Пользовательские типы</value>
+  </data>
+  <data name="FRMKUG050" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="FRMKYG001" xml:space="preserve">
+    <value>Тип пользователя</value>
+  </data>
+  <data name="FRMKYG002" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="FRMKYG003" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="FRMKYG004" xml:space="preserve">
+    <value>Страница сертификатов авторизации</value>
+  </data>
+  <data name="FRMKYG005" xml:space="preserve">
+    <value>Информация об авторизационных данных пользователя  не может быть прочитана.</value>
+  </data>
+  <data name="FRMKYG006" xml:space="preserve">
+    <value>Так же, как учетная единица</value>
+  </data>
+  <data name="FRMKYG007" xml:space="preserve">
+    <value>можно использовать.</value>
+  </data>
+  <data name="FRMKYG008" xml:space="preserve">
+    <value>Вы не можете использовать единицы учета. Только</value>
+  </data>
+  <data name="FRMKYG009" xml:space="preserve">
+    <value>использования расчетной единицы.</value>
+  </data>
+  <data name="FRMKYG010" xml:space="preserve">
+    <value>Разрешения для пользователя</value>
+  </data>
+  <data name="FRMMED001" xml:space="preserve">
+    <value>Пункты меню</value>
+  </data>
+  <data name="FRMMED002" xml:space="preserve">
+    <value>Темы, чтобы скрыть меню</value>
+  </data>
+  <data name="FRMMED003" xml:space="preserve">
+    <value>Ок</value>
+  </data>
+  <data name="FRMMED004" xml:space="preserve">
+    <value>Menü'de görmek istemediğiniz menü başlıklarını &lt;b&gt;для скрытия пунктов меню&lt;/b&gt; bölümüne aktararak gizleyebilirsiniz.</value>
+  </data>
+  <data name="FRMMED005" xml:space="preserve">
+    <value>Этот процесс повлияет только на вашего пользователя.</value>
+  </data>
+  <data name="FRMMED006" xml:space="preserve">
+    <value>Чтобы сделать процесс "Пункты меню" части среднего и кнопку со стрелкой вправо, чтобы выбрать соответствующие меню с помощью "скрыть меню заголовков" трансферный лист.</value>
+  </data>
+  <data name="FRMMED007" xml:space="preserve">
+    <value>Для отображения меню », чтобы скрыть пункты меню" выберите нужные значения, нажмите кнопку со стрелкой влево.</value>
+  </data>
+  <data name="FRMMED008" xml:space="preserve">
+    <value>Страница редактирования меню</value>
+  </data>
+  <data name="FRMMSK001" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="FRMMSK002" xml:space="preserve">
+    <value>Выберите пункты меню для сохранения и редактирования Вашего избранного.</value>
+  </data>
+  <data name="FRMMSK003" xml:space="preserve">
+    <value>Sık Kullanılan İşlemler Düzenleme Sayfası</value>
+  </data>
+  <data name="FRMMSK004" xml:space="preserve">
+    <value>Меню</value>
+  </data>
+  <data name="FRMPAD001" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="FRMPAD002" xml:space="preserve">
+    <value>Текущий пароль</value>
+  </data>
+  <data name="FRMPAD003" xml:space="preserve">
+    <value>Новый пароль</value>
+  </data>
+  <data name="FRMPAD004" xml:space="preserve">
+    <value>Новый пароль (повтор)</value>
+  </data>
+  <data name="FRMPAD005" xml:space="preserve">
+    <value>Смена пароля</value>
+  </data>
+  <data name="FRMPAD006" xml:space="preserve">
+    <value>Чтобы изменить пароль введите &lt;b&gt;текущий пароль&lt;/b&gt; или пароль нового пользователя, который Вы получили по электронной почте. Затем &lt;b&gt;новый пароль&lt;/b&gt; и &lt;b&gt;новый пароль (повторить)&lt;/b&gt; и нажмите кнопку &lt;b&gt;Смена пароля&lt;/b&gt;.</value>
+  </data>
+  <data name="FRMPAD007" xml:space="preserve">
+    <value>Страница смены пароля</value>
+  </data>
+  <data name="FRMPAD008" xml:space="preserve">
+    <value>Вы используете систему безопасности &lt;font color=red&gt;&lt;b&gt;смены пароля&lt;/b&gt;.&lt;/font&gt;</value>
+  </data>
+  <data name="FRMPAD009" xml:space="preserve">
+    <value>&lt;/b&gt;&lt;b&gt;&lt;font color=green&gt; изменение пароля успешно завершено&lt;/font&gt;&lt;/b&gt;.</value>
+  </data>
+  <data name="FRMPAD010" xml:space="preserve">
+    <value>&lt;br&gt;&lt;br&gt;Пожалуйста, используйте меню для следующей транзакции.&lt;br&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMPAD011" xml:space="preserve">
+    <value>Вы хотите определить новый пароль пустым.</value>
+  </data>
+  <data name="FRMPAD012" xml:space="preserve">
+    <value>Пароли не совпадают</value>
+  </data>
+  <data name="FRMTEM001" xml:space="preserve">
+    <value>Темы</value>
+  </data>
+  <data name="FRMTEM002" xml:space="preserve">
+    <value>Голубая</value>
+  </data>
+  <data name="FRMTEM003" xml:space="preserve">
+    <value>Красная</value>
+  </data>
+  <data name="FRMTEM004" xml:space="preserve">
+    <value>Зелёная</value>
+  </data>
+  <data name="FRMTEM005" xml:space="preserve">
+    <value>Коричневая</value>
+  </data>
+  <data name="FRMTEM006" xml:space="preserve">
+    <value>Применить</value>
+  </data>
+  <data name="FRMTEM007" xml:space="preserve">
+    <value>Выберите тему, которую Вы хотите использовать, и нажмите кнопку Применить.</value>
+  </data>
+  <data name="FRMTEM008" xml:space="preserve">
+    <value>Страница изменения оформления</value>
+  </data>
+  <data name="FRMYTD001" xml:space="preserve">
+    <value>Все значения</value>
+  </data>
+  <data name="FRMYTD002" xml:space="preserve">
+    <value>Выбранные значения</value>
+  </data>
+  <data name="FRMYTD003" xml:space="preserve">
+    <value>Найти</value>
+  </data>
+  <data name="FRMYTD004" xml:space="preserve">
+    <value>Ок</value>
+  </data>
+  <data name="FRMYTD005" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="FRMYTD006" xml:space="preserve">
+    <value>Типичные значения власть, вы хотите, чтобы выбрать "Все ценности" в середине и кнопку со стрелкой вправо, чтобы выбрать из списка "Выбранные значения" трансферный лист. Выбирается из списка значений вы хотите удалить кнопку со стрелкой влево, чтобы выбрать то, что вы хотите от списка.</value>
+  </data>
+  <data name="FRMYTD007" xml:space="preserve">
+    <value>Выбор типов полномочий</value>
+  </data>
+</root>

@@ -1,0 +1,150 @@
+﻿using System;
+using System.Data;
+using TNS.Veri;
+
+namespace TNS.HRC.IsKurallari.Veri
+{
+    /// <summary>
+    /// İhale sözleşmeye davet bilgisini tutan HRCIHALESOZLESMETANIM veri tabanı tablosu ile ilgili, 
+    /// listeleme ve yazma işlemleri tutan nesne
+    /// </summary>
+    public class TABIhaleSozlesmeyeDavet : TABOrtak
+    {
+        /// <summary>
+        /// Sınıfın oluşturucu (constructer) fonksiyonu, veri erişiminde kullanacağı nesneyi parametre olarak alır
+        /// </summary>
+        /// <param name="veriErisim">Veri tabanı erişiminde kullanılacak nesne</param>
+        public TABIhaleSozlesmeyeDavet(VeriErisim veriErisim) : base(veriErisim) { }
+
+        /// <summary>
+        /// İhale sözleşmeye davet bilgisi tablo adını tutan sabit değişken
+        /// </summary>
+        static string TABLOAD = "HRCIHALESOZLESMEYEDAVET";
+
+        /// <summary>
+        /// İhale sözleşmeye davet bilgisi tablo alanlarının sırasını tutan enumeration
+        /// </summary>
+        enum ENUMAlanlar
+        {
+            /// <summary>
+            /// YIL alanının alanlar dizisindeki ve sonuç kümesindeki sıra numarası (indisi)
+            /// </summary>
+            YIL = 0,
+            /// <summary>
+            /// MUHASEBEKOD alanının alanlar dizisindeki ve sonuç kümesindeki sıra numarası (indisi)
+            /// </summary>
+            MUHASEBEKOD = 1,
+            /// <summary>
+            /// BIRIMKOD alanının alanlar dizisindeki ve sonuç kümesindeki sıra numarası (indisi)
+            /// </summary>
+            BIRIMKOD = 2,
+            /// <summary>
+            /// SURECNO alanının alanlar dizisindeki ve sonuç kümesindeki sıra numarası (indisi)
+            /// </summary>
+            SURECNO = 3,
+            /// <summary>
+            /// FIRMAKOD alanının alanlar dizisindeki ve sonuç kümesindeki sıra numarası (indisi)
+            /// </summary>
+            FIRMAKODU = 4,
+            /// <summary>
+            /// GIDISTARIHI alanının alanlar dizisindeki ve sonuç kümesindeki sıra numarası (indisi)
+            /// </summary>
+            GIDISTARIHI = 5,
+            /// <summary>
+            /// GIDISSEKLI alanının alanlar dizisindeki ve sonuç kümesindeki sıra numarası (indisi)
+            /// </summary>
+            GIDISSEKLI = 6,
+        }
+
+        /// <summary>
+        /// İhale sözleşmeye davet tablosu alanlarının isimlerini tutan sabit dizi
+        /// </summary>
+        static string[] ALANLAR = { "YIL", "MUHASEBEKOD", "BIRIMKOD", "SURECNO", "FIRMAKODU", "GIDISTARIHI", "GIDISSEKLI" };
+
+        /// <summary>
+        /// İhale sözleşmeye davet bilgisini veri tabanına eklemek için
+        /// sql cümlesini oluşturup, çalıştıran ve sonucunu döndüren fonksiyon
+        /// </summary>
+        /// <param name="bilgi">Eklenecek ihale sözleşmeye davet bilgisini tutan nesne</param>
+        /// <returns>Oluşturulan insert komutunun çalıştırılması sonucunu, Sonuc yapısında döndürür</returns>
+        public Sonuc Kaydet(ObjectArray bilgi)
+        {
+            Sonuc sonuc = new Sonuc(true, "", "");
+            string sql = "";
+
+            foreach (IhaleSozlesmeyeDavet f in bilgi.objeler)
+            {
+                sql = "INSERT INTO " + TABLOAD + " (" + VeriErisim.TumAlanlar("", ALANLAR) + ") VALUES (";
+                sql += VeriErisim.DegerYap(f.yil) + ",";
+                sql += VeriErisim.DegerYap(f.muhasebe) + ",";
+                sql += VeriErisim.DegerYap(f.birim) + ",";
+                sql += VeriErisim.DegerYap(f.surecNo) + ",";
+                sql += VeriErisim.DegerYap(f.firmaKod) + ",";
+                sql += VeriErisim.DegerYap(f.gidisTarihi) + ",";
+                sql += VeriErisim.DegerYap(f.gidisSekli) + ")";
+
+                sonuc = KomutCalistir(sql, 1);
+
+                if (!sonuc.islemSonuc)
+                    break;
+            }
+            return sonuc;
+        }
+
+        /// <summary>
+        /// İhale sözleşmeye davet bilgisini veri tabanından çeken sql cümleciğini verilen kıstasa göre
+        /// üretip, çalıştırıp, datareader döndüren yordam.
+        /// </summary>
+        /// <param name="bilgi">Listeleme için kullanılacak ihale sözleşmeye davet bilgisi kıstas parametresi</param>
+        /// <returns>
+        /// İhale sözleşmeye davet bilgisini bulmak için oluşturulan select komutunun çalıştırılması sonucu elde edilen
+        /// DataReader nesnesini döndürür
+        /// </returns>
+        public IDataReader Listele(IhaleSozlesmeyeDavet bilgi)
+        {
+            string sql = "";
+            string kosul = "";
+
+            sql = "SELECT " + VeriErisim.TumAlanlar(TABLOAD, ALANLAR) + "," + TABFirmaBilgisi.TABLOAD + "." + TABFirmaBilgisi.ALANLAR[(int)TABFirmaBilgisi.ENUMAlanlar.AD] + " FROM " + TABLOAD + " LEFT OUTER JOIN " + TABFirmaBilgisi.TABLOAD + " ON " + TABLOAD + "." + ALANLAR[(int)ENUMAlanlar.FIRMAKODU] + " = " + TABFirmaBilgisi.TABLOAD + "." + TABFirmaBilgisi.ALANLAR[(int)TABFirmaBilgisi.ENUMAlanlar.KOD];
+
+            if (bilgi.yil > 0)
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(TABLOAD, ALANLAR[(int)ENUMAlanlar.YIL], "=", bilgi.yil));
+            if (bilgi.muhasebe > 0)
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(TABLOAD, ALANLAR[(int)ENUMAlanlar.MUHASEBEKOD], "=", bilgi.muhasebe));
+            if (bilgi.birim != "")
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(TABLOAD, ALANLAR[(int)ENUMAlanlar.BIRIMKOD], "=", bilgi.birim));
+            if (bilgi.surecNo != "")
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(TABLOAD, ALANLAR[(int)ENUMAlanlar.SURECNO], "=", bilgi.surecNo));
+            if (bilgi.firmaKod > 0)
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(TABLOAD, ALANLAR[(int)ENUMAlanlar.FIRMAKODU], "=", bilgi.firmaKod));
+
+
+            if (kosul != "")
+                sql += " WHERE " + kosul;
+
+            sql += " ORDER BY " + TABLOAD + "." + ALANLAR[(int)ENUMAlanlar.YIL] + " DESC ";
+
+            return veriErisim.DataReaderDondur(sql);
+        }
+
+        /// <summary>
+        /// İhale sözleşmeye davet bilgisini veri tabanından silmek için
+        /// sql cümlesini oluşturup, çalıştıran ve sonucunu döndüren fonksiyon
+        /// </summary>
+        /// <param name="bilgi">Silinecek ihale sözleşmeye davet bilgisini tutan nesne</param>
+        /// <returns>Oluşturulan delete komutunun çalıştırılması sonucunu, Sonuc yapısında döndürür</returns>
+        public Sonuc Sil(IhaleSozlesmeyeDavet bilgi)
+        {
+            string sql = "";
+
+            sql = "DELETE FROM " + TABLOAD;
+            sql = VeriErisim.KosulEkle(sql, "WHERE", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.YIL], "=", bilgi.yil));
+            sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.MUHASEBEKOD], "=", bilgi.muhasebe));
+            sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.BIRIMKOD], "=", bilgi.birim));
+            sql = VeriErisim.KosulEkle(sql, "AND", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.SURECNO], "=", bilgi.surecNo));
+
+            return KomutCalistir(sql, 0);
+        }
+
+    }
+}

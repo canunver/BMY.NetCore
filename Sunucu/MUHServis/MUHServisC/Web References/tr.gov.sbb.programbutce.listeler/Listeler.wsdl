@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="KodListele">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="yil" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="kodTuru" type="tns:EnumKodTurleriW" />
+            <s:element minOccurs="0" maxOccurs="1" name="ustKod" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="EnumKodTurleriW">
+        <s:restriction base="s:string">
+          <s:enumeration value="Kurumsal" />
+          <s:enumeration value="Fonksiyonel" />
+          <s:enumeration value="FinansTipi" />
+          <s:enumeration value="Ekonomik" />
+          <s:enumeration value="GelirEkonomik" />
+          <s:enumeration value="FinansmanEkonomik" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="KodListeleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="KodListeleResult" type="tns:ArrayOfABSKodlarW" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfABSKodlarW">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ABSKodlarW" nillable="true" type="tns:ABSKodlarW" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ABSKodlarW">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="kod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ad" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="durum" type="tns:ENUMAktiflik" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ENUMAktiflik">
+        <s:restriction base="s:string">
+          <s:enumeration value="PASIF" />
+          <s:enumeration value="AKTIF" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="DegisenKodListele">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="yil" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="kodTuru" type="tns:EnumKodTurleriW" />
+            <s:element minOccurs="1" maxOccurs="1" name="degisiklikZamani" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DegisenKodListeleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DegisenKodListeleResult" type="tns:ArrayOfABSKodlarW" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PAFListele">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="yil" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="kodTuru" type="tns:EnumPAFTurW" />
+            <s:element minOccurs="0" maxOccurs="1" name="kurumKod" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kullaniciKodu" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parola" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="EnumPAFTurW">
+        <s:restriction base="s:string">
+          <s:enumeration value="AltFaaliyet" />
+          <s:enumeration value="Program" />
+          <s:enumeration value="AltProgram" />
+          <s:enumeration value="Faaliyet" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="PAFListeleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PAFListeleResult" type="tns:ArrayOfABSKodlarWI" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfABSKodlarWI">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ABSKodlarWI" nillable="true" type="tns:ABSKodlarWI" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ABSKodlarWI">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="ad" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="durum" type="tns:ENUMAktiflik" />
+          <s:element minOccurs="0" maxOccurs="1" name="programSorumluKurumKod" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AFProgramId" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="AFAltProgramId" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="AFFaaliyetId" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="AFFonksiyonKod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AFKurKod" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PAFBilgiGetir">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="yil" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="kodTuru" type="tns:EnumPAFTurW" />
+            <s:element minOccurs="1" maxOccurs="1" name="PAFKod" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="kullaniciKodu" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parola" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PAFBilgiGetirResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PAFBilgiGetirResult" type="tns:ABSKodlarWI" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="KodBilgiGetir">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="kodTuru" type="tns:EnumKodTurleriW" />
+            <s:element minOccurs="0" maxOccurs="1" name="kod" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="KodBilgiGetirResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="KodBilgiGetirResult" type="tns:ABSKodlarW" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DegisenPAFListele">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="yil" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="kodTuru" type="tns:EnumPAFTurW" />
+            <s:element minOccurs="0" maxOccurs="1" name="kurumKod" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="degisiklikZamani" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="kullaniciKodu" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parola" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DegisenPAFListeleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DegisenPAFListeleResult" type="tns:ArrayOfABSKodlarWI" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IliskiliAltFaaliyetListele">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kullaniciKodu" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parola" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="yil" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="kurumKod" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ekoKod" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IliskiliAltFaaliyetListeleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IliskiliAltFaaliyetListeleResult" type="tns:ArrayOfABSKodlarWI" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ButceIslemiOzetBilgiSorgula">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kullaniciKodu" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parola" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="yil" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="baslangictarihi" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="bitisTarihi" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="kurum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="islemTuru" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ButceIslemiOzetBilgiSorgulaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ButceIslemiOzetBilgiSorgulaResult" type="tns:ArrayOfLong" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLong">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="long" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="butceIslemiDetayBilgileriniSorgulaTek">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kullaniciKodu" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parola" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="formId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="butceIslemiDetayBilgileriniSorgulaTekResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="butceIslemiDetayBilgileriniSorgulaTekResult" type="tns:ArrayOfButceIslemBilgi" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfButceIslemBilgi">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ButceIslemBilgi" nillable="true" type="tns:ButceIslemBilgi" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ButceIslemBilgi">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="islemTarih" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="islemKodu" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="islemTipi" type="tns:EnumIslemTipi" />
+          <s:element minOccurs="1" maxOccurs="1" name="islemId" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="yil" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="islemNo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="islemyapanKurum" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aciklama" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="iptalEdilenIslemId" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="giderler" type="tns:ArrayOfButceIslemSatir" />
+          <s:element minOccurs="0" maxOccurs="1" name="gelirler" type="tns:ArrayOfButceIslemSatir" />
+          <s:element minOccurs="0" maxOccurs="1" name="finansmanlar" type="tns:ArrayOfButceIslemSatir" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="EnumIslemTipi">
+        <s:restriction base="s:string">
+          <s:enumeration value="HATA" />
+          <s:enumeration value="EKLEME" />
+          <s:enumeration value="IPTAL" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfButceIslemSatir">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ButceIslemSatir" nillable="true" type="tns:ButceIslemSatir" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ButceIslemSatir">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="altislemKodu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tertip" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tutar" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="aciklama" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="butceIslemiDetayBilgileriniSorgula">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kullaniciKodu" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parola" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="butceIdler" type="tns:ArrayOfLong" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="butceIslemiDetayBilgileriniSorgulaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="butceIslemiDetayBilgileriniSorgulaResult" type="tns:ArrayOfButceIslemBilgi" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HarcamaListesi">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kullaniciKodu" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parola" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="yil" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ay" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="kurKod" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HarcamaListesiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HarcamaListesiResult" type="tns:ArrayOfOdenekHarcamaTahminWI" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOdenekHarcamaTahminWI">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OdenekHarcamaTahminWI" nillable="true" type="tns:OdenekHarcamaTahminWI" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OdenekHarcamaTahminWI">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="vkn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="hesapKod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="harcama" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="eklenen" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="dusulen" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProgramId" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProgramTur" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AltProgramId" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="FaaliyetId" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="AltFaaliyetId" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="KurKod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FonKod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FinKod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EkoKod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SektorKod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjeId" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="DptProjeNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AltProjeId" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="FisAciklama" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FisBaslangicFarkSebep" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FisOncekiYilFarkSebep" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TavanUstuTalepSebep" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="teklif" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="tahmin1" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="tahmin2" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="ysht" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="odenekUstu" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="KodListeleSoapIn">
+    <wsdl:part name="parameters" element="tns:KodListele" />
+  </wsdl:message>
+  <wsdl:message name="KodListeleSoapOut">
+    <wsdl:part name="parameters" element="tns:KodListeleResponse" />
+  </wsdl:message>
+  <wsdl:message name="DegisenKodListeleSoapIn">
+    <wsdl:part name="parameters" element="tns:DegisenKodListele" />
+  </wsdl:message>
+  <wsdl:message name="DegisenKodListeleSoapOut">
+    <wsdl:part name="parameters" element="tns:DegisenKodListeleResponse" />
+  </wsdl:message>
+  <wsdl:message name="PAFListeleSoapIn">
+    <wsdl:part name="parameters" element="tns:PAFListele" />
+  </wsdl:message>
+  <wsdl:message name="PAFListeleSoapOut">
+    <wsdl:part name="parameters" element="tns:PAFListeleResponse" />
+  </wsdl:message>
+  <wsdl:message name="PAFBilgiGetirSoapIn">
+    <wsdl:part name="parameters" element="tns:PAFBilgiGetir" />
+  </wsdl:message>
+  <wsdl:message name="PAFBilgiGetirSoapOut">
+    <wsdl:part name="parameters" element="tns:PAFBilgiGetirResponse" />
+  </wsdl:message>
+  <wsdl:message name="KodBilgiGetirSoapIn">
+    <wsdl:part name="parameters" element="tns:KodBilgiGetir" />
+  </wsdl:message>
+  <wsdl:message name="KodBilgiGetirSoapOut">
+    <wsdl:part name="parameters" element="tns:KodBilgiGetirResponse" />
+  </wsdl:message>
+  <wsdl:message name="DegisenPAFListeleSoapIn">
+    <wsdl:part name="parameters" element="tns:DegisenPAFListele" />
+  </wsdl:message>
+  <wsdl:message name="DegisenPAFListeleSoapOut">
+    <wsdl:part name="parameters" element="tns:DegisenPAFListeleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IliskiliAltFaaliyetListeleSoapIn">
+    <wsdl:part name="parameters" element="tns:IliskiliAltFaaliyetListele" />
+  </wsdl:message>
+  <wsdl:message name="IliskiliAltFaaliyetListeleSoapOut">
+    <wsdl:part name="parameters" element="tns:IliskiliAltFaaliyetListeleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ButceIslemiOzetBilgiSorgulaSoapIn">
+    <wsdl:part name="parameters" element="tns:ButceIslemiOzetBilgiSorgula" />
+  </wsdl:message>
+  <wsdl:message name="ButceIslemiOzetBilgiSorgulaSoapOut">
+    <wsdl:part name="parameters" element="tns:ButceIslemiOzetBilgiSorgulaResponse" />
+  </wsdl:message>
+  <wsdl:message name="butceIslemiDetayBilgileriniSorgulaTekSoapIn">
+    <wsdl:part name="parameters" element="tns:butceIslemiDetayBilgileriniSorgulaTek" />
+  </wsdl:message>
+  <wsdl:message name="butceIslemiDetayBilgileriniSorgulaTekSoapOut">
+    <wsdl:part name="parameters" element="tns:butceIslemiDetayBilgileriniSorgulaTekResponse" />
+  </wsdl:message>
+  <wsdl:message name="butceIslemiDetayBilgileriniSorgulaSoapIn">
+    <wsdl:part name="parameters" element="tns:butceIslemiDetayBilgileriniSorgula" />
+  </wsdl:message>
+  <wsdl:message name="butceIslemiDetayBilgileriniSorgulaSoapOut">
+    <wsdl:part name="parameters" element="tns:butceIslemiDetayBilgileriniSorgulaResponse" />
+  </wsdl:message>
+  <wsdl:message name="HarcamaListesiSoapIn">
+    <wsdl:part name="parameters" element="tns:HarcamaListesi" />
+  </wsdl:message>
+  <wsdl:message name="HarcamaListesiSoapOut">
+    <wsdl:part name="parameters" element="tns:HarcamaListesiResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ListelerSoap">
+    <wsdl:operation name="KodListele">
+      <wsdl:input message="tns:KodListeleSoapIn" />
+      <wsdl:output message="tns:KodListeleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DegisenKodListele">
+      <wsdl:input message="tns:DegisenKodListeleSoapIn" />
+      <wsdl:output message="tns:DegisenKodListeleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PAFListele">
+      <wsdl:input message="tns:PAFListeleSoapIn" />
+      <wsdl:output message="tns:PAFListeleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PAFBilgiGetir">
+      <wsdl:input message="tns:PAFBilgiGetirSoapIn" />
+      <wsdl:output message="tns:PAFBilgiGetirSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="KodBilgiGetir">
+      <wsdl:input message="tns:KodBilgiGetirSoapIn" />
+      <wsdl:output message="tns:KodBilgiGetirSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DegisenPAFListele">
+      <wsdl:input message="tns:DegisenPAFListeleSoapIn" />
+      <wsdl:output message="tns:DegisenPAFListeleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IliskiliAltFaaliyetListele">
+      <wsdl:input message="tns:IliskiliAltFaaliyetListeleSoapIn" />
+      <wsdl:output message="tns:IliskiliAltFaaliyetListeleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ButceIslemiOzetBilgiSorgula">
+      <wsdl:input message="tns:ButceIslemiOzetBilgiSorgulaSoapIn" />
+      <wsdl:output message="tns:ButceIslemiOzetBilgiSorgulaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="butceIslemiDetayBilgileriniSorgulaTek">
+      <wsdl:input message="tns:butceIslemiDetayBilgileriniSorgulaTekSoapIn" />
+      <wsdl:output message="tns:butceIslemiDetayBilgileriniSorgulaTekSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="butceIslemiDetayBilgileriniSorgula">
+      <wsdl:input message="tns:butceIslemiDetayBilgileriniSorgulaSoapIn" />
+      <wsdl:output message="tns:butceIslemiDetayBilgileriniSorgulaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HarcamaListesi">
+      <wsdl:input message="tns:HarcamaListesiSoapIn" />
+      <wsdl:output message="tns:HarcamaListesiSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListelerSoap" type="tns:ListelerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="KodListele">
+      <soap:operation soapAction="http://tempuri.org/KodListele" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DegisenKodListele">
+      <soap:operation soapAction="http://tempuri.org/DegisenKodListele" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PAFListele">
+      <soap:operation soapAction="http://tempuri.org/PAFListele" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PAFBilgiGetir">
+      <soap:operation soapAction="http://tempuri.org/PAFBilgiGetir" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KodBilgiGetir">
+      <soap:operation soapAction="http://tempuri.org/KodBilgiGetir" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DegisenPAFListele">
+      <soap:operation soapAction="http://tempuri.org/DegisenPAFListele" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IliskiliAltFaaliyetListele">
+      <soap:operation soapAction="http://tempuri.org/IliskiliAltFaaliyetListele" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ButceIslemiOzetBilgiSorgula">
+      <soap:operation soapAction="http://tempuri.org/ButceIslemiOzetBilgiSorgula" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="butceIslemiDetayBilgileriniSorgulaTek">
+      <soap:operation soapAction="http://tempuri.org/butceIslemiDetayBilgileriniSorgulaTek" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="butceIslemiDetayBilgileriniSorgula">
+      <soap:operation soapAction="http://tempuri.org/butceIslemiDetayBilgileriniSorgula" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HarcamaListesi">
+      <soap:operation soapAction="http://tempuri.org/HarcamaListesi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListelerSoap12" type="tns:ListelerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="KodListele">
+      <soap12:operation soapAction="http://tempuri.org/KodListele" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DegisenKodListele">
+      <soap12:operation soapAction="http://tempuri.org/DegisenKodListele" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PAFListele">
+      <soap12:operation soapAction="http://tempuri.org/PAFListele" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PAFBilgiGetir">
+      <soap12:operation soapAction="http://tempuri.org/PAFBilgiGetir" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KodBilgiGetir">
+      <soap12:operation soapAction="http://tempuri.org/KodBilgiGetir" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DegisenPAFListele">
+      <soap12:operation soapAction="http://tempuri.org/DegisenPAFListele" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IliskiliAltFaaliyetListele">
+      <soap12:operation soapAction="http://tempuri.org/IliskiliAltFaaliyetListele" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ButceIslemiOzetBilgiSorgula">
+      <soap12:operation soapAction="http://tempuri.org/ButceIslemiOzetBilgiSorgula" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="butceIslemiDetayBilgileriniSorgulaTek">
+      <soap12:operation soapAction="http://tempuri.org/butceIslemiDetayBilgileriniSorgulaTek" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="butceIslemiDetayBilgileriniSorgula">
+      <soap12:operation soapAction="http://tempuri.org/butceIslemiDetayBilgileriniSorgula" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HarcamaListesi">
+      <soap12:operation soapAction="http://tempuri.org/HarcamaListesi" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Listeler">
+    <wsdl:port name="ListelerSoap" binding="tns:ListelerSoap">
+      <soap:address location="http://programbutce.sbb.gov.tr/services/Listeler.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListelerSoap12" binding="tns:ListelerSoap12">
+      <soap12:address location="http://programbutce.sbb.gov.tr/services/Listeler.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

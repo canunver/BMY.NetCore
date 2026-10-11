@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>STRServisC</AssemblyName>
+    <RootNamespace>STRServisC</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\GNLServis\GNLServis.csproj" />
+    <ProjectReference Include="..\..\KYMServis\KYMServisI\KYMServisI.csproj" />
+    <ProjectReference Include="..\..\PEBServis\PEBServisI\PEBServisI.csproj" />
+    <ProjectReference Include="..\..\UZYServis\UZYServisI\UZYServisI.csproj" />
+    <ProjectReference Include="..\..\VERServis\VERServis.csproj" />
+    <ProjectReference Include="..\..\DEGServis\DEGServisI\DEGServisI.csproj" />
+    <ProjectReference Include="..\..\DEGServis\DEGServis\DEGServis.csproj" />
+    <ProjectReference Include="..\STRServisI\STRServisI.csproj" />
+    <ProjectReference Include="..\STRServisV\STRServisV.csproj" />
+  </ItemGroup>
+
+</Project>

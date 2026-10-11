@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="OdenekGondermeKaydet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kullaniciKodu" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parola" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="form" type="tns:GondermeTenkisFormW" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GondermeTenkisFormW">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="yil" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="belgeTur" type="tns:EnumodenekIslemTuruW" />
+          <s:element minOccurs="1" maxOccurs="1" name="belgeNo" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="kurum" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="kurumAd" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="muhasebe" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="muhasebeAd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="vkn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="vknAd" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aciklama" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="yaziNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="yaziTarih" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="istekYaziNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="istekYaziTarih" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="formDurum" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="formDurumTarih" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="islemYapan" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="iptalNeden" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="icmalNo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="icmalTarih" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="onayNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="onayTarih" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="islemTarih" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ay" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="detay" type="tns:ArrayOfGondermeTenkisDetayW" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="EnumodenekIslemTuruW">
+        <s:restriction base="s:string">
+          <s:enumeration value="ODENEK" />
+          <s:enumeration value="TENKIS" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfGondermeTenkisDetayW">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GondermeTenkisDetayW" nillable="true" type="tns:GondermeTenkisDetayW" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GondermeTenkisDetayW">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="tertip" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="miktar" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="OdenekGondermeKaydetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OdenekGondermeKaydetResult" type="tns:Sonuc" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Sonuc">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="islemSonuc" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="hataStr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bilgiStr" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="kayitSay" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="anahtar" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tag" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="OdenekGondermeKontrol">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kullaniciKodu" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parola" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="form" type="tns:GondermeTenkisFormW" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OdenekGondermeKontrolResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OdenekGondermeKontrolResult" type="tns:Sonuc" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OdenekGondermeBelgeDurum">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kullaniciKodu" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parola" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="form" type="tns:GondermeTenkisFormW" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OdenekGondermeBelgeDurumResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OdenekGondermeBelgeDurumResult" type="tns:GondermeTenkisFormW" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="OdenekGondermeKaydetSoapIn">
+    <wsdl:part name="parameters" element="tns:OdenekGondermeKaydet" />
+  </wsdl:message>
+  <wsdl:message name="OdenekGondermeKaydetSoapOut">
+    <wsdl:part name="parameters" element="tns:OdenekGondermeKaydetResponse" />
+  </wsdl:message>
+  <wsdl:message name="OdenekGondermeKontrolSoapIn">
+    <wsdl:part name="parameters" element="tns:OdenekGondermeKontrol" />
+  </wsdl:message>
+  <wsdl:message name="OdenekGondermeKontrolSoapOut">
+    <wsdl:part name="parameters" element="tns:OdenekGondermeKontrolResponse" />
+  </wsdl:message>
+  <wsdl:message name="OdenekGondermeBelgeDurumSoapIn">
+    <wsdl:part name="parameters" element="tns:OdenekGondermeBelgeDurum" />
+  </wsdl:message>
+  <wsdl:message name="OdenekGondermeBelgeDurumSoapOut">
+    <wsdl:part name="parameters" element="tns:OdenekGondermeBelgeDurumResponse" />
+  </wsdl:message>
+  <wsdl:portType name="OdenekGondermeTenkisServisSoap">
+    <wsdl:operation name="OdenekGondermeKaydet">
+      <wsdl:input message="tns:OdenekGondermeKaydetSoapIn" />
+      <wsdl:output message="tns:OdenekGondermeKaydetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OdenekGondermeKontrol">
+      <wsdl:input message="tns:OdenekGondermeKontrolSoapIn" />
+      <wsdl:output message="tns:OdenekGondermeKontrolSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OdenekGondermeBelgeDurum">
+      <wsdl:input message="tns:OdenekGondermeBelgeDurumSoapIn" />
+      <wsdl:output message="tns:OdenekGondermeBelgeDurumSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OdenekGondermeTenkisServisSoap" type="tns:OdenekGondermeTenkisServisSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="OdenekGondermeKaydet">
+      <soap:operation soapAction="http://tempuri.org/OdenekGondermeKaydet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OdenekGondermeKontrol">
+      <soap:operation soapAction="http://tempuri.org/OdenekGondermeKontrol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OdenekGondermeBelgeDurum">
+      <soap:operation soapAction="http://tempuri.org/OdenekGondermeBelgeDurum" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="OdenekGondermeTenkisServisSoap12" type="tns:OdenekGondermeTenkisServisSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="OdenekGondermeKaydet">
+      <soap12:operation soapAction="http://tempuri.org/OdenekGondermeKaydet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OdenekGondermeKontrol">
+      <soap12:operation soapAction="http://tempuri.org/OdenekGondermeKontrol" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OdenekGondermeBelgeDurum">
+      <soap12:operation soapAction="http://tempuri.org/OdenekGondermeBelgeDurum" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OdenekGondermeTenkisServis">
+    <wsdl:port name="OdenekGondermeTenkisServisSoap" binding="tns:OdenekGondermeTenkisServisSoap">
+      <soap:address location="http://programbutce.sbb.gov.tr/services/OdenekGondermeTenkisServis.asmx" />
+    </wsdl:port>
+    <wsdl:port name="OdenekGondermeTenkisServisSoap12" binding="tns:OdenekGondermeTenkisServisSoap12">
+      <soap12:address location="http://programbutce.sbb.gov.tr/services/OdenekGondermeTenkisServis.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

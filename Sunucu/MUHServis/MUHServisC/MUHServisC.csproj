@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>MUHServisC</AssemblyName>
+    <RootNamespace>MUHServisC</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ServiceModel.Http" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BHMv2Servis\BHMv2ServisC\BHMv2ServisC.csproj" />
+    <ProjectReference Include="..\..\BHMv2Servis\BHMv2ServisI\BHMv2ServisI.csproj" />
+    <ProjectReference Include="..\..\BHMv2Servis\BKDServisI\BKDServisI.csproj" />
+    <ProjectReference Include="..\..\BUMServis\BUMServisI\BUMServisI.csproj" />
+    <ProjectReference Include="..\..\DEGServis\DEGServisI\DEGServisI.csproj" />
+    <ProjectReference Include="..\..\GNLServis\GNLServis.csproj" />
+    <ProjectReference Include="..\..\HRCServis\HRCServisI\HRCServisI.csproj" />
+    <ProjectReference Include="..\..\IKYServis\IKYServisI\IKYServisI.csproj" />
+    <ProjectReference Include="..\..\KYMServis\KYMServisI\KYMServisI.csproj" />
+    <ProjectReference Include="..\..\PERServis\PERServisI\PERServisI.csproj" />
+    <ProjectReference Include="..\..\UZYServis\UZYServisI\UZYServisI.csproj" />
+    <ProjectReference Include="..\..\VERServis\VERServis.csproj" />
+    <ProjectReference Include="..\MUHServisI\MUHServisI.csproj" />
+  </ItemGroup>
+
+</Project>

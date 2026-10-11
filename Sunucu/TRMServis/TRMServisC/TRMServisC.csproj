@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>TRMServisC</AssemblyName>
+    <RootNamespace>TRMServisC</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.ServiceModel.Http" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BHMv2Servis\BKDServisI\BKDServisI.csproj" />
+    <ProjectReference Include="..\..\GNLServis\GNLServis.csproj" />
+    <ProjectReference Include="..\..\KPMServis\KPMServisI\KPMServisI.csproj" />
+    <ProjectReference Include="..\..\KYMServis\KYMServisI\KYMServisI.csproj" />
+    <ProjectReference Include="..\..\UZYServis\UZYServisI\UZYServisI.csproj" />
+    <ProjectReference Include="..\..\VERServis\VERServis.csproj" />
+    <ProjectReference Include="..\TRMServisI\TRMServisI.csproj" />
+  </ItemGroup>
+
+  <!-- Eski depodaki (OrtakDLL) .NET Framework derlemesi; TRMEPostaIslemleri (IMAP) kullanir. .NET 8'de calisma zamaninda denenmedi. -->
+  <ItemGroup>
+    <Reference Include="Aspose.Email">
+      <HintPath>..\..\OrtakDLL\Aspose.Email.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://uygulama.sgb.gov.tr/SGBServis/" xmlns:s1="http://webservice.borcuyokturisemri.webservis.cs.com/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://uygulama.sgb.gov.tr/SGBServis/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://uygulama.sgb.gov.tr/SGBServis/">
+      <s:import namespace="http://webservice.borcuyokturisemri.webservis.cs.com/" />
+      <s:element name="FirmaKisiBilgisiAl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="vergiNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tcKimlikNoKullanici" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kurumKod" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FirmaKisiBilgisiAlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirmaKisiBilgisiAlResult" type="tns:FirmaBilgisi" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FirmaBilgisi">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="kod" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="muhasebe" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="birim" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="vergiNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="vergiDairesi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="banka" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="hesapNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="eMail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="firmaYetkilisi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="telefon" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="faks" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="adres" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="uyruk" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="gorulmesin" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="yasakli" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="cepTel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="web" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="fatura" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="parola" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sonGirisTarih" type="tns:TNSDateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="bicSwift" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="kisiUnvan" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ekGosterge" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="derece" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="aciklama" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="aktifDurum" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="personeldeDeAra" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TNSDateTime">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="isNull" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BorcuYokDilekceKaydet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dki" type="s1:borcuYokturKaydetInput" />
+            <s:element minOccurs="0" maxOccurs="1" name="tcKimlikNoKullanici" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kurumKod" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BorcuYokDilekceKaydetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BorcuYokDilekceKaydetResult" type="s1:borcuYokturKaydetOutput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BorcuYokDilekceSorgulama">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsi" type="s1:dilekceSorguInput" />
+            <s:element minOccurs="0" maxOccurs="1" name="tcKimlikNoKullanici" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kurumKod" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BorcuYokDilekceSorgulamaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BorcuYokDilekceSorgulamaResult" type="s1:borcuYokturSorguOutput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EFaturaSorgulama">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="satici" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="faturaID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="odenecekTutar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tcKimlikNoKullanici" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="kurumKod" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EFaturaSorgulamaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EFaturaSorgulamaResult" type="tns:ArrayOfFatura" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFatura">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Fatura" nillable="true" type="tns:Fatura" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Fatura">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="adres" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aliciTCKN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aliciVKN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="faturaDuzenlemeTarihi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="unvan" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://webservice.borcuyokturisemri.webservis.cs.com/">
+      <s:complexType name="borcuYokturKaydetInput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="dilekceBaslangicTarihi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="dilekceBitisTarihi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="kurumKodu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="tcKimlikNumarasi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="vergiKimlikNumarasi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="yaziTalepNedeni" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="borcuYokturKaydetOutput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="durum" type="s1:durum" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="ID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="durum">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="durumKodAciklamasi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="durumKodu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="hataDetayBilgisi" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="sonuc" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="dilekceSorguInput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="dilekceID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="kurumKodu" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="borcuYokturSorguOutput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="aciklama" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="adSoyad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="borcDetaylari" nillable="true" type="s1:vergiDairesiBorcDetayi" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="borcuYoktur" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="cevapVermeyenVergiDaireleri" nillable="true" type="s1:cevapVermeyenVergiDairesi" />
+          <s:element minOccurs="1" maxOccurs="1" form="unqualified" name="cevaplandi" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="dilekceCevapTarihi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="dilekceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="dilekceTalepTarihi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="durum" type="s1:durum" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="kesintininAktarilacagiVergiDairesiAdi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="kesintininAktarilacagiVergiDairesiIBAN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="kesintininAktarilacagiVergiDairesiKodu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="sorumluTutulmayacakToplam" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="sorumluVeyaKesintiyeTabiTutulacakToplam" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="talepNedeni" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="tcKimlikNumarasi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="unvan" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="vergiKimlikNumarasi" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="vergiDairesiBorcDetayi">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="ikincilSorumluluk" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="miktar" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="muvafakat" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="vergiDairesiAdi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="vergiDairesiKodu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="vergiTuru" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="yil" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="cevapVermeyenVergiDairesi">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="vergiDairesiAdi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" form="unqualified" name="vergiDairesiKodu" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="FirmaKisiBilgisiAlSoapIn">
+    <wsdl:part name="parameters" element="tns:FirmaKisiBilgisiAl" />
+  </wsdl:message>
+  <wsdl:message name="FirmaKisiBilgisiAlSoapOut">
+    <wsdl:part name="parameters" element="tns:FirmaKisiBilgisiAlResponse" />
+  </wsdl:message>
+  <wsdl:message name="BorcuYokDilekceKaydetSoapIn">
+    <wsdl:part name="parameters" element="tns:BorcuYokDilekceKaydet" />
+  </wsdl:message>
+  <wsdl:message name="BorcuYokDilekceKaydetSoapOut">
+    <wsdl:part name="parameters" element="tns:BorcuYokDilekceKaydetResponse" />
+  </wsdl:message>
+  <wsdl:message name="BorcuYokDilekceSorgulamaSoapIn">
+    <wsdl:part name="parameters" element="tns:BorcuYokDilekceSorgulama" />
+  </wsdl:message>
+  <wsdl:message name="BorcuYokDilekceSorgulamaSoapOut">
+    <wsdl:part name="parameters" element="tns:BorcuYokDilekceSorgulamaResponse" />
+  </wsdl:message>
+  <wsdl:message name="EFaturaSorgulamaSoapIn">
+    <wsdl:part name="parameters" element="tns:EFaturaSorgulama" />
+  </wsdl:message>
+  <wsdl:message name="EFaturaSorgulamaSoapOut">
+    <wsdl:part name="parameters" element="tns:EFaturaSorgulamaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="GIBServisSoap">
+    <wsdl:operation name="FirmaKisiBilgisiAl">
+      <wsdl:input message="tns:FirmaKisiBilgisiAlSoapIn" />
+      <wsdl:output message="tns:FirmaKisiBilgisiAlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BorcuYokDilekceKaydet">
+      <wsdl:input message="tns:BorcuYokDilekceKaydetSoapIn" />
+      <wsdl:output message="tns:BorcuYokDilekceKaydetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BorcuYokDilekceSorgulama">
+      <wsdl:input message="tns:BorcuYokDilekceSorgulamaSoapIn" />
+      <wsdl:output message="tns:BorcuYokDilekceSorgulamaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EFaturaSorgulama">
+      <wsdl:input message="tns:EFaturaSorgulamaSoapIn" />
+      <wsdl:output message="tns:EFaturaSorgulamaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GIBServisSoap" type="tns:GIBServisSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="FirmaKisiBilgisiAl">
+      <soap:operation soapAction="http://uygulama.sgb.gov.tr/SGBServis/FirmaKisiBilgisiAl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorcuYokDilekceKaydet">
+      <soap:operation soapAction="http://uygulama.sgb.gov.tr/SGBServis/BorcuYokDilekceKaydet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorcuYokDilekceSorgulama">
+      <soap:operation soapAction="http://uygulama.sgb.gov.tr/SGBServis/BorcuYokDilekceSorgulama" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EFaturaSorgulama">
+      <soap:operation soapAction="http://uygulama.sgb.gov.tr/SGBServis/EFaturaSorgulama" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GIBServisSoap12" type="tns:GIBServisSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="FirmaKisiBilgisiAl">
+      <soap12:operation soapAction="http://uygulama.sgb.gov.tr/SGBServis/FirmaKisiBilgisiAl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorcuYokDilekceKaydet">
+      <soap12:operation soapAction="http://uygulama.sgb.gov.tr/SGBServis/BorcuYokDilekceKaydet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BorcuYokDilekceSorgulama">
+      <soap12:operation soapAction="http://uygulama.sgb.gov.tr/SGBServis/BorcuYokDilekceSorgulama" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EFaturaSorgulama">
+      <soap12:operation soapAction="http://uygulama.sgb.gov.tr/SGBServis/EFaturaSorgulama" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GIBServis">
+    <wsdl:port name="GIBServisSoap" binding="tns:GIBServisSoap">
+      <soap:address location="http://uygulama.sgb.gov.tr/Servis/GIBServis.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GIBServisSoap12" binding="tns:GIBServisSoap12">
+      <soap12:address location="http://uygulama.sgb.gov.tr/Servis/GIBServis.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

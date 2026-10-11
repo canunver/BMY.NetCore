@@ -1,0 +1,371 @@
+@page
+@model StratejikPlanAnaModel
+@{
+    ViewData["Title"] = "Stratejik Plan";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="strplan">
+    <div class="btn-toolbar strplan-arac" role="toolbar">
+        <button type="button" id="btnDonem" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dönem Seç
+        </button>
+        <button type="button" id="btnMisyon" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Misyon
+        </button>
+        <button type="button" id="btnVizyon" class="btn btn-default btn-sm" disabled>
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Vizyon
+        </button>
+        <button type="button" id="btnAmacEkle" class="btn btn-primary btn-sm" disabled>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Amaç Ekle
+        </button>
+        <button type="button" id="btnHedefEkle" class="btn btn-primary btn-sm" disabled>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Hedef Ekle
+        </button>
+        <!-- Raporlar (eski Raporlar menüsü): hedef kartları Word, tablolar Excel olarak iner -->
+        <span class="btn-group btn-group-sm pull-right" role="group" aria-label="Raporlar">
+            <button type="button" class="btn btn-default" data-rapor="hedef-kartlari" disabled title="Bütün hedeflerin kartları (Word)">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Hedef Kartları
+            </button>
+            <button type="button" class="btn btn-default" data-rapor="hedef-birim" disabled title="Hedeflerden sorumlu ve işbirliği yapılacak birimler (Excel)">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Hedef - Birim Tablosu
+            </button>
+            <button type="button" class="btn btn-default" data-rapor="maliyet" disabled title="Hedeflerin plan yıllarına göre tahmini maliyeti (Excel)">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Tahmini Maliyet Tablosu
+            </button>
+        </span>
+    </div>
+
+    <h2 id="planBaslik" class="strplan-baslik"></h2>
+
+    <div class="strplan-govde">
+        <section class="strplan-kutu misyon" aria-labelledby="misyonBaslik">
+            <h3 id="misyonBaslik">Misyon</h3>
+            <p id="misyonMetin"></p>
+        </section>
+        <section class="strplan-kutu vizyon" aria-labelledby="vizyonBaslik">
+            <h3 id="vizyonBaslik">Vizyon</h3>
+            <p id="vizyonMetin"></p>
+        </section>
+        <section class="strplan-kutu amaclar" aria-labelledby="amacBaslik">
+            <h3 id="amacBaslik">Amaçlar ve Hedefler</h3>
+            <ul id="lstAmaclar" class="amac-liste"></ul>
+        </section>
+    </div>
+</div>
+
+<!-- Dönem seçimi (eski DonemSec) -->
+<dialog id="dlgDonem" class="tanim-pencere" aria-labelledby="dlgDonemBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgDonemBaslik">Dönem Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="tanim-form" style="--etiket-genislik: 90px">
+            <div class="form-group">
+                <label class="control-label" for="ddlDonemKurum">Kurum</label>
+                <div><select id="ddlDonemKurum" class="form-control"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlDonemYil">Dönem</label>
+                <div><select id="ddlDonemYil" class="form-control"></select></div>
+            </div>
+        </div>
+        <p class="tanim-not duz">Listede yalnızca misyonu girilmiş planlar görünür. Yeni bir plan dönemi başlatmak için Misyon penceresini kullanınız.</p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnDonemSec" class="btn btn-primary btn-sm">Seç</button>
+    </div>
+</dialog>
+
+<!-- Misyon (eski Misyon.aspx): planın kurumu, yılı ve dönemi de burada belirlenir -->
+<dialog id="dlgMisyon" class="tanim-pencere genis" aria-labelledby="dlgMisyonBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgMisyonBaslik">Misyon</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="tanim-form" style="--etiket-genislik: 110px">
+            <div class="form-group">
+                <label class="control-label" for="ddlMisyonKurum">Kurum</label>
+                <div><select id="ddlMisyonKurum" class="form-control"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtMisyonYil">Plan Yılı</label>
+                <div><input type="number" id="txtMisyonYil" class="form-control dar" min="2000" max="2100" step="1" /></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label" id="lblMisyonDonem">Dönem</span>
+                <div class="cift-alan" role="group" aria-labelledby="lblMisyonDonem">
+                    <input type="number" id="txtMisyonBas" class="form-control dar" min="2000" max="2100" step="1" aria-label="Dönemin ilk yılı" />
+                    <input type="number" id="txtMisyonSon" class="form-control dar" min="2000" max="2100" step="1" aria-label="Dönemin son yılı" />
+                </div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="txtMisyon">Misyon</label>
+                <div><textarea id="txtMisyon" class="form-control" rows="5"></textarea></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="txtMisyonAciklama">Açıklama</label>
+                <div><textarea id="txtMisyonAciklama" class="form-control" rows="3"></textarea></div>
+            </div>
+        </div>
+        <fieldset class="kopyala">
+            <legend>Planı başka yıla kopyala</legend>
+            <label for="txtKaynakYil">Kaynak yıl</label>
+            <input type="number" id="txtKaynakYil" class="form-control input-sm" min="2000" max="2100" step="1" />
+            <label for="txtHedefYil">Hedef yıl</label>
+            <input type="number" id="txtHedefYil" class="form-control input-sm" min="2000" max="2100" step="1" />
+            <button type="button" id="btnKopyala" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Kopyala
+            </button>
+        </fieldset>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnMisyonKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+<!-- Vizyon (eski Vizyon.aspx) -->
+<dialog id="dlgVizyon" class="tanim-pencere genis" aria-labelledby="dlgVizyonBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgVizyonBaslik">Vizyon</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="tanim-form" style="--etiket-genislik: 110px">
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="txtVizyon">Vizyon</label>
+                <div><textarea id="txtVizyon" class="form-control" rows="5"></textarea></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="txtVizyonAciklama">Açıklama</label>
+                <div><textarea id="txtVizyonAciklama" class="form-control" rows="3"></textarea></div>
+            </div>
+        </div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnVizyonKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+<!-- Amaç (eski StratejikAmac.aspx) -->
+<dialog id="dlgAmac" class="tanim-pencere genis" aria-labelledby="dlgAmacBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgAmacBaslik">Amaç</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="tanim-form" style="--etiket-genislik: 110px">
+            <div class="form-group">
+                <label class="control-label" for="txtAmacNo">Amaç No</label>
+                <div><input type="text" id="txtAmacNo" class="form-control dar" readonly /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAmacKisa">Amaç Kodu</label>
+                <div><input type="text" id="txtAmacKisa" class="form-control dar" /></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="txtAmac">Amaç</label>
+                <div><textarea id="txtAmac" class="form-control" rows="4"></textarea></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="txtAmacAciklama">Açıklama</label>
+                <div><textarea id="txtAmacAciklama" class="form-control" rows="3"></textarea></div>
+            </div>
+        </div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" id="btnAmacSil" class="btn btn-danger btn-sm sola">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+        </button>
+        <button type="button" id="btnAmacYeni" class="btn btn-default btn-sm sola">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni
+        </button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnAmacKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+<!-- Hedef (eski StratejikHedef.aspx) -->
+<dialog id="dlgHedef" class="tanim-pencere cok-genis" aria-labelledby="dlgHedefBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgHedefBaslik">Hedef</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div id="hedefUyari" class="alert alert-warning" role="alert" hidden></div>
+        <div class="tanim-form" style="--etiket-genislik: 110px">
+            <div class="form-group">
+                <label class="control-label" for="txtHedefNo">Hedef No</label>
+                <div><input type="text" id="txtHedefNo" class="form-control dar" readonly /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlHedefAmac">Amaç</label>
+                <div><select id="ddlHedefAmac" class="form-control"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtHedefKisa">Hedef Kodu</label>
+                <div><input type="text" id="txtHedefKisa" class="form-control dar" /></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="txtHedef">Hedef</label>
+                <div><textarea id="txtHedef" class="form-control" rows="3"></textarea></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="txtHedefAciklama">Açıklama</label>
+                <div><textarea id="txtHedefAciklama" class="form-control" rows="2"></textarea></div>
+            </div>
+        </div>
+
+        <div class="sekmeler" role="tablist" id="hedefSekmeler">
+            <button type="button" role="tab" data-sekme="birim" aria-selected="true">Sorumlu / İlgili Birimler</button>
+            <button type="button" role="tab" data-sekme="risk" aria-selected="false">Riskler</button>
+            <button type="button" role="tab" data-sekme="strateji" aria-selected="false">Stratejiler</button>
+            <button type="button" role="tab" data-sekme="tespit" aria-selected="false">Tespitler</button>
+            <button type="button" role="tab" data-sekme="ihtiyac" aria-selected="false">İhtiyaçlar</button>
+            <button type="button" role="tab" data-sekme="program" aria-selected="false">Program / Alt Program Bağı</button>
+            <button type="button" role="tab" data-sekme="ustbelge" aria-selected="false">Üst Politika Belgeleri</button>
+        </div>
+
+        <div class="sekme-govde" data-sekme="birim" role="tabpanel">
+            <div class="tanim-ekle">
+                <select id="ddlBirimEkle" class="form-control input-sm" aria-label="Eklenecek birim"></select>
+                <button type="button" id="btnBirimEkle" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekle
+                </button>
+            </div>
+            <ol id="lstBirimler" class="satir-liste"></ol>
+            <p class="tanim-not duz">İlk sıradaki birim sorumlu birimdir; diğerleri işbirliği yapılacak birimlerdir.</p>
+        </div>
+        <div class="sekme-govde" data-sekme="risk" role="tabpanel" hidden>
+            <ol id="lstRiskler" class="satir-liste" data-etiket="Risk"></ol>
+            <button type="button" class="btn btn-default btn-sm" data-metin-ekle="lstRiskler"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Risk Ekle</button>
+        </div>
+        <div class="sekme-govde" data-sekme="strateji" role="tabpanel" hidden>
+            <ol id="lstStratejiler" class="satir-liste" data-etiket="Strateji"></ol>
+            <button type="button" class="btn btn-default btn-sm" data-metin-ekle="lstStratejiler"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Strateji Ekle</button>
+        </div>
+        <div class="sekme-govde" data-sekme="tespit" role="tabpanel" hidden>
+            <ol id="lstTespitler" class="satir-liste" data-etiket="Tespit"></ol>
+            <button type="button" class="btn btn-default btn-sm" data-metin-ekle="lstTespitler"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Tespit Ekle</button>
+        </div>
+        <div class="sekme-govde" data-sekme="ihtiyac" role="tabpanel" hidden>
+            <ol id="lstIhtiyaclar" class="satir-liste" data-etiket="İhtiyaç"></ol>
+            <button type="button" class="btn btn-default btn-sm" data-metin-ekle="lstIhtiyaclar"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> İhtiyaç Ekle</button>
+        </div>
+        <div class="sekme-govde" data-sekme="program" role="tabpanel" hidden>
+            <div class="tanim-form" style="--etiket-genislik: 250px">
+                <div class="form-group ust-hizali">
+                    <label class="control-label" for="txtProgramAd">İlgili Olduğu Program / Alt Program Adı</label>
+                    <div><textarea id="txtProgramAd" class="form-control" rows="3"></textarea></div>
+                </div>
+                <div class="form-group ust-hizali">
+                    <label class="control-label" for="txtAltProgramHedef">İlişkili Olduğu Alt Program Hedefi Adı</label>
+                    <div><textarea id="txtAltProgramHedef" class="form-control" rows="3"></textarea></div>
+                </div>
+            </div>
+        </div>
+        <div class="sekme-govde" data-sekme="ustbelge" role="tabpanel" hidden>
+            <table class="table table-condensed duzen-tablo">
+                <thead><tr><th scope="col">Üst Belge</th><th scope="col">Referans</th><th scope="col">Açıklama</th><th scope="col"><span class="sr-only">Sil</span></th></tr></thead>
+                <tbody id="tblUstBelgeler"></tbody>
+            </table>
+            <button type="button" id="btnUstBelgeEkle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Üst Belge Ekle</button>
+        </div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" id="btnHedefSil" class="btn btn-danger btn-sm sola">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+        </button>
+        <button type="button" id="btnHedefYeni" class="btn btn-default btn-sm sola">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni
+        </button>
+        <button type="button" id="btnGostergeler" class="btn btn-default btn-sm sola">
+            <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Göstergeler
+        </button>
+        <button type="button" id="btnOdenekler" class="btn btn-default btn-sm sola">
+            <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Ödenekler
+        </button>
+        <button type="button" id="btnHedefYazdir" class="btn btn-default btn-sm sola" title="Hedef kartı (Word)">
+            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+        </button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnHedefKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+<!-- Hedefin göstergeleri (eski Hedef Gösterge Tablosu) -->
+<dialog id="dlgGosterge" class="tanim-pencere cok-genis" aria-labelledby="dlgGostergeBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgGostergeBaslik">Hedef Gösterge Tablosu</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="tanim-ekle">
+            <select id="ddlGostergeEkle" class="form-control input-sm" aria-label="Eklenecek gösterge"></select>
+            <button type="button" id="btnGostergeEkle" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Gösterge Ekle
+            </button>
+        </div>
+        <div class="tablo-kaydir">
+            <table class="table table-condensed duzen-tablo" id="tblGosterge">
+                <thead></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnGostergeKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+<!-- Hedefin tahmini maliyeti (eski Hedef Maliyet Tablosu) -->
+<dialog id="dlgOdenek" class="tanim-pencere cok-genis" aria-labelledby="dlgOdenekBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOdenekBaslik">Hedef Maliyet Tablosu</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="tablo-kaydir">
+            <table class="table table-condensed duzen-tablo" id="tblOdenek">
+                <thead></thead>
+                <tbody></tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnOdenekKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/stratejikplan.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/stratejikplan.js" asp-append-version="true"></script>
+}

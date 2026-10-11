@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MUHServisC.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="MUHServisC_HarcamaMuhasebatServisi_TertipHarcamasiSorgulaPortService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://10.150.0.148:80/maliye-ws/ws</Value>
+    </Setting>
+    <Setting Name="MUHServisC_tr_gov_sbb_programbutce_OdenekGondermeTenkisServis" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://programbutce.sbb.gov.tr/services/OdenekGondermeTenkisServis.asmx</Value>
+    </Setting>
+    <Setting Name="MUHServisC_tr_gov_sbb_programbutce_listeler_Listeler" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://programbutce.sbb.gov.tr/services/Listeler.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

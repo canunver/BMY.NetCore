@@ -1,0 +1,990 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BirimMesajlari001" xml:space="preserve">
+    <value>Birim Mesajlari</value>
+  </data>
+  <data name="BirimMesajlari002" xml:space="preserve">
+    <value>Verilen kriterlere uygun kayıt bulunamadı.</value>
+  </data>
+  <data name="BirimMesajlari003" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="BirimMesajlari004" xml:space="preserve">
+    <value>Birim Mesajlari</value>
+  </data>
+  <data name="BirimMesajlari005" xml:space="preserve">
+    <value>Saymanlık Kod</value>
+  </data>
+  <data name="BirimMesajlari006" xml:space="preserve">
+    <value>Saymanlık Kod</value>
+  </data>
+  <data name="BirimMesajlari007" xml:space="preserve">
+    <value>Birim Kod</value>
+  </data>
+  <data name="BirimMesajlari008" xml:space="preserve">
+    <value>Birim Kod</value>
+  </data>
+  <data name="BirimMesajlari011" xml:space="preserve">
+    <value>Listele</value>
+  </data>
+  <data name="BirimMesajlari012" xml:space="preserve">
+    <value>Lütfen Bekleyiniz!</value>
+  </data>
+  <data name="BirimMesajlari013" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="BirimMesajlari014" xml:space="preserve">
+    <value>Onay</value>
+  </data>
+  <data name="BirimMesajlari015" xml:space="preserve">
+    <value>Kaydetmek İstiyor musunuz?</value>
+  </data>
+  <data name="BirimMesajlari016" xml:space="preserve">
+    <value>Lütfen Bekleyiniz!</value>
+  </data>
+  <data name="BirimMesajlari018" xml:space="preserve">
+    <value>Birim Mesajlari</value>
+  </data>
+  <data name="BirimMesajlari019" xml:space="preserve">
+    <value>Sıra No</value>
+  </data>
+  <data name="BirimMesajlari020" xml:space="preserve">
+    <value>mesaj</value>
+  </data>
+  <data name="BirimMesajlari021" xml:space="preserve">
+    <value>kaydeden</value>
+  </data>
+  <data name="BirimMesajlari022" xml:space="preserve">
+    <value>Kayıt Tarihi</value>
+  </data>
+  <data name="BirimMesajlari023" xml:space="preserve">
+    <value>Karşılayan</value>
+  </data>
+  <data name="BirimMesajlari024" xml:space="preserve">
+    <value>Karşılama Tarihi</value>
+  </data>
+  <data name="BirimMesajlari025" xml:space="preserve">
+    <value>sayfa</value>
+  </data>
+  <data name="BirimMesajlari026" xml:space="preserve">
+    <value>durum</value>
+  </data>
+  <data name="EvrakAktarim001" xml:space="preserve">
+    <value>Evrak Aktarım</value>
+  </data>
+  <data name="EvrakAktarim002" xml:space="preserve">
+    <value>Verilen kriterlere uygun kayıt bulunamadı.</value>
+  </data>
+  <data name="EvrakAktarim003" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="EvrakAktarim004" xml:space="preserve">
+    <value>Evrak Aktarım</value>
+  </data>
+  <data name="EvrakAktarim005" xml:space="preserve">
+    <value>Evrak Kodu</value>
+  </data>
+  <data name="EvrakAktarim006" xml:space="preserve">
+    <value>Evrak Kodu</value>
+  </data>
+  <data name="EvrakAktarim007" xml:space="preserve">
+    <value>Oku</value>
+  </data>
+  <data name="EvrakAktarim008" xml:space="preserve">
+    <value>Lütfen Bekleyiniz!</value>
+  </data>
+  <data name="EvrakAktarim009" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="EvrakAktarim010" xml:space="preserve">
+    <value>Onay</value>
+  </data>
+  <data name="EvrakAktarim011" xml:space="preserve">
+    <value>Kaydetmek İstiyor musunuz?</value>
+  </data>
+  <data name="EvrakAktarim012" xml:space="preserve">
+    <value>Lütfen Bekleyiniz!</value>
+  </data>
+  <data name="EvrakAktarim013" xml:space="preserve">
+    <value>Yazdır</value>
+  </data>
+  <data name="EvrakAktarim014" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EvrakAktarim015" xml:space="preserve">
+    <value>Alan Kodu</value>
+  </data>
+  <data name="EvrakAktarim016" xml:space="preserve">
+    <value>Değeri</value>
+  </data>
+  <data name="FRMCKG001" xml:space="preserve">
+    <value>Sayfa Adı</value>
+  </data>
+  <data name="FRMCKG002" xml:space="preserve">
+    <value>Tarih Aralığı</value>
+  </data>
+  <data name="FRMCKG003" xml:space="preserve">
+    <value>Süre</value>
+  </data>
+  <data name="FRMCKG004" xml:space="preserve">
+    <value>15 dakika</value>
+  </data>
+  <data name="FRMCKG005" xml:space="preserve">
+    <value>1 saat</value>
+  </data>
+  <data name="FRMCKG006" xml:space="preserve">
+    <value>1 gün</value>
+  </data>
+  <data name="FRMCKG007" xml:space="preserve">
+    <value>1 hafta</value>
+  </data>
+  <data name="FRMCKG008" xml:space="preserve">
+    <value>1 ay</value>
+  </data>
+  <data name="FRMCKG009" xml:space="preserve">
+    <value>Listele</value>
+  </data>
+  <data name="FRMCKG010" xml:space="preserve">
+    <value>Sistem İşlem Sayıları</value>
+  </data>
+  <data name="FRMCKL001" xml:space="preserve">
+    <value>Sayfa Adı</value>
+  </data>
+  <data name="FRMCKL002" xml:space="preserve">
+    <value>Süre</value>
+  </data>
+  <data name="FRMCKL003" xml:space="preserve">
+    <value>dakika içinde işlem yapanlar</value>
+  </data>
+  <data name="FRMCKL004" xml:space="preserve">
+    <value>Listele</value>
+  </data>
+  <data name="FRMCKL005" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="FRMCKL006" xml:space="preserve">
+    <value>Adı Soyadı</value>
+  </data>
+  <data name="FRMCKL007" xml:space="preserve">
+    <value>İşlem Tarihi</value>
+  </data>
+  <data name="FRMCKL008" xml:space="preserve">
+    <value>IP Numarası</value>
+  </data>
+  <data name="FRMCKL009" xml:space="preserve">
+    <value>İşlem Yaptığı Sayfa</value>
+  </data>
+  <data name="FRMCKL010" xml:space="preserve">
+    <value>Sistemi Kullanan Kişilerin Listesi</value>
+  </data>
+  <data name="FRMCKL011" xml:space="preserve">
+    <value>kişi listelendi.</value>
+  </data>
+  <data name="FRMEPA001" xml:space="preserve">
+    <value>Konu</value>
+  </data>
+  <data name="FRMEPA002" xml:space="preserve">
+    <value>Mesaj</value>
+  </data>
+  <data name="FRMEPA003" xml:space="preserve">
+    <value>Gönderilecek Kullanıcı Grubu</value>
+  </data>
+  <data name="FRMEPA004" xml:space="preserve">
+    <value>e-posta Gönder</value>
+  </data>
+  <data name="FRMEPA005" xml:space="preserve">
+    <value>Önceki Gönderiler</value>
+  </data>
+  <data name="FRMEPA006" xml:space="preserve">
+    <value>Kullanıcılara e-posta Gönderme</value>
+  </data>
+  <data name="FRMEPA007" xml:space="preserve">
+    <value>Tüm kullanıcı tiplerine</value>
+  </data>
+  <data name="FRMEPA008" xml:space="preserve">
+    <value>Gönderilecek e-posta</value>
+  </data>
+  <data name="FRMEPA009" xml:space="preserve">
+    <value>adresi kullanılarak gönderilecektir.</value>
+  </data>
+  <data name="FRMEPA010" xml:space="preserve">
+    <value>Lütfen konu alanını doldurunuz!</value>
+  </data>
+  <data name="FRMEPA011" xml:space="preserve">
+    <value>Lütfen mesaj alanını doldurunuz!</value>
+  </data>
+  <data name="FRMEPG001" xml:space="preserve">
+    <value>Mesaj No</value>
+  </data>
+  <data name="FRMEPG002" xml:space="preserve">
+    <value>Konusu</value>
+  </data>
+  <data name="FRMEPG003" xml:space="preserve">
+    <value>Gönderen</value>
+  </data>
+  <data name="FRMEPG004" xml:space="preserve">
+    <value>Tarih</value>
+  </data>
+  <data name="FRMEPG005" xml:space="preserve">
+    <value>Gönderilecek Kişi Sayısı</value>
+  </data>
+  <data name="FRMEPG006" xml:space="preserve">
+    <value>Gönderilen Kişi Sayısı</value>
+  </data>
+  <data name="FRMEPG007" xml:space="preserve">
+    <value>Gönder</value>
+  </data>
+  <data name="FRMEPG008" xml:space="preserve">
+    <value>Tekrar Gönder</value>
+  </data>
+  <data name="FRMEPG009" xml:space="preserve">
+    <value>Yenile</value>
+  </data>
+  <data name="FRMEPG010" xml:space="preserve">
+    <value>Önceki e-posta Gönderimleri Durum İzleme Sayfası</value>
+  </data>
+  <data name="FRMEPG011" xml:space="preserve">
+    <value>nolu mesaj için Tekrar Gönderim işlemi başlatıldı. Yenile düğmesine basarak işlemin gerçekleştiğini görebilirsiniz.</value>
+  </data>
+  <data name="FRMHTD001" xml:space="preserve">
+    <value>Hata Dosyaları Görüntüleme</value>
+  </data>
+  <data name="FRMHTD002" xml:space="preserve">
+    <value>Sistem durum klasörü boş.</value>
+  </data>
+  <data name="FRMKUA001" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="FRMKUA002" xml:space="preserve">
+    <value>Soyad</value>
+  </data>
+  <data name="FRMKUA003" xml:space="preserve">
+    <value>Muhasebe Birimi</value>
+  </data>
+  <data name="FRMKUA004" xml:space="preserve">
+    <value>Kullanıcı Adı</value>
+  </data>
+  <data name="FRMKUA005" xml:space="preserve">
+    <value>T.C.Kimlik No</value>
+  </data>
+  <data name="FRMKUA006" xml:space="preserve">
+    <value>Çalıştığı Birim</value>
+  </data>
+  <data name="FRMKUA007" xml:space="preserve">
+    <value>Kullanıcı Grubu</value>
+  </data>
+  <data name="FRMKUA008" xml:space="preserve">
+    <value>Durumu</value>
+  </data>
+  <data name="FRMKUA009" xml:space="preserve">
+    <value>Yetki Tipi</value>
+  </data>
+  <data name="FRMKUA010" xml:space="preserve">
+    <value>Kullanıcıları entegrasyon sunucusunda ara</value>
+  </data>
+  <data name="FRMKUA011" xml:space="preserve">
+    <value>Listele</value>
+  </data>
+  <data name="FRMKUA012" xml:space="preserve">
+    <value>Yeni Kullanıcı Oluştur</value>
+  </data>
+  <data name="FRMKUA013" xml:space="preserve">
+    <value>Yeni Arama</value>
+  </data>
+  <data name="FRMKUA014" xml:space="preserve">
+    <value>Yazdır</value>
+  </data>
+  <data name="FRMKUA015" xml:space="preserve">
+    <value>Adı Soyadı</value>
+  </data>
+  <data name="FRMKUA016" xml:space="preserve">
+    <value>Ünvanı</value>
+  </data>
+  <data name="FRMKUA017" xml:space="preserve">
+    <value>Çalış.Birimi</value>
+  </data>
+  <data name="FRMKUA018" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="FRMKUA019" xml:space="preserve">
+    <value>e-Posta</value>
+  </data>
+  <data name="FRMKUA020" xml:space="preserve">
+    <value>Durumu</value>
+  </data>
+  <data name="FRMKUA021" xml:space="preserve">
+    <value>Son Giriş Tarihi</value>
+  </data>
+  <data name="FRMKUA022" xml:space="preserve">
+    <value>Kullanıcı Arama Sayfası</value>
+  </data>
+  <data name="FRMKUA023" xml:space="preserve">
+    <value>Lütfen aramak istediğiniz kullanıcının bilgilerini yazınız.</value>
+  </data>
+  <data name="FRMKUA024" xml:space="preserve">
+    <value>Arama sonucunda</value>
+  </data>
+  <data name="FRMKUA025" xml:space="preserve">
+    <value>kayıt bulundu.</value>
+  </data>
+  <data name="FRMKUA026" xml:space="preserve">
+    <value>Verilen kriterlere uygun kullanıcı bulunamadı.</value>
+  </data>
+  <data name="FRMKUA027" xml:space="preserve">
+    <value>Grup Oluştur</value>
+  </data>
+  <data name="FRMKUA028" xml:space="preserve">
+    <value>Gruba Kulanıcı Ata</value>
+  </data>
+  <data name="FRMKUG001" xml:space="preserve">
+    <value>T.C.Kimlik No</value>
+  </data>
+  <data name="FRMKUG002" xml:space="preserve">
+    <value>Yeni kullanıcının T.C. Kimlik Numarası girildikten sonra resme basıldığında adı ve soyadı alanları otomatik olarak doldurulacaktır.</value>
+  </data>
+  <data name="FRMKUG003" xml:space="preserve">
+    <value>Adı</value>
+  </data>
+  <data name="FRMKUG004" xml:space="preserve">
+    <value>Soyadı</value>
+  </data>
+  <data name="FRMKUG005" xml:space="preserve">
+    <value>Kullanıcı Kodu</value>
+  </data>
+  <data name="FRMKUG006" xml:space="preserve">
+    <value>e-posta</value>
+  </data>
+  <data name="FRMKUG007" xml:space="preserve">
+    <value>Unvanı</value>
+  </data>
+  <data name="FRMKUG008" xml:space="preserve">
+    <value>Telefonu</value>
+  </data>
+  <data name="FRMKUG009" xml:space="preserve">
+    <value>Çalıştığı Birim</value>
+  </data>
+  <data name="FRMKUG010" xml:space="preserve">
+    <value>Sicil No</value>
+  </data>
+  <data name="FRMKUG011" xml:space="preserve">
+    <value>Muhasebe Birimi</value>
+  </data>
+  <data name="FRMKUG012" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="FRMKUG013" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="FRMKUG014" xml:space="preserve">
+    <value>Yeni Parola Ata</value>
+  </data>
+  <data name="FRMKUG015" xml:space="preserve">
+    <value>Kullanıcıyı Pasif Yap</value>
+  </data>
+  <data name="FRMKUG016" xml:space="preserve">
+    <value>Parola, e-posta adresine gönderileceğinden adresin doğru olarak yazıldığından emin olun.</value>
+  </data>
+  <data name="FRMKUG017" xml:space="preserve">
+    <value>Hotmail, Gmail ve Yahoo e-posta adreslerine gönderilen parola postası spam (önemsiz posta) olarak gözükebilir.</value>
+  </data>
+  <data name="FRMKUG018" xml:space="preserve">
+    <value>Kırmızı renkli etiketi olan alanlar girilmesi zorunlu alanlardır.</value>
+  </data>
+  <data name="FRMKUG019" xml:space="preserve">
+    <value>Oluşturulacak kullanıcının T.C. Kimlik Numarası bilinmiyorsa yukarıdaki</value>
+  </data>
+  <data name="FRMKUG020" xml:space="preserve">
+    <value>resme basarak öğrenebilirsiniz.</value>
+  </data>
+  <data name="FRMKUG021" xml:space="preserve">
+    <value>Oluşturulacak kullanıcının T.C. Kimlik Numarası girildikten sonra yukarıdaki</value>
+  </data>
+  <data name="FRMKUG022" xml:space="preserve">
+    <value>resme basarak adı ve soyadı alanlarını otomatik doldurabilirsiniz.</value>
+  </data>
+  <data name="FRMKUG023" xml:space="preserve">
+    <value>Kullanıcı Bilgileri Düzenleme Sayfası</value>
+  </data>
+  <data name="FRMKUG024" xml:space="preserve">
+    <value>Kullanıcıyı Pasif Yap</value>
+  </data>
+  <data name="FRMKUG025" xml:space="preserve">
+    <value>Kullanıcıyı Aktif Yap</value>
+  </data>
+  <data name="FRMKUG026" xml:space="preserve">
+    <value>Kullanıcı Arama</value>
+  </data>
+  <data name="FRMKUG027" xml:space="preserve">
+    <value>Çalıştığı muhasebe birimi boş bırakılamaz</value>
+  </data>
+  <data name="FRMKUG028" xml:space="preserve">
+    <value>Kayıt edilmek istenilen kullanıcı bilgisi sunucudan alınamadı.</value>
+  </data>
+  <data name="FRMKUG029" xml:space="preserve">
+    <value>&lt;b&gt;Kullanıcı Bilgileri Kaydetme&lt;/b&gt; işlemi &lt;font color=red&gt;başarıyla tamamlanmıştır&lt;/font&gt;.</value>
+  </data>
+  <data name="FRMKUG030" xml:space="preserve">
+    <value>&lt;br&gt;&lt;br&gt;Lütfen sonraki işleminiz için aşağıdaki seçenekleri veya &lt;b&gt;Yukarıdaki&lt;/b&gt; menüyü kullanın.&lt;br&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMKUG031" xml:space="preserve">
+    <value>Yeni Kullanıcı Kaydetme</value>
+  </data>
+  <data name="FRMKUG032" xml:space="preserve">
+    <value>Kullanıcı Arama</value>
+  </data>
+  <data name="FRMKUG033" xml:space="preserve">
+    <value>kullanıcısı bilgilerine geri dön</value>
+  </data>
+  <data name="FRMKUG034" xml:space="preserve">
+    <value>kullanıcısı için &lt;b&gt;Yeni Parola Atama &lt;/b&gt; işlemi &lt;font color=red&gt;başarıyla tamamlanmıştır&lt;/font&gt;. Tanımlanan parola kullanıcıya e-posta ile gönderilmiştir.</value>
+  </data>
+  <data name="FRMKUG035" xml:space="preserve">
+    <value>&lt;br&gt;&lt;br&gt;Lütfen sonraki işleminiz için aşağıdaki seçenekleri veya &lt;b&gt;Yukarıdaki&lt;/b&gt; menüyü kullanın.&lt;br&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMKUG036" xml:space="preserve">
+    <value>Yeni Kullanıcı Kaydetme</value>
+  </data>
+  <data name="FRMKUG037" xml:space="preserve">
+    <value>Kullanıcı Arama</value>
+  </data>
+  <data name="FRMKUG038" xml:space="preserve">
+    <value>&lt;/b&gt; kullanıcısı ile yeni işlem yapmak için&lt;/a&gt;&lt;/li&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMKUG039" xml:space="preserve">
+    <value>kullanıcısını &lt;b&gt;</value>
+  </data>
+  <data name="FRMKUG040" xml:space="preserve">
+    <value>&lt;/b&gt; durumuna getirme işlemi &lt;font color=red&gt;başarıyla tamamlanmıştır&lt;/font&gt;.</value>
+  </data>
+  <data name="FRMKUG041" xml:space="preserve">
+    <value>&lt;br&gt;&lt;br&gt;Lütfen sonraki işleminiz için aşağıdaki seçenekleri veya &lt;b&gt;Yukarıdaki&lt;/b&gt; menüyü kullanın.&lt;br&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMKUG042" xml:space="preserve">
+    <value>Yeni Kullanıcı Kaydetme</value>
+  </data>
+  <data name="FRMKUG043" xml:space="preserve">
+    <value>Kullanıcı Arama</value>
+  </data>
+  <data name="FRMKUG044" xml:space="preserve">
+    <value>&lt;/b&gt; kullanıcısı ile yeni işlem yapmak için&lt;/a&gt;&lt;/li&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMKUG045" xml:space="preserve">
+    <value>&lt;b&gt;Hata : &lt;/b&gt;</value>
+  </data>
+  <data name="FRMKUG046" xml:space="preserve">
+    <value>Yeni kullanıcının T.C Kimlik Numarası bilinmiyorsa resme basarak öğrenebilirsiniz.</value>
+  </data>
+  <data name="FRMKUG047" xml:space="preserve">
+    <value>Kullanıcı Arama Sayfası</value>
+  </data>
+  <data name="FRMKUG048" xml:space="preserve">
+    <value>Kullanıcı kodu önerilerini göster</value>
+  </data>
+  <data name="FRMKUG049" xml:space="preserve">
+    <value>Kullanıcı Tipleri</value>
+  </data>
+  <data name="FRMKUG050" xml:space="preserve">
+    <value>Yeni Yetki Ekle</value>
+  </data>
+  <data name="FRMKUG051" xml:space="preserve">
+    <value>Bu yetkiyi silemezsiniz.</value>
+  </data>
+  <data name="FRMKUG052" xml:space="preserve">
+    <value>Kullanıcı listesi formuna geri dön</value>
+  </data>
+  <data name="FRMKUG053" xml:space="preserve">
+    <value>Seçili satırı silmek istediğinizden emin misiniz?</value>
+  </data>
+  <data name="FRMKUG054" xml:space="preserve">
+    <value>Kullanıcı bilgileri kayıt edilecek. Onaylıyor musunuz?</value>
+  </data>
+  <data name="FRMKUG055" xml:space="preserve">
+    <value>Kullanıcı durumu değiştirilecek. Onaylıyor musunuz?</value>
+  </data>
+  <data name="FRMKUG056" xml:space="preserve">
+    <value>Kullanıcıya yeni parola, e-posta ile gönderilecek. Onaylıyor musunuz?</value>
+  </data>
+  <data name="FRMKUG057" xml:space="preserve">
+    <value>Kırmızı renk ile işaretlenen alanları boş bırakamazsınız.</value>
+  </data>
+  <data name="FRMKUG058" xml:space="preserve">
+    <value>Uyarı</value>
+  </data>
+  <data name="FRMKUG059" xml:space="preserve">
+    <value>Sertifikasyon No</value>
+  </data>
+  <data name="FRMKUG060" xml:space="preserve">
+    <value>Aktif Olacağı Tarih</value>
+  </data>
+  <data name="FRMKUG061" xml:space="preserve">
+    <value>Pasif İşlemi</value>
+  </data>
+  <data name="FRMKUG062" xml:space="preserve">
+    <value>Pasif hale getirilecek kullanıcının belirli bir süre sonra aktif duruma gelmesi isteniyorsa Tarih alanına aktif olunması istenen tarihi giriniz. &lt;b&gt;Sürekli pasif kalması isteniyorsa tarih alanını boş bırakın&lt;/b&gt;</value>
+  </data>
+  <data name="FRMKUG063" xml:space="preserve">
+    <value>Akademik Unvanı</value>
+  </data>
+  <data name="FRMKUG064" xml:space="preserve">
+    <value>Rumuz</value>
+  </data>
+  <data name="FRMKYG001" xml:space="preserve">
+    <value>Kullanıcı Grubu</value>
+  </data>
+  <data name="FRMKYG002" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="FRMKYG003" xml:space="preserve">
+    <value>Kapat</value>
+  </data>
+  <data name="FRMKYG004" xml:space="preserve">
+    <value>Yetki Bilgileri Düzenleme Sayfası</value>
+  </data>
+  <data name="FRMKYG005" xml:space="preserve">
+    <value>Yetki verilmek istenilen kullanıcı bilgisi okunamadı.</value>
+  </data>
+  <data name="FRMKYG006" xml:space="preserve">
+    <value>Muhasebe birimi olarak sadece</value>
+  </data>
+  <data name="FRMKYG007" xml:space="preserve">
+    <value>kullanabilirsiniz.</value>
+  </data>
+  <data name="FRMKYG008" xml:space="preserve">
+    <value>nolu muhasebe birimini kullanamazsınız. Sadece</value>
+  </data>
+  <data name="FRMKYG009" xml:space="preserve">
+    <value>muhasebe birimini kullanabilirsiniz.</value>
+  </data>
+  <data name="FRMKYG010" xml:space="preserve">
+    <value>kullanıcı grubuna ait düzenlenecek yetki tipi bilgisi yok.</value>
+  </data>
+  <data name="FRMLGO001" xml:space="preserve">
+    <value>Yazılım Logo boyutları 250x79, resim türü .png ve kullanıcıların bilgisayarlarına daha hızlı iletilebilmesi için optimize edilmiş olmalıdır.</value>
+  </data>
+  <data name="FRMLGO002" xml:space="preserve">
+    <value>Kurum Logo boyutları giriş sayfasında gösterimi zorlaştırmayacak boyutlarda olmalıdır.Resim türü .png olması önerilir. Kullanıcıların bilgisayarlarına daha hızlı iletilebilmesi için optimize edilmiş olmalıdır.</value>
+  </data>
+  <data name="FRMMED001" xml:space="preserve">
+    <value>Menü Başlıkları</value>
+  </data>
+  <data name="FRMMED002" xml:space="preserve">
+    <value>Gizlenecek Menü Başlıkları</value>
+  </data>
+  <data name="FRMMED003" xml:space="preserve">
+    <value>Tamam</value>
+  </data>
+  <data name="FRMMED004" xml:space="preserve">
+    <value>Menü'de görmek istemediğiniz menü başlıklarını &lt;b&gt;Gizlenecek Menü Başlıkları&lt;/b&gt; bölümüne aktararak gizleyebilirsiniz.</value>
+  </data>
+  <data name="FRMMED005" xml:space="preserve">
+    <value>Bu işlem sadece sizin kullanıcınızı etkileyecektir.</value>
+  </data>
+  <data name="FRMMED006" xml:space="preserve">
+    <value>İşlemi yapmak için "Menü Başlıkları" bölümünden ilgili menüyü seçiniz ve ortadaki sağ ok düğmesini kullanarak "Gizlenecek Menü Başlıkları" listesine aktarın.</value>
+  </data>
+  <data name="FRMMED007" xml:space="preserve">
+    <value>Menüyü göstermek için "Gizlenecek Menü Başlıkları" bölümünden  istediğiniz değerleri seçip sol ok düğmesine basınız.</value>
+  </data>
+  <data name="FRMMED008" xml:space="preserve">
+    <value>Menü Düzenleme Sayfası</value>
+  </data>
+  <data name="FRMMSK001" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="FRMMSK002" xml:space="preserve">
+    <value>Sık kullanılanlar listesinde görmek istediğiniz Menü öğesini işaretleyin ve kayıt edin.</value>
+  </data>
+  <data name="FRMMSK003" xml:space="preserve">
+    <value>Sık Kullanılan İşlemler Düzenleme Sayfası</value>
+  </data>
+  <data name="FRMMSK004" xml:space="preserve">
+    <value>Menüler</value>
+  </data>
+  <data name="FRMPAD001" xml:space="preserve">
+    <value>Kullanıcı Kodu</value>
+  </data>
+  <data name="FRMPAD002" xml:space="preserve">
+    <value>Şimdiki Parola</value>
+  </data>
+  <data name="FRMPAD003" xml:space="preserve">
+    <value>Yeni Parola</value>
+  </data>
+  <data name="FRMPAD004" xml:space="preserve">
+    <value>Yeni Parola (Tekrar)</value>
+  </data>
+  <data name="FRMPAD005" xml:space="preserve">
+    <value>Parola Değiştir</value>
+  </data>
+  <data name="FRMPAD006" xml:space="preserve">
+    <value>Parolanızı değiştirmek için, ilk önce &lt;b&gt;Şimdiki Parola&lt;/b&gt; bölümüne şu anda kullanmakta olduğunuz veya yeni kullanıcı yaratılmasından dolayı aldığınız parolayı yazın. Daha sonra &lt;b&gt;Yeni Parola&lt;/b&gt; ve &lt;b&gt;Yeni Parola (Tekrar)&lt;/b&gt;bölümlerine olmasını istediğiniz parolanızı yazın ve &lt;b&gt;Parola Değiştir&lt;/b&gt; düğmesine basın.</value>
+  </data>
+  <data name="FRMPAD007" xml:space="preserve">
+    <value>Parola Değiştirme Sayfası</value>
+  </data>
+  <data name="FRMPAD008" xml:space="preserve">
+    <value>Sistemin güvenliği açısından şu anda kullanmakta olduğunuz &lt;font color=red&gt;&lt;b&gt;parolanızı değiştirmeniz&lt;/b&gt;&lt;/font&gt; gerekmektedir.</value>
+  </data>
+  <data name="FRMPAD009" xml:space="preserve">
+    <value>&lt;/b&gt; kullanıcısının &lt;b&gt;Parola Değişikliği &lt;/b&gt;&lt;font color=red&gt;başarıyla tamamlanmıştır&lt;/font&gt;.</value>
+  </data>
+  <data name="FRMPAD010" xml:space="preserve">
+    <value>&lt;br&gt;&lt;br&gt;Lütfen sonraki işleminiz için menüyü kullanın.&lt;br&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMPAD011" xml:space="preserve">
+    <value>Yeni tanımlamak istediğiniz parola boş bırakılmış.</value>
+  </data>
+  <data name="FRMPAD012" xml:space="preserve">
+    <value>Yeni tanımlamak istediğiniz parola ile tekrarı aynı değil.</value>
+  </data>
+  <data name="FRMTEM001" xml:space="preserve">
+    <value>Temalar</value>
+  </data>
+  <data name="FRMTEM002" xml:space="preserve">
+    <value>Mavi</value>
+  </data>
+  <data name="FRMTEM003" xml:space="preserve">
+    <value>Kırmızı</value>
+  </data>
+  <data name="FRMTEM004" xml:space="preserve">
+    <value>Yeşil</value>
+  </data>
+  <data name="FRMTEM005" xml:space="preserve">
+    <value>Kahverengi</value>
+  </data>
+  <data name="FRMTEM006" xml:space="preserve">
+    <value>Uygula</value>
+  </data>
+  <data name="FRMTEM007" xml:space="preserve">
+    <value>Kullanmak istediğiniz temayı seçin ve Uygula düğmesine basın.</value>
+  </data>
+  <data name="FRMTEM008" xml:space="preserve">
+    <value>Tema Değiştirme Sayfası</value>
+  </data>
+  <data name="FRMYTD001" xml:space="preserve">
+    <value>Bütün Değerler</value>
+  </data>
+  <data name="FRMYTD002" xml:space="preserve">
+    <value>Seçilmiş Değerler</value>
+  </data>
+  <data name="FRMYTD003" xml:space="preserve">
+    <value>Bul</value>
+  </data>
+  <data name="FRMYTD004" xml:space="preserve">
+    <value>Tamam</value>
+  </data>
+  <data name="FRMYTD005" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="FRMYTD006" xml:space="preserve">
+    <value>Yetki Tipi Değerlerinden, seçmek istediklerinizi "Bütün Değerler" listesinden seçiniz ve ortadaki sağ ok düğmesini kullanarak "Seçilmiş Değerler" listesine aktarın. Seçilmiş listesinden çıkartmak istediğiniz değerler için listeden istediğinizi seçip sol ok düğmesine basınız.</value>
+  </data>
+  <data name="FRMYTD007" xml:space="preserve">
+    <value>Yetki Tipi Değer Seçimi</value>
+  </data>
+  <data name="FRMYTD008" xml:space="preserve">
+    <value>Hepsi</value>
+  </data>
+  <data name="MesajPanosu001" xml:space="preserve">
+    <value>Sistem Mesajları</value>
+  </data>
+  <data name="MesajPanosu002" xml:space="preserve">
+    <value>Tarih</value>
+  </data>
+  <data name="MesajPanosu003" xml:space="preserve">
+    <value>Mesaj</value>
+  </data>
+  <data name="YoneticiBildirimFormu001" xml:space="preserve">
+    <value>Yönetici Bildirim Formu</value>
+  </data>
+  <data name="YoneticiBildirimFormu002" xml:space="preserve">
+    <value>Verilen kriterlere uygun kayıt bulunamadı.</value>
+  </data>
+  <data name="YoneticiBildirimFormu003" xml:space="preserve">
+    <value>Anahtar alanları girmelisiniz.</value>
+  </data>
+  <data name="YoneticiBildirimFormu004" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="YoneticiBildirimFormu005" xml:space="preserve">
+    <value>Anahtar alanları girmelisiniz.</value>
+  </data>
+  <data name="YoneticiBildirimFormu006" xml:space="preserve">
+    <value>Saymanlık</value>
+  </data>
+  <data name="YoneticiBildirimFormu007" xml:space="preserve">
+    <value>Lütfen Saymanlık'ı seçin.</value>
+  </data>
+  <data name="YoneticiBildirimFormu008" xml:space="preserve">
+    <value>Birim</value>
+  </data>
+  <data name="YoneticiBildirimFormu009" xml:space="preserve">
+    <value>Lütfen Birimi seçin.</value>
+  </data>
+  <data name="YoneticiBildirimFormu010" xml:space="preserve">
+    <value>Talep No</value>
+  </data>
+  <data name="YoneticiBildirimFormu011" xml:space="preserve">
+    <value>Lütfen Talep No yazınız.</value>
+  </data>
+  <data name="YoneticiBildirimFormu012" xml:space="preserve">
+    <value>Talep Tarihi</value>
+  </data>
+  <data name="YoneticiBildirimFormu013" xml:space="preserve">
+    <value>Lütfen Talep Tarihi seçiniz.</value>
+  </data>
+  <data name="YoneticiBildirimFormu014" xml:space="preserve">
+    <value>Yönetici TC Kimlik No</value>
+  </data>
+  <data name="YoneticiBildirimFormu015" xml:space="preserve">
+    <value>Lütfen Yönetici olacak kişinin TC Kimlik Nosunu giriniz.</value>
+  </data>
+  <data name="YoneticiBildirimFormu016" xml:space="preserve">
+    <value>Durum</value>
+  </data>
+  <data name="YoneticiBildirimFormu017" xml:space="preserve">
+    <value>Lütfen Durumu seçiniz.</value>
+  </data>
+  <data name="YoneticiBildirimFormu018" xml:space="preserve">
+    <value>İşlem Yapan</value>
+  </data>
+  <data name="YoneticiBildirimFormu019" xml:space="preserve">
+    <value>İşlem Onaylayan</value>
+  </data>
+  <data name="YoneticiBildirimFormu020" xml:space="preserve">
+    <value>Listele</value>
+  </data>
+  <data name="YoneticiBildirimFormu021" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="YoneticiBildirimFormu022" xml:space="preserve">
+    <value>Gönder</value>
+  </data>
+  <data name="YoneticiBildirimFormu023" xml:space="preserve">
+    <value>Lütfen Bekleyiniz...</value>
+  </data>
+  <data name="YoneticiBildirimFormu024" xml:space="preserve">
+    <value>Onayla</value>
+  </data>
+  <data name="YoneticiBildirimFormu025" xml:space="preserve">
+    <value>Yazdır</value>
+  </data>
+  <data name="IslemHata" xml:space="preserve">
+    <value>İşlem sırasında hata oluştu.</value>
+  </data>
+  <data name="Yetkisiz" xml:space="preserve">
+    <value>Bu sayfayı kullanma yetkiniz yok.</value>
+  </data>
+  <data name="Hepsi" xml:space="preserve">
+    <value>Hepsi</value>
+  </data>
+  <data name="Aktif" xml:space="preserve">
+    <value>Aktif</value>
+  </data>
+  <data name="Pasif" xml:space="preserve">
+    <value>Pasif</value>
+  </data>
+  <data name="SorguAlanlari" xml:space="preserve">
+    <value>Sorgu Alanları</value>
+  </data>
+  <data name="DisaAktar" xml:space="preserve">
+    <value>Excel&apos;e Aktar</value>
+  </data>
+  <data name="DisaAktarBos" xml:space="preserve">
+    <value>Aktarılacak kayıt yok. Önce listeleyin.</value>
+  </data>
+  <data name="DosyaAd" xml:space="preserve">
+    <value>KullaniciListesi</value>
+  </data>
+  <data name="DogumTarihi" xml:space="preserve">
+    <value>Doğum Tarihi</value>
+  </data>
+  <data name="KimlikSorgula" xml:space="preserve">
+    <value>Kimlik bilgilerini getir</value>
+  </data>
+  <data name="TipEkle" xml:space="preserve">
+    <value>Ekle</value>
+  </data>
+  <data name="TipSec" xml:space="preserve">
+    <value>Kullanıcı grubu seçin</value>
+  </data>
+  <data name="Duzenle" xml:space="preserve">
+    <value>Düzenle</value>
+  </data>
+  <data name="YetkiAd" xml:space="preserve">
+    <value>Adı</value>
+  </data>
+  <data name="YetkiDeger" xml:space="preserve">
+    <value>Değeri</value>
+  </data>
+  <data name="Sec" xml:space="preserve">
+    <value>Seç...</value>
+  </data>
+  <data name="Kaldir" xml:space="preserve">
+    <value>Kaldır</value>
+  </data>
+  <data name="Kaydedildi" xml:space="preserve">
+    <value>Kullanıcı bilgileri kaydedildi.</value>
+  </data>
+  <data name="ParolaAtandi" xml:space="preserve">
+    <value>Yeni parola atandı ve kullanıcıya e-posta ile gönderildi.</value>
+  </data>
+  <data name="DurumDegisti" xml:space="preserve">
+    <value>Kullanıcının durumu değiştirildi.</value>
+  </data>
+  <data name="TipZatenVar" xml:space="preserve">
+    <value>Bu kullanıcı grubu zaten ekli.</value>
+  </data>
+  <data name="Kapat" xml:space="preserve">
+    <value>Kapat</value>
+  </data>
+  <data name="Tamam" xml:space="preserve">
+    <value>Tamam</value>
+  </data>
+  <data name="Bul" xml:space="preserve">
+    <value>Bul</value>
+  </data>
+  <data name="TipDuzenlenemez" xml:space="preserve">
+    <value>Bu kullanıcı grubunu düzenleme yetkiniz yok.</value>
+  </data>
+  <data name="OneriBaslik" xml:space="preserve">
+    <value>Kullanıcı kodu önerileri</value>
+  </data>
+  <data name="SecilenYok" xml:space="preserve">
+    <value>Seçilmiş değer yok</value>
+  </data>
+  <data name="TipYok" xml:space="preserve">
+    <value>Kullanıcıya henüz kullanıcı grubu eklenmedi.</value>
+  </data>
+  <data name="KullaniciBilgileri" xml:space="preserve">
+    <value>Kullanıcı Bilgileri</value>
+  </data>
+  <data name="TekDeger" xml:space="preserve">
+    <value>Bu yetki için yalnızca bir değer seçilebilir.</value>
+  </data>
+  <data name="EntegrasyonYeniYok" xml:space="preserve">
+    <value>Kullanıcı entegrasyonu açıkken buradan yeni kullanıcı oluşturulamaz.</value>
+  </data>
+  <data name="DegerSecBaslik" xml:space="preserve">
+    <value>Yetki Tipi Değer Seçimi</value>
+  </data>
+  <data name="AramaIpucu" xml:space="preserve">
+    <value>Kod ya da ad</value>
+  </data>
+</root>

@@ -6143,6 +6143,9 @@ namespace TNS.HRC
         Sonuc KaydetDBSatinAlma(Kullanici kullanan, DBSatinAlma satinAlma);
         ObjectArray ListeleDBDosyaBilgileri(Kullanici kullanan, int kod, string modulKod);
         Sonuc KaydetDBHakedis(Kullanici kullanan, DBHakedis form);
+        Sonuc GuncelleDBHakedisSahibi(Kullanici kullanan, DBHakedisSahibi form);
+        Sonuc DBHakedisSahibiNumaraSifirla(Kullanici kullanan, int hakedisID, int siraNo);
+        Sonuc DBHakedisSifirNumaralariAta(Kullanici kullanan, int hakedisID);
         Sonuc SilDBHakedis(Kullanici kullanan, int hakedisID); 
         Sonuc SilDBButceRef(Kullanici kullanan, int butceRefID);
         Sonuc SilDBSatinAlmaPlani(Kullanici kullanan, int satinAlmaID);
@@ -6159,6 +6162,7 @@ namespace TNS.HRC
         ObjectArray ListeleDBSozlesmeler(Kullanici kullanan, DBSozlesme sozlesme, int siralama = 1);
         ObjectArray ListeleSozlesmesizOdemeler(Kullanici kullanan, DBSozlesme sozlesme, int siralama = 1);
         ObjectArray ListeleDBEkstreler(Kullanici kullanan, TNSDateTime baslangicTarih, TNSDateTime bitisTarih, int IkrazID);
+        DBNakitPozisyonu OkuDBNakitPozisyonu(Kullanici kullanan, int ikrazID);
         Sonuc DBEkstrelerVeriEkle(Kullanici kullanan, DBEkstre ekstre);
         Sonuc KaydetDBSozlesme(Kullanici kullanan, DBSozlesme sozlesme);
 

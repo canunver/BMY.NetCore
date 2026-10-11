@@ -37,6 +37,23 @@ namespace TNS.Api
                 Ekle<TNS.KYM.IKYMServis>("KYM", () => new TNS.KYM.IsKurallari.KYMServis());
                 Ekle<TNS.ORG.IORGServis>("ORG", () => new TNS.KYM.IsKurallari.KYMServis());
                 Ekle<TNS.KHM.IKHMServis>("KHM", () => new TNS.KHM.IsKurallari.KHMServis());
+                Ekle<TNS.MUH.IMUHServis>("MUH", () => new TNS.MUH.IsKurallari.MUHServis());
+                Ekle<TNS.BHMv2.IBHMv2Servis>("BHMv2", () => new TNS.BHMv2.IsKurallari.BHMv2Servis());
+                Ekle<TNS.YAT.IYATServis>("YAT", () => new TNS.YAT.IsKurallari.YATServis());
+                Ekle<TNS.ATM.IATMServis>("ATM", () => new TNS.ATM.IsKurallari.ATMServis());
+                Ekle<TNS.BHF.IBHFServis>("BHF", () => new TNS.BHF.IsKurallari.Servis());
+                Ekle<TNS.BKD.IBKDServis>("BKD", () => new TNS.BKD.IsKurallari.BKDServis());
+                Ekle<TNS.BUM.IBUMServis>("BUM", () => new TNS.BUM.IsKurallari.BUMServis());
+                Ekle<TNS.GEL.IGELServis>("GEL", () => new TNS.GEL.IsKurallari.GELServis());
+                Ekle<TNS.HRC.IHRCServis>("HRC", () => new TNS.HRC.IsKurallari.HRCServis());
+                Ekle<TNS.IKY.IIKYServis>("IKY", () => new TNS.IKY.IsKurallari.IKYServis());
+                Ekle<TNS.KPM.IKPMServis>("KPM", () => new TNS.KPM.IsKurallari.KPMServis());
+                Ekle<TNS.PEB.IPEBServis>("PEB", () => new TNS.PEB.IsKurallari.PEBServis());
+                Ekle<TNS.PER.IPERServis>("PER", () => new TNS.PER.IsKurallari.PERServis());
+                Ekle<TNS.STR.ISTRServis>("STR", () => new TNS.STR.IsKurallari.STRServis());
+                Ekle<TNS.TMM.ITMMServis>("TMM", () => new TNS.TMM.IsKurallari.TMMServis());
+                Ekle<TNS.TRM.ITRMServis>("TRM", () => new TNS.TRM.IsKurallari.TRMServis());
+                // EVR (evrak) henüz taşınmadı: arayüzü istemci projesindeki servis başvurularına (WebServisler) ve Aspose kitaplıklarına bağlı.
             }
         }
 

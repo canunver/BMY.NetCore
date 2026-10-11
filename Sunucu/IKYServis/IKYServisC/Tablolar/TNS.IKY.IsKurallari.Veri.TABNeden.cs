@@ -1,0 +1,81 @@
+using System;
+using System.Data;
+using TNS.IKY.IsKurallari;
+using TNS.Veri;
+
+namespace TNS.IKY.IsKurallari.Veri
+{
+    public class TABNeden : TABOrtak
+    {
+        public TABNeden(VeriErisim veriErisim) : base(veriErisim) { }
+
+        static string TABLOAD = "IKYNEDEN";
+        enum ENUMAlanlar : int
+        {
+            KOD = 0,
+            AD = 1,
+            BASLAMA = 2,
+            AYRILMA = 3
+        }
+        static string[] ALANLAR = { "KOD", "AD", "BASLAMA", "AYRILMA" };
+
+        public IDataReader Listele(Neden p)
+        {
+            string sql = "";
+            string kosul = "";
+
+            sql = "SELECT " + VeriErisim.TumAlanlar(TABLOAD, ALANLAR) + " FROM " + TABLOAD;
+
+            if (p.kod > 0)
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(TABLOAD, ALANLAR[(int)ENUMAlanlar.KOD], "=", p.kod));
+
+            if (p.ad != "")
+                kosul = VeriErisim.KosulEkle(kosul, "AND", VeriErisim.KosulOl(TABLOAD, ALANLAR[(int)ENUMAlanlar.AD], "LIKE", "%" + p.ad + "%"));
+
+            if (kosul != "")
+                sql += " WHERE " + kosul;
+
+            sql += " ORDER BY " + ALANLAR[(int)ENUMAlanlar.AD];
+
+            return veriErisim.DataReaderDondur(sql);
+        }
+
+        public Sonuc Kaydet(Neden p)
+        {
+            string sql = "";
+            Sonuc sonuc = new Sonuc();
+
+            sql = "INSERT INTO " + TABLOAD + " (" + VeriErisim.TumAlanlar("", ALANLAR) + ") VALUES (";
+            sql += VeriErisim.DegerYap(p.kod) + ",";
+            sql += VeriErisim.DegerYap(p.ad) + ",";
+            sql += VeriErisim.DegerYap(p.baslama) + ",";
+            sql += VeriErisim.DegerYap(p.ayrilma) + ")";
+
+            sonuc = KomutCalistir(sql, 1);
+
+            if (!sonuc.islemSonuc)
+            {
+                veriErisim.hata = "";
+                sql = "UPDATE " + TABLOAD + " SET ";
+                sql += VeriErisim.AtamaOl("", ALANLAR[(int)ENUMAlanlar.AD], p.ad) + ",";
+                sql += VeriErisim.AtamaOl("", ALANLAR[(int)ENUMAlanlar.BASLAMA], p.baslama) + ",";
+                sql += VeriErisim.AtamaOl("", ALANLAR[(int)ENUMAlanlar.AYRILMA], p.ayrilma);
+                sql = VeriErisim.KosulEkle(sql, "WHERE", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.KOD], "=", p.kod));
+
+                sonuc = KomutCalistir(sql, 1);
+            }
+
+            return sonuc;
+        }
+
+        public Sonuc Sil(Neden p)
+        {
+            string sql = "";
+
+            sql = "DELETE FROM " + TABLOAD;
+            sql = VeriErisim.KosulEkle(sql, "WHERE", VeriErisim.KosulOl("", ALANLAR[(int)ENUMAlanlar.KOD], "=", p.kod));
+
+            return KomutCalistir(sql, 0);
+        }
+    }
+}

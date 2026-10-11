@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:sch="http://maliye.yte.bilgem.tubitak.gov.tr/odeme/tertipharcamasi/server/wso" xmlns:tns="http://maliye.yte.bilgem.tubitak.gov.tr/odeme/tertipharcamasi/server/wso" targetNamespace="http://maliye.yte.bilgem.tubitak.gov.tr/odeme/tertipharcamasi/server/wso" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://maliye.yte.bilgem.tubitak.gov.tr/odeme/tertipharcamasi/server/wso" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="SonIslemZamaninaGoreTertipHarcamasiSorgulaRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="sonIslemZamani" type="xs:string" />
+            <xs:element name="kamuIdaresiNo" type="xs:long" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SonIslemZamaninaGoreTertipHarcamasiSorgulaResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="odenekList" type="tns:odenek" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SonIslemZamanAraliginaGoreTertipHarcamasiSorgulaRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="baslangicZamani" type="xs:string" />
+            <xs:element name="bitisZamani" type="xs:string" />
+            <xs:element name="kamuIdaresiNo" type="xs:long" />
+            <xs:element name="harcamaBirimiVergiNo" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SonIslemZamanAraliginaGoreTertipHarcamasiSorgulaResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="odenekList" type="tns:odenek" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="odenek">
+        <xs:sequence>
+          <xs:element name="harcamaBirimiVergiNo" type="xs:string" />
+          <xs:element name="harcamaBirimiAdi" type="xs:string" />
+          <xs:element name="kamuIdaresiNo" type="xs:long" />
+          <xs:element name="tertip" type="xs:string" />
+          <xs:element name="yil" type="xs:short" />
+          <xs:element name="sonIslemZamani" type="xs:string" />
+          <xs:element name="harcanan" type="tns:kurusCinsindenTL" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="TertipHarcamasiSorgulaRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="harcamaBirimiVergiNo" type="xs:string" />
+            <xs:element name="tertip" type="xs:string" />
+            <xs:element name="yil" type="xs:short" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="TertipHarcamasiSorgulaResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="odenek" type="tns:odenek" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="kurusCinsindenTL">
+        <xs:sequence>
+          <xs:element name="kurus" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="SonIslemZamaninaGoreTertipHarcamasiSorgulaResponse">
+    <wsdl:part name="SonIslemZamaninaGoreTertipHarcamasiSorgulaResponse" element="tns:SonIslemZamaninaGoreTertipHarcamasiSorgulaResponse" />
+  </wsdl:message>
+  <wsdl:message name="SonIslemZamanAraliginaGoreTertipHarcamasiSorgulaRequest">
+    <wsdl:part name="SonIslemZamanAraliginaGoreTertipHarcamasiSorgulaRequest" element="tns:SonIslemZamanAraliginaGoreTertipHarcamasiSorgulaRequest" />
+  </wsdl:message>
+  <wsdl:message name="TertipHarcamasiSorgulaRequest">
+    <wsdl:part name="TertipHarcamasiSorgulaRequest" element="tns:TertipHarcamasiSorgulaRequest" />
+  </wsdl:message>
+  <wsdl:message name="SonIslemZamaninaGoreTertipHarcamasiSorgulaRequest">
+    <wsdl:part name="SonIslemZamaninaGoreTertipHarcamasiSorgulaRequest" element="tns:SonIslemZamaninaGoreTertipHarcamasiSorgulaRequest" />
+  </wsdl:message>
+  <wsdl:message name="TertipHarcamasiSorgulaResponse">
+    <wsdl:part name="TertipHarcamasiSorgulaResponse" element="tns:TertipHarcamasiSorgulaResponse" />
+  </wsdl:message>
+  <wsdl:message name="SonIslemZamanAraliginaGoreTertipHarcamasiSorgulaResponse">
+    <wsdl:part name="SonIslemZamanAraliginaGoreTertipHarcamasiSorgulaResponse" element="tns:SonIslemZamanAraliginaGoreTertipHarcamasiSorgulaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TertipHarcamasiSorgulaPort">
+    <wsdl:operation name="SonIslemZamaninaGoreTertipHarcamasiSorgula">
+      <wsdl:input name="SonIslemZamaninaGoreTertipHarcamasiSorgulaRequest" message="tns:SonIslemZamaninaGoreTertipHarcamasiSorgulaRequest" />
+      <wsdl:output name="SonIslemZamaninaGoreTertipHarcamasiSorgulaResponse" message="tns:SonIslemZamaninaGoreTertipHarcamasiSorgulaResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SonIslemZamanAraliginaGoreTertipHarcamasiSorgula">
+      <wsdl:input name="SonIslemZamanAraliginaGoreTertipHarcamasiSorgulaRequest" message="tns:SonIslemZamanAraliginaGoreTertipHarcamasiSorgulaRequest" />
+      <wsdl:output name="SonIslemZamanAraliginaGoreTertipHarcamasiSorgulaResponse" message="tns:SonIslemZamanAraliginaGoreTertipHarcamasiSorgulaResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="TertipHarcamasiSorgula">
+      <wsdl:input name="TertipHarcamasiSorgulaRequest" message="tns:TertipHarcamasiSorgulaRequest" />
+      <wsdl:output name="TertipHarcamasiSorgulaResponse" message="tns:TertipHarcamasiSorgulaResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TertipHarcamasiSorgulaPortSoap11" type="tns:TertipHarcamasiSorgulaPort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SonIslemZamaninaGoreTertipHarcamasiSorgula">
+      <soap:operation soapAction="" />
+      <wsdl:input name="SonIslemZamaninaGoreTertipHarcamasiSorgulaRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SonIslemZamaninaGoreTertipHarcamasiSorgulaResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SonIslemZamanAraliginaGoreTertipHarcamasiSorgula">
+      <soap:operation soapAction="" />
+      <wsdl:input name="SonIslemZamanAraliginaGoreTertipHarcamasiSorgulaRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SonIslemZamanAraliginaGoreTertipHarcamasiSorgulaResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TertipHarcamasiSorgula">
+      <soap:operation soapAction="" />
+      <wsdl:input name="TertipHarcamasiSorgulaRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="TertipHarcamasiSorgulaResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TertipHarcamasiSorgulaPortService">
+    <wsdl:port name="TertipHarcamasiSorgulaPortSoap11" binding="tns:TertipHarcamasiSorgulaPortSoap11">
+      <soap:address location="http://10.150.0.148:80/maliye-ws/ws" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

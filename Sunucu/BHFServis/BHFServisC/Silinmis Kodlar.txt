@@ -1,0 +1,550 @@
+﻿
+/*
+
+        // ----------------------
+        
+      // ----------------------
+  
+        //public InsanKaynaklariVAN InsanKaynaklariListele(Kullanici kul, int yil, string kurum)
+        //{
+        //    try
+        //    {
+        //        return InsanKaynaklariServis.InsanKaynaklariListele(null, kul, yil, kurum);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        InsanKaynaklariVAN donusDeger = new InsanKaynaklariVAN();
+        //        donusDeger.sonuc.islemSonuc = false;
+        //        donusDeger.sonuc.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+        //public Sonuc InsanKaynaklariKaydet(Kullanici kul, int yil, string kurum, TNSCollection insanKaynaklari)
+        //{
+        //    try
+        //    {
+        //        return InsanKaynaklariServis.InsanKaynaklariKaydet(null, kul, yil, kurum, insanKaynaklari);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Sonuc donusDeger = new Sonuc();
+        //        donusDeger.islemSonuc = false;
+        //        donusDeger.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+        //public InsanKaynaklariVAN InsanKaynaklariSozlukListele(int yil, string kod)
+        //{
+        //    try
+        //    {
+        //        return InsanKaynaklariServis.InsanKaynaklariSozlukListele(null, yil, kod);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        InsanKaynaklariVAN donusDeger = new InsanKaynaklariVAN();
+        //        donusDeger.sonuc.islemSonuc = false;
+        //        donusDeger.sonuc.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+        //public IsciSayiUcretleriVAN IsciSayiUcretListele(Kullanici kul, int yil, string kurum, string isciTuru)
+        //{
+        //    try
+        //    {
+        //        return IsciServis.IsciSayiUcretListele(null, kul, yil, kurum, isciTuru);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        IsciSayiUcretleriVAN donusDeger = new IsciSayiUcretleriVAN();
+        //        donusDeger.sonuc.islemSonuc = false;
+        //        donusDeger.sonuc.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+        //public IsciSayiUcretleriSozlukVAN IsciSayiUcretSozlukListele(int yil, string isciTur)
+        //{
+        //    try
+        //    {
+        //        return IsciServis.IsciSayiUcretSozlukListele(null, yil, isciTur);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        IsciSayiUcretleriSozlukVAN donusDeger = new IsciSayiUcretleriSozlukVAN();
+        //        donusDeger.sonuc.islemSonuc = false;
+        //        donusDeger.sonuc.hataStr = e.ToString();
+        //        return donusDeger;
+
+        //    }
+        //}
+
+        //public Sonuc IsciSayiUcretKaydet(Kullanici kul, int yil, string kurum, string isciTuru, TNSCollection isciSayiUcretleri)
+        //{
+        //    try
+        //    {
+        //        return IsciServis.IsciSayiUcretKaydet(null, kul, yil, kurum, isciTuru, isciSayiUcretleri);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Sonuc donusDeger = new Sonuc();
+        //        donusDeger.islemSonuc = false;
+        //        donusDeger.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+        //public MevcutTasitlarVAN MevcutTasitlarListele(Kullanici kul, int yil, string kurumsalKod, int birim)
+        //{
+        //    try
+        //    {
+        //        return MevcutTasitlarServis.MevcutTasitlarListele(null, kul, yil, kurumsalKod, birim);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        MevcutTasitlarVAN donusDeger = new MevcutTasitlarVAN();
+        //        donusDeger.sonuc.islemSonuc = false;
+        //        donusDeger.sonuc.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+        //public Sonuc MevcutTasitlarKaydet(Kullanici kul, int yil, string kurumsalKod, TNSCollection mevcutTasitlar, int birim)
+        //{
+        //    try
+        //    {
+        //        return MevcutTasitlarServis.MevcutTasitlarKaydet(null, kul, yil, kurumsalKod, birim, mevcutTasitlar);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Sonuc donusDeger = new Sonuc();
+        //        donusDeger.islemSonuc = false;
+        //        donusDeger.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+        //public ObjectArray FizikselDegerlerTasraListele(Kullanici kullanan, int yil, int muhasebeKod, string birimKod, string kurumBirim)
+        //{
+        //    try
+        //    {
+        //        return FizikselDegerlerServisiTasra.Listele(null, kullanan, yil, muhasebeKod, birimKod, kurumBirim);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ObjectArray donusDeger = new ObjectArray();
+        //        donusDeger.sonuc.islemSonuc = false;
+        //        donusDeger.sonuc.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+        //public Sonuc FizikselDegerlerTasraKaydet(Kullanici kullanan, int yil, int muhasebeKod, string birimKod, string kurumBirim, TNSCollection fizikselDegerler)
+        //{
+        //    try
+        //    {
+        //        return FizikselDegerlerServisiTasra.Kaydet(null, kullanan, yil,muhasebeKod,birimKod, kurumBirim, fizikselDegerler);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Sonuc donusDeger = new Sonuc();
+        //        donusDeger.islemSonuc = false;
+        //        donusDeger.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+
+
+
+        //public ObjectArray TopluIsSozlesmesiListele(Kullanici kullanan, int yil, string kurum)
+        //{
+        //    try
+        //    {
+        //        return TopluIsSozlesmesiServisi.Listele(null, kullanan, yil, kurum);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ObjectArray donusDeger = new ObjectArray();
+        //        donusDeger.sonuc.islemSonuc = false;
+        //        donusDeger.sonuc.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+        //public Sonuc TopluIsSozlesmesiKaydet(Kullanici kullanan, int yil, string kurum, TNSCollection topluIsSozlesmeSatirlari)
+        //{
+        //    try
+        //    {
+        //        return TopluIsSozlesmesiServisi.Kaydet(null, kullanan, yil, kurum, topluIsSozlesmeSatirlari);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Sonuc donusDeger = new Sonuc();
+        //        donusDeger.islemSonuc = false;
+        //        donusDeger.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+
+        //public ObjectArray TemizlikListele(Kullanici kullanan, int yil, string kurum)
+        //{
+        //    try
+        //    {
+        //        return TemizlikServisi.Listele(null, kullanan, yil, kurum);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ObjectArray donusDeger = new ObjectArray();
+        //        donusDeger.sonuc.islemSonuc = false;
+        //        donusDeger.sonuc.hataStr = e.ToString();
+        //        return donusDeger;
+        //    }
+        //}
+
+
+
+        //public TemizlikHizmeti TemizlikHizmetiOku(Kullanici kullanan, TemizlikHizmeti form)
+        //{
+        //    return BHFTemizlikHizmeti.Oku(null, kullanan, form);
+        //}
+
+        //public Sonuc TemizlikHizmetiKaydet(Kullanici kullanan, TemizlikHizmeti form)
+        //{
+        //    try
+        //    {
+        //        return BHFTemizlikHizmeti.Kaydet(null, kullanan, form);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return new Sonuc(false, e.ToString(), "");
+        //    }
+        //}
+
+        //public HizmetAlimiTasitBilgi HizmetAlimiTasitBilgiOku(Kullanici kullanan, HizmetAlimiTasitBilgi form)
+        //{
+        //    return BHFHizmetAlimiTasitBilgi.Oku(null, kullanan, form);
+        //}
+
+        //public Sonuc HizmetAlimiTasitBilgiKaydet(Kullanici kullanan, HizmetAlimiTasitBilgi form)
+        //{
+        //    try
+        //    {
+        //        return BHFHizmetAlimiTasitBilgi.Kaydet(null, kullanan, form);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return new Sonuc(false, e.ToString(), "");
+        //    }
+        //}
+
+
+
+        //public DonerSermayeVAN[] DonerSermayeOku(Kullanici kullanan, int yil, string kurum, int donerSermayeNo)
+        //{
+        //    return DonerSermayeServisi.Oku(null, kullanan, yil, kurum, donerSermayeNo);
+        //}
+
+
+
+    
+
+
+
+
+*/
+
+
+/*
+
+    [Serializable()]
+    public class IsciSayiUcretiSozluk
+    {
+        public int grup = 0;
+        public string grupAd = "";
+    }
+
+    [Serializable()]
+    public class IsciSayiUcreti
+    {
+        public int grup;
+        public string grupAd;
+        public int grubdakiIsci;
+        public int ortalamaCiplak;
+        public int ortalamaGiyinik;
+    }
+
+    [Serializable()]
+    public class IsciSayiUcretleriVAN
+    {
+        public Sonuc sonuc = new Sonuc();
+        public TNSCollection isciSayiUcretleri = new TNSCollection();//isciSayiUcreti
+    }
+
+    [Serializable()]
+    public class IsciSayiUcretleriSozlukVAN
+    {
+        public Sonuc sonuc;
+        public TNSCollection isciSayiUcretleriSozluk;//isciSayiUcretiSozluk
+        public IsciSayiUcretleriSozlukVAN()
+        {
+            sonuc = new Sonuc();
+            isciSayiUcretleriSozluk = new TNSCollection();
+        }
+    }
+
+    [Serializable()]
+    public class InsanKaynakDeger
+    {
+        public int yil;
+        public int deger;
+        public InsanKaynakDeger()
+        {
+            yil = 0;
+            deger = 0;
+        }
+    }
+
+    [Serializable()]
+    public class InsanKaynak
+    {
+        public string kod;
+        public string aciklama;
+        public bool veriGirilsinMi;
+        public TNSCollection degerler;//InsanKaynakDeger
+        public InsanKaynak()
+        {
+            kod = "";
+            aciklama = "";
+            veriGirilsinMi = false;
+            degerler = new TNSCollection();
+        }
+    }
+
+    [Serializable()]
+    public class InsanKaynaklariVAN
+    {
+        public Sonuc sonuc;
+        public TNSCollection insanKaynaklari;//İnsanKaynak
+        public InsanKaynaklariVAN()
+        {
+            sonuc = new Sonuc();
+            insanKaynaklari = new TNSCollection();
+        }
+    }
+
+    [Serializable()]
+    public class MevcutTasit
+    {
+        public TasitSozluk tasitSozluk;
+        public int finKayKod;
+        public int deger;
+        public MevcutTasit()
+        {
+            finKayKod = 0;
+            deger = 0;
+            tasitSozluk = new TasitSozluk();
+        }
+    }
+
+    [Serializable()]
+    public class MevcutTasitlarVAN
+    {
+        public Sonuc sonuc;
+        public TNSCollection mevcutTasit;//MevcutTasit
+        public MevcutTasitlarVAN()
+        {
+            sonuc = new Sonuc(false, "", "");
+            mevcutTasit = new TNSCollection();
+        }
+    }
+
+    [Serializable()]
+    public class TopluIsSozlesmesi
+    {
+        public int surekli;
+        public int gecici;
+        public string aciklama;
+        public TNSDateTime yururlukTarihi = new TNSDateTime();
+        public string tarihNot30;
+        public string tarihNot13;
+    }
+
+
+    [Serializable()]
+    public class TemizlikVAN
+    {
+        public Sonuc sonuc;
+        public string aciklama;
+        public TNSCollection TemizlikTertipler;
+        public TNSCollection Temizlik;
+        public TNSCollection TemizlikAciklamaAlanlar;
+        public TemizlikVAN()
+        {
+            sonuc = new Sonuc();
+            TemizlikTertipler = new TNSCollection();// Tertip
+            Temizlik = new TNSCollection();// Değerler
+            TemizlikAciklamaAlanlar = new TNSCollection();//Açıklama Alanlar
+        }
+    }
+
+    [Serializable()]
+    public class TemizlikIhaleler
+    {
+        public Sonuc sonuc;
+        public int ihaleNo;
+        public string aciklama;
+        public TemizlikIhaleler()
+        {
+            sonuc = new Sonuc();
+
+        }
+    }
+    [System.Serializable()]
+    public class HizmetAlimiTasitBilgiDetay
+    {
+        public string tasitSiraNo;
+        public string tasitAciklama;
+        public int soforluYakitliSureAy;
+        public double soforluYakitliSureTutar;
+        public int soforluYakitsizSureAy;
+        public double soforluYakitsizSureTutar;
+        public int soforsuzYakitliSureAy;
+        public double soforsuzYakitliSureTutar;
+        public int soforsuzYakitsizSureAy;
+        public double soforsuzYakitsizSureTutar;
+    }
+
+    [System.Serializable()]
+    public class HizmetAlimiTasitBilgi
+    {
+        public int butceYili;
+        public string kurKod;
+        public int hizmetYili;
+        public HizmetAlimiTasitBilgiDetay[] detaylar;
+    }
+
+    [System.Serializable()]
+    public class TemizlikHizmetiDetay
+    {
+        public string temizlikKod;
+        public string temizlikAd;
+        public double ikiOnce;
+        public double birOnce;
+        public double buYil;
+        public int veriGirilsinMi;
+    }
+
+    [System.Serializable()]
+    public class TemizlikHizmeti
+    {
+        public int butceYili;
+        public string kurKod;
+        public int sozlesmeNo;
+        public string tertipler;
+        public TemizlikHizmetiDetay[] detaylar;
+    }
+
+    [Serializable()]
+    public class OzelGuvenlikVAN
+    {
+        public Sonuc sonuc;
+        public string aciklama;
+        public TNSCollection OzelGuvenlikTertipler;
+        public TNSCollection OzelGuvenlik;
+        public TNSCollection OzelGuvenlikAciklamaAlanlar;
+        public OzelGuvenlikVAN()
+        {
+            sonuc = new Sonuc();
+            OzelGuvenlikTertipler = new TNSCollection();// Tertip
+            OzelGuvenlik = new TNSCollection();// Değerler
+            OzelGuvenlikAciklamaAlanlar = new TNSCollection();//Açıklama Alanlar
+        }
+    }
+*/
+
+    /*
+     * 
+     using System;
+    using TNS;
+    using TNS.KYM;
+    using TNS.BHMc;
+
+   
+    namespace TNS.BHMc
+    {
+        [Serializable()]
+        public class OzelGuvenlik
+        {
+            public int kod; //değerler
+            public double Harcama;
+            public double Tahmin;
+            public double Teklif;
+        }
+
+        [Serializable()]
+        public class OzelGuvenlikTertipler
+        { 
+            public string kurKod;
+            public string fonKod;
+            public string finKod;
+            public string ekoKod; 
+
+        }
+
+        [Serializable()]
+        public class OzelGuvenlikVAN
+        {
+            public Sonuc sonuc;
+            public string aciklama;
+            public TNSCollection OzelGuvenlikTertipler;
+            public TNSCollection OzelGuvenlik;
+            public OzelGuvenlikVAN()
+            {     
+                sonuc = new Sonuc();     
+                OzelGuvenlikTertipler = new TNSCollection();// Tertip
+                OzelGuvenlik = new TNSCollection();// Değerler
+            }
+        }
+
+
+
+
+        //HizmetAlimiTasitBilgi HizmetAlimiTasitBilgiOku(Kullanici kullanan, HizmetAlimiTasitBilgi form);
+        //IsciSayiUcretleriVAN IsciSayiUcretListele(Kullanici kul, int yil, string kurum, string isciTuru);
+        //Sonuc IsciSayiUcretKaydet(Kullanici kul, int yil, string kurum, string isciTuru, TNSCollection isciSayiUcretleri);
+        //InsanKaynaklariVAN InsanKaynaklariListele(Kullanici kul, int yil, string kurum);
+        //Sonuc InsanKaynaklariKaydet(Kullanici kul, int yil, string kurum, TNSCollection insanKaynaklari);
+        //ObjectArray TopluIsSozlesmesiListele(Kullanici kullanan, int yil, string kurum);
+        //InsanKaynaklariVAN InsanKaynaklariSozlukListele(int yil, string kod);
+        //IsciSayiUcretleriSozlukVAN IsciSayiUcretSozlukListele(int yil, string isciTur);
+        //DonerSermayeVAN[] DonerSermayeOku(Kullanici kullanan, int yil, string kurum, int donerSermayeNo);
+        //ObjectArray FizikselDegerlerTasraListele(Kullanici kullanan, int yil, int muhasebeKod, string birimKod, string kurumBirim);
+        //Sonuc FizikselDegerlerTasraKaydet(Kullanici kullanan, int yil, int muhasebeKod, string birimKod, string kurumBirim, TNSCollection fizikselDegerler);
+        //ObjectArray HizmetMaliyetiTasraListele(Kullanici kullanan, int yil, int muhasebeKod, string birimKod, string kurumsalKod);
+        //Sonuc HizmetMaliyetiTasraKaydet(Kullanici kullanan, int yil, int muhasebeKod, string birimKod, string kurumsalKod, TNSCollection hizmetMaliyeti);
+        //Sonuc TopluIsSozlesmesiKaydet(Kullanici kullanan, int yil, string kurum, TNSCollection topluIsSozlesmeSatirlari);
+        //MevcutTasitlarVAN MevcutTasitlarListele(Kullanici kullanan, int yil, string kurumsalKod, int TasraMerkez);
+        //Sonuc MevcutTasitlarKaydet(Kullanici kul, int yil, string kurum, TNSCollection mevcutTasitlar, int TasraMerkez);
+        //ObjectArray TemizlikListele(Kullanici kullanan, int yil, string kurum);
+        //Temizlik eskisi
+        //TemizlikHizmeti TemizlikHizmetiOku(Kullanici kullanan, TemizlikHizmeti form);
+        //Sonuc TemizlikHizmetiKaydet(Kullanici kullanan, TemizlikHizmeti form);
+        //Sonuc HizmetAlimiTasitBilgiKaydet(Kullanici kullanan, HizmetAlimiTasitBilgi form);
+
+
+        [Serializable()]
+        public class HizmetMaliyetiVAN
+        {
+            public Sonuc sonuc=new Sonuc();
+            public TNSCollection hizmetMaliyetiSatirlari=new TNSCollection(); //HizmetMaliyetiSatir
+            public string donerSermayeAd;
+        }
+
+    }
+
+     * 
+     * */

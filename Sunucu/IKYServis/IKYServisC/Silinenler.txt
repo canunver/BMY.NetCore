@@ -1,0 +1,276 @@
+﻿
+        Sonuc PersonelIzinEvrakBilgiKaydet(Kullanici islemiYapan, PersonelIzin p);
+        public Sonuc PersonelIzinEvrakBilgiKaydet(Kullanici islemiYapan, PersonelIzin p)
+        {
+            Sonuc donusDeger = new Sonuc();
+            try
+            {
+                donusDeger = new IKYIzin().KaydetIzinEvrakBilgi(islemiYapan, p);
+            }
+            catch (Exception e)
+            {
+                donusDeger.islemSonuc = false;
+                donusDeger.hataStr = e.ToString();
+            }
+
+            return donusDeger;
+        }
+
+        public Sonuc KaydetIzinEvrakBilgi(Kullanici kullanan, PersonelIzin p)
+        {
+            Sonuc sonuc = new Sonuc();
+            object eski = null, yeni = null; //Tarihçe için
+
+            //if (!IKY.Yetki.YetkiVarMiYazmaya(kullanan))
+            //{
+            //    sonuc.islemSonuc = false;
+            //    sonuc.hataStr = PersonelResI.PER011;
+
+            //    return sonuc;
+            //}
+
+            string hata = "";
+            if (p.tcKimlikNo.Trim() == "")
+                hata = "Personel T.C Kimlik Numarası boş bırakılamaz<br>";
+            if (string.IsNullOrEmpty(kullanan.kullaniciKodu))//Şifresiz girişten kullanıcı listeniyor
+            {
+                if (p.onay > 0)
+                    hata += "Sadece onaysız Personel izin bilgisi kaydı yapılabilirsiniz<br>";
+            }
+
+
+            if (p.kod == 0)
+                hata += "Daha önce kayıt edilmiş izin bilgisi seçiniz<br>";
+            else if (string.IsNullOrEmpty(kullanan.kullaniciKodu))//Şifresiz girişten kullanıcı kayıt yapması
+                hata += "Onaylama işlemi yapamazsınız<br>";
+
+            if (hata != "")
+            {
+                sonuc.hataStr = hata;
+                sonuc.islemSonuc = false;
+                return sonuc;
+            }
+
+            //Tarihçe ********************
+            if (p.kod > 0)
+            {
+                this.eskiTmp = this.ListeleIzin(kullanan, new PersonelIzin() { personelKod = p.personelKod, kod = p.kod });
+                if (eskiTmp.objeler.Count == 1)
+                    eski = eskiTmp[0];
+            }
+            if (eski == null)
+                eski = new PersonelIzin();// { tcKimlikNo = "-1" }; // -1 : "Yeni Kayıt"
+            //****************************
+
+            VeriErisim ve = VeriErisim.VeriErisimBul(null, "BaglantiSatiriIKY", TNS.KYM.Arac.KimlikBul(kullanan));
+
+            ve.BeginTransaction();
+
+            TABPersonelIzin tab = new TABPersonelIzin(ve);
+
+            if (!tab.IzinKayitKontrol(p))
+            {
+                sonuc.islemSonuc = false;
+                sonuc.hataStr = "Verilen tarih aralığı, kayıtlı izin tarihlerine denk gelmektedir. Lütfen izin tarihlerini kontrol ediniz.";
+                ve.Rollback();
+            }
+            else
+            {
+                ENUMTARIHCEISLEMTIP islemTip = ENUMTARIHCEISLEMTIP.GUNCELLE;
+
+                sonuc = tab.KaydetIzinEvrakBilgi(p);
+
+                if (sonuc.islemSonuc)
+                {
+                    sonuc.anahtar = p.kod.ToString();
+                    ve.Commit();
+                    sonuc.bilgiStr = PersonelResI.PER007;
+
+                    //Tarihçe Kaydet ********************
+                    yeni = p;
+                    Sonuc sonucTarihce = IKYPersonelTarihce.Kaydet(ve, kullanan, yeni, eski, ENUMTARIHCE.IZINHAREKET, p.personelKod, islemTip);
+                }
+                else
+                    ve.Rollback();
+            }
+
+            ve.VeriErisimKapat();
+
+            return sonuc;
+        }
+
+
+        Sonuc PersonelIzinAlanKaydet(Kullanici islemiYapan, PersonelIzin p);
+        public Sonuc PersonelIzinAlanKaydet(Kullanici islemiYapan, PersonelIzin p)
+        {
+            Sonuc donusDeger = new Sonuc();
+            try
+            {
+                donusDeger = new IKYIzin().KaydetIzinAlan(islemiYapan, p);
+            }
+            catch (Exception e)
+            {
+                donusDeger.islemSonuc = false;
+                donusDeger.hataStr = e.ToString();
+            }
+
+            return donusDeger;
+        }
+        public Sonuc KaydetIzinAlan(Kullanici kullanan, PersonelIzin p)
+        {
+            Sonuc sonuc = new Sonuc();
+            object eski = null, yeni = null; //Tarihçe için
+
+            //if (!IKY.Yetki.YetkiVarMiYazmaya(kullanan))
+            //{
+            //    sonuc.islemSonuc = false;
+            //    sonuc.hataStr = PersonelResI.PER011;
+
+            //    return sonuc;
+            //}
+
+            string hata = "";
+            if (p.tcKimlikNo.Trim() == "")
+                hata = "Personel T.C Kimlik Numarası boş bırakılamaz<br>";
+            if (string.IsNullOrEmpty(kullanan.kullaniciKodu))//Şifresiz girişten kullanıcı listeniyor
+            {
+                if (p.onay > 0)
+                    hata += "Sadece onaysız Personel izin bilgisi kaydı yapılabilirsiniz<br>";
+            }
+
+
+            if (p.kod == 0)
+                hata += "Daha önce kayıt edilmiş izin bilgisi seçiniz<br>";
+            else if (string.IsNullOrEmpty(kullanan.kullaniciKodu))//Şifresiz girişten kullanıcı kayıt yapması
+                hata += "Onaylama işlemi yapamazsınız<br>";
+
+            if (hata != "")
+            {
+                sonuc.hataStr = hata;
+                sonuc.islemSonuc = false;
+                return sonuc;
+            }
+
+            //Tarihçe ********************
+            if (p.kod > 0)
+            {
+                this.eskiTmp = this.ListeleIzin(kullanan, new PersonelIzin() { personelKod = p.personelKod, kod = p.kod });
+                if (eskiTmp.objeler.Count == 1)
+                    eski = eskiTmp[0];
+            }
+            if (eski == null)
+                eski = new PersonelIzin();// { tcKimlikNo = "-1" }; // -1 : "Yeni Kayıt"
+            //****************************
+
+            VeriErisim ve = VeriErisim.VeriErisimBul(null, "BaglantiSatiriIKY", TNS.KYM.Arac.KimlikBul(kullanan));
+
+            ve.BeginTransaction();
+
+            TABPersonelIzin tab = new TABPersonelIzin(ve);
+
+            if (!tab.IzinKayitKontrol(p))
+            {
+                sonuc.islemSonuc = false;
+                sonuc.hataStr = "Verilen tarih aralığı, kayıtlı izin tarihlerine denk gelmektedir. Lütfen izin tarihlerini kontrol ediniz.";
+                ve.Rollback();
+            }
+            else
+            {
+                ENUMTARIHCEISLEMTIP islemTip = ENUMTARIHCEISLEMTIP.GUNCELLE;
+
+                if (sonuc.islemSonuc)
+                {
+                    sonuc.anahtar = p.kod.ToString();
+                    ve.Commit();
+                    sonuc.bilgiStr = PersonelResI.PER007;
+
+                    //Tarihçe Kaydet ********************
+                    yeni = p;
+                    Sonuc sonucTarihce = IKYPersonelTarihce.Kaydet(ve, kullanan, yeni, eski, ENUMTARIHCE.IZINHAREKET, p.personelKod, islemTip);
+                }
+                else
+                    ve.Rollback();
+            }
+
+            ve.VeriErisimKapat();
+
+            return sonuc;
+        }
+
+
+
+        public Sonuc PersonelIzinOnayla(Kullanici islemiYapan, PersonelIzin p)
+        {
+            Sonuc donusDeger = new Sonuc();
+            try
+            {
+                donusDeger = new IKYIzin().KaydetIzin(islemiYapan, p, true);
+            }
+            catch (Exception e)
+            {
+                donusDeger.islemSonuc = false;
+                donusDeger.hataStr = e.ToString();
+            }
+
+            return donusDeger;
+        }
+
+        Sonuc PersonelIzinOnayla(Kullanici islemiYapan, PersonelIzin p);
+
+
+        public int PersonelKullanilanAdetIzinGetir(int personelKod, int yil)
+        {
+            int donusDeger = 0;
+            try
+            {
+                donusDeger = new IKYIzin().KullanilanAdetIzinGetir(personelKod, yil);
+            }
+            catch (Exception)
+            {
+
+            }
+            return donusDeger;
+        }
+
+        //public int PersonelYilIciIzinHakkiGetir(Kullanici kullanan, int personelKod)
+        //{
+        //    int donusDeger = 0;
+        //    try
+        //    {
+        //        donusDeger = new IKYIzin().YilIciIzinHakkiGetir(kullanan, personelKod);
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //    }
+        //    return donusDeger;
+        //}
+
+        //public int PersonelDevredilenGunHesapla(Kullanici kullanan, int personelKod, int yil)
+        //{
+        //    int donusDeger = 0;
+        //    try
+        //    {
+        //        donusDeger = new IKYIzin().DevredilenGunHesapla(kullanan, personelKod, yil);
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //    }
+        //    return donusDeger;
+        //}
+        int PersonelKullanilanAdetIzinGetir(int personelKod, int yil);
+        //int PersonelYilIciIzinHakkiGetir(Kullanici kullanan, int personelKod);
+        //int PersonelDevredilenGunHesapla(Kullanici kullanan, int personelKod, int yil);
+
+        public int KullanilanAdetIzinGetir(int personelKod, int yil)
+        {
+            VeriErisim ve = VeriErisim.VeriErisimBul(null, "BaglantiSatiriIKY", TNS.KYM.Arac.KimlikBul(null));
+            TABPersonelIzin tab = new TABPersonelIzin(ve);
+
+            int izin = tab.ListeleKullanilanIzinAdet(personelKod, yil);
+            ve.VeriErisimKapat();
+
+            return izin;
+        }
+

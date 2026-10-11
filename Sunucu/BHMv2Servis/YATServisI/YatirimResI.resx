@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BHMPD044" xml:space="preserve">
+    <value>Geçerli bir model seçiniz.</value>
+  </data>
+  <data name="BHMPD045" xml:space="preserve">
+    <value>Geçerli bir proje seçiniz.</value>
+  </data>
+  <data name="BHMPD046" xml:space="preserve">
+    <value>Geçerli bir sektör seçiniz.</value>
+  </data>
+  <data name="BHMPD047" xml:space="preserve">
+    <value>Proje No boş bırakılamaz.</value>
+  </data>
+  <data name="BHMPD048" xml:space="preserve">
+    <value>Proje No en az 5 haneli olmalıdır.</value>
+  </data>
+  <data name="BHMPD049" xml:space="preserve">
+    <value>Proje No değerinin ilk 4 karakteri Proje yılını belirtir. Lütfen geçerli bir Proje No giriniz.</value>
+  </data>
+  <data name="YAT001" xml:space="preserve">
+    <value>Bu birime yazma hakkınız yok!</value>
+  </data>
+  <data name="YAT002" xml:space="preserve">
+    <value>Yazma hakkınız yok!</value>
+  </data>
+  <data name="YAT003" xml:space="preserve">
+    <value>Bu birimin bilgilerini okuma hakkınız yok!</value>
+  </data>
+  <data name="YAT004" xml:space="preserve">
+    <value>Okuma hakkınız yok!</value>
+  </data>
+  <data name="YAT005" xml:space="preserve">
+    <value>Bütçe</value>
+  </data>
+  <data name="YAT006" xml:space="preserve">
+    <value>Bütçede Gösterilen Kredi</value>
+  </data>
+  <data name="YAT007" xml:space="preserve">
+    <value>Bütçede Gösterilmeyen Kredi</value>
+  </data>
+  <data name="YAT008" xml:space="preserve">
+    <value>Hibe</value>
+  </data>
+  <data name="YAT009" xml:space="preserve">
+    <value>Bitiş yılını girmelisiniz.</value>
+  </data>
+  <data name="YAT010" xml:space="preserve">
+    <value>Ad alanı boş bırakılamaz.</value>
+  </data>
+  <data name="YAT011" xml:space="preserve">
+    <value>Başlangıç yılını girmelisiniz.</value>
+  </data>
+  <data name="YAT012" xml:space="preserve">
+    <value>Birim kodu yanlış.</value>
+  </data>
+  <data name="YAT013" xml:space="preserve">
+    <value>Proje bilgisi yanlış.</value>
+  </data>
+  <data name="YAT014" xml:space="preserve">
+    <value>Proje Türü bilgisi yanlış.</value>
+  </data>
+  <data name="YAT015" xml:space="preserve">
+    <value>Alt proje başlangıç yılı {0} - {1} aralığında olmalıdır.</value>
+  </data>
+  <data name="YAT016" xml:space="preserve">
+    <value>Alt proje bitiş yılı {0} - {1} aralığında olmalıdır.</value>
+  </data>
+  <data name="YAT017" xml:space="preserve">
+    <value>Verilen kriterlere göre uygun kayıt bulunamadı.</value>
+  </data>
+  <data name="YAT018" xml:space="preserve">
+    <value>Alt Proje Kodu boş geliyor.</value>
+  </data>
+  <data name="YAT019" xml:space="preserve">
+    <value>Silmek istediğiniz {0} adlı Alt Projenin detay bilgileri var, önce onları silmelisiniz.</value>
+  </data>
+  <data name="YAT020" xml:space="preserve">
+    <value>İşlem başarıyla gerçekleştirilmiştir.</value>
+  </data>
+  <data name="YAT021" xml:space="preserve">
+    <value>Kaynak Adı boş bırakılamaz.</value>
+  </data>
+  <data name="YAT022" xml:space="preserve">
+    <value>Böyle bir alt proje yok.</value>
+  </data>
+  <data name="YAT023" xml:space="preserve">
+    <value>Bütçe Kaynak No boş geliyor.</value>
+  </data>
+  <data name="YAT024" xml:space="preserve">
+    <value>Böyle bir Bütçe Kaynak yok.</value>
+  </data>
+  <data name="YAT025" xml:space="preserve">
+    <value>Silmek istediğiniz {0} adlı Bütçe Kaynağın detay bilgileri ve/veya Alt Faaliyet ile ilişkisi var, önce onları silmelisiniz.</value>
+  </data>
+  <data name="YAT026" xml:space="preserve">
+    <value>Önce Bütçe Kaynağı bilgilerini girmelisiniz.</value>
+  </data>
+  <data name="YAT027" xml:space="preserve">
+    <value>{0} harcama yılı için Haziran ve Yıl Sonu Harcama kolonu rakamlarını buradan giremezsiniz.</value>
+  </data>
+  <data name="YAT028" xml:space="preserve">
+    <value>{0} yılı öncesi için bu işlemi yapamazsınız.</value>
+  </data>
+  <data name="YAT029" xml:space="preserve">
+    <value>Yatırım modülü ile ilişkili alt faaliyet bulunamadı.</value>
+  </data>
+  <data name="YAT030" xml:space="preserve">
+    <value>Alt faaliyet ödenekleri bulunamadı.</value>
+  </data>
+  <data name="YAT031" xml:space="preserve">
+    <value>{0} teklif yılı için Proje Yıl Teklif Bilgileri Bütçe kolonu rakamlarını Bütçe Hazırlık modülü Bütçe Teklifi sayfasından girmelisiniz.</value>
+  </data>
+  <data name="YAT032" xml:space="preserve">
+    <value>Yıl alanı boş bırakılamaz.</value>
+  </data>
+  <data name="YAT033" xml:space="preserve">
+    <value>Tür alanı boş bırakılamaz.</value>
+  </data>
+  <data name="YAT034" xml:space="preserve">
+    <value>Dosya seçmelisiniz.</value>
+  </data>
+  <data name="YAT035" xml:space="preserve">
+    <value>Alt proje kodu alanı boş bırakılamaz.</value>
+  </data>
+  <data name="YAT036" xml:space="preserve">
+    <value>Böyle bir doküman yok.</value>
+  </data>
+  <data name="YAT037" xml:space="preserve">
+    <value>Bu doküman türü daha önce kullanıldığı için silinemez.</value>
+  </data>
+  <data name="YAT038" xml:space="preserve">
+    <value>Kod alanı boş bırakılamaz.</value>
+  </data>
+  <data name="YAT039" xml:space="preserve">
+    <value>Bu il daha önce kullanıldığı için silinemez.</value>
+  </data>
+  <data name="YAT040" xml:space="preserve">
+    <value>İl alanı boş bırakılamaz.</value>
+  </data>
+  <data name="YAT041" xml:space="preserve">
+    <value>İlçe Kodu alanı boş bırakılamaz.</value>
+  </data>
+  <data name="YAT042" xml:space="preserve">
+    <value>İlçe Adı alanı boş bırakılamaz.</value>
+  </data>
+  <data name="YAT043" xml:space="preserve">
+    <value>Önce ili kaydedin.</value>
+  </data>
+  <data name="YAT044" xml:space="preserve">
+    <value>Bu ilçe daha önce kullanıldığı için silinemez.</value>
+  </data>
+  <data name="YAT045" xml:space="preserve">
+    <value>Talep Ad alanı boş bırakılamaz.</value>
+  </data>
+  <data name="YAT046" xml:space="preserve">
+    <value>Böyle bir kredi talebi yok.</value>
+  </data>
+  <data name="YAT047" xml:space="preserve">
+    <value>Sektör bilgisi yanlış.</value>
+  </data>
+  <data name="YAT048" xml:space="preserve">
+    <value>Alt sektörleri olduğu için bu sektöre kayıt yapamazsınız.</value>
+  </data>
+  <data name="YAT049" xml:space="preserve">
+    <value>Proje Kodu boş geliyor.</value>
+  </data>
+  <data name="YAT050" xml:space="preserve">
+    <value>Silmek istediğiniz {0} adlı projenin Alt Projeleri var, önce onları silmelisiniz.</value>
+  </data>
+  <data name="YAT051" xml:space="preserve">
+    <value>Bu proje türü daha önce kullanıldığı için silinemez.</value>
+  </data>
+  <data name="YAT052" xml:space="preserve">
+    <value>Senaryo alanı boş bırakılamaz.</value>
+  </data>
+  <data name="YAT053" xml:space="preserve">
+    <value>Proje Türü alanı boş bırakılamaz.</value>
+  </data>
+  <data name="YAT054" xml:space="preserve">
+    <value>Proje alanı boş bırakılamaz.</value>
+  </data>
+  <data name="YAT055" xml:space="preserve">
+    <value>Kredi alanı boş bırakılamaz.</value>
+  </data>
+  <data name="YAT056" xml:space="preserve">
+    <value>Girilen Kredi sistemde kayıtlı değil.</value>
+  </data>
+  <data name="YAT057" xml:space="preserve">
+    <value>Kredi Talebi alanı boş bırakılamaz.</value>
+  </data>
+  <data name="YAT058" xml:space="preserve">
+    <value>Girilen Kredi Talebi sistemde kayıtlı değil.</value>
+  </data>
+  <data name="YAT059" xml:space="preserve">
+    <value>Model alanı boş bırakılamaz.</value>
+  </data>
+  <data name="YAT060" xml:space="preserve">
+    <value>Önce üst sektörü kaydedin.</value>
+  </data>
+  <data name="YAT061" xml:space="preserve">
+    <value>Önce alt sektörleri silin.</value>
+  </data>
+  <data name="YAT062" xml:space="preserve">
+    <value>Bu sektör daha önce kullanıldığı için silinemez.</value>
+  </data>
+  <data name="YAT063" xml:space="preserve">
+    <value>Veri tabanından okuma yapılırken hata oluştu: ({0})</value>
+  </data>
+  <data name="YAT064" xml:space="preserve">
+    <value>Bu işlemi yapmaya yetkiniz yok.</value>
+  </data>
+  <data name="YAT065" xml:space="preserve">
+    <value>Bütçe Alt Faaliyeti boş bırakılamaz.</value>
+  </data>
+  <data name="YAT066" xml:space="preserve">
+    <value>Döner Sermaye</value>
+  </data>
+</root>

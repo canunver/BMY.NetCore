@@ -1,0 +1,627 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FRMCKG001" xml:space="preserve">
+    <value>Page Name</value>
+  </data>
+  <data name="FRMCKG002" xml:space="preserve">
+    <value>Date Range</value>
+  </data>
+  <data name="FRMCKG003" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="FRMCKG004" xml:space="preserve">
+    <value>15 minutes</value>
+  </data>
+  <data name="FRMCKG005" xml:space="preserve">
+    <value>1 hour</value>
+  </data>
+  <data name="FRMCKG006" xml:space="preserve">
+    <value>1 day</value>
+  </data>
+  <data name="FRMCKG007" xml:space="preserve">
+    <value>1 week</value>
+  </data>
+  <data name="FRMCKG008" xml:space="preserve">
+    <value>1 month</value>
+  </data>
+  <data name="FRMCKG009" xml:space="preserve">
+    <value>List</value>
+  </data>
+  <data name="FRMCKG010" xml:space="preserve">
+    <value>System Process Numbers</value>
+  </data>
+  <data name="FRMCKL001" xml:space="preserve">
+    <value>Page Name</value>
+  </data>
+  <data name="FRMCKL002" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="FRMCKL003" xml:space="preserve">
+    <value>Those who had done operation in {0}</value>
+  </data>
+  <data name="FRMCKL004" xml:space="preserve">
+    <value>List</value>
+  </data>
+  <data name="FRMCKL005" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="FRMCKL006" xml:space="preserve">
+    <value>Name Surname</value>
+  </data>
+  <data name="FRMCKL007" xml:space="preserve">
+    <value>Operation Date</value>
+  </data>
+  <data name="FRMCKL008" xml:space="preserve">
+    <value>IP Number</value>
+  </data>
+  <data name="FRMCKL009" xml:space="preserve">
+    <value>Page of Operation</value>
+  </data>
+  <data name="FRMCKL010" xml:space="preserve">
+    <value>List of People Using the System.</value>
+  </data>
+  <data name="FRMCKL011" xml:space="preserve">
+    <value>The person is listed.</value>
+  </data>
+  <data name="FRMEPA001" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="FRMEPA002" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="FRMEPA003" xml:space="preserve">
+    <value>User Group to be Sent</value>
+  </data>
+  <data name="FRMEPA004" xml:space="preserve">
+    <value>Send e-mail</value>
+  </data>
+  <data name="FRMEPA005" xml:space="preserve">
+    <value>Previous Posts</value>
+  </data>
+  <data name="FRMEPA006" xml:space="preserve">
+    <value>Send e-mail to Users.</value>
+  </data>
+  <data name="FRMEPA007" xml:space="preserve">
+    <value>All User Types</value>
+  </data>
+  <data name="FRMEPA008" xml:space="preserve">
+    <value>An e-mail will be sent using this e-mail address</value>
+  </data>
+  <data name="FRMEPA009" xml:space="preserve">
+    <value>.</value>
+  </data>
+  <data name="FRMEPA010" xml:space="preserve">
+    <value>Please fill in the subject field!</value>
+  </data>
+  <data name="FRMEPA011" xml:space="preserve">
+    <value>Please fill in the message field!</value>
+  </data>
+  <data name="FRMEPG001" xml:space="preserve">
+    <value>Message Number</value>
+  </data>
+  <data name="FRMEPG002" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="FRMEPG003" xml:space="preserve">
+    <value>Sender</value>
+  </data>
+  <data name="FRMEPG004" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="FRMEPG005" xml:space="preserve">
+    <value>Number of People to be Sent</value>
+  </data>
+  <data name="FRMEPG006" xml:space="preserve">
+    <value>Number of People Receiving</value>
+  </data>
+  <data name="FRMEPG007" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="FRMEPG008" xml:space="preserve">
+    <value>Re-Send</value>
+  </data>
+  <data name="FRMEPG009" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="FRMEPG010" xml:space="preserve">
+    <value>Status-Tracking Page for Previously Sent e-mail</value>
+  </data>
+  <data name="FRMEPG011" xml:space="preserve">
+    <value>Re-Sending process has been started for the message numbered {0}. Click on the refresh button to see the changes.</value>
+  </data>
+  <data name="FRMHTD001" xml:space="preserve">
+    <value>View Error Files</value>
+  </data>
+  <data name="FRMHTD002" xml:space="preserve">
+    <value>System state folder is empty.</value>
+  </data>
+  <data name="FRMKUA001" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="FRMKUA002" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="FRMKUA003" xml:space="preserve">
+    <value>Accounting Unit</value>
+  </data>
+  <data name="FRMKUA004" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="FRMKUA005" xml:space="preserve">
+    <value>ID Number</value>
+  </data>
+  <data name="FRMKUA006" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="FRMKUA007" xml:space="preserve">
+    <value>User Type</value>
+  </data>
+  <data name="FRMKUA008" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="FRMKUA009" xml:space="preserve">
+    <value>Authorization Type</value>
+  </data>
+  <data name="FRMKUA010" xml:space="preserve">
+    <value>Search users in the integration server</value>
+  </data>
+  <data name="FRMKUA011" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="FRMKUA012" xml:space="preserve">
+    <value>Create New User</value>
+  </data>
+  <data name="FRMKUA013" xml:space="preserve">
+    <value>New Search</value>
+  </data>
+  <data name="FRMKUA014" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="FRMKUA015" xml:space="preserve">
+    <value>Name Surname</value>
+  </data>
+  <data name="FRMKUA016" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="FRMKUA017" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="FRMKUA018" xml:space="preserve">
+    <value>Telephone Number</value>
+  </data>
+  <data name="FRMKUA019" xml:space="preserve">
+    <value>e-mail</value>
+  </data>
+  <data name="FRMKUA020" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="FRMKUA021" xml:space="preserve">
+    <value>Last Entry Date</value>
+  </data>
+  <data name="FRMKUA022" xml:space="preserve">
+    <value>User Search Page</value>
+  </data>
+  <data name="FRMKUA023" xml:space="preserve">
+    <value>Please enter the user information you wish to search.</value>
+  </data>
+  <data name="FRMKUA024" xml:space="preserve">
+    <value>Search Results</value>
+  </data>
+  <data name="FRMKUA025" xml:space="preserve">
+    <value>record found.</value>
+  </data>
+  <data name="FRMKUA026" xml:space="preserve">
+    <value>The user suitable for the criteria given has not been found.</value>
+  </data>
+  <data name="FRMKUG001" xml:space="preserve">
+    <value>ID Number</value>
+  </data>
+  <data name="FRMKUG002" xml:space="preserve">
+    <value>Click the picture after entering the ID Number of the new user, and the name and surname fields will be filled automatically.</value>
+  </data>
+  <data name="FRMKUG003" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="FRMKUG004" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="FRMKUG005" xml:space="preserve">
+    <value>User Code</value>
+  </data>
+  <data name="FRMKUG006" xml:space="preserve">
+    <value>e-mail</value>
+  </data>
+  <data name="FRMKUG007" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="FRMKUG008" xml:space="preserve">
+    <value>Telephone Number</value>
+  </data>
+  <data name="FRMKUG009" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="FRMKUG010" xml:space="preserve">
+    <value>Registary No</value>
+  </data>
+  <data name="FRMKUG011" xml:space="preserve">
+    <value>Accounting Unit</value>
+  </data>
+  <data name="FRMKUG012" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="FRMKUG013" xml:space="preserve">
+    <value>Save Changes</value>
+  </data>
+  <data name="FRMKUG014" xml:space="preserve">
+    <value>Assign New Password</value>
+  </data>
+  <data name="FRMKUG015" xml:space="preserve">
+    <value>Make the User Passive</value>
+  </data>
+  <data name="FRMKUG016" xml:space="preserve">
+    <value>Since the password you enter will be send to your email, please write your e-mail address correctly.</value>
+  </data>
+  <data name="FRMKUG017" xml:space="preserve">
+    <value>Password mail that is sent to Hotmail, Gmail and Yahoo accounts may seem as a spam (junk) mail.</value>
+  </data>
+  <data name="FRMKUG018" xml:space="preserve">
+    <value>The fields with red labels are obligatory to be filled. </value>
+  </data>
+  <data name="FRMKUG019" xml:space="preserve">
+    <value>If the new user's ID number is unknown, please click the picture</value>
+  </data>
+  <data name="FRMKUG020" xml:space="preserve">
+    <value>above to be informed.</value>
+  </data>
+  <data name="FRMKUG021" xml:space="preserve">
+    <value>After entering the ID Number of the new user, click the picture </value>
+  </data>
+  <data name="FRMKUG022" xml:space="preserve">
+    <value>above to fill the name and surname fileds automatically.</value>
+  </data>
+  <data name="FRMKUG023" xml:space="preserve">
+    <value>User Information Edit Page</value>
+  </data>
+  <data name="FRMKUG024" xml:space="preserve">
+    <value>Make the User Passive</value>
+  </data>
+  <data name="FRMKUG025" xml:space="preserve">
+    <value>Make the User Active</value>
+  </data>
+  <data name="FRMKUG026" xml:space="preserve">
+    <value>User Search</value>
+  </data>
+  <data name="FRMKUG027" xml:space="preserve">
+    <value>You cannot leave the accounting unit of the department blank.</value>
+  </data>
+  <data name="FRMKUG028" xml:space="preserve">
+    <value>User information that is wish to be registered could not be received from the server.</value>
+  </data>
+  <data name="FRMKUG029" xml:space="preserve">
+    <value>&lt;b&gt;Saving User Information &lt;/b&gt; process &lt;font color=red&gt;is successfully completed&lt;/font&gt;.</value>
+  </data>
+  <data name="FRMKUG030" xml:space="preserve">
+    <value>&lt;br&gt;&lt;br&gt;Please for your next step use the following options or &lt;b&gt;the menu above&lt;/b&gt;.&lt;br&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMKUG031" xml:space="preserve">
+    <value>Save New User</value>
+  </data>
+  <data name="FRMKUG032" xml:space="preserve">
+    <value>User Search</value>
+  </data>
+  <data name="FRMKUG033" xml:space="preserve">
+    <value>Return to the {0}'s user information</value>
+  </data>
+  <data name="FRMKUG034" xml:space="preserve">
+    <value>&lt;b&gt;New Password &lt;/b&gt; process &lt;font color=red&gt; is successfully completed&lt;/font&gt; for the user {0}. The password that is defined has been sent to the user via email.</value>
+  </data>
+  <data name="FRMKUG035" xml:space="preserve">
+    <value>&lt;br&gt;&lt;br&gt;Please for your next step use the following options or &lt;b&gt;the menu above&lt;/b&gt;.&lt;br&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMKUG036" xml:space="preserve">
+    <value>Save New User</value>
+  </data>
+  <data name="FRMKUG037" xml:space="preserve">
+    <value>User Search</value>
+  </data>
+  <data name="FRMKUG038" xml:space="preserve">
+    <value>&lt;/b&gt; to make new process with user {0} &lt;/a&gt;&lt;/li&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMKUG039" xml:space="preserve">
+    <value>user &lt;b&gt;</value>
+  </data>
+  <data name="FRMKUG040" xml:space="preserve">
+    <value>&lt;/b&gt;  state of process &lt;font color=red&gt; is successfully completed&lt;/font&gt;.</value>
+  </data>
+  <data name="FRMKUG041" xml:space="preserve">
+    <value>&lt;br&gt;&lt;br&gt;Please for your next step use the following options or &lt;b&gt;the menu above&lt;/b&gt;.&lt;br&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMKUG042" xml:space="preserve">
+    <value>Save New User</value>
+  </data>
+  <data name="FRMKUG043" xml:space="preserve">
+    <value>User Search</value>
+  </data>
+  <data name="FRMKUG044" xml:space="preserve">
+    <value>&lt;/b&gt; to make new process with user {0} &lt;/a&gt;&lt;/li&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMKUG045" xml:space="preserve">
+    <value>&lt;b&gt;Error : &lt;/b&gt;</value>
+  </data>
+  <data name="FRMKUG046" xml:space="preserve">
+    <value>To learn new users Identification ID, press icon.</value>
+  </data>
+  <data name="FRMKUG047" xml:space="preserve">
+    <value>User Search Form</value>
+  </data>
+  <data name="FRMKUG048" xml:space="preserve">
+    <value>Display new user id suggestions</value>
+  </data>
+  <data name="FRMKUG049" xml:space="preserve">
+    <value>User Types</value>
+  </data>
+  <data name="FRMKUG050" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="FRMKYG001" xml:space="preserve">
+    <value>User Type</value>
+  </data>
+  <data name="FRMKYG002" xml:space="preserve">
+    <value>Save Changes</value>
+  </data>
+  <data name="FRMKYG003" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="FRMKYG004" xml:space="preserve">
+    <value>Authorization Information Edit Page</value>
+  </data>
+  <data name="FRMKYG005" xml:space="preserve">
+    <value>Information about the user to be authorizeded could not be read.</value>
+  </data>
+  <data name="FRMKYG006" xml:space="preserve">
+    <value>Only the accounting unit</value>
+  </data>
+  <data name="FRMKYG007" xml:space="preserve">
+    <value>you can use.</value>
+  </data>
+  <data name="FRMKYG008" xml:space="preserve">
+    <value>You cannot use the accounting unit numbered {0}. Only</value>
+  </data>
+  <data name="FRMKYG009" xml:space="preserve">
+    <value>you can use {0} accounting unit</value>
+  </data>
+  <data name="FRMKYG010" xml:space="preserve">
+    <value>There is no authorization type information about the user type.</value>
+  </data>
+  <data name="FRMMED001" xml:space="preserve">
+    <value>Menu Titles</value>
+  </data>
+  <data name="FRMMED002" xml:space="preserve">
+    <value>Menu Items to be Hidden</value>
+  </data>
+  <data name="FRMMED003" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="FRMMED004" xml:space="preserve">
+    <value>You can hide the menu titles that you do not wish to see on the menu by transfering them to &lt;b&gt;Menu Titles to be Hidden&lt;/b&gt; section.</value>
+  </data>
+  <data name="FRMMED005" xml:space="preserve">
+    <value>This process will only affect your user.</value>
+  </data>
+  <data name="FRMMED006" xml:space="preserve">
+    <value>To perform operation, choose relevant menu from the "Menu Titles" section and transfer the menu titles using the right-arrow button in the middle to the "Menu Titles to be Hidden" list.</value>
+  </data>
+  <data name="FRMMED007" xml:space="preserve">
+    <value>To display the menu select options you want from "Menu Titles to be Hidden" section and click on the left arrow button.</value>
+  </data>
+  <data name="FRMMED008" xml:space="preserve">
+    <value>Menu Edit Page</value>
+  </data>
+  <data name="FRMMSK001" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="FRMMSK002" xml:space="preserve">
+    <value>Select the Menu item you wish to see in Frequently Used Items list and save it.</value>
+  </data>
+  <data name="FRMMSK003" xml:space="preserve">
+    <value>Frequently Used Items Edit Page</value>
+  </data>
+  <data name="FRMPAD001" xml:space="preserve">
+    <value>User Code</value>
+  </data>
+  <data name="FRMPAD002" xml:space="preserve">
+    <value>Current Password</value>
+  </data>
+  <data name="FRMPAD003" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="FRMPAD004" xml:space="preserve">
+    <value>New Password (Again)</value>
+  </data>
+  <data name="FRMPAD005" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="FRMPAD006" xml:space="preserve">
+    <value>To change your password, first enter the current password or the password you recieved due to the creation of new user in the &lt;b&gt;Current Password&lt;/b&gt; section. Later, type your new password to the &lt;b&gt;New Password&lt;/b&gt; and &lt;b&gt;New Password (Again)&lt;/b&gt; sections and click &lt;b&gt;Change Password&lt;/b&gt; button.</value>
+  </data>
+  <data name="FRMPAD007" xml:space="preserve">
+    <value>Change Password Page</value>
+  </data>
+  <data name="FRMPAD008" xml:space="preserve">
+    <value>For the security of the system you should &lt;font color=red&gt;&lt;b&gt;change your current password&lt;/b&gt;&lt;/font&gt;.</value>
+  </data>
+  <data name="FRMPAD009" xml:space="preserve">
+    <value>&lt;b&gt;Password Change &lt;/b&gt; for {0} &lt;font color=red&gt;is successfully completed&lt;/font&gt;.</value>
+  </data>
+  <data name="FRMPAD010" xml:space="preserve">
+    <value>&lt;br&gt;&lt;br&gt;Please use &lt;b&gt;the menu&lt;/b&gt; for your next step.&lt;br&gt;&lt;br&gt;</value>
+  </data>
+  <data name="FRMPAD011" xml:space="preserve">
+    <value>The new password you wish to define is left blank.</value>
+  </data>
+  <data name="FRMPAD012" xml:space="preserve">
+    <value>The new password you wish to define and its repetation is not the same.</value>
+  </data>
+  <data name="FRMTEM001" xml:space="preserve">
+    <value>Themes</value>
+  </data>
+  <data name="FRMTEM002" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="FRMTEM003" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="FRMTEM004" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="FRMTEM005" xml:space="preserve">
+    <value>Brown</value>
+  </data>
+  <data name="FRMTEM006" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="FRMTEM007" xml:space="preserve">
+    <value>Choose the theme you wish to use and click Apply button.</value>
+  </data>
+  <data name="FRMTEM008" xml:space="preserve">
+    <value>Theme Changing Page</value>
+  </data>
+  <data name="FRMYTD001" xml:space="preserve">
+    <value>All Options</value>
+  </data>
+  <data name="FRMYTD002" xml:space="preserve">
+    <value>Selected Options</value>
+  </data>
+  <data name="FRMYTD003" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="FRMYTD004" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="FRMYTD005" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="FRMYTD006" xml:space="preserve">
+    <value>Choose from the "All Options" list and click the right-arrow button in the middle to transfer those items to "Selected Options", from the Permission Types. To remove the options from the seleceted list, select the options and click left-arrow button.</value>
+  </data>
+  <data name="FRMYTD007" xml:space="preserve">
+    <value>Authorization Type Selection</value>
+  </data>
+</root>

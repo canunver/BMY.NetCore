@@ -1,0 +1,95 @@
+@page
+@model KullaniciAramaModel
+@{
+    ViewData["Title"] = Metin.Kullanici("FRMKUA022");
+    // Geniş ekranda sayfa pencereye sığar, bölmeler kendi içinde kayar (tanim.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+
+<div class="tanim arama-dar">
+    <!-- Sol: sorgu alanları -->
+    <section class="tanim-sol">
+        <div class="kutu">
+            <h2 class="kutu-baslik">@Metin.Kullanici("SorguAlanlari")</h2>
+            <form id="frmArama" class="tanim-arama" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="aramaAd">@Metin.Kullanici("FRMKUA001")</label>
+                    <div><input type="text" id="aramaAd" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="aramaSoyad">@Metin.Kullanici("FRMKUA002")</label>
+                    <div><input type="text" id="aramaSoyad" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="aramaKod">@Metin.Kullanici("FRMKUA004")</label>
+                    <div><input type="text" id="aramaKod" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="aramaTc">@Metin.Kullanici("FRMKUA005")</label>
+                    <div><input type="text" id="aramaTc" class="form-control" inputmode="numeric" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="aramaBirim">@Metin.Kullanici("FRMKUA006")</label>
+                    <div><input type="text" id="aramaBirim" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="aramaKurum">@Metin.Kullanici("FRMKUA003")</label>
+                    <div><select id="aramaKurum" class="form-control"><option value="">@Metin.Kullanici("Hepsi")</option></select></div>
+                </div>
+                <div class="form-group" id="aramaTipSatir" hidden>
+                    <label class="control-label" for="aramaTip">@Metin.Kullanici("FRMKUA007")</label>
+                    <div><select id="aramaTip" class="form-control"><option value="">@Metin.Kullanici("Hepsi")</option></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="aramaDurum">@Metin.Kullanici("FRMKUA008")</label>
+                    <div>
+                        <select id="aramaDurum" class="form-control">
+                            <option value="">@Metin.Kullanici("Hepsi")</option>
+                            <option value="1">@Metin.Kullanici("Aktif")</option>
+                            <option value="0">@Metin.Kullanici("Pasif")</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="submit" id="btnListele" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> @Metin.Kullanici("FRMKUA011")
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Sağ: kullanıcı listesi -->
+    <section class="tanim-sag">
+        <div class="kutu izgarali">
+            <div class="btn-toolbar tanim-arac" role="toolbar">
+                <a id="btnYeni" class="btn btn-primary btn-sm" href="KullaniciGiris" hidden>
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> @Metin.Kullanici("FRMKUA012")
+                </a>
+                @if (Model.GorevAtayabilir)
+                {
+                    <button type="button" id="btnGorevTanim" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Görev Tanımla
+                    </button>
+                    <button type="button" id="btnGorevAta" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Göreve Kişi Ata
+                    </button>
+                }
+                <button type="button" id="btnDisaAktar" class="btn btn-default btn-sm pull-right">
+                    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> @Metin.Kullanici("DisaAktar")
+                </button>
+            </div>
+            <div id="grdListe" class="tanim-grid"></div>
+        </div>
+    </section>
+</div>
+
+<script type="application/json" id="metinler">@Html.Raw(Model.MetinlerJson)</script>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/kullaniciarama.js" asp-append-version="true"></script>
+}

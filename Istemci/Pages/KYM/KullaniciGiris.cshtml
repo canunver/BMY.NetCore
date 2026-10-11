@@ -1,0 +1,188 @@
+@page
+@model KullaniciGirisModel
+@{
+    ViewData["Title"] = Metin.Kullanici("FRMKUG023");
+    // Geniş ekranda sayfa pencereye sığar, bölmeler kendi içinde kayar (tanim.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">@Metin.Kullanici("Yetkisiz")</div>
+    return;
+}
+
+<div class="tanim liste-genis">
+    <!-- Sol: kullanıcı bilgileri -->
+    <section class="tanim-sol">
+        <div class="kutu" id="kutuBilgi">
+            <div class="btn-toolbar tanim-arac" role="toolbar">
+                <a class="btn btn-default btn-sm" href="KullaniciArama" title="@Metin.Kullanici("FRMKUG052")">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> @Metin.Kullanici("FRMKUG026")
+                </a>
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> @Metin.Kullanici("FRMKUG013")
+                </button>
+                <button type="button" id="btnParola" class="btn btn-default btn-sm" disabled>
+                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> @Metin.Kullanici("FRMKUG014")
+                </button>
+                <button type="button" id="btnDurum" class="btn btn-default btn-sm" disabled>
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span id="btnDurumMetin">@Metin.Kullanici("FRMKUG015")</span>
+                </button>
+                @if (Model.GorevAtayabilir)
+                {
+                    <button type="button" id="btnGorevler" class="btn btn-default btn-sm" title="Kullanıcıyı T.C. kimlik numarası üzerinden görevlerle ilişkilendirir" disabled>
+                        <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Görevler
+                    </button>
+                }
+            </div>
+
+            <form id="frmKullanici" class="tanim-form" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="txtTc">@Metin.Kullanici("FRMKUG001")</label>
+                    <div class="tanim-ekle bitisik">
+                        <input type="text" id="txtTc" class="form-control" inputmode="numeric" required />
+                        <input type="date" id="txtDogum" class="form-control" aria-label="@Metin.Kullanici("DogumTarihi")" title="@Metin.Kullanici("DogumTarihi")" required />
+                        <button type="button" id="btnKimlik" class="btn btn-default btn-sm" title="@Metin.Kullanici("KimlikSorgula")" aria-label="@Metin.Kullanici("KimlikSorgula")">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAd">@Metin.Kullanici("FRMKUG003")</label>
+                    <div><input type="text" id="txtAd" class="form-control" maxlength="20" required /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtSoyad">@Metin.Kullanici("FRMKUG004")</label>
+                    <div><input type="text" id="txtSoyad" class="form-control" maxlength="30" required /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtKod">@Metin.Kullanici("FRMKUG005")</label>
+                    <div>
+                        <input type="text" id="txtKod" class="form-control" list="lstOneri" autocomplete="off" required />
+                        <datalist id="lstOneri"></datalist>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtEposta">@Metin.Kullanici("FRMKUG006")</label>
+                    <div><input type="email" id="txtEposta" class="form-control" maxlength="50" required /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtTelefon">@Metin.Kullanici("FRMKUG008")</label>
+                    <div><input type="tel" id="txtTelefon" class="form-control" maxlength="50" required /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtUnvan">@Metin.Kullanici("FRMKUG007")</label>
+                    <div><input type="text" id="txtUnvan" class="form-control" maxlength="50" required /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAkademikUnvan">@Metin.Kullanici("FRMKUG063")</label>
+                    <div><input type="text" id="txtAkademikUnvan" class="form-control" maxlength="20" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtBirim">@Metin.Kullanici("FRMKUG009")</label>
+                    <div><input type="text" id="txtBirim" class="form-control" maxlength="100" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlKurum">@Metin.Kullanici("FRMKUG011")</label>
+                    <div><select id="ddlKurum" class="form-control" required><option value=""></option></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtRumuz">@Metin.Kullanici("FRMKUG064")</label>
+                    <div><input type="text" id="txtRumuz" class="form-control" maxlength="50" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtSicilNo">@Metin.Kullanici("FRMKUG010")</label>
+                    <div><input type="text" id="txtSicilNo" class="form-control" maxlength="50" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtSertNo">@Metin.Kullanici("FRMKUG059")</label>
+                    <div><input type="text" id="txtSertNo" class="form-control" maxlength="50" /></div>
+                </div>
+            </form>
+
+            <ul class="tanim-not">
+                <li>@Metin.Kullanici("FRMKUG016")</li>
+                <li>@Metin.Kullanici("FRMKUG017")</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Sağ: kullanıcı tipleri (kullanıcı grupları) ve yetki değerleri -->
+    <section class="tanim-sag">
+        <div class="kutu">
+            <h2 class="kutu-baslik">@Metin.Kullanici("FRMKUG049")</h2>
+            <div class="tanim-ekle">
+                <select id="ddlTipEkle" class="form-control input-sm" aria-label="@Metin.Kullanici("TipSec")">
+                    <option value="">@Metin.Kullanici("TipSec")</option>
+                </select>
+                <button type="button" id="btnTipEkle" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> @Metin.Kullanici("TipEkle")
+                </button>
+            </div>
+            <ul id="lstTipler" class="tanim-liste"></ul>
+        </div>
+    </section>
+</div>
+
+<!-- Bir kullanıcı tipinin yetki değerleri (eski KullaniciYetkiGiris) -->
+<dialog id="dlgTip" class="tanim-pencere genis" aria-labelledby="dlgTipBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgTipBaslik"></h2>
+        <button type="button" class="close" data-kapat aria-label="@Metin.Kullanici("Kapat")"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div id="tipYetkiYok" class="alert alert-info" hidden></div>
+        <div id="tipYetkiler"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>@Metin.Kullanici("Kapat")</button>
+        <button type="button" id="btnTipTamam" class="btn btn-primary btn-sm">@Metin.Kullanici("Tamam")</button>
+    </div>
+</dialog>
+
+<!-- Yetki tipi değeri seçme: listeden ya da ağaçtan (eski YetkiTipiDegerSec / YetkiTipiAgactanSec) -->
+<dialog id="dlgDeger" class="tanim-pencere" aria-labelledby="dlgDegerBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgDegerBaslik"></h2>
+        <button type="button" class="close" data-kapat aria-label="@Metin.Kullanici("Kapat")"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <input type="search" id="txtDegerAra" class="form-control input-sm" placeholder="@Metin.Kullanici("AramaIpucu")" aria-label="@Metin.Kullanici("Bul")" />
+        <ul id="lstDeger" class="deger-liste"></ul>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>@Metin.Kullanici("Kapat")</button>
+        <button type="button" id="btnDegerTamam" class="btn btn-primary btn-sm">@Metin.Kullanici("Tamam")</button>
+    </div>
+</dialog>
+
+<!-- Pasif yapma: isteğe bağlı olarak yeniden aktif olacağı tarih -->
+<dialog id="dlgPasif" class="tanim-pencere" aria-labelledby="dlgPasifBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgPasifBaslik">@Metin.Kullanici("FRMKUG061")</h2>
+        <button type="button" class="close" data-kapat aria-label="@Metin.Kullanici("Kapat")"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="tanim-form">
+            <div class="form-group">
+                <label class="control-label" for="txtAktifTarih">@Metin.Kullanici("FRMKUG060")</label>
+                <div><input type="date" id="txtAktifTarih" class="form-control dar" /></div>
+            </div>
+        </div>
+        @* Metin kaynak dosyasından gelir ve vurgulama için <b> içerir. *@
+        <p class="tanim-not duz">@Html.Raw(Metin.Kullanici("FRMKUG062"))</p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>@Metin.Kullanici("Kapat")</button>
+        <button type="button" id="btnPasifYap" class="btn btn-primary btn-sm">@Metin.Kullanici("FRMKUG015")</button>
+    </div>
+</dialog>
+
+<script type="application/json" id="metinler">@Html.Raw(Model.MetinlerJson)</script>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/kullanicigiris.js" asp-append-version="true"></script>
+}

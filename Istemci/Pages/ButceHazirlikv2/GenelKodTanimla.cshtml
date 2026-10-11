@@ -1,0 +1,89 @@
+@page
+@model GenelKodTanimlaModel
+@{
+    // Üst şeritteki ad menüden gelir (Birim Tür Tanımlama, İl-İlçe Bilgileri ...); menüde yoksa bu başlık kullanılır.
+    ViewData["Title"] = "Kod Tanımlama";
+    // Geniş ekranda sayfa pencereye sığar, bölmeler kendi içinde kayar (tanim.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim kodtanim">
+    <!-- Sol: kod ağacı -->
+    <section class="tanim-sol">
+        <div class="kutu">
+            <!-- Başlık: yıla bağlı türlerde yıl, iki yanında önceki / sonraki yıl tuşlarıyla başta durur -->
+            <div class="baslik-satir">
+                <span id="yilGezgin" class="yil-gezgin" role="group" aria-label="Yıl" hidden>
+                    <button type="button" id="btnOncekiYil" class="btn btn-default btn-xs" title="Önceki Yıl" aria-label="Önceki Yıl">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    </button>
+                    <span id="yilEtiket" class="yil" aria-live="polite"></span>
+                    <button type="button" id="btnSonrakiYil" class="btn btn-default btn-xs" title="Sonraki Yıl" aria-label="Sonraki Yıl">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    </button>
+                </span>
+                <h2 class="kutu-baslik" id="agacBaslik"></h2>
+            </div>
+            <form id="frmFiltre" class="tanim-ekle" role="search" novalidate>
+                <input type="search" id="txtFiltre" class="form-control input-sm" placeholder="Ada göre süz" aria-label="Ada göre süz" />
+                <button type="submit" class="btn btn-default btn-sm" title="Süz" aria-label="Süz">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+            </form>
+            <ul id="agacKod" class="kayan" aria-labelledby="agacBaslik"></ul>
+        </div>
+    </section>
+
+    <!-- Sağ: seçili kodun bilgileri -->
+    <section class="tanim-sag">
+        <div class="kutu">
+            <div class="btn-toolbar tanim-arac" role="toolbar">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+                <button type="button" id="btnYeni" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni
+                </button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm" disabled>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+                </button>
+                <button type="button" id="btnOncekiYildan" class="btn btn-default btn-sm" hidden>
+                    <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Önceki Yıldan Kopyala
+                </button>
+                <button type="button" id="btnRapor" class="btn btn-default btn-sm" title="Bütün kodların listesi (Excel)">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Rapor Hazırla
+                </button>
+                <button type="button" id="btnYukle" class="btn btn-default btn-sm" title="Kodları Excel dosyasından yükler">
+                    <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Dosyadan Yükle
+                </button>
+                <input type="file" id="dosyaYukle" accept=".xlsx,.xls" hidden aria-label="Yüklenecek Excel dosyası" />
+            </div>
+
+            <form id="frmKod" class="tanim-form" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="txtKod">Kod</label>
+                    <div>
+                        <input type="text" id="txtKod" class="form-control dar" autocomplete="off" aria-describedby="kodYapi" />
+                        <p id="kodYapi" class="tanim-not duz"></p>
+                    </div>
+                </div>
+                <!-- Her dil için ad ve açıklama; ardından koda uyan ek alanlar (betik çizer) -->
+                <div id="dilAlanlari"></div>
+                <div id="ekAlanlar"></div>
+            </form>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/kodtanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/genelkodtanimla.js" asp-append-version="true"></script>
+}

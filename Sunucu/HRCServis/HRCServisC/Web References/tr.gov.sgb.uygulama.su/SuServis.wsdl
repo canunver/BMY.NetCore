@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://uygulama.sgb.gov.tr/SGBServis/" xmlns:s1="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://uygulama.sgb.gov.tr/SGBServis/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://uygulama.sgb.gov.tr/SGBServis/">
+      <s:import namespace="http://tempuri.org/" />
+      <s:element name="AskiFaturaSorgula">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aboneNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="donem" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AskiFaturaSorgulaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AskiFaturaSorgulaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuskiFaturaSorgula">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aboneNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="donem" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BuskiFaturaSorgulaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuskiFaturaSorgulaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IskiFaturaSorgula">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aboneNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="donem" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IskiFaturaSorgulaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IskiFaturaSorgulaResult" type="s1:sonFatura" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:complexType name="sonFatura">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AdSoyad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MukaveleNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HesapKesimTarihi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FaturaTuru" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Adres" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BinaKimlikNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Donem" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Grup1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Grup2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EvIsyeri" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IlkOkumaTarihi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IlkOkumaIsareti" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IlkOkumaSayacDurKodu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IlkOkumaOkuyucuKodu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IlkOkumaSayacBilgisi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SonOkumaTarihi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SonOkumaIsareti" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SonOkumaSayacDurKodu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SonOkumaOkuyucuKodu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SonOkumaSayacBilgisi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FaturaNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FaturaTarihi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GunSayisi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SarfiyatMetreKupGun" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SuBirimFiyati" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KSubBirimFiyati" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EkMetreKup" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FarkMetreKup" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CtvMetreKup" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SuBedeli" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KSubBedeli" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BakimBedeli" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Kdv" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CevreTv" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OnKusurat" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DonemTutari" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GecmisDonemBorcu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GecmisDonemGecikmeCezasi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GecmisDonemAlacak" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CtvGecmisDonemBorcu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CtvGecmisDonemGecikmeCezasi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OdenecekTutar" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SonOdemeTarihi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Aciklama" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SeflikTelNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SeflikFaxNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubeAdi" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AskiFaturaSorgulaSoapIn">
+    <wsdl:part name="parameters" element="tns:AskiFaturaSorgula" />
+  </wsdl:message>
+  <wsdl:message name="AskiFaturaSorgulaSoapOut">
+    <wsdl:part name="parameters" element="tns:AskiFaturaSorgulaResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuskiFaturaSorgulaSoapIn">
+    <wsdl:part name="parameters" element="tns:BuskiFaturaSorgula" />
+  </wsdl:message>
+  <wsdl:message name="BuskiFaturaSorgulaSoapOut">
+    <wsdl:part name="parameters" element="tns:BuskiFaturaSorgulaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IskiFaturaSorgulaSoapIn">
+    <wsdl:part name="parameters" element="tns:IskiFaturaSorgula" />
+  </wsdl:message>
+  <wsdl:message name="IskiFaturaSorgulaSoapOut">
+    <wsdl:part name="parameters" element="tns:IskiFaturaSorgulaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SuFaturaSoap">
+    <wsdl:operation name="AskiFaturaSorgula">
+      <wsdl:input message="tns:AskiFaturaSorgulaSoapIn" />
+      <wsdl:output message="tns:AskiFaturaSorgulaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuskiFaturaSorgula">
+      <wsdl:input message="tns:BuskiFaturaSorgulaSoapIn" />
+      <wsdl:output message="tns:BuskiFaturaSorgulaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IskiFaturaSorgula">
+      <wsdl:input message="tns:IskiFaturaSorgulaSoapIn" />
+      <wsdl:output message="tns:IskiFaturaSorgulaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SuFaturaSoap" type="tns:SuFaturaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AskiFaturaSorgula">
+      <soap:operation soapAction="http://uygulama.sgb.gov.tr/SGBServis/AskiFaturaSorgula" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuskiFaturaSorgula">
+      <soap:operation soapAction="http://uygulama.sgb.gov.tr/SGBServis/BuskiFaturaSorgula" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IskiFaturaSorgula">
+      <soap:operation soapAction="http://uygulama.sgb.gov.tr/SGBServis/IskiFaturaSorgula" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SuFaturaSoap12" type="tns:SuFaturaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AskiFaturaSorgula">
+      <soap12:operation soapAction="http://uygulama.sgb.gov.tr/SGBServis/AskiFaturaSorgula" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuskiFaturaSorgula">
+      <soap12:operation soapAction="http://uygulama.sgb.gov.tr/SGBServis/BuskiFaturaSorgula" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IskiFaturaSorgula">
+      <soap12:operation soapAction="http://uygulama.sgb.gov.tr/SGBServis/IskiFaturaSorgula" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SuFatura">
+    <wsdl:port name="SuFaturaSoap" binding="tns:SuFaturaSoap">
+      <soap:address location="http://uygulama.sgb.gov.tr/servis/SuServis.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SuFaturaSoap12" binding="tns:SuFaturaSoap12">
+      <soap12:address location="http://uygulama.sgb.gov.tr/servis/SuServis.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TRMServisC.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TRMServisC_tr_gov_tarim_cezali_Service" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://webinfo.tarim.gov.tr/Service.asmx</Value>
+    </Setting>
+    <Setting Name="TRMServisC_tr_gov_tkdk_tkdkservice_TKDKBilgiService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://tkdkservice.tkdk.gov.tr/TKDKBilgiService.svc</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -61,3 +61,9 @@ _araclar/generic_onizleme.json
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+# Aspose lisansı depoya girmez; eski projedeki Istemci\Properties\Aspose.Total.lic dosyası elle kopyalanır
+*.lic
+
+# Gözle denetim için üretilen örnek raporlar (gerçek veri içerebilir)
+_ornek_rapor/

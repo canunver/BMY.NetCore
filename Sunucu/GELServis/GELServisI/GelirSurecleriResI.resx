@@ -1,0 +1,477 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="GEL00001" xml:space="preserve">
+    <value>Kayıt sırasında denetim dışı bir hata oluştu.</value>
+  </data>
+  <data name="GEL00002" xml:space="preserve">
+    <value>Bu bölümü kullanmaya yetkili değilsiniz.</value>
+  </data>
+  <data name="GEL00003" xml:space="preserve">
+    <value>Yazma Yetkiniz Bulunmamaktadır</value>
+  </data>
+  <data name="GEL00004" xml:space="preserve">
+    <value>Taşınmaz Bilgisi Kaydedildi</value>
+  </data>
+  <data name="GEL00005" xml:space="preserve">
+    <value>Taşınmaz Kod Bilgisi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00006" xml:space="preserve">
+    <value>Taşınmaz Ad Bilgisi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00007" xml:space="preserve">
+    <value>Taşınmaz İl Bilgisi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00008" xml:space="preserve">
+    <value>Taşınmaz İlçe Bilgisi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00009" xml:space="preserve">
+    <value>Talep Taşınmaz Kodu Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00010" xml:space="preserve">
+    <value>Talep Firma Kodu Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00011" xml:space="preserve">
+    <value>Talep Sıra Numarası Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00012" xml:space="preserve">
+    <value>Talep Bilgisi Kaydedildi</value>
+  </data>
+  <data name="GEL00013" xml:space="preserve">
+    <value>Talep Taşınmaz Bilgisi Silindi</value>
+  </data>
+  <data name="GEL00014" xml:space="preserve">
+    <value>Taşınmaz Bilgisi Silindi...</value>
+  </data>
+  <data name="GEL00015" xml:space="preserve">
+    <value>Talep Eki Taşınmaz Kodu Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00016" xml:space="preserve">
+    <value>Talep Eki Firma Kodu Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00017" xml:space="preserve">
+    <value>Talep Eki Talep Sıra Numarası Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00018" xml:space="preserve">
+    <value>Talep Eki Ek Numarası Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00019" xml:space="preserve">
+    <value>Talep Ek Bilgisi Kaydedildi</value>
+  </data>
+  <data name="GEL00020" xml:space="preserve">
+    <value>Talep Taşınmaz Ek Bilgisi Silindi</value>
+  </data>
+  <data name="GEL00021" xml:space="preserve">
+    <value>Ek Dosyalar İçin Klasör Yolu Bulunamadı</value>
+  </data>
+  <data name="GEL00022" xml:space="preserve">
+    <value>Yil Bilgisi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00023" xml:space="preserve">
+    <value>Muhasebe Kodu Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00024" xml:space="preserve">
+    <value>Birim Kodu Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00025" xml:space="preserve">
+    <value>Kayıt İşlemi Başarıyla Gerçekleştirildi</value>
+  </data>
+  <data name="GEL00026" xml:space="preserve">
+    <value>Süreç Numarası Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00027" xml:space="preserve">
+    <value>İşlem Adı Bilgisi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00028" xml:space="preserve">
+    <value>İşin Nitelik Bilgisi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00029" xml:space="preserve">
+    <value>İşin Miktar Bilgisi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00030" xml:space="preserve">
+    <value>Muhammen Bedel Bilgisi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00031" xml:space="preserve">
+    <value>İhale Türü Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00032" xml:space="preserve">
+    <value>İhale Maddesi Bilgisi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00033" xml:space="preserve">
+    <value>İhale İlan Şekli ve Adedi Bilgisi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00034" xml:space="preserve">
+    <value>İhale Usulünü Seçiniz</value>
+  </data>
+  <data name="GEL00035" xml:space="preserve">
+    <value>İhale Adı Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00036" xml:space="preserve">
+    <value>İhale Bilgisi Kaydedildi</value>
+  </data>
+  <data name="GEL00037" xml:space="preserve">
+    <value>İhale Bilgisi Silindi</value>
+  </data>
+  <data name="GEL00038" xml:space="preserve">
+    <value>İhale Usul Kodu Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00039" xml:space="preserve">
+    <value>İlan Zorunlu Mu? Alanı Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00040" xml:space="preserve">
+    <value>İhale Usul Madde Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00041" xml:space="preserve">
+    <value>İhale Usul Madde Kaydedildi</value>
+  </data>
+  <data name="GEL00042" xml:space="preserve">
+    <value>İhale Usul Madde Silindi</value>
+  </data>
+  <data name="GEL00043" xml:space="preserve">
+    <value>İhale Usulünü Seçiniz</value>
+  </data>
+  <data name="GEL00044" xml:space="preserve">
+    <value>İlan Bilgileri Kaydedildi</value>
+  </data>
+  <data name="GEL00045" xml:space="preserve">
+    <value>İlan Bilgileri Silindi</value>
+  </data>
+  <data name="GEL00046" xml:space="preserve">
+    <value>Yaklaşık Maliyet Mal Hizmet Sınırları Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00047" xml:space="preserve">
+    <value>Yaklaşık Maliyet Yapım Sınırları Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00048" xml:space="preserve">
+    <value>Modül Türünü Belirtiniz</value>
+  </data>
+  <data name="GEL00049" xml:space="preserve">
+    <value>Sıra Numarası Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00050" xml:space="preserve">
+    <value>Taşınmaza Ait Talep Bilgisi Bulunmaktadır Silinemez...</value>
+  </data>
+  <data name="GEL00051" xml:space="preserve">
+    <value>Yıl Bilgisi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00052" xml:space="preserve">
+    <value>Muhasebe Kodu Bilgisi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00053" xml:space="preserve">
+    <value>Birim Kodu Bilgisi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00054" xml:space="preserve">
+    <value>Süreç Numarası Bilgisi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00055" xml:space="preserve">
+    <value>Üye Tipi Bilgisi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00056" xml:space="preserve">
+    <value>Kayıt Silindi</value>
+  </data>
+  <data name="GEL00057" xml:space="preserve">
+    <value>Firma Kodu Boş Olmamalıdır.</value>
+  </data>
+  <data name="GEL00058" xml:space="preserve">
+    <value>Taşınmaz Kodu Boş Olmamalıdır.</value>
+  </data>
+  <data name="GEL00059" xml:space="preserve">
+    <value>Taşınmaz Kiralama Süresi Boş Olmamalıdır.</value>
+  </data>
+  <data name="GEL00060" xml:space="preserve">
+    <value>Taşınmaz Kiralama Tipi Boş Olmamalıdır.</value>
+  </data>
+  <data name="GEL00061" xml:space="preserve">
+    <value>Satır No:</value>
+  </data>
+  <data name="GEL00062" xml:space="preserve">
+    <value>Teklif Numarası Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00063" xml:space="preserve">
+    <value>Teklif Tipi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00064" xml:space="preserve">
+    <value>1.Uygun Firma Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00065" xml:space="preserve">
+    <value>Tutar Bilgisi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00066" xml:space="preserve">
+    <value>Firmaya Ait Teklif Bilgisi Bulunmaktadır.Silinemez...</value>
+  </data>
+  <data name="GEL00067" xml:space="preserve">
+    <value>Taşınmaza Ait Teklif Bilgisi Bulunmaktadır.Silinemez...</value>
+  </data>
+  <data name="GEL00068" xml:space="preserve">
+    <value>Silinecek Kayıt Bulunmamaktadır</value>
+  </data>
+  <data name="GEL00069" xml:space="preserve">
+    <value>Taksit Sayısı Sıfırdan Büyük Olmalıdır</value>
+  </data>
+  <data name="GEL00070" xml:space="preserve">
+    <value>Taksit Numarası Sıfırdan Büyük Olmalıdır</value>
+  </data>
+  <data name="GEL00071" xml:space="preserve">
+    <value>İhale Tarihi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00072" xml:space="preserve">
+    <value>İhale Karar Numarası Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00073" xml:space="preserve">
+    <value>İhale Karar Tarihi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00074" xml:space="preserve">
+    <value>Sözleşme Numarası Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00075" xml:space="preserve">
+    <value>Sözleşme Tarihi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00076" xml:space="preserve">
+    <value>Sözleşme Bedeli Sıfırdan Büyük Olmamalıdır</value>
+  </data>
+  <data name="GEL00077" xml:space="preserve">
+    <value>İşin Süresi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00078" xml:space="preserve">
+    <value>Teslim Tarihi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00079" xml:space="preserve">
+    <value>Bitiş Tarihi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00080" xml:space="preserve">
+    <value>Teslim Tarihi Bitiş Tarihinden Büyük veya Eşit Olmamalıdır</value>
+  </data>
+  <data name="GEL00081" xml:space="preserve">
+    <value>Makbuz Numarası Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00082" xml:space="preserve">
+    <value>Makbuz Tarihi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00083" xml:space="preserve">
+    <value>Miktar Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00084" xml:space="preserve">
+    <value>Tutar Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00085" xml:space="preserve">
+    <value>Taksit Makbuz Numarası Güncellenemedi.</value>
+  </data>
+  <data name="GEL00086" xml:space="preserve">
+    <value>Hata</value>
+  </data>
+  <data name="GEL00087" xml:space="preserve">
+    <value>Nolu Satırdaki Taksit İçin Makbuz Girilmiştir Silinemez</value>
+  </data>
+  <data name="GEL00088" xml:space="preserve">
+    <value>Ödeme Emri Tarihi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00089" xml:space="preserve">
+    <value>Ödeme Emri Numarası Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00090" xml:space="preserve">
+    <value>Ödeme Emri Yılı Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00091" xml:space="preserve">
+    <value>Hesap Kodu Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00092" xml:space="preserve">
+    <value>Yansıtma Hesabı Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00093" xml:space="preserve">
+    <value>Tertip Bilgisi Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00094" xml:space="preserve">
+    <value>Sira Numarası Alınamadı</value>
+  </data>
+  <data name="GEL00095" xml:space="preserve">
+    <value>Teklife Ait Komisyon Kararı Bulunmaktadır Silinemez</value>
+  </data>
+  <data name="GEL00096" xml:space="preserve">
+    <value>Sürece Ait Komisyon Kararı Bulunmaktadır</value>
+  </data>
+  <data name="GEL00097" xml:space="preserve">
+    <value>Sürece Ait Komisyon Kararı Bulunmamaktadır</value>
+  </data>
+  <data name="GEL00098" xml:space="preserve">
+    <value>Kararının Tahsilat Bilgisi Bulunmaktadır</value>
+  </data>
+  <data name="GEL00099" xml:space="preserve">
+    <value>Sürece Ait </value>
+  </data>
+  <data name="GEL00100" xml:space="preserve">
+    <value>Teklif Bilgisi Bulunmaktadır </value>
+  </data>
+  <data name="GEL00101" xml:space="preserve">
+    <value>Götürü Bedel </value>
+  </data>
+  <data name="GEL00102" xml:space="preserve">
+    <value>Birim Fiyat </value>
+  </data>
+  <data name="GEL00103" xml:space="preserve">
+    <value>Kısmi Teklif </value>
+  </data>
+  <data name="GEL00104" xml:space="preserve">
+    <value>Protokol </value>
+  </data>
+  <data name="GEL00105" xml:space="preserve">
+    <value>Parça Bilgileri Kaydedilemedi</value>
+  </data>
+  <data name="GEL00106" xml:space="preserve">
+    <value>Parça Durum Bilgileri Kaydedilemedi</value>
+  </data>
+  <data name="GEL00107" xml:space="preserve">
+    <value>Sürece Ait Bu Parça Tamamlanmıştır.İşlem Yapılamaz!</value>
+  </data>
+  <data name="GEL00108" xml:space="preserve">
+    <value>Üzerinden İşlem Yapılacak Enaz Bir Kayıt Bulunmalıdır!</value>
+  </data>
+  <data name="GEL00109" xml:space="preserve">
+    <value>İşlem Kodu Boş Olmamalıdır!</value>
+  </data>
+  <data name="GEL00110" xml:space="preserve">
+    <value>Parça Kodu Boş Olmamalıdır!</value>
+  </data>
+  <data name="GEL00111" xml:space="preserve">
+    <value>Kayıt Başarıyla Güncellendi</value>
+  </data>
+  <data name="GEL00112" xml:space="preserve">
+    <value>Süreç Durum Bilgisi Tanımsız Olmamalıdır</value>
+  </data>
+  <data name="GEL00113" xml:space="preserve">
+    <value>Parça Kodu Boş Olmamalıdır</value>
+  </data>
+  <data name="GEL00114" xml:space="preserve">
+    <value>Taşınmaz kodu boş olmamalıdır</value>
+  </data>
+  <data name="GEL00115" xml:space="preserve">
+    <value>Edinme şekli belirtiniz</value>
+  </data>
+  <data name="GEL00116" xml:space="preserve">
+    <value>Taşınmaz cinsi belirtiniz</value>
+  </data>
+  <data name="GEL00117" xml:space="preserve">
+    <value>Edinme tarihi belirtiniz</value>
+  </data>
+  <data name="GEL00118" xml:space="preserve">
+    <value>İcmal için edinme yılı seçiniz</value>
+  </data>
+  <data name="GEL00119" xml:space="preserve">
+    <value>İşlem Başarıyla Gerçekleştirildi </value>
+  </data>
+</root>

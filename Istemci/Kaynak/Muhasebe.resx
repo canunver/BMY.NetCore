@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FRMMUH001" xml:space="preserve">
+    <value>Muhasebe Bilgileri Tanımlama Sayfası</value>
+  </data>
+  <data name="FRMMUB001" xml:space="preserve">
+    <value>Muhasebe-Birim Bilgileri Tanımlama Sayfası</value>
+  </data>
+  <data name="FRMMUB003" xml:space="preserve">
+    <value>Muhasebe</value>
+  </data>
+  <data name="FRMMUB004" xml:space="preserve">
+    <value>Birim Adı</value>
+  </data>
+  <data name="FRMOES010" xml:space="preserve">
+    <value>Durum</value>
+  </data>
+  <data name="MUHGNL001" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="MUHGNL002" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="MUHGNL003" xml:space="preserve">
+    <value>Bul</value>
+  </data>
+  <data name="MUHGNL005" xml:space="preserve">
+    <value>Saymanlık Taşı</value>
+  </data>
+  <data name="MUHGNL040" xml:space="preserve">
+    <value>Muhasebe Kodu</value>
+  </data>
+  <data name="MUHGNL042" xml:space="preserve">
+    <value>Birim Kodu</value>
+  </data>
+  <data name="MUHGNL075" xml:space="preserve">
+    <value>Kodu</value>
+  </data>
+  <data name="MUHGNL076" xml:space="preserve">
+    <value>Adı</value>
+  </data>
+  <data name="MUHGNL077" xml:space="preserve">
+    <value>Birim Kod</value>
+  </data>
+  <data name="MUHGNL078" xml:space="preserve">
+    <value>Kurumsal Kod</value>
+  </data>
+  <data name="MUHGNL079" xml:space="preserve">
+    <value>Birim Ad</value>
+  </data>
+  <data name="MUHGNL137" xml:space="preserve">
+    <value>Kurumsal Kod</value>
+  </data>
+  <data name="MUHGNL143" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla tamamlandı.</value>
+  </data>
+  <data name="MUHGNL147" xml:space="preserve">
+    <value>Muhasebe Kod bilgisi boş bırakılmış.</value>
+  </data>
+  <data name="MUHGNL154" xml:space="preserve">
+    <value>Silme işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="MUHGNL162" xml:space="preserve">
+    <value>Silmek istediğinize emin misiniz?</value>
+  </data>
+  <data name="MUHGNL183" xml:space="preserve">
+    <value>Lütfen silmek istediğiniz bilgiyi seçin.</value>
+  </data>
+  <data name="MUHGNL190" xml:space="preserve">
+    <value>Muhasebe adı boş bırakılmış.</value>
+  </data>
+  <data name="MUHGNL191" xml:space="preserve">
+    <value>Muhasebe Adı</value>
+  </data>
+  <data name="MUHGNL192" xml:space="preserve">
+    <value>Muhasebe Birim kodu boş bırakılmış.</value>
+  </data>
+  <data name="MUHGNL193" xml:space="preserve">
+    <value>Muhasebe Birim adı boş bırakılmış.</value>
+  </data>
+  <data name="MUHGNL194" xml:space="preserve">
+    <value>Muhasebe Birim Kurumsal kodu boş bırakılmış.</value>
+  </data>
+  <data name="IslemHata" xml:space="preserve">
+    <value>İşlem sırasında hata oluştu.</value>
+  </data>
+  <data name="Yetkisiz" xml:space="preserve">
+    <value>Bu sayfayı kullanma yetkiniz yok.</value>
+  </data>
+  <data name="Yeni" xml:space="preserve">
+    <value>Yeni</value>
+  </data>
+  <data name="Hepsi" xml:space="preserve">
+    <value>Hepsi</value>
+  </data>
+  <data name="Arama" xml:space="preserve">
+    <value>Arama</value>
+  </data>
+  <data name="AramaIpucu" xml:space="preserve">
+    <value>Kod ya da ad</value>
+  </data>
+  <data name="MuhasebeListe" xml:space="preserve">
+    <value>Muhasebeler</value>
+  </data>
+  <data name="BirimListe" xml:space="preserve">
+    <value>Muhasebe Birimleri</value>
+  </data>
+  <data name="KodSayisal" xml:space="preserve">
+    <value>Muhasebe kodu sıfırdan büyük bir sayı olmalıdır.</value>
+  </data>
+  <data name="EPostaHatali" xml:space="preserve">
+    <value>E-Posta adresi hatalı girilmiş.</value>
+  </data>
+  <data name="BirimKodBicim" xml:space="preserve">
+    <value>Birim kodu 3 basamaklı ve sayısal olmalıdır.</value>
+  </data>
+  <data name="Ilgili1" xml:space="preserve">
+    <value>İlgili (1)</value>
+  </data>
+  <data name="Ilgili1Unvan" xml:space="preserve">
+    <value>İlgili Unvan (1)</value>
+  </data>
+  <data name="Ilgili2" xml:space="preserve">
+    <value>İlgili (2)</value>
+  </data>
+  <data name="Ilgili2Unvan" xml:space="preserve">
+    <value>İlgili Unvan (2)</value>
+  </data>
+  <data name="Adres" xml:space="preserve">
+    <value>Adres</value>
+  </data>
+  <data name="Telefon" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="Faks" xml:space="preserve">
+    <value>Faks</value>
+  </data>
+  <data name="VergiNo" xml:space="preserve">
+    <value>Vergi No</value>
+  </data>
+  <data name="EPosta" xml:space="preserve">
+    <value>E-Posta</value>
+  </data>
+  <data name="Aktif" xml:space="preserve">
+    <value>Aktif</value>
+  </data>
+  <data name="Kapali" xml:space="preserve">
+    <value>Kapalı</value>
+  </data>
+  <data name="DisaAktar" xml:space="preserve">
+    <value>Excel&apos;e Aktar</value>
+  </data>
+  <data name="DisaAktarBos" xml:space="preserve">
+    <value>Aktarılacak kayıt yok. Önce listeleyin.</value>
+  </data>
+  <data name="DosyaAd" xml:space="preserve">
+    <value>BirimListesi</value>
+  </data>
+  <data name="TasiBaslik" xml:space="preserve">
+    <value>Saymanlık Taşıma</value>
+  </data>
+  <data name="TasiEski" xml:space="preserve">
+    <value>Taşınacak Saymanlık / Birim</value>
+  </data>
+  <data name="TasiYeni" xml:space="preserve">
+    <value>Yeni Saymanlık / Birim</value>
+  </data>
+  <data name="TasiSaymanlik" xml:space="preserve">
+    <value>Saymanlık kodu</value>
+  </data>
+  <data name="TasiBirim" xml:space="preserve">
+    <value>Birim kodu</value>
+  </data>
+  <data name="TasiIslemler" xml:space="preserve">
+    <value>İşlemler</value>
+  </data>
+  <data name="TasiYap" xml:space="preserve">
+    <value>İşlem Yap</value>
+  </data>
+  <data name="Kapat" xml:space="preserve">
+    <value>Kapat</value>
+  </data>
+  <data name="TasiEksik" xml:space="preserve">
+    <value>Taşınacak ve yeni saymanlık / birim kodlarının dördü de girilmelidir.</value>
+  </data>
+  <data name="TasiIslemSec" xml:space="preserve">
+    <value>Yapılacak işlemi seçin.</value>
+  </data>
+  <data name="TasiOnay" xml:space="preserve">
+    <value>Seçilen işlemin kayıtları yeni saymanlık / birime taşınacak. Bu işlem geri alınamaz. Onaylıyor musunuz?</value>
+  </data>
+  <data name="TasiHazirDegil" xml:space="preserve">
+    <value>Saymanlık taşıma, Harcama Süreçleri (HRC) servisi yeni sisteme taşındığında kullanılabilecek.</value>
+  </data>
+</root>
