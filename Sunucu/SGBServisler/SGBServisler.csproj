@@ -27,7 +27,6 @@
     <ProjectReference Include="..\PERServis\PERServisC\PERServisC.csproj" />
     <ProjectReference Include="..\STRServis\STRServisC\STRServisC.csproj" />
     <ProjectReference Include="..\TMMServis\TMMServisC\TMMServisC.csproj" />
-    <ProjectReference Include="..\TRMServis\TRMServisC\TRMServisC.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,130 @@
+/* Proje Teklifi Talep Karşılama: bölüm görünümü, seçim satırı ve tablo renkleri taveneko.css'ten (.tavan-eko) gelir;
+   burada yalnızca bu sayfaya özgü olanlar var. */
+
+.birim-karsilama .tertip-alan {
+    flex: 1 1 100%;
+}
+
+.birim-karsilama .dagit-alan {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.birim-karsilama .dagit-alan select {
+    width: auto;
+}
+
+.birim-karsilama .renk-aciklama .acik::before {
+    display: none;
+}
+
+/* İl satırları kalın, açılan birim satırları girintili ve açık mavi */
+.birim-karsilama .ag-row.il-satir .ag-cell {
+    font-weight: 600;
+}
+
+.birim-karsilama .ag-row.alt-satir .ag-cell {
+    background: #f3f7fc;
+}
+
+.birim-karsilama .ag-row.alt-satir .ag-cell[col-id="ad"] {
+    padding-left: 28px;
+}
+
+.birim-karsilama .ag-cell[col-id="karsilanan"]:not(.ag-cell-inline-editing) {
+    box-shadow: inset 0 0 0 1px #c9d6e3;
+    cursor: text;
+}
+
+.birim-karsilama .ag-row-pinned .ag-cell[col-id="karsilanan"] {
+    box-shadow: none;
+    cursor: default;
+}
+
+.birim-karsilama .ag-cell .btn-xs {
+    padding: 0 6px;
+    line-height: 20px;
+}
+
+.birim-karsilama .satir-ac {
+    padding: 0 4px;
+}
+
+/* Kod ağacı penceresi */
+.karsilama-agac {
+    width: min(640px, calc(100vw - 32px));
+}
+
+.karsilama-agac .sgb-agac {
+    max-height: min(520px, calc(100vh - 220px));
+    overflow: auto;
+    margin: 0;
+}
+
+/* Birimin tertipleri penceresi */
+.karsilama-detay {
+    width: min(1060px, calc(100vw - 32px));
+}
+
+.karsilama-detay .detay-bilgi {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 4px 12px;
+    margin: 0 0 12px;
+    font-size: 13px;
+}
+
+.karsilama-detay .detay-bilgi dt {
+    font-weight: 600;
+}
+
+.karsilama-detay .detay-bilgi dd {
+    margin: 0;
+}
+
+.karsilama-detay .tavan-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 0 0 10px;
+}
+
+.karsilama-detay .renk-aciklama {
+    display: flex;
+    gap: 10px;
+    margin: 0 0 0 auto;
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.karsilama-detay .renk-aciklama li::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+    vertical-align: -1px;
+    border: 1px solid var(--cizgi);
+    border-radius: 2px;
+}
+
+.karsilama-detay .renk-aciklama .toplam::before { background: #faba9f; }
+.karsilama-detay .renk-aciklama .kapali::before { background: #fcfcd4; }
+.karsilama-detay .renk-aciklama .acik::before   { background: #fff; }
+
+.karsilama-detay .detay-grid {
+    height: min(420px, calc(100vh - 300px));
+}
+
+/* Eko 2 toplam satırları (eski sayfadaki gibi turuncu ve kalın) */
+.karsilama-detay .ag-cell.eko2 {
+    font-weight: 700;
+    background: #faba9f;
+}

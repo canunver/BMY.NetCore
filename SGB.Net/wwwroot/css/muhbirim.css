@@ -1,0 +1,70 @@
+/* Sgb.muhasebeBirim (js/muhbirim.js): muhasebe - birim - kurumsal kod alanları tek alan gibi bitişik, yanında mercek ve birim adı. */
+
+.muh-birim {
+    display: inline-flex;
+    align-self: flex-start;
+    font-weight: 400;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    min-width: 0;
+}
+
+.muh-birim .mb-bitisik {
+    display: inline-flex;
+    align-items: stretch;
+}
+
+.muh-birim .mb-bitisik > * {
+    margin: 0;
+    border-radius: 0;
+}
+
+.muh-birim .mb-bitisik > * + * {
+    margin-left: -1px;
+}
+
+.muh-birim .mb-bitisik > :first-child {
+    border-radius: 3px 0 0 3px;
+}
+
+.muh-birim .mb-bitisik > :last-child {
+    border-radius: 0 3px 3px 0;
+}
+
+.muh-birim .mb-bitisik > .form-control {
+    display: block;
+    flex: 0 0 auto;
+}
+
+.muh-birim .mb-bitisik > .form-control:focus {
+    position: relative;
+    z-index: 1;
+}
+
+.muh-birim .mb-ayrac {
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    color: var(--soluk);
+    background: #f2f4f7;
+    border: 1px solid #ccc;
+}
+
+.muh-birim .mb-muhasebe { width: 80px; }
+.muh-birim .mb-birim    { width: 60px; }
+.muh-birim .mb-kurumsal { width: 120px; background: #f7f7f7; }
+
+.muh-birim .mb-ad {
+    font-size: 13px;
+}
+
+.muh-birim-pencere {
+    width: min(640px, calc(100vw - 32px));
+}
+
+.muh-birim-pencere .sgb-agac {
+    max-height: min(520px, calc(100vh - 220px));
+    overflow: auto;
+    margin: 0;
+}

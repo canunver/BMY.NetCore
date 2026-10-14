@@ -127,45 +127,32 @@ namespace TNS.PEB.IsKurallari
 
         private static string Derle(STRGosterge gosterge, bool dllKaydet)
         {
-            //string yol = System.Reflection.Assembly.GetExecutingAssembly().CodeBase.Substring(8);
-            string kaynakKodu = "namespace TNS.PEB.IsKurallari\r\n";
-            kaynakKodu += "{\r\n";
-            kaynakKodu += "   public class STRGosterge\r\n"; //:TNS.PEB.IsKurallari.IGostergeHesapla
-            kaynakKodu += "   {\r\n";
-            kaynakKodu += "      public decimal Hesapla(int yil, int orgBirimKod, decimal[] g)\r\n";
-            kaynakKodu += "      {\r\n";
-            kaynakKodu += gosterge.hesaplamaYontemi;
-            kaynakKodu += "      }\r\n";
-            kaynakKodu += "   }\r\n";
-            kaynakKodu += "}\r\n";
+            // Formüllü göstergeler (birim bazlı stratejik plan / performans göstergesi) kullanıcı isteğiyle kaldırıldı;
+            // formül artık derlenmez. Eski kod açıklama olarak duruyor.
+            return "Formüllü gösterge bu sürümde desteklenmiyor.";
 
-            Microsoft.CSharp.CSharpCodeProvider cProv = new Microsoft.CSharp.CSharpCodeProvider();
+//            //string yol = System.Reflection.Assembly.GetExecutingAssembly().CodeBase.Substring(8);
+//            string kaynakKodu = "namespace TNS.PEB.IsKurallari\r\n";
+//            kaynakKodu += "{\r\n";
+//            kaynakKodu += "   public class STRGosterge\r\n"; //:TNS.PEB.IsKurallari.IGostergeHesapla
+//            kaynakKodu += "   {\r\n";
+//            kaynakKodu += "      public decimal Hesapla(int yil, int orgBirimKod, decimal[] g)\r\n";
+//            kaynakKodu += "      {\r\n";
+//            kaynakKodu += gosterge.hesaplamaYontemi;
+//            kaynakKodu += "      }\r\n";
+//            kaynakKodu += "   }\r\n";
+//            kaynakKodu += "}\r\n";
 
-            System.CodeDom.Compiler.CompilerParameters derlemeParametreleri = new System.CodeDom.Compiler.CompilerParameters();
-            //derlemeParametreleri.ReferencedAssemblies.Add("mscorlib.dll");
-            //derlemeParametreleri.ReferencedAssemblies.Add("System.dll");
-            //derlemeParametreleri.ReferencedAssemblies.Add(yol);
+//            // .NET 8: CSharpCodeProvider (CodeDom) derleyemez; Roslyn ile derlenir (TNS.KodDerleyici). dllKaydet ise
+//            // derlenen kitaplık eskisi gibi DLLAdBul yoluna yazılır (FormulHesapla oradan okur).
+//            string hataSonucu;
+//            byte[] ikili = TNS.KodDerleyici.Derle(kaynakKodu, "G_" + gosterge.kod, null, out hataSonucu);
+//            if (ikili == null)
+//                return hataSonucu + kaynakKodu;
 
-            //cParams.ReferencedAssemblies.Add("System.Windows.Forms.dll");
-            derlemeParametreleri.GenerateExecutable = false;
-            derlemeParametreleri.GenerateInMemory = false;
-            derlemeParametreleri.CompilerOptions = "/target:library /optimize";
-
-            if (dllKaydet)
-                derlemeParametreleri.OutputAssembly = DLLAdBul(gosterge);
-
-            System.CodeDom.Compiler.CompilerResults derlemeSonucu = cProv.CompileAssemblyFromSource(derlemeParametreleri, kaynakKodu);
-
-            if (derlemeSonucu.Errors.Count != 0)
-            {
-                string hataSonucu = "";
-                foreach (var er in derlemeSonucu.Errors)
-                {
-                    hataSonucu += er.ToString();
-                }
-                return hataSonucu + kaynakKodu;
-            }
-            return "";
+//            if (dllKaydet)
+//                File.WriteAllBytes(DLLAdBul(gosterge), ikili);
+//            return "";
         }
 
         private static string DLLAdBul(STRGosterge gosterge)
@@ -185,35 +172,38 @@ namespace TNS.PEB.IsKurallari
 
         private static decimal FormulHesapla(STRGosterge gosterge, int yil, int orgKod, decimal[] degerler)
         {
+            // Formüllü göstergeler kullanıcı isteğiyle kaldırıldı (bkz. Derle). Eski kod açıklama olarak duruyor.
+            throw new NotSupportedException("Formüllü gösterge bu sürümde desteklenmiyor.");
 
-            // .NET 8: AppDomain olusturulamaz; DLL toplanabilir bir AssemblyLoadContext icine yuklenir.
-            //ads.ApplicationName = "GostergeHesap";
-            //ads.ApplicationBase = ServerBin();
-            //ads.PrivateBinPath = ServerBin();
-            //ads.
+
+//            // .NET 8: AppDomain olusturulamaz; DLL toplanabilir bir AssemblyLoadContext icine yuklenir.
+//            //ads.ApplicationName = "GostergeHesap";
+//            //ads.ApplicationBase = ServerBin();
+//            //ads.PrivateBinPath = ServerBin();
+//            //ads.
             
-            //AppDomain.CurrentDomain.SetShadowCopyFiles();
-            System.Runtime.Loader.AssemblyLoadContext newDomain = new System.Runtime.Loader.AssemblyLoadContext("GostergeHesap", true);
-            //newDomain..RelativeSearchPath = "..\bin";
+//            //AppDomain.CurrentDomain.SetShadowCopyFiles();
+//            System.Runtime.Loader.AssemblyLoadContext newDomain = new System.Runtime.Loader.AssemblyLoadContext("GostergeHesap", true);
+//            //newDomain..RelativeSearchPath = "..\bin";
 
-            //string tut = newDomain.BaseDirectory;
-            //string tut2 = newDomain.DynamicDirectory;
+//            //string tut = newDomain.BaseDirectory;
+//            //string tut2 = newDomain.DynamicDirectory;
 
-            string dllAd = DLLAdBul(gosterge);
+//            string dllAd = DLLAdBul(gosterge);
 
-            byte[] rawAssembly = loadFile(dllAd);
-            System.Reflection.Assembly assembly = newDomain.LoadFromStream(new System.IO.MemoryStream(rawAssembly));
+//            byte[] rawAssembly = loadFile(dllAd);
+//            System.Reflection.Assembly assembly = newDomain.LoadFromStream(new System.IO.MemoryStream(rawAssembly));
 
-            object oh = assembly.CreateInstance("TNS.PEB.IsKurallari.STRGosterge");
+//            object oh = assembly.CreateInstance("TNS.PEB.IsKurallari.STRGosterge");
 
-            Type t = oh.GetType();
-            decimal d = (decimal)t.InvokeMember("Hesapla", System.Reflection.BindingFlags.InvokeMethod, null, oh, new object[] { yil, orgKod, degerler });
+//            Type t = oh.GetType();
+//            decimal d = (decimal)t.InvokeMember("Hesapla", System.Reflection.BindingFlags.InvokeMethod, null, oh, new object[] { yil, orgKod, degerler });
 
-            oh = null;
-            assembly = null;
-            newDomain.Unload();
-            newDomain = null;
-            return d;
+//            oh = null;
+//            assembly = null;
+//            newDomain.Unload();
+//            newDomain = null;
+//            return d;
         }
 
         private static byte[] loadFile(string filename)

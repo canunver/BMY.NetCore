@@ -94,8 +94,6 @@ namespace TNS
     {
         Variable[] variables;
         Formula[] formulas;
-        System.CodeDom.Compiler.CompilerParameters cParams;
-        System.CodeDom.Compiler.CompilerResults cResults;
         object obj;
         string nameSpace;
         string className;
@@ -121,37 +119,15 @@ namespace TNS
             this.anaClassName = anaClassName;
             this.functions = functions;
 
-            Microsoft.CSharp.CSharpCodeProvider cProv = new Microsoft.CSharp.CSharpCodeProvider();
+            // .NET 8: CSharpCodeProvider (CodeDom) derleyemez; kod Roslyn ile bellekte derlenip ayrı bir yükleme bağlamına
+            // yüklenir (TNS.KodDerleyici). Çalışan uygulamanın kitaplıkları (GNLServis, HRCServisI ...) kendiliğinden görülür;
+            // referencedAssemblies'teki eski "bin\X.dll" yolları uygulama klasöründe aranır.
+            string hata;
+            byte[] ikili = KodDerleyici.Derle(GenerateClass(), nameSpace + "_" + className + "_" + Guid.NewGuid().ToString("N"), referencedAssemblies, out hata);
+            if (ikili == null) return hata;
 
-            cParams = new System.CodeDom.Compiler.CompilerParameters();
-            cParams.ReferencedAssemblies.Add("mscorlib.dll");
-            cParams.ReferencedAssemblies.Add("System.dll");
-            cParams.ReferencedAssemblies.Add("System.Windows.Forms.dll");
-            if (referencedAssemblies != null)
-            {
-                foreach (string item in referencedAssemblies)
-                {
-                    cParams.ReferencedAssemblies.Add(item);
-                }
-            }
-            cParams.GenerateExecutable = false;
-            cParams.GenerateInMemory = true;
-
-            cResults = cProv.CompileAssemblyFromSource(cParams, GenerateClass());
-
-            if (cResults == null) throw new Exception("Verilen kod derlenemedi!");
-
-            if (cResults.Errors.Count != 0)
-            {
-                string mes = "";
-                foreach (var er in cResults.Errors)
-                {
-                    mes += er.ToString();
-                }
-                return mes;
-            }
-
-            obj = cResults.CompiledAssembly.CreateInstance(nameSpace + "." + className);
+            obj = KodDerleyici.Yukle(ikili, nameSpace + "." + className).CreateInstance(nameSpace + "." + className);
+            if (obj == null) throw new Exception("Verilen kod derlenemedi!");
             return "";
         }
 

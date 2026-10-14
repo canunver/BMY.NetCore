@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Newtonsoft.Json.Linq;
+using System.Text.Json.Nodes;
 
 namespace TNS.Api
 {
@@ -76,24 +76,24 @@ namespace TNS.Api
 
         public static string GovdeYaz(MethodInfo m, object[] args)
         {
-            JObject govde = new JObject();
+            JsonObject govde = new JsonObject();
             ParameterInfo[] ps = m.GetParameters();
             for (int i = 0; i < ps.Length; i++)
             {
                 if (ps[i].IsOut) continue;
                 govde[ps[i].Name] = ApiJson.TokenYaz(args[i], ParametreTipi(ps[i]));
             }
-            return govde.ToString(Newtonsoft.Json.Formatting.None);
+            return govde.ToJsonString(ApiJson.Ayarlar);
         }
 
-        public static object[] GovdeOku(MethodInfo m, JObject govde)
+        public static object[] GovdeOku(MethodInfo m, JsonObject govde)
         {
             ParameterInfo[] ps = m.GetParameters();
             object[] args = new object[ps.Length];
             for (int i = 0; i < ps.Length; i++)
             {
                 Type t = ParametreTipi(ps[i]);
-                JToken deger = ps[i].IsOut || govde == null ? null : govde.GetValue(ps[i].Name, StringComparison.OrdinalIgnoreCase);
+                JsonNode deger = ps[i].IsOut || govde == null ? null : Bul(govde, ps[i].Name);
                 args[i] = ApiJson.TokenOku(deger, t);
             }
             return args;
@@ -105,13 +105,13 @@ namespace TNS.Api
             if (!ps.Any(p => p.ParameterType.IsByRef))
                 return m.ReturnType == typeof(void) ? "null" : ApiJson.Yaz(donus, m.ReturnType);
 
-            JObject o = new JObject();
-            o["donus"] = m.ReturnType == typeof(void) ? JValue.CreateNull() : ApiJson.TokenYaz(donus, m.ReturnType);
-            JObject cikis = new JObject();
+            JsonObject o = new JsonObject();
+            o["donus"] = m.ReturnType == typeof(void) ? null : ApiJson.TokenYaz(donus, m.ReturnType);
+            JsonObject cikis = new JsonObject();
             for (int i = 0; i < ps.Length; i++)
                 if (ps[i].ParameterType.IsByRef) cikis[ps[i].Name] = ApiJson.TokenYaz(args[i], ParametreTipi(ps[i]));
             o["cikis"] = cikis;
-            return o.ToString(Newtonsoft.Json.Formatting.None);
+            return o.ToJsonString(ApiJson.Ayarlar);
         }
 
         public static object SonucOku(MethodInfo m, string json, object[] args)
@@ -120,12 +120,22 @@ namespace TNS.Api
             if (!ps.Any(p => p.ParameterType.IsByRef))
                 return m.ReturnType == typeof(void) ? null : ApiJson.Oku(json, m.ReturnType);
 
-            JObject o = ApiJson.NesneAyristir(json);
-            JObject cikis = o["cikis"] as JObject;
+            JsonObject o = ApiJson.NesneAyristir(json);
+            JsonObject cikis = o["cikis"] as JsonObject;
             for (int i = 0; i < ps.Length; i++)
                 if (ps[i].ParameterType.IsByRef && cikis != null)
-                    args[i] = ApiJson.TokenOku(cikis.GetValue(ps[i].Name, StringComparison.OrdinalIgnoreCase), ParametreTipi(ps[i]));
+                    args[i] = ApiJson.TokenOku(Bul(cikis, ps[i].Name), ParametreTipi(ps[i]));
             return m.ReturnType == typeof(void) ? null : ApiJson.TokenOku(o["donus"], m.ReturnType);
+        }
+
+        /// <summary>Nesnedeki üyeyi adıyla bulur (önce birebir, sonra büyük/küçük harf duyarsız).</summary>
+        private static JsonNode Bul(JsonObject o, string ad)
+        {
+            JsonNode d;
+            if (o.TryGetPropertyValue(ad, out d)) return d;
+            foreach (KeyValuePair<string, JsonNode> p in o)
+                if (string.Equals(p.Key, ad, StringComparison.OrdinalIgnoreCase)) return p.Value;
+            return null;
         }
 
         private static Type ParametreTipi(ParameterInfo p)

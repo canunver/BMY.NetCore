@@ -7,7 +7,8 @@ using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using TNS;
 using TNS.Api;
 
@@ -22,7 +23,7 @@ namespace SGBApi
     {
         public static IResult ServisListesi()
         {
-            return Results.Content(new JArray(ServisKayit.Adlar()).ToString(), "application/json", Encoding.UTF8);
+            return Results.Content(JsonSerializer.Serialize(ServisKayit.Adlar()), "application/json", Encoding.UTF8);
         }
 
         public static IResult MetotListesi(string servis)
@@ -32,17 +33,17 @@ namespace SGBApi
             if (!ServisKayit.Bul(servis, out arayuz, out fabrika))
                 return Results.NotFound();
 
-            JArray liste = new JArray();
+            JsonArray liste = new JsonArray();
             foreach (MethodInfo m in ServisProtokol.Metotlar(arayuz).OrderBy(x => x.Name))
             {
-                JObject o = new JObject();
+                JsonObject o = new JsonObject();
                 o["metot"] = m.Name;
                 o["imza"] = ServisProtokol.Imza(m);
-                o["parametreler"] = new JArray(m.GetParameters().Select(p => p.Name));
+                o["parametreler"] = new JsonArray(m.GetParameters().Select(p => (JsonNode)p.Name).ToArray());
                 o["donus"] = m.ReturnType.ToString();
                 liste.Add(o);
             }
-            return Results.Content(liste.ToString(), "application/json", Encoding.UTF8);
+            return Results.Content(liste.ToJsonString(), "application/json", Encoding.UTF8);
         }
 
         public static async Task Calistir(HttpContext baglam, string servis, string metot)
@@ -61,13 +62,13 @@ namespace SGBApi
                 string govdeMetni;
                 using (StreamReader okuyucu = new StreamReader(baglam.Request.Body, Encoding.UTF8))
                     govdeMetni = await okuyucu.ReadToEndAsync();
-                JObject govde = ApiJson.NesneAyristir(govdeMetni);
+                JsonObject govde = ApiJson.NesneAyristir(govdeMetni);
 
                 string imza = baglam.Request.Query["imza"];
                 MethodInfo m;
                 try
                 {
-                    m = ServisProtokol.MetotBul(arayuz, metot, imza, govde.Properties().Select(p => p.Name).ToList());
+                    m = ServisProtokol.MetotBul(arayuz, metot, imza, govde.Select(p => p.Key).ToList());
                 }
                 catch (MissingMethodException e)
                 {
@@ -109,10 +110,10 @@ namespace SGBApi
         {
             if (baglam.Response.HasStarted) return Task.CompletedTask;
             baglam.Response.StatusCode = durumKodu;
-            JObject o = new JObject();
+            JsonObject o = new JsonObject();
             o["hata"] = hata;
             if (sonuc != null) o["sonuc"] = ApiJson.TokenYaz(sonuc, typeof(Sonuc));
-            return baglam.Response.WriteAsync(o.ToString(Newtonsoft.Json.Formatting.None), Encoding.UTF8);
+            return baglam.Response.WriteAsync(o.ToJsonString(ApiJson.Ayarlar), Encoding.UTF8);
         }
     }
 }

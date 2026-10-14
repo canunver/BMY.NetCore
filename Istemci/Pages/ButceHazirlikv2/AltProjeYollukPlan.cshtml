@@ -1,0 +1,36 @@
+@page
+@model AltProjeYollukPlanModel
+@{
+    // ProjeDetay / AltProjeDetay sekmesinde ?menuYok=1&projeKodu=&altProjeKodu=&yil=&senaryoKod= ile açılır.
+    ViewData["Title"] = "Yolluk Planı";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim yatalt">
+    <section>
+        <div class="kutu bolum">
+            <h2 class="bolum-baslik">Yolluk Planı</h2>
+            <div class="btn-toolbar yatalt-arac" role="toolbar" aria-label="Yolluk planı işlemleri">
+                <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Projenin yolluk planı (Excel)">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                </button>
+                <p class="yatalt-not">Projeye bağlı faaliyetlerin yolluk planları; değişiklik Yolluk Planlama Formu'ndan yapılır.</p>
+            </div>
+            <div id="grdYolluk" class="yatalt-grid" aria-label="Yolluk planı"></div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/yatalt.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/yatalt-yolluk.js" asp-append-version="true"></script>
+}

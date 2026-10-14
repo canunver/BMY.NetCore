@@ -1,0 +1,44 @@
+/* Bütçe Çalışmalarında Görevli Personel Listesi: bölüm görünümü, seçim satırı ve tablo renkleri taveneko.css'ten (.tavan-eko) gelir;
+   burada yalnızca bu sayfaya özgü olanlar var. */
+
+.butce-personel .kod-alan {
+    flex: 1 1 420px;
+}
+
+.butce-personel .secim-tuslar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.butce-personel .secim-tuslar > .btn {
+    float: none;
+    margin-left: 0;
+    border-radius: 3px;
+}
+
+.butce-personel .renk-aciklama .acik::before {
+    display: none;
+}
+
+/* Kod ağacı penceresi */
+.personel-agac {
+    width: min(640px, calc(100vw - 32px));
+}
+
+.personel-agac .sgb-agac {
+    max-height: min(520px, calc(100vh - 220px));
+    overflow: auto;
+    margin: 0;
+}
+
+/* Yapıştır penceresi */
+.personel-yapistir {
+    width: min(720px, calc(100vw - 32px));
+}
+
+.personel-yapistir textarea {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 12px;
+    white-space: pre;
+}

@@ -1,0 +1,29 @@
+/* Görüşme / vize tavanı sayfaları (Birim Görüşme Ekranı, Yatırım Görüşme, Vize Tavanı): bölüm, seçim, tablo, ağaç, Rapor Al menüsü
+   ve ara toplam satırı görünümü tavanfaal.css ve tavantertip.css'ten gelir; burada yalnızca bu sayfalara özgü olanlar var. */
+
+.tavan-gorusme section[hidden] {
+    display: none !important;
+}
+
+/* Adresle açılışta (başka sayfadan verilen tertip) seçim bölümü yoktur; tablo bütün yüksekliği alır. */
+@media (min-width: 992px) {
+    .tanim.tavan-gorusme.adresle {
+        grid-template-rows: minmax(0, 1fr);
+    }
+}
+
+/* Proje grubu ara toplam satırında grup kodu ve adı */
+.tavan-gorusme .tavan-grid .ag-row.satir-toplam .ag-cell.tertip .kod {
+    color: inherit;
+}
+
+/* Bitiş yılı ve Devam / Yeni ortalı */
+.tavan-gorusme .tavan-grid .ag-cell.orta {
+    justify-content: center;
+    text-align: center;
+}
+
+.tavan-gorusme .secim-alan > label small {
+    font-weight: 400;
+    color: var(--soluk);
+}

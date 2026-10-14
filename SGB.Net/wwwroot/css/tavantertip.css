@@ -1,0 +1,87 @@
+/* Faaliyet/Proje Detay Teklif Girişi: bölüm, seçim ve tablo görünümü tavanfaal.css'ten gelir (.tavan-faal); burada yalnızca bu
+   sayfaya özgü olanlar var. */
+
+/* Tertip sütunu iki satırdır: "kurumsal-fonksiyonel-finansman-ekonomik" kodu ve altında ekonomik kod adı */
+.tavan-tertip .tavan-grid .ag-cell.tertip {
+    line-height: 16px;
+    white-space: normal;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.tavan-tertip .tavan-grid .ag-cell.tertip .kod {
+    display: block;
+    font-family: Menlo, Consolas, monospace;
+    font-size: 11px;
+    color: var(--soluk);
+}
+
+/* Faaliyet/proje satırı olmayan (alt toplam) satırlar eski sayfadaki gibi turuncu ve kalın */
+.tavan-tertip .tavan-grid .ag-row.satir-toplam .ag-cell {
+    font-weight: 700;
+    background: #faba9f;
+}
+
+/* Eski sayfa 06.1.4.01 ekonomik kodlu satırların girilemeyen hücrelerini maviyle ayırıyordu */
+.tavan-tertip .tavan-grid .ag-cell.kapali.mavi {
+    background: #9be1ff;
+}
+
+.tavan-tertip .tavan-grid .ag-cell.metin {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Bootstrap betiği yüklenmediğinden açılır menü .open ile tavantertip.js'ten açılır */
+.tavan-tertip .rapor-menu .dropdown-menu {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.tavan-tertip .rapor-menu .dropdown-menu button {
+    display: block;
+    width: 100%;
+    padding: 4px 16px;
+    border: 0;
+    background: none;
+    text-align: left;
+    white-space: nowrap;
+    color: var(--murekkep);
+}
+
+.tavan-tertip .rapor-menu .dropdown-menu button:hover,
+.tavan-tertip .rapor-menu .dropdown-menu button:focus {
+    background: #e3edfa;
+    outline: none;
+}
+
+.tavan-tertip .secim-alan > label {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Faaliyet/proje ağacı penceresi */
+.tavan-tertip-agac {
+    width: min(640px, calc(100vw - 32px));
+}
+
+.tavan-tertip-agac .sgb-agac {
+    max-height: min(520px, calc(100vh - 220px));
+    overflow: auto;
+    margin: 0;
+}
+
+.tavan-tertip-yapistir {
+    width: min(640px, calc(100vw - 32px));
+}
+
+.tavan-tertip-yapistir textarea {
+    font-family: Menlo, Consolas, monospace;
+    font-size: 12px;
+}
+
+/* Faaliyet/proje kutusu tıklanınca ağaç açılır. */
+.tavan-tertip #txtFaaliyet {
+    cursor: pointer;
+}

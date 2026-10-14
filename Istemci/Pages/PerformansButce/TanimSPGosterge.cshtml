@@ -1,0 +1,90 @@
+@page
+@model TanimSPGostergeModel
+@{
+    ViewData["Title"] = "Gösterge Tanımları";
+    // Geniş ekranda sayfa pencereye sığar, bölmeler kendi içinde kayar (tanim.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim">
+    <!-- Sol: göstergeler -->
+    <section class="tanim-sol">
+        <div class="kutu">
+            <h2 class="kutu-baslik">Göstergeler</h2>
+            <form id="frmArama" class="tanim-ekle" role="search" novalidate>
+                <input type="search" id="txtAra" class="form-control input-sm" placeholder="Ada göre süz" aria-label="Ada göre süz" />
+                <button type="submit" id="btnListele" class="btn btn-default btn-sm" title="Listele">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Listele
+                </button>
+            </form>
+            <div id="grdGosterge" class="tanim-grid"></div>
+        </div>
+    </section>
+
+    <!-- Sağ: seçili göstergenin bilgileri -->
+    <section class="tanim-sag">
+        <div class="kutu">
+            <div class="btn-toolbar tanim-arac" role="toolbar">
+                <button type="button" id="btnYeni" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni
+                </button>
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm" disabled>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+                </button>
+            </div>
+
+            <form id="frmGosterge" class="tanim-form" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="txtKod">Kod</label>
+                    <div><input type="text" id="txtKod" class="form-control dar" readonly placeholder="Yeni" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAd">Ad</label>
+                    <div><input type="text" id="txtAd" class="form-control" maxlength="500" required /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlOlcuBirim">Ölçü Birimi</label>
+                    <div><select id="ddlOlcuBirim" class="form-control" required></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlTur">Tür</label>
+                    <div>
+                        <select id="ddlTur" class="form-control">
+                            <option value="1">Gerç.*100/Hedef</option>
+                            <option value="2">(Gerç.-Baş.)*100/(Hedef-Baş.)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlIlerlemeYonu">İlerleme Yönü</label>
+                    <div>
+                        <select id="ddlIlerlemeYonu" class="form-control dar">
+                            <option value="1">Artan</option>
+                            <option value="2">Azalan</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtOndalik">Ondalık Sayısı</label>
+                    <div><input type="number" id="txtOndalik" class="form-control dar" min="0" max="6" step="1" /></div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/tanimspgosterge.js" asp-append-version="true"></script>
+}

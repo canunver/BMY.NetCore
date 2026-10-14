@@ -1,0 +1,254 @@
+@page
+@model AltProjeButceKaynakGirisModel
+@{
+    ViewData["Title"] = "Bütçe Kaynağı";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim yat-kaynak" data-yonetici="@(Model.Yonetici ? "1" : "0")">
+    <!-- Kaynak bilgileri (eski panelBK) -->
+    <section>
+        <div class="kutu bolum bolum-kaynak">
+            <h2 class="bolum-baslik">
+                Kaynak Bilgileri
+                <span id="lblTurEtiket" class="label label-info" hidden></span>
+            </h2>
+            <div class="btn-toolbar kaynak-arac" role="toolbar" aria-label="Kaynak işlemleri">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnKaydet" class="btn btn-primary" disabled>
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                    </button>
+                    <button type="button" id="btnSil" class="btn btn-danger" disabled>
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+                    </button>
+                    <button type="button" id="btnTasi" class="btn btn-default" title="Kaynağı başka bir alt projeye taşı" hidden disabled>
+                        <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Taşı
+                    </button>
+                </div>
+            </div>
+            <form id="frmKaynak" class="tanim-form kaynak-form" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="txtKaynakAd">Kaynak Adı</label>
+                    <div><input type="text" id="txtKaynakAd" class="form-control" maxlength="1000" /></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Kaynak Türü</span>
+                    <div><p id="lblKaynakTur" class="form-control-static"></p></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlToplamDahil">Toplama Dahil</label>
+                    <div>
+                        <select id="ddlToplamDahil" class="form-control">
+                            <option value="1">Proje ve Genel toplama dahil</option>
+                            <option value="2">Proje toplamına dahil - Genel toplama dahil değil</option>
+                            <option value="3">Proje toplamına dahil değil - Genel toplama dahil</option>
+                            <option value="4">Toplamlara dahil değil</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Kaynak Özellikleri</span>
+                    <div class="ozellikler">
+                        <label class="checkbox-inline" title="DPT Raporlarında görüntülensin"><input type="checkbox" id="chkDPTRapor" /> DPT Rapor</label>
+                        <label class="checkbox-inline" title="Kaynak, YİKOB ise işaretlenecek"><input type="checkbox" id="chkYIKOB" /> YİKOB</label>
+                    </div>
+                </div>
+
+                <!-- Kredi bilgileri (eski divKrediBilgi): kaynak türüne göre görünür -->
+                <fieldset id="divKrediBilgi" class="kredi-bilgi" hidden>
+                    <legend>Kredi / Hibe Bilgileri</legend>
+                    <div class="kredi-sutunlar">
+                        <div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtKrediyiVeren">Krediyi/Hibeyi Veren</label>
+                                <div><input type="text" id="txtKrediyiVeren" class="form-control" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtTur">Türü</label>
+                                <div><input type="text" id="txtTur" class="form-control" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtVade">Vadesi</label>
+                                <div><input type="text" id="txtVade" class="form-control" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtFaizOran">Faiz Oranı</label>
+                                <div><input type="text" id="txtFaizOran" class="form-control" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="ddlParaBirimi">Para Birimi</label>
+                                <div><select id="ddlParaBirimi" class="form-control dar"></select></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtYururlukTarihi">Yürürlük Tarihi</label>
+                                <div class="tarih-cift">
+                                    <input type="date" id="txtYururlukTarihi" class="form-control" />
+                                    <label for="txtBaslamaTarihi">Başlama Tarihi</label>
+                                    <input type="date" id="txtBaslamaTarihi" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtTutar">Tutarı (1000)</label>
+                                <div><input type="text" id="txtTutar" class="form-control" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtOdemesizDonem">Ödemesiz Dönemi</label>
+                                <div><input type="text" id="txtOdemesizDonem" class="form-control" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtIcParaKrediOran">İç Para Kredi Oranı</label>
+                                <div><input type="text" id="txtIcParaKrediOran" class="form-control" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtDipnot">Dip Not</label>
+                                <div><input type="text" id="txtDipnot" class="form-control" /></div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+
+    <!-- Sekmeler (eski tabKaynak) -->
+    <section>
+        <div class="kutu bolum bolum-rakam">
+            <ul class="nav nav-tabs kaynak-sekmeler" role="tablist">
+                <li role="presentation" class="active"><a href="#sekTeklif" role="tab" aria-controls="sekTeklif" aria-selected="true">Teklif Bilgileri</a></li>
+                <li role="presentation"><a href="#sekHarcama" role="tab" aria-controls="sekHarcama" aria-selected="false">Harcama Bilgileri</a></li>
+                <li role="presentation" hidden><a href="#sekAltFaaliyet" role="tab" aria-controls="sekAltFaaliyet" aria-selected="false">Bütçe Alt Faaliyeti</a></li>
+                <li role="presentation" hidden><a href="#sekKrediPlan" role="tab" aria-controls="sekKrediPlan" aria-selected="false">Kredi/Hibe Planı</a></li>
+                <li role="presentation" hidden><a href="#sekKrediOdeme" role="tab" aria-controls="sekKrediOdeme" aria-selected="false">Kredi Geri Ödeme Bilgileri</a></li>
+                <li role="presentation" hidden><a href="#sekYeniTeklif" role="tab" aria-controls="sekYeniTeklif" aria-selected="false">Proje Teklif Rakamları</a></li>
+            </ul>
+
+            <div id="sekTeklif" class="kaynak-panel" role="tabpanel">
+                <div id="grdTeklif" class="kaynak-grid kisa" aria-label="Teklif bilgileri"></div>
+            </div>
+
+            <div id="sekHarcama" class="kaynak-panel" role="tabpanel" hidden>
+                <div id="grdHarcama" class="kaynak-grid kisa" aria-label="Harcama bilgileri"></div>
+            </div>
+
+            <div id="sekAltFaaliyet" class="kaynak-panel" role="tabpanel" hidden>
+                <div class="btn-toolbar kaynak-arac" role="toolbar" aria-label="Alt faaliyet satırları">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button type="button" class="btn btn-default" data-satir-ac="altFaaliyet"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Aç</button>
+                        <button type="button" class="btn btn-default" data-satir-sil="altFaaliyet"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Seç. Sil</button>
+                    </div>
+                </div>
+                <div id="grdAltFaaliyet" class="kaynak-grid" aria-label="Bütçe alt faaliyetleri"></div>
+            </div>
+
+            <div id="sekKrediPlan" class="kaynak-panel" role="tabpanel" hidden>
+                <div class="btn-toolbar kaynak-arac" role="toolbar" aria-label="Kredi/hibe planı işlemleri">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button type="button" class="btn btn-default" data-satir-ac="krediPlan"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Aç</button>
+                        <button type="button" class="btn btn-default" data-satir-sil="krediPlan"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Seç. Sil</button>
+                    </div>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Raporlar">
+                        <button type="button" id="btnYazdir" class="btn btn-default"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır</button>
+                        <button type="button" id="btnYazdirIzleme" class="btn btn-default" title="Kredi izleme raporu"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Kr. İzleme Rap.</button>
+                    </div>
+                </div>
+                <div id="grdKrediPlan" class="kaynak-grid" aria-label="Kredi/hibe planı"></div>
+            </div>
+
+            <div id="sekKrediOdeme" class="kaynak-panel" role="tabpanel" hidden>
+                <div class="btn-toolbar kaynak-arac" role="toolbar" aria-label="Kredi geri ödeme satırları">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button type="button" class="btn btn-default" data-satir-ac="krediOdeme"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Aç</button>
+                        <button type="button" class="btn btn-default" data-satir-sil="krediOdeme"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Seç. Sil</button>
+                    </div>
+                </div>
+                <div id="grdKrediOdeme" class="kaynak-grid" aria-label="Kredi geri ödeme bilgileri"></div>
+            </div>
+
+            <div id="sekYeniTeklif" class="kaynak-panel" role="tabpanel" hidden>
+                <div class="btn-toolbar kaynak-arac eko-arac" role="toolbar" aria-label="Proje teklif rakamları satırları">
+                    <div class="eko-alan">
+                        <label for="txtEko">Ekonomik Kod</label>
+                        <div class="input-group input-group-sm">
+                            <input type="text" id="txtEko" class="form-control" readonly placeholder="Kod ağacından seçiniz" />
+                            <span class="input-group-btn">
+                                <button type="button" id="btnEkoSec" class="btn btn-default" title="Kod ağacından seç"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span><span class="sr-only">Ekonomik kod seç</span></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button type="button" id="btnEkoEkle" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekle</button>
+                        <button type="button" class="btn btn-default" data-satir-sil="yeniTeklif"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Seç. Sil</button>
+                    </div>
+                </div>
+                <div id="grdYeniTeklif" class="kaynak-grid" aria-label="Proje teklif rakamları"></div>
+            </div>
+
+            <p class="kaynak-not">
+                <span class="renk kapali"></span> Girilemeyen hücreler &nbsp;
+                <span class="renk acik"></span> Girilebilen hücreler &nbsp;·&nbsp; Excel'den kopyalanan değerler seçili hücreden başlayarak Ctrl+V ile yapıştırılabilir.
+            </p>
+        </div>
+    </section>
+</div>
+
+<!-- Taşınacak alt projenin seçimi (eski wndAltProjeler; yalnızca sistem yöneticisi) -->
+<dialog id="dlgTasi" class="tanim-pencere kaynak-tasi" aria-labelledby="dlgTasiBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgTasiBaslik">Kaynağı Taşı</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="tanim-not duz">Kaynağın taşınacağı alt projeyi seçiniz.</p>
+        <div id="grdAltProjeler" class="kaynak-grid tasi-grid" aria-label="Alt projeler"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnTasiKomut" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Taşı
+        </button>
+    </div>
+</dialog>
+
+<!-- Ekonomik kod seçimi (eski ddEko ağacı) -->
+<dialog id="dlgEko" class="tanim-pencere kaynak-agac" aria-labelledby="dlgEkoBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgEkoBaslik">Ekonomik Kod Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <ul id="agacEko" aria-label="Ekonomik kod ağacı"></ul>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu (Sil, Taşı) -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/yatkaynak.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/yatkaynak.js" asp-append-version="true"></script>
+}

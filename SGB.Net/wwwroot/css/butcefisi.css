@@ -1,0 +1,271 @@
+/* Bütçe gider / gelir fişi (ButceFisiGiris): solda sorgu alanları ve tertip listesi, sağda fiş önizlemesi.
+   Bölüm, seçim ve tablo görünümü tavanfaal.css'ten gelir (.tavan-faal); burada yalnızca bu sayfaya özgü olanlar var. */
+
+.butce-fisi [hidden] {
+    display: none !important;
+}
+
+/* Fiş bölümü turuncu başlıklı */
+.butce-fisi .kutu.bolum.bolum-fis {
+    --bolum-baslik: #fbeedd;
+    --bolum-govde: #fefaf4;
+    --bolum-vurgu: #d0812a;
+}
+
+.butce-fisi .yil-asama {
+    display: flex;
+    flex: 1 1 100%;
+    gap: 8px;
+}
+
+.butce-fisi .secim-alan > label {
+    margin: 0;
+    font-weight: 600;
+}
+
+.butce-fisi .secim-alan.dar {
+    flex: 0 0 90px;
+}
+
+.butce-fisi .bolum-baslik > span {
+    flex: 0 0 auto;
+}
+
+.butce-fisi .bolum-baslik .alt-baslik {
+    min-width: 0;
+    overflow: hidden;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--soluk);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.butce-fisi .tavan-grid {
+    height: 360px;
+}
+
+.butce-fisi .tavan-grid .ag-cell.tertip-kod {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 12px;
+}
+
+.butce-fisi .tavan-grid .ag-row.satir-gosterilen .ag-cell {
+    font-weight: 600;
+    background: #fbeedd;
+}
+
+.butce-fisi .tavan-grid .ag-row {
+    cursor: pointer;
+}
+
+.butce-fisi .fis-cerceve {
+    height: 640px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+}
+
+.butce-fisi .fis-cerceve iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Geniş ekranda: solda sorgu (üstte) ve tertip listesi (altta), sağda fiş; bölmeler pencereye sığar. */
+@media (min-width: 992px) {
+    .tanim.tavan-faal.butce-fisi {
+        grid-template-columns: 430px minmax(0, 1fr);
+        grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    .butce-fisi .fis-sorgu { grid-column: 1; grid-row: 1; }
+    .butce-fisi .fis-liste { grid-column: 1; grid-row: 2; min-height: 0; }
+    .butce-fisi .fis-onizleme { grid-column: 2; grid-row: 1 / span 2; min-height: 0; }
+
+    .butce-fisi .fis-liste,
+    .butce-fisi .fis-onizleme {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .butce-fisi .fis-liste > .kutu,
+    .butce-fisi .fis-onizleme > .kutu {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .butce-fisi .bolum-secim .secim-alan {
+        flex: 1 1 100%;
+    }
+
+    .butce-fisi .bolum-secim .yil-asama .secim-alan {
+        flex: 1 1 0;
+    }
+
+    .butce-fisi .bolum-secim .yil-asama .secim-alan.dar {
+        flex: 0 0 90px;
+    }
+
+    .butce-fisi #btnListele {
+        width: 100%;
+    }
+
+    .butce-fisi .fis-liste .tavan-grid {
+        flex: 1 1 auto;
+        min-height: 160px;
+        height: auto;
+    }
+
+    .butce-fisi .fis-cerceve {
+        flex: 1 1 auto;
+        min-height: 300px;
+        height: auto;
+    }
+}
+
+/* Gerekçe penceresi */
+.butce-fisi-gerekce {
+    width: min(900px, calc(100vw - 32px));
+}
+
+.butce-fisi-gerekce .gerekce-tertip {
+    margin: 0 0 8px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.butce-fisi-gerekce .form-group {
+    margin: 10px 0 0;
+}
+
+.butce-fisi-gerekce .form-group label {
+    font-size: 12px;
+}
+
+/* Bütçe gider fişi, e-Bütçe biçimi (ButceFisiGirisEski): üstte arama, ortada ödenek bilgileri, altta gerekçe; sayfa aşağı kayar. */
+.butce-fisi-eski .kutu.bolum.bolum-gerekce {
+    --bolum-baslik: #fbeedd;
+    --bolum-govde: #fefaf4;
+    --bolum-vurgu: #d0812a;
+}
+
+.butce-fisi-eski .secim-alan {
+    flex: 1 1 220px;
+}
+
+.butce-fisi-eski .secim-alan.dar {
+    flex: 0 0 90px;
+}
+
+.butce-fisi-eski .secim-alan > label {
+    margin: 0;
+    font-weight: 600;
+}
+
+.butce-fisi-eski .fis-arac {
+    margin: 12px 0 0;
+}
+
+.butce-fisi-eski .odenek-bilgi {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 12px;
+}
+
+.butce-fisi-eski .odenek-bilgi .tertip-grup {
+    grid-column: span 2;
+}
+
+.butce-fisi-eski .bilgi-grup {
+    min-width: 0;
+    margin: 0;
+    padding: 8px 12px 10px;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.butce-fisi-eski .bilgi-grup legend {
+    width: auto;
+    margin: 0;
+    padding: 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 0;
+}
+
+.butce-fisi-eski .bilgi-satir {
+    display: grid;
+    grid-template-columns: 110px minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+    margin: 4px 0;
+}
+
+.butce-fisi-eski .bilgi-etiket {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--soluk);
+}
+
+.butce-fisi-eski .bilgi-deger {
+    min-height: 26px;
+    padding: 4px 8px;
+    overflow: hidden;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: #f2f6fb;
+    border: 1px solid #c6cbda;
+    border-radius: 3px;
+}
+
+.butce-fisi-eski .teklif-grup .bilgi-satir,
+.butce-fisi-eski .bilgi-grup:not(.tertip-grup) .bilgi-deger {
+    text-align: right;
+}
+
+.butce-fisi-eski .form-control.sayi {
+    text-align: right;
+}
+
+.butce-fisi-eski .sebepler {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.butce-fisi-eski .sebepler .form-group {
+    margin: 0;
+}
+
+.butce-fisi-eski .sebepler label {
+    font-size: 12px;
+}
+
+@media (max-width: 600px) {
+    .butce-fisi-eski .odenek-bilgi .tertip-grup {
+        grid-column: auto;
+    }
+}
+
+/* Geniş ekranda bölümler alt alta, sayfa kayar (tanim.css'teki pencereye sığdırma burada yok). */
+@media (min-width: 992px) {
+    .tanim.tavan-faal.butce-fisi-eski {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: none;
+    }
+
+    .butce-fisi-eski .kutu {
+        overflow: visible;
+    }
+}

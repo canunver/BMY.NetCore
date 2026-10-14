@@ -2,15 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
 
 namespace TNS.Api
 {
     /// <summary>
-    /// API sunucusu ile istemci (ServisIstemci) arasında kullanılan ortak JSON ayarları.
-    /// İki taraf da aynı ayarları kullanmak zorundadır.
+    /// API sunucusu ile istemci (ServisIstemci) arasında ve oturum verisinin saklanmasında kullanılan ortak JSON ayarları
+    /// (System.Text.Json). İki taraf da aynı ayarları kullanmak zorundadır.
+    ///
+    /// Eski Newtonsoft ayarlarındaki (TypeNameHandling.Auto) davranış korunur: tipli alanlar düz JSON'dur; yalnızca object olarak
+    /// bildirilmiş yerlerde (object alanlar, tipsiz listeler, Hashtable değerleri) taşınan nesnelere "$type" eklenir, liste ise
+    /// { "$type": ..., "$values": [...] } olarak yazılır. Fark: tipli bir alanda alt sınıf nesnesi taşınırsa (alan Ust, değer Alt)
+    /// yalnızca Ust'ün üyeleri yazılır.
+    /// Ad eşleşmesi büyük/küçük harfe duyarlıdır: eski sınıflarda yalnızca harf büyüklüğü farklı üyeler var (Kullanici.ad / AD).
     /// </summary>
     public static class ApiJson
     {
@@ -20,79 +27,60 @@ namespace TNS.Api
         /// </summary>
         public static readonly List<string> IzinliAdAlanlari = new List<string> { "TNS" };
 
-        public static readonly JsonSerializerSettings Ayarlar = AyarOlustur();
+        public static readonly JsonSerializerOptions Ayarlar = AyarOlustur();
 
-        public static JsonSerializer Serilestirici
+        private static JsonSerializerOptions AyarOlustur()
         {
-            get { return JsonSerializer.Create(Ayarlar); }
-        }
-
-        private static JsonSerializerSettings AyarOlustur()
-        {
-            JsonSerializerSettings a = new JsonSerializerSettings();
-            // Tipli alanlar düz JSON'dur; yalnızca object / tipsiz liste içinde taşınan nesnelere "$type" eklenir.
-            a.TypeNameHandling = TypeNameHandling.Auto;
-            a.TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple;
-            a.SerializationBinder = new GuvenliTipBaglayici();
-            // Tarihe benzeyen dizgiler kendiliğinden DateTime'a çevrilmesin.
-            a.DateParseHandling = DateParseHandling.None;
-            a.DateFormatHandling = DateFormatHandling.IsoDateFormat;
-            a.NullValueHandling = NullValueHandling.Include;
-            a.MissingMemberHandling = MissingMemberHandling.Ignore;
-            a.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            a.Culture = CultureInfo.InvariantCulture;
-            a.Converters.Add(new TNSDateTimeCevirici());
+            JsonSerializerOptions a = new JsonSerializerOptions();
+            a.IncludeFields = true;
+            a.PropertyNameCaseInsensitive = false;
+            a.NumberHandling = JsonNumberHandling.AllowReadingFromString | JsonNumberHandling.AllowNamedFloatingPointLiterals;
+            a.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            a.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+            a.Converters.Add(new TNSDateTimeJsonCevirici());
             a.Converters.Add(new HashTableArrayListCevirici());
             a.Converters.Add(new BoyutlarCevirici());
-            a.Converters.Add(new TipsizListeCevirici());
+            a.Converters.Add(new TipsizListeCevirici<TNSCollection>());
+            a.Converters.Add(new TipsizListeCevirici<ArrayList>());
+            a.Converters.Add(new HashtableCevirici());
+            a.Converters.Add(new TipsizNesneCevirici());
+            a.MakeReadOnly(true);
             return a;
         }
 
         public static string Yaz(object deger, Type bildirilenTip)
         {
-            return JsonConvert.SerializeObject(deger, bildirilenTip ?? typeof(object), Ayarlar);
+            return JsonSerializer.Serialize(deger, bildirilenTip ?? typeof(object), Ayarlar);
         }
 
         public static object Oku(string json, Type tip)
         {
             if (string.IsNullOrWhiteSpace(json)) return VarsayilanDeger(tip);
-            return JsonConvert.DeserializeObject(json, tip, Ayarlar);
+            return TokenOku(JsonNode.Parse(json), tip);
         }
 
-        /// <summary>JSON nesnesini, tarihe benzeyen dizgileri DateTime'a çevirmeden ayrıştırır.</summary>
-        public static JObject NesneAyristir(string json)
+        /// <summary>JSON nesnesini ayrıştırır; boşsa ya da nesne değilse boş nesne döner.</summary>
+        public static JsonObject NesneAyristir(string json)
         {
-            if (string.IsNullOrWhiteSpace(json)) return new JObject();
-            using (JsonTextReader r = new JsonTextReader(new System.IO.StringReader(json)))
-            {
-                r.DateParseHandling = DateParseHandling.None;
-                return JObject.Load(r);
-            }
+            if (string.IsNullOrWhiteSpace(json)) return new JsonObject();
+            return JsonNode.Parse(json) as JsonObject ?? new JsonObject();
         }
 
-        public static JToken TokenYaz(object deger, Type bildirilenTip)
+        public static JsonNode TokenYaz(object deger, Type bildirilenTip)
         {
-            if (deger == null) return JValue.CreateNull();
-            using (JTokenWriter w = new JTokenWriter())
-            {
-                Serilestirici.Serialize(w, deger, bildirilenTip ?? typeof(object));
-                return w.Token;
-            }
+            if (deger == null) return null;
+            return JsonSerializer.SerializeToNode(deger, bildirilenTip ?? typeof(object), Ayarlar);
         }
 
-        public static object TokenOku(JToken token, Type tip)
+        public static object TokenOku(JsonNode token, Type tip)
         {
-            if (token == null || token.Type == JTokenType.Null || token.Type == JTokenType.Undefined)
+            if (token == null)
             {
-                // Null gelen TNSDateTime gibi tiplerde çevirici boş nesne üretsin diye yine de okunur.
+                // Null gelen TNSDateTime gibi tiplerde boş nesne üretilir.
                 if (tip == typeof(TNSDateTime)) return new TNSDateTime();
                 return VarsayilanDeger(tip);
             }
-            using (JsonReader r = token.CreateReader())
-            {
-                r.DateParseHandling = DateParseHandling.None;
-                return Serilestirici.Deserialize(r, tip);
-            }
+            return token.Deserialize(tip ?? typeof(object), Ayarlar);
         }
 
         public static object VarsayilanDeger(Type tip)
@@ -101,48 +89,117 @@ namespace TNS.Api
             return tip.IsValueType ? Activator.CreateInstance(tip) : null;
         }
 
-        /// <summary>
-        /// Tipsiz (object) okunan değeri eski koda uygun hale getirir: JSON tam sayıları Int64 yerine,
-        /// sığıyorsa Int32 olur; "$type" taşıyan nesneler gerçek tipine çevrilir.
-        /// </summary>
-        internal static object TipsizOku(JToken token, JsonSerializer serilestirici)
+        /// <summary>Düğümün dizgi değeri (dizgi değilse JSON metni); yoksa null.</summary>
+        public static string Metin(JsonNode dugum)
         {
-            if (token == null) return null;
-            switch (token.Type)
+            if (dugum == null) return null;
+            if (dugum is JsonValue v && v.TryGetValue(out string s)) return s;
+            return dugum.ToJsonString(Ayarlar);
+        }
+
+        /// <summary>
+        /// Tipsiz (object) okunan değeri eski koda uygun hale getirir: tam sayılar sığıyorsa Int32, sığmıyorsa Int64 olur;
+        /// "$type" taşıyan nesneler gerçek tipine, diziler ArrayList'e, "$type"sız nesneler Hashtable'a çevrilir.
+        /// </summary>
+        internal static object TipsizOku(JsonNode dugum)
+        {
+            if (dugum == null) return null;
+            switch (dugum.GetValueKind())
             {
-                case JTokenType.Null:
-                case JTokenType.Undefined:
+                case JsonValueKind.Null:
+                case JsonValueKind.Undefined:
                     return null;
-                case JTokenType.Integer:
-                    long l = token.Value<long>();
-                    if (l >= int.MinValue && l <= int.MaxValue) return (int)l;
-                    return l;
-                case JTokenType.Float:
-                    return token.Value<double>();
-                case JTokenType.Boolean:
-                    return token.Value<bool>();
-                case JTokenType.String:
-                    return token.Value<string>();
-                case JTokenType.Date:
-                    return token.Value<DateTime>();
-                default:
-                    using (JsonReader r = token.CreateReader())
+                case JsonValueKind.True:
+                    return true;
+                case JsonValueKind.False:
+                    return false;
+                case JsonValueKind.String:
+                    return dugum.GetValue<string>();
+                case JsonValueKind.Number:
+                    JsonValue v = (JsonValue)dugum;
+                    if (v.TryGetValue(out int i)) return i;
+                    if (v.TryGetValue(out long l)) return l;
+                    if (v.TryGetValue(out JsonElement e))
                     {
-                        r.DateParseHandling = DateParseHandling.None;
-                        return serilestirici.Deserialize(r, typeof(object));
+                        if (e.TryGetInt32(out i)) return i;
+                        if (e.TryGetInt64(out l)) return l;
+                        return e.GetDouble();
                     }
+                    return v.GetValue<double>();
+                case JsonValueKind.Array:
+                    ArrayList liste = new ArrayList();
+                    foreach (JsonNode n in (JsonArray)dugum) liste.Add(TipsizOku(n));
+                    return liste;
+                default:
+                    JsonObject o = (JsonObject)dugum;
+                    if (o.TryGetPropertyValue("$type", out JsonNode tipDugum))
+                    {
+                        Type tip = TipBul(Metin(tipDugum));
+                        if (o.TryGetPropertyValue("$values", out JsonNode degerler))
+                            return degerler == null ? null : degerler.Deserialize(tip, Ayarlar);
+                        JsonObject kopya = new JsonObject();
+                        foreach (KeyValuePair<string, JsonNode> p in o)
+                            if (p.Key != "$type") kopya[p.Key] = p.Value == null ? null : p.Value.DeepClone();
+                        return kopya.Deserialize(tip, Ayarlar);
+                    }
+                    Hashtable h = new Hashtable();
+                    foreach (KeyValuePair<string, JsonNode> p in o) h[p.Key] = TipsizOku(p.Value);
+                    return h;
             }
         }
-    }
 
-    /// <summary>"$type" ile yalnızca izin verilen ad alanlarındaki tiplerin oluşturulmasına izin verir.</summary>
-    internal class GuvenliTipBaglayici : DefaultSerializationBinder
-    {
-        public override Type BindToType(string assemblyName, string typeName)
+        /// <summary>object olarak bildirilmiş bir değeri yazar; nesne ve listelere "$type" eklenir.</summary>
+        internal static void TipsizYaz(Utf8JsonWriter yazici, object deger)
         {
-            Type t = base.BindToType(assemblyName, typeName);
-            if (!Izinli(t))
-                throw new JsonSerializationException("JSON içinde izin verilmeyen tip: " + typeName);
+            if (deger == null) { yazici.WriteNullValue(); return; }
+            Type tip = deger.GetType();
+            if (tip == typeof(object)) { yazici.WriteStartObject(); yazici.WriteEndObject(); return; }
+            // Düz değerler ve kendi çeviricisi olan tipler "$type" olmadan yazılır (eski davranış).
+            if (DuzDeger(tip) || tip == typeof(TNSDateTime) || tip == typeof(HashTableArrayList) || tip == typeof(Boyutlar)
+                || tip == typeof(TNSCollection) || tip == typeof(ArrayList))
+            {
+                JsonSerializer.Serialize(yazici, deger, tip, Ayarlar);
+                return;
+            }
+            JsonNode dugum = JsonSerializer.SerializeToNode(deger, tip, Ayarlar);
+            JsonObject sonuc = new JsonObject();
+            sonuc["$type"] = TipAdi(tip);
+            if (dugum is JsonObject o)
+            {
+                List<KeyValuePair<string, JsonNode>> uyeler = new List<KeyValuePair<string, JsonNode>>(o);
+                o.Clear();
+                foreach (KeyValuePair<string, JsonNode> p in uyeler) sonuc[p.Key] = p.Value;
+            }
+            else
+                sonuc["$values"] = dugum;
+            sonuc.WriteTo(yazici, Ayarlar);
+        }
+
+        private static bool DuzDeger(Type t)
+        {
+            return t.IsPrimitive || t.IsEnum || t == typeof(string) || t == typeof(decimal) || t == typeof(DateTime)
+                || t == typeof(DateTimeOffset) || t == typeof(Guid) || t == typeof(TimeSpan);
+        }
+
+        private static string TipAdi(Type t)
+        {
+            if (t.IsGenericType || t.IsArray) return t.AssemblyQualifiedName;
+            return t.FullName + ", " + t.Assembly.GetName().Name;
+        }
+
+        private static Type TipBul(string ad)
+        {
+            Type t = string.IsNullOrWhiteSpace(ad) ? null : Type.GetType(ad, false);
+            if (t == null && !string.IsNullOrWhiteSpace(ad))
+            {
+                string tamAd = ad.Split(',')[0].Trim();
+                foreach (System.Reflection.Assembly a in AppDomain.CurrentDomain.GetAssemblies())
+                {
+                    t = a.GetType(tamAd, false);
+                    if (t != null) break;
+                }
+            }
+            if (!Izinli(t)) throw new JsonException("JSON içinde izin verilmeyen tip: " + ad);
             return t;
         }
 
@@ -156,156 +213,148 @@ namespace TNS.Api
                     if (!Izinli(arg)) return false;
                 t = t.GetGenericTypeDefinition();
             }
-            if (t.IsPrimitive || t == typeof(string) || t == typeof(decimal) || t == typeof(DateTime) || t == typeof(Guid)
-                || t == typeof(TimeSpan) || t == typeof(object) || t == typeof(ArrayList) || t == typeof(Hashtable)
+            if (DuzDeger(t) && !t.IsEnum) return true;
+            if (t == typeof(object) || t == typeof(ArrayList) || t == typeof(Hashtable)
                 || t == typeof(List<>) || t == typeof(Dictionary<,>) || t == typeof(Nullable<>))
                 return true;
 
             string ns = t.Namespace ?? "";
-            foreach (string onek in ApiJson.IzinliAdAlanlari)
+            foreach (string onek in IzinliAdAlanlari)
                 if (ns == onek || ns.StartsWith(onek + ".", StringComparison.Ordinal)) return true;
             return false;
         }
     }
 
-    /// <summary>TNSDateTime: boşsa null, doluysa ISO 8601 tarih dizgisi.</summary>
-    internal class TNSDateTimeCevirici : JsonConverter
+    /// <summary>object olarak bildirilmiş yerler: okurken ApiJson.TipsizOku, yazarken ApiJson.TipsizYaz.</summary>
+    internal class TipsizNesneCevirici : JsonConverter<object>
     {
-        public override bool CanConvert(Type objectType)
+        public override object Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            return objectType == typeof(TNSDateTime);
+            return ApiJson.TipsizOku(JsonNode.Parse(ref reader));
         }
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        public override void Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
         {
-            TNSDateTime d = value as TNSDateTime;
-            if (d == null || d.isNull) writer.WriteNull();
-            else writer.WriteValue(d.Oku());
+            ApiJson.TipsizYaz(writer, value);
+        }
+    }
+
+    /// <summary>Tipsiz TNSCollection ve ArrayList: elemanların dizisi; nesne elemanlar "$type" taşır.</summary>
+    internal class TipsizListeCevirici<T> : JsonConverter<T> where T : ArrayList, new()
+    {
+        public override bool CanConvert(Type typeToConvert)
+        {
+            return typeToConvert == typeof(T);
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType == JsonToken.Null) return new TNSDateTime();
-            if (reader.TokenType == JsonToken.Date)
+            JsonArray dizi = JsonNode.Parse(ref reader) as JsonArray;
+            if (dizi == null) return null;
+            T liste = new T();
+            foreach (JsonNode n in dizi) liste.Add(ApiJson.TipsizOku(n));
+            return liste;
+        }
+
+        public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+        {
+            writer.WriteStartArray();
+            foreach (object o in value) ApiJson.TipsizYaz(writer, o);
+            writer.WriteEndArray();
+        }
+    }
+
+    /// <summary>Boyutlar: elemanların dizisi.</summary>
+    internal class BoyutlarCevirici : JsonConverter<Boyutlar>
+    {
+        public override Boyutlar Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            JsonArray dizi = JsonNode.Parse(ref reader) as JsonArray;
+            if (dizi == null) return null;
+            Boyutlar b = new Boyutlar();
+            foreach (JsonNode n in dizi) b.Add(ApiJson.TipsizOku(n));
+            return b;
+        }
+
+        public override void Write(Utf8JsonWriter writer, Boyutlar value, JsonSerializerOptions options)
+        {
+            writer.WriteStartArray();
+            foreach (object o in value) ApiJson.TipsizYaz(writer, o);
+            writer.WriteEndArray();
+        }
+    }
+
+    /// <summary>Hashtable: anahtarlar metin, değerler tipsiz.</summary>
+    internal class HashtableCevirici : JsonConverter<Hashtable>
+    {
+        public override bool CanConvert(Type typeToConvert)
+        {
+            return typeToConvert == typeof(Hashtable);
+        }
+
+        public override Hashtable Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            JsonObject o = JsonNode.Parse(ref reader) as JsonObject;
+            if (o == null) return null;
+            Hashtable h = new Hashtable();
+            foreach (KeyValuePair<string, JsonNode> p in o) h[p.Key] = ApiJson.TipsizOku(p.Value);
+            return h;
+        }
+
+        public override void Write(Utf8JsonWriter writer, Hashtable value, JsonSerializerOptions options)
+        {
+            writer.WriteStartObject();
+            foreach (DictionaryEntry de in value)
             {
-                if (reader.Value is DateTimeOffset) return new TNSDateTime(((DateTimeOffset)reader.Value).DateTime);
-                return new TNSDateTime((DateTime)reader.Value);
+                writer.WritePropertyName(Convert.ToString(de.Key, CultureInfo.InvariantCulture) ?? "");
+                ApiJson.TipsizYaz(writer, de.Value);
             }
-            if (reader.TokenType == JsonToken.String)
-            {
-                string s = (string)reader.Value;
-                if (string.IsNullOrWhiteSpace(s)) return new TNSDateTime();
-                DateTime dt;
-                if (DateTime.TryParse(s, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out dt)) return new TNSDateTime(dt);
-                return new TNSDateTime(s);
-            }
-            if (reader.TokenType == JsonToken.StartObject)
-            {
-                // { "isNull": true } gibi eski biçimli bir nesne gelirse yutulur.
-                JObject.Load(reader);
-                return new TNSDateTime();
-            }
-            throw new JsonSerializationException("TNSDateTime için beklenmeyen JSON değeri: " + reader.TokenType);
+            writer.WriteEndObject();
         }
     }
 
     /// <summary>HashTableArrayList: { "anahtar": { "0": "deger", "1": "deger" } }</summary>
-    internal class HashTableArrayListCevirici : JsonConverter
+    internal class HashTableArrayListCevirici : JsonConverter<HashTableArrayList>
     {
-        public override bool CanConvert(Type objectType)
+        public override HashTableArrayList Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            return objectType == typeof(HashTableArrayList);
+            JsonObject o = JsonNode.Parse(ref reader) as JsonObject;
+            if (o == null) return null;
+            HashTableArrayList h = new HashTableArrayList();
+            foreach (KeyValuePair<string, JsonNode> p in o)
+            {
+                JsonObject ic = p.Value as JsonObject;
+                if (ic == null) continue;
+                foreach (KeyValuePair<string, JsonNode> e in ic)
+                {
+                    int sira;
+                    if (int.TryParse(e.Key, NumberStyles.Integer, CultureInfo.InvariantCulture, out sira))
+                        h[p.Key, sira] = e.Value == null ? null : ApiJson.Metin(e.Value);
+                }
+            }
+            return h;
         }
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        public override void Write(Utf8JsonWriter writer, HashTableArrayList value, JsonSerializerOptions options)
         {
-            if (value == null) { writer.WriteNull(); return; }
             writer.WriteStartObject();
-            foreach (DictionaryEntry de in (HashTableArrayList)value)
+            foreach (DictionaryEntry de in value)
             {
-                writer.WritePropertyName(Convert.ToString(de.Key, CultureInfo.InvariantCulture));
+                writer.WritePropertyName(Convert.ToString(de.Key, CultureInfo.InvariantCulture) ?? "");
                 writer.WriteStartObject();
                 Hashtable ic = de.Value as Hashtable;
                 if (ic != null)
                 {
                     foreach (DictionaryEntry e in ic)
                     {
-                        writer.WritePropertyName(Convert.ToString(e.Key, CultureInfo.InvariantCulture));
-                        writer.WriteValue(e.Value == null ? null : e.Value.ToString());
+                        writer.WritePropertyName(Convert.ToString(e.Key, CultureInfo.InvariantCulture) ?? "");
+                        if (e.Value == null) writer.WriteNullValue();
+                        else writer.WriteStringValue(e.Value.ToString());
                     }
                 }
                 writer.WriteEndObject();
             }
             writer.WriteEndObject();
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            HashTableArrayList h = new HashTableArrayList();
-            JObject o = JObject.Load(reader);
-            foreach (JProperty p in o.Properties())
-            {
-                JObject ic = p.Value as JObject;
-                if (ic == null) continue;
-                foreach (JProperty e in ic.Properties())
-                {
-                    int sira;
-                    if (int.TryParse(e.Name, NumberStyles.Integer, CultureInfo.InvariantCulture, out sira))
-                        h[p.Name, sira] = e.Value.Type == JTokenType.Null ? null : e.Value.Value<string>();
-                }
-            }
-            return h;
-        }
-    }
-
-    /// <summary>Boyutlar: elemanların dizisi.</summary>
-    internal class BoyutlarCevirici : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(Boyutlar);
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            if (value == null) { writer.WriteNull(); return; }
-            writer.WriteStartArray();
-            foreach (object o in (Boyutlar)value) serializer.Serialize(writer, o, typeof(object));
-            writer.WriteEndArray();
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            Boyutlar b = new Boyutlar();
-            foreach (JToken t in JArray.Load(reader)) b.Add(ApiJson.TipsizOku(t, serializer));
-            return b;
-        }
-    }
-
-    /// <summary>Tipsiz TNSCollection ve ArrayList: elemanların dizisi; nesne elemanlar "$type" taşır.</summary>
-    internal class TipsizListeCevirici : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return objectType == typeof(TNSCollection) || objectType == typeof(ArrayList);
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            if (value == null) { writer.WriteNull(); return; }
-            writer.WriteStartArray();
-            foreach (object o in (IEnumerable)value) serializer.Serialize(writer, o, typeof(object));
-            writer.WriteEndArray();
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            ArrayList liste = objectType == typeof(TNSCollection) ? new TNSCollection() : new ArrayList();
-            foreach (JToken t in JArray.Load(reader)) liste.Add(ApiJson.TipsizOku(t, serializer));
-            return liste;
         }
     }
 }

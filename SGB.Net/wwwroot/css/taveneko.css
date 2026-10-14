@@ -1,0 +1,158 @@
+/* Ana Harcama Grupları Tavan Girişi: üstte seçim, altta birim tavanları tablosu (kalan yüksekliği doldurur).
+   Bölümler renkli başlıklı ayrı kutulardır (Organizasyon Şeması / Bütçe Aşama İşlemleri ile aynı görünüm). */
+
+.tavan-eko .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding-top: 0;
+    background: var(--bolum-govde);
+}
+
+.tavan-eko .kutu.bolum.bolum-tavan {
+    --bolum-baslik: #e2f3e6;
+    --bolum-govde: #f5fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.tavan-eko .bolum-baslik {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 -16px 12px;
+    padding: 9px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.tavan-eko .bolum-baslik .label {
+    font-size: 11px;
+}
+
+/* Seçim: alanlar yan yana, sığmazsa alt satıra */
+.tavan-eko .secim-satir {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 8px 14px;
+}
+
+.tavan-eko .secim-alan {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 260px;
+    min-width: 0;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.tavan-eko .secim-alan.dar {
+    flex: 0 0 100px;
+}
+
+.tavan-eko .secim-alan small {
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+.tavan-eko .secim-isaret {
+    margin: 0 0 6px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.tavan-eko .tavan-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 0 0 10px;
+}
+
+.tavan-eko .tavan-arac .btn-group {
+    margin-left: 0;
+}
+
+.tavan-eko .renk-aciklama {
+    display: flex;
+    gap: 10px;
+    margin: 0 0 0 auto;
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.tavan-eko .renk-aciklama li::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+    vertical-align: -1px;
+    border: 1px solid var(--cizgi);
+    border-radius: 2px;
+}
+
+.tavan-eko .renk-aciklama .toplam::before { background: #faba9f; }
+.tavan-eko .renk-aciklama .kapali::before { background: #fcfcd4; }
+.tavan-eko .renk-aciklama .acik::before   { background: #fff; }
+
+.tavan-grid {
+    height: 480px;
+}
+
+/* Hücre renkleri (eski sayfadaki gibi): toplam satırı turuncu ve kalın, girilemeyen hücreler açık sarı */
+.tavan-grid .ag-row-pinned .ag-cell {
+    font-weight: 700;
+    background: #faba9f;
+}
+
+.tavan-grid .ag-cell.kapali {
+    background: #fcfcd4;
+}
+
+.tavan-grid .ag-cell.girilir {
+    background: #fff;
+    box-shadow: inset 0 0 0 1px #c9d6e3;
+    cursor: text;
+}
+
+.tavan-grid .ag-cell.sayi,
+.tavan-grid .ag-header-cell.sayi .ag-header-cell-label {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.tavan-grid .ag-header-cell.sayi .ag-header-cell-text {
+    text-align: right;
+}
+
+@media (min-width: 992px) {
+    .tanim.tavan-eko {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    .tavan-eko .bolum-baslik {
+        margin: 0 -12px 12px;
+        padding: 9px 12px;
+    }
+
+    .tavan-eko .bolum-tavan {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .tavan-eko .tavan-grid {
+        flex: 1 1 auto;
+        min-height: 220px;
+        height: auto;
+    }
+}

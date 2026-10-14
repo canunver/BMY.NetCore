@@ -1,0 +1,186 @@
+@page
+@model BirimButceKarsilamaFormModel
+@{
+    ViewData["Title"] = "Proje Teklifi Talep Karşılama";
+    // Geniş ekranda sayfa pencereye sığar, tablo kalan alanı doldurur (tanim.css; bölüm görünümü taveneko.css ile ortak).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-eko birim-karsilama">
+    <!-- Üst: tertip seçimi -->
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Tertip Seçimi</h2>
+            <div class="secim-satir">
+                <label class="secim-alan dar">
+                    <span>Yıl</span>
+                    <input type="number" id="txtYil" class="form-control input-sm" min="2000" step="1" />
+                </label>
+                <div class="secim-alan kod-alan" data-tur="1" data-alan="kur">
+                    <label for="txtKod1">Kurumsal</label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" id="txtKod1" class="form-control" autocomplete="off" placeholder="Tümü" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span><span class="sr-only">Kurumsal kod seç</span></button>
+                            <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Kurumsal kodu temizle</span></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="secim-alan kod-alan" data-tur="2" data-alan="fon">
+                    <label for="txtKod2">Fonksiyonel</label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" id="txtKod2" class="form-control" autocomplete="off" placeholder="Tümü" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span><span class="sr-only">Fonksiyonel kod seç</span></button>
+                            <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Fonksiyonel kodu temizle</span></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="secim-alan kod-alan" data-tur="3" data-alan="fin">
+                    <label for="txtKod3">Finans</label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" id="txtKod3" class="form-control" autocomplete="off" placeholder="Tümü" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span><span class="sr-only">Finans kodu seç</span></button>
+                            <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Finans kodunu temizle</span></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="secim-alan kod-alan" data-tur="4" data-alan="eko">
+                    <label for="txtKod4">Ekonomik</label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" id="txtKod4" class="form-control" autocomplete="off" placeholder="Tümü" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span><span class="sr-only">Ekonomik kod seç</span></button>
+                            <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Ekonomik kodu temizle</span></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="secim-alan kod-alan" data-tur="14" data-alan="peb">
+                    <label for="txtKod14">Faaliyet</label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" id="txtKod14" class="form-control" autocomplete="off" placeholder="Tümü" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span><span class="sr-only">Faaliyet kodu seç</span></button>
+                            <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Faaliyet kodunu temizle</span></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="secim-alan tertip-alan">
+                    <label for="ddlTertip">Tertipler</label>
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-btn">
+                            <button type="button" id="btnTertipYukle" class="btn btn-default" title="Seçilen kodlara uyan tertipleri yükler">
+                                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span><span class="sr-only">Tertipleri yükle</span>
+                            </button>
+                        </span>
+                        <select id="ddlTertip" class="form-control">
+                            <option value="">Kodları seçip yenile tuşuna basınız</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alt: iller ve birimler -->
+    <section>
+        <div class="kutu bolum bolum-tavan">
+            <h2 class="bolum-baslik">İllerin ödenek talepleri ve karşılananlar</h2>
+            <div class="btn-toolbar tavan-arac" role="toolbar" aria-label="Karşılama işlemleri">
+                <label class="secim-isaret">
+                    <input type="checkbox" id="chkBosGizle" checked /> Boş satırları gizle
+                </label>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnOku" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Oku
+                    </button>
+                </div>
+                <label class="dagit-alan">
+                    <span>Karşılananı</span>
+                    <select id="ddlDagit" class="form-control input-sm">
+                        <option value="1">Harcamaya Göre Dağıt</option>
+                        <option value="2">Talebe Göre Dağıt</option>
+                    </select>
+                </label>
+                <ul class="renk-aciklama" aria-label="Açıklama">
+                    <li class="acik">Karşılanan girilir, <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> ile alt birimlere / tertiplere dağıtılır</li>
+                </ul>
+            </div>
+            <div id="grdIller" class="tavan-grid" aria-label="İller ve birimler"></div>
+        </div>
+    </section>
+</div>
+
+<!-- Birimin tertipleri (eski Detay penceresi) -->
+<dialog id="dlgDetay" class="tanim-pencere karsilama-detay" aria-labelledby="dlgDetayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgDetayBaslik">Birim Tertipleri</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <dl class="detay-bilgi">
+            <dt>Yıl</dt><dd id="dtyYil"></dd>
+            <dt>Saymanlık</dt><dd id="dtySaymanlik"></dd>
+            <dt>Birim</dt><dd id="dtyBirim"></dd>
+        </dl>
+        <div class="btn-toolbar tavan-arac" role="toolbar" aria-label="Tertip işlemleri">
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" id="btnKaydet" class="btn btn-primary" disabled>
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+            </div>
+            <ul class="renk-aciklama" aria-label="Renkler">
+                <li class="toplam">Eko 2 toplamı</li>
+                <li class="kapali">Değiştirilemez</li>
+                <li class="acik">Girilebilir</li>
+            </ul>
+        </div>
+        <div id="grdDetay" class="tavan-grid detay-grid" aria-label="Birim tertipleri"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Kod seçimi (eski açılır kod ağaçları) -->
+<dialog id="dlgKod" class="tanim-pencere karsilama-agac" aria-labelledby="dlgKodBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKodBaslik">Kod Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde" id="agacKutu"></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu (Oranla, Kaydet) -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taveneko.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/birimkarsilama.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/birimkarsilama.js" asp-append-version="true"></script>
+}

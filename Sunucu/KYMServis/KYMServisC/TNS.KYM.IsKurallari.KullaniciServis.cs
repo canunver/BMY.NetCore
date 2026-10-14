@@ -840,7 +840,7 @@ namespace TNS.KYM.IsKurallari
                     using (StreamReader reader = new StreamReader(response.GetResponseStream()))
                     {
                         string result = reader.ReadToEnd();
-                        gelenVeri = Newtonsoft.Json.JsonConvert.DeserializeObject<ADTokenClass>(result);
+                        gelenVeri = TNS.JsonIslem.Oku<ADTokenClass>(result);
                     }
                 }
             }
@@ -879,7 +879,7 @@ namespace TNS.KYM.IsKurallari
 
             using (StreamWriter writer = new StreamWriter(request.GetRequestStream()))
             {
-                string sent = Newtonsoft.Json.JsonConvert.SerializeObject(new ADRequest(kulKod, parola));
+                string sent = TNS.JsonIslem.Yaz(new ADRequest(kulKod, parola));
                 writer.Write(sent);
             }
 
@@ -891,7 +891,7 @@ namespace TNS.KYM.IsKurallari
                     {
                         string result = reader.ReadToEnd();
 
-                        ADResponse cevap = Newtonsoft.Json.JsonConvert.DeserializeObject<ADResponse>(result);
+                        ADResponse cevap = TNS.JsonIslem.Oku<ADResponse>(result);
                         if (cevap != null && cevap.ADKontrolResponse != null && cevap.ADKontrolResponse.ADKontrolResult != null && string.IsNullOrWhiteSpace(cevap.ADKontrolResponse.ADKontrolResult.Hata))
                             return true;
                         OrtakFonksiyonlar.HataDosyaYaz("LDAPHATA.txt", result, false);
@@ -2733,9 +2733,9 @@ namespace TNS.KYM.IsKurallari
         {
             public string access_token { get; set; }
 
-            [Newtonsoft.Json.JsonProperty("X-ExpiresAt")]
+            [System.Text.Json.Serialization.JsonPropertyName("X-ExpiresAt")]
             public DateTime X_ExpiresAt { get; set; }
-            [Newtonsoft.Json.JsonProperty("X-IssuedAt")]
+            [System.Text.Json.Serialization.JsonPropertyName("X-IssuedAt")]
             public DateTime X_IssuedAt { get; set; }
             public string X_ApplicationName { get; set; }
             public string token_type { get; set; }

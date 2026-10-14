@@ -52,7 +52,7 @@ namespace TNS.Api
                 Ekle<TNS.PER.IPERServis>("PER", () => new TNS.PER.IsKurallari.PERServis());
                 Ekle<TNS.STR.ISTRServis>("STR", () => new TNS.STR.IsKurallari.STRServis());
                 Ekle<TNS.TMM.ITMMServis>("TMM", () => new TNS.TMM.IsKurallari.TMMServis());
-                Ekle<TNS.TRM.ITRMServis>("TRM", () => new TNS.TRM.IsKurallari.TRMServis());
+                // TRM (Tarım hibe) bu sürümde yok.
                 // EVR (evrak) henüz taşınmadı: arayüzü istemci projesindeki servis başvurularına (WebServisler) ve Aspose kitaplıklarına bağlı.
             }
         }

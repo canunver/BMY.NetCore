@@ -1,0 +1,105 @@
+/* Yolluk Planlama Formu: bölüm görünümü, seçim satırı ve tablo renkleri taveneko.css'ten (.tavan-eko) gelir;
+   burada yalnızca bu sayfaya özgü olanlar var. */
+
+.yolluk-plan .tertip-alan {
+    flex: 2 1 420px;
+}
+
+.yolluk-plan .kod-alan label {
+    margin: 0;
+}
+
+.yolluk-plan #pebAd {
+    margin-left: 4px;
+}
+
+.yolluk-plan .toplam-alan {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.yolluk-plan .toplam-alan input {
+    width: 150px;
+    font-weight: 700;
+    text-align: right;
+}
+
+.yolluk-plan .renk-aciklama .acik::before {
+    background: #fff;
+}
+
+.yolluk-plan .ag-cell .ag-checkbox-input-wrapper {
+    margin: 0 auto;
+}
+
+/* Yolluk değerleri penceresi */
+.yolluk-deger {
+    width: min(420px, calc(100vw - 32px));
+}
+
+.yolluk-deger .deger-aciklama {
+    margin: 0 0 12px;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.yolluk-deger fieldset {
+    margin: 0 0 12px;
+    padding: 8px 12px 4px;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.yolluk-deger legend {
+    width: auto;
+    margin: 0;
+    padding: 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 0;
+}
+
+.yolluk-deger label {
+    display: block;
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.yolluk-deger .sayi-giris {
+    text-align: right;
+}
+
+/* Birimlerin onay durumu penceresi */
+.yolluk-onay {
+    width: min(640px, calc(100vw - 32px));
+}
+
+.yolluk-onay .onay-grid {
+    height: min(460px, calc(100vh - 280px));
+}
+
+.yolluk-onay .ag-row.onayli .ag-cell[col-id="durum"] {
+    font-weight: 700;
+    color: #2e8b4e;
+}
+
+.yolluk-onay .ag-cell .btn-xs {
+    padding: 0 6px;
+    line-height: 20px;
+}
+
+/* Faaliyet kod ağacı penceresi */
+.yolluk-agac {
+    width: min(640px, calc(100vw - 32px));
+}
+
+.yolluk-agac .sgb-agac {
+    max-height: min(520px, calc(100vh - 220px));
+    overflow: auto;
+    margin: 0;
+}

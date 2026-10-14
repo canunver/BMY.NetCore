@@ -1,0 +1,87 @@
+@page
+@model DosyalarModel
+@{
+    ViewData["Title"] = "Dosyalar";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Yapım aşamasında!</div>
+    return;
+}
+
+<div class="guncelleme dosyalar">
+    <!-- Bulunulan klasör: klasörler ve dosyalar -->
+    <section class="kutu bolum">
+        <h2 class="bolum-baslik">Klasörler ve Dosyalar</h2>
+        <form id="frmYol" class="form-satir" novalidate>
+            <label class="form-etiket" for="txtYol">Path:</label>
+            <input type="text" id="txtYol" class="form-control input-sm yol" autocomplete="off" spellcheck="false" placeholder="Ör. C:\inetpub\wwwroot" />
+            <button type="submit" id="btnGit" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> Git
+            </button>
+        </form>
+        <div class="arac" role="toolbar" aria-label="Klasör işlemleri">
+            <button type="button" id="btnUst" class="btn btn-default btn-sm" disabled>
+                <span class="glyphicon glyphicon-level-up" aria-hidden="true"></span> Üst Klasör
+            </button>
+            <button type="button" id="btnYenile" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Yenile
+            </button>
+        </div>
+        <div id="grdDosyalar" class="grid-alan" aria-label="Klasörler ve dosyalar"></div>
+    </section>
+
+    <!-- Dosya ekleme ve tarih değiştirme -->
+    <section class="kutu bolum bolum-yesil">
+        <h2 class="bolum-baslik">Dosya İşlemleri</h2>
+        <form id="frmYukle" class="form-satir" novalidate>
+            <label class="form-etiket" for="fuDosya">Dosya Seçiniz:</label>
+            <input type="file" id="fuDosya" class="form-control input-sm" />
+            <button type="submit" id="btnDosyaSakla" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Doküman Ekle
+            </button>
+        </form>
+        <form id="frmTarih" class="form-satir" novalidate>
+            <label class="form-etiket" for="txtTarih">Tarih:</label>
+            <input type="date" id="txtTarih" class="form-control input-sm orta" />
+            <button type="submit" id="btnTarihYaz" class="btn btn-default btn-sm" title="Bu klasör ve alt klasörlerinde, oluşturulma tarihi bu tarihten sonra olan dosyaların tarihleri bu tarihe çekilir.">
+                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dosya Tarihlerini Değiştir
+            </button>
+        </form>
+    </section>
+
+    <!-- Klasör oluşturma -->
+    <section class="kutu bolum bolum-turuncu">
+        <h2 class="bolum-baslik">Klasör İşlemleri</h2>
+        <form id="frmKlasor" class="form-satir" novalidate>
+            <label class="form-etiket" for="txtKlasor">Klasör Adı:</label>
+            <input type="text" id="txtKlasor" class="form-control input-sm" autocomplete="off" />
+            <button type="submit" id="btnKlasor" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Yeni Klasör Oluştur
+            </button>
+        </form>
+    </section>
+</div>
+
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/guncelleme.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/dosyalar.js" asp-append-version="true"></script>
+}

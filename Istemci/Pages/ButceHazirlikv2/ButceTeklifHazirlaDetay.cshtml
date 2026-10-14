@@ -1,0 +1,111 @@
+@page
+@model ButceTeklifHazirlaDetayModel
+@{
+    ViewData["Title"] = "Bütçe Teklif Hazırlama-Detay";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-faal tertip-detay" data-yil="@Model.Yil" data-tahmin="@Model.Tahmin" data-senaryo="@Model.Senaryo"
+     data-tertip="@Model.Tertip" data-muhasebekod="@Model.MuhasebeKod" data-birimkod="@Model.BirimKod">
+    <!-- Eski pencerenin araç çubuğu: Önceki / Sonraki (bütçe teklifi ekranından açılınca) ve Kaydet -->
+    <div class="btn-toolbar detay-arac" role="toolbar" aria-label="Tertip detay işlemleri">
+        <div class="btn-group btn-group-sm gezinme" role="group" hidden>
+            <button type="button" id="btnOnceki" class="btn btn-default" title="Listedeki önceki tertip">
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Önceki
+            </button>
+            <button type="button" id="btnSonraki" class="btn btn-default" title="Listedeki sonraki tertip">
+                Sonraki <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+            </button>
+        </div>
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm" title="3 yıllık teklifi saklar">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+        <span id="lblTertip" class="detay-tertip"></span>
+    </div>
+
+    <!-- Gerçekleşme bilgileri (eski sekmeler) -->
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Gerçekleşme Bilgileri</h2>
+            <div class="sekmeler" role="tablist">
+                <button type="button" role="tab" id="sekmeKesin" aria-controls="pnlKesin" aria-selected="true">Kesin Hesap</button>
+                <button type="button" role="tab" id="sekmeTaahhut" aria-controls="pnlTaahhut" aria-selected="false">Taahhüt</button>
+                <button type="button" role="tab" id="sekmeTasinir" aria-controls="pnlTasinir" aria-selected="false" hidden>Taşınır</button>
+            </div>
+
+            <div id="pnlKesin" class="sekme-govde" role="tabpanel" aria-labelledby="sekmeKesin">
+                <div class="tablo-kutu">
+                    <table class="table table-condensed table-bordered detay-tablo" id="tblKesin">
+                        <caption>Kesin Hesap Bilgileri <span class="tertip-kod" data-alan="kesinTertip"></span><span class="birim">TL</span></caption>
+                        <thead><tr><th class="yil">Yıl</th><th>KBÖ</th><th>Yıl Sonu Ödenek</th><th>Gönderilen</th><th>Harcama</th><th>Ödenek Üstü</th></tr></thead>
+                        <tbody data-satirlar="kesin" data-alanlar="kbo,gelenOdenek,tenkis,harcama,odenekUstu"></tbody>
+                    </table>
+                </div>
+                <div class="tablo-kutu">
+                    <table class="table table-condensed table-bordered detay-tablo" id="tblKesinDetay">
+                        <caption>Kesin Hesap Detay Tablosu <span class="tertip-kod" data-alan="kesinDetayTertip"></span><span class="birim">TL</span></caption>
+                        <thead>
+                            <tr><th rowspan="2" class="yil">Yıl</th><th rowspan="2">KBÖ</th><th rowspan="2">Gerçekleşme</th><th rowspan="2">Oranı (%)</th><th colspan="2">Değişim</th></tr>
+                            <tr><th>KBÖ (%)</th><th>Gerçekleşme (%)</th></tr>
+                        </thead>
+                        <tbody data-satirlar="kesinDetay" data-alanlar="kbo,gerceklesme,gerceklesmeOran,degisimKbo,degisimGerceklesme"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="pnlTaahhut" class="sekme-govde" role="tabpanel" aria-labelledby="sekmeTaahhut" hidden>
+                <div class="tablo-kutu">
+                    <table class="table table-condensed table-bordered detay-tablo" id="tblTaahhut">
+                        <caption>Taahhüt Bilgileri<span class="birim">TL</span></caption>
+                        <thead><tr><th class="yil">Yıl</th><th>Onay</th><th>Alım</th><th>Fatura</th><th>Teslim</th><th>Ödeme</th></tr></thead>
+                        <tbody data-satirlar="harcama" data-alanlar="onay,alim,fatura,teslim,odeme"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="pnlTasinir" class="sekme-govde" role="tabpanel" aria-labelledby="sekmeTasinir" hidden>
+                <div class="tablo-kutu">
+                    <table class="table table-condensed table-bordered detay-tablo" id="tblTasinir">
+                        <caption>Taşınır Bilgileri<span class="birim">TL</span></caption>
+                        <thead><tr><th class="yil">Yıl</th><th>Devir</th><th>Giriş</th><th>Çıkış</th><th>Kalan</th></tr></thead>
+                        <tbody data-satirlar="tasinir" data-alanlar="devir,giris,cikis,kalan"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teklif bilgileri (3 yıl) -->
+    <section>
+        <div class="kutu bolum bolum-tavan">
+            <h2 class="bolum-baslik">Teklif Bilgileri</h2>
+            <form id="frmTeklif" novalidate>
+                <table class="table table-condensed table-bordered detay-tablo teklif-tablo">
+                    <thead><tr><th class="yil">Yıl</th><th>Tahmin</th></tr></thead>
+                    <tbody>
+                        @for (int i = 0; i < 3; i++)
+                        {
+                            <tr>
+                                <th scope="row" class="yil"><label for="txtYilDeger@(i + 1)" id="lblTeklifYil@(i + 1)"></label></th>
+                                <td><input type="text" id="txtYilDeger@(i + 1)" class="form-control input-sm sayi" inputmode="decimal" autocomplete="off" /></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tavanfaal.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tertipdetay.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/tertipdetay.js" asp-append-version="true"></script>
+}

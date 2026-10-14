@@ -1,0 +1,116 @@
+@page
+@model TertipTanimFormuModel
+@{
+    ViewData["Title"] = Model.Tur == 2 ? "Gelir Tertipleri" : "Gider Tertipleri";
+    // Geniş ekranda sayfa pencereye sığar; sorgu alanları solda dar sütunda (butcerakam.css), tablo kalan alanı doldurur.
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-faal butce-rakam tertip-tanim" data-tur="@Model.Tur" data-yil="@Model.Yil">
+    <!-- Solda (dar ekranda üstte): sorgu alanları -->
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Sorgu Alanları</h2>
+            <form id="frmSecim" class="secim-satir" novalidate>
+                <label class="secim-alan dar">
+                    <span>Yıl</span>
+                    <input type="number" id="txtYil" class="form-control input-sm" min="2000" step="1" />
+                </label>
+                @foreach (var (alan, kodTur, ad, gider, gelir) in new[] {
+                    ("kur", "1", "Kurumsal", true, true), ("fon", "2", "Fonksiyonel", true, false), ("fin", "3", "Finansman", true, false),
+                    ("eko", "4", "Gider Ekonomik", true, false), ("eko", "5", "Gelir Ekonomik", false, true), ("peb", "14", "Faaliyet", true, true) })
+                {
+                    if ((Model.Tur == 2 && !gelir) || (Model.Tur != 2 && !gider)) { continue; }
+                    <div class="secim-alan kod-alan" data-tur="@kodTur" data-alan="@alan">
+                        <label for="txtKod@(kodTur)">@ad</label>
+                        <div class="input-group input-group-sm">
+                            <input type="text" id="txtKod@(kodTur)" class="form-control" autocomplete="off" placeholder="Tümü" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span><span class="sr-only">@ad kodu seç</span></button>
+                                <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">@ad kodunu temizle</span></button>
+                            </span>
+                        </div>
+                    </div>
+                }
+                <button type="submit" id="btnListele" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                </button>
+                @if (Model.Tur != 2)
+                {
+                    <button type="button" id="btnListeleFon" class="btn btn-default btn-sm" title="Fonksiyonel kodu faaliyetle uyumsuz tertipler">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele (Fon)
+                    </button>
+                }
+            </form>
+        </div>
+    </section>
+
+    <!-- Tertipler -->
+    <section>
+        <div class="kutu bolum bolum-tavan">
+            <h2 class="bolum-baslik">
+                <span>@(Model.Tur == 2 ? "Gelir Tertipleri" : "Gider Tertipleri")</span>
+                <small class="alt-baslik">Adı boş bırakılan tertip kaydedilince silinir.</small>
+            </h2>
+            <div class="btn-toolbar tavan-arac" role="toolbar" aria-label="Tertip işlemleri">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnKaydet" class="btn btn-primary" title="Tablodaki bütün tertipleri kaydeder">
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                    </button>
+                    <button type="button" id="btnKaydetDeg" class="btn btn-default" title="Yalnızca değiştirilen satırları kaydeder">
+                        <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Kaydet (değ.)
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnAdUret" class="btn btn-default" title="Tertip kodlarından ad üretir (faaliyeti eksik tertibe seçili faaliyeti ekler)">
+                        <span class="glyphicon glyphicon-text-size" aria-hidden="true"></span> Ad Üret
+                    </button>
+                    <button type="button" id="btnTertipUret" class="btn btn-default" title="Seçilen kodların altındaki bütün tertipleri tabloya getirir (kaydetmez)">
+                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Tertip Üret
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnIndir" class="btn btn-default" title="Tablodaki tertipleri Excel dosyası olarak indirir">
+                        <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> İndir
+                    </button>
+                    <button type="button" id="btnDosyaYukle" class="btn btn-default" title="Excel'deki tertipleri tabloya getirir (sütunlar: tertip kodu, adı; kaydetmez)">
+                        <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Dosya Yükle
+                    </button>
+                    <input type="file" id="dosyaYukle" accept=".xlsx,.xls" hidden />
+                </div>
+                <ul class="renk-aciklama" aria-label="Renkler">
+                    <li class="acik">Girilebilir</li>
+                    <li class="degisti">Değişti</li>
+                </ul>
+            </div>
+            <div id="grdTertip" class="tavan-grid" aria-label="Tertipler"></div>
+        </div>
+    </section>
+</div>
+
+<!-- Kod seçimi -->
+<dialog id="dlgKod" class="tanim-pencere butce-rakam-agac" aria-labelledby="dlgKodBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKodBaslik">Kod Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde" id="agacKutu"></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tavanfaal.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/butcerakam.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/tertiptanim.js" asp-append-version="true"></script>
+}

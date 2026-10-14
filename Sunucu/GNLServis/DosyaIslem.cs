@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Net;
-using Renci.SshNet.Common;
+//using Renci.SshNet.Common;
 
 namespace TNS
 {
@@ -85,32 +85,34 @@ namespace TNS
                 }
                 else if (tur == DI_TUR.SFTP)
                 {
-                    Renci.SshNet.SftpClient sftp = new Renci.SshNet.SftpClient(dosyaYol, portNo, user, password);
-                    sftp.Connect();
-                    try
-                    {
-                        sftp.ChangeDirectory(okuDir);
-                    }
-                    catch { }
-                    System.IO.StreamWriter sw = new System.IO.StreamWriter(hedefDosyaAd, false, Encoding.UTF8);
-                    bool download = false;
-                    try
-                    {
-                        sftp.DownloadFile(ftpDosyaAd, sw.BaseStream);
-                        download = true;
-                    }
-                    catch (Exception ex) { sonuc.DegerAta(ex.Message); }
-                    sw.Flush();
-                    sw.Close();
-                    if (!download)
-                    {
-                        if (sonuc.islemSonuc)
-                        {
-                            sonuc.DegerAta("Dosya oluşturulamadı!");
-                        }
-                        System.IO.File.Delete(hedefDosyaAd);
-                    }
-                    sftp.Disconnect();
+                    // SFTP (SSH.NET) kaldırıldı: Halkbank'a dosya gönderilmiyor. Eski kod açıklama olarak duruyor.
+                    throw new NotSupportedException("SFTP bağlantısı bu sürümde desteklenmiyor.");
+//                    Renci.SshNet.SftpClient sftp = new Renci.SshNet.SftpClient(dosyaYol, portNo, user, password);
+//                    sftp.Connect();
+//                    try
+//                    {
+//                        sftp.ChangeDirectory(okuDir);
+//                    }
+//                    catch { }
+//                    System.IO.StreamWriter sw = new System.IO.StreamWriter(hedefDosyaAd, false, Encoding.UTF8);
+//                    bool download = false;
+//                    try
+//                    {
+//                        sftp.DownloadFile(ftpDosyaAd, sw.BaseStream);
+//                        download = true;
+//                    }
+//                    catch (Exception ex) { sonuc.DegerAta(ex.Message); }
+//                    sw.Flush();
+//                    sw.Close();
+//                    if (!download)
+//                    {
+//                        if (sonuc.islemSonuc)
+//                        {
+//                            sonuc.DegerAta("Dosya oluşturulamadı!");
+//                        }
+//                        System.IO.File.Delete(hedefDosyaAd);
+//                    }
+//                    sftp.Disconnect();
                 }
             }
             catch (Exception ex)
@@ -257,50 +259,52 @@ namespace TNS
                 }
                 else if (tur == DI_TUR.SFTP)
                 {
-                    System.IO.StreamReader sourceStream = new System.IO.StreamReader(kaynakDosyaAd);
-                    Renci.SshNet.SftpClient sftp = null;
+                    // SFTP (SSH.NET) kaldırıldı: Halkbank'a dosya gönderilmiyor. Eski kod açıklama olarak duruyor.
+                    throw new NotSupportedException("SFTP bağlantısı bu sürümde desteklenmiyor.");
+//                    System.IO.StreamReader sourceStream = new System.IO.StreamReader(kaynakDosyaAd);
+//                    Renci.SshNet.SftpClient sftp = null;
 
-                    try
-                    {
-                        //Renci.SshNet.PrivateKeyFile ObjPrivateKey = new Renci.SshNet.PrivateKeyFile(keyStream);
-                        //if (this.ftpYol == "halkbankftp")
-                        //{
-                        //Renci.SshNet.KeyboardInteractiveAuthenticationMethod kauth = new Renci.SshNet.KeyboardInteractiveAuthenticationMethod(user);
-                        //kauth.AuthenticationPrompt += (sender, e) => HandleKeyEvent(sender, e, password);
-                        //Renci.SshNet.PasswordAuthenticationMethod pauth = new Renci.SshNet.PasswordAuthenticationMethod(user, password);
+//                    try
+//                    {
+//                        //Renci.SshNet.PrivateKeyFile ObjPrivateKey = new Renci.SshNet.PrivateKeyFile(keyStream);
+//                        //if (this.ftpYol == "halkbankftp")
+//                        //{
+//                        //Renci.SshNet.KeyboardInteractiveAuthenticationMethod kauth = new Renci.SshNet.KeyboardInteractiveAuthenticationMethod(user);
+//                        //kauth.AuthenticationPrompt += (sender, e) => HandleKeyEvent(sender, e, password);
+//                        //Renci.SshNet.PasswordAuthenticationMethod pauth = new Renci.SshNet.PasswordAuthenticationMethod(user, password);
 
-                        //Renci.SshNet.ConnectionInfo connectionInfo = new Renci.SshNet.ConnectionInfo(dosyaYol, portNo, user, p); //, pauth, kauth
-                        //connectionInfo.RetryAttempts = 25;
-                        //sftp = new Renci.SshNet.SftpClient(connectionInfo);
+//                        //Renci.SshNet.ConnectionInfo connectionInfo = new Renci.SshNet.ConnectionInfo(dosyaYol, portNo, user, p); //, pauth, kauth
+//                        //connectionInfo.RetryAttempts = 25;
+//                        //sftp = new Renci.SshNet.SftpClient(connectionInfo);
 
-                        //}
-                        //foreach (var d in sftp.ConnectionInfo.Encryptions.Where(p => p.Key != "aes128-cbc").ToList())
-                        //{
-                        //    sftp.ConnectionInfo.Encryptions.Remove(d.Key);
-                        //}
+//                        //}
+//                        //foreach (var d in sftp.ConnectionInfo.Encryptions.Where(p => p.Key != "aes128-cbc").ToList())
+//                        //{
+//                        //    sftp.ConnectionInfo.Encryptions.Remove(d.Key);
+//                        //}
 
-                        sftp = new Renci.SshNet.SftpClient(dosyaYol, portNo, user, password);
-                        sftp.HostKeyReceived += (sender, eventArgs) =>
-                        {
-                            eventArgs.CanTrust = true;
-                        };
+//                        sftp = new Renci.SshNet.SftpClient(dosyaYol, portNo, user, password);
+//                        sftp.HostKeyReceived += (sender, eventArgs) =>
+//                        {
+//                            eventArgs.CanTrust = true;
+//                        };
 
-                        sftp.Connect();
-                        OrtakFonksiyonlar.HataDosyaYaz("ftpexc.txt", "4" + yazDir, false);
-                        sftp.ChangeDirectory(yazDir);
-                        OrtakFonksiyonlar.HataDosyaYaz("ftpexc.txt", "5", false);
-                        sftp.UploadFile(sourceStream.BaseStream, ftpDosyaAd, true);
-                        OrtakFonksiyonlar.HataDosyaYaz("ftpexc.txt", "6", false);
-                        sftp.Disconnect();
-                        OrtakFonksiyonlar.HataDosyaYaz("ftpexc.txt", "7", false);
-                    }
-                    catch (Exception exIc)
-                    {
-                        if (sftp != null) sftp.Disconnect();
-                        sourceStream.Close();
-                        throw new Exception(this.ftpYol + " (" + this.tur + ") bağlantısına dosya (" + kaynakDosyaAd + ") gönderilirlen" + " hata oldu. Oluşan hata: " + exIc.Message);
-                    }
-                    sourceStream.Close();
+//                        sftp.Connect();
+//                        OrtakFonksiyonlar.HataDosyaYaz("ftpexc.txt", "4" + yazDir, false);
+//                        sftp.ChangeDirectory(yazDir);
+//                        OrtakFonksiyonlar.HataDosyaYaz("ftpexc.txt", "5", false);
+//                        sftp.UploadFile(sourceStream.BaseStream, ftpDosyaAd, true);
+//                        OrtakFonksiyonlar.HataDosyaYaz("ftpexc.txt", "6", false);
+//                        sftp.Disconnect();
+//                        OrtakFonksiyonlar.HataDosyaYaz("ftpexc.txt", "7", false);
+//                    }
+//                    catch (Exception exIc)
+//                    {
+//                        if (sftp != null) sftp.Disconnect();
+//                        sourceStream.Close();
+//                        throw new Exception(this.ftpYol + " (" + this.tur + ") bağlantısına dosya (" + kaynakDosyaAd + ") gönderilirlen" + " hata oldu. Oluşan hata: " + exIc.Message);
+//                    }
+//                    sourceStream.Close();
                 }
             }
             catch (Exception ex)
@@ -313,16 +317,16 @@ namespace TNS
                 System.IO.File.Delete(kaynakDosyaAd);
         }
 
-        private static void HandleKeyEvent(Object sender, Renci.SshNet.Common.AuthenticationPromptEventArgs e, string password)
-        {
-            foreach (Renci.SshNet.Common.AuthenticationPrompt prompt in e.Prompts)
-            {
-                if (prompt.Request.IndexOf("Password:", StringComparison.InvariantCultureIgnoreCase) != -1)
-                {
-                    prompt.Response = password;
-                }
-            }
-        }
+//        private static void HandleKeyEvent(Object sender, Renci.SshNet.Common.AuthenticationPromptEventArgs e, string password)
+//        {
+//            foreach (Renci.SshNet.Common.AuthenticationPrompt prompt in e.Prompts)
+//            {
+//                if (prompt.Request.IndexOf("Password:", StringComparison.InvariantCultureIgnoreCase) != -1)
+//                {
+//                    prompt.Response = password;
+//                }
+//            }
+//        }
 
         public TNSDateTime FTPDosyaZamani(string ftpDosyaAd)
         {

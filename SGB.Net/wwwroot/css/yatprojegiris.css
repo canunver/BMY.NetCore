@@ -1,0 +1,393 @@
+/* Yatırım Projeleri (ProjeGiris) ve içinde açılan proje / alt proje sayfaları.
+   ProjeGiris: solda arama ölçütleri ve proje ağacı, sağda seçilenin sayfası (çerçeve). Geniş ekranda sayfa pencereye sığar. */
+
+.yat-giris {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+}
+
+.yat-giris .kutu {
+    padding: 16px;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.yat-giris-sol {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 0;
+}
+
+.yat-giris .tanim-form {
+    --etiket-genislik: 80px;
+}
+
+.yat-giris .kutu.bolum.bolum-arama {
+    --bolum-baslik: #fbefd3;
+    --bolum-govde: #fefaf0;
+    --bolum-vurgu: #b07a00;
+}
+
+.yat-giris .kutu.bolum.bolum-agac {
+    --bolum-baslik: #e2f3e8;
+    --bolum-govde: #f4fbf6;
+    --bolum-vurgu: #2e8b4e;
+    min-height: 220px;
+}
+
+.yat-agac {
+    max-height: 50vh;
+    overflow: auto;
+}
+
+.yat-giris-sag {
+    display: flex;
+    flex-direction: column;
+    min-height: 70vh;
+}
+
+.yat-bos {
+    margin: 8px 0;
+    color: var(--soluk, #6b7380);
+}
+
+.yat-cerceve {
+    flex: 1 1 auto;
+    width: 100%;
+    min-height: 70vh;
+    border: 0;
+    background: #fff;
+    border-radius: 6px;
+}
+
+@media (min-width: 992px) {
+    body.yat-giris-sayfa > .sayfa-icerik {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .yat-giris {
+        flex: 1 1 auto;
+        min-height: 0;
+        grid-template-columns: 360px minmax(0, 1fr);
+        grid-template-rows: minmax(0, 1fr);
+        align-items: stretch;
+    }
+
+    .yat-giris-sol {
+        overflow: auto;
+    }
+
+    .yat-giris .kutu.bolum.bolum-agac {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .yat-agac {
+        flex: 1 1 auto;
+        max-height: none;
+        min-height: 0;
+    }
+
+    .yat-giris-sag,
+    .yat-cerceve {
+        min-height: 0;
+    }
+}
+
+/* Sol bölme sıkı: küçük yazı ve alanlar, düğmeler tek satır; proje ağacına daha çok yer kalır */
+.yat-giris-sol {
+    gap: 10px;
+}
+
+.yat-giris-sol .kutu {
+    padding: 0 12px 10px;
+}
+
+.yat-giris-sol .bolum-baslik {
+    margin: 0 -12px 8px;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.yat-giris-sol .tanim-form {
+    --etiket-genislik: 70px;
+    font-size: 12px;
+}
+
+.yat-giris-sol .tanim-form .form-group {
+    margin-bottom: 4px;
+}
+
+.yat-giris-sol .tanim-form .control-label {
+    font-size: 12px;
+}
+
+.yat-giris-sol .form-control {
+    height: 26px;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.yat-giris-sol .form-control.yil {
+    max-width: 90px;
+}
+
+.yat-giris-sol .yat-arac {
+    flex-wrap: nowrap;
+    gap: 4px;
+    margin: 8px 0 0;
+}
+
+.yat-giris-sol .yat-arac .btn {
+    padding: 2px 7px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.yat-giris-sol .yat-agac {
+    font-size: 13px;
+}
+
+/* ---------------------------------------------------------------- proje / alt proje sayfaları (çerçevede) */
+
+.yat-detay .yat-sekmeler {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.yat-detay .yat-panel[hidden] {
+    display: none;
+}
+
+.yat-detay .tanim-form {
+    --etiket-genislik: 170px;
+    max-width: 900px;
+}
+
+.yat-detay .kutu.bolum {
+    margin-bottom: 16px;
+    padding: 0 16px 12px;
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.yat-detay .kutu.bolum.bolum-ilce {
+    --bolum-baslik: #e2f3e8;
+    --bolum-govde: #f4fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.yat-detay .kutu.bolum.bolum-not,
+.yat-detay .kutu.bolum.bolum-tertip {
+    --bolum-baslik: #fbefd3;
+    --bolum-govde: #fefaf0;
+    --bolum-vurgu: #b07a00;
+}
+
+.yat-detay .kutu.bolum.bolum-diger {
+    --bolum-baslik: #ece6f7;
+    --bolum-govde: #f8f5fd;
+    --bolum-vurgu: #6b4fb3;
+}
+
+.yat-detay .yil-aralik {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.yat-detay .yil-aralik .form-control {
+    max-width: 110px;
+}
+
+.yat-detay .secim-satir {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 16px;
+}
+
+.yat-detay .secim-satir .radio-inline,
+.yat-detay .secim-satir .checkbox-inline {
+    margin: 0;
+    padding-top: 0;
+}
+
+.yat-detay .ek-alan {
+    display: flex;
+    gap: 6px;
+}
+
+.yat-detay .ek-alan .form-control {
+    flex: 1 1 auto;
+}
+
+.yat-detay .ilce-arac {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.yat-detay .ilce-arac select {
+    width: auto;
+    min-width: 180px;
+}
+
+.yat-detay .bolge-liste {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2px 12px;
+    max-height: 160px;
+    overflow: auto;
+    padding: 6px 8px;
+    border: 1px solid var(--cizgi);
+    border-radius: 4px;
+    background: #fff;
+}
+
+.yat-detay .bolge-liste label {
+    margin: 0;
+    font-weight: normal;
+}
+
+.yat-detay .tertip-liste {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.yat-detay .tertip-liste li {
+    padding: 2px 0;
+}
+
+.yat-detay .tertip-liste .kod {
+    font-family: var(--font-mono, monospace);
+    margin-right: 8px;
+}
+
+.yat-detay .yat-cerceve {
+    min-height: calc(100vh - 120px);
+}
+
+.yat-detay .dropdown-menu {
+    max-height: 60vh;
+    overflow: auto;
+}
+
+/* Genel Bilgiler sekmesi sıkı: küçük yazı, kısa alanlar, az boşluk */
+#sekGenel .kutu.bolum {
+    margin-bottom: 10px;
+    padding: 0 12px 8px;
+}
+
+#sekGenel .bolum-baslik {
+    margin: 0 -12px 8px;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+#sekGenel .tanim-form {
+    --etiket-genislik: 150px;
+    font-size: 12px;
+}
+
+#sekGenel .tanim-form .form-group {
+    margin-bottom: 4px;
+}
+
+#sekGenel .control-label,
+#sekGenel .radio-inline,
+#sekGenel .checkbox-inline,
+#sekGenel .bolge-liste label,
+#sekGenel .form-control-static {
+    font-size: 12px;
+}
+
+#sekGenel .form-control-static {
+    min-height: 0;
+    padding: 2px 0;
+}
+
+#sekGenel .form-control {
+    height: 26px;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+#sekGenel textarea.form-control {
+    height: auto;
+}
+
+#sekGenel .ek-alan .btn {
+    padding: 2px 8px;
+    font-size: 12px;
+}
+
+#sekGenel .yat-arac .btn {
+    padding: 3px 9px;
+    font-size: 12px;
+}
+
+#sekGenel .ilce-arac {
+    margin-bottom: 6px;
+}
+
+#sekGenel .ilce-arac .btn {
+    padding: 2px 8px;
+    font-size: 12px;
+}
+
+#sekGenel .yat-grid.kisa {
+    height: 220px;
+}
+
+/* Amaç / İlgililer / Gerekçe sayfaları */
+.yat-bilgi .tanim-form {
+    --etiket-genislik: 220px;
+    max-width: 1100px;
+}
+
+.yat-bilgi .form-group.ust-hizali textarea {
+    min-height: 70px;
+}
+
+.yat-bilgi .ilgili-izgara {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.yat-bilgi .ilgili-izgara .tanim-form {
+    --etiket-genislik: 90px;
+}
+
+.yat-bilgi .kutu.bolum.bolum-hazirlayan { --bolum-baslik: #e3edfa; --bolum-govde: #f5f8fd; --bolum-vurgu: #2f6fc4; }
+.yat-bilgi .kutu.bolum.bolum-yurutecek  { --bolum-baslik: #e2f3e8; --bolum-govde: #f4fbf6; --bolum-vurgu: #2e8b4e; }
+.yat-bilgi .kutu.bolum.bolum-koordinator { --bolum-baslik: #ece6f7; --bolum-govde: #f8f5fd; --bolum-vurgu: #6b4fb3; }
+.yat-bilgi .kutu.bolum.bolum-plan       { --bolum-baslik: #fbefd3; --bolum-govde: #fefaf0; --bolum-vurgu: #b07a00; }
+
+/* Karakteristik penceresi: ek bilgi girilebilen / girilemeyen hücreler (eski renkler) */
+.yat-karakteristik {
+    width: min(640px, 96vw);
+}
+
+.yat-karakteristik .hucre-acik {
+    background: #fcfcd4;
+}
+
+.yat-karakteristik .hucre-kapali {
+    background: #fde3d8;
+}
+
+.yat-tasi {
+    width: min(640px, 96vw);
+}

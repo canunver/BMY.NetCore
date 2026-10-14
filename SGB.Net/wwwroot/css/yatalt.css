@@ -1,0 +1,174 @@
+/* Yatırım Projeleri alt sayfaları (ProjeDetay / AltProjeDetay sekmelerinde iframe olarak açılan AltProjeYollukPlan,
+   YATYetkiGirisForm, ProjeDosyaEkle, AltProjeDetayProgramiForm): tek bölüm, renkli başlıklı kutu (yatproje.css'teki
+   .bolum görünümü), araç satırı ve kalan alanı dolduran tablo. Sayfa tanim.css'in tanim-sayfa yerleşimini kullanır. */
+
+.tanim.yatalt {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.yatalt .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding-top: 0;
+    background: var(--bolum-govde);
+}
+
+.yatalt .kutu.bolum.bolum-yetki {
+    --bolum-baslik: #e2f3e8;
+    --bolum-govde: #f4fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.yatalt .kutu.bolum.bolum-dosya {
+    --bolum-baslik: #fbefd3;
+    --bolum-govde: #fefaf0;
+    --bolum-vurgu: #b07a00;
+}
+
+.yatalt .kutu.bolum.bolum-program {
+    --bolum-baslik: #ece6f7;
+    --bolum-govde: #f8f5fd;
+    --bolum-vurgu: #6b4fb3;
+}
+
+.yatalt .bolum-baslik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 16px;
+    margin: 0 -16px 12px;
+    padding: 9px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+/* Başlıktaki toplam (detay programda ödenek toplamı) */
+.yatalt .bolum-baslik .baslik-toplam {
+    margin-left: auto;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.yatalt .bolum-baslik .baslik-toplam output {
+    display: inline-block;
+    min-width: 120px;
+    margin-left: 6px;
+    padding: 1px 8px;
+    font-weight: 700;
+    text-align: right;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 4px;
+}
+
+.yatalt .yatalt-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 10px;
+}
+
+.yatalt .yatalt-arac .btn,
+.yatalt .yatalt-arac .btn-group {
+    margin-left: 0;
+}
+
+.yatalt .yatalt-arac .yatalt-not {
+    margin: 0;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.yatalt-grid {
+    height: calc(100vh - 140px);
+    min-height: 260px;
+}
+
+.yatalt-grid .sayi {
+    text-align: right;
+}
+
+.yatalt-grid .ag-header-cell.sayi .ag-header-cell-label {
+    justify-content: flex-end;
+}
+
+.yatalt-grid .girilir {
+    background: #fff;
+}
+
+.yatalt-grid .ag-cell .ag-checkbox-input-wrapper {
+    margin: 0 auto;
+}
+
+.yatalt-grid .islem .btn {
+    margin-right: 4px;
+}
+
+@media (min-width: 992px) {
+    .yatalt .kutu.bolum {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .yatalt .bolum-baslik {
+        margin: 0 -12px 10px;
+        padding: 9px 12px;
+    }
+
+    .yatalt-grid {
+        flex: 1 1 auto;
+        height: auto;
+        min-height: 200px;
+    }
+}
+
+/* Kullanıcı Seç penceresi (eski ListeKullaniciSec) */
+#dlgKullaniciSec .tanim-liste {
+    height: min(40vh, 320px);
+    margin-top: 10px;
+    overflow-y: auto;
+    border: 1px solid var(--cizgi);
+    border-radius: 4px;
+}
+
+#dlgKullaniciSec .tanim-liste > li {
+    padding: 5px 8px;
+}
+
+#dlgKullaniciSec .tanim-liste label {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    margin: 0;
+    font-weight: 400;
+}
+
+#dlgKullaniciSec .tanim-liste .ek {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--soluk);
+    white-space: nowrap;
+}
+
+/* Yeni Dosya Ekle penceresi */
+#dlgDosyaEkle .tanim-form {
+    --etiket-genislik: 90px;
+}
+
+#dlgDosyaEkle .form-control.dar {
+    max-width: 120px;
+}
+
+#dlgYapistir textarea {
+    font-family: Consolas, monospace;
+    font-size: 12px;
+}

@@ -1,0 +1,206 @@
+@page
+@model YatProjeYonetimModel
+@{
+    ViewData["Title"] = "Yatırım Projeleri Yönetim";
+    // Eski YATTanimSozluk.aspx?tur=1/2/3 sekmeleri: aynı görünüm, farklı sözlük.
+    var sozlukler = new[] { (tur: 1, ad: "Projeler", tekil: "Proje"), (tur: 2, ad: "Alt Projeler", tekil: "Alt Proje"), (tur: 3, ad: "Kaynaklar", tekil: "Kaynak") };
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="yat-proje">
+    <ul class="nav nav-tabs yat-sekmeler" role="tablist">
+        <li role="presentation" class="active"><a href="#sekKopya" role="tab" aria-controls="sekKopya" aria-selected="true">Aşama Kopyalama</a></li>
+        <li role="presentation"><a href="#sekOnay" role="tab" aria-controls="sekOnay" aria-selected="false">Onaylama</a></li>
+        @foreach (var s in sozlukler)
+        {
+            <li role="presentation"><a href="#sekSozluk@(s.tur)" role="tab" aria-controls="sekSozluk@(s.tur)" aria-selected="false">@s.ad</a></li>
+        }
+    </ul>
+
+    <!-- Aşama Kopyalama (eski YatProjeYonetim ilk sekmesi) -->
+    <div id="sekKopya" class="yat-panel" role="tabpanel">
+        <div class="tanim yat-kopya">
+            <section>
+                <div class="kutu bolum bolum-proje">
+                    <h2 class="bolum-baslik">Kopyalanacak Projeler</h2>
+                    <div class="btn-toolbar yat-arac" role="toolbar">
+                        <button type="button" id="btnProjeYenile" class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Projeleri Yenile
+                        </button>
+                        <span class="tanim-not duz">Projeler kaynak yıl ve aşamaya göre listelenir.</span>
+                    </div>
+                    <div id="grdProjeler" class="yat-grid" aria-label="Projeler"></div>
+                </div>
+            </section>
+            <section>
+                <div class="kutu bolum bolum-kopya">
+                    <h2 class="bolum-baslik">Aşama Kopyalama</h2>
+                    <form id="frmKopya" class="tanim-form kopya-form" novalidate>
+                        <fieldset class="yat-grup grup-kaynak">
+                            <legend>Kaynak</legend>
+                            <div class="form-group">
+                                <label class="control-label" for="txtKaynakYil">Yıl</label>
+                                <div><input type="number" id="txtKaynakYil" class="form-control yil" min="2000" step="1" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="ddlKaynakAsama">Aşama</label>
+                                <div><select id="ddlKaynakAsama" class="form-control" data-asama></select></div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="yat-grup grup-hedef">
+                            <legend>Hedef</legend>
+                            <div class="form-group">
+                                <label class="control-label" for="txtHedefYil">Yıl</label>
+                                <div><input type="number" id="txtHedefYil" class="form-control yil" min="2000" step="1" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="ddlHedefAsama">Aşama</label>
+                                <div><select id="ddlHedefAsama" class="form-control" data-asama></select></div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="yat-grup grup-secim">
+                            <legend>Kopyalanacaklar</legend>
+                            <div class="secim-liste">
+                                <label class="checkbox-inline"><input type="checkbox" data-secim="0" /> Projeler</label>
+                                <label class="checkbox-inline"><input type="checkbox" data-secim="1" /> Alt Projeler</label>
+                                <label class="checkbox-inline"><input type="checkbox" data-secim="2" /> Kaynaklar</label>
+                                <label class="checkbox-inline"><input type="checkbox" data-secim="3" /> Kaynak rakamları</label>
+                                <label class="checkbox-inline"><input type="checkbox" data-secim="4" /> Detay Programlar</label>
+                                <label class="checkbox-inline"><input type="checkbox" data-secim="5" /> Yolluklar</label>
+                            </div>
+                        </fieldset>
+                        <div class="btn-toolbar yat-arac" role="toolbar">
+                            <button type="button" id="btnKopyala" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Kopyala
+                            </button>
+                        </div>
+                    </form>
+                    <div id="kopyaSonuc" class="alert yat-sonuc" role="status" hidden></div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Onaylama (eski YATProjeOnay.aspx) -->
+    <div id="sekOnay" class="yat-panel" role="tabpanel" hidden>
+        <div class="tanim yat-onay">
+            <section>
+                <div class="kutu bolum bolum-tanim">
+                    <h2 class="bolum-baslik">Proje Tanımları (Yıl ve Aşama)</h2>
+                    <form class="tanim-form onay-form" data-onay="tanim" novalidate>
+                        <div class="form-group">
+                            <label class="control-label" for="txtOnayYil">Yıl</label>
+                            <div><input type="number" id="txtOnayYil" class="form-control yil" min="2000" step="1" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="ddlOnayAsama">Aşama</label>
+                            <div><select id="ddlOnayAsama" class="form-control" data-asama></select></div>
+                        </div>
+                        <div class="btn-toolbar yat-arac" role="toolbar">
+                            <button type="button" class="btn btn-success btn-sm" data-yer="1"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> Veri Girişine Aç</button>
+                            <button type="button" class="btn btn-warning btn-sm" data-yer="2"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Kullanıcılara Kapat</button>
+                            <button type="button" class="btn btn-danger btn-sm" data-yer="3"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Herkese Kapat</button>
+                        </div>
+                    </form>
+                    <div id="grdOnayTanim" class="yat-grid kisa" aria-label="Proje tanımı onay durumları"></div>
+                </div>
+            </section>
+            <section>
+                <div class="kutu bolum bolum-yil">
+                    <h2 class="bolum-baslik">Proje Yıl Bilgileri</h2>
+                    <form class="tanim-form onay-form" data-onay="yil" novalidate>
+                        <div class="form-group">
+                            <label class="control-label" for="txtOnayYil2">Yıl</label>
+                            <div><input type="number" id="txtOnayYil2" class="form-control yil" min="2000" step="1" /></div>
+                        </div>
+                        <div class="btn-toolbar yat-arac" role="toolbar">
+                            <button type="button" class="btn btn-success btn-sm" data-yer="4"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> Veri Girişine Aç</button>
+                            <button type="button" class="btn btn-warning btn-sm" data-yer="5"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Kullanıcılara Kapat</button>
+                            <button type="button" class="btn btn-danger btn-sm" data-yer="6"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Herkese Kapat</button>
+                        </div>
+                    </form>
+                    <div id="grdOnayYil" class="yat-grid kisa" aria-label="Proje yılı onay durumları"></div>
+                </div>
+            </section>
+        </div>
+        <p id="onayNot" class="tanim-not duz yat-not" hidden>Veri girişini yalnızca sistem yöneticisi açıp kapatabilir.</p>
+    </div>
+
+    <!-- Projeler / Alt Projeler / Kaynaklar sözlükleri (eski YATTanimSozluk.aspx?tur=1/2/3) -->
+    @foreach (var s in sozlukler)
+    {
+        <div id="sekSozluk@(s.tur)" class="yat-panel" role="tabpanel" data-sozluk="@s.tur" data-tekil="@s.tekil" hidden>
+            <div class="kutu bolum bolum-sozluk">
+                <h2 class="bolum-baslik">@s.ad</h2>
+                <form class="yat-sozluk-arac" novalidate>
+                    <button type="button" class="btn btn-default btn-sm" data-islem="ekle">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekle
+                    </button>
+                    <label class="secim-alan">
+                        <span>Yıl</span>
+                        <input type="number" class="form-control input-sm yil" min="2000" step="1" data-alan="yil" />
+                    </label>
+                    <label class="secim-alan">
+                        <span>Aşama</span>
+                        <select class="form-control input-sm" data-alan="asama" data-asama></select>
+                    </label>
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm" data-islem="kopyala">
+                        <span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Kopyala
+                    </button>
+                </form>
+                <div class="yat-grid uzun" data-grid aria-label="@s.ad"></div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Onay penceresi (kopyalama ve veri girişi açma / kapatma) -->
+<dialog id="dlgOnay" class="tanim-pencere" aria-labelledby="dlgOnayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOnayBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="onayMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnOnayla" class="btn btn-primary btn-sm">Tamam</button>
+    </div>
+</dialog>
+
+<!-- Sözlüğe ad ekleme (eski "İsim giriş" kutusu) -->
+<dialog id="dlgEkle" class="tanim-pencere" aria-labelledby="dlgEkleBaslik">
+    <form id="frmEkle" method="dialog" novalidate>
+        <div class="pencere-baslik">
+            <h2 id="dlgEkleBaslik">Yeni Kayıt</h2>
+            <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="pencere-govde">
+            <label for="txtEkleAd">Eklenecek bilginin adını giriniz:</label>
+            <textarea id="txtEkleAd" class="form-control" rows="3" maxlength="1000"></textarea>
+        </div>
+        <div class="pencere-alt">
+            <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+            <button type="submit" id="btnEkleKaydet" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekle
+            </button>
+        </div>
+    </form>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/yatproje.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/yatproje.js" asp-append-version="true"></script>
+}

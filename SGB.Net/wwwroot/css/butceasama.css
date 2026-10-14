@@ -1,0 +1,117 @@
+/* Bütçe Aşama İşlemleri: iki bölüm (Ödenek Onaylama, Aşama Ödeneklerini Kopyalama) renkli başlıklı ayrı kutular;
+   kopyalamada Kaynak ve Hedef de kendi renkleriyle ayrılır (Organizasyon Şeması'ndaki bölüm görünümüyle aynı). */
+
+.butce-asama .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding-top: 0;
+    background: var(--bolum-govde);
+}
+
+.butce-asama .kutu.bolum.bolum-kopya {
+    --bolum-baslik: #fbefd3;
+    --bolum-govde: #fefaf0;
+    --bolum-vurgu: #b07a00;
+}
+
+.butce-asama .bolum-baslik {
+    flex: none;
+    margin: 0 -16px 14px;
+    padding: 9px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.butce-asama .tanim-arama .form-control.yil,
+.butce-asama .tanim-form .form-control.yil {
+    max-width: 110px;
+}
+
+.butce-asama .tanim-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.butce-asama .tanim-arac .btn {
+    margin-left: 0;
+}
+
+.butce-asama .tanim-arac .tanim-not {
+    margin: 0;
+    font-size: 12px;
+}
+
+/* Durum sütunundaki seçim kutusu satıra sığar */
+.butce-asama .durum-sec {
+    height: 24px;
+    margin-top: 2px;
+    padding: 2px 4px;
+    font-size: 12px;
+}
+
+/* Kopyalama formu: Kaynak ve Hedef ayrı renkli gruplar */
+.butce-asama .kopya-form {
+    --etiket-genislik: 110px;
+    max-width: 640px;
+}
+
+.butce-asama .kopya-grup {
+    margin: 0 0 14px;
+    padding: 4px 12px 6px;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: inset 4px 0 0 var(--grup-vurgu);
+}
+
+.butce-asama .kopya-kaynak { --grup-vurgu: #2e8b4e; }
+.butce-asama .kopya-hedef  { --grup-vurgu: #6b4fb3; }
+
+.butce-asama .kopya-grup legend {
+    width: auto;
+    margin: 0 0 6px;
+    padding: 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--grup-vurgu);
+    border: 0;
+}
+
+.butce-asama .kopya-grup .tanim-not {
+    margin: 4px 0 0;
+    font-size: 12px;
+}
+
+.butce-asama .kopya-tuslar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.butce-asama .kopya-tuslar .btn {
+    margin-left: 0;
+}
+
+.butce-asama .kopya-sonuc {
+    max-width: 640px;
+    margin-top: 14px;
+    white-space: pre-line;
+}
+
+@media (min-width: 992px) {
+    .tanim.butce-asama {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .butce-asama .bolum-baslik {
+        margin: 0 -12px 12px;
+        padding: 9px 12px;
+    }
+}

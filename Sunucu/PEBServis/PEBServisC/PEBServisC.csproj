@@ -19,9 +19,10 @@
     <ProjectReference Include="..\PEBServisI\PEBServisI.csproj" />
   </ItemGroup>
 
-  <!-- lpsolve55.cs'nin cagirdigi yerel kitaplik (32/64 bit uyumu calisma zamaninda denenmedi) -->
+  <!-- lpsolve55.dll (lpsolve55.cs'nin cagirdigi yerel kitaplik) yayindan cikarildi; kullanan PEBLPUret.Model.CozKurum aciklama yapildi.
   <ItemGroup>
     <None Include="..\..\OrtakDLL\lpsolve55.dll" Link="lpsolve55.dll" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
+  -->
 
 </Project>

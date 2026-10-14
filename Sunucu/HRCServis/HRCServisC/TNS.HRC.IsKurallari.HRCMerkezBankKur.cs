@@ -410,7 +410,7 @@ namespace TNS.HRC.IsKurallari
             kur.kurTarih = new TNSDateTime(okunacakGun.Oku());
             if (!string.IsNullOrWhiteSpace(jsonData))
             {
-                AB_KurYapi[] gelenler = Newtonsoft.Json.JsonConvert.DeserializeObject<AB_KurYapi[]>(jsonData);
+                AB_KurYapi[] gelenler = TNS.JsonIslem.Oku<AB_KurYapi[]>(jsonData);
                 foreach (AB_KurYapi node1 in gelenler)
                 {
                     if (node1.isoA3Code == "TRY")
@@ -472,7 +472,7 @@ namespace TNS.HRC.IsKurallari
             kur.kurTarih = new TNSDateTime(okunacakGun.Oku());
             if (!string.IsNullOrWhiteSpace(jsonData))
             {
-                ECB_KurYapi gelen = Newtonsoft.Json.JsonConvert.DeserializeObject<ECB_KurYapi>(jsonData);
+                ECB_KurYapi gelen = TNS.JsonIslem.Oku<ECB_KurYapi>(jsonData);
                 List<MerkezBankasiKurDetaySinif> l = new List<MerkezBankasiKurDetaySinif>();
                 kur.kurTarih = new TNSDateTime(gelen.date);
                 DovizDetayEkle(kur, l, "TRY", gelen.rates.TRY);

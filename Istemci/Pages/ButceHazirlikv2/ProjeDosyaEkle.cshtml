@@ -1,0 +1,84 @@
+@page
+@model ProjeDosyaEkleModel
+@{
+    // ProjeDetay / AltProjeDetay sekmesinde ?menuYok=1&projeKodu=&altProjeKodu=&yil=&senaryoKod= ile açılır.
+    ViewData["Title"] = "Proje Dosya Ekleme Formu";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim yatalt">
+    <section>
+        <div class="kutu bolum bolum-dosya">
+            <h2 class="bolum-baslik">Proje Dosyaları</h2>
+            <div class="btn-toolbar yatalt-arac" role="toolbar" aria-label="Dosya işlemleri">
+                <button type="button" id="btnDosyaEkle" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Dosya Ekle
+                </button>
+            </div>
+            <div id="grdDosya" class="yatalt-grid" aria-label="Proje dosyaları"></div>
+        </div>
+    </section>
+</div>
+
+<!-- Yeni Dosya Ekle (eski winFileUpload: Dosya Yükleme Ekranı) -->
+<dialog id="dlgDosyaEkle" class="tanim-pencere" aria-labelledby="dlgDosyaEkleBaslik">
+    <form id="frmDosyaEkle" novalidate>
+        <div class="pencere-baslik">
+            <h2 id="dlgDosyaEkleBaslik">Dosya Yükleme Ekranı</h2>
+            <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="pencere-govde">
+            <div class="tanim-form">
+                <div class="form-group">
+                    <label class="control-label" for="txtAciklama">Açıklama</label>
+                    <div><input type="text" id="txtAciklama" class="form-control" maxlength="500" required /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtSira">Sıra</label>
+                    <div><input type="text" id="txtSira" class="form-control dar" maxlength="20" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="filDosya">Dosya</label>
+                    <div><input type="file" id="filDosya" class="form-control" required /></div>
+                </div>
+            </div>
+            <p id="dosyaNot" class="help-block"></p>
+        </div>
+        <div class="pencere-alt">
+            <button type="reset" class="btn btn-default btn-sm">Temizle</button>
+            <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+            <button type="submit" id="btnSakla" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Sakla
+            </button>
+        </div>
+    </form>
+</dialog>
+
+<!-- Onay sorusu -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/yatalt.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/yatalt-dosya.js" asp-append-version="true"></script>
+}

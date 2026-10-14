@@ -1,0 +1,192 @@
+@page
+@model YATIzlemeDegerlendirmeModel
+@{
+    ViewData["Title"] = "Yatırım Programı İzleme ve Değerlendirme";
+    // Eski cmbAsama seçenekleri (değer = aşama no).
+    var asamalar = new[]
+    {
+        (1, "Birim Teklifi (Yıl Sonu)"), (2, "Kabul Edilen (Yıl Sonu)"),
+        (3, "Birim Teklifi (3 Ay- Mart Sonu)"), (4, "Kabul Edilen (3 Ay- Mart Sonu)"),
+        (5, "Birim Teklifi (6 Ay- Haziran Sonu)"), (6, "Kabul Edilen (6 Ay- Haziran Sonu)"),
+        (7, "Birim Teklifi (9 Ay- Eylül Sonu)"), (8, "Kabul Edilen (9 Ay- Eylül Sonu)")
+    };
+    // Tamamlama Raporu alanları: (kimlik, etiket) — eski taAmac1 ... taDersler.
+    var tamamlama = new[]
+    {
+        ("amac1", "Proje Amacı (Baş.)"), ("amac2", "Proje Amacı (Son)"),
+        ("fiziki1", "Fiziki Hedefi (Baş.)"), ("fiziki2", "Fiziki Hedefi (Son)"),
+        ("cikti", "Projenin Çıktısı/Sonucu (Ürünü)"),
+        ("fayda", "Projeden Beklenen ve Elde Edilen Faydalar"),
+        ("eksen", "Projenin Kalkınma Eksenleri ve Sektörel Plan Hedefleriyle İlişkisi ve Katkısı"),
+        ("sorunlar", "Yapılan İşler, Uygulamada Karşılaşılan Sorunlar, Nedenleri ve Nasıl Çözüldüğü"),
+        ("dersler", "Geleceğe İlişkin Çıkarılan Dersler")
+    };
+    // Genel Değerlendirme sekmeleri: (kimlik, sekme adı, başlık) — eski heFinansKaynak ... heSorunCozum.
+    var genel = new[]
+    {
+        ("finansKaynak", "Finans Kaynak", "Kuruluşun Yatırımlarının Finansman Kaynakları"),
+        ("hizmetKapasitesi", "Mevcut Kapasite", "Kuruluşun Mevcut Üretim / Hizmet Kapasitesi"),
+        ("kapasiteArtisi", "İyileşme", "Yatırımlarla Hedeflenen ve Gerçekleşen Kapasite Artışı/Kalite Artışı/İyileşme"),
+        ("yatirimUygulamalari", "Yat. Uygulamaları", "Yatırım Uygulamaları"),
+        ("notlar", "Notlar", "Notlar"),
+        ("sorunCozum", "Çözüm Önerileri", "Önemli Sorunlar ve Çözüm Önerileri")
+    };
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="yat-izleme">
+    <section class="kutu bolum bolum-izleme">
+        <h2 class="bolum-baslik">
+            Program ve Gerçekleşme Durumu
+            <span id="onayEtiket" class="label label-success" hidden>Onaylı</span>
+        </h2>
+        <div class="izleme-arac" role="toolbar" aria-label="Aşama, raporlar ve onay">
+            <label class="asama-alan" for="ddlAsama">
+                <span>Aşama:</span>
+                <select id="ddlAsama" class="form-control input-sm">
+                    @foreach (var a in asamalar)
+                    {
+                        <option value="@a.Item1">@a.Item2</option>
+                    }
+                </select>
+            </label>
+            <button type="button" id="btnOku" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Oku
+            </button>
+            <div class="btn-group btn-group-sm" role="group" aria-label="Raporlar">
+                <button type="button" class="btn btn-default" data-rapor="14" title="Projenin izleme ve değerlendirme raporu">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Prj. Yazdır
+                </button>
+                <button type="button" class="btn btn-default" data-rapor="16" title="Birimin izleme ve değerlendirme raporu">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Birim Yazdır
+                </button>
+            </div>
+            <div class="btn-group btn-group-sm" role="group" aria-label="Onay">
+                <button type="button" id="btnOnayla" class="btn btn-success" hidden>
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Onayla
+                </button>
+                <button type="button" id="btnOnayKaldir" class="btn btn-warning" hidden>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Onay Kaldır
+                </button>
+            </div>
+            @if (Model.Yonetici)
+            {
+                <button type="button" id="btnGenelGoster" class="btn btn-default btn-sm" title="Aşamanın genel değerlendirmesi (bütün projeler)">
+                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Genel Değerlendirme
+                </button>
+            }
+        </div>
+
+        <ul class="nav nav-tabs izleme-sekmeler" role="tablist">
+            <li role="presentation" class="active"><a href="#sekPFG" role="tab" aria-controls="sekPFG" aria-selected="true">Pr. ve Gerç. Durumu</a></li>
+            <li role="presentation"><a href="#sekTamam" role="tab" aria-controls="sekTamam" aria-selected="false">Tamamlama Raporu</a></li>
+        </ul>
+
+        <!-- Pr. ve Gerç. Durumu: ödenek tablosu (eski dfBilgi) ve değerlendirme metni (eski txtGerekce) -->
+        <div id="sekPFG" class="izleme-panel" role="tabpanel">
+            <div class="izleme-alt-arac">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+            </div>
+            <div class="odenek-alan">
+                <table class="odenek-tablo" aria-label="Ödenek durumu">
+                    <thead>
+                        <tr>
+                            <th scope="col">PROGRAM<br />ÖDENEĞİ (K.B.Ö.)<br />(1)</th>
+                            <th scope="col">REVİZE<br />ÖDENEK<br />(2)</th>
+                            <th scope="col">HARCANAN<br />ÖDENEK<br />(3)</th>
+                            <th scope="col">HARCAMA <br />ORANI (%)<br />(3/2)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="odnProgram">-</td>
+                            <td id="odnRevize">-</td>
+                            <td id="odnHarcanan">-</td>
+                            <td id="odnOran">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <label for="txtGerekce" class="sr-only">Program ve gerçekleşme durumu</label>
+            <textarea id="txtGerekce"></textarea>
+        </div>
+
+        <!-- Tamamlama Raporu -->
+        <div id="sekTamam" class="izleme-panel" role="tabpanel" hidden>
+            <div class="izleme-alt-arac">
+                <button type="button" id="btnKaydetTamam" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+            </div>
+            <form id="frmTamam" class="tanim-form izleme-form" novalidate>
+                @foreach (var t in tamamlama)
+                {
+                    <div class="form-group ust-hizali">
+                        <label class="control-label" for="ta_@t.Item1">@t.Item2</label>
+                        <textarea id="ta_@t.Item1" data-alan="@t.Item1" class="form-control" rows="5"></textarea>
+                    </div>
+                }
+            </form>
+        </div>
+    </section>
+</div>
+
+@if (Model.Yonetici)
+{
+    <!-- Genel Değerlendirme (eski wndGenelDegerlendirme): aşamanın bütün projeler için genel metinleri -->
+    <dialog id="dlgGenel" class="tanim-pencere izleme-genel" aria-labelledby="dlgGenelBaslik">
+        <div class="pencere-baslik">
+            <h2 id="dlgGenelBaslik">Genel Değerlendirme <small id="genelAsama"></small></h2>
+            <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="pencere-govde">
+            <div class="izleme-alt-arac">
+                <button type="button" id="btnGenelKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+                <div class="btn-group btn-group-sm rapor-menu" role="group">
+                    <button type="button" id="btnGenelYazdir" class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="btnGenelYazdir">
+                        <li><button type="button" data-rapor="15">Genel Değerlendirme</button></li>
+                        <li><button type="button" data-rapor="17">Sektörlere Göre</button></li>
+                    </ul>
+                </div>
+            </div>
+            <ul class="nav nav-tabs izleme-sekmeler" role="tablist">
+                @for (int i = 0; i < genel.Length; i++)
+                {
+                    <li role="presentation" class="@(i == 0 ? "active" : "")"><a href="#gnl_@genel[i].Item1" role="tab" aria-controls="gnl_@genel[i].Item1" aria-selected="@(i == 0 ? "true" : "false")">@genel[i].Item2</a></li>
+                }
+            </ul>
+            @for (int i = 0; i < genel.Length; i++)
+            {
+                <div id="gnl_@genel[i].Item1" class="izleme-panel" role="tabpanel" hidden="@(i != 0)">
+                    <label for="he_@genel[i].Item1" class="genel-etiket">@genel[i].Item3</label>
+                    <textarea id="he_@genel[i].Item1" data-alan="@genel[i].Item1"></textarea>
+                </div>
+            }
+        </div>
+        <div class="pencere-alt">
+            <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        </div>
+    </dialog>
+}
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/jodit/jodit.min.css" />
+    <link rel="stylesheet" href="~/css/yatizleme.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/jodit/jodit.min.js"></script>
+    <script src="~/js/editor.js" asp-append-version="true"></script>
+    <script src="~/js/yatizleme.js" asp-append-version="true"></script>
+}

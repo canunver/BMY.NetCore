@@ -1,0 +1,173 @@
+/* Yatırım Projeleri Yönetim: üstte sekmeler; her sekmede bölümler renkli başlıklı ayrı kutular
+   (Bütçe Aşama İşlemleri'ndeki bölüm görünümüyle aynı). Kopyalamada Kaynak, Hedef ve Kopyalanacaklar kendi renkleriyle ayrılır. */
+
+.yat-sekmeler {
+    margin-bottom: 12px;
+}
+
+.yat-sekmeler > li > a {
+    font-weight: 600;
+}
+
+.yat-proje .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding-top: 0;
+    background: var(--bolum-govde);
+}
+
+.yat-proje .kutu.bolum.bolum-kopya,
+.yat-proje .kutu.bolum.bolum-yil {
+    --bolum-baslik: #fbefd3;
+    --bolum-govde: #fefaf0;
+    --bolum-vurgu: #b07a00;
+}
+
+.yat-proje .kutu.bolum.bolum-sozluk {
+    --bolum-baslik: #e2f3e8;
+    --bolum-govde: #f4fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.yat-proje .bolum-baslik {
+    margin: 0 -16px 14px;
+    padding: 9px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.yat-proje .form-control.yil {
+    max-width: 110px;
+}
+
+.yat-proje .yat-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 12px;
+}
+
+.yat-proje .yat-arac .btn {
+    margin-left: 0;
+}
+
+.yat-proje .yat-arac .tanim-not,
+.yat-proje .yat-not {
+    margin: 0;
+    font-size: 12px;
+}
+
+.yat-proje .yat-not {
+    margin-top: 10px;
+}
+
+.yat-grid {
+    height: 460px;
+}
+
+.yat-grid.kisa {
+    height: 320px;
+}
+
+.yat-grid.uzun {
+    height: calc(100vh - 260px);
+    min-height: 360px;
+}
+
+/* Kopyalama formu: Kaynak, Hedef ve Kopyalanacaklar ayrı renkli gruplar */
+.yat-proje .kopya-form,
+.yat-proje .onay-form {
+    --etiket-genislik: 90px;
+    max-width: 560px;
+}
+
+.yat-proje .yat-grup {
+    margin: 0 0 14px;
+    padding: 4px 12px 8px;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: inset 4px 0 0 var(--grup-vurgu);
+}
+
+.yat-proje .grup-kaynak { --grup-vurgu: #2e8b4e; }
+.yat-proje .grup-hedef  { --grup-vurgu: #6b4fb3; }
+.yat-proje .grup-secim  { --grup-vurgu: #c0504d; }
+
+.yat-proje .yat-grup legend {
+    width: auto;
+    margin: 0 0 6px;
+    padding: 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--grup-vurgu);
+    border: 0;
+}
+
+.yat-proje .secim-liste {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 4px 12px;
+}
+
+.yat-proje .secim-liste .checkbox-inline {
+    margin: 0;
+    padding-top: 0;
+}
+
+.yat-proje .yat-sonuc {
+    max-width: 560px;
+    margin-top: 14px;
+    white-space: pre-line;
+}
+
+/* Sözlük sekmeleri: araç satırı tek sırada */
+.yat-sozluk-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 8px 12px;
+    margin-bottom: 12px;
+}
+
+.yat-sozluk-arac .secim-alan {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.yat-sozluk-arac .secim-alan select {
+    min-width: 220px;
+}
+
+.yat-sozluk-arac .btn {
+    margin-left: 0;
+}
+
+#dlgEkle label {
+    font-weight: 600;
+}
+
+@media (min-width: 992px) {
+    .tanim.yat-kopya {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .tanim.yat-onay {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    /* tanim.css geniş ekranda kutu iç boşluğunu 12px yapar */
+    .yat-proje .tanim .bolum-baslik {
+        margin: 0 -12px 12px;
+        padding: 9px 12px;
+    }
+}

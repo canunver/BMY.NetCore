@@ -1,0 +1,56 @@
+@page
+@model AltProjeIlgiliGirisModel
+@{
+    ViewData["Title"] = "İlgililer";
+    var gruplar = new[]
+    {
+        (on: "Haz", baslik: "Hazırlayan", sinif: "bolum-hazirlayan"),
+        (on: "Yur", baslik: "Projeyi Yürüten Dai.Bşk.", sinif: "bolum-yurutecek"),
+        (on: "Koor", baslik: "Bütçe Koordinasyonunu Sağlayan Dai.Bşk.", sinif: "bolum-koordinator"),
+    };
+    var alanlar = new[]
+    {
+        (son: "AdSoy", etiket: "Adı Soyadı", tur: "text"),
+        (son: "Unvan", etiket: "Unvanı", tur: "text"),
+        (son: "Birim", etiket: "Birimi", tur: "text"),
+        (son: "IsTel", etiket: "İş Telefonu", tur: "tel"),
+        (son: "CepTel", etiket: "Cep Telefonu", tur: "tel"),
+        (son: "Faks", etiket: "Faks", tur: "tel"),
+        (son: "Email", etiket: "E-mail", tur: "email"),
+    };
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="yat-proje yat-detay yat-bilgi" data-sayfa="AltProjeIlgiliGiris">
+    <partial name="_YatBilgiArac" />
+    <div class="ilgili-izgara">
+        @foreach (var g in gruplar)
+        {
+            <div class="kutu bolum @g.sinif">
+                <h2 class="bolum-baslik">@g.baslik</h2>
+                <div class="tanim-form">
+                    @foreach (var a in alanlar)
+                    {
+                        <div class="form-group">
+                            <label class="control-label" for="txt_@(g.on)@(a.son)">@a.etiket</label>
+                            <div><input type="@a.tur" id="txt_@(g.on)@(a.son)" class="form-control" maxlength="200" data-alan="@(g.on)@(a.son)" /></div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/yatproje.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/yatprojegiris.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/yatbilgi.js" asp-append-version="true"></script>
+}

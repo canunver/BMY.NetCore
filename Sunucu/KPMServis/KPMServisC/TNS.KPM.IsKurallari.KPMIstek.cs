@@ -3,7 +3,6 @@ using System.Data;
 using TNS.KYM;
 using TNS.Veri;
 using TNS.KPM.IsKurallari.Veri;
-using Newtonsoft.Json;
 using System.Security.Principal;
 
 namespace TNS.KPM.IsKurallari
@@ -118,7 +117,7 @@ namespace TNS.KPM.IsKurallari
             TABIstek tIstek = new TABIstek(ve);
             ve.BeginTransaction();
 
-            string veri = Newtonsoft.Json.JsonConvert.SerializeObject(k);
+            string veri = TNS.JsonIslem.Yaz(k);
             sonuc = tIstek.KaydetKimlik(k.tcKimlikNo, veri);
 
             if (sonuc.islemSonuc)
@@ -147,11 +146,11 @@ namespace TNS.KPM.IsKurallari
                 while (dr.Read())
                 {
                     string veri = VeriErisim.DegerAl(dr, 1, "");
-                    kisi = JsonConvert.DeserializeObject<Kisi>(veri);
+                    kisi = TNS.JsonIslem.Oku<Kisi>(veri);
                     try
                     {
-                        var obj = Newtonsoft.Json.Linq.JObject.Parse(veri);
-                        kisi.dogumTarihi = new TNSDateTime(obj["dogumTarihi"]["Gun"].ToString() + "." + obj["dogumTarihi"]["Ay"].ToString() + "." + obj["dogumTarihi"]["Yil"].ToString());
+                        var obj = TNS.JsonIslem.NesneAyristir(veri);
+                        kisi.dogumTarihi = new TNSDateTime(TNS.JsonIslem.Metin(obj["dogumTarihi"]["Gun"]) + "." + TNS.JsonIslem.Metin(obj["dogumTarihi"]["Ay"]) + "." + TNS.JsonIslem.Metin(obj["dogumTarihi"]["Yil"]));
                     }
                     catch { }
                 }

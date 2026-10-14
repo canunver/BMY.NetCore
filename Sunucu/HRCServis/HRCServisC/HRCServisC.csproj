@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\BHMv2Servis\BHMv2ServisI\BHMv2ServisI.csproj" />
     <ProjectReference Include="..\..\BHMv2Servis\BKDServisI\BKDServisI.csproj" />
     <ProjectReference Include="..\..\DEGServis\DEGServisI\DEGServisI.csproj" />

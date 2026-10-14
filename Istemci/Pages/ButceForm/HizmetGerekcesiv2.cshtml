@@ -1,0 +1,102 @@
+@page
+@model HizmetGerekcesiv2Model
+@{
+    ViewData["Title"] = "Faaliyet Gerekçesi";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim hizmet-gerekce">
+    <!-- Sol: yıl, birim ve birimin faaliyetleri -->
+    <section class="tanim-sol">
+        <div class="kutu bolum bolum-faaliyet">
+            <h2 class="bolum-baslik">Faaliyetler</h2>
+            <form id="frmFaaliyet" class="tanim-arama" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="txtYil">Yıl</label>
+                    <div><input type="number" id="txtYil" class="form-control yil" min="2000" step="1" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlBirim">Birim</label>
+                    <div><select id="ddlBirim" class="form-control"></select></div>
+                </div>
+                <div class="btn-toolbar tanim-arac" role="toolbar">
+                    <button type="submit" id="btnFaalListele" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Faal. Listele
+                    </button>
+                </div>
+            </form>
+            <ul id="agcFaaliyet" class="faaliyet-liste" aria-label="Faaliyetler"></ul>
+        </div>
+    </section>
+
+    <!-- Sağ: seçilen faaliyetin gerekçe metinleri -->
+    <section class="tanim-sag">
+        <div class="kutu bolum bolum-metin">
+            <h2 class="bolum-baslik" id="faaliyetBaslik">Faaliyet seçiniz</h2>
+            <div class="btn-toolbar tanim-arac" role="toolbar" aria-label="Gerekçe işlemleri">
+                <button type="button" id="btnOku" class="btn btn-default btn-sm" disabled>
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Oku
+                </button>
+                <button type="button" id="btnOnceki" class="btn btn-default btn-sm" disabled>
+                    <span class="glyphicon glyphicon-import" aria-hidden="true"></span> Önceki Yıldan Al
+                </button>
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm" disabled>
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kaydet
+                </button>
+                <button type="button" id="btnYazdirTek" class="btn btn-default btn-sm" disabled>
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır Tek Faal.
+                </button>
+                <button type="button" id="btnYazdirTum" class="btn btn-default btn-sm" disabled>
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır Tüm Faal.
+                </button>
+                <button type="button" id="btnBirlestir" class="btn btn-warning btn-sm" hidden>
+                    <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Birleştir
+                </button>
+            </div>
+            <div class="gerekce-metinler">
+                <div class="metin-kutu metin-gerekce">
+                    <label for="txtGerekce">FAALİYET GEREKÇE</label>
+                    <textarea id="txtGerekce" class="form-control" rows="7" disabled></textarea>
+                </div>
+                <div class="metin-kutu metin-dayanak">
+                    <label for="txtDayanak">DAYANAK</label>
+                    <textarea id="txtDayanak" class="form-control" rows="7" disabled></textarea>
+                </div>
+                <div class="metin-kutu metin-maliyet">
+                    <label for="txtMaliyet">MALİYET</label>
+                    <textarea id="txtMaliyet" class="form-control" rows="7" disabled></textarea>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Birleştirme onayı -->
+<dialog id="dlgBirlestir" class="tanim-pencere" aria-labelledby="dlgBirlestirBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgBirlestirBaslik">Gerekçeleri Birleştir</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="birlestirMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnBirlestirOnay" class="btn btn-warning btn-sm">
+            <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Birleştir
+        </button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hizmetgerekce.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/hizmetgerekce.js" asp-append-version="true"></script>
+}

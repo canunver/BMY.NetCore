@@ -1,0 +1,123 @@
+/* Deprem Harcamaları Bilgi Formu: bölüm görünümü, seçim satırı ve tablo renkleri taveneko.css'ten (.tavan-eko) gelir;
+   burada yalnızca bu sayfaya özgü olanlar var. */
+
+/* Form Bilgileri: dört satır, etiket solda (eski sayfadaki gibi) */
+.deprem-harcama .deprem-satir {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 0 0 8px;
+}
+
+.deprem-harcama .deprem-satir:last-child {
+    margin-bottom: 0;
+}
+
+.deprem-harcama .deprem-etiket {
+    flex: 0 0 190px;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.deprem-harcama .deprem-satir .form-control {
+    display: block;
+    flex: 0 0 auto;
+}
+
+/* Bitişik alanlar: aralarında boşluk yok, kenarlıklar birleşik, tek alan gibi görünür */
+.deprem-harcama .bitisik {
+    display: inline-flex;
+    align-items: stretch;
+}
+
+.deprem-harcama .bitisik > * {
+    margin: 0;
+    border-radius: 0;
+}
+
+.deprem-harcama .bitisik > * + * {
+    margin-left: -1px;
+}
+
+.deprem-harcama .bitisik > :first-child {
+    border-radius: 3px 0 0 3px;
+}
+
+.deprem-harcama .bitisik > :last-child {
+    border-radius: 0 3px 3px 0;
+}
+
+.deprem-harcama .bitisik > .form-control:focus {
+    position: relative;
+    z-index: 1;
+}
+
+.deprem-harcama .yil-kod      { width: 90px; }
+.deprem-harcama .ay-sec       { width: 170px; }
+.deprem-harcama .il-sec       { width: 280px; }
+
+.deprem-harcama .deprem-bilgi {
+    flex: 1 1 300px;
+    margin: 0;
+    font-size: 13px;
+}
+
+.deprem-harcama .deprem-bilgi strong {
+    color: #c62828;
+}
+
+/* Dar ekranda etiket alanların üstünde */
+@media (max-width: 600px) {
+    .deprem-harcama .deprem-etiket {
+        flex-basis: 100%;
+    }
+}
+
+.deprem-harcama .liste-alan {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+}
+
+.deprem-harcama .liste-alan label {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.deprem-harcama .liste-alan input {
+    width: 90px;
+}
+
+/* Eko 2 toplam satırları (eski sayfadaki gibi açık sarı) ve girilebilir hücreler */
+.deprem-harcama .ag-row.eko2 .ag-cell {
+    font-weight: 600;
+    background: #fcfcd4;
+}
+
+.deprem-harcama .ag-cell.girilir:not(.ag-cell-inline-editing) {
+    box-shadow: inset 0 0 0 1px #c9d6e3;
+    cursor: text;
+}
+
+.deprem-harcama .renk-aciklama .acik::before {
+    background: #fff;
+    box-shadow: inset 0 0 0 1px #c9d6e3;
+}
+
+/* Onay İşlemleri penceresi */
+.deprem-onay {
+    width: min(760px, calc(100vw - 32px));
+}
+
+.deprem-onay .onay-donem {
+    margin: 0 0 10px;
+    font-weight: 600;
+}
+
+.deprem-onay .durum-grid {
+    height: min(520px, calc(100vh - 280px));
+}

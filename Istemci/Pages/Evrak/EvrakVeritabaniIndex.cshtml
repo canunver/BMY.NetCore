@@ -1,0 +1,101 @@
+@page
+@model EvrakVeritabaniIndexModel
+@{
+    ViewData["Title"] = "Veritabanı Index İşlemleri";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="guncelleme vt-index">
+    <!-- Veri tabanı seçimi -->
+    <section class="kutu bolum">
+        <h2 class="bolum-baslik">Veri Tabanı</h2>
+        <div class="form-satir">
+            <label class="form-etiket" for="ddlBaglantiSatiri">Bağlantı Satırı:</label>
+            <select id="ddlBaglantiSatiri" class="form-control input-sm orta">
+                <option value="">Seçiniz</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- Indexler -->
+    <section class="kutu bolum bolum-yesil">
+        <h2 class="bolum-baslik">Indexler <small id="lblVeritabani"></small></h2>
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a role="tab" data-sekme="liste" aria-selected="true">Index Listesi</a></li>
+            <li role="presentation" class="disabled" id="sekmeOlustur"><a role="tab" data-sekme="olustur" aria-selected="false">Index Oluştur</a></li>
+        </ul>
+
+        <div class="sekme" data-sekme="liste">
+            <div class="arac" role="toolbar" aria-label="Index işlemleri">
+                <button type="button" class="btn btn-default btn-sm islem" data-islem="rebuild" data-ad="Rebuild" disabled>
+                    <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Rebuild
+                </button>
+                <button type="button" class="btn btn-default btn-sm islem" data-islem="reorganize" data-ad="Reorganize" disabled>
+                    <span class="glyphicon glyphicon-sort" aria-hidden="true"></span> Reorganize
+                </button>
+                <button type="button" id="btnDrop" class="btn btn-default btn-sm islem" data-islem="drop" data-ad="Drop" disabled>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Drop Index
+                </button>
+                <div class="sag">
+                    <label for="ddlIndexTip">Index Tip:</label>
+                    <select id="ddlIndexTip" class="form-control input-sm">
+                        <option value="Nonclustered">Nonclustered</option>
+                        <option value="Clustered">Clustered</option>
+                        <option value="Hepsi">Hepsi</option>
+                    </select>
+                </div>
+            </div>
+            <div id="grdIndexListe" class="grid-alan" aria-label="Index listesi"></div>
+        </div>
+
+        <div class="sekme" data-sekme="olustur" hidden>
+            <div class="arac" role="toolbar" aria-label="Index oluşturma">
+                <button type="button" id="btnIndexOlustur" class="btn btn-primary btn-sm" disabled>
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Indexleri Oluştur
+                </button>
+            </div>
+            <div id="grdIndexOlustur" class="grid-alan" aria-label="Oluşturulacak indexler"></div>
+        </div>
+    </section>
+</div>
+
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+        <p class="text-danger"><strong>NOT:</strong> Bu işlem sırasında veri tabanında kayıplar yaşanabilir. Lütfen veritabanı yedeğinizi almadan bu işlemi gerçekleştirmeyiniz.</p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-danger btn-sm">Evet</button>
+    </div>
+</dialog>
+
+<!-- İndex oluşturma ilerlemesi (eski winProgressBar) -->
+<dialog id="dlgIlerleme" class="tanim-pencere vt-ilerleme" aria-labelledby="dlgIlerlemeBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgIlerlemeBaslik">İndex Oluşturma</h2>
+    </div>
+    <div class="pencere-govde">
+        <div class="progress">
+            <div id="prgIlerleme" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+        </div>
+        <p id="lblIlerleme" class="ilerleme-ad"></p>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/guncelleme.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/vtindex.js" asp-append-version="true"></script>
+}

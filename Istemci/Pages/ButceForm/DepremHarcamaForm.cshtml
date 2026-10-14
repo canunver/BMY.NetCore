@@ -1,0 +1,153 @@
+@page
+@model DepremHarcamaFormModel
+@{
+    ViewData["Title"] = "Deprem Harcamaları Bilgi Formu";
+    // Geniş ekranda sayfa pencereye sığar, tablo kalan alanı doldurur (tanim.css; bölüm görünümü taveneko.css ile ortak).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-eko deprem-harcama">
+    <!-- Üst: yıl / ay, muhasebe birimi ve il -->
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Form Bilgileri</h2>
+            <!-- Eski sayfadaki gibi dört satır: etiket solda, alanlar sağda -->
+            <div class="deprem-form">
+                <div class="deprem-satir">
+                    <label class="deprem-etiket" for="txtYil">Yıl/Ay:</label>
+                    <div class="bitisik">
+                        <input type="number" id="txtYil" class="form-control input-sm yil-kod" min="2023" step="1" title="Harcama yılını giriniz." />
+                        <select id="ddlAy" class="form-control input-sm ay-sec" title="Harcama ayını giriniz." aria-label="Ay"></select>
+                    </div>
+                </div>
+                <div class="deprem-satir">
+                    <label class="deprem-etiket" for="txtMuhasebe">Muhasebe Kodu:</label>
+                    <div id="muhBirim"></div>
+                </div>
+                <div class="deprem-satir">
+                    <label class="deprem-etiket" for="ddlIl">Harcamanın Yapıldığı İl:</label>
+                    <select id="ddlIl" class="form-control input-sm il-sec" title="İl seçiniz."></select>
+                </div>
+                <div class="deprem-satir">
+                    <span class="deprem-etiket">Bilgi:</span>
+                    <p class="deprem-bilgi">Harcamalar, sadece bu aya ait değil, önceki ayların toplamını da içerecek şekilde <strong>KÜMÜLATİF</strong> olarak girilmelidir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alt: ekonomik kodlara göre harcamalar -->
+    <section>
+        <div class="kutu bolum bolum-tavan">
+            <h2 class="bolum-baslik">Seçili il için ilgili ayda yapılan harcama detayları <span id="lblDurum" class="label label-success" hidden>Onaylı</span></h2>
+            <div class="btn-toolbar tavan-arac" role="toolbar" aria-label="Form işlemleri">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnOku" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Oku
+                    </button>
+                    <button type="button" id="btnKaydet" class="btn btn-default" disabled>
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Raporlar">
+                    <button type="button" class="btn btn-default rapor" data-tur="1" title="İllere ve ekonomik kodlara göre Excel raporu">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> İl-Eko Yazdır
+                    </button>
+                    <button type="button" class="btn btn-default rapor" data-tur="2" title="Ekonomik kodlara göre Excel raporu">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Eko Yazdır
+                    </button>
+                    <button type="button" class="btn btn-default rapor" data-tur="3" title="Muhasebe birimlerine göre Excel raporu">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Muh. Birim Yazdır
+                    </button>
+                </div>
+                <div class="liste-alan">
+                    <label for="txtKriter">Kod:</label>
+                    <input type="text" id="txtKriter" class="form-control input-sm" autocomplete="off" title="Liste Yazdır için ekonomik kod başı (boş: hepsi)" />
+                    <button type="button" class="btn btn-default btn-sm rapor" data-tur="4" title="Girilen kodla başlayan harcamaların ayrıntılı listesi">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Liste Yazdır
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm yonetici" role="group" aria-label="Onay işlemleri" hidden>
+                    <button type="button" id="btnOnayla" class="btn btn-default" hidden>
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Onayla
+                    </button>
+                    <button type="button" id="btnOnayKaldir" class="btn btn-default" hidden>
+                        <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Onay Kaldır
+                    </button>
+                    <button type="button" id="btnOnayIslemler" class="btn btn-default">
+                        <span class="glyphicon glyphicon-check" aria-hidden="true"></span> Onay İşlemleri
+                    </button>
+                    <button type="button" id="btnAktar" class="btn btn-default" title="Ayın harcamalarını e-bütçe sistemine aktarır">
+                        <span class="glyphicon glyphicon-link" aria-hidden="true"></span> Aktar
+                    </button>
+                </div>
+                <ul class="renk-aciklama" aria-label="Renkler">
+                    <li class="toplam">Genel toplam</li>
+                    <li class="kapali">Eko 2 toplamı</li>
+                    <li class="acik">Girilebilir</li>
+                </ul>
+            </div>
+            <div id="grdDetay" class="tavan-grid" aria-label="Harcama detayları"></div>
+        </div>
+    </section>
+</div>
+
+<!-- Onay İşlemleri (eski wndOnayIslemler penceresi; yalnızca sistem yöneticisi) -->
+<dialog id="dlgOnay" class="tanim-pencere deprem-onay" aria-labelledby="dlgOnayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOnayBaslik">Onaylı listesi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="onay-donem" id="lblOnayDonem"></p>
+        <div class="btn-toolbar tavan-arac" role="toolbar" aria-label="Onay işlemleri">
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" id="btnSeciliOnayla" class="btn btn-default">
+                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Onayla
+                </button>
+                <button type="button" id="btnSeciliOnayKaldir" class="btn btn-default">
+                    <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Onay Kaldır
+                </button>
+                <button type="button" id="btnOncekiAydanKopyala" class="btn btn-default">
+                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Önceki Aydan Kopyala
+                </button>
+            </div>
+        </div>
+        <div id="grdDurumlar" class="tavan-grid durum-grid" aria-label="Birimlerin onay durumları"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu (Kaydet, Onayla, Aktar ...) -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taveneko.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/depremharcama.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/depremharcama.js" asp-append-version="true"></script>
+}

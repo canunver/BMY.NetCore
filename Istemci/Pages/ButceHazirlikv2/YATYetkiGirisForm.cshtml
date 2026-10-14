@@ -1,0 +1,84 @@
+@page
+@model YATYetkiGirisFormModel
+@{
+    // ProjeDetay / AltProjeDetay sekmesinde ?menuYok=1&projeKodu=&altProjeKodu=&yil=&senaryoKod= ile açılır.
+    ViewData["Title"] = "Proje yetkili kullanıcıları";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim yatalt">
+    <section>
+        <div class="kutu bolum bolum-yetki">
+            <h2 class="bolum-baslik">Proje yetkili kullanıcıları</h2>
+            <div class="btn-toolbar yatalt-arac" role="toolbar" aria-label="Yetkili kullanıcı işlemleri">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+                <button type="button" id="btnKullaniciSec" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Kullanıcı Seç
+                </button>
+                <button type="button" id="btnSil" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Seçilileri Sil
+                </button>
+                <p class="yatalt-not">Eklenen ve silinen kullanıcılar Kaydet ile saklanır.</p>
+            </div>
+            <div id="grdYetki" class="yatalt-grid" aria-label="Yetkili kullanıcılar"></div>
+        </div>
+    </section>
+</div>
+
+<!-- Kullanıcı Seç (eski KYM/ListeKullaniciSec.aspx?cokluSec=1) -->
+<dialog id="dlgKullaniciSec" class="tanim-pencere genis" aria-labelledby="dlgKullaniciSecBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKullaniciSecBaslik">Kullanıcı Seç</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmKullaniciAra" class="tanim-arama" novalidate>
+            <div class="arama-satir">
+                <input type="text" id="txtAraAd" class="form-control" placeholder="Ad" aria-label="Ad" />
+                <input type="text" id="txtAraSoyad" class="form-control" placeholder="Soyad" aria-label="Soyad" />
+                <input type="text" id="txtAraKod" class="form-control" placeholder="Kullanıcı kodu" aria-label="Kullanıcı kodu" />
+                <button type="submit" id="btnAra" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Ara
+                </button>
+            </div>
+        </form>
+        <ul id="lstBulunan" class="tanim-liste"></ul>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnBulunanEkle" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Seçilenleri Ekle
+        </button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/yatalt.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/yatalt-yetki.js" asp-append-version="true"></script>
+}

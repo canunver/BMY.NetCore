@@ -1,0 +1,243 @@
+/* Alt Proje Bütçe Kaynağı Giriş (AltProjeDetay'ın kaynak sekmesinde çerçeve olarak açılır): üstte kaynak bilgileri,
+   altta sekmeli tablolar; bölümler renkli başlıklı kutular (Yatırım Projeleri ekranlarıyla aynı görünüm).
+   Tablolarda girilemeyen hücreler eski sayfadaki gibi açık sarı (#FAFAD2). */
+
+.yat-kaynak .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding-top: 0;
+    background: var(--bolum-govde);
+}
+
+.yat-kaynak .kutu.bolum.bolum-rakam {
+    --bolum-baslik: #e2f3e8;
+    --bolum-govde: #f4fbf6;
+    --bolum-vurgu: #2e8b4e;
+    padding-top: 12px;
+}
+
+.yat-kaynak .bolum-baslik {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 -16px 12px;
+    padding: 9px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.yat-kaynak .bolum-baslik .label {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.yat-kaynak .kaynak-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 6px 10px;
+    margin: 0 0 10px;
+}
+
+.yat-kaynak .kaynak-arac .btn-group,
+.yat-kaynak .kaynak-arac .btn {
+    margin-left: 0;
+}
+
+/* Kaynak formu: etiketler solda */
+.yat-kaynak .kaynak-form {
+    --etiket-genislik: 150px;
+    max-width: 1100px;
+}
+
+.yat-kaynak .kaynak-form > .form-group {
+    max-width: 720px;
+}
+
+.yat-kaynak .form-control-static {
+    min-height: 0;
+    padding: 0;
+    font-weight: 600;
+}
+
+.yat-kaynak .ozellikler .checkbox-inline {
+    margin: 0 18px 0 0;
+    padding-top: 0;
+}
+
+.yat-kaynak .kredi-bilgi {
+    margin: 10px 0 0;
+    padding: 4px 12px 4px;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    box-shadow: inset 4px 0 0 #b07a00;
+}
+
+.yat-kaynak .kredi-bilgi legend {
+    width: auto;
+    margin: 0 0 6px;
+    padding: 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #b07a00;
+    border: 0;
+}
+
+.yat-kaynak .kredi-sutunlar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0 24px;
+}
+
+.yat-kaynak .tarih-cift {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 8px;
+}
+
+.yat-kaynak .tarih-cift input {
+    width: 160px;
+}
+
+.yat-kaynak .tarih-cift label {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Sekmeler */
+.yat-kaynak .kaynak-sekmeler {
+    margin-bottom: 10px;
+}
+
+.yat-kaynak .kaynak-sekmeler > li > a {
+    font-weight: 600;
+}
+
+.yat-kaynak .eko-arac .eko-alan {
+    display: flex;
+    flex-direction: column;
+    min-width: 280px;
+    max-width: 420px;
+    flex: 1 1 320px;
+}
+
+.yat-kaynak .eko-arac .eko-alan label {
+    margin: 0 0 2px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.yat-kaynak .eko-arac #txtEko {
+    background: #fff;
+    cursor: default;
+}
+
+.kaynak-grid {
+    height: 340px;
+}
+
+/* Kaynak tablolarında yazı ortak tablolardan bir boy küçük (dar ödenek sütunlarına sığsın) */
+.kaynak-grid.sgb-grid.ag-theme-quartz {
+    --ag-font-size: 11px;
+    --ag-cell-horizontal-padding: 6px;
+}
+
+.kaynak-grid.kisa {
+    height: 220px;
+}
+
+.kaynak-grid .ag-cell.kapali {
+    background: #fafad2;
+}
+
+.kaynak-grid .ag-cell.girilir {
+    background: #fff;
+    box-shadow: inset 0 0 0 1px #c9d6e3;
+    cursor: text;
+}
+
+.kaynak-grid .ag-cell.sayi,
+.kaynak-grid .ag-header-cell.sayi .ag-header-cell-label {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.kaynak-grid .ag-header-group-cell.sayi .ag-header-group-cell-label,
+.kaynak-grid .ag-header-group-cell.orta .ag-header-group-cell-label {
+    justify-content: center;
+    text-align: center;
+}
+
+.kaynak-grid .ag-header-group-cell-label .ag-header-group-text {
+    white-space: normal;
+    line-height: 1.2;
+}
+
+.yat-kaynak .kaynak-not {
+    margin: 8px 0 0;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.yat-kaynak .kaynak-not .renk {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+    vertical-align: -1px;
+    border: 1px solid var(--cizgi);
+    border-radius: 2px;
+}
+
+.yat-kaynak .kaynak-not .renk.kapali { background: #fafad2; }
+.yat-kaynak .kaynak-not .renk.acik   { background: #fff; }
+
+/* Taşıma penceresi ve ekonomik kod ağacı */
+.kaynak-tasi {
+    width: min(760px, calc(100vw - 32px));
+}
+
+.kaynak-tasi .tasi-grid {
+    height: min(420px, calc(100vh - 260px));
+}
+
+.kaynak-tasi .tanim-not {
+    margin: 0 0 8px;
+}
+
+.kaynak-agac {
+    width: min(640px, calc(100vw - 32px));
+}
+
+.kaynak-agac .sgb-agac {
+    max-height: min(520px, calc(100vh - 220px));
+    overflow: auto;
+    margin: 0;
+}
+
+@media (min-width: 992px) {
+    .yat-kaynak .kredi-sutunlar {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    /* tanim.css geniş ekranda kutu iç boşluğunu 12px yapar */
+    .yat-kaynak.tanim .bolum-baslik {
+        margin: 0 -12px 12px;
+        padding: 9px 12px;
+    }
+}
+
+/* Kaynak bilgileri üstte, ödenek tabloları altta tam genişlikte (geniş ekranda da alt alta) */
+@media (min-width: 992px) {
+    .tanim.yat-kaynak {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto;
+    }
+}

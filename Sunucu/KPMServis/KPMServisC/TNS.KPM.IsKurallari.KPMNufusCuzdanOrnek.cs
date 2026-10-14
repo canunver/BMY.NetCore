@@ -3,7 +3,6 @@ using System.Net;
 using System.Text;
 using Mernis.KPSv2.Types.BilesikKutukSorgulaKimlikNoServis;
 using Mernis.KPSv2.Types.KimlikNoSorgulaAdresServis;
-using Newtonsoft.Json;
 using TNS.KYM;
 
 namespace TNS.KPM.IsKurallari
@@ -246,7 +245,7 @@ namespace TNS.KPM.IsKurallari
                 client.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + tokenAlinan);
                 response = client.UploadString(new Uri(url), "POST", dataRequest);
 
-                var gelenSonuc = Newtonsoft.Json.Linq.JObject.Parse(response);
+                var gelenSonuc = TNS.JsonIslem.NesneAyristir(response);
                 string hata = "";
                 hata = NesnedenDegerVer(gelenSonuc, "hataMesaji");
                 if (hata == "başarılı") hata = "";
@@ -414,15 +413,15 @@ namespace TNS.KPM.IsKurallari
             return nkoVAN;
         }
 
-        private static string NesnedenDegerVer(Newtonsoft.Json.Linq.JObject gelenSonuc, string v)
+        private static string NesnedenDegerVer(System.Text.Json.Nodes.JsonObject gelenSonuc, string v)
         {
             try
             {
                 string[] parca = v.Split('.');
                 if (parca.Length == 1)
-                    return gelenSonuc[v] + "";
+                    return TNS.JsonIslem.Metin(gelenSonuc[v]);
                 else if (parca.Length == 2)
-                    return gelenSonuc[parca[0]][parca[1]] + "";
+                    return TNS.JsonIslem.Metin(gelenSonuc[parca[0]][parca[1]]);
             }
             catch
             {
@@ -454,7 +453,7 @@ namespace TNS.KPM.IsKurallari
                 client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
                 response = client.UploadString(new Uri(url), "POST", dataRequest);
 
-                var obj = Newtonsoft.Json.Linq.JObject.Parse(response); //JsonConvert.DeserializeObject<dynamic>(response);
+                var obj = TNS.JsonIslem.NesneAyristir(response); //JsonConvert.DeserializeObject<dynamic>(response);
                 return GelenNesnedenTokenAlTCCB(obj);
             }
             catch (WebException we)
@@ -465,7 +464,7 @@ namespace TNS.KPM.IsKurallari
             return "";
         }
 
-        static string GelenNesnedenTokenAlTCCB(Newtonsoft.Json.Linq.JObject obj)
+        static string GelenNesnedenTokenAlTCCB(System.Text.Json.Nodes.JsonObject obj)
         {
             string tokenStr = NesnedenDegerVer(obj, "token");
 

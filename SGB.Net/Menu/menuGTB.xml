@@ -68,7 +68,6 @@
         <Node ID="Menu2_2_22" URL="../ButceHazirlikv2/GorusmeCari.aspx" Yetki="1"></Node>
         <Node ID="Menu2_2_23" URL="../ButceHazirlikv2/TavanYatirimProje.aspx?tur=2" Yetki="1"></Node>
         <Node ID="Menu2_2_26" URL="../ButceHazirlikv2/TavanYatirimVize.aspx" Yetki="1"></Node>
-        <Node ID="Menu2_1_1" URL="../ButceHazirlikv2/ButceSenaryoSec.aspx" Yetki="1"></Node>
         <Node ID="Menu2_1_3" URL="../ButceHazirlikv2/ButceTasnifAna.aspx?tavan=1" Yetki="1"></Node>
         <Node ID="Menu2_1_2" URL="../ButceHazirlikv2/ButceTasnifAna.aspx" Yetki="1"  ></Node>
         <Node ID="Menu2_1_4" URL="../ButceHazirlikv2/TanimBirimDegisken.aspx" Yetki="1"></Node>

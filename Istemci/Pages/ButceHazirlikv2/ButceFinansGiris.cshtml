@@ -1,0 +1,92 @@
+@page
+@model ButceFinansGirisModel
+@{
+    ViewData["Title"] = "Bütçe Finans Girişi";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-faal butce-finans">
+    <!-- Seçim ve tuşlar -->
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">
+                <span>Bütçe Finans Girişi</span>
+                <small class="alt-baslik" id="lblKurum"></small>
+            </h2>
+            <form id="frmSecim" class="secim-satir" novalidate>
+                <label class="secim-alan dar">
+                    <span>Yıl</span>
+                    <input type="number" id="txtYil" class="form-control input-sm" min="2000" step="1" />
+                </label>
+                <label class="secim-alan">
+                    <span>Senaryo</span>
+                    <select id="ddlSenaryo" class="form-control input-sm"></select>
+                </label>
+                <div class="btn-toolbar finans-arac" role="toolbar" aria-label="Finansman işlemleri">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button type="submit" id="btnListele" class="btn btn-primary" title="Rakamları yeniden okur">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Yenile
+                        </button>
+                        <button type="button" id="btnKaydet" class="btn btn-success" title="Finansman tutarını saklar">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kaydet
+                        </button>
+                    </div>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button type="button" id="btnYazdir" class="btn btn-default" title="Form 18 finansman cetvelini Excel dosyası olarak indirir">
+                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                        </button>
+                        <button type="button" id="btnHesapla" class="btn btn-default" title="Finansman farkından hazine yardımlarını hesaplar">
+                            <span class="glyphicon glyphicon-th" aria-hidden="true"></span> Haz. Yar. Hesapla
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Finansman, gelirler ve giderler -->
+    <section>
+        <div class="kutu bolum bolum-tavan">
+            <h2 class="bolum-baslik">Finansman</h2>
+            <div class="finans-tutar">
+                <label for="txtFinansmanTutar">Lütfen Finansman Tutarını Giriniz</label>
+                <input type="text" id="txtFinansmanTutar" class="form-control input-sm sayi" inputmode="numeric" autocomplete="off" maxlength="15" />
+            </div>
+            <div class="finans-gruplar">
+                <fieldset class="bilgi-grup">
+                    <legend>Finansman Durumu</legend>
+                    <div class="bilgi-satir"><label class="bilgi-etiket" for="lblFinansmanOzGelir">Finansman+Öz Gelir</label><input type="text" id="lblFinansmanOzGelir" class="form-control input-sm sayi" readonly tabindex="-1" /></div>
+                    <div class="bilgi-satir"><label class="bilgi-etiket" for="lblFinansmanToplamGider">Toplam Gider</label><input type="text" id="lblFinansmanToplamGider" class="form-control input-sm sayi" readonly tabindex="-1" /></div>
+                    <div class="bilgi-satir"><label class="bilgi-etiket" for="lblFinansmanFark">Finansman Farkı</label><input type="text" id="lblFinansmanFark" class="form-control input-sm sayi" readonly tabindex="-1" /></div>
+                </fieldset>
+                <fieldset class="bilgi-grup">
+                    <legend>Gelirler</legend>
+                    <div class="bilgi-satir"><label class="bilgi-etiket" for="txtHazineSermaye">Hazine/Sermaye Yardımı</label><input type="text" id="txtHazineSermaye" class="form-control input-sm sayi" inputmode="numeric" autocomplete="off" /></div>
+                    <div class="bilgi-satir"><label class="bilgi-etiket" for="txtHazineCari">Hazine/Cari Yardım</label><input type="text" id="txtHazineCari" class="form-control input-sm sayi" inputmode="numeric" autocomplete="off" /></div>
+                    <div class="bilgi-satir"><label class="bilgi-etiket" for="lblGelirOzGelir">Öz Gelir</label><input type="text" id="lblGelirOzGelir" class="form-control input-sm sayi" readonly tabindex="-1" /></div>
+                    <div class="bilgi-satir"><label class="bilgi-etiket" for="lblGelirToplam">Toplam Gelir</label><input type="text" id="lblGelirToplam" class="form-control input-sm sayi" readonly tabindex="-1" /></div>
+                </fieldset>
+                <fieldset class="bilgi-grup">
+                    <legend>Giderler</legend>
+                    <div class="bilgi-satir"><label class="bilgi-etiket" for="lblGiderSermayeOdenek">Sermaye Ödenekleri</label><input type="text" id="lblGiderSermayeOdenek" class="form-control input-sm sayi" readonly tabindex="-1" /></div>
+                    <div class="bilgi-satir"><label class="bilgi-etiket" for="lblGiderDigerOdenek">Diğer</label><input type="text" id="lblGiderDigerOdenek" class="form-control input-sm sayi" readonly tabindex="-1" /></div>
+                    <div class="bilgi-satir"><label class="bilgi-etiket" for="lblGiderToplamOdenek">Toplam Ödenek</label><input type="text" id="lblGiderToplamOdenek" class="form-control input-sm sayi" readonly tabindex="-1" /></div>
+                </fieldset>
+            </div>
+            <p class="help-block">Kaydet yalnızca finansman tutarını saklar. Hazine yardımları Haz. Yar. Hesapla ile finansman farkından hesaplanır (fark önce sermaye ödeneklerine, kalanı cariye).</p>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tavanfaal.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/butcefinans.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/butcefinans.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,91 @@
+@page
+@model AltProjeDetayProgramiFormModel
+@{
+    // AltProjeDetay sekmesinde ?menuYok=1&projeKodu=&altProjeKodu=&yil=&senaryoKod= ile açılır.
+    ViewData["Title"] = "Alt Proje Detay Programı";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim yatalt">
+    <section>
+        <div class="kutu bolum bolum-program">
+            <h2 class="bolum-baslik">
+                Alt Proje Detay Programı
+                <span class="baslik-toplam">Ödenek Toplamı <output id="odenekToplam" aria-live="polite">0,00</output></span>
+            </h2>
+            <div class="btn-toolbar yatalt-arac" role="toolbar" aria-label="Detay program işlemleri">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnOku" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Oku
+                    </button>
+                    <button type="button" id="btnKaydet" class="btn btn-default">
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                    </button>
+                    <button type="button" id="btnYazdir" class="btn btn-default" title="Alt proje detay programı (Word)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Satır">
+                    <button type="button" id="btnSatirAc" class="btn btn-default">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Aç
+                    </button>
+                    <button type="button" id="btnSatirSil" class="btn btn-default" title="Seçili satırları sil">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Satır Sil
+                    </button>
+                    <button type="button" id="btnYapistir" class="btn btn-default" title="Excel'den kopyalanan satırları seçili satırdan başlayarak yapıştırır">
+                        <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Yapıştır
+                    </button>
+                </div>
+                <button type="button" id="btnOncekiAsama" class="btn btn-default btn-sm" title="Bir önceki aşamanın detay programını getirir">
+                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Önceki Aşamadan Al
+                </button>
+            </div>
+            <div id="grdProgram" class="yatalt-grid" aria-label="Alt proje detay programı"></div>
+        </div>
+    </section>
+</div>
+
+<!-- Pano okunamazsa Excel satırları buraya yapıştırılır -->
+<dialog id="dlgYapistir" class="tanim-pencere" aria-labelledby="dlgYapistirBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgYapistirBaslik">Yapıştır</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="help-block">Excel'den kopyaladığınız satırları buraya yapıştırınız (Ctrl+V). Sütun sırası: Yer, Birimi, Ödenek, Yılı Faaliyeti.</p>
+        <textarea id="txtYapistir" class="form-control" rows="8" aria-label="Yapıştırılacak veri"></textarea>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnYapistirTamam" class="btn btn-primary btn-sm">Yapıştır</button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/yatalt.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/yatalt-program.js" asp-append-version="true"></script>
+}

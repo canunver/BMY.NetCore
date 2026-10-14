@@ -1,0 +1,64 @@
+/* Hizmet Maliyeti Tespiti (Taşra): bölüm görünümü, seçim satırı ve tablo renkleri taveneko.css'ten (.tavan-eko) gelir;
+   burada yalnızca bu sayfaya özgü olanlar var. */
+
+/* Form Bilgileri: alt alta satırlar, etiket solda */
+.hizmet-maliyeti-tasra .hmt-satir {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 0 0 8px;
+}
+
+.hizmet-maliyeti-tasra .hmt-satir:last-child {
+    margin-bottom: 0;
+}
+
+.hizmet-maliyeti-tasra .hmt-etiket {
+    flex: 0 0 150px;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.hizmet-maliyeti-tasra .yil-kod {
+    width: 90px;
+}
+
+.hizmet-maliyeti-tasra .hmt-bilgi {
+    flex: 1 1 300px;
+    margin: 0;
+    font-size: 13px;
+}
+
+@media (max-width: 600px) {
+    .hizmet-maliyeti-tasra .hmt-etiket {
+        flex-basis: 100%;
+    }
+}
+
+/* Sistem yöneticisi: kurumsal kod seçimi ve tuşları */
+.hizmet-maliyeti-tasra .yonetici-alan {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.hizmet-maliyeti-tasra .yonetici-alan[hidden] {
+    display: none;
+}
+
+.hizmet-maliyeti-tasra .yonetici-alan label {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.hizmet-maliyeti-tasra #ddlKurumsal {
+    width: 260px;
+}
+
+.hizmet-maliyeti-tasra .ag-header-group-cell.orta .ag-header-group-cell-label {
+    justify-content: center;
+}

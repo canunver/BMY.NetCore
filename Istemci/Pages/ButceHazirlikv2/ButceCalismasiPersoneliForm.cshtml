@@ -1,0 +1,136 @@
+@page
+@model ButceCalismasiPersoneliFormModel
+@{
+    ViewData["Title"] = "Bütçe Çalışmalarında Görevli Personel Listesi";
+    // Geniş ekranda sayfa pencereye sığar, tablo kalan alanı doldurur (tanim.css; bölüm görünümü taveneko.css ile ortak).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-eko butce-personel">
+    <!-- Üst: yıl ve faaliyet seçimi -->
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Seçim</h2>
+            <form id="frmSecim" class="secim-satir" novalidate>
+                <label class="secim-alan dar">
+                    <span>Yıl</span>
+                    <input type="number" id="txtYil" class="form-control input-sm" min="2000" step="1" title="Lütfen yılı seçin." />
+                </label>
+                <div class="secim-alan kod-alan" data-tur="14" data-alan="peb">
+                    <label for="txtKod14">Faaliyet <small>(kaydetmek için en alt faaliyet)</small></label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" id="txtKod14" class="form-control" autocomplete="off" placeholder="Faaliyet seçiniz" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span><span class="sr-only">Faaliyet kodu seç</span></button>
+                            <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Faaliyet kodunu temizle</span></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="btn-group btn-group-sm secim-tuslar" role="group" aria-label="Liste işlemleri">
+                    <button type="submit" id="btnOku" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                    </button>
+                    <button type="button" id="btnKaydet" class="btn btn-default">
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                    </button>
+                    <button type="button" id="btnYazdir" class="btn btn-default" title="Yılın ve faaliyetin personel listesi (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                    </button>
+                    <button type="button" id="btnKopyalaYil" class="btn btn-default" hidden title="Gelecek bir yıl seçildiyse o yılın listeleri silinir ve önceki yıldan kopyalanır">
+                        <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Önc. Yıldan Kopyala
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Alt: personel listesi -->
+    <section>
+        <div class="kutu bolum bolum-tavan">
+            <h2 class="bolum-baslik">
+                Personel Listesi
+                <span id="kirliEtiket" class="label label-warning" hidden>Kaydedilmedi</span>
+            </h2>
+            <div class="btn-toolbar tavan-arac" role="toolbar" aria-label="Satır işlemleri">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnSatirAc" class="btn btn-default">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Aç
+                    </button>
+                    <button type="button" id="btnSatirSil" class="btn btn-default" title="İşaretli satırları siler">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Satır Sil
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Pano">
+                    <button type="button" id="btnKopyala" class="btn btn-default" title="Tablodaki satırları panoya kopyalar (Excel'e yapıştırılabilir)">
+                        <span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Kopyala
+                    </button>
+                    <button type="button" id="btnYapistir" class="btn btn-default" title="Panodaki satırları seçili satırdan başlayarak yapıştırır; gerekirse satır açar">
+                        <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Yapıştır
+                    </button>
+                </div>
+                <ul class="renk-aciklama" aria-label="Açıklama">
+                    <li class="acik">Hücreye tıklayıp yazınız; ad, soyad, unvan, birim, iş telefonu ve e-posta zorunludur</li>
+                </ul>
+            </div>
+            <div id="grdPersonel" class="tavan-grid" aria-label="Personel listesi"></div>
+        </div>
+    </section>
+</div>
+
+<!-- Kod seçimi (eski açılır faaliyet ağacı) -->
+<dialog id="dlgKod" class="tanim-pencere personel-agac" aria-labelledby="dlgKodBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKodBaslik">Faaliyet Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde" id="agacKutu"></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Yapıştır: pano okunamazsa veri buraya yapıştırılır -->
+<dialog id="dlgYapistir" class="tanim-pencere personel-yapistir" aria-labelledby="dlgYapistirBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgYapistirBaslik">Yapıştır</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="help-block">Excel'den kopyaladığınız satırları buraya yapıştırınız (Ctrl+V). Sütun sırası: Ad, Soyad, Unvan, Birim, İş Tel, Cep Tel, Faks, EPosta.</p>
+        <textarea id="txtYapistir" class="form-control" rows="8" aria-label="Yapıştırılacak veri"></textarea>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnYapistirTamam" class="btn btn-primary btn-sm">Yapıştır</button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu (Kaydet, Önc. Yıldan Kopyala) -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taveneko.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/butcepersonel.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/butcepersonel.js" asp-append-version="true"></script>
+}

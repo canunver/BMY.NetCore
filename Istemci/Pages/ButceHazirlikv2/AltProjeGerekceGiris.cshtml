@@ -1,0 +1,30 @@
+@page
+@model AltProjeGerekceGirisModel
+@{
+    ViewData["Title"] = "Gerekçe ve Hedefler";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="yat-proje yat-detay yat-bilgi" data-sayfa="AltProjeGerekceGiris">
+    <partial name="_YatBilgiArac" />
+    <div class="kutu bolum bolum-proje">
+        <h2 class="bolum-baslik"><label for="txt_hizmetGerekcesi" data-etiket="{yil} Yılı (Proje) Hizmet Gerekçesi ve Hedefleri">Yılı (Proje) Hizmet Gerekçesi ve Hedefleri</label></h2>
+        <textarea id="txt_hizmetGerekcesi" class="form-control" rows="12" data-alan="hizmetGerekcesi" data-html data-yukseklik="480"></textarea>
+    </div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/yatproje.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/jodit/jodit.min.css" />
+    <link rel="stylesheet" href="~/css/yatprojegiris.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/jodit/jodit.min.js"></script>
+    <script src="~/js/editor.js" asp-append-version="true"></script>
+    <script src="~/js/yatbilgi.js" asp-append-version="true"></script>
+}

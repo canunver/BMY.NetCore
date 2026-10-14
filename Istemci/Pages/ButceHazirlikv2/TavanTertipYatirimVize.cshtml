@@ -1,0 +1,159 @@
+@page
+@model TavanTertipYatirimVizeModel
+@{
+    ViewData["Title"] = "Faaliyet/Proje Vize Detayı Girişi";
+    // Geniş ekranda sayfa pencereye sığar, tablo kalan alanı doldurur (tanim.css; bölüm görünümü tavanfaal.css ve tavantertip.css ile ortak).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-faal tavan-tertip tavan-tertip-vize">
+    <!-- Üst: seçim -->
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Faaliyet / Proje Seçimi</h2>
+            <form id="frmSecim" class="secim-satir" novalidate>
+                <label class="secim-alan dar">
+                    <span>Yıl</span>
+                    <input type="number" id="txtYil" class="form-control input-sm" min="2000" step="1" title="Bütçe hazırlık yılı" />
+                </label>
+                <div class="secim-alan">
+                    <label for="txtFaaliyet">Faaliyet/Proje</label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" id="txtFaaliyet" class="form-control" readonly placeholder="Seçiniz" />
+                        <span class="input-group-btn">
+                            <button type="button" id="btnFaaliyetSec" class="btn btn-default" title="Faaliyet/proje ağacından seç">
+                                <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span><span class="sr-only">Faaliyet/proje seç</span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <label class="secim-alan genis">
+                    <span>Eko-Fin Kod <small>(faaliyetin yatırım vize tavanları)</small></span>
+                    <select id="ddlEkoFin" class="form-control input-sm"></select>
+                </label>
+                <button type="submit" id="btnListele" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Alt: tertip vize rakamları -->
+    <section>
+        <div class="kutu bolum bolum-tavan">
+            <h2 class="bolum-baslik">
+                Faaliyet Detay Rakamları
+                <span id="durumEtiket" class="label" hidden></span>
+            </h2>
+            <div class="btn-toolbar tavan-arac" role="toolbar" aria-label="Vize işlemleri">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnKaydet" class="btn btn-primary" hidden>
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                    </button>
+                    <button type="button" id="btnTekliftenAl" class="btn btn-default" hidden title="Vizesi sıfır olan tertiplere o yılın teklif tutarını yazar">
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Tekliften Al
+                    </button>
+                    <button type="button" id="btnOranla" class="btn btn-default" hidden title="Vize tavanını tertiplere ilk yıl teklifleri oranında dağıtır (binlik yuvarlanır)">
+                        <span class="glyphicon glyphicon-random" aria-hidden="true"></span> Teklif Üret
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Onay">
+                    <button type="button" id="btnOnayla" class="btn btn-success" hidden>
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Onayla
+                    </button>
+                    <button type="button" id="btnOnayKaldir" class="btn btn-warning" hidden>
+                        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Onay Kaldır
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnKopyala" class="btn btn-default" disabled title="Tabloyu panoya kopyalar (Excel'e yapıştırılabilir)">
+                        <span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Kopyala
+                    </button>
+                    <button type="button" id="btnYapistir" class="btn btn-default" hidden title="Panodaki tutarları seçili satırdan başlayarak vize sütunlarına yazar">
+                        <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Yapıştır
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnYazdir" class="btn btn-default" title="Seçili faaliyet/projenin (seçilmemişse hepsinin) vize tavanları">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                    </button>
+                    <button type="button" id="btnYazdirDetay" class="btn btn-default" title="Seçili faaliyet/projenin (seçilmemişse hepsinin) vize tavanları, tertip detayıyla">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Detay Yaz
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm rapor-menu" role="group">
+                    <button type="button" id="btnRapor" class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Rapor Al <span class="caret"></span>
+                    </button>
+                    <ul id="lstRapor" class="dropdown-menu" aria-labelledby="btnRapor"></ul>
+                </div>
+                <ul class="renk-aciklama" aria-label="Renkler">
+                    <li class="toplam">Tavan / Fark / Toplam</li>
+                    <li class="kapali">Değiştirilemez</li>
+                    <li class="acik">Girilebilir</li>
+                </ul>
+            </div>
+            <div id="grdVize" class="tavan-grid" aria-label="Tertip vize rakamları"></div>
+        </div>
+    </section>
+</div>
+
+<!-- Faaliyet/proje seçimi (eski ddProg ağacı) -->
+<dialog id="dlgFaaliyet" class="tanim-pencere tavan-tertip-agac" aria-labelledby="dlgFaaliyetBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgFaaliyetBaslik">Faaliyet/Proje Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <ul id="agcFaaliyet" aria-label="Faaliyet/proje ağacı"></ul>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu (Kaydet, Onayla, Onay Kaldır) -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+<!-- Pano okunamazsa (izin verilmedi / güvenli bağlantı değil) veri buraya yapıştırılır -->
+<dialog id="dlgYapistir" class="tanim-pencere tavan-tertip-yapistir" aria-labelledby="dlgYapistirBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgYapistirBaslik">Yapıştır</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="help-block">Excel'den kopyaladığınız satırları buraya yapıştırınız (Ctrl+V). Sütunlar sırayla üç yılın vize tutarlarına yazılır.</p>
+        <textarea id="txtYapistir" class="form-control" rows="8" aria-label="Yapıştırılacak veri"></textarea>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnYapistirTamam" class="btn btn-primary btn-sm">Yapıştır</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tavanfaal.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tavantertip.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/tavantertipvize.js" asp-append-version="true"></script>
+}

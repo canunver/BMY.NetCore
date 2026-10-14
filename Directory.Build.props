@@ -9,6 +9,8 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <!-- AssemblyInfo.cs dosyalarındaki AssemblyVersion("1.0.*") joker karakteri için gerekli -->
     <Deterministic>false</Deterministic>
+    <!-- NuGet paketlerinin (Roslyn vb.) yalnızca Türkçe kaynak klasörü çıktıya kopyalansın (cs, de, fr ... klasörleri gelmesin) -->
+    <SatelliteResourceLanguages>tr</SatelliteResourceLanguages>
     <!-- Eski koddan gelen, davranışı etkilemeyen uyarılar -->
     <NoWarn>$(NoWarn);CS0618;CS0168;CS0219;CS0162;CS0649;CS0414;CS0169;CS0108;CS0114;CS1591;CS8981;SYSLIB0011;SYSLIB0014;SYSLIB0021;SYSLIB0022;SYSLIB0023;CA1416</NoWarn>
   </PropertyGroup>

@@ -1,0 +1,71 @@
+@page
+@model AltProjeAmacGirisModel
+@{
+    ViewData["Title"] = "Amaç ve Kapsam";
+    // (alan, etiket, html editör mü). Etiketteki {yil+n} JavaScript ile çalışılan yıla göre yazılır.
+    var bolumler = new[]
+    {
+        (baslik: "Amaç ve Kapsam", sinif: "bolum-proje", alanlar: new[]
+        {
+            (alan: "kisaAmac", etiket: "Amaç (Özet)", html: false),
+            (alan: "aciklama", etiket: "Açıklama", html: false),
+            (alan: "amac", etiket: "PROJE AMACI", html: true),
+            (alan: "kapsam", etiket: "PROJE KAPSAMI", html: true),
+            (alan: "gerekce", etiket: "PROJE GEREKÇESİ", html: true),
+            (alan: "gerekceOz", etiket: "ÖZET PROJE GEREKÇESİ (300 Harf)", html: true),
+        }),
+        (baslik: "Gerçekleşmeler ve Faaliyetler", sinif: "bolum-diger", alanlar: new[]
+        {
+            (alan: "gerceklesmeDegerlendirme", etiket: "{yil-2} YILI SONUNA KADAR KÜMÜLATİF GERÇEKLEŞMELER VE DEĞERLENDİRME", html: true),
+            (alan: "progFaal", etiket: "{yil-1} YILINDA PROGRAMLANAN FAALİYETLER", html: true),
+            (alan: "yapilanFaal", etiket: "{yil-1} HAZİRAN SONU (İLK 6 AY) YAPILAN FAALİYETLER", html: true),
+        }),
+        (baslik: "Yıllık Planlar", sinif: "bolum-plan", alanlar: new[]
+        {
+            (alan: "plan0", etiket: "{yil} YILI PLANI (Yapılacak faaliyetlerin adı, miktarı, maliyeti ve gerekçesi maddeler halinde yazılacaktır.)", html: true),
+            (alan: "plan1", etiket: "{yil+1} YILI PLANI (Yapılacak faaliyetlerin adı, miktarı, maliyeti ve gerekçesi maddeler halinde yazılacaktır.)", html: true),
+            (alan: "plan2", etiket: "{yil+2} YILI PLANI (Yapılacak faaliyetlerin adı, miktarı, maliyeti ve gerekçesi maddeler halinde yazılacaktır.)", html: true),
+            (alan: "plan3", etiket: "{yil+3} ve Sonrası (Yapılacak faaliyetlerin adı, miktarı, maliyeti ve gerekçesi maddeler halinde yazılacaktır.)", html: true),
+        }),
+        (baslik: "Sorunlar ve Çözüm Önerileri", sinif: "bolum-not", alanlar: new[]
+        {
+            (alan: "sorunCozum", etiket: "PROJE İLE İLGİLİ SORUNLAR VE ÇÖZÜM ÖNERİLERİ", html: true),
+        }),
+    };
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="yat-proje yat-detay yat-bilgi" data-sayfa="AltProjeAmacGiris">
+    <partial name="_YatBilgiArac" />
+    @foreach (var b in bolumler)
+    {
+        <div class="kutu bolum @b.sinif">
+            <h2 class="bolum-baslik">@b.baslik</h2>
+            <div class="tanim-form">
+                @foreach (var a in b.alanlar)
+                {
+                    <div class="form-group ust-hizali">
+                        <label class="control-label" for="txt_@a.alan" data-etiket="@a.etiket">@a.etiket</label>
+                        <div><textarea id="txt_@a.alan" class="form-control" rows="3" data-alan="@a.alan" @(a.html ? "data-html" : "")></textarea></div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/yatproje.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/jodit/jodit.min.css" />
+    <link rel="stylesheet" href="~/css/yatprojegiris.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/jodit/jodit.min.js"></script>
+    <script src="~/js/editor.js" asp-append-version="true"></script>
+    <script src="~/js/yatbilgi.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,30 @@
+@* ProjeDetay ve AltProjeDetay'ın ortak pencereleri: karakteristik seçimi ve onay sorusu. *@
+<!-- Karakteristik seçimi (eski wndKarakteristik): seçilenler ek bilgileriyle birlikte virgülle birleştirilir -->
+<dialog id="dlgKarakteristik" class="tanim-pencere yat-karakteristik" aria-labelledby="dlgKarakteristikBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKarakteristikBaslik">Karakteristik</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="tanim-not">Seçtiğiniz karakteristiklerden ek bilgi isteyenlerin “Ek Bilgi” hücresini doldurunuz.</p>
+        <div id="grdKarakteristik" class="yat-grid kisa" aria-label="Karakteristikler"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnKarakteristikAktar" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Aktar
+        </button>
+    </div>
+</dialog>
+
+<dialog id="dlgOnay" class="tanim-pencere" aria-labelledby="dlgOnayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOnayBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde"><p id="onayMetin"></p></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnOnayla" class="btn btn-primary btn-sm">Tamam</button>
+    </div>
+</dialog>

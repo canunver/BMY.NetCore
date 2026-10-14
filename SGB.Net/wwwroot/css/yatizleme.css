@@ -1,0 +1,140 @@
+/* Yatırım Programı İzleme ve Değerlendirme: tek renkli başlıklı bölüm; üstte aşama / rapor / onay tuşları, altta
+   Pr. ve Gerç. Durumu ve Tamamlama Raporu sekmeleri. Ödenek tablosu eski OdenekTabloOl görünümündedir. */
+
+.yat-izleme .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.yat-izleme .bolum-baslik {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 -12px 12px;
+    padding: 9px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.yat-izleme .bolum-baslik .label {
+    font-size: 11px;
+}
+
+.izleme-arac,
+.izleme-alt-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 8px;
+    margin: 0 0 12px;
+}
+
+.izleme-arac .btn-group,
+.izleme-alt-arac .btn-group {
+    margin: 0;
+}
+
+.izleme-arac .asama-alan {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.izleme-arac .asama-alan select {
+    width: auto;
+    min-width: 240px;
+}
+
+.izleme-sekmeler {
+    margin-bottom: 12px;
+}
+
+.izleme-sekmeler > li > a {
+    font-weight: 600;
+}
+
+/* Ödenek tablosu (eski dfBilgi) */
+.odenek-alan {
+    margin: 0 0 12px;
+    overflow-x: auto;
+}
+
+.odenek-tablo {
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: var(--yuzey);
+}
+
+.odenek-tablo th,
+.odenek-tablo td {
+    width: 4.5cm;
+    padding: 3pt;
+    text-align: center;
+    border: 1pt solid var(--murekkep);
+}
+
+.odenek-tablo th {
+    font-weight: bold;
+}
+
+/* Tamamlama Raporu: etiketler solda, uzun olduğundan geniş */
+.izleme-form {
+    --etiket-genislik: 280px;
+    max-width: 1100px;
+}
+
+.izleme-form .control-label {
+    font-weight: 600;
+}
+
+@media (max-width: 767px) {
+    .izleme-form .form-group {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 4px;
+    }
+}
+
+/* Genel Değerlendirme penceresi */
+.tanim-pencere.izleme-genel {
+    width: min(900px, calc(100vw - 32px));
+}
+
+.izleme-genel .pencere-baslik small {
+    font-weight: 400;
+}
+
+.izleme-genel .genel-etiket {
+    display: block;
+    margin: 0 0 6px;
+    font-weight: 600;
+}
+
+/* Bootstrap betiği yüklenmediğinden açılır menü .open ile yatizleme.js'ten açılır */
+.izleme-genel .rapor-menu .dropdown-menu button {
+    display: block;
+    width: 100%;
+    padding: 4px 16px;
+    border: 0;
+    background: none;
+    text-align: left;
+    white-space: nowrap;
+    color: var(--murekkep);
+}
+
+.izleme-genel .rapor-menu .dropdown-menu button:hover,
+.izleme-genel .rapor-menu .dropdown-menu button:focus {
+    background: #e3edfa;
+    outline: none;
+}

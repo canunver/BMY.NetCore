@@ -1,0 +1,190 @@
+/* Koordinasyon Tavan Girişi ve Kontrolü: üstte seçim, altta faaliyet/proje tavanları tablosu (kalan yüksekliği doldurur).
+   Bölümler renkli başlıklı ayrı kutulardır (Ana Harcama Grupları Tavan Girişi ile aynı görünüm). */
+
+.tavan-faal .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding-top: 0;
+    background: var(--bolum-govde);
+}
+
+.tavan-faal .kutu.bolum.bolum-tavan {
+    --bolum-baslik: #e2f3e6;
+    --bolum-govde: #f5fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.tavan-faal .bolum-baslik {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 -16px 12px;
+    padding: 9px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.tavan-faal .bolum-baslik .label {
+    font-size: 11px;
+}
+
+/* Seçim: alanlar yan yana, sığmazsa alt satıra */
+.tavan-faal .secim-satir {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 8px 14px;
+}
+
+.tavan-faal .secim-alan {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 260px;
+    min-width: 0;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.tavan-faal .secim-alan.dar {
+    flex: 0 0 100px;
+}
+
+.tavan-faal .secim-alan small {
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+.tavan-faal .secim-isaret {
+    margin: 0 0 6px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.tavan-faal .tavan-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 0 0 10px;
+}
+
+.tavan-faal .tavan-arac .btn-group {
+    margin-left: 0;
+}
+
+.tavan-faal .renk-aciklama {
+    display: flex;
+    gap: 10px;
+    margin: 0 0 0 auto;
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.tavan-faal .renk-aciklama li::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+    vertical-align: -1px;
+    border: 1px solid var(--cizgi);
+    border-radius: 2px;
+}
+
+.tavan-faal .renk-aciklama .toplam::before { background: #faba9f; }
+.tavan-faal .renk-aciklama .kapali::before { background: #fcfcd4; }
+.tavan-faal .renk-aciklama .acik::before   { background: #fff; }
+
+.tavan-grid {
+    height: 480px;
+}
+
+/* Hücre renkleri (eski sayfadaki gibi): toplam satırı turuncu ve kalın, girilemeyen hücreler açık sarı */
+.tavan-grid .ag-row-pinned .ag-cell {
+    font-weight: 700;
+    background: #faba9f;
+}
+
+.tavan-grid .ag-cell.kapali {
+    background: #fcfcd4;
+}
+
+.tavan-grid .ag-cell.girilir {
+    background: #fff;
+    box-shadow: inset 0 0 0 1px #c9d6e3;
+    cursor: text;
+}
+
+.tavan-grid .ag-cell.sayi,
+.tavan-grid .ag-header-cell.sayi .ag-header-cell-label {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.tavan-grid .ag-header-cell.sayi .ag-header-cell-text {
+    text-align: right;
+}
+
+@media (min-width: 992px) {
+    .tanim.tavan-faal {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    .tavan-faal .bolum-baslik {
+        margin: 0 -12px 12px;
+        padding: 9px 12px;
+    }
+
+    .tavan-faal .bolum-tavan {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .tavan-faal .tavan-grid {
+        flex: 1 1 auto;
+        min-height: 220px;
+        height: auto;
+    }
+}
+
+.tavan-faal .secim-alan.genis {
+    flex: 2 1 380px;
+}
+
+/* TAVAN ve FARK satırları toplamdan ayrılsın; FARK eksiye düşerse kırmızı */
+.tavan-grid .ag-row-pinned.satir-tavan .ag-cell {
+    background: #f7c9b4;
+}
+
+.tavan-grid .ag-row-pinned .ag-cell.eksi {
+    color: #b52a1c;
+}
+
+/* Toplu Onay penceresi */
+.tavan-faal-onay {
+    width: min(860px, calc(100vw - 32px));
+}
+
+.tavan-faal-onay .secim-isaret {
+    margin: 0 0 0 6px;
+    font-weight: 400;
+}
+
+.onay-grid {
+    height: min(480px, calc(100vh - 260px));
+}
+
+.onay-grid .komut {
+    padding: 0 6px;
+    line-height: 20px;
+}

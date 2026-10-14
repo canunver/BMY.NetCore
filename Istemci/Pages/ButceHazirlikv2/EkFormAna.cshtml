@@ -1,0 +1,102 @@
+@page
+@model EkFormAnaModel
+@{
+    ViewData["Title"] = "Ek Formlar";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim ek-form">
+    <!-- Sol: sorgu alanları ve ek form listesi -->
+    <section class="tanim-sol">
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Sorgu Alanları</h2>
+            <form id="frmSecim" class="tanim-arama" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="ddlYil">Yıl</label>
+                    <div><select id="ddlYil" class="form-control"></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlSenaryo">Aşama</label>
+                    <div><select id="ddlSenaryo" class="form-control"></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlBirim">Birim</label>
+                    <div><select id="ddlBirim" class="form-control"></select></div>
+                </div>
+            </form>
+            <h3 class="liste-baslik">Ek Form Listesi</h3>
+            <div id="lstFormlar" class="ekform-liste" role="listbox" aria-label="Ek formlar"></div>
+        </div>
+    </section>
+
+    <!-- Sağ: seçilen form -->
+    <section class="tanim-sag">
+        <div class="kutu bolum bolum-form">
+            <h2 class="bolum-baslik">
+                <span id="formBaslik">Form seçiniz</span>
+                <small class="alt-baslik" id="formAltBaslik"></small>
+            </h2>
+            <div class="btn-toolbar tanim-arac ekform-arac" role="toolbar" aria-label="Form işlemleri">
+                <button type="button" id="btnListele" class="btn btn-default btn-sm" disabled>
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Listele
+                </button>
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm" disabled>
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+                <button type="button" id="btnYazdir" class="btn btn-default btn-sm" disabled>
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                </button>
+                <span id="ekDugmeler" class="ek-dugmeler"></span>
+                <ul class="renk-aciklama" aria-label="Renkler">
+                    <li class="acik">Girilebilir</li>
+                    <li class="kapali">Girilemez</li>
+                    <li class="degisti">Değişti</li>
+                </ul>
+            </div>
+            <div id="formGovde" class="ekform-govde">
+                <p class="text-muted bos-metin">Soldaki listeden bir form seçiniz.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Onay penceresi (eski Ext onay kutularının yerine) -->
+<dialog id="dlgOnay" class="tanim-pencere" aria-labelledby="dlgOnayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOnayBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="onayMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnOnayEvet" class="btn btn-primary btn-sm">Tamam</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ekform.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/ekform.js" asp-append-version="true"></script>
+    <script src="~/js/ekform/hizmetbilgisi.js" asp-append-version="true"></script>
+    <script src="~/js/ekform/hizmetmaliyeti.js" asp-append-version="true"></script>
+    <script src="~/js/ekform/fizikseldegerler.js" asp-append-version="true"></script>
+    <script src="~/js/ekform/uluslararasi.js" asp-append-version="true"></script>
+    <script src="~/js/ekform/edinilecektasit.js" asp-append-version="true"></script>
+    <script src="~/js/ekform/kullanilantasit.js" asp-append-version="true"></script>
+    <script src="~/js/ekform/hizmetalimitasit.js" asp-append-version="true"></script>
+    <script src="~/js/ekform/ozelguvenlik.js" asp-append-version="true"></script>
+    <script src="~/js/ekform/temizlik.js" asp-append-version="true"></script>
+    <script src="~/js/ekform/donersermaye.js" asp-append-version="true"></script>
+    <script src="~/js/ekform/tavanustu.js" asp-append-version="true"></script>
+    <script src="~/js/ekform/hizmetgorevli.js" asp-append-version="true"></script>
+}

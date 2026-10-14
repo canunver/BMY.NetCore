@@ -1,0 +1,10 @@
+<Project>
+  <!-- Kitaplık projelerindeki eski app.config dosyaları (HRCServisC, MUHServisC, TRMServisC, Mernis.KPSv2.Types) çıktıya
+       <Kitaplık>.dll.config olarak kopyalanmasın: .NET 8'de yalnızca çalışan uygulamanın ayar dosyası (SGB.Net.dll.config) okunur.
+       Properties.Settings.Default değerleri (servis adresleri) derlemeye gömülü varsayılanlardan gelir; değiştirmek gerekirse
+       SGB.Net\App.config'e ilgili applicationSettings bölümü eklenir. -->
+  <ItemGroup Condition="'$(OutputType)' == 'Library'">
+    <None Remove="app.config;App.config" />
+    <Content Remove="app.config;App.config" />
+  </ItemGroup>
+</Project>

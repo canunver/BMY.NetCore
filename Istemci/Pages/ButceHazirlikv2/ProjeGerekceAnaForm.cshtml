@@ -1,0 +1,165 @@
+@page
+@model ProjeGerekceAnaFormModel
+@{
+    ViewData["Title"] = "Proje Gerekçe Girişi";
+    // Geniş ekranda sayfa pencereye sığar, sekmelerdeki tablo kalan alanı doldurur (tanim.css, projegerekce.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim proje-gerekce">
+    <!-- Üst: seçim, raporlar ve onay -->
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Proje Seçimi</h2>
+            <form id="frmSecim" class="secim-satir" novalidate>
+                <label class="secim-alan dar">
+                    <span>Yıl</span>
+                    <input type="number" id="txtYil" class="form-control input-sm" min="2000" step="1" />
+                </label>
+                <label class="secim-alan" id="alanSenaryo" hidden>
+                    <span>Aşama</span>
+                    <select id="ddlSenaryo" class="form-control input-sm"></select>
+                </label>
+                <div class="secim-alan kod-alan">
+                    <label for="txtKurum">Kurum</label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" id="txtKurum" class="form-control" readonly placeholder="Tümü" />
+                        <span class="input-group-btn">
+                            <button type="button" id="btnKurumSec" class="btn btn-default" title="Kod ağacından seç"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span><span class="sr-only">Kurum seç</span></button>
+                            <button type="button" id="btnKurumTemizle" class="btn btn-default" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Kurumu temizle</span></button>
+                        </span>
+                    </div>
+                </div>
+                <label class="secim-alan">
+                    <span>Sektör <small>(boşsa yalnızca yeni projeler okunur)</small></span>
+                    <select id="ddlSektor" class="form-control input-sm"></select>
+                </label>
+                <button type="submit" id="btnOku" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Oku
+                </button>
+            </form>
+            <div class="btn-toolbar proje-arac" role="toolbar" aria-label="Raporlar ve onay">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Raporlar">
+                    <button type="button" class="btn btn-default" data-rapor="1" title="Proje gerekçeleri (Word)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                    </button>
+                    <button type="button" class="btn btn-default" data-rapor="2" data-yonetici hidden title="Ek talebi olan projelerin gerekçeleri (Word)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır (Ek)
+                    </button>
+                    <button type="button" class="btn btn-default" data-rapor="1e" title="Proje gerekçeleri listesi (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır (Liste)
+                    </button>
+                    <button type="button" class="btn btn-default" data-rapor="2e" data-yonetici hidden title="Ek talebi olan projelerin listesi (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır (Ek Liste)
+                    </button>
+                    <button type="button" class="btn btn-default" data-rapor="3" data-yonetici hidden title="Yatırım projeleri özeti (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır (Özet)
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Onay">
+                    <button type="button" id="btnOnayla" class="btn btn-success" data-yonetici hidden title="Proje gerekçelerini veri girişine kapatır">
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Onayla
+                    </button>
+                    <button type="button" id="btnOnayKaldir" class="btn btn-warning" data-yonetici hidden title="Proje gerekçelerini veri girişine açar">
+                        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Onay Kaldır
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alt: proje gerekçeleri (iki sekme) -->
+    <section>
+        <div class="kutu bolum bolum-proje">
+            <h2 class="bolum-baslik">
+                Proje Gerekçeleri
+                <span id="kapaliEtiket" class="label label-default" hidden>Veri girişine kapalı</span>
+            </h2>
+            <div class="sekmeler" role="tablist">
+                <button type="button" role="tab" id="sekmeMevcut" aria-controls="pnlMevcut" aria-selected="true">Tavan İçi Projeler</button>
+                <button type="button" role="tab" id="sekmeYeni" aria-controls="pnlYeni" aria-selected="false">Yeni Tavan Dışı Projeler</button>
+            </div>
+
+            <div id="pnlMevcut" class="sekme-govde" role="tabpanel" aria-labelledby="sekmeMevcut">
+                <div class="btn-toolbar proje-arac" role="toolbar" aria-label="Tavan içi proje işlemleri">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button type="button" id="btnMevcutKaydet" class="btn btn-primary" disabled>
+                            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                        </button>
+                        <button type="button" id="btnMevcutKopyala" class="btn btn-default" disabled title="Tabloyu panoya kopyalar (Excel'e yapıştırılabilir)">
+                            <span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Kopyala
+                        </button>
+                    </div>
+                    <span class="arac-not">Yalnızca Gerekçe sütunu girilir (en çok 300 karakter).</span>
+                </div>
+                <div id="grdMevcut" class="proje-grid" aria-label="Tavan içi projeler"></div>
+            </div>
+
+            <div id="pnlYeni" class="sekme-govde" role="tabpanel" aria-labelledby="sekmeYeni" hidden>
+                <div class="btn-toolbar proje-arac" role="toolbar" aria-label="Yeni proje işlemleri">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button type="button" id="btnSatirAc" class="btn btn-default" disabled>
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Aç
+                        </button>
+                        <button type="button" id="btnSatirSil" class="btn btn-default" disabled title="İşaretli satırları siler">
+                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Satır Sil
+                        </button>
+                    </div>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button type="button" id="btnYeniKaydet" class="btn btn-primary" disabled>
+                            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                        </button>
+                        <button type="button" id="btnYeniKopyala" class="btn btn-default" disabled title="Tabloyu panoya kopyalar (Excel'e yapıştırılabilir)">
+                            <span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Kopyala
+                        </button>
+                    </div>
+                    <span class="arac-not" id="yeniNot"></span>
+                </div>
+                <div id="grdYeni" class="proje-grid" aria-label="Yeni tavan dışı projeler"></div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Kurum seçimi (eski açılır ağaç) -->
+<dialog id="dlgKurum" class="tanim-pencere proje-gerekce-agac" aria-labelledby="dlgKurumBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKurumBaslik">Kurum Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <ul id="agcKurum" aria-label="Kurumsal kod ağacı"></ul>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu (Kaydet, Onayla, Onay Kaldır) -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/projegerekce.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/projegerekce.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,183 @@
+@page
+@model YollukPlanlamaFormModel
+@{
+    ViewData["Title"] = "Yolluk Planlama Formu";
+    // Geniş ekranda sayfa pencereye sığar, tablo kalan alanı doldurur (tanim.css; bölüm görünümü taveneko.css ile ortak).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-eko yolluk-plan">
+    <!-- Üst: yıl, aşama, faaliyet ve tertip seçimi -->
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">
+                Yıl, Aşama ve Tertip
+                <span id="durumEtiket" class="label" hidden></span>
+            </h2>
+            <div class="secim-satir">
+                <label class="secim-alan dar">
+                    <span>Yıl</span>
+                    <input type="number" id="txtYil" class="form-control input-sm" min="2000" step="1" title="Bütçe yılı" />
+                </label>
+                <label class="secim-alan">
+                    <span>Aşama</span>
+                    <select id="ddlSenaryo" class="form-control input-sm" title="Bütçe aşaması"></select>
+                </label>
+                <div class="secim-alan kod-alan">
+                    <label for="txtPeb">Faaliyet <small id="pebAd"></small></label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" id="txtPeb" class="form-control" autocomplete="off" placeholder="Faaliyet kodu" title="Faaliyet kodu (Alt+Aşağı ağacı açar)" />
+                        <span class="input-group-btn">
+                            <button type="button" id="btnPebSec" class="btn btn-default" title="Kod ağacından seç"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span><span class="sr-only">Faaliyet kodu seç</span></button>
+                            <button type="button" id="btnPebTemizle" class="btn btn-default" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Faaliyet kodunu temizle</span></button>
+                        </span>
+                    </div>
+                </div>
+                <label class="secim-alan tertip-alan">
+                    <span>Tertip</span>
+                    <select id="ddlTertip" class="form-control input-sm">
+                        <option value="">Faaliyet seçiniz</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alt: yolluk planı -->
+    <section>
+        <div class="kutu bolum bolum-tavan">
+            <h2 class="bolum-baslik">Yolluk Planı</h2>
+            <div class="btn-toolbar tavan-arac" role="toolbar" aria-label="Yolluk planı işlemleri">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnOku" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Oku
+                    </button>
+                    <button type="button" id="btnKaydet" class="btn btn-default" disabled>
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                    </button>
+                    <button type="button" id="btnYazdir" class="btn btn-default" title="Faaliyetin yolluk planı (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Satır">
+                    <button type="button" id="btnSatirEkle" class="btn btn-default" title="Satır ekle">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekle
+                    </button>
+                    <button type="button" id="btnSatirSil" class="btn btn-default" title="Seçili satırları sil">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Yolluk değerleri ve onay">
+                    <button type="button" id="btnDegerler" class="btn btn-default" title="Maliyet hesabında kullanılan yolculuk ve gündelik değerleri">
+                        <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Yolluk Değerleri
+                    </button>
+                    <button type="button" id="btnOnaylama" class="btn btn-default" hidden>
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Onaylama
+                    </button>
+                </div>
+                <label class="toplam-alan">
+                    <span>Maliyet Toplamı</span>
+                    <input type="text" id="txtToplam" class="form-control input-sm" readonly value="0,00" />
+                </label>
+                <ul class="renk-aciklama" aria-label="Renkler">
+                    <li class="kapali">Girilemez (muhtelif değilse maliyet hesaplanır)</li>
+                    <li class="acik">Girilebilir</li>
+                </ul>
+            </div>
+            <div id="grdYolluk" class="tavan-grid" aria-label="Yolluk planı"></div>
+        </div>
+    </section>
+</div>
+
+<!-- Yolluk değerleri (eski wndDegerler) -->
+<dialog id="dlgDegerler" class="tanim-pencere yolluk-deger" aria-labelledby="dlgDegerlerBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgDegerlerBaslik">Yolluk Değerleri</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="deger-aciklama">Maliyet = ((süre + 1) &times; gündelik + yolculuk) &times; kişi sayısı. Yurt içi / yurt dışı seçilen tertibin ekonomik kodundan bulunur.</p>
+        <fieldset>
+            <legend>Yurt İçi</legend>
+            <label>Yolculuk Maliyeti <input type="text" id="txtYIYolculuk" class="form-control input-sm sayi-giris" inputmode="decimal" /></label>
+            <label>Günlük Maliyet <input type="text" id="txtYIGundelik" class="form-control input-sm sayi-giris" inputmode="decimal" /></label>
+        </fieldset>
+        <fieldset>
+            <legend>Yurt Dışı</legend>
+            <label>Yolculuk Maliyeti <input type="text" id="txtYDYolculuk" class="form-control input-sm sayi-giris" inputmode="decimal" /></label>
+            <label>Günlük Maliyet <input type="text" id="txtYDGundelik" class="form-control input-sm sayi-giris" inputmode="decimal" /></label>
+        </fieldset>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnDegerKaydet" class="btn btn-primary btn-sm" hidden>
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+<!-- Birimlerin onay durumu (eski wndOnay; yalnızca sistem yöneticisi) -->
+<dialog id="dlgOnay" class="tanim-pencere yolluk-onay" aria-labelledby="dlgOnayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOnayBaslik">Birimlerin Onay Durumu</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="btn-toolbar tavan-arac" role="toolbar" aria-label="Onay işlemleri">
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" class="btn btn-success" data-hepsi="5">
+                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Hepsini Onayla
+                </button>
+                <button type="button" class="btn btn-warning" data-hepsi="1">
+                    <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Hepsini Aç
+                </button>
+            </div>
+        </div>
+        <div id="grdOnay" class="tavan-grid onay-grid" aria-label="Birimlerin onay durumu"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Faaliyet kodu seçimi (eski KodAgac.aspx?kodTur=14) -->
+<dialog id="dlgKod" class="tanim-pencere yolluk-agac" aria-labelledby="dlgKodBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKodBaslik">Faaliyet Kodu Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde" id="agacKutu"></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu (Kaydet, Hepsini Onayla / Aç, satır silme) -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taveneko.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/yolluk.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/yolluk.js" asp-append-version="true"></script>
+}

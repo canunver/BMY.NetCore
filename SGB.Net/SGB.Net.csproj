@@ -12,4 +12,12 @@
     <ProjectReference Include="..\Istemci\Istemci.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Yayına girer: menü tanımları uygulama klasöründen okunur (MenuOkuyucu, MenuXML ayarı). -->
+    <None Update="Menu\*.xml" CopyToPublishDirectory="PreserveNewest" />
+    <!-- Yayına girmez: kuruma özel veriler (çerez şifreleme anahtarları, Komut Çalıştır'ın saklı sorguları). -->
+    <Content Update="App_Data\**" CopyToPublishDirectory="Never" />
+    <None Update="App_Data\**" CopyToPublishDirectory="Never" />
+  </ItemGroup>
+
 </Project>

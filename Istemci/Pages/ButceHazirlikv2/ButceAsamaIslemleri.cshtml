@@ -1,0 +1,114 @@
+@page
+@model ButceAsamaIslemleriModel
+@{
+    ViewData["Title"] = "Bütçe Aşama İşlemleri";
+    // Geniş ekranda sayfa pencereye sığar, bölmeler kendi içinde kayar (tanim.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim butce-asama">
+    <!-- Sol: birim için aşamaların onay durumları (eski "Ödenek Onaylama İşlemleri") -->
+    <section class="tanim-sol">
+        <div class="kutu bolum bolum-onay">
+            <h2 class="bolum-baslik">Ödenek Onaylama İşlemleri</h2>
+            <form id="frmOnay" class="tanim-arama" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="txtYil">Yıl</label>
+                    <div><input type="number" id="txtYil" class="form-control yil" min="2000" step="1" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlBirim">Birim</label>
+                    <div><select id="ddlBirim" class="form-control"></select></div>
+                </div>
+                <div class="btn-toolbar tanim-arac" role="toolbar">
+                    <button type="submit" id="btnListele" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                    </button>
+                    <button type="button" id="btnKaydet" class="btn btn-primary btn-sm" disabled>
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kaydet
+                    </button>
+                    <span id="kayitNot" class="tanim-not duz" hidden>Durumları yalnızca sistem yöneticisi değiştirebilir.</span>
+                </div>
+            </form>
+            <div id="grdDurum" class="tanim-grid" aria-label="Aşama durumları"></div>
+        </div>
+    </section>
+
+    <!-- Sağ: bir aşamanın ödeneklerini başka aşamaya kopyalama (eski "Aşama Ödenekleri Kopyalama") -->
+    <section class="tanim-sag">
+        <div class="kutu bolum bolum-kopya">
+            <h2 class="bolum-baslik">Aşama Ödeneklerini Kopyalama</h2>
+            <form id="frmKopya" class="tanim-form kopya-form" novalidate>
+                <fieldset class="kopya-grup kopya-kaynak">
+                    <legend>Kaynak</legend>
+                    <div class="form-group">
+                        <label class="control-label" for="txtKaynakYil">Yıl</label>
+                        <div><input type="number" id="txtKaynakYil" class="form-control yil" min="2000" step="1" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="ddlKaynakAsama">Aşama</label>
+                        <div><select id="ddlKaynakAsama" class="form-control"></select></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="ddlEkoKod">Ekonomik Kod</label>
+                        <div>
+                            <select id="ddlEkoKod" class="form-control" aria-describedby="ekoNot"></select>
+                            <p id="ekoNot" class="tanim-not duz">Yalnızca gider ödenekleri kopyalanırken kullanılır.</p>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="kopya-grup kopya-hedef">
+                    <legend>Hedef</legend>
+                    <div class="form-group">
+                        <label class="control-label" for="txtHedefYil">Yıl</label>
+                        <div><input type="number" id="txtHedefYil" class="form-control yil" min="2000" step="1" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="ddlHedefAsama">Aşama</label>
+                        <div><select id="ddlHedefAsama" class="form-control"></select></div>
+                    </div>
+                </fieldset>
+                <div class="btn-toolbar kopya-tuslar" role="toolbar">
+                    <button type="button" class="btn btn-primary btn-sm" data-kopya="1">
+                        <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Gider Ödenekleri Kopyala
+                    </button>
+                    <button type="button" class="btn btn-primary btn-sm" data-kopya="2">
+                        <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Gelir Ödenekleri Kopyala
+                    </button>
+                </div>
+            </form>
+            <div id="kopyaSonuc" class="alert kopya-sonuc" role="status" hidden></div>
+        </div>
+    </section>
+</div>
+
+<!-- Kopyalama onayı -->
+<dialog id="dlgOnay" class="tanim-pencere" aria-labelledby="dlgOnayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOnayBaslik">Ödenek Kopyalama</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="onayMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnOnayla" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Kopyala
+        </button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/butceasama.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/butceasama.js" asp-append-version="true"></script>
+}

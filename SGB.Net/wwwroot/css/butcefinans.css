@@ -1,0 +1,108 @@
+/* Bütçe finans girişi (ButceFinansGiris): üstte seçim ve tuşlar, altta finansman tutarı ile finansman durumu, gelirler, giderler.
+   Bölüm görünümü tavanfaal.css'ten gelir (.tavan-faal). Sayfa aşağı kayar. */
+
+.butce-finans .secim-alan {
+    flex: 0 1 260px;
+}
+
+.butce-finans .secim-alan.dar {
+    flex: 0 0 100px;
+}
+
+.butce-finans .bolum-baslik .alt-baslik {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+.butce-finans .finans-arac {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    margin: 0;
+}
+
+.butce-finans .finans-arac .btn-group {
+    margin-left: 0;
+}
+
+.butce-finans .finans-tutar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+    margin-bottom: 14px;
+}
+
+.butce-finans .finans-tutar label {
+    margin: 0;
+    font-weight: 600;
+}
+
+.butce-finans .finans-tutar input {
+    width: 200px;
+    font-weight: 600;
+}
+
+.butce-finans .finans-gruplar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+}
+
+.butce-finans .bilgi-grup {
+    min-width: 0;
+    margin: 0;
+    padding: 8px 12px 10px;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.butce-finans .bilgi-grup legend {
+    width: auto;
+    margin: 0;
+    padding: 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 0;
+}
+
+.butce-finans .bilgi-satir {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 150px;
+    align-items: center;
+    gap: 8px;
+    margin: 5px 0;
+}
+
+.butce-finans .bilgi-etiket {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.butce-finans .form-control.sayi {
+    text-align: right;
+}
+
+/* Salt okunur alanlar eski sayfadaki gibi gri */
+.butce-finans .form-control[readonly] {
+    background: #e9ecef;
+}
+
+.butce-finans .help-block {
+    margin: 12px 0 0;
+    font-size: 12px;
+}
+
+@media (min-width: 992px) {
+    .tanim.tavan-faal.butce-finans {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: none;
+    }
+
+    .butce-finans .kutu {
+        overflow: visible;
+    }
+}

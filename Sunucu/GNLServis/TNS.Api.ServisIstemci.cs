@@ -4,7 +4,7 @@ using System.IO;
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
-using Newtonsoft.Json.Linq;
+using System.Text.Json.Nodes;
 
 namespace TNS.Api
 {
@@ -86,9 +86,9 @@ namespace TNS.Api
             Sonuc sonuc = null;
             try
             {
-                JObject o = ApiJson.NesneAyristir(metin);
-                hata = (string)o["hata"];
-                if (o["sonuc"] != null && o["sonuc"].Type == JTokenType.Object)
+                JsonObject o = ApiJson.NesneAyristir(metin);
+                hata = ApiJson.Metin(o["hata"]);
+                if (o["sonuc"] is JsonObject)
                     sonuc = (Sonuc)ApiJson.TokenOku(o["sonuc"], typeof(Sonuc));
             }
             catch (Exception)

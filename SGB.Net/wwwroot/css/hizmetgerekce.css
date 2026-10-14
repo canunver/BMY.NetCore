@@ -1,0 +1,145 @@
+/* Faaliyet Gerekçesi: solda faaliyet listesi, sağda gerekçe metinleri; bölümler ve üç metin (gerekçe, dayanak, maliyet)
+   renkli başlıklı ayrı kutulardır (Bütçe Aşama İşlemleri'ndeki bölüm görünümüyle aynı). */
+
+.hizmet-gerekce .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding-top: 0;
+    background: var(--bolum-govde);
+}
+
+.hizmet-gerekce .kutu.bolum.bolum-metin {
+    --bolum-baslik: #e2f2e6;
+    --bolum-govde: #f6fbf7;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.hizmet-gerekce .bolum-baslik {
+    flex: none;
+    margin: 0 -16px 14px;
+    padding: 9px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+    overflow-wrap: anywhere;
+}
+
+.hizmet-gerekce .form-control.yil {
+    max-width: 110px;
+}
+
+.hizmet-gerekce .tanim-arama {
+    --etiket-genislik: 60px;
+    flex: none;
+}
+
+.hizmet-gerekce .tanim-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.hizmet-gerekce .tanim-arac .btn {
+    margin-left: 0;
+}
+
+/* Faaliyet listesi kalan alanı doldurur ve kendi içinde kayar */
+.hizmet-gerekce .faaliyet-liste {
+    min-height: 160px;
+    padding: 4px;
+    overflow-y: auto;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+/* Üç metin ayrı renkli kutularda */
+.hizmet-gerekce .gerekce-metinler {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.hizmet-gerekce .metin-kutu {
+    --metin-baslik: #e3edfa;
+    --metin-vurgu: #2f6fc4;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.hizmet-gerekce .metin-kutu.metin-dayanak {
+    --metin-baslik: #fbefd3;
+    --metin-vurgu: #b07a00;
+}
+
+.hizmet-gerekce .metin-kutu.metin-maliyet {
+    --metin-baslik: #f3e6f7;
+    --metin-vurgu: #8a3fa8;
+}
+
+.hizmet-gerekce .metin-kutu > label {
+    display: block;
+    margin: 0;
+    padding: 6px 12px;
+    font-weight: 700;
+    background: var(--metin-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--metin-vurgu);
+}
+
+.hizmet-gerekce .metin-kutu > textarea {
+    min-height: 140px;
+    font-family: "Times New Roman", Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    text-align: justify;
+    resize: vertical;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+@media (min-width: 992px) {
+    .tanim.hizmet-gerekce {
+        grid-template-columns: minmax(280px, 4fr) minmax(0, 8fr);
+    }
+
+    .hizmet-gerekce .faaliyet-liste {
+        flex: 1 1 auto;
+        min-height: 0;
+    }
+
+    /* Sağ bölme: araç çubuğu sabit, metinler kalan yüksekliği paylaşır */
+    .hizmet-gerekce .bolum-metin {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .hizmet-gerekce .bolum-metin .tanim-arac {
+        flex: none;
+    }
+
+    .hizmet-gerekce .gerekce-metinler {
+        flex: 1 1 auto;
+        min-height: 0;
+    }
+
+    .hizmet-gerekce .metin-kutu {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        min-height: 150px;
+    }
+
+    .hizmet-gerekce .metin-kutu > textarea {
+        flex: 1 1 auto;
+        min-height: 0;
+        resize: none;
+    }
+}

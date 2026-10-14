@@ -256,6 +256,37 @@ namespace TNS.UZY
         System.Collections.SortedList SorguBirlestir(string[] sql, string[] baglantiStr, int[] anahtarAlanlar);
 
         Sonuc SQLCalistir(Kullanici kullanan, string baglantiStr, string[] sqller);
+
+        // Veri tabanı index işlemleri (eski EVRServis'ten; Evrak/EvrakVeritabaniIndex sayfası). Yalnızca sistem yöneticisi.
+        VeritabaniIndex[] VeritabaniIndexListele(Kullanici kullanan, VeritabaniIndex form, string baglantiAd);
+        Sonuc VeritabaniIndexIslem(Kullanici kullanan, VeritabaniIndex[] liste, ENUMVeritabaniIndexIslem islem, string baglantiAd);
+        /// <summary>Anahtar: veri tabanı adı (Catalog), değer: appSettings'teki bağlantı satırı adı.</summary>
+        Hashtable VeritabaniBaglantiSatiriListele(Kullanici kullanan);
+    }
+
+    /// <summary>Veri tabanı index bilgisi (eski TNS.EVR.VeritabaniIndex).</summary>
+    [Serializable()]
+    public class VeritabaniIndex
+    {
+        public int objectId = 0;
+        public string tabloAd = "";
+        public string indexAd = "";
+        public string indexTip = "";
+        public double indexSize = 0.0;
+        public double fragmentation = 0.0;
+        public int fillFactor = 0;
+
+        public string kolon = "";
+        public string include = "";
+    }
+
+    public enum ENUMVeritabaniIndexIslem
+    {
+        TANIMSIZ = 0,
+        REBUILD = 1,
+        REORGANIZE = 2,
+        DROP = 3,
+        CREATE = 4,
     }
 
     [Serializable()]

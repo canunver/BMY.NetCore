@@ -1,0 +1,115 @@
+@page
+@model TavanEkoSektorBirimModel
+@{
+    ViewData["Title"] = "Ana Harcama Grupları Tavan Girişi";
+    // Geniş ekranda sayfa pencereye sığar, tablo kalan alanı doldurur (tanim.css, taveneko.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-eko">
+    <!-- Üst: seçim -->
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Tavan Seçimi</h2>
+            <form id="frmSecim" class="secim-satir" novalidate>
+                <label class="secim-alan dar">
+                    <span>Yıl</span>
+                    <input type="number" id="txtYil" class="form-control input-sm" min="2000" step="1" />
+                </label>
+                <label class="secim-alan">
+                    <span>Eko. Kod <small>(ana harcama kalemi)</small></span>
+                    <select id="ddlEko" class="form-control input-sm"></select>
+                </label>
+                <label class="secim-alan">
+                    <span>Sektör <small>(son kırılım)</small></span>
+                    <select id="ddlSektor" class="form-control input-sm"></select>
+                </label>
+                <label class="secim-isaret" title="İşaretliyse önceki yılın ödenekleri yatırım aşamasından (0700), değilse 0600 aşamasından okunur">
+                    <input type="checkbox" id="chkYatirim" /> Yat. Aşaması Kullan
+                </label>
+                <button type="submit" id="btnListele" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Alt: birim tavanları -->
+    <section>
+        <div class="kutu bolum bolum-tavan">
+            <h2 class="bolum-baslik">
+                Birim Tavanları
+                <span id="durumEtiket" class="label" hidden></span>
+            </h2>
+            <div class="btn-toolbar tavan-arac" role="toolbar" aria-label="Tavan işlemleri">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnKaydet" class="btn btn-primary" disabled>
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Raporlar">
+                    <button type="button" class="btn btn-default" data-rapor="rapor" title="Yılın bütün ekonomik kod, sektör ve birim tavanları (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                    </button>
+                    <button type="button" class="btn btn-default" data-rapor="rapor-vize" title="Yatırım vize tavanları özeti (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır (Yat. Viz. Detay)
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Onay">
+                    <button type="button" id="btnOnayla" class="btn btn-success" hidden>
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Onayla
+                    </button>
+                    <button type="button" id="btnOnayKaldir" class="btn btn-warning" hidden>
+                        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Onay Kaldır
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnOvmp" class="btn btn-default" disabled title="Boş tavanları OVMP tutarlarıyla (bine yuvarlanmış) doldurur; kaydetmez">
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> OVMP'den Al
+                    </button>
+                    <button type="button" id="btnTavanUret" class="btn btn-default" title="Yılın bütün tavanlarını silip OVMP'den yeniden üretir">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Tavan Üret
+                    </button>
+                    <button type="button" id="btnKopyala" class="btn btn-default" disabled title="Tabloyu panoya kopyalar (Excel'e yapıştırılabilir)">
+                        <span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Kopyala
+                    </button>
+                </div>
+                <ul class="renk-aciklama" aria-label="Renkler">
+                    <li class="toplam">Toplam</li>
+                    <li class="kapali">Değiştirilemez</li>
+                    <li class="acik">Girilebilir</li>
+                </ul>
+            </div>
+            <div id="grdTavan" class="tavan-grid" aria-label="Birim tavanları"></div>
+        </div>
+    </section>
+</div>
+
+<!-- Onay sorusu (Kaydet, Onayla, Onay Kaldır, Tavan Üret) -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taveneko.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/taveneko.js" asp-append-version="true"></script>
+}

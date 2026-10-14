@@ -65,7 +65,6 @@
 		<Node ID="Menu2_1" Tip="UstMenu" Text="Bütçe Senaryosu" Genislik="100" Yukseklik="190" Modul="BHM">
 			<Node Tip="Kolon">
 				<Node ID="Menu2_1_0" URL="../ButceHazirlikv2/ButceAsamaIslemleri.aspx" Yetki="1"></Node>
-				<Node ID="Menu2_1_1" URL="../ButceHazirlikv2/ButceSenaryoSec.aspx" Yetki="1"></Node>
 			</Node>
 		</Node>
 		<Node ID="Menu2_2" Tip="UstMenu" Text="Bütçe Hazırlık" Genislik="100" Yukseklik="350" Modul="BHM" >

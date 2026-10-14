@@ -1,0 +1,77 @@
+@page
+@model KomutCalistirModel
+@{
+    ViewData["Title"] = "Komut Çalıştır";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Yapım aşamasında</div>
+    return;
+}
+
+<div class="guncelleme komut-calistir" id="komutSayfa" hidden>
+    <!-- Bağlantı, tablo / görünüm, alanlar ve saklı sorgular -->
+    <section class="kutu bolum bolum-mor">
+        <h2 class="bolum-baslik">Sorgu Hazırlama</h2>
+        <div class="arac sorgu-satir">
+            <label for="cmbBaglanti">Bağlantı:</label>
+            <input type="text" id="cmbBaglanti" class="form-control input-sm baglanti" list="lstBaglanti" autocomplete="off" placeholder="BaglantiSatiriKYM" />
+            <datalist id="lstBaglanti">
+                @foreach (string b in KomutCalistirModel.Baglantilar)
+                {
+                    <option value="@b"></option>
+                }
+            </datalist>
+            <label for="cmbTablo">Tablo:</label>
+            <span class="secim tablo"><select id="cmbTablo" class="form-control input-sm"><option></option></select></span>
+            <label for="cmbAlanlar">Alanlar:</label>
+            <span class="secim alanlar"><select id="cmbAlanlar" class="form-control input-sm" multiple></select></span>
+            <button type="button" id="btnSelect" class="btn btn-primary btn-sm" disabled title="SELECT cümlesini SQL alanına yazar (alan seçilmezse bütün alanlar)">
+                <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> SELECT Oluştur
+            </button>
+        </div>
+        <div class="arac sorgu-satir">
+            <label for="cmbSorgu">Saklı Sorgu:</label>
+            <span class="secim sorgu"><select id="cmbSorgu" class="form-control input-sm"><option></option></select></span>
+            <button type="button" id="btnSorguSil" class="btn btn-default btn-sm" disabled title="Seçilen saklı sorguyu siler">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+            </button>
+            <label for="txtSorguAd">Sorgu Adı:</label>
+            <input type="text" id="txtSorguAd" class="form-control input-sm sorgu-ad" autocomplete="off" maxlength="200" />
+            <button type="button" id="btnSorguSakla" class="btn btn-default btn-sm" title="SQL alanındaki sorguyu ve bağlantıyı bu adla saklar (aynı ad varsa üzerine yazar)">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Sakla
+            </button>
+        </div>
+    </section>
+
+    <!-- SQL -->
+    <section class="kutu bolum bolum-kirmizi">
+        <h2 class="bolum-baslik">SQL Komutu</h2>
+        <textarea id="txtSql" class="form-control komut" spellcheck="false" aria-label="SQL komutu"></textarea>
+        <div class="arac" role="toolbar" aria-label="Komut işlemleri">
+            <button type="button" id="btnCalistir" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Çalıştır
+            </button>
+            <button type="button" id="btnExcel" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Excel
+            </button>
+        </div>
+    </section>
+
+    <!-- Sonuç (eski pnlSonuc) -->
+    <section class="kutu bolum bolum-yesil">
+        <h2 class="bolum-baslik">Sonuç</h2>
+        <p id="lblSonucBos" class="sonuc-bos">Komut çalıştırıldığında sonuç burada görünür.</p>
+        <iframe id="frmSonuc" class="sonuc-cerceve" title="Sonuç" sandbox="" hidden></iframe>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css" />
+    <link rel="stylesheet" href="~/css/guncelleme.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/select2/js/select2.min.js"></script>
+    <script src="~/lib/select2/js/i18n/tr.js"></script>
+    <script src="~/js/komutcalistir.js" asp-append-version="true"></script>
+}

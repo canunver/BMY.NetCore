@@ -1,0 +1,140 @@
+@page
+@model AracKiralamaPlaniFormModel
+@{
+    ViewData["Title"] = "Kiralık Taşıt Planlama Formu";
+    // Geniş ekranda sayfa pencereye sığar, tablo kalan alanı doldurur (tanim.css; bölüm görünümü taveneko.css ile ortak).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-eko arac-kiralama">
+    <!-- Üst: yıl ve muhasebe / birim seçimi -->
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Birime ait araç kiralama planı</h2>
+            <div class="secim-satir">
+                <label class="secim-alan dar">
+                    <span>Yıl</span>
+                    <input type="number" id="txtYil" class="form-control input-sm" min="2023" step="1" title="İşlem yılı" />
+                </label>
+                <div class="secim-alan birim-alan">
+                    <label for="txtMuhasebe">Muhasebe / Birim</label>
+                    <div id="muhBirim"></div>
+                </div>
+            </div>
+            <div class="bilgi-notu">
+                İl Müdürlükleri, İlçe Müdürlüklerini de dahil ederek <span class="vurgu">KDV dahil</span> giriş yapacaktır.<br />
+                (İlçe Müdürlüklerinin İl Müdürlüğünden ayrı olarak yaptığı kiralamalar da dahil edilecektir)<br />
+                Seçilen yıl için, yıl sonuna kadar toplam kiralama sayısı olarak girilecektir.<br />
+                Sonraki yıl için planlanan kiralama sayısı girilecektir.
+            </div>
+        </div>
+    </section>
+
+    <!-- Alt: plan satırları -->
+    <section>
+        <div class="kutu bolum bolum-tavan">
+            <h2 class="bolum-baslik">Araç kiralama planı <span id="lblDurum" class="label label-default" hidden></span></h2>
+            <div class="btn-toolbar tavan-arac" role="toolbar" aria-label="Form işlemleri">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnOku" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Oku
+                    </button>
+                    <button type="button" id="btnKaydet" class="btn btn-default" disabled>
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                    </button>
+                    <button type="button" id="btnYazdir" class="btn btn-default">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnOnayla" class="btn btn-default" hidden>
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Onayla
+                    </button>
+                    <button type="button" id="btnOnayKaldir" class="btn btn-default" hidden>
+                        <span class="glyphicon glyphicon-share" aria-hidden="true"></span> Onay Kaldır
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnSatirEkle" class="btn btn-default" disabled>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Ekle
+                    </button>
+                    <button type="button" id="btnSatirSil" class="btn btn-default" disabled>
+                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Satır Sil
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm yonetici" role="group" hidden>
+                    <button type="button" id="btnYazdirKurum" class="btn btn-default">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Kurum Yazdır
+                    </button>
+                    <button type="button" id="btnYazdirDetay" class="btn btn-default">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Detay Yazdır
+                    </button>
+                    <button type="button" id="btnOnayIslemler" class="btn btn-default">
+                        <span class="glyphicon glyphicon-check" aria-hidden="true"></span> Onay İşlemleri
+                    </button>
+                </div>
+                <span id="lblKayit" class="kayit-bilgi"></span>
+            </div>
+            <div id="grdPlan" class="tavan-grid" aria-label="Araç kiralama planı satırları"></div>
+        </div>
+    </section>
+</div>
+
+<!-- Onay işlemleri (eski wndOnayIslemler; yalnızca sistem yöneticisi) -->
+<dialog id="dlgOnayIslem" class="tanim-pencere arac-onay" aria-labelledby="dlgOnayIslemBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOnayIslemBaslik">Onaylı listesi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="btn-toolbar tavan-arac" role="toolbar" aria-label="Onay işlemleri">
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" id="btnSeciliOnayla" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Onayla
+                </button>
+                <button type="button" id="btnSeciliOnayKaldir" class="btn btn-default">
+                    <span class="glyphicon glyphicon-share" aria-hidden="true"></span> Onay Kaldır
+                </button>
+                <button type="button" id="btnDurumYenile" class="btn btn-default">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Yenile
+                </button>
+            </div>
+        </div>
+        <div id="grdDurum" class="tavan-grid durum-grid" aria-label="Birimlerin form durumları"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu (Kaydet, Onayla, Onay Kaldır) -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taveneko.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/arackiralama.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/arackiralama.js" asp-append-version="true"></script>
+}

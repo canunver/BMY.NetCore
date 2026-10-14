@@ -1,0 +1,306 @@
+/* Ek Formlar: solda sorgu alanları ve form listesi, sağda seçilen form. Bölümler renkli başlıklı kutulardır
+   (Bütçe Aşama İşlemleri ve Faaliyet Gerekçesi sayfalarındaki bölüm görünümü). Formların içindeki alt bölümler
+   (.ekform-bolum) de aynı biçimde, kendi renkleriyle ayrılır. */
+
+.ek-form .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding-top: 0;
+    background: var(--bolum-govde);
+}
+
+.ek-form .kutu.bolum.bolum-form {
+    --bolum-baslik: #e2f2e6;
+    --bolum-govde: #fbfdfb;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.ek-form .bolum-baslik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    flex: none;
+    margin: 0 -16px 12px;
+    padding: 9px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+    overflow-wrap: anywhere;
+}
+
+.ek-form .bolum-baslik .alt-baslik {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+.ek-form .tanim-arama {
+    --etiket-genislik: 52px;
+    flex: none;
+}
+
+.ek-form .liste-baslik {
+    flex: none;
+    margin: 6px 0 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    color: var(--soluk);
+}
+
+/* Form listesi: numara rozeti + ad; seçili form vurgulu */
+.ekform-liste {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-height: 120px;
+    overflow-y: auto;
+}
+
+.ekform-oge {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+    padding: 6px 8px;
+    font-size: 12.5px;
+    line-height: 1.3;
+    text-align: left;
+    color: var(--murekkep);
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.ekform-oge:hover {
+    border-color: #9db8dc;
+    background: #f3f7fd;
+}
+
+.ekform-oge.secili {
+    color: #fff;
+    background: #2f6fc4;
+    border-color: #2f6fc4;
+}
+
+.ekform-oge .form-no {
+    flex: none;
+    min-width: 38px;
+    padding: 1px 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    color: #2f6fc4;
+    background: #e3edfa;
+    border-radius: 4px;
+}
+
+.ekform-oge.secili .form-no {
+    color: #2f6fc4;
+    background: #fff;
+}
+
+.ekform-oge.hazir-degil {
+    opacity: .6;
+}
+
+/* Araç çubuğu */
+.ek-form .ekform-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.ek-form .ekform-arac .btn,
+.ek-form .ek-dugmeler .btn {
+    margin-left: 0;
+}
+
+.ek-form .ek-dugmeler {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.ek-form .renk-aciklama {
+    display: flex;
+    gap: 10px;
+    margin: 0 0 0 auto;
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.ek-form .renk-aciklama li::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+    vertical-align: -1px;
+    border: 1px solid var(--cizgi);
+    border-radius: 2px;
+}
+
+.ek-form .renk-aciklama .kapali::before { background: #fcfcd4; }
+.ek-form .renk-aciklama .acik::before { background: #fff; }
+.ek-form .renk-aciklama .degisti::before { background: #d9f0d3; }
+
+.ekform-govde .form-aciklama {
+    margin: 0 0 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--soluk);
+    text-transform: uppercase;
+}
+
+.ekform-govde .bos-metin {
+    margin: 24px 0;
+}
+
+/* Formun içindeki alt bölümler (ör. ihale bilgileri, önceki yıllar): renkli başlıklı ayrı kutular */
+.ekform-bolum {
+    --alt-baslik: #fbefd3;
+    --alt-vurgu: #b07a00;
+    margin: 0 0 12px;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ekform-bolum.mavi { --alt-baslik: #e3edfa; --alt-vurgu: #2f6fc4; }
+.ekform-bolum.yesil { --alt-baslik: #e2f2e6; --alt-vurgu: #2e8b4e; }
+.ekform-bolum.mor { --alt-baslik: #ece6f6; --alt-vurgu: #6b4fa3; }
+
+.ekform-bolum > h3 {
+    margin: 0;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--alt-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--alt-vurgu);
+}
+
+.ekform-bolum > .bolum-ic {
+    padding: 10px 12px;
+}
+
+/* Küçük alan ızgarası (formun üstündeki bilgi alanları) */
+.ekform-alanlar {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 8px 14px;
+}
+
+.ekform-alanlar .form-group {
+    margin: 0;
+}
+
+.ekform-alanlar label {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.ekform-alanlar .form-control {
+    height: 28px;
+    padding: 3px 6px;
+    font-size: 12px;
+}
+
+.ekform-alanlar .form-control.sayi {
+    text-align: right;
+}
+
+/* Tablolar */
+.ekform-grid {
+    height: 460px;
+}
+
+.ekform-grid.kisa {
+    height: 260px;
+}
+
+/* Tek ya da birkaç satırlık özet tablolar satırları kadar yer kaplar (domLayout: 'autoHeight') */
+.ekform-grid.otomatik {
+    height: auto;
+}
+
+.ekform-grid .ag-row-pinned .ag-cell {
+    font-weight: 700;
+    background: #faba9f;
+}
+
+.ekform-grid .ag-cell.kapali {
+    background: #fcfcd4;
+}
+
+.ekform-grid .ag-cell.girilir {
+    background: #fff;
+    box-shadow: inset 0 0 0 1px #c9d6e3;
+    cursor: text;
+}
+
+.ekform-grid .ag-cell.girilir.degisti {
+    background: #d9f0d3;
+}
+
+.ekform-grid .ag-cell.sayi,
+.ekform-grid .ag-header-cell.sayi .ag-header-cell-label {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.ekform-grid .ag-header-group-cell.orta .ag-header-group-cell-label {
+    justify-content: center;
+}
+
+.ekform-grid .ag-header-cell-text,
+.ekform-grid .ag-header-group-text {
+    white-space: normal;
+    line-height: 1.15;
+}
+
+@media (min-width: 992px) {
+    .tanim.ek-form {
+        grid-template-columns: minmax(250px, 3fr) minmax(0, 9fr);
+    }
+
+    .ek-form .tanim-sag .kutu {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ek-form .ekform-arac {
+        flex: none;
+    }
+
+    .ek-form .ekform-govde {
+        flex: 1 1 auto;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ek-form .ekform-govde > .ekform-grid:last-child {
+        flex: 1 1 auto;
+        min-height: 260px;
+        height: auto;
+    }
+
+    .ek-form .ekform-liste {
+        flex: 1 1 auto;
+    }
+}

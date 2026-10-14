@@ -47,17 +47,20 @@ namespace Istemci.OrtakSayfa
     ///   - Gizli niteliği dolu olan düğüm ve altındakiler alınmaz.
     ///   - Modul niteliği doluysa, sayılan modüllerden en az biri açık olmalıdır (sistem değişkeni /MODUL/x = 1 ya da 2).
     ///   - Yetki niteliği doluysa, kullanıcının tiplerinden biri listede olmalı ya da "YT|damga|değer" koşulu sağlanmalıdır.
+    ///   - Kullanici niteliği doluysa (virgülle ayrılmış kullanıcı kodları), kullanıcının kodu listede olmalıdır (Yetki ile birlikte aranır).
     ///   - İçinde görünür seçenek kalmayan grup, başlık ve bölüm gösterilmez.
     /// </summary>
     public class MenuOkuyucu
     {
         private readonly string[] kullaniciYetki;
         private readonly HashTableArrayList kullaniciDamga;
+        private readonly string kullaniciKodu;
         private readonly Dictionary<string, bool> modulDurum = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
         public MenuOkuyucu(Kullanici kullanan)
         {
             kullaniciDamga = kullanan.yetkiTipiDegerleri;
+            kullaniciKodu = kullanan.kullaniciKodu ?? "";
             if (kullanan.kullaniciTipi != null && kullanan.kullaniciTipi.Length > 0)
             {
                 kullaniciYetki = new string[kullanan.kullaniciTipi.Length];
@@ -162,7 +165,11 @@ namespace Istemci.OrtakSayfa
                     List<MenuSatir> kolon = new List<MenuSatir>();
                     SatirlariOku(alt, kolon);
                     Toparla(kolon);
-                    if (kolon.Count > 0) baslik.kolonlar.Add(kolon);
+                    if (kolon.Count == 0) continue;
+                    // Text verilmiş kolonun adı, kolonun başında bölüm başlığı olarak yazılır.
+                    string kolonAd = Ad(alt);
+                    if (kolonAd != "" && kolon[0].t != "b") kolon.Insert(0, new MenuSatir { t = "b", ad = kolonAd });
+                    baslik.kolonlar.Add(kolon);
                 }
                 else
                     SatirOku(alt, kolonsuz);
@@ -239,7 +246,17 @@ namespace Istemci.OrtakSayfa
         {
             if (Ozellik(dugum, "Gizli") != "") return false;
             if (!ModulAcik(Ozellik(dugum, "Modul"))) return false;
+            if (!KullaniciVar(Ozellik(dugum, "Kullanici"))) return false;
             return YetkiVar(Ozellik(dugum, "Yetki"));
+        }
+
+        /// <summary>Kullanici niteliği boşsa herkes; doluysa yalnızca listedeki kullanıcı kodları.</summary>
+        private bool KullaniciVar(string kullanicilar)
+        {
+            if (string.IsNullOrEmpty(kullanicilar)) return true;
+            foreach (string parca in kullanicilar.Split(','))
+                if (parca.Trim() != "" && parca.Trim() == kullaniciKodu) return true;
+            return false;
         }
 
         /// <summary>

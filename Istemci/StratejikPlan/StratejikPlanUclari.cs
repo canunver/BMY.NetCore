@@ -275,6 +275,17 @@ namespace Istemci.StratejikPlan
             return Hata("Önce 'Dönem Seç' ile çalışacağınız kurumu ve stratejik planı seçiniz.");
         }
 
+        /// <summary>
+        /// Gösterge tanımlarının kurumu: seçili dönemin kurumu, dönem seçilmemişse varsayılan kurum (eski VarsayilanKurumBul).
+        /// Hedef penceresinin gösterge listesi de seçili dönemin kurumuna göre okunur (HedefTanim).
+        /// </summary>
+        public static string CalisilanKurum(Kullanici kullanan)
+        {
+            Donem d = DonemBul(kullanan);
+            if (d.Secili) return d.KurumKod;
+            return TNS.DEG.Arac.VarsayilanKurumBul() ?? "";
+        }
+
         // ------------------------------------------------------------------ ana sayfa
 
         /// <summary>Ana sayfanın bütün içeriği: seçili dönem, misyon, vizyon, amaçlar ve hedefleri.</summary>

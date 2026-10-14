@@ -1,0 +1,47 @@
+@page
+@model TavanUstuOdenekModel
+@{
+    ViewData["Title"] = "Tavan Üstü Ödenek Talebi";
+    // Geniş ekranda sayfa pencereye sığar, tablo kalan alanı doldurur (tanim.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-faal tavan-ustu" data-yil="@Model.Yil" data-senaryo="@Model.Senaryo" data-tertipler="@Model.Tertipler">
+    <section>
+        <div class="kutu bolum bolum-tavan">
+            <h2 class="bolum-baslik">
+                <span>Tavan Üstü Ödenek Talebi</span>
+                <small class="alt-baslik" id="lblAciklama"></small>
+            </h2>
+            <div id="pnlUyari" class="alert alert-warning tavan-uyari" role="alert" hidden>
+                <strong>Aşağıdaki tavanlarda tavan rakamına gelinmediği için, tavan üstü talep girerken dikkatli olunuz!</strong>
+                <ul id="lstUyari"></ul>
+            </div>
+            <div class="btn-toolbar tavan-arac" role="toolbar" aria-label="Tavan üstü işlemleri">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm" title="Tablodaki talepleri saklar" disabled>
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+                <ul class="renk-aciklama" aria-label="Renkler">
+                    <li class="acik">Girilebilir</li>
+                    <li class="degisti">Değişti</li>
+                </ul>
+            </div>
+            <div id="grdTavanUstu" class="tavan-grid" aria-label="Tavan üstü talepler"></div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tavanfaal.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/butcerakam.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/tavanustu.js" asp-append-version="true"></script>
+}

@@ -94,10 +94,83 @@ namespace OrtakClass
             return "xlsx";
         }
 
+        /// <summary>Word'ün açtığı HTML raporlarda (.doc) yatay sayfa biçimi (eski GenelIslemler.HTMLWordLandScapeSytle).</summary>
+        public static void HTMLWordLandScapeSytle(TextWriter s)
+        {
+            s.Write("\r\n<style>\r\n");
+            s.Write("<!--\r\n");
+            s.Write("p.MsoNormal, li.MsoNormal, div.MsoNormal\r\n");
+            s.Write("{mso-style-parent:'';\r\n");
+            s.Write("margin:0cm;\r\n");
+            s.Write("margin-bottom:.0001pt;\r\n");
+            s.Write("mso-pagination:widow-orphan;\r\n");
+            s.Write("font-size:12.0pt;\r\n");
+            s.Write("font-family:'Times New Roman';\r\n");
+            s.Write("mso-fareast-font-family:'Times New Roman';}\r\n");
+            s.Write("@page Section1\r\n");
+            s.Write("{size:841.9pt 595.3pt;\r\n");
+            s.Write("mso-page-orientation:landscape;\r\n");
+            s.Write("margin:70.9pt 70.9pt 70.9pt 70.9pt;\r\n");
+            s.Write("mso-header-margin:35.45pt;\r\n");
+            s.Write("mso-footer-margin:35.45pt;\r\n");
+            s.Write("mso-paper-source:0;}\r\n");
+            s.Write("div.Section1\r\n");
+            s.Write("{page:Section1;}\r\n");
+            s.Write("-->\r\n");
+            s.Write("</style>\r\n");
+        }
+
         /// <summary>Eski sürümde xls için TabloJ (JExcel) de vardı; ExcelTur hep xlsx olduğundan yalnızca TabloAspose taşındı.</summary>
         public static Tablo NewTablo()
         {
             return new TabloAspose();
+        }
+
+        /// <summary>Sütun ve satırdan (0'dan başlayan) Excel hücre adresi, ör. (1, 11) -> "B12" (eski jxl.CellReferenceHelper).</summary>
+        public static string ExcelAdres(int sutun, int satir)
+        {
+            return Aspose.Cells.CellsHelper.CellIndexToName(satir, sutun);
+        }
+
+        /// <summary>
+        /// Bütçe kodunun adı (eski GenelIslemler.KodAd; burada yalnızca bütçe kod türleri 1-6 var). kosul "yıl-kod" biçimindedir.
+        /// </summary>
+        public static string KodAd(int kodTur, string kosul, bool esitle)
+        {
+            string uzayAd;
+            if (kodTur == 1) uzayAd = "ABSKUR";
+            else if (kodTur == 2) uzayAd = "ABSFON";
+            else if (kodTur == 3) uzayAd = "ABSFIN";
+            else if (kodTur == 4) uzayAd = "ABSEKO";
+            else if (kodTur == 5) uzayAd = "ABSGELIRKOD";
+            else if (kodTur == 6) uzayAd = "ABSFINANSMANKOD";
+            else return "";
+            string ad = TNS.UZY.Arac.Tanimla().UzayDegeriStr(new TNS.KYM.Kullanici(), uzayAd, kosul, esitle, null);
+            return (ad ?? "").Replace(",", " ");
+        }
+
+        /// <summary>Kullanıcı değişkeninin ilk değeri (eski GenelIslemler.KullaniciDegiskenGetir); yoksa boş.</summary>
+        public static string KullaniciDegiskenGetir(string kullaniciKodu, string degiskenAd)
+        {
+            if (string.IsNullOrEmpty(kullaniciKodu)) return "";
+            try
+            {
+                TNSCollection kDeg = TNS.KYM.Arac.Tanimla().DegiskenleriListele(kullaniciKodu, degiskenAd);
+                if (kDeg != null && kDeg.Count > 0 && kDeg[0] != null) return kDeg[0].ToString();
+            }
+            catch (Exception)
+            {
+            }
+            return "";
+        }
+
+        /// <summary>Kullanıcı değişkenini tek değerle saklar (eski GenelIslemler.KullaniciDegiskenSakla).</summary>
+        public static Sonuc KullaniciDegiskenSakla(TNS.KYM.Kullanici kullanici, string degiskenAd, string deger)
+        {
+            if (kullanici == null) return new Sonuc(false, "Kullanıcı yok", "");
+            TNSCollection degListesi = new TNSCollection();
+            degListesi.Add(deger);
+            return kullanici.DegiskenleriSakla(TNS.KYM.Arac.Tanimla(), degiskenAd, degListesi);
         }
     }
 
@@ -118,7 +191,8 @@ namespace OrtakClass
             if (uzanti != "" && !gidenAd.EndsWith("." + uzanti, StringComparison.OrdinalIgnoreCase)) gidenAd += "." + uzanti;
             string tur = uzanti == "xlsx" ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                        : uzanti == "docx" ? "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                       : uzanti == "pdf" ? "application/pdf" : "application/octet-stream";
+                       : uzanti == "pdf" ? "application/pdf"
+                       : uzanti == "doc" ? "application/msword" : "application/octet-stream";
             return Results.File(icerik, tur, gidenAd);
         }
 

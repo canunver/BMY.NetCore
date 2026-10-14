@@ -1,0 +1,358 @@
+/* Bütçe teklifi / yıl sonu tahmini girişi: bölüm, seçim ve tablo görünümü tavanfaal.css'ten gelir (.tavan-faal); burada yalnızca bu
+   sayfaya özgü olanlar var. */
+
+.butce-rakam .secim-alan {
+    flex: 1 1 200px;
+}
+
+.butce-rakam .secim-alan.dar {
+    flex: 0 0 90px;
+}
+
+.butce-rakam .yil-ay {
+    display: flex;
+    gap: 8px;
+}
+
+.butce-rakam .secim-alan > label {
+    margin: 0;
+    font-weight: 600;
+}
+
+.butce-rakam .bolum-baslik .alt-baslik {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+.butce-rakam .arac-secim {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.butce-rakam .arac-secim select {
+    width: auto;
+}
+
+.butce-rakam .renk-aciklama .degisti::before { background: #d9f0d3; }
+
+/* İkinci üst satır: işaretli satırların toplamı */
+.butce-rakam .tavan-grid .ag-row-pinned.satir-secili .ag-cell {
+    background: #fde3d6;
+}
+
+.butce-rakam .tavan-grid .ag-cell.girilir.degisti {
+    background: #d9f0d3;
+}
+
+.butce-rakam .tavan-grid .ag-cell.ek {
+    background: #f1f4f8;
+}
+
+.butce-rakam .tavan-grid .ag-row-pinned .ag-cell.ek {
+    background: inherit;
+}
+
+.butce-rakam .tavan-grid .ag-header-group-cell.ek-grup {
+    justify-content: center;
+    background: #e6f0fe;
+    color: #000080;
+}
+
+.butce-rakam .tavan-grid .ag-cell.metin {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.butce-rakam .tavan-grid .ag-cell.komut {
+    padding: 0;
+    text-align: center;
+}
+
+.butce-rakam .tavan-grid .ag-cell.komut .btn {
+    padding: 0 6px;
+}
+
+/* Bootstrap betiği yüklenmediğinden açılır menü .open ile butcerakam.js'ten açılır */
+.butce-rakam .rapor-menu .dropdown-menu {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.butce-rakam .rapor-menu .dropdown-menu button {
+    display: block;
+    width: 100%;
+    padding: 4px 16px;
+    border: 0;
+    background: none;
+    text-align: left;
+    white-space: nowrap;
+    color: var(--murekkep);
+}
+
+.butce-rakam .rapor-menu .dropdown-menu button:hover,
+.butce-rakam .rapor-menu .dropdown-menu button:focus {
+    background: #e3edfa;
+    outline: none;
+}
+
+/* Kod ağacı penceresi */
+.butce-rakam-agac {
+    width: min(640px, calc(100vw - 32px));
+}
+
+.butce-rakam-agac .sgb-agac {
+    max-height: min(520px, calc(100vh - 220px));
+    overflow: auto;
+    margin: 0;
+}
+
+.butce-rakam-yapistir {
+    width: min(640px, calc(100vw - 32px));
+}
+
+.butce-rakam-yapistir textarea {
+    font-family: Menlo, Consolas, monospace;
+    font-size: 12px;
+}
+
+/* Katsayı penceresi */
+.butce-rakam-katsayi {
+    width: min(520px, calc(100vw - 32px));
+}
+
+.butce-rakam-katsayi .katsayi-tablo {
+    margin: 0;
+}
+
+.butce-rakam-katsayi .katsayi-tablo td {
+    vertical-align: middle;
+}
+
+.butce-rakam-katsayi .katsayi-tablo label {
+    margin: 0;
+    font-weight: 400;
+}
+
+.butce-rakam-katsayi .katsayi-tablo input[type="text"] {
+    width: 90px;
+    text-align: right;
+}
+
+/* Rapor Al penceresi: alanlar ve değerler yan yana renkli kutular */
+.butce-rakam-gelismis {
+    width: min(900px, calc(100vw - 32px));
+}
+
+.butce-rakam-gelismis .gelismis-izgara {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    gap: 12px;
+}
+
+@media (max-width: 767px) {
+    .butce-rakam-gelismis .gelismis-izgara {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.butce-rakam-gelismis .gelismis-bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-vurgu: #2f6fc4;
+    margin: 0;
+    padding: 0 12px 6px;
+    background: #f5f8fd;
+}
+
+.butce-rakam-gelismis .gelismis-bolum + .gelismis-bolum {
+    --bolum-baslik: #e2f3e6;
+    --bolum-vurgu: #2e8b4e;
+    background: #f5fbf6;
+}
+
+.butce-rakam-gelismis .bolum-baslik {
+    margin: 0 -12px 8px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.butce-rakam-gelismis .bolum-baslik small {
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+.butce-rakam-gelismis .gelismis-tablo {
+    margin: 0;
+    background: transparent;
+}
+
+.butce-rakam-gelismis .gelismis-tablo td {
+    vertical-align: middle;
+}
+
+.butce-rakam-gelismis .gelismis-tablo select {
+    width: auto;
+    min-width: 64px;
+}
+
+.butce-rakam-gelismis .gelismis-tablo label {
+    margin: 0;
+    font-weight: 400;
+}
+
+.butce-rakam-gelismis .gelismis-secenek {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    margin-top: 12px;
+    padding: 8px 12px;
+    background: #fffbea;
+    border: 1px solid #f0e2a8;
+    border-radius: 4px;
+}
+
+.butce-rakam-gelismis fieldset legend {
+    margin: 0 0 4px;
+    border: 0;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.butce-rakam-gelismis fieldset label {
+    margin: 0 14px 0 0;
+    font-weight: 400;
+}
+
+/* Geniş ekranda sorgu alanları solda dar bir sütunda alt alta (eski sayfadaki gibi), tablo sağda kalan alanı doldurur. */
+@media (min-width: 992px) {
+    .tanim.tavan-faal.butce-rakam {
+        grid-template-columns: 250px minmax(0, 1fr);
+        grid-template-rows: minmax(0, 1fr);
+    }
+
+    .butce-rakam .bolum-secim {
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    .butce-rakam .bolum-secim .secim-satir {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .butce-rakam .bolum-secim .secim-alan,
+    .butce-rakam .bolum-secim .secim-alan.dar {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+
+    /* Yıl ve ay yan yana */
+    .butce-rakam .bolum-secim .yil-ay .secim-alan {
+        flex: 1 1 0;
+        width: auto;
+    }
+
+    .butce-rakam .bolum-secim .btn {
+        white-space: normal;
+    }
+
+    .butce-rakam .bolum-secim #btnSektorFaal,
+    .butce-rakam .bolum-secim #btnListele {
+        width: 100%;
+    }
+}
+
+/* Tertip tanımları (TertipTanimFormu) aynı yerleşimi kullanır */
+.tertip-tanim .tavan-grid .ag-cell.sira {
+    color: var(--soluk);
+    text-align: right;
+}
+
+.tertip-tanim .tavan-grid .ag-cell.hatali {
+    color: #b52a1c;
+}
+
+@media (min-width: 992px) {
+    .butce-rakam .bolum-secim #btnListeleFon {
+        width: 100%;
+    }
+}
+
+/* Tavan üstü ödenek talebi (TavanUstuOdenek): tek bölüm, tablo kalan alanı doldurur */
+.tavan-ustu .renk-aciklama .degisti::before { background: #d9f0d3; }
+
+.tavan-ustu .tavan-grid .ag-cell.girilir.degisti {
+    background: #d9f0d3;
+}
+
+.tavan-ustu .tavan-grid .ag-cell.tertip {
+    line-height: 1.35;
+    white-space: normal;
+}
+
+.tavan-ustu .tavan-grid .ag-cell.tertip small {
+    display: block;
+    color: var(--soluk);
+}
+
+.tavan-ustu .tavan-grid .ag-cell.metin {
+    line-height: 1.35;
+    white-space: pre-wrap;
+}
+
+.tavan-ustu .tavan-uyari {
+    flex: none;
+    max-height: 30vh;
+    overflow: auto;
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    font-size: 12px;
+}
+
+.tavan-ustu .tavan-uyari ul {
+    margin: 4px 0 0;
+    padding-left: 18px;
+}
+
+@media (min-width: 992px) {
+    .tanim.tavan-faal.tavan-ustu,
+    .tanim.tavan-faal.tek-bolum {
+        grid-template-rows: minmax(0, 1fr);
+    }
+}
+
+/* Tertip dönüşümü (TertipDonusumFormu) */
+.tertip-donusum .arac-secim {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.tertip-donusum .arac-secim input {
+    width: 90px;
+}
+
+.tertip-donusum .tavan-grid .ag-cell.sira {
+    color: var(--soluk);
+    text-align: right;
+}
+
+.tertip-donusum .tavan-grid .ag-cell.uretildi {
+    background: #d9f0d3;
+}

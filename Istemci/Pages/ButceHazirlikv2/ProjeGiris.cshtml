@@ -1,0 +1,134 @@
+@page
+@model ProjeGirisModel
+@{
+    ViewData["Title"] = Request.Query["islemKod"] == "1" ? "İzleme Değerlendirme" : "Yatırım Projeleri";
+    ViewData["GovdeSinif"] = "yat-giris-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="yat-giris yat-proje">
+    <!-- Sol: arama ölçütleri ve proje ağacı -->
+    <aside class="yat-giris-sol">
+        <div class="kutu bolum bolum-arama">
+            <h2 class="bolum-baslik">Proje Arama Kriterleri</h2>
+            <form id="frmArama" class="tanim-form" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="txtYil">Yıl</label>
+                    <div><input type="number" id="txtYil" class="form-control yil" min="2000" step="1" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlAsama">Aşama</label>
+                    <div><select id="ddlAsama" class="form-control"></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtProjeNo">Proje No</label>
+                    <div><input type="text" id="txtProjeNo" class="form-control" maxlength="50" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtProjeAd">Proje Adı</label>
+                    <div><input type="text" id="txtProjeAd" class="form-control" maxlength="200" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlAktiflik">Durum</label>
+                    <div>
+                        <select id="ddlAktiflik" class="form-control">
+                            <option value="1">Aktifler</option>
+                            <option value="2">Hepsi</option>
+                            <option value="0">Pasifler</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlSektor">Sektör</label>
+                    <div><select id="ddlSektor" class="form-control" title="Sektör kodlarının son kırılımı"></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlBirim">Birim</label>
+                    <div><select id="ddlBirim" class="form-control"></select></div>
+                </div>
+                <div class="btn-toolbar yat-arac" role="toolbar">
+                    <button type="submit" id="btnListele" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                    </button>
+                    <button type="button" id="btnYeniProje" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Proje
+                    </button>
+                    <button type="button" id="btnOdenekAktar" class="btn btn-default btn-sm" hidden>
+                        <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Öd. Aktar
+                    </button>
+                    <button type="button" id="btnKopyala" class="btn btn-default btn-sm" title="Proje rakamlarını bir aşamadan diğer aşamaya kopyala" hidden>
+                        <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Kopyala
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="kutu bolum bolum-agac">
+            <h2 class="bolum-baslik">Yatırım Projeleri</h2>
+            <ul id="agcProjeler" class="yat-agac" aria-label="Yatırım projeleri"></ul>
+        </div>
+    </aside>
+
+    <!-- Sağ: seçilen proje / alt proje sayfası -->
+    <section class="yat-giris-sag kutu bolum bolum-detay">
+        <h2 class="bolum-baslik" id="detayBaslik">Detay Bilgileri</h2>
+        <p id="detayBos" class="yat-bos">Soldaki ağaçtan bir proje ya da alt proje seçiniz; yeni proje için “Yeni Proje”ye basınız.</p>
+        <iframe id="cerceveDetay" class="yat-cerceve" title="Proje bilgileri" hidden></iframe>
+    </section>
+</div>
+
+<!-- Aşama kopyalama (eski "Aşama Kopyala Ekranı") -->
+<dialog id="dlgKopyala" class="tanim-pencere" aria-labelledby="dlgKopyalaBaslik">
+    <form id="frmKopyala" method="dialog" novalidate>
+        <div class="pencere-baslik">
+            <h2 id="dlgKopyalaBaslik">Aşama Kopyala</h2>
+            <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="pencere-govde tanim-form">
+            <div class="form-group">
+                <label class="control-label" for="txtKopyaYil">Yıl</label>
+                <div><input type="number" id="txtKopyaYil" class="form-control yil" min="2000" step="1" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlKopyaKaynak">Kaynak Aşama</label>
+                <div><select id="ddlKopyaKaynak" class="form-control"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlKopyaHedef">Hedef Aşama</label>
+                <div><select id="ddlKopyaHedef" class="form-control"></select></div>
+            </div>
+            <p class="tanim-not">Hedef aşamadaki proje rakamları silinip kaynak aşamadakiler yazılır.</p>
+        </div>
+        <div class="pencere-alt">
+            <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+            <button type="submit" id="btnKopyalaOnay" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Aşama Kopyala
+            </button>
+        </div>
+    </form>
+</dialog>
+
+<!-- Onay sorusu -->
+<dialog id="dlgOnay" class="tanim-pencere" aria-labelledby="dlgOnayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOnayBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde"><p id="onayMetin"></p></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnOnayla" class="btn btn-primary btn-sm">Tamam</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/yatproje.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/yatprojegiris.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/yatprojegiris.js" asp-append-version="true"></script>
+}

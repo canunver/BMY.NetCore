@@ -184,143 +184,147 @@ namespace TNS.PEB.IsKurallari
 
         internal void CozKurum(string yol, ModelVeri kurumVeri)
         {
-            lpsolve55.lpsolve.Init(".");
-            IntPtr lp;
-            int kolonSay = LPKolonSayBul();
-            lp = lpsolve.make_lp(0, kolonSay); //Lp Kolon Sayısı
-            try
-            {
-                //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "gir", false);
-                lpsolve.put_abortfunc(lp, new lpsolve.ctrlcfunc(ctrlcfunc), 0);
-                lpsolve.set_timeout(lp, 0);
+            // lpsolve55.dll (yerel kitaplık) yayından çıkarıldı; veri zarflama çözümü kapalı. Açmak için aşağıdaki kod
+            // açılır ve PEBServisC.csproj içindeki lpsolve55.dll satırı geri alınır.
+            throw new NotSupportedException("Veri zarflama analizi (lpsolve) bu sürümde kullanılamıyor.");
 
-                if (AmacMax())
-                    lpsolve.set_maxim(lp);
-                else
-                    lpsolve.set_minim(lp);
+//            lpsolve55.lpsolve.Init(".");
+//            IntPtr lp;
+//            int kolonSay = LPKolonSayBul();
+//            lp = lpsolve.make_lp(0, kolonSay); //Lp Kolon Sayısı
+//            try
+//            {
+//                //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "gir", false);
+//                lpsolve.put_abortfunc(lp, new lpsolve.ctrlcfunc(ctrlcfunc), 0);
+//                lpsolve.set_timeout(lp, 0);
 
-                double e = EpsilonBul();
+//                if (AmacMax())
+//                    lpsolve.set_maxim(lp);
+//                else
+//                    lpsolve.set_minim(lp);
 
-                double[] objDizi = new double[kolonSay + 1];
-                double[] lamdaDizi = new double[kolonSay + 1];
+//                double e = EpsilonBul();
 
-                objDizi[0] = 0; //kullanılmayan boyut;
-                lamdaDizi[0] = 0; //kullanılmayan değişken;
+//                double[] objDizi = new double[kolonSay + 1];
+//                double[] lamdaDizi = new double[kolonSay + 1];
 
-                objDizi[1] = 1; //TETA değişkeni;
-                lamdaDizi[1] = 0; //TETA değişkeni;
+//                objDizi[0] = 0; //kullanılmayan boyut;
+//                lamdaDizi[0] = 0; //kullanılmayan değişken;
 
-                for (int i = 0; i < KurumSay(); i++) //Lambda değişkeni katsayıları
-                {
-                    objDizi[2 + i] = 0;
-                    lamdaDizi[2 + i] = 1;
-                }
+//                objDizi[1] = 1; //TETA değişkeni;
+//                lamdaDizi[1] = 0; //TETA değişkeni;
 
-                int degiskenBasla = 2 + KurumSay();
-                for (int i = 0; i < DegiskenSay(); i++) //S değişkeni katsayıları
-                {
-                    objDizi[degiskenBasla + i] = e;
-                    lamdaDizi[degiskenBasla + i] = 0;
-                }
+//                for (int i = 0; i < KurumSay(); i++) //Lambda değişkeni katsayıları
+//                {
+//                    objDizi[2 + i] = 0;
+//                    lamdaDizi[2 + i] = 1;
+//                }
 
-                lpsolve.set_obj_fn(lp, objDizi);
-                ModelHedefFonsiyonYaz(objDizi, AmacMax());
+//                int degiskenBasla = 2 + KurumSay();
+//                for (int i = 0; i < DegiskenSay(); i++) //S değişkeni katsayıları
+//                {
+//                    objDizi[degiskenBasla + i] = e;
+//                    lamdaDizi[degiskenBasla + i] = 0;
+//                }
 
-                for (int i = 0; i < DegiskenSay(); i++)
-                {
-                    double[] degiskenKatsayilar = new double[kolonSay + 1];
-                    degiskenKatsayilar[0] = 0; //kullanılmayan değişken;
-                    bool degiskenKatsayiMi = ((GirdiMi() && girdiCiktilar[i].girdiCikti == GirdiCikti.Girdi) || (!GirdiMi() && girdiCiktilar[i].girdiCikti == GirdiCikti.Cikti));
-                    if (degiskenKatsayiMi)
-                        degiskenKatsayilar[1] = 0 - kurumVeri[i]; //TETA değişkeni katsayısı
-                    else
-                        degiskenKatsayilar[1] = 0; //TETA değişkeni katsayısı;
+//                lpsolve.set_obj_fn(lp, objDizi);
+//                ModelHedefFonsiyonYaz(objDizi, AmacMax());
 
-                    int lambdaNo = 0;
-                    foreach (ModelVeri v in modelVeriler) //Lambda değişkeni katsayıları
-                    {
-                        degiskenKatsayilar[2 + lambdaNo++] = v[i];
-                    }
+//                for (int i = 0; i < DegiskenSay(); i++)
+//                {
+//                    double[] degiskenKatsayilar = new double[kolonSay + 1];
+//                    degiskenKatsayilar[0] = 0; //kullanılmayan değişken;
+//                    bool degiskenKatsayiMi = ((GirdiMi() && girdiCiktilar[i].girdiCikti == GirdiCikti.Girdi) || (!GirdiMi() && girdiCiktilar[i].girdiCikti == GirdiCikti.Cikti));
+//                    if (degiskenKatsayiMi)
+//                        degiskenKatsayilar[1] = 0 - kurumVeri[i]; //TETA değişkeni katsayısı
+//                    else
+//                        degiskenKatsayilar[1] = 0; //TETA değişkeni katsayısı;
 
-                    for (int j = 0; j < DegiskenSay(); j++) //S DEğişkeni katsayıları
-                    {
-                        if (j != i)
-                            degiskenKatsayilar[degiskenBasla + j] = 0;
-                        else
-                        {
-                            if (girdiCiktilar[i].girdiCikti == GirdiCikti.Girdi)
-                                degiskenKatsayilar[degiskenBasla + j] = 1;
-                            else
-                                degiskenKatsayilar[degiskenBasla + j] = -1;
-                        }
-                    }
+//                    int lambdaNo = 0;
+//                    foreach (ModelVeri v in modelVeriler) //Lambda değişkeni katsayıları
+//                    {
+//                        degiskenKatsayilar[2 + lambdaNo++] = v[i];
+//                    }
 
-                    double hedef;
-                    if (degiskenKatsayiMi)
-                        hedef = 0;
-                    else
-                        hedef = kurumVeri[i];
+//                    for (int j = 0; j < DegiskenSay(); j++) //S DEğişkeni katsayıları
+//                    {
+//                        if (j != i)
+//                            degiskenKatsayilar[degiskenBasla + j] = 0;
+//                        else
+//                        {
+//                            if (girdiCiktilar[i].girdiCikti == GirdiCikti.Girdi)
+//                                degiskenKatsayilar[degiskenBasla + j] = 1;
+//                            else
+//                                degiskenKatsayilar[degiskenBasla + j] = -1;
+//                        }
+//                    }
 
-                    lpsolve.add_constraint(lp, degiskenKatsayilar, lpsolve.lpsolve_constr_types.EQ, hedef);
-                    ModelKisitYaz(degiskenKatsayilar, lpsolve.lpsolve_constr_types.EQ, hedef);
-                }
-                ModelKisitYaz(lamdaDizi, LambdaKisitBul(), LambdaToplamDeger());
-                lpsolve.add_constraint(lp, lamdaDizi, LambdaKisitBul(), LambdaToplamDeger());
+//                    double hedef;
+//                    if (degiskenKatsayiMi)
+//                        hedef = 0;
+//                    else
+//                        hedef = kurumVeri[i];
 
-                //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "b solve", false);
-                lpsolve.lpsolve_return ret = lpsolve.lpsolve_return.OPTIMAL;
-                ret = lpsolve.solve(lp); //çöz
-                if (ret != lpsolve.lpsolve_return.OPTIMAL)
-                    throw new Exception("Çözüm optimal değil!");
+//                    lpsolve.add_constraint(lp, degiskenKatsayilar, lpsolve.lpsolve_constr_types.EQ, hedef);
+//                    ModelKisitYaz(degiskenKatsayilar, lpsolve.lpsolve_constr_types.EQ, hedef);
+//                }
+//                ModelKisitYaz(lamdaDizi, LambdaKisitBul(), LambdaToplamDeger());
+//                lpsolve.add_constraint(lp, lamdaDizi, LambdaKisitBul(), LambdaToplamDeger());
 
-                //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "b get_objective", false);
-                kurumVeri.cozum.obj = lpsolve.get_objective(lp); //objective sonucunu oku
+//                //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "b solve", false);
+//                lpsolve.lpsolve_return ret = lpsolve.lpsolve_return.OPTIMAL;
+//                ret = lpsolve.solve(lp); //çöz
+//                if (ret != lpsolve.lpsolve_return.OPTIMAL)
+//                    throw new Exception("Çözüm optimal değil!");
 
-                if (!GirdiMi() && kurumVeri.cozum.obj > 0) kurumVeri.cozum.obj = 1 / kurumVeri.cozum.obj;
-                //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "b variables", false);
-                double[] variables = new double[lpsolve.get_Ncolumns(lp)];//Çözücüden dönen sütun değişkenlerini okumak için dizi değişken
-                lpsolve.get_variables(lp, variables);//Sütun değişkenlerinin sonucunu oku
-                int lBasla = 1;
-                int yer = 0;
+//                //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "b get_objective", false);
+//                kurumVeri.cozum.obj = lpsolve.get_objective(lp); //objective sonucunu oku
 
-                //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "b dongu", false);
-                foreach (ModelVeri v in modelVeriler)
-                {
-                    for (int sd = 0; sd < DegiskenSay(); sd++)
-                    {
-                        kurumVeri.cozum.degerler[sd] += v.degerler[sd] * variables[lBasla + yer];
-                    }
+//                if (!GirdiMi() && kurumVeri.cozum.obj > 0) kurumVeri.cozum.obj = 1 / kurumVeri.cozum.obj;
+//                //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "b variables", false);
+//                double[] variables = new double[lpsolve.get_Ncolumns(lp)];//Çözücüden dönen sütun değişkenlerini okumak için dizi değişken
+//                lpsolve.get_variables(lp, variables);//Sütun değişkenlerinin sonucunu oku
+//                int lBasla = 1;
+//                int yer = 0;
 
-                    if (variables[lBasla + yer] > 0.00000001)
-                        v.cozum.ornekOkulSay += 1;
-                    yer++;
-                }
+//                //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "b dongu", false);
+//                foreach (ModelVeri v in modelVeriler)
+//                {
+//                    for (int sd = 0; sd < DegiskenSay(); sd++)
+//                    {
+//                        kurumVeri.cozum.degerler[sd] += v.degerler[sd] * variables[lBasla + yer];
+//                    }
 
-                //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "b const", false);
-                double[] constraints = new double[lpsolve.get_Nrows(lp)];//Çözücüden gelen satır değişkenlerini okumak için dizi değişken
-                //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "b get const", false);
-                lpsolve.get_constraints(lp, constraints);//Satır değişkenlerinin sonucunu oku
+//                    if (variables[lBasla + yer] > 0.00000001)
+//                        v.cozum.ornekOkulSay += 1;
+//                    yer++;
+//                }
 
-                //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "b yaz", false);
-                ModelSonucYaz(kurumVeri.cozum.obj, variables, constraints);
-                lpsolve.delete_lp(lp);
-            }
-            catch(Exception ex)
-            {
-                lpsolve.delete_lp(lp);
-                throw ex;
-            }
+//                //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "b const", false);
+//                double[] constraints = new double[lpsolve.get_Nrows(lp)];//Çözücüden gelen satır değişkenlerini okumak için dizi değişken
+//                //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "b get const", false);
+//                lpsolve.get_constraints(lp, constraints);//Satır değişkenlerinin sonucunu oku
 
-            /** Kaldır 
+//                //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "b yaz", false);
+//                ModelSonucYaz(kurumVeri.cozum.obj, variables, constraints);
+//                lpsolve.delete_lp(lp);
+//            }
+//            catch(Exception ex)
+//            {
+//                lpsolve.delete_lp(lp);
+//                throw ex;
+//            }
 
-            lpsolve.set_lp_name(lp, kurumVeri.kurumAd + " Performans");
+//            /** Kaldır 
 
-            lpsolve.write_lp(lp, yol + "/" + kurumVeri.kurumKod + ".lp");
-            lpsolve.write_mps(lp, yol + "/" + kurumVeri.kurumKod + ".mps");
-             Kaldır son **/
+//            lpsolve.set_lp_name(lp, kurumVeri.kurumAd + " Performans");
 
-            //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "b sil", false);
-            //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "çık", false);
+//            lpsolve.write_lp(lp, yol + "/" + kurumVeri.kurumKod + ".lp");
+//            lpsolve.write_mps(lp, yol + "/" + kurumVeri.kurumKod + ".mps");
+//             Kaldır son **/
+
+//            //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "b sil", false);
+//            //OrtakFonksiyonlar.HataDosyaYaz("LPTakip.txt", "çık", false);
         }
 
         //private void YaziYaz(string yazi, bool tabEkle, bool enterEkle)

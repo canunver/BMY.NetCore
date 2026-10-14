@@ -1,0 +1,38 @@
+@page
+@model SifreUretModel
+@{
+    ViewData["Title"] = "Şifre Üret";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Yetkiniz yok!</div>
+    return;
+}
+
+<div class="guncelleme sifre-uret">
+    <section class="kutu bolum">
+        <h2 class="bolum-baslik">Veri</h2>
+        <div class="arac" role="toolbar" aria-label="Şifre işlemleri">
+            <button type="button" class="btn btn-primary btn-sm islem" data-yon="1">
+                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Şifreli Yap
+            </button>
+            <button type="button" class="btn btn-default btn-sm islem" data-yon="2">
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Şifre Çöz
+            </button>
+            <label class="checkbox-inline"><input type="checkbox" id="chkxml" /> xml</label>
+        </div>
+        <textarea id="txtVeri" class="form-control komut" spellcheck="false" aria-label="Veri"></textarea>
+    </section>
+
+    <section class="kutu bolum bolum-yesil">
+        <h2 class="bolum-baslik">Sonuç</h2>
+        <textarea id="txtSonuc" class="form-control komut" spellcheck="false" readonly aria-label="Sonuç"></textarea>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/guncelleme.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/sifreuret.js" asp-append-version="true"></script>
+}

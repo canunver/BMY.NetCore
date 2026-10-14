@@ -565,6 +565,36 @@ namespace TNS.UZY
         }
 
 
+        public VeritabaniIndex[] VeritabaniIndexListele(Kullanici kullanan, VeritabaniIndex form, string baglantiAd)
+        {
+            try
+            {
+                return UZYVeritabani.IndexListele(kullanan, form, baglantiAd);
+            }
+            catch (Exception e)
+            {
+                return new VeritabaniIndex[1] { new VeritabaniIndex() { objectId = -2, tabloAd = e.Message } };
+            }
+        }
+
+        public Sonuc VeritabaniIndexIslem(Kullanici kullanan, VeritabaniIndex[] liste, ENUMVeritabaniIndexIslem islem, string baglantiAd)
+        {
+            try
+            {
+                return UZYVeritabani.IndexIslem(kullanan, liste, islem, baglantiAd);
+            }
+            catch (Exception e)
+            {
+                return new Sonuc(false, e.ToString(), "");
+            }
+        }
+
+        public Hashtable VeritabaniBaglantiSatiriListele(Kullanici kullanan)
+        {
+            return UZYVeritabani.BaglantiSatiriListele(kullanan);
+        }
+
+
         public System.Collections.SortedList SorguBirlestir(string[] sql, string[] baglantiStr, int[] anahtarAlanlar)
         {
             SortedList ht = new SortedList();

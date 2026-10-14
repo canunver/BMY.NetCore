@@ -1,0 +1,325 @@
+/* Güncelleme menüsündeki teknik sayfalar (Yazılım Güncelle, Dosyalar, Komut Çalıştır, Şifre Üret, Veritabanı Index).
+   Bölümler renkli başlıklı ayrı kutulardır; formlarda etiket solda, alanlar alt alta. Pencere görünümü tanim.css'ten gelir. */
+
+.guncelleme {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+}
+
+.guncelleme .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding: 0 16px 16px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.guncelleme .kutu.bolum.bolum-yesil {
+    --bolum-baslik: #e2f3e6;
+    --bolum-govde: #f5fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.guncelleme .kutu.bolum.bolum-turuncu {
+    --bolum-baslik: #fbefd9;
+    --bolum-govde: #fefaf3;
+    --bolum-vurgu: #c7672a;
+}
+
+.guncelleme .kutu.bolum.bolum-mor {
+    --bolum-baslik: #ece7f6;
+    --bolum-govde: #f8f6fc;
+    --bolum-vurgu: #7b62b3;
+}
+
+.guncelleme .kutu.bolum.bolum-kirmizi {
+    --bolum-baslik: #f9e5e4;
+    --bolum-govde: #fdf6f6;
+    --bolum-vurgu: #cf4b47;
+}
+
+.guncelleme .bolum-baslik {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    margin: 0 -16px 12px;
+    padding: 9px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.guncelleme .bolum-baslik small {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+/* Form: her satırda etiket solda, alan sağda; satırlar alt alta */
+.guncelleme .form-satir {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 0 0 8px;
+}
+
+.guncelleme .form-satir:last-child {
+    margin-bottom: 0;
+}
+
+.guncelleme .form-etiket {
+    flex: 0 0 170px;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.guncelleme .form-satir .form-control {
+    flex: 0 1 420px;
+    min-width: 0;
+}
+
+.guncelleme .form-satir .form-control.dar {
+    flex-basis: 110px;
+}
+
+.guncelleme .form-satir .form-control.orta {
+    flex-basis: 240px;
+}
+
+.guncelleme .form-satir .form-control.yol {
+    flex-basis: 640px;
+    font-family: Consolas, "Courier New", monospace;
+}
+
+.guncelleme .form-satir input[type=file].form-control {
+    height: auto;
+    padding: 4px 6px;
+}
+
+.guncelleme .arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.guncelleme .arac .sag {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.guncelleme .arac label {
+    margin: 0;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.guncelleme .bilgi-satir {
+    margin: 0 0 10px;
+    font-size: 12px;
+    color: var(--soluk);
+    word-break: break-all;
+}
+
+/* Yazılım Güncelle: işlem günlüğü */
+.guncelleme .gunluk {
+    height: 320px;
+    margin: 0;
+    padding: 8px 10px;
+    overflow: auto;
+    font-size: 12px;
+    line-height: 1.6;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+    list-style: none;
+}
+
+.guncelleme .gunluk .bos {
+    color: var(--soluk);
+}
+
+.guncelleme .gunluk .baslik {
+    font-weight: 600;
+}
+
+.guncelleme .gunluk .hata {
+    color: #b52b27;
+}
+
+/* Grid yükseklikleri */
+.guncelleme .grid-alan {
+    height: 460px;
+}
+
+.guncelleme .grid-alan.kisa {
+    height: 360px;
+}
+
+/* Dosyalar: ad hücresindeki bağlantılar ve sil düğmesi */
+.guncelleme .dosya-ad {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.guncelleme .dosya-ad .glyphicon {
+    color: var(--soluk);
+}
+
+.guncelleme .dosya-ad .klasor .glyphicon {
+    color: #d9a300;
+}
+
+.guncelleme .dosya-ad button.sil {
+    padding: 0 4px;
+    line-height: 1;
+    color: #cf4b47;
+    background: none;
+    border: 0;
+}
+
+/* Komut Çalıştır / Şifre Üret: metin alanları */
+.guncelleme textarea.komut {
+    width: 100%;
+    min-height: 180px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 13px;
+    resize: vertical;
+}
+
+.guncelleme.komut-calistir .arac {
+    margin: 10px 0 0;
+}
+
+.guncelleme .arac .baglanti {
+    width: 220px;
+}
+
+.guncelleme .sonuc-cerceve {
+    display: block;
+    width: 100%;
+    height: 420px;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.guncelleme .sonuc-bos {
+    margin: 0;
+    color: var(--soluk);
+}
+
+/* Komut Çalıştır: bağlantı, tablo, alan ve saklı sorgu satırları (select2) */
+.guncelleme .sorgu-satir {
+    margin: 0 0 8px;
+}
+
+.guncelleme .sorgu-satir:last-child {
+    margin-bottom: 0;
+}
+
+.guncelleme .sorgu-satir .secim {
+    display: inline-block;
+    min-width: 0;
+}
+
+.guncelleme .sorgu-satir .secim.tablo {
+    width: 280px;
+}
+
+.guncelleme .sorgu-satir .secim.alanlar {
+    flex: 1 1 320px;
+}
+
+.guncelleme .sorgu-satir .secim.sorgu {
+    width: 320px;
+}
+
+.guncelleme .sorgu-satir .sorgu-ad {
+    width: 220px;
+}
+
+.guncelleme .select2-container .select2-selection--single {
+    height: 30px;
+    border-color: #ccc;
+}
+
+.guncelleme .select2-container .select2-selection--single .select2-selection__rendered {
+    line-height: 28px;
+    font-size: 12px;
+}
+
+.guncelleme .select2-container .select2-selection--single .select2-selection__arrow {
+    height: 28px;
+}
+
+.guncelleme .select2-container .select2-selection--multiple {
+    min-height: 30px;
+    border-color: #ccc;
+    font-size: 12px;
+}
+
+.select2-results__option {
+    font-size: 12px;
+}
+
+/* Veritabanı Index: sekmeler ve ilerleme penceresi */
+.guncelleme .nav-tabs {
+    margin-bottom: 10px;
+}
+
+.guncelleme .nav-tabs > li > a {
+    cursor: pointer;
+}
+
+.guncelleme .nav-tabs > li.disabled > a {
+    cursor: not-allowed;
+}
+
+.guncelleme .durum-var {
+    color: #2e8b4e;
+}
+
+.vt-ilerleme .progress {
+    margin-bottom: 8px;
+}
+
+.vt-ilerleme .ilerleme-ad {
+    margin: 0;
+    font-size: 12px;
+    color: var(--soluk);
+    word-break: break-all;
+}
+
+@media (max-width: 600px) {
+    .guncelleme .form-etiket {
+        flex-basis: 100%;
+    }
+
+    .guncelleme .form-satir .form-control {
+        flex-basis: 100%;
+    }
+
+    .guncelleme .arac .sag {
+        margin-left: 0;
+    }
+
+    .guncelleme .sorgu-satir .secim.tablo,
+    .guncelleme .sorgu-satir .secim.sorgu {
+        width: 100%;
+    }
+}

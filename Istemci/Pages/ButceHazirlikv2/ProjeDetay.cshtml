@@ -1,0 +1,131 @@
+@page
+@model ProjeDetayModel
+@{
+    ViewData["Title"] = "Proje";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="yat-proje yat-detay" data-sayfa="ProjeDetay" data-yonetici="@(Model.Yonetici ? "1" : "0")">
+    <ul class="nav nav-tabs yat-sekmeler" role="tablist">
+        <li role="presentation" class="active"><a href="#sekGenel" role="tab" aria-selected="true">Genel Bilgiler</a></li>
+        <li role="presentation"><a href="#sekAmac" role="tab" data-cerceve="AltProjeAmacGiris">Amaç ve Kapsam</a></li>
+        <li role="presentation"><a href="#sekIlgili" role="tab" data-cerceve="AltProjeIlgiliGiris">İlgililer</a></li>
+        <li role="presentation"><a href="#sekGerekce" role="tab" data-cerceve="AltProjeGerekceGiris">Gerekçe ve Hedefler</a></li>
+        <li role="presentation"><a href="#sekYolluk" role="tab" data-cerceve="AltProjeYollukPlan">Yolluk Plan</a></li>
+        <li role="presentation"><a href="#sekYetki" role="tab" data-cerceve="YATYetkiGirisForm">Yetkili Kullanıcılar</a></li>
+        <li role="presentation"><a href="#sekDosya" role="tab" data-cerceve="ProjeDosyaEkle">Ek Dosyalar</a></li>
+        <li role="presentation"><a href="#sekTertip" role="tab" data-kayitli>Tertipler</a></li>
+    </ul>
+
+    <div id="sekGenel" class="yat-panel" role="tabpanel">
+        <div class="btn-toolbar yat-arac" role="toolbar">
+            <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+            </button>
+            <button type="button" id="btnSil" class="btn btn-danger btn-sm" hidden>
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+            </button>
+            <button type="button" id="btnYeniAltProje" class="btn btn-default btn-sm" hidden>
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Alt Proje
+            </button>
+            <partial name="_YatRaporMenu" />
+        </div>
+
+        <div class="kutu bolum bolum-proje">
+            <h2 class="bolum-baslik">Kimlik Bilgileri</h2>
+            <form id="frmGenel" class="tanim-form" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="ddlBirim">Sorumlu Birim</label>
+                    <div><select id="ddlBirim" class="form-control"></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtDptProjeNo">DPT Proje No</label>
+                    <div><input type="text" id="txtDptProjeNo" class="form-control dar" maxlength="50" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAd">Proje Ad</label>
+                    <div><input type="text" id="txtAd" class="form-control" maxlength="500" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtBaslangicYili">Başlangıç - Bitiş Yılı</label>
+                    <div class="yil-aralik">
+                        <input type="number" id="txtBaslangicYili" class="form-control" min="1900" step="1" aria-label="Başlangıç yılı" />
+                        <span>-</span>
+                        <input type="number" id="txtBitisYili" class="form-control" min="1900" step="1" aria-label="Bitiş yılı" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlSektor">Sektör</label>
+                    <div><select id="ddlSektor" class="form-control"></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtKarakteristik">Karakteristik</label>
+                    <div class="ek-alan">
+                        <input type="text" id="txtKarakteristik" class="form-control" maxlength="1000" />
+                        <button type="button" id="btnKarakteristik" class="btn btn-default btn-sm" title="Karakteristik seç" aria-label="Karakteristik seç">…</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Etüd Proje</span>
+                    <div class="secim-satir" role="radiogroup" aria-label="Etüd proje">
+                        <label class="radio-inline"><input type="radio" name="etud" value="1" checked /> Evet</label>
+                        <label class="radio-inline"><input type="radio" name="etud" value="0" /> Hayır</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Yıllık Devam Eden</span>
+                    <div class="secim-satir" role="radiogroup" aria-label="Yıllık devam eden">
+                        <label class="radio-inline"><input type="radio" name="eskiYeni" value="1" checked /> Evet</label>
+                        <label class="radio-inline"><input type="radio" name="eskiYeni" value="0" /> Hayır</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Aktif</span>
+                    <div class="secim-satir" role="radiogroup" aria-label="Aktif">
+                        <label class="radio-inline"><input type="radio" name="aktif" value="1" checked /> Evet</label>
+                        <label class="radio-inline"><input type="radio" name="aktif" value="0" /> Hayır</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Proje Durumu</span>
+                    <div><span id="lblDurum" class="form-control-static"></span></div>
+                </div>
+                <div class="form-group ust-hizali">
+                    <label class="control-label" for="txtNot">Not</label>
+                    <div><textarea id="txtNot" class="form-control" rows="3"></textarea></div>
+                </div>
+            </form>
+        </div>
+
+        <partial name="_YatIlIlce" />
+    </div>
+
+    @foreach (var s in new[] { "sekAmac", "sekIlgili", "sekGerekce", "sekYolluk", "sekYetki", "sekDosya" })
+    {
+        <div id="@s" class="yat-panel" role="tabpanel" hidden><iframe class="yat-cerceve" title="@s"></iframe></div>
+    }
+
+    <div id="sekTertip" class="yat-panel" role="tabpanel" hidden>
+        <div class="kutu bolum bolum-tertip">
+            <h2 class="bolum-baslik">Tertipler</h2>
+            <p id="tertipBos" class="yat-bos">Projeyle ilişkili tertip yok.</p>
+            <ul id="lstTertip" class="tertip-liste"></ul>
+        </div>
+    </div>
+</div>
+
+<partial name="_YatDetayPencereler" />
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/yatproje.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/yatprojegiris.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/yatprojedetay.js" asp-append-version="true"></script>
+}

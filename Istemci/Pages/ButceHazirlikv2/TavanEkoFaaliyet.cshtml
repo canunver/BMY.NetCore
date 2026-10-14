@@ -1,0 +1,140 @@
+@page
+@model TavanEkoFaaliyetModel
+@{
+    ViewData["Title"] = "Koordinasyon Tavan Girişi ve Kontrolü";
+    // Geniş ekranda sayfa pencereye sığar, tablo kalan alanı doldurur (tanim.css, tavanfaal.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-faal">
+    <!-- Üst: seçim -->
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Tavan Seçimi</h2>
+            <form id="frmSecim" class="secim-satir" novalidate>
+                <label class="secim-alan dar">
+                    <span>Yıl</span>
+                    <input type="number" id="txtYil" class="form-control input-sm" min="2000" step="1" />
+                </label>
+                <label class="secim-alan">
+                    <span>Birim <small>(PEB birinci düzey)</small></span>
+                    <select id="ddlBirim" class="form-control input-sm"></select>
+                </label>
+                <label class="secim-alan genis">
+                    <span>Eko. Kod / Sektör <small>(birimin onaylı ana harcama kalemi tavanları)</small></span>
+                    <select id="ddlEkoSektor" class="form-control input-sm"></select>
+                </label>
+                <button type="submit" id="btnListele" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Alt: faaliyet/proje tavanları -->
+    <section>
+        <div class="kutu bolum bolum-tavan">
+            <h2 class="bolum-baslik">
+                Faaliyet / Proje Tavanları
+                <span id="durumEtiket" class="label" hidden></span>
+            </h2>
+            <div class="btn-toolbar tavan-arac" role="toolbar" aria-label="Tavan işlemleri">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnKaydet" class="btn btn-primary" hidden>
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                    </button>
+                    <button type="button" id="btnYazdir" class="btn btn-default" title="Seçili tavanın faaliyet dağıtımı; ekonomik kod / sektör seçilmemişse birimin bütün tavanları (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                    </button>
+                    <button type="button" id="btnImzali" class="btn btn-default" title="Seçili birimin koordinasyon raporu (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> İmzalı Çıktı
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Onay">
+                    <button type="button" id="btnOnayla" class="btn btn-success" data-islem="onayla" hidden>
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Onayla
+                    </button>
+                    <button type="button" id="btnKapat" class="btn btn-success" data-islem="kapat" hidden>
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Faaliyet Girişine Kapat
+                    </button>
+                    <button type="button" id="btnOnayKaldir" class="btn btn-warning" data-islem="kaldir" hidden>
+                        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Onay Kaldır
+                    </button>
+                    <button type="button" id="btnGirisAc" class="btn btn-warning" data-islem="ac" hidden>
+                        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Faaliyet Girişine Aç
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnTopluOnay" class="btn btn-default" hidden title="Bütün tavanların faaliyet onay durumları">
+                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Toplu Onay
+                    </button>
+                    <button type="button" id="btnKopyala" class="btn btn-default" disabled title="Tabloyu panoya kopyalar (Excel'e yapıştırılabilir)">
+                        <span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Kopyala
+                    </button>
+                </div>
+                <ul class="renk-aciklama" aria-label="Renkler">
+                    <li class="toplam">Tavan / Fark / Toplam</li>
+                    <li class="kapali">Değiştirilemez</li>
+                    <li class="acik">Girilebilir</li>
+                </ul>
+            </div>
+            <div id="grdTavan" class="tavan-grid" aria-label="Faaliyet / proje tavanları"></div>
+        </div>
+    </section>
+</div>
+
+<!-- Onay sorusu (Kaydet, Onayla, Kapat, Onay Kaldır, Girişe Aç, Hepsini Onayla / Aç) -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+<!-- Toplu Onay (yalnızca sistem yöneticisi) -->
+<dialog id="dlgOnay" class="tanim-pencere tavan-faal-onay" aria-labelledby="dlgOnayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOnayBaslik">Onay durumu</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="btn-toolbar tavan-arac" role="toolbar" aria-label="Toplu onay">
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" id="btnHepsiniOnayla" class="btn btn-success">
+                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Hepsini Onayla
+                </button>
+                <button type="button" id="btnHepsiniAc" class="btn btn-warning">
+                    <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Hepsini Aç
+                </button>
+            </div>
+            <label class="secim-isaret" title="İşaretliyse onaylanan tavanların faaliyet girişi de kapatılır (Onaylı, Detay Kapalı)">
+                <input type="checkbox" id="chkDetayiKapat" /> Onayla ve Detayı Kapat
+            </label>
+        </div>
+        <div id="grdOnay" class="onay-grid" aria-label="Birimlerin onay durumu"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tavanfaal.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/tavanfaal.js" asp-append-version="true"></script>
+}

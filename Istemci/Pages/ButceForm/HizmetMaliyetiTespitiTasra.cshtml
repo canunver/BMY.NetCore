@@ -1,0 +1,111 @@
+@page
+@model HizmetMaliyetiTespitiTasraModel
+@{
+    ViewData["Title"] = "Birimlerin Hizmet Maliyetinin Tespitine İlişkin Bilgi Formu";
+    // Geniş ekranda sayfa pencereye sığar, tablo kalan alanı doldurur (tanim.css; bölüm görünümü taveneko.css ile ortak).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-eko hizmet-maliyeti-tasra">
+    <!-- Üst: yıl ve muhasebe / birim / kurumsal kod -->
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Form Bilgileri</h2>
+            <div class="hmt-form">
+                <div class="hmt-satir">
+                    <label class="hmt-etiket" for="txtYil">Yıl:</label>
+                    <input type="number" id="txtYil" class="form-control input-sm yil-kod" min="2000" step="1" title="Bütçe yılı" />
+                </div>
+                <div class="hmt-satir">
+                    <label class="hmt-etiket" for="txtMuhasebe">Muhasebe Kodu:</label>
+                    <div id="muhBirim"></div>
+                </div>
+                <div class="hmt-satir">
+                    <span class="hmt-etiket">Bilgi:</span>
+                    <p class="hmt-bilgi">Muhasebe ve birim seçildikten sonra <strong>Listele</strong>'ye basınız; gelen tablo doldurulduktan sonra
+                        <strong>Kaydet</strong> ile saklanır. Diğer giderler için Satır Ekle ile açıklamalı satır ekleyebilirsiniz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alt: hizmet maliyeti tablosu -->
+    <section>
+        <div class="kutu bolum bolum-tavan">
+            <h2 class="bolum-baslik">Hizmet maliyeti bilgileri</h2>
+            <div class="btn-toolbar tavan-arac" role="toolbar" aria-label="Form işlemleri">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnListele" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                    </button>
+                    <button type="button" id="btnKaydet" class="btn btn-default" disabled>
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                    </button>
+                    <button type="button" id="btnYazdir" class="btn btn-default">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnSatirEkle" class="btn btn-default" disabled>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Ekle
+                    </button>
+                </div>
+                <div class="yonetici-alan yonetici" hidden>
+                    <label for="ddlKurumsal">Kurumsal:</label>
+                    <select id="ddlKurumsal" class="form-control input-sm" title="Yazdır (Toplu) için kurumsal kod"></select>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Yönetici işlemleri">
+                        <button type="button" id="btnYazdirToplu" class="btn btn-default" title="Seçilen kurumsal kodun konsolide raporu">
+                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır (Toplu)
+                        </button>
+                        <button type="button" id="btnGirmeyenler" class="btn btn-default" title="Formu girmeyen birimlerin listesi">
+                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır (Girmeyen)
+                        </button>
+                        <button type="button" id="btnOnayla" class="btn btn-default" title="Formu bütün birimler için veri girişine kapatır">
+                            <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Onayla
+                        </button>
+                        <button type="button" id="btnOnayKaldir" class="btn btn-default" title="Formu yeniden veri girişine açar">
+                            <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Onay Kaldır
+                        </button>
+                    </div>
+                </div>
+                <ul class="renk-aciklama" aria-label="Renkler">
+                    <li class="kapali">Girilemez</li>
+                    <li class="acik">Girilebilir</li>
+                </ul>
+            </div>
+            <div id="grdListe" class="tavan-grid" aria-label="Hizmet maliyeti bilgileri"></div>
+        </div>
+    </section>
+</div>
+
+<!-- Onay sorusu (Kaydet, Onayla, Onay Kaldır) -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taveneko.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hizmetmaliyetitasra.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/hizmetmaliyetitasra.js" asp-append-version="true"></script>
+}

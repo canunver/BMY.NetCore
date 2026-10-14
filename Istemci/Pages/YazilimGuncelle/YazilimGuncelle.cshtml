@@ -1,0 +1,50 @@
+@page
+@model YazilimGuncelleModel
+@{
+    ViewData["Title"] = "Yazılım Güncelleme";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="guncelleme yazilim-guncelle">
+    <p class="bilgi-satir" title="Sunucu saati, saat dilimi, kod sayfası ve en son değişen kitaplık">@Model.Bilgi</p>
+
+    <!-- Zip dosyasından -->
+    <section class="kutu bolum bolum-turuncu">
+        <h2 class="bolum-baslik">Zip Dosyasından Güncelle</h2>
+        <form id="frmZip" novalidate>
+            <div class="form-satir">
+                <label class="form-etiket" for="fuDosya">Dosya:</label>
+                <input type="file" id="fuDosya" class="form-control input-sm" accept=".zip" />
+            </div>
+            <div class="form-satir">
+                <label class="form-etiket" for="txtZamanFark">Dakika Farkı:</label>
+                <input type="number" id="txtZamanFark" class="form-control input-sm dar" value="30" step="1" />
+            </div>
+            <div class="form-satir">
+                <span class="form-etiket"></span>
+                <button type="submit" id="btnZiptenYukle" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-compressed" aria-hidden="true"></span> Zip'ten Güncelle
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <!-- İşlem bilgileri (eski divBilgi) -->
+    <section class="kutu bolum bolum-yesil">
+        <h2 class="bolum-baslik">İşlem Bilgileri</h2>
+        <ul id="lstBilgi" class="gunluk" aria-live="polite">
+            <li class="bos">Güncelleme başlatıldığında yapılan işlemler burada görünür.</li>
+        </ul>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/guncelleme.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/yazilimguncelle.js" asp-append-version="true"></script>
+}
