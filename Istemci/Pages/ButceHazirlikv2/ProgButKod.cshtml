@@ -1,0 +1,138 @@
+@page
+@model ProgButKodModel
+@{
+    ViewData["Title"] = Model.KodAdi + " İşlemleri";
+    // Geniş ekranda sayfa pencereye sığar, tablo kalan alanı doldurur (tanim.css; bölüm görünümü taveneko.css ile ortak).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-eko butce-tanim prog-but-kod" data-tur="@Model.Tur" data-kod-adi="@Model.KodAdi">
+    <!-- Üst: yıl ve arama -->
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">@Model.KodAdi Seçimi</h2>
+            <form id="frmSecim" class="secim-satir" novalidate>
+                <label class="secim-alan dar">
+                    <span>Yıl</span>
+                    <input type="number" id="txtYil" class="form-control input-sm" min="2000" step="1" />
+                </label>
+                <label class="secim-alan">
+                    <span>Arama Metni</span>
+                    <input type="search" id="txtAra" class="form-control input-sm" maxlength="100" />
+                </label>
+                <div class="secim-tuslar" role="group" aria-label="Liste işlemleri">
+                    <button type="submit" id="btnBul" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Bul
+                    </button>
+                    <button type="button" id="btnYeni" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni
+                    </button>
+                    <button type="button" id="btnAktar" class="btn btn-default btn-sm" title="Seçilen yılın bir önceki yılındaki kodları bu yıla aktarır">
+                        <span class="glyphicon glyphicon-import" aria-hidden="true"></span> Önceki Yıldan Al
+                    </button>
+                    <button type="button" id="btnSBBAl" class="btn btn-default btn-sm" title="Program bütçe sistemindeki kodlarla karşılaştırır">
+                        <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> SBB'den Al
+                    </button>
+                    <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Listeyi Excel olarak indirir">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Alt: liste -->
+    <section>
+        <div class="kutu bolum bolum-tavan">
+            <h2 class="bolum-baslik">@Model.KodAdi Listesi</h2>
+            <div id="grdListe" class="tavan-grid" aria-label="@Model.KodAdi listesi"></div>
+        </div>
+    </section>
+</div>
+
+<!-- Kod girişi (eski wndKodGiris) -->
+<dialog id="dlgKod" class="tanim-pencere" aria-labelledby="dlgKodBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKodBaslik">@Model.KodAdi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmKod" class="tanim-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="txtKodYil">Yıl</label>
+                <div><input type="text" id="txtKodYil" class="form-control dar" readonly /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtKod">Kod</label>
+                <div><input type="number" id="txtKod" class="form-control dar" min="0" step="1" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtKodAd">Ad</label>
+                <div><input type="text" id="txtKodAd" class="form-control" maxlength="500" /></div>
+            </div>
+            @if (Model.Tur == 1)
+            {
+                <div class="form-group">
+                    <label class="control-label" for="ddlProgramTur">Tür</label>
+                    <div>
+                        <select id="ddlProgramTur" class="form-control">
+                            <option value="0"></option>
+                            <option value="1">Program</option>
+                            <option value="2">Yönetim Hizmet Gideri</option>
+                            <option value="3">Transfer</option>
+                        </select>
+                    </div>
+                </div>
+            }
+            @if (Model.Tur == 3)
+            {
+                <div class="form-group">
+                    <label class="control-label" for="txtFonKod">Fonk.</label>
+                    <div><input type="text" id="txtFonKod" class="form-control dar" maxlength="20" /></div>
+                </div>
+            }
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" id="btnSil" class="btn btn-danger btn-sm">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+        </button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+<!-- SBB'den Al: program bütçe - SGB kod farkları (eski wndFark) -->
+<dialog id="dlgFark" class="tanim-pencere genis sbb-fark" aria-labelledby="dlgFarkBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgFarkBaslik">Program Bütçe - SGB Kod Farkları</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="help-block">SGB'ye yazılacak satırları işaretleyip Kaydet'e basınız.</p>
+        <div id="grdFark" class="fark-grid" aria-label="Kod farkları"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnFarkKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taveneko.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/butcetanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/progbutkod.js" asp-append-version="true"></script>
+}

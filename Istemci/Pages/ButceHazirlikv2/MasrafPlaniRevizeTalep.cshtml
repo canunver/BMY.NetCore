@@ -1,0 +1,141 @@
+@page
+@model MasrafPlaniRevizeTalepModel
+@{
+    ViewData["Title"] = "Masraf Planı Revize Talep";
+    var sol = new[]
+    {
+        new { agac = "1", ad = "1", alan = "kur", etiket = "Kurumsal", baslik = "Kurumsal" }
+    };
+    var sag = new[]
+    {
+        new { agac = "2", ad = "2", alan = "fon", etiket = "Fonksiyonel", baslik = "Fonksiyonel" },
+        new { agac = "3", ad = "3", alan = "fin", etiket = "Finans", baslik = "Finans" },
+        new { agac = "4", ad = "4", alan = "eko", etiket = "Ekonomik", baslik = "Ekonomik" },
+        new { agac = "14", ad = "58", alan = "peb", etiket = "Alt Faaliyet", baslik = "Alt Faaliyet" }
+    };
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="mp-tavan mp-genel mp-revize-talep">
+    <div class="mp-ust">
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Kriterler</h2>
+            <form id="frmSecim" class="tanim-form mp-form" novalidate>
+                <div class="mp-kriter-kolonlar">
+                    <div class="mp-kriter-kolon">
+                        <div class="form-group">
+                            <label class="control-label" for="ddlYil">Yıl</label>
+                            <div><input type="number" id="ddlYil" class="form-control input-sm mp-yil sgb-yil" min="2000" max="2100" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtMuhasebe">Saymanlık</label>
+                            <div id="muhBirim"></div>
+                        </div>
+                        @foreach (var a in sol)
+                        {
+                            <div class="form-group kod-alan" data-agac="@a.agac" data-ad="@a.ad" data-alan="@a.alan">
+                                <label class="control-label" for="txt_@a.alan">@a.etiket</label>
+                                <div class="kod-satir">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" id="txt_@a.alan" class="form-control" autocomplete="off" title="@a.baslik kodu (Alt+Aşağı: kod ağacı)" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">@a.baslik seç</span></button>
+                                            <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">@a.baslik temizle</span></button>
+                                        </span>
+                                    </div>
+                                    <span class="kod-ad" aria-live="polite"></span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="mp-kriter-kolon">
+                        @foreach (var a in sag)
+                        {
+                            <div class="form-group kod-alan" data-agac="@a.agac" data-ad="@a.ad" data-alan="@a.alan">
+                                <label class="control-label" for="txt_@a.alan">@a.etiket</label>
+                                <div class="kod-satir">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" id="txt_@a.alan" class="form-control" autocomplete="off" title="@a.baslik kodu (Alt+Aşağı: kod ağacı)" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">@a.baslik seç</span></button>
+                                            <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">@a.baslik temizle</span></button>
+                                        </span>
+                                    </div>
+                                    <span class="kod-ad" aria-live="polite"></span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="kutu bolum bolum-tablo">
+        <div class="btn-toolbar mp-arac" role="toolbar" aria-label="Revize talep işlemleri">
+            <label class="checkbox-inline mp-ilk-hali" title="İşaretliyse masraf planının başlangıç hali (aşama 5), değilse son hali listelenir">
+                <input type="checkbox" id="chkIlkHali" /> Masraf Planı (Başlangıç)
+            </label>
+            <button type="button" id="btnListele" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+            </button>
+            <button type="button" id="btnYazdir2" class="btn btn-default btn-sm" title="Listeyi Excel'e yazdırır (başlangıç ve son masraf planı)">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Liste Yazdır
+            </button>
+            <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="KBS ile SGB arasındaki farklar (Excel)">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> KBS-SGB Fark
+            </button>
+            <button type="button" id="btnKopyala" class="btn btn-default btn-sm" title="Tabloyu panoya kopyalar (Excel'e yapıştırılabilir)">
+                <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Kopyala
+            </button>
+            <button type="button" id="btnFazlaCek" class="btn btn-default btn-sm" title="Masraf planından fazla gönderilen ödeneklerin merkeze alınma dosyası (Excel)">
+                <span class="glyphicon glyphicon-export" aria-hidden="true"></span> Merkeze Al
+            </button>
+        </div>
+        <div id="grdTertipler" class="mp-grid" aria-label="Tertipler"></div>
+    </div>
+</div>
+
+<dialog id="dlgKod" class="tanim-pencere mp-agac" aria-labelledby="dlgKodBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKodBaslik">Kod Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde" id="agacKutu"></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Aylık harcamalar (eski wndDetay) -->
+<dialog id="dlgAylik" class="tanim-pencere mp-aylik" aria-labelledby="dlgAylikBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgAylikBaslik">Aylık Harcamalar</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="aylikTertip" class="mp-aylik-tertip"></p>
+        <div id="grdAylik" class="mp-aylik-grid" aria-label="Aylık harcamalar"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/mptavan.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/masrafplani.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/mprevize.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/mptavan-ortak.js" asp-append-version="true"></script>
+    <script src="~/js/mprevizetalep.js" asp-append-version="true"></script>
+}

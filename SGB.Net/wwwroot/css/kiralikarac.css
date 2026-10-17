@@ -1,0 +1,194 @@
+/* Kiralık Araç Bilgileri (ButceForm/KiralikAraclarForm): yerleşim tanim.css'ten (solda liste, sağda form);
+   bölümler renkli başlıklı ayrı kutular. */
+
+.kiralik-arac .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding-top: 0;
+    background: var(--bolum-govde);
+}
+
+.kiralik-arac .kutu.bolum.bolum-sozlesme {
+    --bolum-baslik: #e2f3e6;
+    --bolum-govde: #f5fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.kiralik-arac .bolum-baslik {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 -16px 12px;
+    padding: 9px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.kiralik-arac .bolum-baslik .label {
+    font-size: 11px;
+}
+
+.kiralik-arac .ka-arac {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 10px;
+}
+
+.kiralik-arac .ka-arac .btn-group {
+    margin-left: 0;
+}
+
+.kiralik-arac .tanim-arama .ka-yil {
+    max-width: 100px;
+}
+
+/* Sözleşme formu: iki kolon, her alan etiketi solda */
+.kiralik-arac .ka-form {
+    --etiket-genislik: 130px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 0 18px;
+    min-width: 0;
+    margin: 0 0 6px;
+    padding: 0;
+    border: 0;
+}
+
+.kiralik-arac .ka-form .form-control-static {
+    min-height: 0;
+    padding: 0;
+    font-weight: 600;
+}
+
+.kiralik-arac .ka-yanyana {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.kiralik-arac .ka-yanyana .form-control {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.kiralik-arac .ka-surec-yil {
+    flex: 0 0 90px !important;
+}
+
+.kiralik-arac .ka-ayrac {
+    color: var(--soluk);
+}
+
+.kiralik-arac .ka-bedel {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+}
+
+.kiralik-arac .ka-bedel label {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+.kiralik-arac .ka-isaret,
+.ka-pencere .ka-isaret {
+    margin: 0 12px 0 0;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.kiralik-arac .form-control.sayi,
+.ka-pencere .form-control.sayi {
+    text-align: right;
+}
+
+.kiralik-arac .ka-alt-baslik {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 6px 0 8px;
+    padding-top: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    border-top: 1px solid var(--cizgi);
+}
+
+.kiralik-arac .ka-toplam {
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--bolum-vurgu);
+}
+
+.kiralik-arac .ka-grid {
+    height: 320px;
+}
+
+.kiralik-arac .ag-cell.sayi,
+.kiralik-arac .ag-header-cell.sayi .ag-header-cell-label {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.kiralik-arac .ag-cell.orta,
+.kiralik-arac .ag-header-cell.orta .ag-header-cell-label {
+    justify-content: center;
+    text-align: center;
+}
+
+/* Araç penceresi */
+.ka-pencere {
+    width: min(600px, calc(100vw - 32px));
+}
+
+.ka-pencere .tanim-form {
+    --etiket-genislik: 130px;
+}
+
+.ka-pencere .ka-yanyana {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ka-pencere .ka-sure {
+    flex: 0 0 90px;
+}
+
+.ka-pencere .pencere-alt .ka-sol {
+    margin-right: auto;
+}
+
+/* Geniş ekranda: sol bölme dar, sağdaki araç tablosu kalan yüksekliği doldurur */
+@media (min-width: 992px) {
+    .tanim.kiralik-arac {
+        grid-template-columns: minmax(340px, 4fr) minmax(0, 8fr);
+    }
+
+    .kiralik-arac .bolum-baslik {
+        margin: 0 -12px 12px;
+        padding: 9px 12px;
+    }
+
+    .kiralik-arac .ka-sag .kutu {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .kiralik-arac .ka-sag .ka-form {
+        flex: none;
+    }
+
+    .kiralik-arac .ka-grid {
+        flex: 1 1 auto;
+        min-height: 160px;
+        height: auto;
+    }
+}

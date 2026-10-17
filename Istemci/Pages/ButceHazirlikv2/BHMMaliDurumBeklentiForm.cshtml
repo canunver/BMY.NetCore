@@ -1,0 +1,114 @@
+@page
+@model BHMMaliDurumBeklentiFormModel
+@{
+    ViewData["Title"] = "Kurumsal Mali Durum ve Beklentiler Raporu";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="mali-durum">
+    <!-- Seçim (eski üst FormPanel): alanlar alt alta, etiketler solda; tuşlar altta -->
+    <div class="kutu bolum bolum-secim">
+        <h2 class="bolum-baslik">
+            <span>Seçim</span>
+            <small class="alt-baslik" id="lblOkunan"></small>
+        </h2>
+        <form id="frmSecim" class="tanim-form secim-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="txtYil">Yıl</label>
+                <div><input type="number" id="txtYil" class="form-control yil" min="2000" step="1" title="Yıl" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtFaaliyet">Faaliyet/Proje</label>
+                <div class="input-group input-group-sm">
+                    <input type="text" id="txtFaaliyet" class="form-control" autocomplete="off" placeholder="Faaliyet seçiniz (kaydetmek için en alt faaliyet)" title="Faaliyeti giriniz" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" id="btnKodSec" title="Kod ağacından seç (Alt+Aşağı)"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Faaliyet seç</span></button>
+                        <button type="button" class="btn btn-default" id="btnKodTemizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Faaliyeti temizle</span></button>
+                    </span>
+                </div>
+            </div>
+            <div class="secim-tuslar" role="group" aria-label="İşlemler">
+                <button type="submit" id="btnOku" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Oku
+                </button>
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+                <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Yılın mali durum ve beklentiler raporu (Word); faaliyet seçilirse yalnızca o faaliyet">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır (Yeni)
+                </button>
+                <button type="button" id="btnOnayla" class="btn btn-default btn-sm" hidden title="Yılın mali beklenti raporunu veri girişine kapatır">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Veri Gir. Kapat
+                </button>
+                <button type="button" id="btnOnayKaldir" class="btn btn-default btn-sm" hidden title="Yılın mali beklenti raporunu veri girişine açar">
+                    <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Veri Gir. Aç
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Metinler (eski alt FormPanel: dört metin alanı) -->
+    <div class="kutu bolum bolum-metin">
+        <h2 class="bolum-baslik">
+            <span>Rapor Metinleri</span>
+            <span id="kirliEtiket" class="label label-warning" hidden>Kaydedilmedi</span>
+        </h2>
+        <form id="frmMetin" class="tanim-form metin-form" novalidate>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="txtButceUygulamaSonucu">I – Ocak - Haziran Dönemi Bütçe Uygulama Sonuçları</label>
+                <div><textarea id="txtButceUygulamaSonucu" class="form-control metin" rows="6" title="Ocak - Haziran Dönemi Bütçe Uygulama Sonuçları"></textarea></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="txtYurutulenFaaliyetler">II – Ocak - Haziran Döneminde Yürütülen Faaliyetler</label>
+                <div><textarea id="txtYurutulenFaaliyetler" class="form-control metin" rows="6" title="Ocak - Haziran Döneminde Yürütülen Faaliyetler"></textarea></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="txtBeklentilerveHedefler">III - Temmuz - Aralık Dönemine İlişkin Beklentiler ve Hedefler</label>
+                <div><textarea id="txtBeklentilerveHedefler" class="form-control metin" rows="6" title="Temmuz - Aralık Dönemine İlişkin Beklentiler ve Hedefler"></textarea></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="txtYurutulecekFaaliyetler">IV – Temmuz - Aralık Döneminde Yürütülecek Faaliyetler</label>
+                <div><textarea id="txtYurutulecekFaaliyetler" class="form-control metin" rows="6" title="Temmuz - Aralık Döneminde Yürütülecek Faaliyetler"></textarea></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Faaliyet seçimi (eski açılır faaliyet ağacı) -->
+<dialog id="dlgKod" class="tanim-pencere mali-durum-agac" aria-labelledby="dlgKodBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKodBaslik">Faaliyet Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde" id="agacKutu"></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu (Kaydet, Veri Gir. Kapat / Aç) -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/malidurum.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/malidurum.js" asp-append-version="true"></script>
+}

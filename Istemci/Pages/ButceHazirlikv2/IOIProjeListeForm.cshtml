@@ -1,0 +1,235 @@
+@page
+@model IOIProjeListeFormModel
+@{
+    ViewData["Title"] = "İl Özel İdaresi Projeleri";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="ioi-proje">
+    <!-- Kriterler (eski üst form) -->
+    <div class="kutu bolum bolum-secim ioi-ust">
+        <h2 class="bolum-baslik">Kriterler</h2>
+        <form id="frmKriter" class="tanim-form ioi-kriter" novalidate>
+            <div class="form-group">
+                <span class="control-label">Tür</span>
+                <div class="ioi-yanyana" role="radiogroup" aria-label="Tür kriteri">
+                    <label class="ioi-isaret"><input type="radio" name="fltTur" value="0" checked /> İÖİ+YİKOB</label>
+                    <label class="ioi-isaret"><input type="radio" name="fltTur" value="1" /> İÖİ</label>
+                    <label class="ioi-isaret"><input type="radio" name="fltTur" value="2" /> YİKOB</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="fltAd">Ad</label>
+                <input type="text" id="fltAd" class="form-control input-sm" title="İl özel idaresi proje adında geçen metin" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="fltBasYil">Başla-Bitiş Yıl</label>
+                <div class="ioi-yanyana">
+                    <input type="number" id="fltBasYil" class="form-control input-sm sgb-yil ioi-yil" step="1" min="0" value="0" title="Başlangıç yılı (0: hepsi)" />
+                    <span class="ioi-ayrac">-</span>
+                    <input type="number" id="fltBitYil" class="form-control input-sm sgb-yil ioi-yil" step="1" min="0" value="0" title="Bitiş yılı (0: hepsi)" aria-label="Bitiş yılı" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="fltOdenek">Alt-Üst Ödenek</label>
+                <div class="ioi-yanyana">
+                    <input type="number" id="fltOdenek" class="form-control input-sm" step="1" value="0" title="Alt ödenek (0: sınırsız)" />
+                    <span class="ioi-ayrac">-</span>
+                    <input type="number" id="fltUstOdenek" class="form-control input-sm" step="1" value="0" title="Üst ödenek (0: sınırsız)" aria-label="Üst ödenek" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="fltIl">İl</label>
+                <select id="fltIl" class="form-control input-sm"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtYil">Yıl</label>
+                <input type="number" id="txtYil" class="form-control input-sm sgb-yil ioi-yil" step="1" title="Bütçe ve rapor yılı (tahsis / gönderilen tutarları bu yıla göre)" />
+            </div>
+        </form>
+    </div>
+
+    <!-- Proje listesi (eski grdIOIProje) -->
+    <div class="kutu bolum bolum-tablo">
+        <div class="btn-toolbar ioi-arac" role="toolbar" aria-label="Liste işlemleri">
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" id="btnOku" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Listele
+                </button>
+                <button type="button" id="btnYeni" class="btn btn-default">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Proje
+                </button>
+                <button type="button" id="btnOnaylilar" class="btn btn-default" hidden title="Birimlerin İÖİ proje onay durumu">
+                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Onay Durum
+                </button>
+            </div>
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" id="btnYazdir" class="btn btn-default" title="Proje listesi (Excel)">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                </button>
+                <button type="button" id="btnYazdirTertip" class="btn btn-default" title="Yılın tahsis ve gönderilen ödenekleri, iş ve tertip bazında (Excel)">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır (Tertip)
+                </button>
+                <button type="button" id="btnYazdirDetayli" class="btn btn-default" title="Proje listesi, tahsis ve harcama satırlarıyla (Excel)">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır (Detaylı)
+                </button>
+            </div>
+        </div>
+        <div id="grdIOIProje" class="ioi-grid" aria-label="Proje listesi"></div>
+    </div>
+</div>
+
+<!-- Proje tanım penceresi (eski wndTanim; eski IOIProjeGirisForm'un yerini alır) -->
+<dialog id="dlgTanim" class="tanim-pencere ioi-pencere" aria-labelledby="dlgTanimBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgTanimBaslik">İÖİ/YİKOB Proje Tanımı <span id="lblSiraNo" class="label label-default"></span></h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="ioi-durum">
+            <span>Durum:</span> <strong id="lblDurum"></strong>
+            <button type="button" id="btnOnay" class="btn btn-default btn-xs" hidden title="Birimin proje girişini onayla">
+                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Onayla
+            </button>
+            <button type="button" id="btnOnayKaldir" class="btn btn-default btn-xs" hidden title="Birimin onayını kaldır (sistem yöneticisi)">
+                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Onay Kaldır
+            </button>
+        </div>
+        <form id="frmTanim" class="tanim-form" novalidate>
+            <div class="form-group">
+                <span class="control-label">Türü</span>
+                <div class="ioi-yanyana" role="radiogroup" aria-label="Türü">
+                    <label class="ioi-isaret"><input type="radio" name="tanimTur" id="radIOI" value="1" /> İÖİ</label>
+                    <label class="ioi-isaret"><input type="radio" name="tanimTur" id="radYIKOB" value="2" /> YİKOB</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="control-label">Muhasebe / Birim</span>
+                <div id="muhBirim" title="Projeyi yürüten birimin saymanlık ve birim kodu"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtProjeAdi">Proje Adı</label>
+                <input type="text" id="txtProjeAdi" class="form-control input-sm" title="İl özel idaresiyle yürütülen projenin adı" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtBaslaYil">Başlangıç/Bitiş Yılı</label>
+                <div class="ioi-yanyana">
+                    <input type="number" id="txtBaslaYil" class="form-control input-sm sgb-yil ioi-yil" step="1" title="Projenin başlangıç yılı" />
+                    <span class="ioi-ayrac">-</span>
+                    <input type="number" id="txtBitisYil" class="form-control input-sm sgb-yil ioi-yil" step="1" title="Projenin bitiş yılı" aria-label="Bitiş yılı" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtToplamMaliyet">Toplam Maliyet (TL)</label>
+                <input type="text" id="txtToplamMaliyet" class="form-control input-sm sayi ioi-tutar" inputmode="decimal" autocomplete="off" title="Projenin toplam maliyeti" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlIl">Uygulama İli</label>
+                <select id="ddlIl" class="form-control input-sm"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAciklama">Açıklama</label>
+                <textarea id="txtAciklama" class="form-control input-sm" rows="2"></textarea>
+            </div>
+        </form>
+        <h3 class="ioi-alt-baslik">Bağlı alt faaliyetler</h3>
+        <div id="grdAltFaaliyet" class="ioi-alt-grid" aria-label="Bağlı alt faaliyetler"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" id="btnSil" class="btn btn-danger btn-sm ioi-sol" hidden>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+        </button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnTanimKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+<!-- Tahsis (eski wndAkt) ve harcama (eski wndHarc) pencereleri -->
+<dialog id="dlgTahsis" class="tanim-pencere ioi-pencere ioi-pencere-genis" aria-labelledby="dlgTahsisBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgTahsisBaslik">Proje Tahsisleri <span class="ioi-pencere-proje"></span></h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="ioi-ipucu">Satırı silmek için çöp kutusuna basıp kaydediniz (tutarı 0, açıklaması boş satır silinir).</p>
+        <div id="grdTahsis" class="ioi-giris-grid" aria-label="Tahsisler"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" id="btnTahsisSatir" class="btn btn-default btn-sm ioi-sol">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Ekle
+        </button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnTahsisKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+<dialog id="dlgHarcama" class="tanim-pencere ioi-pencere ioi-pencere-genis" aria-labelledby="dlgHarcamaBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgHarcamaBaslik">Proje Harcamaları <span class="ioi-pencere-proje"></span></h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="ioi-ipucu">Satırı silmek için çöp kutusuna basıp kaydediniz (tutarı 0, açıklaması boş satır silinir).</p>
+        <div id="grdHarcama" class="ioi-giris-grid" aria-label="Harcamalar"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" id="btnHarcamaSatir" class="btn btn-default btn-sm ioi-sol">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Ekle
+        </button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnHarcamaKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+<!-- Birimlerin onay durumu (eski TavanGenelDurumBirim.aspx?onayKod=21; sistem yöneticisi) -->
+<dialog id="dlgOnayDurum" class="tanim-pencere ioi-pencere ioi-pencere-genis" aria-labelledby="dlgOnayDurumBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOnayDurumBaslik">İÖİ Proje Onay Durumu</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div id="grdOnayDurum" class="ioi-onay-grid" aria-label="Birimlerin onay durumu"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" id="btnHepOnayla" class="btn btn-primary btn-sm ioi-sol">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Hepsini Onayla
+        </button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ioiproje.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/ioiproje.js" asp-append-version="true"></script>
+}

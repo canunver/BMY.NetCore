@@ -1,0 +1,1097 @@
+@page
+@model AlacakTakipListeABModel
+@{
+    ViewData["Title"] = "Takip İşlemleri";
+    // Geniş ekranda sayfa pencereye sığar; tablolar kalan yüksekliği doldurur (atmab.css).
+    ViewData["GovdeSinif"] = "atmab-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="atmab">
+    <!-- Araç çubuğu (eski liste ve dosya araç çubukları) -->
+    <div class="btn-toolbar ab-arac" role="toolbar" aria-label="İşlemler">
+        <button type="button" id="btnListele" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+        </button>
+        <button type="button" id="btnListeleBek" class="btn btn-default btn-sm" title="Onay bekleyen işlemi olan dosyaları listeler">
+            <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span> Listele (Bek.)
+        </button>
+        <div class="btn-group btn-group-sm">
+            <button type="button" class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Liste Yazdır <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#" data-yazdir="3">6305 Borçlu Defteri (TL)</a></li>
+                <li><a href="#" data-yazdir="4">6305 Borçlu Defteri (EUR)</a></li>
+                <li><a href="#" data-yazdir="5">6305 Borçlu Defteri Yeni (TL)</a></li>
+                <li><a href="#" data-yazdir="6">6305 Borçlu Defteri Yeni (EUR)</a></li>
+                <li><a href="#" data-yazdir="8">Faiz İşlemleri</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#" data-sakla="3">Sakla: 6305 Borçlu Defteri (TL)</a></li>
+                <li><a href="#" data-sakla="4">Sakla: 6305 Borçlu Defteri (EUR)</a></li>
+                <li><a href="#" data-sakla="5">Sakla: 6305 Borçlu Defteri Yeni (TL)</a></li>
+                <li><a href="#" data-sakla="6">Sakla: 6305 Borçlu Defteri Yeni (EUR)</a></li>
+            </ul>
+        </div>
+        <div class="btn-group btn-group-sm">
+            <button type="button" class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false"
+                    title="Kriter alanında belirtilen İşlem Tarihine göre dönem ya da yıl mutabakat raporları alınır.">
+                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Mut. Raporları <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#" data-yazdir="18">Dönem Hareketleri</a></li>
+                <li><a href="#" data-yazdir="11">6403 Reconciliation Form D-1</a></li>
+                <li><a href="#" data-yazdir="12">6404 Reconciliation of D-2 to D-1</a></li>
+                <li><a href="#" data-yazdir="13">6405 Borçlu Defteri ile TKDK Mutabakatı</a></li>
+                <li><a href="#" data-yazdir="14">6406 Borçlu Defteri ile Borç Kaydı</a></li>
+                <li><a href="#" data-yazdir="15">6804 Summary Report on Recoveries</a></li>
+                <li><a href="#" data-yazdir="19">Dept Report (TL)</a></li>
+                <li><a href="#" data-yazdir="20">Dept Table (EUR)</a></li>
+            </ul>
+        </div>
+        <button type="button" id="btnDonemFaizi" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Dönem Faizi
+        </button>
+
+        <span class="ab-ayrac" aria-hidden="true"></span>
+
+        <button type="button" id="btnYeniDosya" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Dosya
+        </button>
+        <div class="btn-group btn-group-sm">
+            <button type="button" id="btnYeniIslem" class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false" disabled>
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni İşlem <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#" data-yeni-islem="51">Ödeme</a></li>
+                <li><a href="#" data-yeni-islem="54">Mahsup</a></li>
+                <li><a href="#" data-yeni-islem="102">Düzeltme</a></li>
+                <li><a href="#" data-yeni-islem="59">Terkin</a></li>
+                <li><a href="#" data-yeni-islem="151">Silme</a></li>
+                <li><a href="#" data-yeni-islem="152">Fazla Öd. Akt.</a></li>
+                <li><a href="#" data-yeni-islem="1">Faiz İşlemi</a></li>
+            </ul>
+        </div>
+        <div class="btn-group btn-group-sm">
+            <button type="button" id="btnRaporlar" class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false" disabled>
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Raporlar <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#" data-rapor="1" data-tur="1">6307 Faiz Hes. Tab.</a></li>
+                <li><a href="#" data-rapor="1" data-tur="2">6307 Faiz Hes. Tab. (PDF)</a></li>
+                <li><a href="#" data-rapor="7" data-tur="1">6310 Geri Alınması Gereken Tutarlar</a></li>
+                <li><a href="#" data-rapor="7" data-tur="2">6310 Geri Alınması Gereken Tutarlar (PDF)</a></li>
+                <li><a href="#" data-rapor="10" data-tur="1">6807 Debt and Recovery Report</a></li>
+                <li><a href="#" data-rapor="9" data-tur="1" data-pb="1">Silinecek Tutarların Bildirimi (TL)</a></li>
+                <li><a href="#" data-rapor="9" data-tur="1" data-pb="2">Silinecek Tutarların Bildirimi (EUR)</a></li>
+                <li><a href="#" data-rapor="16" data-tur="1">6805 Overpayment</a></li>
+                <li><a href="#" data-rapor="21" data-tur="1">Yeniden Hesapla</a></li>
+            </ul>
+        </div>
+        <label class="ab-arac-tarih" for="txtIslemTarih">İşl. Tarih:
+            <input type="date" id="txtIslemTarih" class="form-control input-sm" title="Dosya bilgileri bu tarihe göre hesaplanır (boşsa bugün)" />
+        </label>
+        <label class="ab-arac-tarih" for="txtOnayTarih">Onay Tarih:
+            <input type="date" id="txtOnayTarih" class="form-control input-sm" title="Bu tarihe kadar onaylanmış bilgiler kullanılır (boşsa bugün)" />
+        </label>
+        <button type="button" id="btnImzalar" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> İmzalar
+        </button>
+    </div>
+
+    <div class="ab-govde">
+        <!-- Sorgu (eski PropertyGrid1) -->
+        <section class="kutu bolum bolum-sorgu">
+            <h2 class="bolum-baslik">Sorgu Alanları</h2>
+            <form id="frmSorgu" class="tanim-form ab-alanlar ab-sorgu" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="sIpard">IPARD</label>
+                    <div><select id="sIpard" class="form-control input-sm"></select></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Durum</span>
+                    <div id="sDurum" class="ab-coklu" data-bos="Hepsi" aria-label="Süreç durumu"></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Muhasebe / Birimi</span>
+                    <div id="sMuhBirim"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="sArama">Vergi/Ad/Başv. No</label>
+                    <div><input type="text" id="sArama" class="form-control input-sm" autocomplete="off" /></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Borç Türü</span>
+                    <div id="sBorcTuru" class="ab-coklu" data-bos="Hepsi" aria-label="Borç türü"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="sBorcDurumu">Borç Durumu</label>
+                    <div>
+                        <select id="sBorcDurumu" class="form-control input-sm">
+                            <option value="0">Hepsi</option>
+                            <option value="1">Borçlular</option>
+                            <option value="2">Borçlu (G.A. Var)</option>
+                            <option value="3">Borçlu (G.A. Yok)</option>
+                            <option value="4">Kapatmışlar</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="sAvans">Avans</label>
+                    <div><input type="checkbox" id="sAvans" class="ab-kutu" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="sTarihTur">Tarih Tür.</label>
+                    <div>
+                        <select id="sTarihTur" class="form-control input-sm">
+                            <option value="">Tüm İşlemler</option>
+                            <option value="geriAlim">Geri Alım</option>
+                            <option value="silme">Silme</option>
+                            <option value="onBorc">Ön Borç</option>
+                            <option value="geriAlimK">Geri Alım K.</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="sIslTarih">Tarih Baş. / Bit.</label>
+                    <div class="ab-bitisik">
+                        <input type="date" id="sIslTarih" class="form-control input-sm ab-tarih" aria-label="Tarih başlangıç" />
+                        <span aria-hidden="true">-</span>
+                        <input type="date" id="sIslTarihSon" class="form-control input-sm ab-tarih" aria-label="Tarih bitiş" />
+                    </div>
+                </div>
+                <button type="submit" class="sr-only">Listele</button>
+            </form>
+        </section>
+
+        <!-- Dosyalar (eski grdListe) -->
+        <section class="kutu bolum bolum-liste">
+            <h2 class="bolum-baslik">Dosyalar <span id="lblSayi" class="ab-sayi"></span></h2>
+            <div id="grdListe" class="ab-grid" aria-label="AB alacak takip dosyaları"></div>
+        </section>
+
+        <!-- Dosya bilgileri (eski orta sekmeler) -->
+        <section class="kutu bolum bolum-dosya">
+            <h2 class="bolum-baslik">Dosya Bilgileri <span id="lblDosya" class="ab-sayi"></span></h2>
+            <div class="ab-sekme-basliklar" role="tablist" aria-label="Dosya bilgileri">
+                <button type="button" role="tab" class="ab-sekme-tus active" data-sekme="borclu" aria-selected="true">Borçlu Kimlik Bilgileri</button>
+                <button type="button" role="tab" class="ab-sekme-tus" data-sekme="onborc" aria-selected="false">Ön Borç Bilgileri</button>
+                <button type="button" role="tab" class="ab-sekme-tus" data-sekme="gak" aria-selected="false">Geri Alım Kararı</button>
+                <button type="button" role="tab" class="ab-sekme-tus" data-sekme="geriodeme" aria-selected="false">Geri Ödeme İşlemleri</button>
+                <button type="button" role="tab" class="ab-sekme-tus" data-sekme="durum" aria-selected="false">Yorum/Süreç Durum</button>
+                <button type="button" role="tab" class="ab-sekme-tus" data-sekme="taksit" aria-selected="false">Taksitlendirme</button>
+                <button type="button" role="tab" class="ab-sekme-tus" data-sekme="islemler" aria-selected="false">İşlem Listesi ve Onaylama</button>
+                <button type="button" role="tab" class="ab-sekme-tus" data-sekme="dosyalar" aria-selected="false">Dosyalar</button>
+                <button type="button" role="tab" class="ab-sekme-tus" data-sekme="tarihce" aria-selected="false">Tarihçe</button>
+            </div>
+
+            <div class="ab-sekmeler">
+                <!-- Borçlu Kimlik Bilgileri -->
+                <div class="ab-sekme active" data-sekme="borclu" role="tabpanel">
+                    <div class="tanim-form ab-alanlar ab-oku">
+                        <div class="form-group"><span class="control-label">IPARD Dönemi</span><div><input class="form-control input-sm okuma ab-orta" readonly data-d="iPARDDonemiAd" /></div></div>
+                        <div class="form-group"><span class="control-label">Defter Sırası</span><div><input class="form-control input-sm okuma ab-orta" readonly data-d="defterSirasi" /></div></div>
+                        <div class="form-group"><span class="control-label">Tedbir-Alt T.-Bütçe Kalemi</span>
+                            <div class="ab-bitisik">
+                                <input class="form-control input-sm okuma ab-kisa" readonly data-d="tedbir" aria-label="Tedbir" />
+                                <input class="form-control input-sm okuma ab-kisa" readonly data-d="altTedbir" aria-label="Alt tedbir" />
+                                <input class="form-control input-sm okuma ab-kisa" readonly data-d="butceKalemi" aria-label="Bütçe kalemi" />
+                            </div>
+                        </div>
+                        <div class="form-group"><span class="control-label">İl Koordinatörlüğü</span><div><input class="form-control input-sm okuma" readonly data-d="HrcBirimAd" /></div></div>
+                        <div class="form-group"><span class="control-label">Borçlu</span><div><input class="form-control input-sm okuma" readonly data-d="borcluKodAd" /></div></div>
+                        <div class="form-group"><span class="control-label">Başvuru Kayıt Numarası</span><div><input class="form-control input-sm okuma" readonly data-d="basvuruKayitNumarasi" /></div></div>
+                        <div class="form-group"><span class="control-label">Sözleşme Numarası</span><div><input class="form-control input-sm okuma" readonly data-d="sozlesmeNumarasi" /></div></div>
+                    </div>
+                    <div class="ab-tablo-arac">
+                        <button type="button" class="btn btn-default btn-sm" data-yeni-parca="1" disabled><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Borçlu Değişikliği</button>
+                    </div>
+                    <div id="grdBorcluIslem" class="ab-grid ab-grid-kucuk" aria-label="Borçlu işlemleri"></div>
+                </div>
+
+                <!-- Ön Borç Bilgileri -->
+                <div class="ab-sekme" data-sekme="onborc" role="tabpanel" hidden>
+                    <div class="tanim-form ab-alanlar ab-oku">
+                        <div class="form-group"><span class="control-label">Borcun Türü</span><div><input class="form-control input-sm okuma" readonly data-d="borcTuruAd" /></div></div>
+                        <div class="form-group"><span class="control-label">Borcun Kodu</span><div><input class="form-control input-sm okuma" readonly data-d="borcunKoduAd" /></div></div>
+                        <div class="form-group"><span class="control-label">Vaka Numarası</span>
+                            <div class="ab-bitisik">
+                                <input class="form-control input-sm okuma ab-orta" readonly data-d="vakaNumarasi" aria-label="Vaka numarası" />
+                                <label class="ab-yan"><input type="checkbox" disabled data-d="avans" /> Avans</label>
+                            </div>
+                        </div>
+                        <div class="form-group"><span class="control-label">Ön Borç Tarih - Sayı</span>
+                            <div class="ab-bitisik">
+                                <input class="form-control input-sm okuma ab-tarih" readonly data-d="onBorcTarihi" data-bicim="tarih" aria-label="Ön borç tarihi" />
+                                <input class="form-control input-sm okuma ab-orta" readonly data-d="onBorcSayi" aria-label="Ön borç sayı" />
+                            </div>
+                        </div>
+                        <div class="form-group"><span class="control-label">Öng. Silinme Tarihi</span>
+                            <div class="ab-bitisik">
+                                <input class="form-control input-sm okuma ab-tarih" readonly data-d="ongorulenSilinmeTarihi" data-bicim="tarih" aria-label="Öngörülen silinme tarihi" />
+                                <span class="ab-fazla-odeme" hidden>Aktarım Tarihi:</span>
+                                <input class="form-control input-sm okuma ab-tarih ab-fazla-odeme" readonly data-d="ipardAktarimTar" data-bicim="tarih" aria-label="Aktarım tarihi" hidden />
+                            </div>
+                        </div>
+                        <div class="form-group"><span class="control-label">Kur</span><div><input class="form-control input-sm okuma ab-kisa ab-tutar" readonly data-d="onBorcDovizKuru" data-bicim="kur" /></div></div>
+                        <div class="form-group ab-uclu-baslik"><span class="control-label"></span><div class="ab-uclu"><span>AB</span><span>Ulusal</span><span>Toplam</span></div></div>
+                        <div class="form-group"><span class="control-label">Ön Borç Miktarı (TL)</span>
+                            <div class="ab-uclu">
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="onBorcMiktarAB" data-bicim="tutar" aria-label="AB" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="onBorcMiktarUlusal" data-bicim="tutar" aria-label="Ulusal" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="onBorcToplam" data-bicim="tutar" aria-label="Toplam" />
+                            </div>
+                        </div>
+                        <div class="form-group"><span class="control-label">Ön Borç Miktarı (EUR)</span>
+                            <div class="ab-uclu">
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="onBorcMiktarABEUR" data-bicim="tutar" aria-label="AB" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="onBorcMiktarUlusalEUR" data-bicim="tutar" aria-label="Ulusal" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="onBorcToplamEUR" data-bicim="tutar" aria-label="Toplam" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ab-tablo-arac">
+                        <button type="button" class="btn btn-default btn-sm" data-yeni-parca="2" disabled><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Ön Borç Değişikliği/İptali</button>
+                    </div>
+                    <div id="grdOnBorcIslem" class="ab-grid ab-grid-kucuk" aria-label="Ön borç işlemleri"></div>
+                </div>
+
+                <!-- Geri Alım Kararı -->
+                <div class="ab-sekme" data-sekme="gak" role="tabpanel" hidden>
+                    <div class="tanim-form ab-alanlar ab-oku">
+                        <div class="form-group"><span class="control-label">G.A.K. Tarihi</span>
+                            <div class="ab-bitisik">
+                                <input class="form-control input-sm okuma ab-tarih" readonly data-d="geriAlimKarariTarihi" data-bicim="tarih" aria-label="Geri alım kararı tarihi" />
+                                <span>Dönem:</span>
+                                <input class="form-control input-sm okuma ab-kisa" readonly data-d="donemYil" aria-label="Dönem yılı" />
+                                <span aria-hidden="true">-</span>
+                                <input class="form-control input-sm okuma ab-mini" readonly data-d="donemCeyrek" aria-label="Dönem çeyreği" />
+                            </div>
+                        </div>
+                        <div class="form-group"><span class="control-label">Sayı</span>
+                            <div class="ab-bitisik">
+                                <input class="form-control input-sm okuma ab-orta" readonly data-d="geriAlimSayi" aria-label="Geri alım sayısı" />
+                                <span>Kur:</span>
+                                <input class="form-control input-sm okuma ab-kisa ab-tutar" readonly data-d="geriAlimDovizKuru" data-bicim="kur" aria-label="Kur" />
+                            </div>
+                        </div>
+                        <div class="form-group"><span class="control-label">Bildirim Tarihi</span>
+                            <div class="ab-bitisik">
+                                <input class="form-control input-sm okuma ab-tarih" readonly data-d="bildirimTarihi" data-bicim="tarih" aria-label="Bildirim tarihi" />
+                                <span>Mektup Alınma Tar.:</span>
+                                <input class="form-control input-sm okuma ab-tarih" readonly data-d="tesellumTarihi" data-bicim="tarih" aria-label="Mektup alınma tarihi" />
+                            </div>
+                        </div>
+                        <div class="form-group"><span class="control-label">Ödeme Son Tarihi</span>
+                            <div class="ab-bitisik">
+                                <input class="form-control input-sm okuma ab-tarih" readonly data-d="odemeSonTarihi" data-bicim="tarih" aria-label="Ödeme son tarihi" />
+                                <span>Temerrüt Tarihi:</span>
+                                <input class="form-control input-sm okuma ab-tarih" readonly data-d="temerrutTarihi" data-bicim="tarih" aria-label="Temerrüt tarihi" />
+                            </div>
+                        </div>
+                        <div class="form-group"><span class="control-label">Faiz Hesabı Son Tarihi</span>
+                            <div class="ab-bitisik">
+                                <input class="form-control input-sm okuma ab-tarih" readonly data-d="faizHesabiSonTarihi" data-bicim="tarih" aria-label="Faiz hesabı son tarihi" />
+                                <span>Faizin Dur. Tarihi:</span>
+                                <input class="form-control input-sm okuma ab-tarih" readonly data-d="faizinDurdurulmaTarihi" data-bicim="tarih" aria-label="Faizin durdurulma tarihi" />
+                            </div>
+                        </div>
+                        <div class="form-group ab-uclu-baslik"><span class="control-label"></span><div class="ab-uclu"><span>AB</span><span>Ulusal</span><span>Toplam</span></div></div>
+                        <div class="form-group"><span class="control-label">Geri A.K. Miktar (TL)</span>
+                            <div class="ab-uclu">
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="geriAlimMiktarAB" data-bicim="tutar" aria-label="AB" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="geriAlimMiktarUlusal" data-bicim="tutar" aria-label="Ulusal" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="geriAlimMiktarToplam" data-bicim="tutar" aria-label="Toplam" />
+                            </div>
+                        </div>
+                        <div class="form-group"><span class="control-label">Geri A.K. Miktar (EUR)</span>
+                            <div class="ab-uclu">
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="geriAlimMiktarABEUR" data-bicim="tutar" aria-label="AB" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="geriAlimMiktarUlusalEUR" data-bicim="tutar" aria-label="Ulusal" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="geriAlimMiktarToplamEUR" data-bicim="tutar" aria-label="Toplam" />
+                            </div>
+                        </div>
+                        <div class="form-group"><span class="control-label">Silinmeyecek Miktar</span>
+                            <div class="ab-bitisik">
+                                <input class="form-control input-sm okuma ab-orta ab-tutar" readonly data-d="silinmeyecekMiktar" data-bicim="tutar" aria-label="Silinmeyecek miktar (TL)" />
+                                <span>TL</span>
+                                <input class="form-control input-sm okuma ab-orta ab-tutar" readonly data-d="silinmeyecekMiktarEUR" data-bicim="tutar" aria-label="Silinmeyecek miktar (EUR)" />
+                                <span>EUR</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ab-tablo-arac">
+                        <button type="button" class="btn btn-default btn-sm" data-yeni-parca="3" disabled><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Geri Alım K. Değişikliği/İptali</button>
+                    </div>
+                    <div id="grdGakIslem" class="ab-grid ab-grid-kucuk" aria-label="Geri alım kararı işlemleri"></div>
+                </div>
+
+                <!-- Geri Ödeme İşlemleri (TL / EUR) -->
+                <div class="ab-sekme" data-sekme="geriodeme" role="tabpanel" hidden>
+                    <div class="ab-alt-sekme-basliklar" role="tablist" aria-label="Para birimi">
+                        <button type="button" role="tab" class="ab-alt-sekme-tus active" data-alt-sekme="tl" aria-selected="true">TL</button>
+                        <button type="button" role="tab" class="ab-alt-sekme-tus" data-alt-sekme="eur" aria-selected="false">EUR</button>
+                    </div>
+                    <div class="tanim-form ab-alanlar ab-oku ab-alt-sekme" data-alt-sekme="tl">
+                        <div class="form-group ab-uclu-baslik"><span class="control-label"></span><div class="ab-uclu"><span>AB</span><span>Ulusal</span><span>Toplam</span></div></div>
+                        <div class="form-group"><span class="control-label">Ana Para Tutarı (TL)</span>
+                            <div class="ab-uclu">
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="geriAlimMiktarAB" data-bicim="tutar" aria-label="AB" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="geriAlimMiktarUlusal" data-bicim="tutar" aria-label="Ulusal" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="geriAlimMiktarToplam" data-bicim="tutar" aria-label="Toplam" />
+                            </div>
+                        </div>
+                        <div class="form-group"><span class="control-label">Kalan Miktar (TL)</span>
+                            <div class="ab-uclu">
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="kalanMiktarABSil" data-bicim="tutar" aria-label="AB" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="kalanMiktarUlusalSil" data-bicim="tutar" aria-label="Ulusal" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="kalanMiktarToplam" data-bicim="tutar" aria-label="Toplam" />
+                            </div>
+                        </div>
+                        <div class="form-group"><span class="control-label">Kalan Faiz (TL)</span>
+                            <div class="ab-uclu">
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="kalanFaizMiktarABSil" data-bicim="tutar" aria-label="AB" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="kalanFaizMiktarUlusalSil" data-bicim="tutar" aria-label="Ulusal" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="kalanFaizMiktarToplam" data-bicim="tutar" aria-label="Toplam" />
+                            </div>
+                        </div>
+                        <div class="form-group"><span class="control-label">Kalan Toplam (TL)</span>
+                            <div class="ab-uclu">
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="kalanToplamABSil" data-bicim="tutar" aria-label="AB" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="kalanToplamUlusalSil" data-bicim="tutar" aria-label="Ulusal" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="kalanToplamToplam" data-bicim="tutar" aria-label="Toplam" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tanim-form ab-alanlar ab-oku ab-alt-sekme" data-alt-sekme="eur" hidden>
+                        <div class="form-group ab-uclu-baslik"><span class="control-label"></span><div class="ab-uclu"><span>AB</span><span>Ulusal</span><span>Toplam</span></div></div>
+                        <div class="form-group"><span class="control-label">Ana Para Tutarı (EUR)</span>
+                            <div class="ab-uclu">
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="geriAlimMiktarABEUR" data-bicim="tutar" aria-label="AB" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="geriAlimMiktarUlusalEUR" data-bicim="tutar" aria-label="Ulusal" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="geriAlimMiktarToplamEUR" data-bicim="tutar" aria-label="Toplam" />
+                            </div>
+                        </div>
+                        <div class="form-group"><span class="control-label">Kalan Miktar (EUR)</span>
+                            <div class="ab-uclu">
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="kalanMiktarABEURSil" data-bicim="tutar" aria-label="AB" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="kalanMiktarUlusalEURSil" data-bicim="tutar" aria-label="Ulusal" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="kalanMiktarToplamEUR" data-bicim="tutar" aria-label="Toplam" />
+                            </div>
+                        </div>
+                        <div class="form-group"><span class="control-label">Kalan Faiz (EUR)</span>
+                            <div class="ab-uclu">
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="kalanFaizMiktarABEURSil" data-bicim="tutar" aria-label="AB" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="kalanFaizMiktarUlusalEURSil" data-bicim="tutar" aria-label="Ulusal" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="kalanFaizMiktarToplamEUR" data-bicim="tutar" aria-label="Toplam" />
+                            </div>
+                        </div>
+                        <div class="form-group"><span class="control-label">Kalan Toplam (EUR)</span>
+                            <div class="ab-uclu">
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="kalanToplamABEURSil" data-bicim="tutar" aria-label="AB" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="kalanToplamUlusalEURSil" data-bicim="tutar" aria-label="Ulusal" />
+                                <input class="form-control input-sm okuma ab-tutar" readonly data-d="kalanToplamToplamEUR" data-bicim="tutar" aria-label="Toplam" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Yorum/Süreç Durum -->
+                <div class="ab-sekme" data-sekme="durum" role="tabpanel" hidden>
+                    <div class="tanim-form ab-alanlar ab-oku">
+                        <div class="form-group ust-hizali"><span class="control-label">Türkçe Yorumlar</span>
+                            <div><textarea class="form-control input-sm okuma" rows="4" readonly data-d="yorumlarTR" aria-label="Türkçe yorumlar"></textarea></div>
+                        </div>
+                    </div>
+                    <div class="ab-tablo-arac">
+                        <button type="button" class="btn btn-default btn-sm" data-yeni-parca="4" disabled><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Durum/Açıklama Değişikliği</button>
+                    </div>
+                    <div id="grdDurumIslem" class="ab-grid ab-grid-kucuk" aria-label="Süreç durumu işlemleri"></div>
+                </div>
+
+                <!-- Taksitlendirme -->
+                <div class="ab-sekme" data-sekme="taksit" role="tabpanel" hidden>
+                    <div class="tanim-form ab-alanlar ab-oku ab-iki-sutun">
+                        <div class="form-group"><span class="control-label">Toplam Ana Para</span><div><input class="form-control input-sm okuma ab-orta ab-tutar" readonly data-d="kalanMiktarToplam" data-bicim="tutar" /></div></div>
+                        <div class="form-group"><span class="control-label">Toplam Faiz</span><div><input class="form-control input-sm okuma ab-orta ab-tutar" readonly data-d="kalanFaizMiktarToplam" data-bicim="tutar" /></div></div>
+                        <div class="form-group"><span class="control-label">Talep Tarih</span><div><input class="form-control input-sm okuma ab-tarih" readonly data-d="taksitTalepTarih" data-bicim="tarih" /></div></div>
+                        <div class="form-group"><span class="control-label">Talep Sayı</span><div><input class="form-control input-sm okuma ab-orta" readonly data-d="taksitTalepSayi" /></div></div>
+                        <div class="form-group"><span class="control-label">Karar Tarih</span><div><input class="form-control input-sm okuma ab-tarih" readonly data-d="taksitKararTarih" data-bicim="tarih" /></div></div>
+                        <div class="form-group"><span class="control-label">Karar Sayı</span><div><input class="form-control input-sm okuma ab-orta" readonly data-d="taksitKararSayi" /></div></div>
+                        <div class="form-group"><span class="control-label">İlk Ödeme Tar.</span><div><input class="form-control input-sm okuma ab-tarih" readonly data-d="taksitIlkTarih" data-bicim="tarih" /></div></div>
+                        <div class="form-group"><span class="control-label">Taksit Sayısı</span><div><input class="form-control input-sm okuma ab-kisa" readonly data-d="taksitSayisi" /></div></div>
+                        <div class="form-group"><span class="control-label">Taksit Tür</span><div><input class="form-control input-sm okuma ab-orta" readonly data-d="taksitTur" /></div></div>
+                    </div>
+                    <div class="ab-alt-sekme-basliklar" role="tablist" aria-label="Taksit">
+                        <button type="button" role="tab" class="ab-alt-sekme-tus active" data-alt-sekme="taksitler" aria-selected="true">Taksit Bilgileri</button>
+                        <button type="button" role="tab" class="ab-alt-sekme-tus" data-alt-sekme="taksitislem" aria-selected="false">Taksitlendirme İşlemleri</button>
+                    </div>
+                    <div class="ab-alt-sekme" data-alt-sekme="taksitler">
+                        <div class="ab-tablo-arac">
+                            <button type="button" id="btnTaksitYazdir" class="btn btn-default btn-sm" disabled
+                                    title="Taskitleri kaydetmeden girilen verilerle taksit raporu alabilirsiniz. Kayıtlı taksit bilgisi varsa kayıtlı taksitler yazdırılacaktır.">
+                                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                            </button>
+                        </div>
+                        <div id="grdTaksitler" class="ab-grid ab-grid-kucuk" aria-label="Taksitler"></div>
+                    </div>
+                    <div class="ab-alt-sekme" data-alt-sekme="taksitislem" hidden>
+                        <div class="ab-tablo-arac">
+                            <button type="button" class="btn btn-default btn-sm" data-yeni-parca="5" disabled><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Taksit/İptal İşlemi</button>
+                        </div>
+                        <div id="grdTaksitIslem" class="ab-grid ab-grid-kucuk" aria-label="Taksitlendirme işlemleri"></div>
+                    </div>
+                </div>
+
+                <!-- İşlem Listesi ve Onaylama -->
+                <div class="ab-sekme" data-sekme="islemler" role="tabpanel" hidden>
+                    <div id="grdIslemler" class="ab-grid ab-grid-doldur" aria-label="İşlem listesi"></div>
+                </div>
+
+                <!-- Dosyalar / Tarihçe: sekme açılınca ve dosya seçiliyken yüklenir -->
+                <div class="ab-sekme ab-cerceve-sekme" data-sekme="dosyalar" role="tabpanel" hidden>
+                    <p class="ab-bos">Dosya seçiniz.</p>
+                    <iframe id="frmDosyalar" title="Ekli dosyalar" hidden></iframe>
+                </div>
+                <div class="ab-sekme ab-cerceve-sekme" data-sekme="tarihce" role="tabpanel" hidden>
+                    <p class="ab-bos">Dosya seçiniz.</p>
+                    <iframe id="frmTarihce" title="Dosya tarihçesi" hidden></iframe>
+                </div>
+            </div>
+
+            <div class="ab-surec">
+                <label for="txtSurecDurum">Süreç Durum:</label>
+                <input type="text" id="txtSurecDurum" class="form-control input-sm okuma" readonly data-d="geriAlimSurecAsamasiAd" />
+            </div>
+        </section>
+
+        <!-- Borç Ödemeleri veya Yapılan Değişilikler (eski grdBorcHareket) -->
+        <section class="kutu bolum bolum-hareket">
+            <h2 class="bolum-baslik">Borç Ödemeleri veya Yapılan Değişilikler
+                <span class="ab-suzgec">
+                    <label><input type="checkbox" data-goster="faiz" /> Faiz Hesabı</label>
+                    <label><input type="checkbox" data-goster="faizIslem" /> Faiz Hesabı (İşlem)</label>
+                    <label><input type="checkbox" data-goster="odeme" checked /> Ödemeler</label>
+                    <label><input type="checkbox" data-goster="silme" checked /> Silmeler</label>
+                    <label><input type="checkbox" data-goster="duzeltme" checked /> Düzeltmeler</label>
+                </span>
+            </h2>
+            <div id="grdHareket" class="ab-grid" aria-label="Borç hareketleri"></div>
+        </section>
+    </div>
+</div>
+
+<!-- ================================================================ İşlem Girişi (eski wndOdemeGiris) -->
+<dialog id="dlgOdeme" class="tanim-pencere ab-pencere ab-pencere-genis" aria-labelledby="dlgOdemeBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOdemeBaslik">İşlem Girişi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form class="tanim-form ab-alanlar" novalidate>
+            <div class="form-group">
+                <label class="control-label" id="o_lblBolum" for="o_tarih">İşlem Tarih/Karar/Taksit</label>
+                <div class="ab-bitisik">
+                    <input type="date" id="o_tarih" class="form-control input-sm ab-tarih" data-h="tarih" data-degisen="tarih" aria-label="İşlem tarihi" />
+                    <input type="text" class="form-control input-sm ab-orta" data-h="karar" aria-label="Karar" autocomplete="off" />
+                    <input type="text" class="form-control input-sm ab-kisa" data-h="borcunIlgiliOlduguTaksit" aria-label="Taksit" autocomplete="off" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" id="o_lblDuzeltme" for="o_duzeltim">Düzeltme Tarihi</label>
+                <div class="ab-bitisik">
+                    <input type="date" id="o_duzeltim" class="form-control input-sm ab-tarih" data-h="duzeltimTarihi" />
+                    <span>Kur:</span>
+                    <input type="text" class="form-control input-sm okuma ab-kisa ab-tutar" readonly data-h="dovizKuru" data-bicim="kur" aria-label="Kur" />
+                    <label class="ab-yan ab-odeme-turu"><input type="checkbox" id="o_hatadaKaydet" data-degisen="hatadaKaydet" /> Hatalı ise de kaydet</label>
+                </div>
+            </div>
+
+            <!-- Ödeme türü işlemlerde (eski frmOdeme) -->
+            <fieldset class="ab-kume ab-odeme-turu">
+                <legend>Yatırılan</legend>
+                <div class="form-group ab-uclu-baslik"><span class="control-label"></span><div class="ab-uclu"><span>AB</span><span>Ulusal</span><span>Toplam</span></div></div>
+                <div class="form-group"><span class="control-label">Yatırılan (TL)</span>
+                    <div class="ab-uclu">
+                        <input type="text" class="form-control input-sm ab-tutar" data-h="yatirilanAB" data-bicim="tutar" data-degisen="yatirilanAB" inputmode="decimal" aria-label="Yatırılan AB" />
+                        <input type="text" class="form-control input-sm ab-tutar" data-h="yatirilanUlusal" data-bicim="tutar" data-degisen="yatirilanUlusal" inputmode="decimal" aria-label="Yatırılan Ulusal" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="yatirilanToplam" data-bicim="tutar" aria-label="Yatırılan toplam" />
+                    </div>
+                </div>
+                <div class="form-group"><span class="control-label">Yatırılan (EUR)</span>
+                    <div class="ab-uclu">
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="yatirilanABEUR" data-bicim="tutar" aria-label="AB" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="yatirilanUlusalEUR" data-bicim="tutar" aria-label="Ulusal" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="yatirilanToplamEUR" data-bicim="tutar" aria-label="Toplam" />
+                    </div>
+                </div>
+                <div class="form-group"><span class="control-label">Durum</span><div><input type="text" class="form-control input-sm okuma" readonly data-h="durum" /></div></div>
+                <div class="form-group"><span class="control-label">Aktarım AB / Ulusal / Kişiye</span>
+                    <div class="ab-uclu">
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="aktarAB" data-bicim="tutar" aria-label="Aktarım AB" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="aktarUlusal" data-bicim="tutar" aria-label="Aktarım Ulusal" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="aktarKisiye" data-bicim="tutar" aria-label="Kişiye" />
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- IPARD hesabına aktarım (eski cfAktarim: Silme, Fazla Ödeme Aktarımı, Ödeneni Aktarma) -->
+            <div class="form-group ab-aktarim">
+                <label class="control-label" for="o_aktTarih">IPARD Hesabına</label>
+                <div class="ab-bitisik">
+                    <span>Akt. Tarihi:</span>
+                    <input type="date" id="o_aktTarih" class="form-control input-sm ab-tarih" data-h="aktarimTarihi" aria-label="Aktarım tarihi" />
+                    <span>Aktarılan TL:</span>
+                    <input type="text" class="form-control input-sm ab-orta ab-tutar" data-h="aktarimTutari" data-bicim="tutar" data-degisen="aktarimTutari" inputmode="decimal" aria-label="Aktarılan TL" />
+                    <span>EUR:</span>
+                    <input type="text" class="form-control input-sm okuma ab-orta ab-tutar" readonly data-h="aktarimTutariEUR" data-bicim="tutar" aria-label="Aktarılan EUR" />
+                </div>
+            </div>
+
+            <div class="ab-alt-sekme-basliklar" role="tablist" aria-label="Para birimi">
+                <button type="button" role="tab" class="ab-alt-sekme-tus active" data-alt-sekme="otl" aria-selected="true">TL</button>
+                <button type="button" role="tab" class="ab-alt-sekme-tus" data-alt-sekme="oeur" aria-selected="false">Euro</button>
+            </div>
+            <div class="ab-alt-sekme" data-alt-sekme="otl">
+                <div class="form-group ab-uclu-baslik"><span class="control-label"></span><div class="ab-uclu"><span>AB</span><span>Ulusal</span><span>Toplam</span></div></div>
+                <div class="form-group"><span class="control-label">Kalan Borç Miktarı (TL)</span>
+                    <div class="ab-uclu">
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-k="kalanMiktarAB" data-bicim="tutar" aria-label="AB" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-k="kalanMiktarUlusal" data-bicim="tutar" aria-label="Ulusal" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-k="kalanMiktarToplam" data-bicim="tutar" aria-label="Toplam" />
+                    </div>
+                </div>
+                <div class="form-group"><span class="control-label">Kalan Faiz Miktarı (TL)</span>
+                    <div class="ab-uclu">
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-k="kalanFaizMiktarAB" data-bicim="tutar" aria-label="AB" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-k="kalanFaizMiktarUlusal" data-bicim="tutar" aria-label="Ulusal" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-k="kalanFaizMiktarToplam" data-bicim="tutar" aria-label="Toplam" />
+                    </div>
+                </div>
+                <div class="form-group"><span class="control-label">Kalan Toplam (TL)</span>
+                    <div class="ab-uclu">
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-k="kalanToplamAB" data-bicim="tutar" aria-label="AB" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-k="kalanToplamUlusal" data-bicim="tutar" aria-label="Ulusal" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-k="kalanToplamToplam" data-bicim="tutar" aria-label="Toplam" />
+                    </div>
+                </div>
+                <div class="form-group"><span class="control-label" id="o_lblIslem">Geri Alım Miktarı (TL)</span>
+                    <div class="ab-uclu">
+                        <input type="text" class="form-control input-sm ab-tutar" data-h="miktarAB" data-bicim="tutar" data-degisen="miktarAB" inputmode="decimal" aria-label="AB" />
+                        <input type="text" class="form-control input-sm ab-tutar ab-ulusal" data-h="miktarUlusal" data-bicim="tutar" data-degisen="miktarUlusal" inputmode="decimal" aria-label="Ulusal" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="miktarToplam" data-bicim="tutar" aria-label="Toplam" />
+                    </div>
+                </div>
+                <div class="form-group"><span class="control-label">Faiz Miktarı (TL)</span>
+                    <div class="ab-uclu">
+                        <input type="text" class="form-control input-sm ab-tutar" data-h="faizAB" data-bicim="tutar" data-degisen="faizAB" inputmode="decimal" aria-label="AB" />
+                        <input type="text" class="form-control input-sm ab-tutar ab-ulusal" data-h="faizUlusal" data-bicim="tutar" data-degisen="faizUlusal" inputmode="decimal" aria-label="Ulusal" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="faizToplam" data-bicim="tutar" aria-label="Toplam" />
+                    </div>
+                </div>
+                <div class="form-group"><span class="control-label">Geri Alım Toplam (TL)</span>
+                    <div class="ab-uclu">
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="toplamAB" data-bicim="tutar" aria-label="AB" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="toplamUlusal" data-bicim="tutar" aria-label="Ulusal" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="toplamToplam" data-bicim="tutar" aria-label="Toplam" />
+                    </div>
+                </div>
+            </div>
+            <div class="ab-alt-sekme" data-alt-sekme="oeur" hidden>
+                <div class="form-group ab-uclu-baslik"><span class="control-label"></span><div class="ab-uclu"><span>AB</span><span>Ulusal</span><span>Toplam</span></div></div>
+                <div class="form-group"><span class="control-label">Kalan Borç Miktarı (EUR)</span>
+                    <div class="ab-uclu">
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-k="kalanMiktarABEUR" data-bicim="tutar" aria-label="AB" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-k="kalanMiktarUlusalEUR" data-bicim="tutar" aria-label="Ulusal" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-k="kalanMiktarToplamEUR" data-bicim="tutar" aria-label="Toplam" />
+                    </div>
+                </div>
+                <div class="form-group"><span class="control-label">Kalan Faiz Miktarı (EUR)</span>
+                    <div class="ab-uclu">
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-k="kalanFaizMiktarABEUR" data-bicim="tutar" aria-label="AB" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-k="kalanFaizMiktarUlusalEUR" data-bicim="tutar" aria-label="Ulusal" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-k="kalanFaizMiktarToplamEUR" data-bicim="tutar" aria-label="Toplam" />
+                    </div>
+                </div>
+                <div class="form-group"><span class="control-label">Kalan Toplam (EUR)</span>
+                    <div class="ab-uclu">
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-k="kalanToplamABEUR" data-bicim="tutar" aria-label="AB" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-k="kalanToplamUlusalEUR" data-bicim="tutar" aria-label="Ulusal" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-k="kalanToplamToplamEUR" data-bicim="tutar" aria-label="Toplam" />
+                    </div>
+                </div>
+                <div class="form-group"><span class="control-label">Geri Alım Miktarı (EUR)</span>
+                    <div class="ab-uclu">
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="miktarABEUR" data-bicim="tutar" aria-label="AB" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="miktarUlusalEUR" data-bicim="tutar" aria-label="Ulusal" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="miktarToplamEUR" data-bicim="tutar" aria-label="Toplam" />
+                    </div>
+                </div>
+                <div class="form-group"><span class="control-label">Faiz Miktarı (EUR)</span>
+                    <div class="ab-uclu">
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="faizABEUR" data-bicim="tutar" aria-label="AB" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="faizUlusalEUR" data-bicim="tutar" aria-label="Ulusal" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="faizToplamEUR" data-bicim="tutar" aria-label="Toplam" />
+                    </div>
+                </div>
+                <div class="form-group"><span class="control-label">Geri Alım Toplam (EUR)</span>
+                    <div class="ab-uclu">
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="toplamABEUR" data-bicim="tutar" aria-label="AB" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="toplamUlusalEUR" data-bicim="tutar" aria-label="Ulusal" />
+                        <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-h="toplamToplamEUR" data-bicim="tutar" aria-label="Toplam" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="o_gerekce">Gerekçe</label>
+                <div><textarea id="o_gerekce" class="form-control input-sm" rows="2" data-h="gerekce"></textarea></div>
+            </div>
+            <div class="form-group"><span class="control-label">Kaydeden / Kayıt Tarihi</span>
+                <div class="ab-bitisik">
+                    <input type="text" class="form-control input-sm okuma" readonly data-h="kaydedenAdSoyad" aria-label="Kaydeden" />
+                    <input type="text" class="form-control input-sm okuma ab-tarih" readonly data-h="kayitTarihi" data-bicim="tarih" aria-label="Kayıt tarihi" />
+                </div>
+            </div>
+            <div class="form-group"><span class="control-label">Onaylayan/İptal Eden</span>
+                <div class="ab-bitisik">
+                    <input type="text" class="form-control input-sm okuma" readonly data-h="onaylayanAdSoyad" aria-label="Onaylayan / iptal eden" />
+                    <input type="text" class="form-control input-sm okuma ab-tarih" readonly data-h="onayTarihi" data-bicim="tarih" aria-label="Onay / iptal tarihi" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-success btn-sm" data-islem="1" data-onay="İşlem yapılacak. Onaylıyor musunuz?"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+        <button type="button" class="btn btn-primary btn-sm" data-islem="5" data-onay="Geri alım bilgileri onaylanacak ve bu tarihten sonra aktif olacak. Onaylıyor musunuz?"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Onayla</button>
+        <button type="button" class="btn btn-danger btn-sm" data-islem="9" data-onay="Geri alım bilgileri iptal edilecek. Onaylıyor musunuz?"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> İptal Et</button>
+        <button type="button" class="btn btn-default btn-sm" data-islem="6" data-onay="Geri alım bilgisinin durumu yeni yapılacak. Onaylıyor musunuz?"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Yeni Yap</button>
+        <button type="button" class="btn btn-default btn-sm ab-odeme-turu" id="o_geriBildirim"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Geri Bildirim Yazdır</button>
+        <button type="button" class="btn btn-default btn-sm" data-odeme-rapor="1"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> 6307 Faiz Hes. Tab.</button>
+        <button type="button" class="btn btn-default btn-sm" data-odeme-rapor="2"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> 6307 Faiz Hes. Tab. (PDF)</button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- ================================================================ Borç Bilgisi Girişi (eski wndBorcluGiris) -->
+<dialog id="dlgBorclu" class="tanim-pencere ab-pencere" aria-labelledby="dlgBorcluBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgBorcluBaslik">Borç Bilgisi Girişi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form class="tanim-form ab-alanlar" novalidate>
+            <input type="hidden" data-p="sira" />
+            <div class="form-group">
+                <label class="control-label" for="b_ipard">IPARD Dönemi</label>
+                <div class="ab-bitisik">
+                    <select id="b_ipard" class="form-control input-sm ab-orta" data-p="ipardDonemi"></select>
+                    <span aria-hidden="true">/</span>
+                    <input type="text" class="form-control input-sm okuma ab-kisa" readonly data-p="dosyaAnahtar" aria-label="Dosya anahtarı" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="b_defter">Defter Sırası (*)</label>
+                <div><input type="text" id="b_defter" class="form-control input-sm ab-orta" data-p="defterSirasi" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="b_tedbir">Tedbir-Alt T.-B. Kalemi (*)</label>
+                <div class="ab-bitisik">
+                    <select id="b_tedbir" class="form-control input-sm ab-kisa" data-p="tedbir">
+                        <option value=""></option>
+                        <option value="101">101</option>
+                        <option value="102">102</option>
+                        <option value="103">103</option>
+                        <option value="201">201</option>
+                        <option value="202">202</option>
+                        <option value="302">302</option>
+                        <option value="501">501</option>
+                    </select>
+                    <input type="text" class="form-control input-sm ab-kisa" data-p="altTedbir" aria-label="Alt tedbir" autocomplete="off" />
+                    <input type="text" class="form-control input-sm ab-kisa" data-p="butceKalemi" aria-label="Bütçe kalemi" autocomplete="off" />
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="control-label">İl Koordinatörlüğü (*)</span>
+                <div id="bMuhBirim"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="b_borclu">Borçlu (*)</label>
+                <div class="ab-bitisik">
+                    <input type="hidden" id="b_borcluKod" data-p="borcluKod" />
+                    <input type="text" id="b_borclu" class="form-control input-sm ab-secim" readonly data-p="borcluKodAd" data-salt title="Kişi / firma listesinden seçiniz" />
+                    <button type="button" id="b_firmaSec" class="btn btn-default btn-sm" title="Kişi / firma listesinden seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Kişi / firma seç</span></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="b_basvuru">Başvuru Kayıt Numarası (*)</label>
+                <div><input type="text" id="b_basvuru" class="form-control input-sm" data-p="basvuruKayitNumarasi" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="b_sozlesme">Sözleşme Numarası (*)</label>
+                <div><input type="text" id="b_sozlesme" class="form-control input-sm" data-p="sozlesmeNumarasi" autocomplete="off" /></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="b_gerekce">Gerekçe (*)</label>
+                <div><textarea id="b_gerekce" class="form-control input-sm" rows="2" data-p="gerekce"></textarea></div>
+            </div>
+            <div class="ab-parca-alt"></div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-success btn-sm ab-yeni-tus" data-islem="1" data-onay="Borçlu bilgileri kaydedilecek. Onaylıyor musunuz?"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+        <button type="button" class="btn btn-primary btn-sm ab-yeni-tus" data-islem="5" data-onay="Borçlu bilgileri onaylanacak ve bu tarihten sonra aktif olacak. Onaylıyor musunuz?"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Onayla</button>
+        <button type="button" class="btn btn-danger btn-sm ab-yeni-tus" data-islem="9" data-onay="Borçlu bilgileri iptal edilecek. Onaylıyor musunuz?"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> İptal Et</button>
+        <button type="button" class="btn btn-default btn-sm ab-yeniyap-tus" data-islem="6" data-onay="Borçlu bilgisi veri düzenlemeye açılacak. Onaylıyor musunuz?"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Yeni Yap</button>
+        <button type="button" class="btn btn-warning btn-sm ab-guncelle-tus" data-islem="2" data-onay="Borçlu bilgisindeki yıldız işaretli alanlar güncellenecektir. Onaylıyor musunuz?"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Güncelle</button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- ================================================================ Ön Borç Girişi (eski wndOnBorcGiris) -->
+<dialog id="dlgOnBorc" class="tanim-pencere ab-pencere" aria-labelledby="dlgOnBorcBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOnBorcBaslik">Ön Borç Girişi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form class="tanim-form ab-alanlar" novalidate>
+            <input type="hidden" data-p="ipardDonemi" /><input type="hidden" data-p="dosyaAnahtar" /><input type="hidden" data-p="sira" />
+            <div class="form-group">
+                <span class="control-label">İşlem</span>
+                <div><label class="ab-yan"><input type="checkbox" class="ab-kaldirma" data-p="kaldirma" /> Ön Borcun Kaldırılması</label></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ob_tarih">Ön Borç Tarihi (*)</label>
+                <div><input type="date" id="ob_tarih" class="form-control input-sm ab-tarih ab-kaldirilir" data-p="onBorcTarihi" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ob_sayi">Ön Borç Sayı (*)</label>
+                <div><input type="text" id="ob_sayi" class="form-control input-sm ab-orta ab-kaldirilir" data-p="onBorcSayi" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ob_vaka">Vaka Numarası (*)</label>
+                <div><input type="text" id="ob_vaka" class="form-control input-sm ab-orta ab-kaldirilir" data-p="vakaNumarasi" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ob_borcTuru">Borcun Türü (*)</label>
+                <div class="ab-bitisik">
+                    <select id="ob_borcTuru" class="form-control input-sm ab-kaldirilir" data-p="borcTuru"></select>
+                    <label class="ab-yan"><input type="checkbox" class="ab-kaldirilir" data-p="avans" /> Avans (*)</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="control-label">Borcun Kodu (*)</span>
+                <div id="ob_kodlar" class="ab-coklu ab-kaldirilir" data-bos="Seçiniz" aria-label="Borcun kodu"></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label">Kur</span>
+                <div><input type="text" class="form-control input-sm okuma ab-kisa ab-tutar" readonly data-p="onBorcDovizKuru" data-bicim="kur" aria-label="Kur" /></div>
+            </div>
+            <div class="form-group ab-uclu-baslik"><span class="control-label"></span><div class="ab-uclu"><span>AB</span><span>Ulusal</span><span>Toplam</span></div></div>
+            <div class="form-group"><span class="control-label">Ön Borç Miktarı (TL)</span>
+                <div class="ab-uclu">
+                    <input type="text" class="form-control input-sm ab-tutar ab-kaldirilir" data-p="onBorcMiktarAB" data-bicim="tutar" inputmode="decimal" aria-label="AB" />
+                    <input type="text" class="form-control input-sm ab-tutar ab-kaldirilir" data-p="onBorcMiktarUlusal" data-bicim="tutar" inputmode="decimal" aria-label="Ulusal" />
+                    <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-p="onBorcToplam" data-bicim="tutar" data-salt aria-label="Toplam" />
+                </div>
+            </div>
+            <div class="form-group"><span class="control-label">Ön Borç Miktarı (EUR)</span>
+                <div class="ab-uclu">
+                    <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-p="onBorcMiktarABEUR" data-bicim="tutar" data-salt aria-label="AB" />
+                    <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-p="onBorcMiktarUlusalEUR" data-bicim="tutar" data-salt aria-label="Ulusal" />
+                    <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-p="onBorcToplamEUR" data-bicim="tutar" data-salt aria-label="Toplam" />
+                </div>
+            </div>
+            <div class="form-group ab-fazla-odeme">
+                <label class="control-label" for="ob_aktarim">Aktarım Tarihi</label>
+                <div><input type="date" id="ob_aktarim" class="form-control input-sm ab-tarih ab-kaldirilir" data-p="aktarimTarihi" /></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="ob_gerekce">Gerekçe (*)</label>
+                <div><textarea id="ob_gerekce" class="form-control input-sm" rows="2" data-p="gerekce"></textarea></div>
+            </div>
+            <div class="ab-parca-alt"></div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-success btn-sm ab-yeni-tus" data-islem="1" data-onay="Ön borç bilgileri kaydedilecek. Onaylıyor musunuz?"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+        <button type="button" class="btn btn-primary btn-sm ab-yeni-tus" data-islem="5" data-onay="Ön borç bilgileri onaylanacak ve bu tarihten sonra aktif olacak. Onaylıyor musunuz?"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Onayla</button>
+        <button type="button" class="btn btn-danger btn-sm ab-yeni-tus" data-islem="9" data-onay="Ön borç bilgileri iptal edilecek. Onaylıyor musunuz?"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> İptal Et</button>
+        <button type="button" class="btn btn-default btn-sm ab-yeniyap-tus" data-islem="6" data-onay="Ön borç bilgisi veri düzenlemeye açılacak. Onaylıyor musunuz?"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Yeni Yap</button>
+        <button type="button" class="btn btn-warning btn-sm ab-guncelle-tus" data-islem="2" data-onay="Ön borç bilgisindeki yıldız işaretli alanlar güncellenecektir. Onaylıyor musunuz?"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Güncelle</button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- ================================================================ Geri Alım Kararı Girişi (eski wndGAKGiris) -->
+<dialog id="dlgGak" class="tanim-pencere ab-pencere" aria-labelledby="dlgGakBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgGakBaslik">Geri Alım Kararı Girişi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form class="tanim-form ab-alanlar" novalidate>
+            <input type="hidden" data-p="ipardDonemi" /><input type="hidden" data-p="dosyaAnahtar" /><input type="hidden" data-p="sira" />
+            <div class="form-group">
+                <span class="control-label">İşlem</span>
+                <div><label class="ab-yan"><input type="checkbox" class="ab-kaldirma" data-p="kaldirma" /> Geri Alım K.'nın Kaldırılması</label></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="g_tarih">Geri Alım Kararı Tarihi (*)</label>
+                <div class="ab-bitisik">
+                    <input type="date" id="g_tarih" class="form-control input-sm ab-tarih ab-kaldirilir" data-p="geriAlimKarariTarihi" />
+                    <span>Döviz Kuru:</span>
+                    <input type="text" class="form-control input-sm okuma ab-kisa ab-tutar" readonly data-p="gakDovizKuru" data-bicim="kur" aria-label="Döviz kuru" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="g_sayi">G.A.K. Sayısı (*)</label>
+                <div><input type="text" id="g_sayi" class="form-control input-sm ab-orta ab-kaldirilir" data-p="geriAlimSayi" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="g_bildirim">Bildirim Tarihi (*)</label>
+                <div><input type="date" id="g_bildirim" class="form-control input-sm ab-tarih ab-kaldirilir" data-p="bildirimTarihi" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="g_tesellum">Mektup Alınma Tarihi (*)</label>
+                <div><input type="date" id="g_tesellum" class="form-control input-sm ab-tarih ab-kaldirilir" data-p="tesellumTarihi" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="g_odemeSon">Ödeme Son Tarihi (*)</label>
+                <div><input type="date" id="g_odemeSon" class="form-control input-sm ab-tarih ab-kaldirilir" data-p="odemeSonTarihi" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="g_temerrut">Temerrüt Tarihi (*)</label>
+                <div><input type="date" id="g_temerrut" class="form-control input-sm ab-tarih ab-kaldirilir" data-p="temerrutTarihi" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="g_faizDur">Faizin Dur. Tarihi (*)</label>
+                <div><input type="date" id="g_faizDur" class="form-control input-sm ab-tarih ab-kaldirilir" data-p="faizinDurdurulmaTarihi" /></div>
+            </div>
+            <div class="form-group ab-uclu-baslik"><span class="control-label"></span><div class="ab-uclu"><span>AB</span><span>Ulusal</span><span>Toplam</span></div></div>
+            <div class="form-group"><span class="control-label">Ana Para Tutarı (TL)</span>
+                <div class="ab-uclu">
+                    <input type="text" class="form-control input-sm ab-tutar ab-kaldirilir" data-p="gakMiktarAB" data-bicim="tutar" inputmode="decimal" aria-label="AB" />
+                    <input type="text" class="form-control input-sm ab-tutar ab-kaldirilir" data-p="gakMiktarUlusal" data-bicim="tutar" inputmode="decimal" aria-label="Ulusal" />
+                    <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-p="gakToplam" data-bicim="tutar" data-salt aria-label="Toplam" />
+                </div>
+            </div>
+            <div class="form-group"><span class="control-label">Ana Para Tutarı (EUR)</span>
+                <div class="ab-uclu">
+                    <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-p="gakMiktarABEUR" data-bicim="tutar" data-salt aria-label="AB" />
+                    <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-p="gakMiktarUlusalEUR" data-bicim="tutar" data-salt aria-label="Ulusal" />
+                    <input type="text" class="form-control input-sm okuma ab-tutar" readonly data-p="gakToplamEUR" data-bicim="tutar" data-salt aria-label="Toplam" />
+                </div>
+            </div>
+            <div class="form-group"><span class="control-label">Silinmeyecek Ceza Tutarı</span>
+                <div class="ab-bitisik">
+                    <input type="text" class="form-control input-sm ab-orta ab-tutar ab-kaldirilir" data-p="silinmeyecekMiktar" data-bicim="tutar" inputmode="decimal" aria-label="Silinmeyecek ceza tutarı (TL)" />
+                    <span>TL</span>
+                    <input type="text" class="form-control input-sm okuma ab-orta ab-tutar" readonly data-p="silinmeyecekMiktarEUR" data-bicim="tutar" data-salt aria-label="Silinmeyecek ceza tutarı (EUR)" />
+                    <span>EUR</span>
+                </div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="g_gerekce">Gerekçe (*)</label>
+                <div><textarea id="g_gerekce" class="form-control input-sm" rows="2" data-p="gerekce"></textarea></div>
+            </div>
+            <div class="ab-parca-alt"></div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-success btn-sm ab-yeni-tus" data-islem="1" data-onay="Geri alım kararı bilgileri kaydedilecek. Onaylıyor musunuz?"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+        <button type="button" class="btn btn-primary btn-sm ab-yeni-tus" data-islem="5" data-onay="Geri alım kararı bilgileri onaylanacak ve bu tarihten sonra aktif olacak. Onaylıyor musunuz?"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Onayla</button>
+        <button type="button" class="btn btn-danger btn-sm ab-yeni-tus" data-islem="9" data-onay="Geri alım kararı bilgileri iptal edilecek. Onaylıyor musunuz?"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> İptal Et</button>
+        <button type="button" class="btn btn-default btn-sm ab-yeniyap-tus" data-islem="6" data-onay="Geri Alım Kararı bilgisi veri düzenlemeye açılacak. Onaylıyor musunuz?"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Yeni Yap</button>
+        <button type="button" class="btn btn-warning btn-sm ab-guncelle-tus" data-islem="2" data-onay="G.A. Kararı bilgisindeki yıldız işaretli alanlar güncellenecektir. Onaylıyor musunuz?"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Güncelle</button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- ================================================================ Süreç Durumu Girişi (eski wndDurumGiris) -->
+<dialog id="dlgDurum" class="tanim-pencere ab-pencere" aria-labelledby="dlgDurumBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgDurumBaslik">Süreç Durumu Girişi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form class="tanim-form ab-alanlar" novalidate>
+            <input type="hidden" data-p="ipardDonemi" /><input type="hidden" data-p="dosyaAnahtar" /><input type="hidden" data-p="sira" />
+            <div class="form-group">
+                <label class="control-label" for="du_surec">Süreç Durum</label>
+                <div><select id="du_surec" class="form-control input-sm" data-p="surecAsamasi"></select></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="du_yorum">Yorumlar (TR)</label>
+                <div><textarea id="du_yorum" class="form-control input-sm" rows="8" data-p="yorumlarTR"></textarea></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="du_gerekce">Gerekçe</label>
+                <div><textarea id="du_gerekce" class="form-control input-sm" rows="2" data-p="gerekce"></textarea></div>
+            </div>
+            <div class="ab-parca-alt"></div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-success btn-sm ab-yeni-tus" data-islem="1" data-onay="Süreç durum bilgisi kaydedilecek. Onaylıyor musunuz?"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+        <button type="button" class="btn btn-primary btn-sm ab-yeni-tus" data-islem="5" data-onay="Süreç durum bilgisi onaylanacak ve bu tarihten sonra aktif olacak. Onaylıyor musunuz?"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Onayla</button>
+        <button type="button" class="btn btn-danger btn-sm ab-yeni-tus" data-islem="9" data-onay="Süreç durum bilgisi iptal edilecek. Onaylıyor musunuz?"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> İptal Et</button>
+        <button type="button" class="btn btn-default btn-sm ab-yeniyap-tus" data-islem="6" data-onay="Durum bilgisi veri düzenlemeye açılacak. Onaylıyor musunuz?"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Yeni Yap</button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- ================================================================ Taksit Girişi/İptali (eski wndTaksitGiris) -->
+<dialog id="dlgTaksit" class="tanim-pencere ab-pencere ab-pencere-genis" aria-labelledby="dlgTaksitBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgTaksitBaslik">Taksit Girişi/İptali</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form class="tanim-form ab-alanlar" novalidate>
+            <input type="hidden" data-p="ipardDonemi" /><input type="hidden" data-p="dosyaAnahtar" /><input type="hidden" data-p="sira" />
+            <div class="form-group">
+                <span class="control-label">İşlem</span>
+                <div><label class="ab-yan"><input type="checkbox" class="ab-kaldirma" data-p="kaldirma" data-taksit /> Mevcut Taksitin Kaldırılması</label></div>
+            </div>
+            <div class="form-group"><span class="control-label">Toplam Ana Para/Faiz</span>
+                <div class="ab-bitisik">
+                    <input type="text" id="t_anaPara" class="form-control input-sm okuma ab-orta ab-tutar" readonly aria-label="Toplam ana para" />
+                    <input type="text" id="t_faiz" class="form-control input-sm okuma ab-orta ab-tutar" readonly aria-label="Toplam faiz" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="t_ilk">İlk Ödeme Tarihi/ Taksit Sayısı</label>
+                <div class="ab-bitisik">
+                    <input type="date" id="t_ilk" class="form-control input-sm ab-tarih ab-kaldirilir" data-p="taksitIlkTarih" data-taksit />
+                    <input type="number" class="form-control input-sm ab-kisa ab-kaldirilir" data-p="taksitSayisi" min="0" max="1000" step="1" data-taksit aria-label="Taksit sayısı" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="t_tur">Taksit Tür</label>
+                <div>
+                    <select id="t_tur" class="form-control input-sm ab-orta" data-p="tecilFaizNo" data-taksit>
+                        <option value="-1">Seçiniz</option>
+                        <option value="0">Tecil Faizi</option>
+                        <option value="1">Tüzel Tecil Faizi</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="t_giris">Giriş Tarihi</label>
+                <div><input type="date" id="t_giris" class="form-control input-sm ab-tarih" data-p="girisTarihi" data-taksit /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="t_talep">Talep Tarih/Sayı</label>
+                <div class="ab-bitisik">
+                    <input type="date" id="t_talep" class="form-control input-sm ab-tarih" data-p="taksitTalepTarihi" data-taksit />
+                    <input type="text" class="form-control input-sm ab-orta" data-p="taksitTalepSayi" aria-label="Talep sayı" autocomplete="off" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="t_karar">Karar Tarih/Sayı</label>
+                <div class="ab-bitisik">
+                    <input type="date" id="t_karar" class="form-control input-sm ab-tarih" data-p="taksitKararTarihi" />
+                    <input type="text" class="form-control input-sm ab-orta" data-p="taksitKararSayi" aria-label="Karar sayı" autocomplete="off" />
+                </div>
+            </div>
+            <div class="ab-tablo-arac">
+                <strong>Taksit Listesi</strong>
+                <button type="button" id="t_yazdir" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır</button>
+            </div>
+            <div id="grdTaksitOnizleme" class="ab-grid ab-grid-kucuk ab-kaldirilir-grid" aria-label="Taksit listesi"></div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="t_gerekce">Gerekçe</label>
+                <div><textarea id="t_gerekce" class="form-control input-sm" rows="2" data-p="gerekce"></textarea></div>
+            </div>
+            <div class="ab-parca-alt"></div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-success btn-sm ab-yeni-tus" data-islem="1" data-onay="Taksit işlem bilgisi kaydedilecek. Onaylıyor musunuz?"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+        <button type="button" class="btn btn-primary btn-sm ab-yeni-tus" data-islem="5" data-onay="Taksit işlem bilgisi onaylanacak ve bu tarihten sonra aktif olacak. Onaylıyor musunuz?"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Onayla</button>
+        <button type="button" class="btn btn-danger btn-sm ab-yeni-tus" data-islem="9" data-onay="Taksit işlem bilgisi iptal edilecek. Onaylıyor musunuz?"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> İptal Et</button>
+        <button type="button" class="btn btn-default btn-sm ab-yeniyap-tus" data-islem="6" data-onay="Taksit işlem bilgisi veri düzenlemeye açılacak. Onaylıyor musunuz?"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Yeni Yap</button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- ================================================================ İmzalar (eski wndImzalar) -->
+<dialog id="dlgImza" class="tanim-pencere ab-pencere" aria-labelledby="dlgImzaBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgImzaBaslik">İmzalar</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form class="tanim-form ab-alanlar" novalidate>
+            <div class="form-group ab-uclu-baslik"><span class="control-label"></span><div class="ab-ikili"><span>Ad Soyad</span><span>Unvan</span></div></div>
+            <div class="form-group"><label class="control-label" for="i_hazirlayan">Hazırlayan</label>
+                <div class="ab-ikili"><input type="text" id="i_hazirlayan" class="form-control input-sm" data-p="hazirlayan" /><input type="text" class="form-control input-sm" data-p="hazirlayanUnv" aria-label="Hazırlayan unvanı" /></div></div>
+            <div class="form-group"><label class="control-label" for="i_kontrolEden">Kontrol Eden</label>
+                <div class="ab-ikili"><input type="text" id="i_kontrolEden" class="form-control input-sm" data-p="kontrolEden" /><input type="text" class="form-control input-sm" data-p="kontrolEdenUnv" aria-label="Kontrol eden unvanı" /></div></div>
+            <div class="form-group"><label class="control-label" for="i_gozdenGeciren">Gözden Geçiren</label>
+                <div class="ab-ikili"><input type="text" id="i_gozdenGeciren" class="form-control input-sm" data-p="gozdenGeciren" /><input type="text" class="form-control input-sm" data-p="gozdenGecirenUnv" aria-label="Gözden geçiren unvanı" /></div></div>
+            <div class="form-group"><label class="control-label" for="i_onaylayan">Onaylayan</label>
+                <div class="ab-ikili"><input type="text" id="i_onaylayan" class="form-control input-sm" data-p="onaylayan" /><input type="text" class="form-control input-sm" data-p="onaylayanUnv" aria-label="Onaylayan unvanı" /></div></div>
+            <div class="form-group"><label class="control-label" for="i_uygunBulan">Uygun Bulan</label>
+                <div class="ab-ikili"><input type="text" id="i_uygunBulan" class="form-control input-sm" data-p="uygunBulan" /><input type="text" class="form-control input-sm" data-p="uygunBulanUnv" aria-label="Uygun bulan unvanı" /></div></div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" id="i_kaydet" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- ================================================================ Dönem Faizi (eski wndHesaplat) -->
+<dialog id="dlgDonemFaizi" class="tanim-pencere ab-pencere ab-pencere-dar" aria-labelledby="dlgDonemFaiziBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgDonemFaiziBaslik">Dönem Faizi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form class="tanim-form ab-alanlar" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="h_yil">Yıl</label>
+                <div><input type="number" id="h_yil" class="form-control input-sm sgb-yil ab-kisa" step="1" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="h_ay">Ay</label>
+                <div>
+                    <select id="h_ay" class="form-control input-sm ab-orta">
+                        <option value="3">3-Mart</option>
+                        <option value="6">6-Haziran</option>
+                        <option value="9">9-Eylül</option>
+                        <option value="12">12-Aralık</option>
+                    </select>
+                </div>
+            </div>
+            <p class="help-block small">Seçilen ayın son günü için işlem yapılır.</p>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-success btn-sm" data-htur="1"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Üret</button>
+        <button type="button" class="btn btn-primary btn-sm" data-htur="2"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Onayla</button>
+        <button type="button" class="btn btn-danger btn-sm" data-htur="3"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> İptal Et</button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/makbuz.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/atmab.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/atmab.js" asp-append-version="true"></script>
+    <script src="~/js/atmabpencere.js" asp-append-version="true"></script>
+}

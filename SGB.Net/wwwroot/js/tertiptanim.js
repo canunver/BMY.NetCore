@@ -35,15 +35,15 @@ $(function () {
     function hucreSinifi(p) {
         var s = ['girilir'];
         if (p.data && p.data.dg) s.push('degisti');
-        if (/^HATA!/.test(String(p.data && p.data.tertipAdi || '')) && p.colDef.field === 'tertipAdi') s.push('hatali');
+        if (/^HATA!/.test(String(p.data && p.data.TertipAdi || '')) && p.colDef.field === 'TertipAdi') s.push('hatali');
         return s;
     }
 
     var grid = Sgb.grid('#grdTertip', {
         columnDefs: [
             { headerName: '', width: 56, sortable: false, resizable: false, valueGetter: 'node.rowIndex + 1', cellClass: 'sira' },
-            { field: 'tertipKodu', headerName: 'Tertip', width: 280, editable: true, cellClass: hucreSinifi, tooltipField: 'tertipKodu' },
-            { field: 'tertipAdi', headerName: 'Tertip Adı', flex: 1, minWidth: 240, editable: true, cellClass: hucreSinifi, tooltipField: 'tertipAdi' }
+            { field: 'TertipKodu', headerName: 'Tertip', width: 280, editable: true, cellClass: hucreSinifi, tooltipField: 'TertipKodu' },
+            { field: 'TertipAdi', headerName: 'Tertip Adı', flex: 1, minWidth: 240, editable: true, cellClass: hucreSinifi, tooltipField: 'TertipAdi' }
         ],
         suppressCellFocus: false,
         singleClickEdit: true,
@@ -60,14 +60,14 @@ $(function () {
     });
 
     function satirlar(liste, bosEkle) {
-        var r = $.map(liste || [], function (t) { return { id: 's' + (sira++), tertipKodu: t.tertipKodu || '', tertipAdi: t.tertipAdi || '' }; });
-        if (bosEkle) for (var i = 0; i < 10; i++) r.push({ id: 's' + (sira++), tertipKodu: '', tertipAdi: '' });
+        var r = $.map(liste || [], function (t) { return { id: 's' + (sira++), TertipKodu: t.TertipKodu || '', TertipAdi: t.TertipAdi || '' }; });
+        if (bosEkle) for (var i = 0; i < 10; i++) r.push({ id: 's' + (sira++), TertipKodu: '', TertipAdi: '' });
         return r;
     }
 
     function doldur(liste, degisti) {
         var r = satirlar(liste, false);
-        if (degisti) $.each(r, function (i, s) { if (s.tertipKodu) s.dg = true; });
+        if (degisti) $.each(r, function (i, s) { if (s.TertipKodu) s.dg = true; });
         grid.setGridOption('rowData', r);
     }
 
@@ -76,7 +76,7 @@ $(function () {
         var r = [];
         grid.forEachNode(function (n) {
             if (sadeceDegisen && !n.data.dg) return;
-            r.push({ tertipKodu: n.data.tertipKodu || '', tertipAdi: n.data.tertipAdi || '' });
+            r.push({ TertipKodu: n.data.TertipKodu || '', TertipAdi: n.data.TertipAdi || '' });
         });
         return r;
     }
@@ -110,7 +110,7 @@ $(function () {
     function kaydet(sadeceDegisen, $d) {
         var yil = yilOku();
         if (yil < 2000) { mesaj('Anahtar alanları girmelisiniz.', 'warning'); return; }
-        var r = $.grep(tablo(sadeceDegisen), function (t) { return $.trim(t.tertipKodu) !== ''; });
+        var r = $.grep(tablo(sadeceDegisen), function (t) { return $.trim(t.TertipKodu) !== ''; });
         if (!r.length) { mesaj(sadeceDegisen ? 'Kayıtlarda değişiklik yapılmamış!' : 'Kaydedilecek tertip yok.', 'warning'); return; }
         $d.prop('disabled', true);
         Sgb.gonder('api/tertiptanim/kaydet', { tur: TUR, yil: yil, tertipler: r })
@@ -140,10 +140,10 @@ $(function () {
                 if (v.hata) { mesaj(v.hata, 'danger'); return; }
                 $.each(v.tertipler || [], function (i, t) {
                     var n = dugumler[i];
-                    if (!n || !t.tertipKodu) return;
-                    if (n.data.tertipKodu !== t.tertipKodu || n.data.tertipAdi !== t.tertipAdi) n.data.dg = true;
-                    n.data.tertipKodu = t.tertipKodu;
-                    n.data.tertipAdi = t.tertipAdi;
+                    if (!n || !t.TertipKodu) return;
+                    if (n.data.TertipKodu !== t.TertipKodu || n.data.TertipAdi !== t.TertipAdi) n.data.dg = true;
+                    n.data.TertipKodu = t.TertipKodu;
+                    n.data.TertipAdi = t.TertipAdi;
                 });
                 grid.refreshCells({ force: true });
             })
@@ -281,6 +281,12 @@ $(function () {
             if (t.hata) { mesaj(t.hata, 'danger'); return; }
             $('#txtYil').val(t.yil);
             $('.kod-alan[data-alan="kur"] input').val(t.kurum || '');
+            // Alt Faaliyet İlişkileri'nden açılınca (?pebKod=) faaliyet yazılı gelir ve listelenir (eski Request["pebKod"]).
+            var peb = $sayfa.attr('data-peb') || '';
+            if (peb) {
+                $('.kod-alan[data-alan="peb"] input').val(peb);
+                listele(false);
+            }
         })
         .fail(hataGoster);
 });

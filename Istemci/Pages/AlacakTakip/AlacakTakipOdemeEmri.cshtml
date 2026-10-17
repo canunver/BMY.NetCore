@@ -1,0 +1,76 @@
+@page
+@model AlacakTakipOdemeEmriModel
+@{
+    ViewData["Title"] = "Toplu Ödeme Emri";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="atmo atmo-oe">
+    <div class="btn-toolbar atmo-arac" role="toolbar" aria-label="Ödeme emri işlemleri">
+        <button type="button" id="btnOlustur" class="btn btn-primary btn-sm" title="Seçilen hesap hareketlerinden tek ödeme emri oluşturur">
+            <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Ödeme Emri Oluştur
+        </button>
+        <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Seçilenlerden oluşturulacak ödeme emrinin satırları (Excel; kayıt yapılmaz)">
+            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Ödeme Emri Yazdır
+        </button>
+        <span id="lblSecili" class="atmo-sayi" aria-live="polite"></span>
+        <span class="atmo-sag">
+            <button type="button" id="btnKapat" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Kapat
+            </button>
+        </span>
+    </div>
+
+    <section class="kutu atmo-bolum">
+        <h2 class="atmo-baslik"><label for="txtAciklama">Ödeme Emri Açıklama</label></h2>
+        <textarea id="txtAciklama" class="form-control atmo-aciklama" rows="4" maxlength="4000" placeholder="Ödeme Emri Açıklama"></textarea>
+    </section>
+
+    <section class="kutu atmo-bolum atmo-liste">
+        <h2 class="atmo-baslik">Hesap Hareketleri</h2>
+        <div id="grdListe" class="atmo-grid" aria-label="Hesap hareketleri"></div>
+    </section>
+</div>
+
+<!-- Onay sorusu -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin" class="sonuc"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+<!-- Sonuç (eski BilgiYaz: belge numarası bağlantısı) -->
+<dialog id="dlgSonuc" class="tanim-pencere" aria-labelledby="dlgSonucBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSonucBaslik">Bilgi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="sonucMetin" class="sonuc"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Tamam</button>
+        <button type="button" id="btnSonucKapat" class="btn btn-primary btn-sm" title="Bu pencereyi kapatır (eski sayfa oluşturmadan sonra kapanıyordu)">Pencereyi Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/atmodeme.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/atmodemeemri.js" asp-append-version="true"></script>
+}

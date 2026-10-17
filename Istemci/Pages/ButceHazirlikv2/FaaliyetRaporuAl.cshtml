@@ -1,0 +1,68 @@
+@page
+@model FaaliyetRaporuAlModel
+@{
+    ViewData["Title"] = "Faaliyet Raporu Raporları";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="faal-rapor faal-rapor-al">
+    <!-- Sol: raporlar (eski grdRaporlar) -->
+    <div class="kutu bolum bolum-secim">
+        <h2 class="bolum-baslik">Raporlar</h2>
+        <ul id="agcRapor" class="rapor-agac" aria-label="Raporlar"></ul>
+    </div>
+
+    <!-- Sağ: rapor kriter alanları (eski frmPanel) -->
+    <div class="kutu bolum bolum-kistas">
+        <h2 class="bolum-baslik">
+            <span>Rapor Kriter Alanları</span>
+            <small class="alt-baslik" id="lblRapor"></small>
+        </h2>
+        <form id="frmKistas" class="tanim-form kistas-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="txtYil">Yıl</label>
+                <div><input type="number" id="txtYil" class="form-control yil" min="2000" step="1" /></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label" id="lblGrup">Gruplama</span>
+                <div role="radiogroup" aria-labelledby="lblGrup">
+                    <label class="radio-inline"><input type="radio" name="grup" value="0" checked /> Grupsuz</label>
+                    <label class="radio-inline"><input type="radio" name="grup" value="1" /> Sektör Gruplu</label>
+                    <label class="radio-inline"><input type="radio" name="grup" value="2" /> Birim Gruplu</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="control-label" id="lblYikob">YİKOB</span>
+                <div role="radiogroup" aria-labelledby="lblYikob">
+                    <label class="radio-inline"><input type="radio" name="yikob" value="0" checked /> Hepsi</label>
+                    <label class="radio-inline"><input type="radio" name="yikob" value="1" /> Yok</label>
+                    <label class="radio-inline"><input type="radio" name="yikob" value="2" /> Sadece</label>
+                </div>
+            </div>
+            <div class="form-group rapor-pdf" hidden>
+                <span class="control-label">Çıktı Türü</span>
+                <div><label class="checkbox-inline"><input type="checkbox" id="chkPdf" /> PDF Olarak Üret</label></div>
+            </div>
+            <div class="btn-toolbar faal-rapor-arac" role="toolbar" aria-label="Rapor işlemleri">
+                <button type="button" id="btnGoster" class="btn btn-primary btn-sm" disabled title="Raporu PDF olarak yeni sekmede açar">
+                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Göster
+                </button>
+                <button type="button" id="btnIndir" class="btn btn-default btn-sm" disabled>
+                    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> İndir
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/faaliyetraporu.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/faaliyetraporual.js" asp-append-version="true"></script>
+}

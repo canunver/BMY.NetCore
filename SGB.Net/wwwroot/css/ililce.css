@@ -1,0 +1,83 @@
+/* İl ve İlçe Tanımı: solda il / ilçe ağacı, sağda seçilenin formu. Bölümler renkli başlıklı ayrı kutular
+   (Yatırım Projeleri sayfalarındaki bölüm görünümüyle aynı); il formu mavi, ilçe formu yeşil başlıklıdır. */
+
+.il-ilce .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding-top: 0;
+    background: var(--bolum-govde);
+}
+
+.il-ilce .kutu.bolum.bolum-liste {
+    --bolum-baslik: #fbefd3;
+    --bolum-govde: #fefaf0;
+    --bolum-vurgu: #b07a00;
+}
+
+.il-ilce .kutu.bolum.ilce-formu {
+    --bolum-baslik: #e2f3e8;
+    --bolum-govde: #f4fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.il-ilce .bolum-baslik {
+    margin: 0 -16px 14px;
+    padding: 9px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.il-ilce .ilce-arac {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 10px;
+}
+
+.il-ilce .ilce-arac .btn-group,
+.il-ilce .ilce-arac .btn {
+    margin-left: 0;
+}
+
+.il-ilce .il-ilce-agac {
+    height: 460px;
+    margin: 0;
+    padding: 6px;
+    overflow: auto;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.il-ilce .tanim-form {
+    --etiket-genislik: 150px;
+    max-width: 560px;
+}
+
+.il-ilce .tanim-form .dar {
+    max-width: 160px;
+}
+
+@media (min-width: 992px) {
+    .tanim.il-ilce {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    }
+
+    .il-ilce .tanim .bolum-baslik,
+    .il-ilce .bolum-baslik {
+        margin: 0 -12px 12px;
+        padding: 9px 12px;
+    }
+
+    /* Ağaç kalan alanı doldurur ve kendi içinde kayar */
+    .il-ilce .il-ilce-agac {
+        flex: 1 1 auto;
+        min-height: 160px;
+        height: auto;
+    }
+}

@@ -1,0 +1,35 @@
+@page
+@model ListeFaizTurModel
+@{
+    ViewData["Title"] = "Faiz Türü Seçimi";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim atm-tanim tek">
+    <section class="tanim-sol">
+        <div class="kutu">
+            <form id="frmListe" class="atm-liste-arama" novalidate>
+                <label class="control-label" for="txtYil">Yıl</label>
+                <input type="number" id="txtYil" class="form-control input-sm dar sgb-yil" step="1" />
+                <button type="submit" id="btnAra" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Ara
+                </button>
+            </form>
+            <div id="grdFaizTur" class="tanim-grid" aria-label="Faiz türleri"></div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/atmtanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/faiztursec.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,110 @@
+@page
+@model MPTavanIlAnaModel
+@{
+    ViewData["Title"] = "İl / İlçe Ödenek Dağıtım";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="mp-tavan mp-tavan-ana mp-tavan-il">
+    <div class="mp-ust">
+        <!-- Kriterler (eski FormPanel) -->
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Kriterler</h2>
+            <form id="frmSecim" class="tanim-form mp-form" novalidate>
+                <div class="mp-kriter-kolonlar">
+                    <div class="mp-kriter-kolon">
+                        <div class="form-group">
+                            <label class="control-label" for="ddlYil">Yıl</label>
+                            <div><input type="number" id="ddlYil" class="form-control input-sm mp-yil sgb-yil" min="2000" max="2100" step="1" title="Yıl (yukarı / aşağı okla değiştirilebilir)" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtMuhasebe">Saymanlık / Birim</label>
+                            <div id="muhBirim" title="Saymanlık ve birim kodu"></div>
+                        </div>
+                    </div>
+                    <div class="mp-kriter-kolon">
+                        <div class="form-group kod-alan" data-agac="4" data-ad="4" data-alan="eko">
+                            <label class="control-label" for="txt_eko">Ekonomik</label>
+                            <div class="kod-satir">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" id="txt_eko" class="form-control" autocomplete="off" title="Ekonomik kodu (Alt+Aşağı: kod ağacı)" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Ekonomik seç</span></button>
+                                        <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Ekonomik temizle</span></button>
+                                    </span>
+                                </div>
+                                <span class="kod-ad" aria-live="polite"></span>
+                            </div>
+                        </div>
+                        <div class="form-group kod-alan" data-agac="14" data-ad="58" data-alan="peb">
+                            <label class="control-label" for="txt_peb">Faaliyet</label>
+                            <div class="kod-satir">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" id="txt_peb" class="form-control" autocomplete="off" title="Faaliyet kodu (Alt+Aşağı: kod ağacı)" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Faaliyet seç</span></button>
+                                        <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Faaliyet temizle</span></button>
+                                    </span>
+                                </div>
+                                <span class="kod-ad" aria-live="polite"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mp-tuslar">
+                    <button type="submit" id="btnListele" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+                    </button>
+                    <button type="button" id="btnYazdirTavan" class="btn btn-default btn-sm" data-tur="1" title="Tavan raporu (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Tavan Yazdır
+                    </button>
+                    <button type="button" id="btnYazdir" class="btn btn-default btn-sm" data-tur="2" title="Detay raporu (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Detay Yazdır
+                    </button>
+                    <button type="button" id="btnYardim" class="btn btn-default btn-sm mp-yardim" title="Açıklama" aria-expanded="false" aria-controls="pnlIpucu">
+                        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span><span class="sr-only">Açıklama</span>
+                    </button>
+                </div>
+                <p id="pnlIpucu" class="mp-ipucu" hidden>
+                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                    Saymanlık / birimin kurumsal yapısına ait tertipler listelenir. İl izni açık (yeşil simge) tertiplerde tutara tıklanınca
+                    birimlere dağıtım (il tavan girişi) açılır; kırmızı simgeli tertiplerde giriş kapalıdır.
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tertipler (eski grdMPTavanAna) -->
+    <div class="kutu bolum bolum-tablo">
+        <h2 class="bolum-baslik">Gider Ödenekleri</h2>
+        <div id="grdMPTavanIl" class="mp-grid" aria-label="Tertipler"></div>
+    </div>
+</div>
+
+<!-- Kod ağacı penceresi (eski DropDownField ağaçları) -->
+<dialog id="dlgKod" class="tanim-pencere mp-agac" aria-labelledby="dlgKodBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKodBaslik">Kod Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde" id="agacKutu"></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/mptavan.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/mptavan-ortak.js" asp-append-version="true"></script>
+    <script src="~/js/mptavanil.js" asp-append-version="true"></script>
+}

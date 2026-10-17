@@ -1,0 +1,73 @@
+@page
+@model ProjeTurTanimlaModel
+@{
+    ViewData["Title"] = "Proje Türü";
+    // Geniş ekranda sayfa pencereye sığar, bölmeler kendi içinde kayar (tanim.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim yat-sozluk" data-tur="projetur" data-tekil="Proje türü">
+    <!-- Sol: Proje Türleri (eski fpL) -->
+    <section class="tanim-sol">
+        <div class="kutu">
+            <h2 class="kutu-baslik">Proje Türleri</h2>
+            <form id="frmArama" class="tanim-ekle" role="search" novalidate>
+                <input type="search" id="txtAra" class="form-control input-sm" placeholder="Koda ya da ada göre süz" aria-label="Koda ya da ada göre süz" />
+                <button type="submit" id="btnListele" class="btn btn-default btn-sm" title="Listeyi yeniden oku">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Yenile
+                </button>
+            </form>
+            <div id="grdListe" class="tanim-grid"></div>
+        </div>
+    </section>
+
+    <!-- Sağ: seçili kayıt (eski çerçevedeki detay sayfası) -->
+    <section class="tanim-sag">
+        <div class="kutu">
+            <div class="btn-toolbar tanim-arac" role="toolbar" aria-label="Kayıt işlemleri">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnOnceki" class="btn btn-default" title="Listede bir önceki kayıt">
+                        <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span> Önceki
+                    </button>
+                    <button type="button" id="btnSonraki" class="btn btn-default" title="Listede bir sonraki kayıt">
+                        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Sonraki
+                    </button>
+                </div>
+                <button type="button" id="btnYeni" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni
+                </button>
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm" disabled>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+                </button>
+            </div>
+
+            <form id="frmKayit" class="tanim-form" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="txtKod">Kod</label>
+                    <div><input type="number" id="txtKod" class="form-control dar" min="1" step="1" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAd">Ad</label>
+                    <div><input type="text" id="txtAd" class="form-control" maxlength="200" title="Türkçe Ad" /></div>
+                </div>
+                <p class="help-block">Kodu yazıp kaydediniz; listede olan bir kodla kaydetmek o kaydı günceller.</p>
+            </form>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/yatsozluk.js" asp-append-version="true"></script>
+}

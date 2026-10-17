@@ -176,7 +176,13 @@ namespace ButceHazirlikv2
         }
     }
 
-    /// <summary>Eski ButceHazirlikv2Raporlari.cs ButceHazirlikRaporlari sınıfından Rapor Al menüsünün kullandığı raporlar.</summary>
+    /// <summary>
+    /// Eski ButceHazirlikv2Raporlari.cs ButceHazirlikRaporlari sınıfı (Rapor Al menüsü ve genel rapor ekranı, Rapor.xml NESNE
+    /// "ButceHazirlikv2.ButceHazirlikRaporlari"). Genel rapor ekranı için F5_2, F14, F15, F15_1, GiderGerceklesmeEko,
+    /// GiderGerceklesmeFon ve FaaliyetDurum dalları eski koddan aynen eklendi; değişenler: Resources iletileri metin olarak
+    /// RaporHatasi ile atılır, GormeYetkisiVarMi (eskisi de hep true) sınıf içine alındı, bütçe/gelir fişi içerikleri
+    /// Istemci.ButceHazirlik.ButceFisiIcerik / ButceGelirFisiIcerik'ten alınır. Eski F10 ve EkOdenek dalları taşınmadı; F8_MP Masraf Planı ekranı için sonradan eklendi.
+    /// </summary>
     internal class ButceHazirlikRaporlari
     {
         int eko2uz = 3;
@@ -201,6 +207,8 @@ namespace ButceHazirlikv2
                 raporParam.Add("Kirilim", "2");
                 return OdenekCetveli(kullanan, servis, sablonAd, sonucDosyaAd, ciktiYeri, raporParam, ekBilgi);
             }
+            else if (ekBilgi.Equals("F8_MP"))
+                return OdenekCetveliTasra(kullanan, servis, sablonAd, sonucDosyaAd, ciktiYeri, raporParam, ekBilgi);
             else if (ekBilgi.Equals("EkonomikDetay"))
                 return EkonomikDetay(kullanan, servis, sablonAd, sonucDosyaAd, ciktiYeri, raporParam);
             else if (ekBilgi.Equals("FaaliyetEkonomikCapraz"))
@@ -215,6 +223,20 @@ namespace ButceHazirlikv2
                 return Form17(kullanan, servis, sablonAd, sonucDosyaAd, ciktiYeri, raporParam, ekBilgi);
             else if (ekBilgi.Equals("F18"))
                 return Form18(kullanan, servis, sablonAd, sonucDosyaAd, ciktiYeri, raporParam, ekBilgi);
+            else if (ekBilgi.Equals("F15"))
+                return ButceFisiDok(kullanan, servis, sablonAd, sonucDosyaAd, ciktiYeri, raporParam, ekBilgi);
+            else if (ekBilgi.Equals("F15_1"))
+                return GelirFisiDok(kullanan, servis, sablonAd, sonucDosyaAd, ciktiYeri, raporParam, ekBilgi);
+            else if (ekBilgi.Equals("F14"))
+                return Form14(kullanan, servis, sablonAd, sonucDosyaAd, ciktiYeri, raporParam, ekBilgi);
+            else if (ekBilgi.Equals("GiderGerceklesmeEko"))
+                return EkoUcgenGerceklesme(kullanan, servis, sablonAd, sonucDosyaAd, ciktiYeri, raporParam, ekBilgi);
+            else if (ekBilgi.Equals("GiderGerceklesmeFon"))
+                return FonUcgenGerceklesme(kullanan, servis, sablonAd, sonucDosyaAd, ciktiYeri, raporParam, ekBilgi);
+            else if (ekBilgi.Equals("FaaliyetDurum"))
+                return FaaliyetDurum(kullanan, servis, sablonAd, sonucDosyaAd, ciktiYeri, raporParam, ekBilgi);
+            else if (ekBilgi.Equals("F5_2"))
+                return Form5_2(kullanan, servis, sablonAd, sonucDosyaAd, ciktiYeri, raporParam, ekBilgi);
             else
                 throw new RaporHatasi("Tanımsız Rapor Parametresi");
         }
@@ -597,6 +619,128 @@ namespace ButceHazirlikv2
                     XLS.SutunGenislikAyarlaPixel(i, i, mevcutGenislik + genislikTopla);
                 }
             }
+
+            XLS.DosyaSaklaTamYol();
+            return sonucDosyaAd;
+        }
+
+        /// <summary>
+        /// F8_MP (Rapor.xml 998-1, Masraf Planı ekranındaki "Masraf Planı Ödenek Cetveli (4 Düzey)"): masraf planına girilen ödenek
+        /// toplamları ödenek cetveli şeklinde (eski OdenekCetveliTasra; eski GormeYetkisiVarMi hep true idi, denetim kaldırıldı).
+        /// </summary>
+        public string OdenekCetveliTasra(object o_kullanan, object o_servis, string sablonAd, string sonucDosyaAd, string ciktiYeri, System.Collections.Hashtable raporParam, string ekBilgi)
+        {
+            Tablo XLS = GenelIslemler.NewTablo();
+            int satir = 0;
+            int sutun = 0;
+            Kullanici kullanan = (Kullanici)o_kullanan;
+
+            IBHMv2Servis servis = o_servis as IBHMv2Servis ?? TNS.BHMv2.Arac.Tanimla();
+
+            string birimAd = (string)raporParam["BirimAd"] + "";
+
+            string kur = (string)raporParam["kur"] + "";
+            string fon = (string)raporParam["fon"] + "";
+            string fin = (string)raporParam["fin"] + "";
+            string eko = (string)raporParam["eko"] + "";
+            string pebfon = (string)raporParam["pebfon"] + "";
+            string kurumsalyapi = (string)raporParam["kurumsalyapi"] + "";
+
+            int sutunSay = 15;
+
+            ENUMTabloKod tk = ENUMTabloKod.TABTasraOdenek;
+            string asamaStr = (string)raporParam["Asama"] + "";
+            if (ekBilgi == "F8_MP")
+            {
+                tk = ENUMTabloKod.TABMasrafPlani;
+            }
+
+            Tertip kistas = new Tertip(yil, tk, kur, fon, fin, eko, pebfon, kurumsalyapi);
+
+            UcgenKodBilgileri kodBilgileri = new UcgenKodBilgileri();
+            kodBilgileri.Add(new UcgenKodBilgi(1, kistas.KodNoKirilimSay(0)));
+            kodBilgileri.Add(new UcgenKodBilgi(2, 4));
+            kodBilgileri.Add(new UcgenKodBilgi(3, 1));
+            kodBilgileri.Add(new UcgenKodBilgi(4, 4));
+            EkDegerParam[] ekBilgiler = new EkDegerParam[1];
+            ekBilgiler[0] = new EkDegerParam(tk, 0, 0, asamaStr);
+            UcgenSatir[] cevap = servis.UcgenTertipOl(kullanan, kistas, kodBilgileri, ekBilgiler, true);
+
+            sonucDosyaAd = sonucDosyaAd + "." + XLS.UzantiBul();
+            XLS.DosyaAc(sablonAd, sonucDosyaAd);
+            XLS.HucreAdBulYaz("BirimAd", birimAd);
+            XLS.HucreAdBulYaz("ButceYil", yil);
+            XLS.HucreAdAdresCoz("BaslaSatir", ref satir, ref sutun);
+            int[] koyuAcikYer = { satir - 2, satir - 1 };
+            int ilkSatir = satir;
+            string[] kodlar = new string[13];
+
+            for (int k = 0; k < cevap.Length; k++)
+            {
+                UcgenSatir us = cevap[k];
+                kodlar[us.yer] = us.kodParca;
+
+                int koyuAcik;
+                if (us.yer == 0 || us.yer == 1 || us.yer == 4 || us.yer == 9)
+                    koyuAcik = 0;
+                else
+                    koyuAcik = 1;
+
+                if (koyuAcikYer[koyuAcik] != satir)
+                    XLS.HucreKopyala(koyuAcikYer[koyuAcik], sutun, koyuAcikYer[koyuAcik], sutun + sutunSay, satir, sutun);
+
+                for (int i = sutun; i < sutun + sutunSay; i++)
+                    XLS.HucreDegerYaz(satir, i, "");
+
+                if (us.yer == 1)
+                {
+                    if (Convert.ToInt16(kodlar[0]) >= 30 || Convert.ToInt16(us.kodParca) >= 75)
+                        satir--;
+                }
+
+                bool yazma = false;
+                if (us.yer == 3 || us.yer == 7)
+                {
+                    if (us.kodParca == "00")
+                    {
+                        UcgenSatir usEski = (UcgenSatir)cevap[k - 1];
+
+                        bool farkli = false;
+                        for (int j = 0; j < us.ekDegerler.Count; j++)
+                            if ((double)usEski.ekDegerler[j] != (double)us.ekDegerler[j])
+                                farkli = true;
+
+                        if (!farkli)
+                            satir--;
+                    }
+                }
+                else if (us.kodParca == "00")
+                {
+                    yazma = true;
+                    satir--;
+                }
+
+                if (!yazma)
+                {
+                    XLS.HucreDegerYaz(satir, us.yer, us.kodParca);
+                    XLS.HucreDegerYaz(satir, 9 + 4, us.aciklama);
+
+                    for (int j = 0; j < us.ekDegerler.Count; j++)
+                        XLS.HucreDegerYaz(satir, 10 + 4 + j, (double)us.ekDegerler[j]);
+
+                    if ((satir - ilkSatir + 1) % 46 == 1 && (satir - ilkSatir + 1) > 10)
+                    {
+                        XLS.YatayCizgiCiz(satir - 1, sutun, sutun + sutunSay - 1, OrtakClass.LineStyle.DOUBLE, TabloRenk.BLACK, false);
+                        XLS.SayfaSonuKoy(satir);
+                    }
+                }
+                satir++;
+            }
+            for (int i = sutun; i < sutun + sutunSay; i++)
+            {
+                XLS.HucreDegerYaz(satir, i, "");
+            }
+            XLS.YatayCizgiCiz(satir, sutun, sutun + sutunSay - 1, OrtakClass.LineStyle.DOUBLE, TabloRenk.BLACK);
 
             XLS.DosyaSaklaTamYol();
             return sonucDosyaAd;
@@ -1195,6 +1339,1005 @@ namespace ButceHazirlikv2
             XLS.HucreDegerYaz(sat, sut + 5, t);
             XLS.HucreDegerYaz(sat, sut + 6, toplamAl.toplam[tSat, 6]);
             XLS.HucreDegerYaz(sat, sut + 7, t - toplamAl.toplam[tSat, 6]);
+        }
+
+        /// <summary>Eski OrtakClass.GenelIslemler.GormeYetkisiVarMi (eskisi de her zaman true döndürüyordu; Core OrtakClass'ta yok).</summary>
+        private static bool GormeYetkisiVarMi(Kullanici kullanan, string birim, string senaryo)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Tahminler sadece 01.00 ve 00.00 aşamalarına girilmektedir.
+        /// Veri için kullanılan senaryo 1 veya daha büyükse 01.00 yoksa 00.00 döndürülür.
+        /// </summary>
+        /// <param name="senaryo">Veri için kullanılacak senaryo</param>
+        /// <returns>Veri için kullanılan senaryo 1 veya daha büyükse 01.00 yoksa 00.00 döndürülür.</returns>
+        private string TahminSenaryoBul(string senaryo)
+        {
+            if (senaryo.CompareTo("01") == 1)
+                return "01.00";
+            else
+                return "00.00";
+        }
+
+        /// <summary>
+        /// Bütçe fişlerini toplu halde hazırlayan yordam.
+        /// </summary>
+        /// <param name="o_kullanan">Kullanıcı nesnesi</param>
+        /// <param name="o_servis">Sunucuya erişi nesnesi</param>
+        /// <param name="sablonAd">Şablon dosya adı</param>
+        /// <param name="sonucDosyaAd">Üretilecek dosya adı</param>
+        /// <param name="ciktiYeri">Kullanılmıyor, her zaman DOC üretir</param>
+        /// <param name="raporParam">Hash table içerisinde raporda kullanılacak parametreleri içeren nesne
+        ///     ButceYil: Yıl kıstası
+        ///     Senaryo: Senaryo kod kıstası
+        ///     SenaryoAd: Senaryo adı
+        ///     KurKod: KurKod kıstası
+        ///     KurAd: KurKod açıklaması
+        /// </param>
+        /// <param name="ekBilgi">Kullanılmıyor</param>
+        /// <returns>Rapor başarı ile üretilmişse üretilen dosya adı, aksi takdirde boşluk döndürür.</returns>
+        public string ButceFisiDok(object o_kullanan, object o_servis, string sablonAd, string sonucDosyaAd, string ciktiYeri, System.Collections.Hashtable raporParam, string ekBilgi)
+        {
+            IUZYServis uzyServis;
+            IBHMv2Servis servisBHMv2;
+
+            if (o_servis.GetType() == typeof(IUZYServis))
+                uzyServis = (IUZYServis)o_servis;
+            else
+                uzyServis = TNS.UZY.Arac.Tanimla();
+
+            if (o_servis.GetType() == typeof(IBHMv2Servis))
+                servisBHMv2 = (IBHMv2Servis)o_servis;
+            else
+                servisBHMv2 = TNS.BHMv2.Arac.Tanimla();
+
+            Kullanici kullanan = (Kullanici)o_kullanan;
+            string senaryo = (string)raporParam["Senaryo"];
+            string senaryoAd = (string)raporParam["SenaryoAd"];
+            string kurum = GenelIslemlerIstemci.VarsayilanKurumBul();
+            string kurumAd = GenelIslemlerIstemci.VarsayilanKurumBulAd();
+            string kurKod = (string)raporParam["KurKod"] + "";
+            string kurAd = (string)raporParam["KurAd"] + "";
+
+            if (kurum == "")
+            {
+                kurum = (string)raporParam["KurKod"] + "";
+                kurumAd = (string)raporParam["KurAd"] + "";
+            }
+
+            if (string.IsNullOrEmpty(kurKod) || kurKod.Length < 6)
+            {
+                throw new RaporHatasi("Toplu bütçe fişi yazdırma işleminde, Kurumsal kodu tam olarak yazmanız gerekmektedir.");
+            }
+
+            Tertip kistas = new Tertip(yil, ENUMTabloKod.TABPEBOdenek, kurKod, "", "", "", "");
+
+            UcgenKodBilgileri kodBilgileri = new UcgenKodBilgileri();
+            kodBilgileri.Add(new UcgenKodBilgi(1, kistas.KodNoKirilimSay(0)));
+            kodBilgileri.Add(new UcgenKodBilgi(2, 4));
+            kodBilgileri.Add(new UcgenKodBilgi(3, 1));
+            kodBilgileri.Add(new UcgenKodBilgi(4, 4));
+
+            EkDegerParam[] ekBilgiler = null;
+
+            if (GormeYetkisiVarMi(kullanan, kurKod, senaryo))
+            {
+                OdenekBilgi[] cevap = servisBHMv2.ListeTertipOl(kullanan, kistas, kodBilgileri, ekBilgiler, true);
+                string sayfa = "";
+                bool ilk = true;
+                for (int i = 0; i < cevap.Length; i++)
+                {
+                    string tut = global::Istemci.ButceHazirlik.ButceFisiIcerik.SayfaOlustur(kullanan, yil, cevap[i].tertip.TertipStrOl(), senaryo, !ilk);
+                    if (!string.IsNullOrEmpty(tut))
+                    {
+                        sayfa += tut;
+                        ilk = false;
+                    }
+                }
+
+                System.IO.StreamWriter sw = new System.IO.StreamWriter(sonucDosyaAd + ".doc", false);
+                ButceFisiDosyayaYaz(sayfa, sw);
+                sw.Close();
+                return sonucDosyaAd + ".doc";
+            }
+            else
+                throw new RaporHatasi("Birimi görme yetkiniz yok!");
+        }
+
+        /// <summary>
+        /// HTML ana başlıkları yazıldıktan sonra bütçe fişini dosyaya ekleyip, html'i kapatan yordam
+        /// </summary>
+        /// <param name="sayfa">HTML yapıdaki bütçe fişi</param>
+        /// <param name="dosyaGos">Sayfanın yazılacağı dosya nesnesi</param>
+        private void ButceFisiDosyayaYaz(string sayfa, System.IO.TextWriter dosyaGos)
+        {
+            dosyaGos.Write("<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>\r\n");
+            dosyaGos.Write("<head>\r\n");
+            dosyaGos.Write("<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>\r\n");
+            dosyaGos.Write("<meta name='ProgId' content='Word.Document'/>\r\n");
+            dosyaGos.Write("<meta name='Generator' content='Microsoft Word 9'/>\r\n");
+
+            dosyaGos.Write("<style>\r\n");
+            dosyaGos.Write("<!--\r\n");
+            dosyaGos.Write(" p.MsoNormal, li.MsoNormal, div.MsoNormal\r\n");
+            dosyaGos.Write("{mos-style-parent:'';\r\n");
+            dosyaGos.Write("{margin:0cm;\r\n");
+            dosyaGos.Write("margin-bottom:.0001pt;\r\n");
+            dosyaGos.Write("font-size:10pt;\r\n");
+            dosyaGos.Write("font-family:'Times New Roman';}\r\n");
+            dosyaGos.Write("mso-fareast-font-family:'Times New Roman';}\r\n");
+            dosyaGos.Write("@page Section1\r\n");
+            dosyaGos.Write("{size:595.3pt 841.9pt;\r\n");
+            dosyaGos.Write("margin:70.85pt 70.85pt 70.85pt 70.85pt;}\r\n");
+            dosyaGos.Write("div.Section1\r\n");
+            dosyaGos.Write("{page:Section1;}\r\n");
+            dosyaGos.Write("-->\r\n");
+            dosyaGos.Write("</style>\r\n");
+
+            OrtakClass.GenelIslemler.HTMLWordLandScapeSytle(dosyaGos);
+
+            dosyaGos.Write("</head>\r\n");
+            dosyaGos.Write("<body lang=TR>\r\n");
+            dosyaGos.Write("<div class=Section1>\r\n");
+
+            dosyaGos.Write(sayfa);
+
+            dosyaGos.Write("</div>\r\n");
+            dosyaGos.Write("</body>\r\n");
+            dosyaGos.Write("</html>\r\n");
+        }
+
+        /// <summary>
+        /// Gelir fişlerini toplu halde hazırlayan yordam.
+        /// </summary>
+        /// <param name="o_kullanan">Kullanıcı nesnesi</param>
+        /// <param name="o_servis">Sunucuya erişi nesnesi</param>
+        /// <param name="sablonAd">Şablon dosya adı</param>
+        /// <param name="sonucDosyaAd">Üretilecek dosya adı</param>
+        /// <param name="ciktiYeri">Kullanılmıyor, her zaman DOC üretir</param>
+        /// <param name="raporParam">Hash table içerisinde raporda kullanılacak parametreleri içeren nesne
+        ///     ButceYil: Yıl kıstası
+        ///     Senaryo: Senaryo kod kıstası
+        ///     SenaryoAd: Senaryo adı
+        ///     KurKod: KurKod kıstası
+        ///     KurAd: KurKod açıklaması
+        /// </param>
+        /// <param name="ekBilgi">Kullanılmıyor</param>
+        /// <returns>Rapor başarı ile üretilmişse üretilen dosya adı, aksi takdirde boşluk döndürür.</returns>
+        public string GelirFisiDok(object o_kullanan, object o_servis, string sablonAd, string sonucDosyaAd, string ciktiYeri, System.Collections.Hashtable raporParam, string ekBilgi)
+        {
+            IUZYServis uzyServis;
+            IBHMv2Servis servisBHMv2;
+
+            if (o_servis.GetType() == typeof(IUZYServis))
+                uzyServis = (IUZYServis)o_servis;
+            else
+                uzyServis = TNS.UZY.Arac.Tanimla();
+
+            if (o_servis.GetType() == typeof(IBHMv2Servis))
+                servisBHMv2 = (IBHMv2Servis)o_servis;
+            else
+                servisBHMv2 = TNS.BHMv2.Arac.Tanimla();
+
+            Kullanici kullanan = (Kullanici)o_kullanan;
+            string senaryo = (string)raporParam["Senaryo"];
+            string senaryoAd = (string)raporParam["SenaryoAd"];
+            string kurum = GenelIslemlerIstemci.VarsayilanKurumBul();
+            string kurumAd = GenelIslemlerIstemci.VarsayilanKurumBulAd();
+            string kurKod = (string)raporParam["KurKod"] + "";
+            string kurAd = (string)raporParam["KurAd"] + "";
+
+            if (kurum == "")
+            {
+                kurum = (string)raporParam["KurKod"] + "";
+                kurumAd = (string)raporParam["KurAd"] + "";
+            }
+
+            if (string.IsNullOrEmpty(kurKod) || kurKod.Length < 6)
+            {
+                throw new RaporHatasi("Toplu bütçe fişi yazdırma işleminde, Kurumsal kodu tam olarak yazmanız gerekmektedir.");
+            }
+
+            Tertip kistas = new Tertip(yil, ENUMTabloKod.TABPEBGelir, kurum, "", "");
+
+            UcgenKodBilgileri kodBilgileri = new UcgenKodBilgileri();
+            kodBilgileri.Add(new UcgenKodBilgi(1, kistas.KodNoKirilimSay(0)));
+            kodBilgileri.Add(new UcgenKodBilgi(5, 4));
+
+            EkDegerParam[] ekBilgiler = null;
+
+            if (GormeYetkisiVarMi(kullanan, kurKod, senaryo))
+            {
+                OdenekBilgi[] cevap = servisBHMv2.ListeTertipOl(kullanan, kistas, kodBilgileri, ekBilgiler, true);
+                string sayfa = "";
+                bool ilk = true;
+                for (int i = 0; i < cevap.Length; i++)
+                {
+                    string kosul = yil + "-" + senaryo + "-{0}-" + cevap[i].tertip;
+                    double odenek1 = uzyServis.UzayDegeriDbl(kullanan, "ABSGELIR", String.Format(kosul, 0), false);
+
+                    if (odenek1 > 0)
+                    {
+                        string tut = global::Istemci.ButceHazirlik.ButceGelirFisiIcerik.SayfaOlustur(kullanan, yil, cevap[i].tertip.TertipStrOl(), senaryo, !ilk);
+                        if (!string.IsNullOrEmpty(tut))
+                        {
+                            sayfa += tut;
+                            ilk = false;
+                        }
+                    }
+                }
+
+                System.IO.StreamWriter sw = new System.IO.StreamWriter(sonucDosyaAd + ".doc", false);
+                ButceFisiDosyayaYaz(sayfa, sw);
+                sw.Close();
+                return sonucDosyaAd + ".doc";
+            }
+            else
+                throw new RaporHatasi("Birimi görme yetkiniz yok!");
+        }
+
+        /// <summary>
+        /// Bir kurumun tüm birimlerini ve fonksiyon kodlarını ayrı sayfada ve her sayfada da ekonomik kod bazında raporlayan yordam.
+        /// 2009 yılı bütçe hazırlama rehberindeki 14 numaralı form.
+        /// </summary>
+        /// <param name="o_kullanan">Kullanıcı nesnesi</param>
+        /// <param name="o_servis">Sunucuya erişi nesnesi</param>
+        /// <param name="sablonAd">Şablon dosya adı</param>
+        /// <param name="sonucDosyaAd">Üretilecek dosya adı</param>
+        /// <param name="ciktiYeri">Kullanılmıyor, her zaman XLS üretir</param>
+        /// <param name="raporParam">Hash table içerisinde raporda kullanılacak parametreleri içeren nesne
+        ///     ButceYil: Yıl kıstası
+        ///     Senaryo: Senaryo kod kıstası
+        ///     SenaryoAd: Senaryo adı
+        ///     KurKod: KurKod kıstası
+        ///     KurAd: KurKod açıklaması
+        /// </param>
+        /// <param name="ekBilgi">Kullanılmıyor</param>
+        /// <returns>Rapor başarı ile üretilmişse üretilen dosya adı, aksi takdirde boşluk döndürür.</returns>
+        public string Form14(object o_kullanan, object o_servis, string sablonAd, string sonucDosyaAd, string ciktiYeri, System.Collections.Hashtable raporParam, string ekBilgi)
+        {
+            Tablo XLS = GenelIslemler.NewTablo();
+            int satir = 0;
+            int sutun = 0;
+            Kullanici kullanan = (Kullanici)o_kullanan;
+            IBHMv2Servis servis;
+            if (o_servis.GetType() == typeof(IBHMv2Servis))
+                servis = (IBHMv2Servis)o_servis;
+            else
+                servis = TNS.BHMv2.Arac.Tanimla();
+
+            string senaryo = (string)raporParam["Senaryo"];
+            string senaryoAd = (string)raporParam["SenaryoAd"];
+            string kurum = (string)raporParam["KurumKod"] + "";
+            string kurumAd = (string)raporParam["KurumAd"] + "";
+            if (kurum == "")
+            {
+                kurum = (string)raporParam["KurKod"] + "";
+                kurumAd = (string)raporParam["KurAd"] + "";
+            }
+            string birim = (string)raporParam["KurKod"] + "";
+            string birimAd = (string)raporParam["KurAd"] + "";
+
+            sonucDosyaAd = sonucDosyaAd + "." + XLS.UzantiBul();
+            XLS.DosyaAc(sablonAd, sonucDosyaAd);
+
+            XLS.HucreAdBulYaz("AsamaAd", " / " + senaryoAd);
+            XLS.HucreAdBulYaz("ButceYil", yil.ToString());
+
+            if (kurum != "")
+                XLS.HucreAdBulYaz("KurumAd", kurumAd);
+            if (birim != "")
+                XLS.HucreAdBulYaz("BirimAd", birimAd);
+            else
+                XLS.HucreAdBulYaz("BirimAd", "Kurum Geneli");
+
+            if (birim == "")
+                birim = kurum;
+
+            string asamaTahmin = TahminSenaryoBul(senaryo);
+
+            int kurumUzunluk = 0;
+            if (TNS.BKD.Arac.KurumMu(birim) && !birim.Equals("00"))
+            {
+                if (kurum.Length == 2)
+                    kurumUzunluk = 1;
+                else
+                    kurumUzunluk = 2;
+            }
+            else
+                kurumUzunluk = 4;
+
+            if (birim == "" || birim == "00")
+                birim = kurum;
+
+            if (GormeYetkisiVarMi(kullanan, birim, senaryo))
+            {
+                Tertip kistas = new Tertip(yil, ENUMTabloKod.TABPEBOdenek, birim, "", "", "", "");
+                UcgenKodBilgileri kodBilgileri = new UcgenKodBilgileri();
+
+                kodBilgileri.Add(new UcgenKodBilgi(1, kurumUzunluk));
+                kodBilgileri.Add(new UcgenKodBilgi(2, 4));
+                kodBilgileri.Add(new UcgenKodBilgi(3, 1));
+
+                EkDegerParam[] ekBilgiler = new EkDegerParam[8];
+                ekBilgiler[0] = new EkDegerParam(ENUMTabloKod.TABPEBOdenek, 2, 0, "06.00");
+                ekBilgiler[1] = new EkDegerParam(ENUMTabloKod.TABHarcama, 2, 0, "12;830");
+                ekBilgiler[2] = new EkDegerParam(ENUMTabloKod.TABPEBOdenek, 1, 0, "06.00");
+                ekBilgiler[3] = new EkDegerParam(ENUMTabloKod.TABHarcama, 1, 0, "6;830");//Haziran harcaması
+                ekBilgiler[4] = new EkDegerParam(ENUMTabloKod.TABHarcamaTahmin, 1, 0, asamaTahmin);
+                ekBilgiler[5] = new EkDegerParam(ENUMTabloKod.TABPEBOdenek, 0, 0, senaryo);
+                ekBilgiler[6] = new EkDegerParam(ENUMTabloKod.TABPEBOdenek, 0, 1, senaryo);
+                ekBilgiler[7] = new EkDegerParam(ENUMTabloKod.TABPEBOdenek, 0, 2, senaryo);
+
+                UcgenSatir[] cevap = servis.UcgenTertipOl(kullanan, kistas, kodBilgileri, null, false);
+
+                XLS.HucreAdAdresCoz("BaslaSatir", ref satir, ref sutun);
+                int baslaTabloSatir = 0;
+                int baslaTabloSutun = 0;
+                XLS.HucreAdAdresCoz("BaslaTablo", ref baslaTabloSatir, ref baslaTabloSutun);
+                int SAYFA_BOY = 52;
+                string[] alanlar = new string[9];
+                for (int j = 0; j < cevap.Length; j++) // each(UcgenSatir us in cevap)
+                {
+                    UcgenSatir us = cevap[j];
+                    if (us.yer >= kurumUzunluk && kurumUzunluk != 4)
+                        us.yer += (4 - kurumUzunluk);
+
+                    XLS.HucreDegerYaz(baslaTabloSatir + 1 + us.yer, baslaTabloSutun + 1, us.kodParca);
+                    XLS.HucreDegerYaz(baslaTabloSatir + 1 + us.yer, baslaTabloSutun + 2, us.aciklama);
+
+                    if (us.yer == 8)
+                    {
+                        Tertip icKistas = new Tertip(yil, ENUMTabloKod.TABOdenek, alanlar[0] + "." + alanlar[1] + "." + alanlar[2] + "." + alanlar[3], alanlar[4] + "." + alanlar[5] + "." + alanlar[6] + "." + alanlar[7], us.kodParca, "");
+                        UcgenKodBilgileri icKodBilgileri = new UcgenKodBilgileri();
+                        icKodBilgileri.Add(new UcgenKodBilgi(4, 2));
+
+                        double[] toplamlar = new double[8];
+                        for (int i = 0; i < 8; i++) toplamlar[i] = 0;
+
+                        UcgenSatir[] icCevap = servis.UcgenTertipOl(kullanan, icKistas, icKodBilgileri, ekBilgiler, true);
+                        string[] ekolar = new string[2];
+                        for (int k = 0; k < icCevap.Length; k++)
+                        {
+                            if (icCevap[k].GetType() != typeof(UcgenSatir))
+                                return "";
+
+                            UcgenSatir usIc = (UcgenSatir)icCevap[k];
+                            int ekoSatYer = 0;
+                            string kod = "";
+                            if (usIc.yer == 0)
+                            {
+                                ekolar[0] = usIc.kodParca;
+                                kod = usIc.kodParca;
+                            }
+                            else
+                                kod = ekolar[0] + "." + usIc.kodParca;
+                            for (int ekoSat = satir; ekoSat < satir + 40; ekoSat++)
+                            {
+                                if (XLS.HucreDegerAl(ekoSat, 0) == kod)
+                                {
+                                    ekoSatYer = ekoSat;
+                                    break;
+                                }
+                            }
+
+                            if (ekoSatYer != 0)
+                            {
+                                int i = 0;
+                                foreach (double d in usIc.ekDegerler)
+                                {
+                                    if (usIc.yer == 0)
+                                        toplamlar[i] += d;
+                                    XLS.HucreDegerYaz(ekoSatYer, sutun + 3 + i++, d);
+                                }
+                            }
+
+                        }
+                        for (int i = 0; i < 8; i++)
+                        {
+                            XLS.HucreDegerYaz(baslaTabloSatir + SAYFA_BOY - 2, sutun + 3 + i, toplamlar[i]);
+                        }
+                        XLS.SutunGizle(0, 0, true);
+                        if (j != cevap.Length - 1)
+                        {
+                            int eskiSheet = XLS.YeniSheetEkle(0);//XLS.AktifSheet();
+                            int yeniSheet = XLS.AktifSheet();
+                            for (int i = 1; i <= 9; i++)
+                            {
+                                string kod = XLS.HucreDegerAl(eskiSheet, baslaTabloSatir + i, baslaTabloSutun + 1, 0);
+                                string kodAciklama = XLS.HucreDegerAl(eskiSheet, baslaTabloSatir + i, baslaTabloSutun + 2, 0);
+                                XLS.HucreDegerYaz(baslaTabloSatir + i, baslaTabloSutun + 1, kod);
+                                XLS.HucreDegerYaz(baslaTabloSatir + i, baslaTabloSutun + 2, kodAciklama);
+                            }
+
+                            XLS.AktifSheetDegistir(eskiSheet);
+                            XLS.HucreBirlestir(baslaTabloSatir - 5, baslaTabloSutun, baslaTabloSatir - 5, baslaTabloSutun + 10);
+                            XLS.HucreBirlestir(baslaTabloSatir - 4, baslaTabloSutun, baslaTabloSatir - 4, baslaTabloSutun + 10);
+                            XLS.HucreBirlestir(satir - 3, sutun, satir - 1, sutun + 2);
+                            XLS.HucreBirlestir(satir - 3, sutun + 3, satir - 3, sutun + 4);
+                            XLS.HucreBirlestir(satir - 2, sutun + 3, satir - 1, sutun + 3);
+                            XLS.HucreBirlestir(satir - 2, sutun + 4, satir - 1, sutun + 4);
+                            XLS.HucreBirlestir(satir - 2, sutun + 5, satir - 1, sutun + 5);
+                            XLS.HucreBirlestir(satir - 2, sutun + 6, satir - 1, sutun + 6);
+                            XLS.HucreBirlestir(satir - 2, sutun + 7, satir - 1, sutun + 7);
+                            XLS.HucreBirlestir(satir - 3, sutun + 5, satir - 3, sutun + 7);
+                            //XLS.HucreBirlestir(satir - 3, sutun + 8, satir - 2, sutun + 10);
+                            XLS.HucreBirlestir(baslaTabloSatir + 1, baslaTabloSutun, baslaTabloSatir + 4, baslaTabloSutun);
+                            XLS.HucreBirlestir(baslaTabloSatir + 5, baslaTabloSutun, baslaTabloSatir + 8, baslaTabloSutun);
+
+                            XLS.AktifSheetDegistir(yeniSheet);
+                            for (int eko = satir; eko <= baslaTabloSatir + SAYFA_BOY; eko++)
+                            {
+                                for (int ic = 0; ic < 8; ic++)
+                                {
+                                    XLS.HucreDegerYaz(eko, sutun + 3 + ic, "");
+                                }
+
+                            }
+                            //for (int i = 1; i < 13; i++)
+                            //{
+                            //    XLS.SutunGenislikAyarla(i, i, XLS.SutunGenislikAl(eskiSheet, i));
+                            //}
+                            XLS.SatirYukseklikAyarla(baslaTabloSatir, baslaTabloSatir + 9, XLS.SatirYukseklikAl(eskiSheet, baslaTabloSatir));
+                            XLS.SatirYukseklikAyarla(baslaTabloSatir - 5, baslaTabloSatir - 4, XLS.SatirYukseklikAl(eskiSheet, baslaTabloSatir - 5));
+                            XLS.SutunGizle(0, 0, true);
+
+                        }
+
+                        XLS.HucreBirlestir(baslaTabloSatir - 5, sutun, baslaTabloSatir - 5, sutun + 10);
+                        XLS.HucreBirlestir(baslaTabloSatir - 4, sutun, baslaTabloSatir - 4, sutun + 10);
+                        XLS.HucreBirlestir(satir - 3, sutun, satir - 1, sutun + 2);
+                        XLS.HucreBirlestir(satir - 3, sutun + 3, satir - 3, sutun + 4);
+                        XLS.HucreBirlestir(satir - 2, sutun + 3, satir - 1, sutun + 3);
+                        XLS.HucreBirlestir(satir - 2, sutun + 4, satir - 1, sutun + 4);
+                        XLS.HucreBirlestir(satir - 2, sutun + 5, satir - 1, sutun + 5);
+                        XLS.HucreBirlestir(satir - 2, sutun + 6, satir - 1, sutun + 6);
+                        XLS.HucreBirlestir(satir - 2, sutun + 7, satir - 1, sutun + 7);
+                        XLS.HucreBirlestir(satir - 3, sutun + 5, satir - 3, sutun + 7);
+                        //XLS.HucreBirlestir(satir - 3, sutun + 8, satir - 2, sutun + 10);
+                        XLS.HucreBirlestir(baslaTabloSatir + 1, baslaTabloSutun, baslaTabloSatir + 4, baslaTabloSutun);
+                        XLS.HucreBirlestir(baslaTabloSatir + 5, baslaTabloSutun, baslaTabloSatir + 8, baslaTabloSutun);
+                    }
+                    else
+                        alanlar[us.yer] = us.kodParca;
+                }
+
+                XLS.DosyaSaklaTamYol();
+                return sonucDosyaAd;
+            }
+            else
+                throw new RaporHatasi("Birimi görme yetkiniz yok!");
+        }
+
+        private string FaaliyetDurum(object o_kullanan, object o_servis, string sablonAd, string sonucDosyaAd, string ciktiYeri, Hashtable raporParam, string ekBilgi)
+        {
+            Kullanici kullanan = (Kullanici)o_kullanan;
+
+            string kur = (string)raporParam["Kur"] + "";
+            string fon = (string)raporParam["Fon"] + "";
+            string fin = (string)raporParam["Fin"] + "";
+            string eko = (string)raporParam["Eko"] + "";
+            string peb = (string)raporParam["Peb"] + "";
+            if (string.IsNullOrWhiteSpace(kur)) kur = GenelIslemlerIstemci.VarsayilanKurumBul();
+
+            string[] sql = new string[2];
+            string[] baglanti = new string[2];
+
+            sql[0] = String.Format("SELECT P.PEBAD, SUM(O.ODENEK)  FROM  BHMODENEK O, ButceHazirlik.dbo.ABSPEBKOD P   where O.YIL=P.YIL AND O.PEBKOD=P.PEBKOD AND O.YIL={0} AND O.SENARYOKOD='0600' AND O.TEKLIFYIL=0   GROUP BY P.PEBAD   ORDER BY 1", yil);
+            sql[1] = String.Format("SELECT P.PEBAD, SUM(D.BORC - D.ALACAK) FROM MUHMIF AS D , MUHMIFFORM AS F, ButceHazirlik.dbo.ABSPEBKOD P where D.YIL = F.YIL AND D.BELGENO = F.BELGENO AND D.YIL=P.YIL AND D.PEBKOD=P.PEBKOD AND F.YIL={0} AND D.HESAPKOD LIKE '830%' AND F.FORMDURUM<9 group by P.PEBAD", yil);
+
+            baglanti[0] = "BaglantiSatiriBHMv2";
+            baglanti[1] = "BaglantiSatiriBUM";
+
+            IUZYServis uzyServis = TNS.UZY.Arac.Tanimla();
+            SortedList sl = uzyServis.SorguBirlestir(sql, baglanti, new int[] { 0 });
+
+            Tablo XLS = GenelIslemler.NewTablo();
+            sonucDosyaAd = sonucDosyaAd + "." + XLS.UzantiBul();
+            XLS.DosyaAc(sablonAd, sonucDosyaAd);
+
+            int baslaSatir = 0, baslaSutun = 0;
+            int kaynakSatir = 0, kaynakSutun = 0;
+            XLS.HucreAdAdresCoz("BaslaSatir", ref baslaSatir, ref baslaSutun);
+            XLS.HucreAdAdresCoz("FormatSatir", ref kaynakSatir, ref kaynakSutun);
+            int yukseklik = XLS.SatirYukseklikAl(baslaSatir);
+
+            int satir = baslaSatir;
+            int sutun = baslaSutun;
+
+            XLS.HucreAdBulYaz("yil", yil);
+
+            foreach (DictionaryEntry de in sl)
+            {
+                TNS.UZY.HTArray alAnahtar = (TNS.UZY.HTArray)de.Key;
+                TNS.UZY.HTArray alVeri = (TNS.UZY.HTArray)de.Value;
+
+                string pebAd = alAnahtar.StrAl(0);
+                double odenek = alVeri.DblAl(0);
+                double harcama = alVeri.DblAl(1);
+
+                int tekCift = satir % 2;
+                XLS.HucreKopyala(kaynakSatir + tekCift, kaynakSutun, kaynakSatir + tekCift, kaynakSutun + 3, satir, baslaSutun);
+
+                XLS.HucreDegerYaz(satir, 0, pebAd);
+                XLS.HucreDegerYaz(satir, 1, odenek);
+                XLS.HucreDegerYaz(satir, 2, harcama);
+
+                satir++;
+            }
+            XLS.SatirYukseklikAyarla(baslaSatir, satir - 1, yukseklik);
+            XLS.DosyaSaklaTamYol();
+            return sonucDosyaAd;
+        }
+
+        private string FonUcgenGerceklesme(object o_kullanan, object o_servis, string sablonAd, string sonucDosyaAd, string ciktiYeri, Hashtable raporParam, string ekBilgi)
+        {
+            IBHMv2Servis servisBHMv2;
+            if (o_servis.GetType() == typeof(IBHMv2Servis))
+                servisBHMv2 = (IBHMv2Servis)o_servis;
+            else servisBHMv2 = TNS.BHMv2.Arac.Tanimla();
+            Kullanici kullanan = (Kullanici)o_kullanan;
+
+            int AyNo = OrtakFonksiyonlar.ConvertToInt((string)raporParam["AyNo"], 0);
+            int avansDurum = OrtakFonksiyonlar.ConvertToInt((string)raporParam["avansDurum"], 0);
+            string senaryo = "06.00";
+            string kur = (string)raporParam["Kur"] + "";
+            string fon = (string)raporParam["Fon"] + "";
+            string fin = (string)raporParam["Fin"] + "";
+            string eko = (string)raporParam["Eko"] + "";
+            string peb = (string)raporParam["Peb"] + "";
+            if (string.IsNullOrWhiteSpace(kur)) kur = GenelIslemlerIstemci.VarsayilanKurumBul();
+
+            Tertip kistas = new Tertip(yil, ENUMTabloKod.TABPEBOdenek, kur, fon, fin, eko, peb);
+            UcgenKodBilgileri kodBilgileri = new UcgenKodBilgileri();
+            kodBilgileri.Add(new UcgenKodBilgi(kistas.KodNolar(1), kistas.KodNoKirilimSay(1)));
+            kodBilgileri.Add(new UcgenKodBilgi(kistas.KodNolar(0), kistas.KodNoKirilimSay(0)));
+            kodBilgileri.Add(new UcgenKodBilgi(kistas.KodNolar(2), kistas.KodNoKirilimSay(2)));
+            kodBilgileri.Add(new UcgenKodBilgi(kistas.KodNolar(3), 2, true));
+            kodBilgileri.Add(new UcgenKodBilgi(kistas.KodNolar(4), kistas.KodNoKirilimSay(4)));
+
+            EkDegerParam[] ekBilgiler = new EkDegerParam[8];
+            ekBilgiler[0] = new EkDegerParam(ENUMTabloKod.TABPEBOdenek, 0, 0, senaryo);
+            int ay = TNS.BHMv2.Arac.SerbestAyBul(yil) + 1;
+            string eklemeDusmeIslemler = TNS.BHMv2.Arac.EklemeDusmeIslemler();
+            ekBilgiler[1] = new EkDegerParam(ENUMTabloKod.TABMasrafPlaniForm, 0, 0, ";;" + eklemeDusmeIslemler + ";;0/");
+            ekBilgiler[2] = new EkDegerParam(ENUMTabloKod.TABMasrafPlaniForm, 0, 0, ";;" + eklemeDusmeIslemler + ";;/0");
+            ekBilgiler[3] = new EkDegerParam(ENUMTabloKod.TABOdenekGonderme, 0, 0, ";;3");
+            ekBilgiler[4] = new EkDegerParam(ENUMTabloKod.TABOdenekGonderme, 0, 0, ";;4");
+            ekBilgiler[5] = new EkDegerParam(ENUMTabloKod.TABHarcama, 0, 0, AyNo.ToString());
+            ekBilgiler[6] = new EkDegerParam(ENUMTabloKod.TABMasrafPlani, 0, 0, ((int)ENUMMasrafPlanAsama.SONDURUMONAYLI).ToString() + ";0/" + ay.ToString());
+            ENUMTabloKod tabloKod;
+            if (avansDurum == 1)
+                tabloKod = ENUMTabloKod.TABPEBHarcama;
+            else
+                tabloKod = ENUMTabloKod.TABOdemeEmri;
+            ekBilgiler[7] = new EkDegerParam(tabloKod, 0, 0, AyNo.ToString());
+
+            OdenekBilgi[] odnler = servisBHMv2.ListeTertipOl(kullanan, kistas, kodBilgileri, ekBilgiler, false);
+
+            Tablo XLS = GenelIslemler.NewTablo();
+            sonucDosyaAd = sonucDosyaAd + "." + XLS.UzantiBul();
+            XLS.DosyaAc(sablonAd, sonucDosyaAd);
+
+            int baslaSatir = 0, baslaSutun = 0;
+            int kaynakSatir = 0, kaynakSutun = 0;
+            XLS.HucreAdAdresCoz("BaslaSatir", ref baslaSatir, ref baslaSutun);
+            XLS.HucreAdAdresCoz("KaynakSatir", ref kaynakSatir, ref kaynakSutun);
+            int yukseklik = XLS.SatirYukseklikAl(baslaSatir);
+
+            int satir = baslaSatir;
+            int sutun = baslaSutun;
+
+            XLS.HucreAdBulYaz("yil", yil);
+            ToplamAl toplamDizi = new ToplamAl(4, 8);
+
+            toplamDizi.SatirSifirla(3);
+
+            string eskiPeb = "";
+            string eskiTertip = "";
+            int fonSay = 0;
+            int pebSat = -1;
+            int tertipSat = -1;
+            foreach (OdenekBilgi oBilgi in odnler)
+            {
+                peb = oBilgi.tertip.kodlar[1];
+                string tertip = oBilgi.tertip.kodlar[0] + oBilgi.tertip.kodlar[1] + oBilgi.tertip.kodlar[2] + oBilgi.tertip.kodlar[3];
+                if (peb != eskiPeb)
+                {
+                    if (pebSat != -1)
+                        FonDegerYaz(XLS, pebSat, sutun, toplamDizi, 1);
+                    toplamDizi.SatirSifirla(1);
+
+                    XLS.HucreKopyala(kaynakSatir, kaynakSutun, kaynakSatir, kaynakSutun + 36, satir, baslaSutun);
+                    fonSay++;
+                    XLS.HucreDegerYaz(satir, baslaSutun + 0, fonSay);
+                    FonUcgenPebYaz(XLS, satir, sutun, oBilgi.tertip);
+                    XLS.HucreDegerYaz(satir, baslaSutun + 6, oBilgi.tertip.adlar[1].ToUpper());
+                    eskiTertip = "";
+                    eskiPeb = peb;
+                    pebSat = satir;
+                    satir++;
+                }
+
+                if (tertip != eskiTertip)
+                {
+                    if (tertipSat != -1)
+                        FonDegerYaz(XLS, tertipSat, sutun, toplamDizi, 2);
+                    toplamDizi.SatirSifirla(2);
+                    XLS.HucreKopyala(kaynakSatir + 1, kaynakSutun, kaynakSatir + 1, kaynakSutun + 36, satir, baslaSutun);
+                    FonTertipYaz(XLS, satir, sutun, oBilgi.tertip);
+                    XLS.HucreDegerYaz(satir, baslaSutun + 6, oBilgi.tertip.adlar[0]);
+                    eskiTertip = tertip;
+                    tertipSat = satir;
+                    satir++;
+                }
+                double kbo = (double)oBilgi.ekRakamlar[0];
+                double eklenen = (double)oBilgi.ekRakamlar[1];
+                double dusulen = -1 * ((double)oBilgi.ekRakamlar[2]);
+
+                toplamDizi.DegerAta(3, 0, kbo);
+                toplamDizi.DegerAta(3, 1, eklenen);
+                toplamDizi.DegerAta(3, 2, dusulen);
+                toplamDizi.DegerAta(3, 3, (double)oBilgi.ekRakamlar[6]);
+                toplamDizi.DegerAta(3, 4, (double)oBilgi.ekRakamlar[3]);
+                toplamDizi.DegerAta(3, 5, 0 - ((double)oBilgi.ekRakamlar[4]));
+                toplamDizi.DegerAta(3, 6, (double)oBilgi.ekRakamlar[5]);
+                toplamDizi.DegerAta(3, 7, (double)oBilgi.ekRakamlar[7]);
+
+                XLS.HucreKopyala(kaynakSatir + 2, kaynakSutun, kaynakSatir + 2, kaynakSutun + 36, satir, baslaSutun);
+                FonUcgenTamTertipYaz(XLS, satir, sutun, oBilgi.tertip);
+                XLS.HucreDegerYaz(satir, baslaSutun + 6, oBilgi.tertip.adlar[4]);
+
+                FonDegerYaz(XLS, satir, sutun, toplamDizi, 3);
+                toplamDizi.ToplamEkle(0, 3);
+                toplamDizi.ToplamEkle(1, 3);
+                toplamDizi.ToplamEkle(2, 3);
+                satir++;
+            }
+            if (tertipSat != -1)
+            {
+                FonDegerYaz(XLS, tertipSat, sutun, toplamDizi, 2);
+                FonDegerYaz(XLS, pebSat, sutun, toplamDizi, 1);
+                FonDegerYaz(XLS, baslaSatir - 1, sutun, toplamDizi, 0);
+            }
+            XLS.SatirYukseklikAyarla(baslaSatir, satir - 1, yukseklik);
+
+            XLS.DosyaSaklaTamYol();
+            return sonucDosyaAd;
+        }
+
+        private void FonDegerYaz(Tablo XLS, int satir, int sutun, ToplamAl toplamDizi, int diziSat)
+        {
+            XLS.HucreDegerYaz(satir, sutun + 7 + 0, toplamDizi.toplam[diziSat, 0]);
+            XLS.HucreDegerYaz(satir, sutun + 7 + 1, toplamDizi.toplam[diziSat, 1]);
+            XLS.HucreDegerYaz(satir, sutun + 7 + 2, toplamDizi.toplam[diziSat, 2]);
+            XLS.HucreDegerYaz(satir, sutun + 7 + 4, toplamDizi.toplam[diziSat, 3]);
+            XLS.HucreDegerYaz(satir, sutun + 7 + 6, toplamDizi.toplam[diziSat, 4]);
+            XLS.HucreDegerYaz(satir, sutun + 7 + 7, toplamDizi.toplam[diziSat, 5]);
+            XLS.HucreDegerYaz(satir, sutun + 7 + 9, toplamDizi.toplam[diziSat, 6]);
+            XLS.HucreDegerYaz(satir, sutun + 7 + 16, toplamDizi.toplam[diziSat, 7]);
+        }
+
+        private void FonUcgenTamTertipYaz(Tablo XLS, int satir, int sutun, Tertip tertip)
+        {
+            FonTertipYaz(XLS, satir, sutun, tertip);
+            XLS.HucreDegerYaz(satir, sutun + 5, tertip.kodlar[4]);
+            XLS.HucreDegerYaz(satir, 25, tertip.TertipStrOl());
+            XLS.HucreDegerYaz(satir, 26, TNS.BHMv2.Arac.ProgramTertipOl(tertip, false));
+        }
+
+        private void FonTertipYaz(Tablo XLS, int satir, int sutun, Tertip tertip)
+        {
+            XLS.HucreDegerYaz(satir, sutun + 1, tertip.kodlar[0]);
+            FonUcgenPebYaz(XLS, satir, sutun, tertip);
+            XLS.HucreDegerYaz(satir, sutun + 3, tertip.kodlar[2]);
+            XLS.HucreDegerYaz(satir, sutun + 4, tertip.kodlar[3]);
+        }
+
+        private void FonUcgenPebYaz(Tablo XLS, int satir, int sutun, Tertip tertip)
+        {
+            XLS.HucreDegerYaz(satir, sutun + 2, tertip.kodlar[1]);
+        }
+
+        private string EkoUcgenGerceklesme(object o_kullanan, object o_servis, string sablonAd, string sonucDosyaAd, string ciktiYeri, Hashtable raporParam, string ekBilgi)
+        {
+            IBHMv2Servis servisBHMv2;
+            if (o_servis.GetType() == typeof(IBHMv2Servis))
+                servisBHMv2 = (IBHMv2Servis)o_servis;
+            else servisBHMv2 = TNS.BHMv2.Arac.Tanimla();
+            Kullanici kullanan = (Kullanici)o_kullanan;
+
+            int AyNo = OrtakFonksiyonlar.ConvertToInt((string)raporParam["AyNo"], 0);
+
+            string senaryo = "06.00";
+            string kur = (string)raporParam["KurKod"] + "";
+            if (string.IsNullOrWhiteSpace(kur))
+                kur = (string)raporParam["Kur"] + "";
+            string kurAd = (string)raporParam["KurAd"] + "";
+
+            string fon = (string)raporParam["FonKod"] + "";
+            if (string.IsNullOrWhiteSpace(fon))
+                fon = (string)raporParam["Fon"] + "";
+
+            string fin = (string)raporParam["FinKod"] + "";
+            if (string.IsNullOrWhiteSpace(fin))
+                fin = (string)raporParam["Fin"] + "";
+
+            string eko = (string)raporParam["EkoKod"] + "";
+            if (string.IsNullOrWhiteSpace(eko))
+                eko = (string)raporParam["Eko"] + "";
+
+            string peb = (string)raporParam["PebKod"] + "";
+            if (string.IsNullOrWhiteSpace(peb))
+                peb = (string)raporParam["Peb"] + "";
+
+            if (string.IsNullOrWhiteSpace(kur)) kur = GenelIslemlerIstemci.VarsayilanKurumBul();
+            Tertip kistas = null;
+            UcgenKodBilgileri kodBilgileri = null;
+            EkDegerParam[] ekBilgiler = null;
+            int sonKolon = 4;
+
+            kistas = new Tertip(yil, ENUMTabloKod.TABPEBOdenek, kur, fon, fin, eko, peb);
+            kodBilgileri = new UcgenKodBilgileri();
+            kodBilgileri.Add(new UcgenKodBilgi(kistas.KodNolar(3), kistas.KodNoKirilimSay(3)));
+            kodBilgileri.Add(new UcgenKodBilgi(kistas.KodNolar(2), kistas.KodNoKirilimSay(2)));
+
+            ekBilgiler = new EkDegerParam[5];
+            ekBilgiler[0] = new EkDegerParam(ENUMTabloKod.TABPEBOdenek, 0, 0, senaryo);
+            ekBilgiler[1] = new EkDegerParam(ENUMTabloKod.TABButce, 0, 0, "");
+            ekBilgiler[2] = new EkDegerParam(ENUMTabloKod.TABPEBHarcama, 0, 0, AyNo.ToString());
+            ekBilgiler[3] = new EkDegerParam(ENUMTabloKod.TABISLAvans, 0, 0, AyNo.ToString());
+            ekBilgiler[4] = new EkDegerParam(ENUMTabloKod.TABHYBloke, 0, 0, "");
+
+            UcgenSatir[] odnler = servisBHMv2.UcgenTertipOl(kullanan, kistas, kodBilgileri, ekBilgiler, false);
+
+            Tablo XLS = GenelIslemler.NewTablo();
+            sonucDosyaAd = sonucDosyaAd + "." + XLS.UzantiBul();
+            XLS.DosyaAc(sablonAd, sonucDosyaAd);
+            XLS.HucreAdBulYaz("Baslik1", GenelIslemlerIstemci.VarsayilanKurumBulAd());
+            if (kur != GenelIslemlerIstemci.VarsayilanKurumBul())
+            {
+                XLS.HucreAdBulYaz("Baslik2", kurAd);
+            }
+            else
+            {
+                XLS.HucreAdBulYaz("Baslik2", "Başkanlık Toplam Bütçesi");
+            }
+            int baslaSatir = 0, baslaSutun = 0;
+            XLS.HucreAdAdresCoz("BaslaSatir", ref baslaSatir, ref baslaSutun);
+
+            int satir = baslaSatir - 1;
+            int sutun = baslaSutun;
+            baslaSatir -= 9;
+
+            XLS.HucreAdBulYaz("RaporAd", "İşletme Bütçesi - Gider");
+            XLS.HucreAdBulYaz("Yil", yil);
+            int sonyer = -1;
+            TNSCollection sonRakam = null;
+            double[] toplamDizi = new double[5];
+
+            toplamDizi[0] = 0;
+            toplamDizi[1] = 0;
+            toplamDizi[2] = 0;
+            toplamDizi[3] = 0;
+            toplamDizi[4] = 0;
+            string[] kodlar = new string[5];
+
+            foreach (UcgenSatir oBilgi in odnler)
+            {
+                double[] dizi = new double[5];
+                RakamKopyala(oBilgi.ekDegerler, dizi);
+                if (oBilgi.yer == 0)
+                    Topla(dizi, toplamDizi);
+                if (oBilgi.yer < 4 || oBilgi.yer == sonKolon)
+                {
+                    kodlar[oBilgi.yer] = oBilgi.kodParca;
+                    for (int i = oBilgi.yer + 1; i < kodlar.Length; i++)
+                    {
+                        kodlar[i] = "";
+                    }
+                    int ekle = oBilgi.yer;
+                    if (oBilgi.yer == sonKolon) ekle = 4;
+
+                    if (oBilgi.yer == sonKolon && CollectionEsitmi(sonRakam, oBilgi.ekDegerler) && sonyer != oBilgi.yer)
+                    {
+                        XLS.HucreDegerYaz(satir, baslaSutun + ekle, oBilgi.kodParca);
+                    }
+                    else
+                    {
+                        satir++;
+                        XLS.HucreKopyala(baslaSatir, baslaSutun, baslaSatir, baslaSutun + 13, satir, baslaSutun);
+                        XLS.HucreDegerYaz(satir, baslaSutun + ekle, oBilgi.kodParca);
+                        XLS.HucreDegerYaz(satir, baslaSutun + 7, oBilgi.aciklama);
+                        XLS.HucreDegerYaz(satir, baslaSutun + 8, dizi[0]);
+                        XLS.HucreDegerYaz(satir, baslaSutun + 9, dizi[1]);
+                        XLS.HucreDegerYaz(satir, baslaSutun + 10, dizi[2]);
+                        XLS.HucreDegerYaz(satir, baslaSutun + 11, dizi[3]);
+                        XLS.HucreDegerYaz(satir, baslaSutun + 12, dizi[4]);
+                        XLS.HucreDegerYaz(satir, baslaSutun + 13, dizi[1] - (dizi[2] + dizi[3] + dizi[4]));
+                        int uzunluk;
+                        string kod = KodYap(kodlar, out uzunluk);
+                        XLS.HucreDegerYaz(satir, baslaSutun + 5, uzunluk);
+                        XLS.HucreDegerYaz(satir, baslaSutun + 6, kod);
+                        sonRakam = oBilgi.ekDegerler;
+                        sonyer = oBilgi.yer;
+                    }
+                }
+            }
+            satir++;
+            XLS.HucreKopyala(baslaSatir - 1, baslaSutun, baslaSatir - 1, baslaSutun + 13, satir, baslaSutun);
+            XLS.HucreBirlestir(satir, baslaSutun, satir, baslaSutun + 5);
+
+            XLS.HucreDegerYaz(satir, baslaSutun + 8, toplamDizi[0]);
+            XLS.HucreDegerYaz(satir, baslaSutun + 9, toplamDizi[1]);
+            XLS.HucreDegerYaz(satir, baslaSutun + 10, toplamDizi[2]);
+            XLS.HucreDegerYaz(satir, baslaSutun + 11, toplamDizi[3]);
+            XLS.HucreDegerYaz(satir, baslaSutun + 12, toplamDizi[4]);
+            XLS.HucreDegerYaz(satir, baslaSutun + 13, toplamDizi[1] - (toplamDizi[2] + toplamDizi[3] + toplamDizi[4]));
+
+            XLS.DosyaSaklaTamYol();
+            return sonucDosyaAd;
+        }
+
+        private string KodYap(string[] kodlar, out int uzunluk)
+        {
+            uzunluk = 1;
+            string retVal = "";
+            for (int i = 0; i < kodlar.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(kodlar[i]))
+                {
+                    if (retVal != "") { retVal += "."; uzunluk++; }
+                    retVal += kodlar[i];
+                }
+                else
+                    break;
+            }
+            return retVal;
+        }
+
+        private void Topla(double[] dizi, double[] toplamDizi)
+        {
+            toplamDizi[0] += dizi[0];
+            toplamDizi[1] += dizi[1];
+            toplamDizi[2] += dizi[2];
+            toplamDizi[3] += dizi[3];
+            toplamDizi[4] += dizi[4];
+        }
+
+        private void RakamKopyala(TNSCollection ekDegerler, double[] dizi)
+        {
+            dizi[0] = (double)ekDegerler[0];
+            dizi[1] = (double)ekDegerler[1];
+            dizi[2] = (double)ekDegerler[2];
+            dizi[3] = (double)ekDegerler[3];
+            dizi[4] = (double)ekDegerler[4];
+        }
+
+        private bool CollectionEsitmi(TNSCollection c1, TNSCollection c2)
+        {
+            if (c1 == null || c2 == null) return false;
+            if (c1.Count != c2.Count) return false;
+            if (c1.Count == 0) return false;
+
+            for (int i = 0; i < c1.Count; i++)
+            {
+                if (!c1[i].Equals(c2[i])) return false;
+            }
+            return true;
+        }
+
+        private string Form5_2(object kullanan, object servis, string sablonAd, string sonucDosyaAd, string ciktiYeri, Hashtable raporParam, string ekBilgi)
+        {
+            TNS.UZY.IUZYServis uzyServis = TNS.UZY.Arac.Tanimla();
+            TNS.BHMv2.IBHMv2Servis bhmv2Servis = TNS.BHMv2.Arac.Tanimla();
+
+            string kurKod = GenelIslemlerIstemci.VarsayilanKurumBul();
+            //kurKod = "46";
+            string kurAd = GenelIslemlerIstemci.VarsayilanKurumBulAd();
+            string senaryo = (string)raporParam["Senaryo"];
+            string senaryoAd = (string)raporParam["SenaryoAd"];
+
+            Tablo XLS = GenelIslemler.NewTablo();
+            sonucDosyaAd += "." + XLS.UzantiBul();
+            XLS.DosyaAc(sablonAd, sonucDosyaAd);
+
+            int sheetNo = 0;
+            int fSat1 = 0;
+            int fSat2 = 0;
+            int fSut1 = 0;
+            int fSut2 = 0;
+            int baslaSat = 0;
+            int baslaSut = 0;
+
+            XLS.HucreAdAdresCoz("FormatSatir", ref sheetNo, ref fSat1, ref fSut1, ref fSat2, ref fSut2);
+            XLS.HucreAdAdresCoz("BaslaSatir", ref baslaSat, ref baslaSut);
+            int yukseklik = XLS.SatirYukseklikAl(baslaSat);
+            XLS.HucreAdBulYaz("ButceYil", yil);
+            int yilSat = 0;
+            int yilSut = 0;
+            XLS.HucreAdAdresCoz("ButceYil", ref yilSat, ref yilSut);
+            XLS.HucreDegerYaz(yilSat, yilSut + 1, 0 - yil);
+            XLS.HucreAdBulYaz("KurumAd", kurAd);
+            XLS.HucreAdBulYaz("KurumKod", kurKod);
+
+            ToplamAl toplamAl = new ToplamAl(2, 9);
+
+            Tertip kistasTertip = new Tertip(yil, ENUMTabloKod.TABPEBOdenek, kurKod);
+            UcgenKodBilgileri kodBilgileri = new UcgenKodBilgileri();
+            kodBilgileri.Add(new UcgenKodBilgi(1, kistasTertip.KodNoKirilimSay(0)));
+            kodBilgileri.Add(new UcgenKodBilgi(4, 1));
+            EkDegerParam[] ekBilgiler = new EkDegerParam[3];
+            ekBilgiler[0] = new EkDegerParam(ENUMTabloKod.TABPEBOdenek, 0, 0, senaryo);
+            ekBilgiler[1] = new EkDegerParam(ENUMTabloKod.TABPEBOdenek, 0, 1, senaryo);
+            ekBilgiler[2] = new EkDegerParam(ENUMTabloKod.TABPEBOdenek, 0, 2, senaryo);
+            OdenekBilgi[] obler = bhmv2Servis.ListeTertipOl((Kullanici)kullanan, kistasTertip, kodBilgileri, ekBilgiler, true);
+
+            for (int i = 0; i < 3; i++)
+            {
+                int satir = baslaSat;
+                XLS.YeniSheetEkle(0);
+                int aktifSheet = XLS.AktifSheet();
+                XLS.HucreDegerYaz(yilSat, yilSut + 1, i);
+                int eskiSat = baslaSat;
+                string eskiKur = "";
+                string eskiAd = "";
+
+                toplamAl.SatirSifirla(0);
+                foreach (OdenekBilgi ob in obler)
+                {
+                    string yeniKurKod = ob.tertip.kodlar[0];
+                    if (yeniKurKod != eskiKur)
+                    {
+                        if (eskiKur != "")
+                        {
+                            SatirYaz5_2(XLS, satir, baslaSut, eskiKur, eskiAd, toplamAl, 1, fSat1, aktifSheet);
+                            toplamAl.ToplamEkle(0, 1);
+                            satir++;
+                        }
+                        eskiKur = yeniKurKod;
+                        eskiAd = ob.tertip.adlar[0];
+                        toplamAl.SatirSifirla(1);
+                    }
+                    string ekoKod = ob.tertip.kodlar[3];
+
+                    toplamAl.DegerAta(1, OrtakFonksiyonlar.ConvertToInt(ekoKod, 1) - 1, (double)ob.ekRakamlar[i]);
+                }
+                if (eskiKur != "")
+                {
+                    SatirYaz5_2(XLS, satir, baslaSut, eskiKur, eskiAd, toplamAl, 1, fSat1, aktifSheet);
+                    toplamAl.ToplamEkle(0, 1);
+                    satir++;
+
+                    SatirYaz5_2(XLS, satir, baslaSut, "", "", toplamAl, 0, fSat1, aktifSheet);
+                    satir++;
+                }
+                XLS.SatirYukseklikAyarla(baslaSat, satir, yukseklik);
+            }
+
+            XLS.DosyaSaklaTamYol();
+            return sonucDosyaAd;
+        }
+
+        private void SatirYaz5_2(Tablo XLS, int satir, int baslaSut, string kurKod, string kurAd, ToplamAl toplamAl, int toplamSat, int formatSat, int hedefSheet)
+        {
+            int fark = 0;
+            if (toplamSat == 0)
+                fark = 1;
+
+            XLS.HucreKopyala(0, formatSat + fark, 0, formatSat + fark, 11, hedefSheet, satir, baslaSut);
+            if (!string.IsNullOrEmpty(kurKod))
+            {
+                XLS.HucreDegerYaz(satir, baslaSut, kurKod);
+                XLS.HucreDegerYaz(satir, baslaSut + 1, kurAd);
+            }
+            for (int i = 0; i < toplamAl.SutunSay(); i++)
+            {
+                XLS.HucreDegerYaz(satir, baslaSut + 2 + i, toplamAl.toplam[toplamSat, i]);
+            }
+            XLS.HucreDegerYaz(satir, baslaSut + 2 + toplamAl.SutunSay(), toplamAl.SatToplamAl(toplamSat, 0, toplamAl.SutunSay() - 1));
         }
     }
 

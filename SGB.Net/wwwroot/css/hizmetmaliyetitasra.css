@@ -55,10 +55,7 @@
     font-weight: 600;
 }
 
-.hizmet-maliyeti-tasra #ddlKurumsal {
-    width: 260px;
-}
-
-.hizmet-maliyeti-tasra .ag-header-group-cell.orta .ag-header-group-cell-label {
-    justify-content: center;
+/* Yıl başlığı altındaki sütun başlığı ve sayılar gibi sağa dayalı (yıl sütununda suppressStickyLabel açık) */
+.hizmet-maliyeti-tasra .ag-header-group-cell.sayi .ag-header-group-cell-label {
+    justify-content: flex-end;
 }

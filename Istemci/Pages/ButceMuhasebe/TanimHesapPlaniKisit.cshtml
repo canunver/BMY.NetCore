@@ -1,0 +1,86 @@
+@page
+@model TanimHesapPlaniKisitModel
+@{
+    ViewData["Title"] = "Hesap Planı Kısıtlama Tanımlama";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim mt-tek ust-form muh-tanim" data-tur="hesapkisit">
+    <section class="tanim-sag">
+        <div class="kutu bolum yesil">
+            <h2 class="bolum-baslik">Kısıtlama</h2>
+            <div class="mt-arac" role="toolbar" aria-label="İşlemler">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil</button>
+                <button type="button" id="btnTemizle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle</button>
+                <button type="button" id="btnSonrakiYil" class="btn btn-default btn-sm sag" title="Formdaki yılın tanımlarını bir sonraki yıla kopyalar"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span> Sonraki Yıla Aktar</button>
+            </div>
+            <form id="frmBilgi" class="tanim-form mt-sik mt-sinirli" novalidate>
+                <input type="hidden" data-alan="kod" />
+                <div class="form-group">
+                    <label class="control-label" for="mtYil">Yıl</label>
+                    <div><input type="number" id="mtYil" class="form-control kisa sgb-yil" min="@Model.IlkYil" max="@(Model.BuYil + 1)" data-alan="yil" /></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Muhasebe / Birim</span>
+                    <div id="mtMuhBirim"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="mtHesap">Hesap Kodu</label>
+                    <div class="mt-yanyana">
+                        <input type="text" id="mtHesap" class="form-control kisa" data-alan="hesapKod" data-hesap-kodu data-yil="#mtYil" data-ad-hedef="#mtHesapAd" />
+                        <input type="text" id="mtHesapAd" class="form-control" data-alan="hesapAdi" readonly tabindex="-1" placeholder="Hesap adı" aria-label="Hesap adı" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="tanim-sol">
+        <div class="kutu bolum mt-kriter">
+            <h2 class="bolum-baslik">Kriterler</h2>
+            <form id="frmArama" class="tanim-arama mt-arama-yatay" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="srYil">Yıl</label>
+                    <div class="arama-satir"><input type="number" id="srYil" class="form-control sgb-yil" min="@Model.IlkYil" max="@(Model.BuYil + 1)" value="@Model.BuYil" data-alan="yil" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="srMuh">Muhasebe / Birim</label>
+                    <div class="arama-satir"><input type="text" id="srMuh" class="form-control" inputmode="numeric" data-alan="muhasebeKod" placeholder="Muhasebe" /><input type="text" id="srBirim" class="form-control" data-alan="birimKod" placeholder="Birim" aria-label="Birim kodu" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="srHesap">Hesap Kodu</label>
+                    <div class="arama-satir">
+                        <input type="text" id="srHesap" class="form-control" data-alan="hesapKod" />
+                        <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="kutu bolum turuncu izgarali">
+            <h2 class="bolum-baslik">Kısıtlamalar</h2>
+            <div id="grdListe" class="tanim-grid"></div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/makbuz.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hesapkodu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhtanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/hesapkodu.js" asp-append-version="true"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/muhtanim-mutemet.js" asp-append-version="true"></script>
+}

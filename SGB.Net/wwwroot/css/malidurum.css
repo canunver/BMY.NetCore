@@ -1,0 +1,92 @@
+/* Kurumsal Mali Durum ve Beklentiler Raporu: üstte seçim, altta dört metin; bölümler renkli başlıklı ayrı kutular. */
+
+.mali-durum {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mali-durum .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.mali-durum .kutu.bolum.bolum-metin {
+    --bolum-baslik: #fdf0dc;
+    --bolum-govde: #fffaf2;
+    --bolum-vurgu: #c98a1b;
+}
+
+.mali-durum .bolum-baslik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    margin: 0 -12px 12px;
+    padding: 9px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.mali-durum .bolum-baslik .alt-baslik {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+.mali-durum .secim-form {
+    --etiket-genislik: 110px;
+    max-width: 760px;
+}
+
+.mali-durum .form-control.yil {
+    max-width: 110px;
+}
+
+.mali-durum .secim-tuslar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+    padding-left: calc(var(--etiket-genislik) + 10px);
+}
+
+.mali-durum .metin-form {
+    --etiket-genislik: 260px;
+}
+
+.mali-durum textarea.metin {
+    min-height: 120px;
+}
+
+@media (max-width: 767px) {
+    .mali-durum .metin-form .form-group {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 4px;
+    }
+
+    .mali-durum .secim-tuslar {
+        padding-left: 0;
+    }
+}
+
+/* Kod ağacı penceresi */
+.mali-durum-agac {
+    width: min(640px, calc(100vw - 32px));
+}
+
+.mali-durum-agac .sgb-agac {
+    max-height: min(520px, calc(100vh - 220px));
+    overflow: auto;
+    margin: 0;
+}

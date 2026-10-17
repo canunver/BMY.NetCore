@@ -1,0 +1,190 @@
+/* AHP / AGP Girişi: solda renkli başlıklı kriter, rapor ve dosya bölümleri; sağda aylık dağılım tablosu. */
+
+.ap-giris {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+}
+
+.ap-giris .ap-sol {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+}
+
+.ap-giris .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    min-width: 0;
+}
+
+.ap-giris .kutu.bolum.bolum-rapor { --bolum-baslik: #eaf1dd; --bolum-govde: #fafcf6; --bolum-vurgu: #5f8a2c; }
+.ap-giris .kutu.bolum.bolum-dosya { --bolum-baslik: #fde9d9; --bolum-govde: #fffaf6; --bolum-vurgu: #c0652a; }
+.ap-giris .kutu.bolum.bolum-tablo { --bolum-baslik: #e6e6fa; --bolum-govde: #fafaff; --bolum-vurgu: #6a5acd; }
+
+.ap-giris .bolum-baslik {
+    margin: 0 -12px 12px;
+    padding: 9px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.ap-giris .ap-form {
+    --etiket-genislik: 82px;
+}
+
+.ap-giris .ap-yil {
+    max-width: 110px;
+}
+
+.ap-giris .ap-satir {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+}
+
+.ap-giris .ap-onay {
+    margin: 0;
+    padding-top: 0;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+.ap-giris .ap-tuslar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.ap-giris .ap-ipucu {
+    margin: 0 0 10px;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+/* Araç çubuğu */
+.ap-giris .ap-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    margin: 0 0 10px;
+}
+
+.ap-giris .ap-arac > .btn-group,
+.ap-giris .ap-arac > .checkbox-inline {
+    float: none;
+    margin: 0;
+}
+
+.ap-giris .ap-menu .dropdown-menu a {
+    cursor: pointer;
+}
+
+.ap-giris .ap-kilit {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ap-giris .ap-kilit[hidden] {
+    display: none;
+}
+
+.ap-giris .ap-kilit label {
+    margin: 0;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.ap-giris .ap-kilit input {
+    width: 64px;
+}
+
+.ap-giris .renk-aciklama {
+    display: flex;
+    gap: 10px;
+    margin: 0 0 0 auto;
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
+}
+
+.ap-giris .renk-aciklama li::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+    vertical-align: -1px;
+    border: 1px solid #bbb;
+}
+
+.ap-giris .renk-aciklama .acik::before { background: #fff; }
+.ap-giris .renk-aciklama .hesap::before { background: #fafad2; }
+.ap-giris .renk-aciklama .kilitli::before { background: #faba9f; }
+
+/* Tablo */
+.ap-giris .ap-grid {
+    height: max(420px, calc(100vh - 260px));
+}
+
+.ap-giris .ag-cell.hesap { background: #fafad2; }
+.ap-giris .ag-cell.kilitli { background: #faba9f; }
+.ap-giris .ag-cell.sayi { text-align: right; font-variant-numeric: tabular-nums; }
+.ap-giris .ag-cell.eksi { color: #b52a2a; }
+
+.ap-giris .ag-row-pinned .ag-cell {
+    font-weight: 700;
+    background: #ece9f8;
+}
+
+.ap-giris .ap-tertip {
+    line-height: 1.25;
+    white-space: normal;
+}
+
+.ap-giris .ap-tertip small {
+    display: block;
+    color: var(--soluk);
+    font-size: 11px;
+}
+
+/* Kod ağacı ve imza pencereleri */
+.ap-agac {
+    width: min(640px, calc(100vw - 32px));
+}
+
+.ap-agac .sgb-agac {
+    max-height: min(520px, calc(100vh - 220px));
+    overflow: auto;
+    margin: 0;
+}
+
+.ap-imza {
+    width: min(520px, calc(100vw - 32px));
+}
+
+.ap-imza .tanim-form {
+    --etiket-genislik: 140px;
+}
+
+@media (max-width: 991px) {
+    .ap-giris { grid-template-columns: minmax(0, 1fr); }
+    .ap-giris .ap-sol { position: static; }
+    .ap-giris .renk-aciklama { margin-left: 0; }
+}

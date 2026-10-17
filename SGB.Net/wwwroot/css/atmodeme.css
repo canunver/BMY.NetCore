@@ -1,0 +1,224 @@
+/* Alacak Takip ödeme pencereleri: Ödeme Bilgileri (Odeme) ve Toplu Ödeme Emri (AlacakTakipOdemeEmri).
+   tanim.css (tanim-form, tanim-pencere) üzerine. Bölümler ayrı kutular; tablolarda girilebilir hücreler beyaz, salt okunurlar sarı. */
+
+.atmo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ---- Araç çubukları ---- */
+.atmo-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+}
+
+.atmo-arac > .btn {
+    float: none;
+    margin: 0;
+}
+
+.atmo-arac .atmo-sag {
+    display: inline-flex;
+    gap: 6px;
+    margin-left: auto;
+}
+
+.atmo-bolum .atmo-arac {
+    margin-bottom: 8px;
+}
+
+.atmo-sayi {
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+/* ---- Bölümler ---- */
+.atmo .kutu.atmo-bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.atmo .kutu.atmo-bolum.atmo-tahakkuk {
+    --bolum-baslik: #efe6f8;
+    --bolum-govde: #faf6fd;
+    --bolum-vurgu: #7a4bb0;
+}
+
+.atmo .kutu.atmo-bolum.atmo-liste {
+    --bolum-baslik: #e2f3e8;
+    --bolum-govde: #f4fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.atmo-baslik {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 -12px 10px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.atmo-baslik label {
+    margin: 0;
+    font-weight: 600;
+}
+
+.atmo-ust {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 10px;
+    align-items: stretch;
+}
+
+/* ---- Alanlar (etiket solda, alt alta) ---- */
+.atmo-alanlar {
+    --etiket-genislik: 150px;
+}
+
+.atmo-alanlar .form-group {
+    margin-bottom: 6px;
+}
+
+.atmo-bitisik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.atmo .atmo-dar,
+.atmo-pencere .atmo-dar {
+    width: 110px;
+}
+
+.atmo-tarih {
+    width: 150px;
+}
+
+.atmo-bitisik .atmo-tarih {
+    width: 150px;
+    flex: none;
+}
+
+.atmo-tutar {
+    width: 160px;
+    text-align: right;
+}
+
+.atmo-hesap {
+    flex: 1 1 180px;
+    min-width: 160px;
+}
+
+.atmo-deger {
+    font-weight: 600;
+}
+
+.atmo-soluk {
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+.atmo-yardim {
+    padding: 0 2px;
+    color: var(--bolum-vurgu);
+}
+
+.atmo-not {
+    margin: 0 0 8px;
+    padding: 6px 10px;
+    font-size: 12px;
+    color: var(--murekkep);
+    background: #fffdf0;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.atmo-uyari {
+    margin: 4px 0 6px;
+    font-size: 12px;
+    color: #c62828;
+}
+
+.atmo-aciklama {
+    resize: vertical;
+}
+
+/* Salt okunur kutular (hesaplanan değerler) sarı; girilebilir kutular beyaz kalır */
+.atmo-pencere .form-control.atmo-salt,
+.atmo .form-control.atmo-salt {
+    background: #fcfcd4;
+}
+
+.atmo-pencere .form-control.atmo-vurgu {
+    font-weight: 700;
+}
+
+/* ---- Tablolar ---- */
+.atmo-grid {
+    width: 100%;
+    height: max(300px, calc(100vh - 380px));
+}
+
+.atmo-oe .atmo-grid {
+    height: max(300px, calc(100vh - 300px));
+}
+
+.atmo .atmo-salt {
+    background: #fcfcd4;
+}
+
+.atmo .atmo-girilir {
+    background: #fff;
+}
+
+.atmo .atmo-orta {
+    text-align: center;
+}
+
+.atmo .ag-right-aligned-cell,
+.atmo .ag-right-aligned-cell input {
+    text-align: right;
+}
+
+.atmo-satir-tus {
+    padding: 0 4px;
+    line-height: 1;
+}
+
+/* ---- Pencereler ---- */
+.tanim-pencere.atmo-pencere {
+    width: min(560px, calc(100vw - 32px));
+}
+
+.tanim-pencere.atmo-pencere .tanim-form {
+    --etiket-genislik: 150px;
+}
+
+@media (max-width: 767px) {
+    .atmo-ust {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .atmo .tanim-form .form-group,
+    .atmo-pencere .tanim-form .form-group {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 4px;
+    }
+}

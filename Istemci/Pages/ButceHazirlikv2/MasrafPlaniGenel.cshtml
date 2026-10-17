@@ -1,0 +1,281 @@
+@page
+@model MasrafPlaniGenelModel
+@{
+    ViewData["Title"] = "Masraf Planı Veri Girişi";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="mp-tavan mp-genel">
+    <div class="mp-ust">
+        <!-- Kriterler: aşama, harcama birimi, yıl ve kodlar iki sütunda -->
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Kriterler</h2>
+            <form id="frmSecim" class="tanim-form mp-form" novalidate>
+                @{
+                    var sol = new[]
+                    {
+                        new { agac = "17", ad = "53", alan = "ky", etiket = "Harc. Birimi", baslik = "Harcama birimi" },
+                        new { agac = "1", ad = "1", alan = "kur", etiket = "Kurumsal", baslik = "Kurumsal" }
+                    };
+                    var sag = new[]
+                    {
+                        new { agac = "2", ad = "2", alan = "fon", etiket = "Fonksiyonel", baslik = "Fonksiyonel" },
+                        new { agac = "3", ad = "3", alan = "fin", etiket = "Finans", baslik = "Finans" },
+                        new { agac = "4", ad = "4", alan = "eko", etiket = "Ekonomik", baslik = "Ekonomik" },
+                        new { agac = "14", ad = "58", alan = "peb", etiket = "Alt Faaliyet", baslik = "Alt Faaliyet" }
+                    };
+                }
+                <div class="mp-kriter-kolonlar">
+                    <div class="mp-kriter-kolon">
+                        <div class="form-group">
+                            <label class="control-label" for="ddlMPAsama">Aşama</label>
+                            <div><select id="ddlMPAsama" class="form-control input-sm mp-asama"></select></div>
+                        </div>
+                        @foreach (var a in sol)
+                        {
+                    <div class="form-group kod-alan" data-agac="@a.agac" data-ad="@a.ad" data-alan="@a.alan">
+                        <label class="control-label" for="txt_@a.alan">@a.etiket</label>
+                        <div class="kod-satir">
+                            <div class="input-group input-group-sm">
+                                <input type="text" id="txt_@a.alan" class="form-control" autocomplete="off" title="@a.baslik kodu (Alt+Aşağı: kod ağacı)" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">@a.baslik seç</span></button>
+                                    <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">@a.baslik temizle</span></button>
+                                </span>
+                            </div>
+                            <span class="kod-ad" aria-live="polite"></span>
+                        </div>
+                    </div>
+                        }
+                        <div class="form-group">
+                            <label class="control-label" for="ddlYil">Yıl</label>
+                            <div><input type="number" id="ddlYil" class="form-control input-sm mp-yil sgb-yil" min="2000" max="2100" /></div>
+                        </div>
+                    </div>
+                    <div class="mp-kriter-kolon">
+                        @foreach (var a in sag)
+                        {
+                    <div class="form-group kod-alan" data-agac="@a.agac" data-ad="@a.ad" data-alan="@a.alan">
+                        <label class="control-label" for="txt_@a.alan">@a.etiket</label>
+                        <div class="kod-satir">
+                            <div class="input-group input-group-sm">
+                                <input type="text" id="txt_@a.alan" class="form-control" autocomplete="off" title="@a.baslik kodu (Alt+Aşağı: kod ağacı)" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">@a.baslik seç</span></button>
+                                    <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">@a.baslik temizle</span></button>
+                                </span>
+                            </div>
+                            <span class="kod-ad" aria-live="polite"></span>
+                        </div>
+                    </div>
+                        }
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- İşlemler (eski sağ form paneli) -->
+        <div class="kutu bolum bolum-islem">
+            <h2 class="bolum-baslik">İşlemler</h2>
+            <div class="mp-form">
+                <div class="mp-satir">
+                    <label for="ddlAy">Ay</label>
+                    <select id="ddlAy" class="form-control input-sm mp-ay-sec">
+                        <option value="1">Ocak</option>
+                        <option value="2">Şubat</option>
+                        <option value="12" selected>Aralık</option>
+                    </select>
+                    <button type="button" id="btnTavandanMPye" class="btn btn-default btn-sm" data-tertip="0" title="Bütün tertiplerde tavanlar seçilen aya dağıtılır">
+                        <span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Tavandan MP'ye
+                    </button>
+                    <button type="button" id="btnTavandanMPyeTertip" class="btn btn-default btn-sm" data-tertip="1" title="Yalnızca seçilen kodlara uyan tertiplerde tavanlar seçilen aya dağıtılır">
+                        <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Tavandan MP'ye (Tertip)
+                    </button>
+                    <input type="file" id="fuAHPdenMPye" accept=".xls,.xlsx" hidden />
+                    <button type="button" id="btnAHPdenMPye" class="btn btn-default btn-sm"
+                            title="Excel: 1. satır başlık; sütunlar tertip, saymanlık, birim. Bu tertiplerde seçilen aşamanın masraf planı AHP'den yeniden oluşturulur (sistem yöneticisi).">
+                        <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> AHP'den MP'ye
+                    </button>
+                    <button type="button" id="btnYardim" class="btn btn-default btn-sm mp-yardim" title="Dosya formatı" aria-expanded="false" aria-controls="pnlIpucu">
+                        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span><span class="sr-only">Dosya formatı</span>
+                    </button>
+                </div>
+                <p id="pnlIpucu" class="mp-ipucu" hidden>
+                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                    AHP'den MP'ye: Excel dosyasının (.xls, .xlsx) ilk satırı başlıktır ve okunmaz. Sütunlar sırasıyla 1. tertip, 2. saymanlık kodu,
+                    3. birim kodu olmalıdır. Dosyadaki her tertip için seçilen aşamanın masraf planı AHP'den yeniden oluşturulur
+                    (yalnızca sistem yöneticisi).
+                </p>
+                <div class="mp-satir">
+                    <label for="ddlRaporListe" class="sr-only">Rapor</label>
+                    <select id="ddlRaporListe" class="form-control input-sm mp-rapor"></select>
+                    <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Seçilen raporu alır (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                    </button>
+                    <button type="button" id="btnImza" class="btn btn-default btn-sm" title="Raporlardaki hazırlayan ve imzalayan bilgileri">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> İmzalar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tertipler (eski grdMPTertipler) -->
+    <div class="kutu bolum bolum-tablo">
+        <div class="btn-toolbar mp-arac" role="toolbar" aria-label="Masraf planı işlemleri">
+            <button type="button" id="btnListele" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+            </button>
+            <button type="button" id="btnOnayla" class="btn btn-success btn-sm" title="Seçilen harcama birimi ve aşama için, İşlemler'deki ay ile onaylar">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> MP Onayla
+            </button>
+            <button type="button" id="btnOnayKaldir" class="btn btn-default btn-sm" title="Seçilen harcama birimi ve aşama için onayı kaldırır">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> MP Onay Kaldır
+            </button>
+            <button type="button" id="btnAsamaKopyala" class="btn btn-default btn-sm" title="Bir önceki aşamanın masraf planını seçilen aşamaya kopyalar">
+                <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Önc. Al
+            </button>
+            <button type="button" id="btnClipboard" class="btn btn-default btn-sm" title="Tabloyu panoya kopyalar (Excel'e yapıştırılabilir)">
+                <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Panoya
+            </button>
+            <button type="button" id="btnHizliOdGondUret" class="btn btn-default btn-sm" data-cezali="0" title="Hızlı ödenek gönderme dosyası (Excel)">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Hızlı Öd. Gönd. Üret
+            </button>
+            <button type="button" id="btnHizliOdGondUretC" class="btn btn-default btn-sm" data-cezali="1" title="Hızlı ödenek gönderme dosyası (SGB &gt; KBS)">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Hızlı Öd. (SGB&gt;KBS)
+            </button>
+            <button type="button" id="btnSariKontrol" class="btn btn-default btn-sm yonetici" hidden title="Ödenek kontrol dönemi ve tertipleri (sistem yöneticisi)">
+                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Kontrol Dönemi
+            </button>
+            <a id="btnMPAyarla" class="btn btn-default btn-sm yonetici" hidden href="MasrafPlaniYatirimAyarla" target="_blank" rel="noopener"
+               title="İki tertip arasında aylık masraf planı / AHP / tavan aktarımı (sistem yöneticisi)">
+                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> MP Düzelt
+            </a>
+        </div>
+        <div id="grdMPTertipler" class="mp-grid" aria-label="Masraf planı tertipleri"></div>
+    </div>
+</div>
+
+<!-- Kod ağacı penceresi (eski KodAgac.aspx) -->
+<dialog id="dlgKod" class="tanim-pencere mp-agac" aria-labelledby="dlgKodBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKodBaslik">Kod Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde" id="agacKutu"></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- İmzalar (eski MasrafPlaniGenelImza.aspx) -->
+<dialog id="dlgImza" class="tanim-pencere mp-imza" aria-labelledby="dlgImzaBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgImzaBaslik">Rapor İmzaları</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <form id="frmImza" class="pencere-govde tanim-form" novalidate>
+        <div class="form-group">
+            <label class="control-label" for="txtHazKisi">Hazırlayan Kişi</label>
+            <div><input type="text" id="txtHazKisi" class="form-control input-sm" maxlength="200" /></div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="txtHazGorev">Hazırlayan Görev</label>
+            <div><input type="text" id="txtHazGorev" class="form-control input-sm" maxlength="200" /></div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="txtImzKisi">İmzalayan Kişi</label>
+            <div><input type="text" id="txtImzKisi" class="form-control input-sm" maxlength="200" /></div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="txtImzGorev">İmzalayan Görev</label>
+            <div><input type="text" id="txtImzGorev" class="form-control input-sm" maxlength="200" /></div>
+        </div>
+    </form>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnImzaKaydet" class="btn btn-success btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+<!-- Kontrol dönemi (eski MasrafPlaniKontrolDonem.aspx; sistem yöneticisi) -->
+<dialog id="dlgKontrol" class="tanim-pencere mp-kontrol" aria-labelledby="dlgKontrolBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKontrolBaslik">Ödenek Kontrol Dönemi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmKontrol1" class="tanim-form" novalidate>
+            <fieldset>
+                <legend>Kontrol Dönemi</legend>
+                <div class="form-group">
+                    <label class="control-label" for="kdYil">Yıl</label>
+                    <div><input type="number" id="kdYil" class="form-control input-sm mp-yil sgb-yil" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="kdAy">Ay</label>
+                    <div><input type="number" id="kdAy" class="form-control input-sm mp-ay" min="-1" max="12" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="kdHizYil">Hiz. Mal. Kontrol Yılı</label>
+                    <div><input type="number" id="kdHizYil" class="form-control input-sm mp-yil sgb-yil" /></div>
+                </div>
+                <div class="mp-tuslar">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+        <form id="frmKontrol2" class="tanim-form" novalidate>
+            <fieldset>
+                <legend>Ödenek Kontrolü</legend>
+                <div class="form-group">
+                    <span class="control-label">Kontrol</span>
+                    <div><label class="checkbox-inline"><input type="checkbox" id="kdKontrolYap" /> Ödenek kontrolü yapılsın</label></div>
+                </div>
+                <div class="form-group ust-hizali">
+                    <label class="control-label" for="kdTertipler">Tertipler</label>
+                    <div><textarea id="kdTertipler" class="form-control input-sm" rows="4"></textarea></div>
+                </div>
+                <div class="mp-tuslar">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Uzun sonuç metinleri (yükleme uyarıları) -->
+<dialog id="dlgSonuc" class="tanim-pencere mp-sonuc" aria-labelledby="dlgSonucBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSonucBaslik">Sonuç</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde"><pre id="sonucMetin" class="mp-sonuc-metin"></pre></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/mptavan.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/masrafplani.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/mptavan-ortak.js" asp-append-version="true"></script>
+    <script src="~/js/masrafplani.js" asp-append-version="true"></script>
+}

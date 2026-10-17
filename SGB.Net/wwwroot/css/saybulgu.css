@@ -1,0 +1,157 @@
+/* Sayıştay Bulguları ve Ön Bulgu Cevapları: üstte seçim, altta bulgu listesi; bölümler renkli başlıklı ayrı kutular. */
+
+.say-bulgu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.say-bulgu .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.say-bulgu .kutu.bolum.bolum-liste {
+    --bolum-baslik: #e2f3ea;
+    --bolum-govde: #f6fbf8;
+    --bolum-vurgu: #2e8b57;
+}
+
+.say-bulgu .bolum-baslik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    margin: 0 -12px 12px;
+    padding: 9px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.say-bulgu .bolum-baslik .alt-baslik {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+.say-bulgu .secim-form {
+    --etiket-genislik: 80px;
+    max-width: 760px;
+}
+
+.say-bulgu .form-control.yil {
+    max-width: 110px;
+}
+
+.say-bulgu .form-control.durum {
+    max-width: 280px;
+}
+
+.say-bulgu .secim-tuslar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+    padding-left: calc(var(--etiket-genislik) + 10px);
+}
+
+.say-grid {
+    height: 460px;
+}
+
+.say-grid .islem-hucre .btn + .btn {
+    margin-left: 3px;
+}
+
+@media (max-width: 767px) {
+    .say-bulgu .secim-tuslar {
+        padding-left: 0;
+    }
+}
+
+/* Pencereler (eski Bootstrap modal'ları, 1100 px) */
+.tanim-pencere.genis-pencere {
+    width: min(1100px, calc(100vw - 32px));
+}
+
+.say-pencere .bulgu-form {
+    --etiket-genislik: 170px;
+}
+
+.say-pencere .form-control.yil,
+.say-pencere .form-control.kisa,
+.say-pencere .form-control.tarih {
+    max-width: 170px;
+}
+
+.say-pencere .form-control.kimlik {
+    max-width: 120px;
+    margin-left: auto;
+    text-align: right;
+}
+
+.say-pencere .cift-alan {
+    align-items: center;
+    gap: 16px;
+}
+
+.say-pencere .cift-alan .checkbox-inline {
+    margin: 0;
+    padding-top: 0;
+    white-space: nowrap;
+}
+
+.say-pencere .iki-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.say-pencere .grid-title {
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.say-pencere .birim-ara {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.say-pencere .grid-wrap {
+    height: 420px;
+}
+
+.say-pencere .izin-tuslar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.say-pencere .izin-grid {
+    height: min(560px, calc(100vh - 240px));
+}
+
+@media (max-width: 767px) {
+    .say-pencere .iki-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .say-pencere .bulgu-form .form-group {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 4px;
+    }
+}

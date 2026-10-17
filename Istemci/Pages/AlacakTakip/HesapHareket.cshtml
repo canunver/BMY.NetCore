@@ -1,0 +1,91 @@
+@page
+@model HesapHareketModel
+@{
+    ViewData["Title"] = "Dosya Hesap Hareket Formu";
+    ViewData["GovdeSinif"] = "tanim-sayfa hh-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="hesap-hareket">
+    <div class="btn-toolbar hh-arac" role="toolbar" aria-label="Hesap hareket işlemleri">
+        <div class="btn-group btn-group-sm" role="group">
+            <button type="button" id="btnKaydet" class="btn btn-primary" title="Üstteki satırları kaydeder; formüllü satırlar sunucuda hesaplanır">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+            </button>
+            <button type="button" id="btnSil" class="btn btn-default" disabled title="Listeden seçilen kaydı siler">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+            </button>
+            <button type="button" id="btnYeni" class="btn btn-default" title="İşlem seçerek yeni hesap hareketi girer">
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Kayıt
+            </button>
+        </div>
+        <span id="lblDosya" class="hh-dosya" aria-live="polite"></span>
+        <button type="button" id="btnKapat" class="btn btn-default btn-sm hh-kapat">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Kapat
+        </button>
+    </div>
+
+    <!-- Seçilen işlemin hesap satırları (eski gpData) -->
+    <section class="kutu hh-bolum hh-bolum-satir">
+        <h2 class="hh-baslik">Hesap Satırları <span id="lblIslem" class="hh-islem"></span></h2>
+        <div id="grdSatirlar" class="hh-grid hh-grid-satir" aria-label="Hesap satırları"></div>
+    </section>
+
+    <!-- Kayıt edilmiş bilgiler (eski grdListe) -->
+    <section class="kutu hh-bolum hh-bolum-liste">
+        <h2 class="hh-baslik">Kayıt edilmiş bilgiler</h2>
+        <div id="grdListe" class="hh-grid hh-grid-liste" aria-label="Kayıt edilmiş bilgiler"></div>
+    </section>
+</div>
+
+<!-- İşlem Seçimi (eski wndHesap) -->
+<dialog id="dlgIslem" class="tanim-pencere" aria-labelledby="dlgIslemBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgIslemBaslik">İşlem Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmIslem" class="tanim-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="ddlTasarim">İşlem Adı</label>
+                <div><select id="ddlTasarim" class="form-control input-sm"></select></div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Kapat
+        </button>
+        <button type="submit" id="btnSec" form="frmIslem" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Seç ve Devam Et
+        </button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hesaphareket.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/hesaphareket.js" asp-append-version="true"></script>
+}

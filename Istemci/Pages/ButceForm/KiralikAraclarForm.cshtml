@@ -1,0 +1,230 @@
+@page
+@model KiralikAraclarFormModel
+@{
+    ViewData["Title"] = "Kiralık Araç Bilgileri";
+    // Geniş ekranda sayfa pencereye sığar; solda sözleşme listesi, sağda seçili sözleşme ve araçları (tanim.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim kiralik-arac">
+    <!-- Sol: yıl, muhasebe / birim ve sözleşme listesi -->
+    <section class="tanim-sol">
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Sözleşmeler</h2>
+            <div class="btn-toolbar ka-arac" role="toolbar" aria-label="Liste işlemleri">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnListele" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Listele
+                    </button>
+                    <button type="button" id="btnYazdir" class="btn btn-default" title="Birimin kiralık araç listesi (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                    </button>
+                    <button type="button" id="btnYazdirOzet" class="btn btn-default" title="Hizmet alımı suretiyle kullanılan taşıtlar tablosu (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Tablo Yazdır
+                    </button>
+                </div>
+            </div>
+            <div class="tanim-arama">
+                <div class="form-group">
+                    <label class="control-label" for="txtYil">Yıl</label>
+                    <input type="number" id="txtYil" class="form-control input-sm sgb-yil ka-yil" step="1" title="Sözleşmenin imzalandığı yıl" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMuhasebe">Muh. / Birim</label>
+                    <div id="muhBirim" title="Sözleşmeyi yapan birimin saymanlık ve birim kodu"></div>
+                </div>
+            </div>
+            <div id="grdSozlesme" class="tanim-grid" aria-label="Sözleşmeler"></div>
+        </div>
+    </section>
+
+    <!-- Sağ: sözleşme bilgileri ve araçları -->
+    <section class="ka-sag">
+        <div class="kutu bolum bolum-sozlesme">
+            <h2 class="bolum-baslik">Sözleşme bilgileri <span id="lblSozKod" class="label label-default"></span></h2>
+            <div class="btn-toolbar ka-arac" role="toolbar" aria-label="Sözleşme işlemleri">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnKaydet" class="btn btn-primary" disabled>
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                    </button>
+                    <button type="button" id="btnYeni" class="btn btn-default">
+                        <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Sözleşme Girişi
+                    </button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnAracEkle" class="btn btn-default" hidden>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Araç Ekle
+                    </button>
+                    <button type="button" id="btnSozlesmeSil" class="btn btn-danger" hidden>
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sözleşme Sil
+                    </button>
+                </div>
+            </div>
+            <fieldset id="frmSozlesme" class="tanim-form ka-form" disabled>
+                <div class="ka-kolon">
+                    <div class="form-group">
+                        <span class="control-label">Birim Ad</span>
+                        <span id="lblSozBirimAd" class="form-control-static"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="dtImzaTarihi">İmza Tarihi</label>
+                        <input type="date" id="dtImzaTarihi" class="form-control input-sm dar" title="Sözleşmenin imzalandığı tarih" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtSozlesmeNo">Sözleşme No</label>
+                        <input type="text" id="txtSozlesmeNo" class="form-control input-sm" maxlength="50" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="dtIsBaslangicTarihi">İş Başlangıç/Bitiş</label>
+                        <div class="ka-yanyana">
+                            <input type="date" id="dtIsBaslangicTarihi" class="form-control input-sm" title="İşin başlayacağı tarih" />
+                            <input type="date" id="dtIsBitisTarihi" class="form-control input-sm" title="İşin biteceği tarih" aria-label="İş bitiş tarihi" />
+                        </div>
+                    </div>
+                </div>
+                <div class="ka-kolon">
+                    <div class="form-group">
+                        <label class="control-label" for="txtFirmaAd">Firma</label>
+                        <div class="ka-yanyana">
+                            <input type="text" id="txtFirmaAd" class="form-control input-sm" readonly title="Sözleşmenin kiminle imzalandığı" />
+                            <button type="button" id="btnFirmaSec" class="btn btn-default btn-sm" title="Kişi / firma seç">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Kişi / firma seç</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <span class="control-label">Sözleşme Bedeli</span>
+                        <div class="ka-bedel">
+                            <label>Bütçe <input type="text" id="txtBedelButce" class="form-control input-sm sayi" readonly tabindex="-1" /></label>
+                            <label>Döner Sermaye <input type="text" id="txtBedelDoner" class="form-control input-sm sayi" readonly tabindex="-1" /></label>
+                            <label>Toplam <input type="text" id="txtBedelToplam" class="form-control input-sm sayi" readonly tabindex="-1" /></label>
+                        </div>
+                    </div>
+                    <div class="form-group" id="grpIlceler" hidden>
+                        <span class="control-label">İlçeler Dahil</span>
+                        <label class="ka-isaret" title="Eğer sadece il merkezinde değil de ilçelerde de kullanılacaksa işaret konulmalı">
+                            <input type="checkbox" id="cbIlcelerDahil" /> Evet
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtSurecYil">Süreç Yıl/No</label>
+                        <div class="ka-yanyana">
+                            <input type="number" id="txtSurecYil" class="form-control input-sm ka-surec-yil" step="1" title="İlgili sürecin yılı" />
+                            <span class="ka-ayrac">/</span>
+                            <input type="text" id="txtSurecNo" class="form-control input-sm ka-surec-no" title="İlgili sürecin süreç numarası" aria-label="Süreç no" />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <h3 class="ka-alt-baslik">Sözleşmede bulunan araç bilgileri <span id="lblToplam" class="ka-toplam"></span></h3>
+            <div id="grdArac" class="ka-grid" aria-label="Sözleşmede bulunan araçlar"></div>
+        </div>
+    </section>
+</div>
+
+<!-- Araç bilgi girişi / düzenleme (eski wndAracGiris) -->
+<dialog id="dlgArac" class="tanim-pencere ka-pencere" aria-labelledby="dlgAracBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgAracBaslik">Araç Bilgi Girişi/Düzenleme Formu</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmArac" class="tanim-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="cmbTipi">Araç Türü</label>
+                <select id="cmbTipi" class="form-control input-sm"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="cmbCinsi">Cinsi</label>
+                <select id="cmbCinsi" class="form-control input-sm"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="sfEnBuyukYas">En Büyük Yaş</label>
+                <input type="number" id="sfEnBuyukYas" class="form-control input-sm dar" min="0" step="1" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="sfKoltukSayisi">Koltuk Sayısı</label>
+                <input type="number" id="sfKoltukSayisi" class="form-control input-sm dar" min="0" step="1" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="cmbYakitTuru">Yakıt Türü</label>
+                <select id="cmbYakitTuru" class="form-control input-sm dar"></select>
+            </div>
+            <div class="form-group">
+                <span class="control-label">Dahillik</span>
+                <div class="ka-yanyana">
+                    <label class="ka-isaret"><input type="checkbox" id="cbSoforDahil" /> Şoför Dahil</label>
+                    <label class="ka-isaret"><input type="checkbox" id="cbYakitDahil" /> Yakıt Dahil</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="sfAdet">Adet</label>
+                <input type="number" id="sfAdet" class="form-control input-sm dar" min="0" step="1" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="sfSure">Süre</label>
+                <div class="ka-yanyana">
+                    <input type="number" id="sfSure" class="form-control input-sm ka-sure" min="0" step="1" />
+                    <select id="cmbSureBirimi" class="form-control input-sm" aria-label="Süre birimi"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtBirimFiyat">Birim Fiyat</label>
+                <input type="text" id="txtBirimFiyat" class="form-control input-sm dar sayi" inputmode="decimal" autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtTutar">Tutar</label>
+                <input type="text" id="txtTutar" class="form-control input-sm dar sayi" readonly tabindex="-1" />
+            </div>
+            <div class="form-group">
+                <span class="control-label">Kaynak</span>
+                <div class="ka-yanyana">
+                    <label class="ka-isaret"><input type="radio" name="kaynak" id="rdKaynakButce" value="0" /> Bütçe</label>
+                    <label class="ka-isaret"><input type="radio" name="kaynak" id="rdKaynakDS" value="1" /> Döner Sermaye</label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" id="btnAracSil" class="btn btn-danger btn-sm ka-sol" hidden>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+        </button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnAracKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu (Kaydet, Sil) -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/makbuz.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/kiralikarac.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/kiralikarac.js" asp-append-version="true"></script>
+}

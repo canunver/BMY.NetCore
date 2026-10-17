@@ -1,0 +1,243 @@
+@page
+@model TanimHesapPlaniModel
+@{
+    ViewData["Title"] = "Hesap Planı Bilgileri Tanımlama";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+
+    // Tertip / kesinti / alt hesap / çalışma şekli seçimleri: boş = -1 (aramada ve toplu değiştirmede "hepsi").
+    async Task Secim(string kimlik, string alan, params (string deger, string ad)[] secenekler)
+    {
+        <select id="@kimlik" class="form-control dar" data-alan="@alan">
+            <option value="-1"></option>
+            @foreach (var s in secenekler)
+            {
+                <option value="@s.deger">@s.ad</option>
+            }
+        </select>
+    }
+    var tertip = new[] { ("0", "Zorunlu Değil"), ("1", "Zorunlu") };
+    var evetHayir = new[] { ("0", "Hayır"), ("1", "Evet") };
+    var bakiye = new[] { ("0", "Borç-Alacak Çalışır"), ("1", "Borç Çalışır"), ("2", "Alacak Çalışır") };
+    var karsilik = new[] { ("ALIS", "Alış"), ("SATIS", "Satış"), ("EALIS", "Efektif Alış"), ("ESATIS", "Efektif Satış"), ("SALIS", "Serbest Alış"), ("SSATIS", "Serbest Satış") };
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim form-solda muh-tanim">
+    <section class="tanim-sag">
+        <div class="kutu">
+            <div class="mt-arac" role="toolbar" aria-label="İşlemler">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil</button>
+                <button type="button" id="btnBul" class="btn btn-default btn-sm" title="Hesap kodu ile başlayan ve formdaki özelliklere uyan hesapları listeler"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Bul</button>
+                <button type="button" id="btnTemizle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle</button>
+                <div class="btn-group btn-group-sm">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Aktar <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" id="btnExceldenAktar">Excel'den Aktar</a></li>
+                        <li><a href="#" id="btnExceleAktar">Excel'e Aktar</a></li>
+                        <li><a href="#" id="btnSonrakiYil">Sonraki Yıla Aktar</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Yansıtmalar</li>
+                        <li><a href="#" id="btnYansitmaExceldenAktar">Yansıtmaları Excel'den Aktar</a></li>
+                        <li><a href="#" id="btnYansitmaExceleAktar">Yansıtmaları Excel'e Aktar</a></li>
+                        <li><a href="#" id="btnYansitmaSonrakiYil">Yansıtmaları Sonraki Yıla Aktar</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group btn-group-sm sag">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Diğer <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#" id="btnNitelik">Toplu Nitelik Değiştirme</a></li>
+                        <li><a href="#" id="btnDetayGuncelle">Detay Güncelle</a></li>
+                        <li id="liBirimDoldur" hidden><a href="#" id="btnBirimDoldur">Detay Birim Doldur</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <form id="frmBilgi" novalidate>
+                <div class="kutu bolum">
+                    <h2 class="bolum-baslik">Hesap</h2>
+                    <div class="tanim-form genis-etiket mt-sik">
+                        <div class="form-group">
+                            <label class="control-label" for="hpYil">Yıl</label>
+                            <div><input type="number" id="hpYil" class="form-control kisa sgb-yil" min="@Model.IlkYil" max="@(Model.BuYil + 1)" data-alan="yil" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="hpHesap">Hesap Kodu</label>
+                            <div><input type="text" id="hpHesap" class="form-control kisa" data-alan="hesapKod" data-hesap-kodu data-yil="#hpYil" data-denetle="false" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="hpAciklama">Açıklama</label>
+                            <div><input type="text" id="hpAciklama" class="form-control" data-alan="aciklama" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="hpTertip">Tertip Zorunlu mu?</label>
+                            <div>@{ await Secim("hpTertip", "tertip", tertip); }</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="hpKesinti">Kesinti Hesabı mı?</label>
+                            <div>@{ await Secim("hpKesinti", "kesinti", evetHayir); }</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="hpAltHesap">Alt Hesap Kullanır mı?</label>
+                            <div>@{ await Secim("hpAltHesap", "altHesap", evetHayir); }</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="hpBakiye">Çalışma Şekli</label>
+                            <div>@{ await Secim("hpBakiye", "bakiye", bakiye); }</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="hpEko">Ekonomik Kod Başlangıç</label>
+                            <div><input type="number" id="hpEko" class="form-control kisa" min="-1" max="4" step="1" data-alan="ekoBasla" /></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nitelik / Döviz / Yansıtmalar: sekmeli tek bölme -->
+                <div class="kutu bolum mt-sekmeli turuncu">
+                    <div class="bolum-baslik mt-sekme-basliklar" role="tablist" aria-label="Hesap ayrıntıları">
+                        <button type="button" class="mt-sekme-tus active" role="tab" aria-selected="true" data-sekme="nitelik" data-renk="turuncu">Nitelik</button>
+                        <button type="button" class="mt-sekme-tus" role="tab" aria-selected="false" data-sekme="doviz" data-renk="yesil">Döviz</button>
+                        <button type="button" class="mt-sekme-tus" role="tab" aria-selected="false" data-sekme="yansitma" data-renk="mor">Yansıtmalar <span class="mt-sekme-sayi" id="ysSayi"></span></button>
+                        <span class="bolum-not" id="ysHesap"></span>
+                    </div>
+
+                    <div class="mt-sekme" role="tabpanel" data-sekme="nitelik">
+                        <div id="hpNitelik" class="mt-nitelik" role="group" aria-label="Nitelik"></div>
+                    </div>
+
+                    <div class="mt-sekme" role="tabpanel" data-sekme="doviz" hidden>
+                        <div class="tanim-form genis-etiket mt-sik">
+                            <div class="form-group">
+                                <label class="control-label" for="hpKur">Kur Adı</label>
+                                <div><select id="hpKur" class="form-control dar" data-alan="dovizKurKod"><option value=""></option></select></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="hpSatis">Satış Karşılık Tür</label>
+                                <div>
+                                    <select id="hpSatis" class="form-control dar" data-alan="satisKarsilikTur">
+                                        <option value=""></option>
+                                        @foreach (var s in karsilik) { <option value="@s.Item1">@s.Item2</option> }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="hpAlis">Alış Karşılık Tür</label>
+                                <div>
+                                    <select id="hpAlis" class="form-control dar" data-alan="alisKarsilikTur">
+                                        <option value=""></option>
+                                        @foreach (var s in karsilik) { <option value="@s.Item1">@s.Item2</option> }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="hpKfAlacak">Kur Farkı Alacak Hesabı</label>
+                                <div><input type="text" id="hpKfAlacak" class="form-control kisa" data-alan="alacakHesabi" data-hesap-kodu data-yil="#hpYil" data-ad /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="hpKfBorc">Kur Farkı Borç Hesabı</label>
+                                <div><input type="text" id="hpKfBorc" class="form-control kisa" data-alan="borcHesabi" data-hesap-kodu data-yil="#hpYil" data-ad /></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Yansıtmalar (eski TanimYansitma.aspx): seçili hesabın yansıtma hesapları, sıra numarasına göre -->
+                    <div class="mt-sekme" role="tabpanel" data-sekme="yansitma" hidden>
+                        <div class="mt-yanyana mt-yansitma-ekle">
+                            <label class="control-label" for="ysKod">Yansıtma Hesabı</label>
+                            <input type="text" id="ysKod" class="form-control kisa" data-hesap-kodu data-yil="#hpYil" data-son-seviye data-ad />
+                            <button type="button" id="btnYansitmaEkle" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekle</button>
+                        </div>
+                        <div id="grdYansitma" class="mt-yansitma-grid"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="tanim-sol">
+        <div class="kutu bolum izgarali">
+            <h2 class="bolum-baslik">Hesap Planı <span class="bolum-not">Bul ile listelenir</span></h2>
+            <div id="grdListe" class="tanim-grid"></div>
+        </div>
+    </section>
+
+</div>
+
+<!-- Toplu Nitelik Değiştirme (eski HesapPlaniNitelik.aspx) -->
+<dialog id="dlgNitelik" class="tanim-pencere mt-genis" aria-labelledby="dlgNitelikBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgNitelikBaslik">Toplu Nitelik Değiştirme</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="text-muted">Hesap kodu ile başlayan ve seçilen özelliklere uyan bütün hesaplara işaretli nitelikler eklenir ya da kaldırılır.</p>
+        <form id="frmNitelik" class="tanim-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="tnYil">Yıl</label>
+                <div><input type="number" id="tnYil" class="form-control kisa sgb-yil" min="@Model.IlkYil" max="@(Model.BuYil + 1)" data-alan="yil" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="tnHesap">Hesap Kodu</label>
+                <div><input type="text" id="tnHesap" class="form-control dar" data-alan="hesapKod" placeholder="ile başlar" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="tnTertip">Tertip Zorunlu mu?</label>
+                <div>@{ await Secim("tnTertip", "tertip", tertip); }</div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="tnKesinti">Kesinti Hesabı mı?</label>
+                <div>@{ await Secim("tnKesinti", "kesinti", evetHayir); }</div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="tnAltHesap">Alt Hesap Kullanır mı?</label>
+                <div>@{ await Secim("tnAltHesap", "altHesap", evetHayir); }</div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="tnBakiye">Çalışma Şekli</label>
+                <div>@{ await Secim("tnBakiye", "bakiye", bakiye); }</div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="tnEko">Ekonomik Kod Başlangıç</label>
+                <div><input type="number" id="tnEko" class="form-control kisa" min="-2" max="4" step="1" data-alan="ekoBasla" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="tnIslem">Nitelik İşlemi</label>
+                <div>
+                    <select id="tnIslem" class="form-control dar" data-alan="islem">
+                        <option value="0">Ekleme</option>
+                        <option value="1">Kaldırma</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group ust-hizali">
+                <span class="control-label">Nitelik</span>
+                <div id="tnNitelik" class="mt-nitelik" role="group" aria-label="Nitelik"></div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnNitelikGuncelle" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Güncelle</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/makbuz.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hesapkodu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhtanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/hesapkodu.js" asp-append-version="true"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/muhtanim-hesapplani.js" asp-append-version="true"></script>
+}

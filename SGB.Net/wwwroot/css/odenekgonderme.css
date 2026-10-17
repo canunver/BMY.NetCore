@@ -1,0 +1,669 @@
+/* Ödenek Gönderme / Tenkis: ana çerçeve (sekmeler), belge formu ve belge listesi. Bölümler renkli başlıklı ayrı kutular. */
+
+/* ---- Ana çerçeve ---- */
+.og-cerceve {
+    display: flex;
+    flex-direction: column;
+}
+
+.og-cerceve .og-baslik {
+    margin: 0 0 10px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.og-cerceve .og-sekmeler {
+    margin-bottom: 0;
+}
+
+.og-cerceve .og-sekmeler > li > a {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.og-cerceve iframe.og-alt-cerceve {
+    flex: 1 1 auto;
+    width: 100%;
+    height: 600px;
+    border: 1px solid var(--cizgi);
+    border-top: 0;
+    background: var(--yuzey);
+}
+
+.og-cerceve iframe.og-alt-cerceve[hidden] {
+    display: none;
+}
+
+/* ---- Ortak ---- */
+.odenek-gonderme {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.odenek-gonderme .og-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.odenek-gonderme .og-hizli {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.odenek-gonderme .og-hizli select {
+    width: auto;
+    min-width: 170px;
+}
+
+.odenek-gonderme .og-ust {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 12px;
+    align-items: start;
+}
+
+.odenek-gonderme .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.odenek-gonderme .kutu.bolum.bolum-durum {
+    --bolum-baslik: #fdf0dc;
+    --bolum-govde: #fffaf2;
+    --bolum-vurgu: #c98a1b;
+}
+
+.odenek-gonderme .kutu.bolum.bolum-tertip,
+.odenek-gonderme .kutu.bolum.bolum-liste {
+    --bolum-baslik: #e2f3e8;
+    --bolum-govde: #f4fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.odenek-gonderme .kutu.bolum.bolum-ayrinti {
+    --bolum-baslik: #efe6f8;
+    --bolum-govde: #faf6fd;
+    --bolum-vurgu: #7a4bb0;
+}
+
+.odenek-gonderme .bolum-baslik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 12px;
+    margin: 0 -12px 12px;
+    padding: 9px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.odenek-gonderme .bolum-baslik .og-arac {
+    margin-left: auto;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+/* ---- Alanlar (etiket solda, alt alta) ---- */
+.odenek-gonderme .og-alanlar {
+    --etiket-genislik: 150px;
+}
+
+.odenek-gonderme .og-bitisik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.odenek-gonderme .og-ic-etiket {
+    margin: 0 0 0 6px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.odenek-gonderme .og-yil {
+    width: 100px;
+}
+
+.odenek-gonderme .og-tarih {
+    width: 140px;
+}
+
+.odenek-gonderme .og-no {
+    width: 110px;
+}
+
+.odenek-gonderme .og-is-adi,
+.odenek-gonderme .og-deger {
+    font-weight: 600;
+}
+
+.odenek-gonderme .og-durum {
+    font-weight: 700;
+    color: firebrick;
+}
+
+.odenek-gonderme .og-ipucu,
+.odenek-gonderme .og-not {
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.odenek-gonderme .og-secenekler {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.odenek-gonderme .og-secenek {
+    margin: 0;
+    font-weight: 400;
+}
+
+.odenek-gonderme .og-secenek input {
+    margin-right: 6px;
+}
+
+.odenek-gonderme .og-ek {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.odenek-gonderme .og-ek .og-ek-ad {
+    min-width: 150px;
+    font-weight: 600;
+}
+
+.odenek-gonderme .og-ek .og-ek-dosya {
+    max-width: 260px;
+}
+
+.odenek-gonderme .og-toplam {
+    font-weight: 700;
+    color: var(--bolum-vurgu);
+}
+
+.odenek-gonderme .og-ayrac {
+    color: var(--soluk);
+}
+
+/* ---- Tablolar ---- */
+.odenek-gonderme .og-grid {
+    width: 100%;
+    height: 460px;
+}
+
+.odenek-gonderme .og-grid-liste {
+    height: 520px;
+}
+
+.odenek-gonderme .og-grid-kucuk {
+    height: 240px;
+}
+
+.og-grid-pencere {
+    width: 100%;
+    height: 340px;
+}
+
+.odenek-gonderme .og-sari,
+.og-grid-pencere .og-sari {
+    font-weight: 700;
+    background: #fcfcd4;
+}
+
+.odenek-gonderme .og-girilir {
+    background: #fff;
+}
+
+.og-hucre-sec {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+}
+
+.og-hucre-sec .og-hucre-metin {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.og-hucre-sec .og-tertip-sec {
+    padding: 0 4px;
+    line-height: 1;
+    color: var(--bolum-vurgu, #2f6fc4);
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.og-eko {
+    color: #c62828;
+    font-weight: 600;
+}
+
+/* ---- Pencereler ---- */
+.tanim-pencere.og-pencere-genis {
+    width: min(1100px, calc(100vw - 32px));
+}
+
+.og-tertip-ara {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.og-tertip-ara .og-kod {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.og-tertip-ara .og-kod input {
+    width: 150px;
+}
+
+.og-kod-ad {
+    display: block;
+    max-width: 220px;
+    min-height: 16px;
+    font-size: 12px;
+    color: var(--soluk);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.og-tertip-tuslar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.og-alt-kod {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.og-alt-kod .og-grid-pencere {
+    height: 240px;
+}
+
+.og-alt-baslik {
+    margin: 0 0 4px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.og-tarihce-belge {
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* ---- Liste sayfası ---- */
+.og-liste .og-kriter {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0 24px;
+}
+
+.og-liste .og-kriter-tuslar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-left: calc(var(--etiket-genislik, 150px) + 10px);
+}
+
+.og-liste .og-icmal {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.og-liste .og-icmal input {
+    width: 90px;
+}
+
+.og-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.og-menu .dropdown-menu {
+    min-width: 220px;
+}
+
+.og-menu .dropdown-menu > li > a {
+    cursor: pointer;
+}
+
+.og-liste .og-ayrinti {
+    display: grid;
+    grid-template-columns: 140px minmax(0, 1fr);
+    gap: 4px 10px;
+    margin: 0 0 10px;
+}
+
+.og-liste .og-ayrinti dt {
+    font-weight: 600;
+}
+
+.og-liste .og-ayrinti dd {
+    margin: 0;
+}
+
+@media (max-width: 991px) {
+    .odenek-gonderme .og-ust,
+    .og-liste .og-kriter,
+    .og-alt-kod {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .odenek-gonderme .tanim-form .form-group {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 4px;
+    }
+
+    .og-liste .og-kriter-tuslar {
+        padding-left: 0;
+    }
+}
+
+/* ---- Form: Belge Bilgileri ve Belge Durumu sıkı (küçük yazı, dar satır aralığı); kalan yükseklik tertip tablosuna ---- */
+.og-form .og-ust {
+    gap: 8px;
+}
+
+.og-form .og-ust .kutu.bolum {
+    padding: 0 8px 4px;
+    font-size: 12px;
+}
+
+.og-form .og-ust .bolum-baslik {
+    margin: 0 -8px 6px;
+    padding: 4px 8px;
+    font-size: 13px;
+}
+
+.og-form .og-ust .og-alanlar {
+    --etiket-genislik: 120px;
+}
+
+.og-form .og-ust .tanim-form .form-group {
+    margin: 0 0 3px;
+    column-gap: 6px;
+}
+
+.og-form .og-ust .control-label,
+.og-form .og-ust .og-ic-etiket,
+.og-form .og-ust .og-secenek {
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+.og-form .og-ust .form-control.input-sm,
+.og-form .og-ust .btn-sm {
+    height: 24px;
+    padding: 1px 6px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.og-form .og-ust textarea.form-control.input-sm {
+    height: auto;
+    min-height: 40px;
+}
+
+.og-form .og-ust .og-bitisik,
+.og-form .og-ust .og-ek {
+    gap: 4px;
+}
+
+.og-form .og-ust .og-ek {
+    margin-bottom: 3px;
+}
+
+.og-form .og-ust .og-secenekler {
+    gap: 0;
+}
+
+.og-form .bolum-tertip .og-grid {
+    height: max(320px, calc(100vh - 430px));
+}
+
+/* ---- Belge Arama: iki sütun, solda (1/4) kriterler küçük yazıyla, sağda (3/4) liste ve ayrıntı ---- */
+.odenek-gonderme.og-liste {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+    grid-template-rows: auto 1fr;
+    align-items: start;
+    gap: 10px;
+}
+
+.og-liste .bolum-kriter {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    padding: 0 8px 6px;
+    font-size: 12px;
+}
+
+.og-liste .bolum-liste,
+.og-liste .bolum-ayrinti {
+    grid-column: 2;
+    min-width: 0;
+}
+
+.og-liste .bolum-kriter .bolum-baslik {
+    margin: 0 -8px 6px;
+    padding: 4px 8px;
+    font-size: 13px;
+}
+
+.og-liste .bolum-kriter .og-kriter {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.og-liste .bolum-kriter .og-alanlar {
+    --etiket-genislik: 88px;
+}
+
+.og-liste .bolum-kriter .tanim-form .form-group {
+    margin: 0 0 3px;
+    column-gap: 6px;
+}
+
+.og-liste .bolum-kriter .control-label,
+.og-liste .bolum-kriter .og-ic-etiket,
+.og-liste .bolum-kriter .og-secenek {
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+.og-liste .bolum-kriter .form-control.input-sm,
+.og-liste .bolum-kriter .btn-sm {
+    height: 24px;
+    padding: 1px 4px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.og-liste .bolum-kriter .og-bitisik {
+    flex-wrap: nowrap;
+    gap: 3px;
+}
+
+.og-liste .bolum-kriter .og-bitisik .form-control {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+}
+
+.og-liste .bolum-kriter .og-kriter-tuslar {
+    padding-left: 0;
+    margin-top: 6px;
+}
+
+/* Sütunlar sabit genişlikte: sığmayınca tablo kendi içinde yatay kayar. */
+.og-liste .og-grid-liste {
+    height: max(360px, calc(100vh - 230px));
+}
+
+@media (max-width: 991px) {
+    .odenek-gonderme.og-liste {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .og-liste .bolum-kriter,
+    .og-liste .bolum-liste,
+    .og-liste .bolum-ayrinti {
+        grid-column: 1;
+        grid-row: auto;
+    }
+}
+
+/* Çerçevenin büyük başlığı kullanılmıyor (başlık sayfanın üstünde zaten yazıyor). */
+.og-cerceve .og-baslik {
+    display: none;
+}
+
+/* Sayı hücreleri ve düzenleyicileri sağa dayalı. */
+.ag-right-aligned-cell,
+.ag-right-aligned-cell input {
+    text-align: right;
+}
+
+/* Belge Arama: satır altında açılan ayrıntı (+ düğmesi). */
+.og-liste .og-ac-hucre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.og-liste .og-ac {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 22px;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--bolum-vurgu, #2e8b4e);
+    text-decoration: none;
+    border: 1px solid var(--cizgi);
+    border-radius: 4px;
+    background: #fff;
+}
+
+.og-liste .og-ac:hover,
+.og-liste .og-ac[aria-expanded="true"] {
+    background: #e2f3e8;
+}
+
+.og-liste .og-ayrinti-satir {
+    box-sizing: border-box;
+    height: 100%;
+    padding: 10px 16px 10px 104px;
+    overflow: auto;
+    font-size: 13px;
+    line-height: 24px;
+    background: #faf6fd;
+    border-left: 4px solid #7a4bb0;
+}
+
+.og-liste .og-ayrinti-tablo {
+    min-width: 560px;
+    margin-top: 6px;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+.og-liste .og-ayrinti-tablo th,
+.og-liste .og-ayrinti-tablo td {
+    height: 28px;
+    padding: 3px 14px;
+    line-height: 20px;
+    border: 1px solid var(--cizgi);
+}
+
+.og-liste .og-ayrinti-tablo th {
+    font-weight: 600;
+    background: #efe6f8;
+}
+
+.og-liste .og-ayrinti-tablo td:first-child {
+    font-family: Consolas, "Courier New", monospace;
+    letter-spacing: .2px;
+}
+
+.og-liste .og-ayrinti-tablo .og-sag {
+    width: 160px;
+    text-align: right;
+}
+
+/* Açılan belgenin bağlantısı */
+.og-liste a.og-ziyaret {
+    color: #6f42c1;
+}
+
+/* Pencerelerdeki küçük tablolar (tarihçe, alt kodlar, seçilenler): pencere sayfa kökünün dışında olduğundan yükseklik burada verilir. */
+.tanim-pencere .og-grid-kucuk {
+    width: 100%;
+    height: 260px;
+}
+
+.odenek-gonderme #txtTutarBE,
+.odenek-gonderme #txtTutarKE {
+    text-align: right;
+}
+
+/* ---- İcmal (OdenekGondermeIcmalForm / OdenekGondermeIcmalSorgu) ---- */
+.og-icmal-form .og-genis {
+    width: 100%;
+    max-width: 420px;
+}
+
+.og-icmal-form .kutu.bolum.bolum-belge {
+    max-width: 720px;
+}
+
+.og-icmal-liste .og-kur {
+    width: 160px;
+}
+
+/* Kurumsal kod ağacı penceresi */
+.og-agac {
+    width: min(640px, calc(100vw - 32px));
+}
+
+.og-agac .sgb-agac {
+    max-height: min(520px, calc(100vh - 220px));
+    overflow: auto;
+    margin: 0;
+}

@@ -13,6 +13,7 @@ using Istemci.Muhasebe;
 using Istemci.ButceKod;
 using Istemci.ButceHazirlik;
 using Istemci.ButceForm;
+using Istemci.KesinHesap;
 using Istemci.Organizasyon;
 using Istemci.StratejikPlan;
 using Istemci.OrtakSayfa;
@@ -75,6 +76,10 @@ namespace Istemci
                     yonetici.ApplicationParts.Add(parca);
             });
             servisler.AddMemoryCache();
+
+            // JSON alan adları C#'taki gibi gider (Kod -> Kod, TERTIP -> TERTIP): büyük/küçük harf değişikliği yapılmaz.
+            servisler.ConfigureHttpJsonOptions(secenek => secenek.SerializerOptions.PropertyNamingPolicy = null);
+            servisler.Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(secenek => secenek.JsonSerializerOptions.PropertyNamingPolicy = null);
 
             // Giriş çerezini şifreleyen anahtarlar sabit bir klasörde tutulur; yoksa IIS'te uygulama her yeniden
             // başladığında anahtar değişebilir ve oturum veri tabanında dursa bile çerezler geçersiz kalır.
@@ -165,9 +170,16 @@ namespace Istemci
             GirisUclari.Ekle(app);
             GirisBilgiUclari.Ekle(app);
             MenuUclari.Ekle(app);
+            SayfaMenuUclari.Ekle(app);
             DuyuruUclari.Ekle(app);
             EkliDosyaUclari.Ekle(app);
             MuhasebeUclari.Ekle(app);
+            Istemci.Muhasebe.OdenekDurumUclari.Ekle(app);
+            Istemci.Muhasebe.OdenekGondermeUclari.Ekle(app);
+            Istemci.Muhasebe.OdenekGondermeEkonomikUclari.Ekle(app);
+            Istemci.Muhasebe.OdenekGondermeIcmalUclari.Ekle(app);
+            Istemci.Muhasebe.MakbuzUclari.Ekle(app);
+            Istemci.Muhasebe.BagliEkoPebUclari.Ekle(app);
             KullaniciUclari.Ekle(app);
             GenelGorevUclari.Ekle(app);
             GorevAtaUclari.Ekle(app);
@@ -181,6 +193,9 @@ namespace Istemci
             ButceAsamaUclari.Ekle(app);
             TavanEkoSektorBirimUclari.Ekle(app);
             HizmetGerekcesiUclari.Ekle(app);
+            FisGiderGerekceUclari.Ekle(app);
+            FisGiderGerekceDetayUclari.Ekle(app);
+            SayBulguUclari.Ekle(app);
             EkFormUclari.Ekle(app);
             TavanEkoFaaliyetUclari.Ekle(app);
             TavanTertipUclari.Ekle(app);
@@ -200,22 +215,61 @@ namespace Istemci
             ButceFinansUclari.Ekle(app);
             ProjeGerekceUclari.Ekle(app);
             BirimButceKarsilamaUclari.Ekle(app);
+            BirimButceHazirlikUclari.Ekle(app);
+            MPTavanUclari.Ekle(app);
+            MPTavanIlUclari.Ekle(app);
+            MPDagitimUclari.Ekle(app);
+            MasrafPlaniUclari.Ekle(app);
+            MPAyarlaUclari.Ekle(app);
+            MPRevizeTalepUclari.Ekle(app);
+            MPRevizeUclari.Ekle(app);
+            IOIProjeUclari.Ekle(app);
             YatProjeYonetimUclari.Ekle(app);
             YatProjeGirisUclari.Ekle(app);
             ButceCalismasiPersoneliUclari.Ekle(app);
             YollukPlanlamaUclari.Ekle(app);
             AracKiralamaUclari.Ekle(app);
+            KiralikAracUclari.Ekle(app);
             DepremHarcamaUclari.Ekle(app);
             HizmetMaliyetiTasraUclari.Ekle(app);
             MuhasebeBirimUclari.Ekle(app);
+            TertipSecimUclari.Ekle(app);
             YatIzlemeUclari.Ekle(app);
             YatAltSayfaUclari.Ekle(app);
             AltProjeButceKaynakUclari.Ekle(app);
+            IlIlceUclari.Ekle(app);
+            YatTopluVeriUclari.Ekle(app);
+            FaaliyetRaporuUclari.Ekle(app);
+            DeflatorUclari.Ekle(app);
+            Istemci.ButceUygulama.GunlukNakitIhtiyaciUclari.Ekle(app);
+            Istemci.ButceUygulama.APGirisUclari.Ekle(app);
+            MaliDurumBeklentiUclari.Ekle(app);
+            AltFaaliyetIliskiUclari.Ekle(app);
             YazilimGuncelleUclari.Ekle(app);
             DosyalarUclari.Ekle(app);
             KomutCalistirUclari.Ekle(app);
             SifreUretUclari.Ekle(app);
             VeritabaniIndexUclari.Ekle(app);
+            Istemci.Raporlama.RaporGrupUclari.Ekle(app);
+            Istemci.ButceHazirlik.YatSozlukUclari.Ekle(app);
+            Istemci.ButceHazirlik.KarakteristikUclari.Ekle(app);
+            Istemci.ButceHazirlik.KalkinmaBolgeUclari.Ekle(app);
+            Istemci.ButceHazirlik.KurumsalYapiUclari.Ekle(app);
+            Istemci.ButceHazirlik.ButceParametreUclari.Ekle(app);
+            Istemci.ButceHazirlik.ButceSozlukUclari.Ekle(app);
+            Istemci.ButceHazirlik.ProgButKodUclari.Ekle(app);
+            Istemci.ButceHazirlik.ProgPebIliskiUclari.Ekle(app);
+            Istemci.ButceHazirlik.BumkoAktarimUclari.Ekle(app);
+            Istemci.AlacakTakip.AlacakTakipTanimUclari.Ekle(app);
+            Istemci.AlacakTakip.AlacakTakipListeUclari.Ekle(app);
+            Istemci.AlacakTakip.HesapHareketUclari.Ekle(app);
+            Istemci.AlacakTakip.OdemeUclari.Ekle(app);
+            Istemci.AlacakTakip.OdemeEmriUclari.Ekle(app);
+            Istemci.AlacakTakip.AlacakTakipListeABUclari.Ekle(app);
+            Istemci.AlacakTakip.AlacakTakipABIslemUclari.Ekle(app);
+            Istemci.AlacakTakip.AlacakTakipABTarihceUclari.Ekle(app);
+            Istemci.AlacakTakip.FaizHesabiUclari.Ekle(app);
+            Istemci.Muhasebe.MuhTanimOrtak.Ekle(app);
         }
     }
 }

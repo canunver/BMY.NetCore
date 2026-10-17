@@ -1,0 +1,154 @@
+/* Masraf Planı Revize Talep (MasrafPlaniRevizeTalep) ve Bütçe İşlemi (MasrafPlaniRevize, MasrafPlaniRevizeSorgu, MasrafPlaniTertipBilgi):
+   mptavan.css ve masrafplani.css'teki renkli başlıklı bölümlerin ve sık kriterlerin üstüne sayfa düzeni. */
+
+/* Tek bölümlü üst alan (Revize Talep, Belge Arama, Tertip Bilgisi): kriterler tam genişlikte iki sütun. */
+.mp-revize-talep .mp-ust,
+.mp-revize-sorgu .mp-ust,
+.mp-tertip-bilgi .mp-ust { grid-template-columns: minmax(0, 1fr); }
+
+.mp-revize-talep .mp-ilk-hali { margin: 0 6px 0 0; padding-top: 0; font-size: 12px; font-weight: 600; }
+.mp-revize-talep .muh-birim { font-size: 12px; }
+.mp-revize-talep .muh-birim .form-control { height: 24px; padding-top: 1px; padding-bottom: 1px; font-size: 12px; }
+.mp-revize-talep .muh-birim .mb-sec { height: 24px; padding: 1px 8px; }
+
+.mp-genel .mp-arac .mp-rapor-grup { position: relative; }
+.mp-genel .mp-menu {
+    position: absolute;
+    z-index: 20;
+    top: 100%;
+    left: 0;
+    min-width: 160px;
+    margin: 2px 0 0;
+    padding: 4px 0;
+    list-style: none;
+    background: #fff;
+    border: 1px solid var(--cizgi, #d5d9e0);
+    border-radius: 6px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
+}
+.mp-genel .mp-menu .btn-link { display: block; width: 100%; padding: 4px 12px; text-align: left; color: inherit; }
+.mp-genel .mp-menu .btn-link:hover,
+.mp-genel .mp-menu .btn-link:focus { background: #eef3fb; text-decoration: none; }
+
+/* Bütçe İşlemi formu: belge bilgileri solda, aktarma ve dayanaklar sağda. */
+.mp-revize-form .mp-ust { grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr); }
+.mp-revize-form .mp-ust .mp-form { --etiket-genislik: 72px; }
+.mp-revize-form .mp-yan { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.mp-revize-form .kutu.bolum.bolum-dayanak { --bolum-baslik: #eaf1dd; --bolum-govde: #fafcf6; --bolum-vurgu: #5f8a2c; }
+.mp-revize-form .mp-aktarma { --etiket-genislik: 100px; }
+.mp-revize-form .mp-aktarma .checkbox-inline { margin: 0 8px 0 0; padding-top: 0; font-weight: 400; }
+.mp-revize-form .mp-aktarma .mp-satir { margin-bottom: 4px; }
+.mp-revize-form .mp-durum { font-weight: 400; color: var(--soluk); }
+.mp-revize-form textarea.form-control { height: auto; min-height: 40px; resize: vertical; }
+.mp-revize-form .checkbox-inline { padding-top: 0; font-weight: 400; }
+
+.mp-genel .mp-no { width: 80px; }
+.mp-genel .mp-tarih { width: 132px; }
+.mp-genel .mp-ic-etiket { margin: 0 0 0 6px; font-weight: 600; white-space: nowrap; }
+.mp-genel .mp-aralik { gap: 4px; flex-wrap: nowrap; }
+.mp-genel .mp-soluk,
+.mp-pencere-genis .mp-soluk,
+.mp-yapistir .mp-soluk { color: var(--soluk); font-size: 12px; }
+
+.mp-dayanaklar {
+    max-height: 132px;
+    overflow: auto;
+    font-size: 12px;
+}
+.mp-dayanaklar .mp-dayanak { margin: 0 0 2px; padding-left: 20px; font-weight: 400; }
+.mp-dayanaklar .mp-dayanak input { margin-left: -20px; }
+
+/* Tertip ve birim hücrelerindeki mercek tuşu */
+.mp-genel .mp-mercekli { display: flex; align-items: center; gap: 2px; min-width: 0; }
+.mp-genel .mp-mercek-deger { flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; }
+.mp-genel .mp-mercek,
+.mp-genel .mp-komutlar .btn-link,
+.mp-revize-talep .mp-aylik-tus .btn { padding: 0 3px; line-height: 1; }
+.mp-genel .mp-komutlar { display: flex; gap: 2px; }
+
+/* Pencereler */
+.tanim-pencere.mp-pencere-genis { width: min(1100px, calc(100vw - 32px)); }
+.mp-pencere-genis .mp-pencere-kriter,
+.mp-islem-uret .mp-satir {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 8px;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+.mp-pencere-genis .mp-pencere-kriter label,
+.mp-islem-uret .mp-satir label { margin: 0; font-weight: 600; }
+.mp-pencere-genis .mp-pencere-kriter .form-control { width: 140px; }
+.mp-pencere-genis .mp-pencere-kriter .form-control.mp-no { width: 80px; }
+.mp-pencere-genis .mp-pencere-kriter .radio-inline { margin: 0; padding-top: 0; font-weight: 400; }
+.mp-pencere-genis .mp-pencere-grid { height: min(440px, calc(100vh - 280px)); }
+.mp-pencere-genis .pencere-alt .mp-soluk { margin-right: auto; }
+
+.mp-aylik { width: min(420px, calc(100vw - 32px)); }
+.mp-aylik .mp-aylik-tertip { margin: 0 0 6px; font-weight: 600; word-break: break-all; }
+.mp-aylik .mp-aylik-grid { height: min(420px, calc(100vh - 260px)); }
+
+.mp-yapistir { width: min(720px, calc(100vw - 32px)); }
+.mp-yapistir textarea { font-family: Consolas, monospace; font-size: 12px; white-space: pre; }
+
+.mp-islem-uret { width: min(640px, calc(100vw - 32px)); }
+.mp-islem-uret .mp-satir input[type=file] { flex: 1 1 260px; }
+.mp-islem-uret .mp-ipucu { font-size: 12px; color: var(--soluk); }
+.mp-islem-uret .mp-ipucu[hidden] { display: none; }
+.mp-islem-uret .mp-ipucu p { margin: 0 0 6px; }
+.mp-islem-uret .mp-yardim.active { background: #e3edfa; }
+.mp-islem-uret .pencere-alt { flex-wrap: wrap; }
+
+@media (max-width: 1199px) {
+    .mp-revize-form .mp-ust { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Tertip Bilgisi: Birim ve Fonksiyonel kod kutuları aynı genişlikte, diğerlerinden biraz geniş. */
+.mp-tertip-bilgi .mp-ust .kod-alan[data-alan="ky"] .kod-satir .input-group,
+.mp-tertip-bilgi .mp-ust .kod-alan[data-alan="fon"] .kod-satir .input-group { flex: 0 0 200px; width: 200px; }
+
+/* Tertip seçimi penceresi: dört kod kutusu iki sütunda (kutu + mercek + temizle + adı), altında Listele / Hepsi. */
+.mp-tertip-kriter { --etiket-genislik: 84px; margin-bottom: 8px; font-size: 12px; }
+.mp-tertip-kriter .mp-tertip-kriter-alanlar { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 14px; }
+.mp-tertip-kriter .form-group { margin-bottom: 4px; column-gap: 6px; }
+.mp-tertip-kriter .kod-satir { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.mp-tertip-kriter .kod-satir .input-group { flex: 0 0 200px; width: 200px; }
+.mp-tertip-kriter .form-control,
+.mp-tertip-kriter .input-group-sm .btn { height: 26px; padding-top: 2px; padding-bottom: 2px; font-size: 12px; }
+.mp-tertip-kriter .kod-ad { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; color: var(--soluk); }
+.mp-tertip-kriter .mp-satir { display: flex; gap: 6px; }
+@media (max-width: 767px) {
+    .mp-tertip-kriter .mp-tertip-kriter-alanlar { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Belge Arama: kriterler solda dar sütunda (1/4) alt alta, liste sağda (3/4) kalan yüksekliği doldurur. */
+.mp-revize-sorgu {
+    display: grid;
+    grid-template-columns: minmax(300px, 1fr) minmax(0, 3fr);
+    gap: 10px;
+    align-items: start;
+}
+.mp-revize-sorgu .mp-ust { display: block; }
+.mp-revize-sorgu .mp-kriter-kolonlar { grid-template-columns: minmax(0, 1fr); }
+.mp-revize-sorgu .mp-ust .mp-form { --etiket-genislik: 84px; }
+.mp-revize-sorgu .mp-ust .kod-satir { flex-wrap: wrap; row-gap: 0; }
+.mp-revize-sorgu .mp-ust .kod-satir .input-group { flex: 0 0 170px; width: 170px; }
+.mp-revize-sorgu .mp-ust .kod-ad { flex: 1 1 100%; }
+.mp-revize-sorgu .mp-ust .mp-tarih { width: auto; flex: 1 1 0; min-width: 0; }
+.mp-revize-sorgu .mp-ust .mp-no { width: auto; flex: 1 1 0; min-width: 0; }
+.mp-revize-sorgu .kutu.bolum.bolum-tablo { min-width: 0; }
+
+@media (max-width: 991px) {
+    .mp-revize-sorgu { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Belge Arama: No hücresi bağlantı gibi görünsün */
+.mp-revize-sorgu a.mp-belge-ac { color: #1f5fbf; font-weight: 600; text-decoration: underline; cursor: pointer; }
+.mp-revize-sorgu a.mp-belge-ac:hover, .mp-revize-sorgu a.mp-belge-ac:focus { color: #0b3d91; background: #e6efff; border-radius: 3px; padding: 0 3px; margin: 0 -3px; }
+
+/* Dayanaklar bölümü şimdilik gizli: belge bilgileri %60, Sektör/Bölge/Projeler Arası Aktarma %40. */
+.mp-revize-form .mp-ust.mp-dayanaksiz { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+@media (max-width: 991px) {
+    .mp-revize-form .mp-ust.mp-dayanaksiz { grid-template-columns: minmax(0, 1fr); }
+}

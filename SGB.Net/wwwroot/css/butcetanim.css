@@ -1,0 +1,170 @@
+/* Bütçe Hazırlık > Tanımlar sayfalarının ortak görünümü. Bölüm görünümü ve tablo renkleri taveneko.css'ten (.tavan-eko) gelir;
+   burada yalnızca bu sayfalara özgü olanlar var. */
+
+.butce-tanim .renk-aciklama .acik::before {
+    display: none;
+}
+
+.butce-tanim .secim-tuslar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.butce-tanim .secim-tuslar > .btn {
+    float: none;
+    margin-left: 0;
+    border-radius: 3px;
+}
+
+/* Form alanları alt alta, etiket solda */
+.butce-tanim .tanim-form {
+    --etiket-genislik: 150px;
+    max-width: 720px;
+}
+
+/* Yapıştır penceresi */
+.tanim-yapistir {
+    width: min(720px, calc(100vw - 32px));
+}
+
+.tanim-yapistir textarea {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 12px;
+    white-space: pre;
+}
+
+/* Kod ağacı penceresi */
+.tanim-agac-pencere {
+    width: min(640px, calc(100vw - 32px));
+}
+
+.tanim-agac-pencere .sgb-agac {
+    max-height: min(520px, calc(100vh - 220px));
+    overflow: auto;
+    margin: 0;
+}
+
+/* Kalkınma Bölgeleri: üstte bölge formu, altta iller tablosu */
+.kalkinma-bolge .tavan-grid {
+    min-height: 260px;
+}
+
+/* Eski Kurumsal Yapı: muhasebe - birim bileşeni form satırında */
+.kurumsal-yapi .muh-birim {
+    min-width: 0;
+}
+
+/* Bütçe Hazırlık Parametreleri: her satırda durum etiketi ve tuşu */
+.butce-parametre .tanim-form {
+    --etiket-genislik: 230px;
+}
+
+.butce-parametre .parametre-satir {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.butce-parametre .parametre-durum {
+    display: inline-block;
+    min-width: 90px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+
+/* Program bütçe kodları: SBB farkları penceresi */
+.sbb-fark {
+    width: min(900px, calc(100vw - 32px));
+}
+
+.sbb-fark .fark-grid {
+    height: min(460px, calc(100vh - 260px));
+}
+
+/* Alt Faaliyet Bağları: kod kutusu, ağaç düğmesi ve kodun adı yan yana */
+.tanim-form .kod-secim {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tanim-form .kod-secim .kod-ad {
+    color: #555;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Bütçe Sözlük İşlemleri: yıl yıl kayıt sayıları tablosu */
+.butce-sozluk .sozluk-tablo {
+    max-width: 760px;
+    margin-bottom: 0;
+}
+
+.butce-sozluk .sozluk-tablo .sayi {
+    width: 150px;
+    text-align: right;
+}
+
+.butce-sozluk .sozluk-tablo .tuslar {
+    white-space: nowrap;
+    text-align: right;
+}
+
+.butce-sozluk .sozluk-tablo .tuslar .btn + .btn {
+    margin-left: 4px;
+}
+
+/* BÜMKO Aktarım */
+.bumko-aktarim .tanim-form {
+    --etiket-genislik: 190px;
+    max-width: 640px;
+}
+
+.bumko-aktarim .bumko-kurum {
+    font-weight: 600;
+    text-align: center;
+    margin: 0 0 8px;
+}
+
+.bumko-aktarim .bumko-secim {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.bumko-aktarim .bumko-secim .secim-satir {
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.bumko-aktarim .bumko-secim .radio-inline {
+    min-width: 300px;
+}
+
+.bumko-aktarim .eko-secim {
+    width: auto;
+    min-width: 90px;
+}
+
+.bumko-aktarim .bumko-tuslar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.bumko-aktarim .bumko-sonuc {
+    margin: 10px 0 0;
+    white-space: pre-wrap;
+    max-height: 320px;
+    overflow: auto;
+}
+
+/* Karakteristikler: tek bölüm (tablo) sayfanın kalan yüksekliğini doldurur */
+@media (min-width: 992px) {
+    .tanim.tavan-eko.karakteristik {
+        grid-template-rows: minmax(0, 1fr);
+    }
+}

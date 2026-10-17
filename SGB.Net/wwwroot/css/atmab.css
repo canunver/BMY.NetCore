@@ -1,0 +1,729 @@
+/* AB (IPARD) Takip İşlemleri (AlacakTakip/AlacakTakipListeAB). Üstte araç çubuğu; solda sıkı sorgu kutusu ve altında dosya listesi,
+   sağda dosya sekmeleri ve altında borç hareketleri. Bölümler renkli başlıklı ayrı kutular. Geniş ekranda sayfa pencereye sığar,
+   tablolar kalan yüksekliği doldurur. İşlem pencereleri (dialog.ab-pencere) aynı alan biçimlerini kullanır. */
+
+/* hidden özniteliği .form-control / .btn gibi display veren sınıflara karşı da geçerli olsun */
+.atmab [hidden],
+.ab-pencere [hidden] {
+    display: none !important;
+}
+
+.atmab {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ---- Araç çubuğu ---- */
+.atmab .ab-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+}
+
+.atmab .ab-arac > .btn,
+.atmab .ab-arac > .btn-group {
+    float: none;
+    margin: 0;
+}
+
+.atmab .ab-ayrac {
+    width: 1px;
+    height: 24px;
+    margin: 0 4px;
+    background: var(--cizgi);
+}
+
+.atmab .ab-arac-tarih {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.atmab .ab-arac-tarih .form-control {
+    width: 140px;
+    height: 28px;
+    padding: 2px 6px;
+}
+
+/* Bootstrap JS yüklenmediği için açılır menüler .open ile elle açılır (atmab.js). */
+.atmab .btn-group.open > .dropdown-menu,
+.ab-pencere .btn-group.open > .dropdown-menu {
+    display: block;
+}
+
+.atmab .dropdown-menu .ab-mesgul {
+    opacity: .5;
+    pointer-events: none;
+}
+
+/* ---- Bölümler ---- */
+.atmab .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.atmab .kutu.bolum.bolum-liste {
+    --bolum-baslik: #e2f3e8;
+    --bolum-govde: #f4fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.atmab .kutu.bolum.bolum-dosya {
+    --bolum-baslik: #efe6f8;
+    --bolum-govde: #faf6fd;
+    --bolum-vurgu: #7a4bb0;
+}
+
+.atmab .kutu.bolum.bolum-hareket {
+    --bolum-baslik: #fbeedd;
+    --bolum-govde: #fefaf4;
+    --bolum-vurgu: #c7762a;
+}
+
+.atmab .bolum-baslik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    margin: 0 -12px 10px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.atmab .ab-sayi {
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+/* Hareket süzgeçleri başlıkta (eski chkGoster*) */
+.atmab .ab-suzgec {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 2px 12px;
+    margin-left: auto;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.atmab .ab-suzgec label {
+    margin: 0;
+    font-weight: 400;
+}
+
+/* ---- Alanlar (etiket solda, alt alta) ---- */
+.atmab .ab-alanlar,
+.ab-pencere .ab-alanlar {
+    --etiket-genislik: 170px;
+}
+
+.atmab .ab-alanlar .form-group,
+.ab-pencere .ab-alanlar .form-group {
+    margin-bottom: 6px;
+}
+
+/* Sorgu sıkıdır: küçük yazı, tek sütun (kriterler alt alta) */
+.atmab .ab-sorgu {
+    --etiket-genislik: 110px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    font-size: 12px;
+}
+
+.atmab .ab-sorgu .form-group {
+    margin-bottom: 4px;
+}
+
+.atmab .ab-sorgu .form-control {
+    height: 26px;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.atmab .ab-oku {
+    --etiket-genislik: 180px;
+    font-size: 12px;
+}
+
+.atmab .ab-oku .form-control {
+    height: 26px;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.atmab .ab-oku textarea.form-control {
+    height: auto;
+}
+
+.atmab .ab-iki-sutun {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    column-gap: 16px;
+}
+
+.ab-bitisik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.atmab .ab-bitisik .form-control,
+.ab-pencere .ab-bitisik .form-control {
+    width: auto;
+    flex: 0 1 auto;
+}
+
+.atmab .ab-bitisik > span,
+.ab-pencere .ab-bitisik > span {
+    color: var(--soluk);
+    font-size: 12px;
+}
+
+/* AB / Ulusal / Toplam üçlü alanlar */
+.ab-uclu,
+.ab-ikili {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    max-width: 420px;
+}
+
+.ab-ikili {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 480px;
+}
+
+.ab-uclu-baslik {
+    margin-bottom: 0 !important;
+}
+
+.ab-uclu-baslik .ab-uclu > span,
+.ab-uclu-baslik .ab-ikili > span {
+    font-size: 11px;
+    color: var(--soluk);
+    text-align: center;
+}
+
+.atmab .ab-mini, .ab-pencere .ab-mini { width: 50px !important; }
+.atmab .ab-kisa, .ab-pencere .ab-kisa { width: 90px !important; }
+.atmab .ab-orta, .ab-pencere .ab-orta { width: 150px !important; }
+.atmab .ab-tarih, .ab-pencere .ab-tarih { width: 140px !important; }
+
+.atmab .ab-tutar,
+.ab-pencere .ab-tutar {
+    text-align: right;
+}
+
+.atmab .ab-yan,
+.ab-pencere .ab-yan {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    font-weight: 400;
+}
+
+.atmab .ab-kutu {
+    margin: 0;
+}
+
+/* Salt okunur alanlar sarı; girilebilir alanlar beyaz kalır (seçimle doldurulan .ab-secim de beyaz). */
+.atmab .form-control.okuma,
+.atmab .form-control[readonly]:not(.mb-kurumsal):not(.ab-secim),
+.ab-pencere .form-control.okuma,
+.ab-pencere .form-control[readonly]:not(.mb-kurumsal):not(.ab-secim) {
+    background: #fff8d6;
+    cursor: default;
+}
+
+.ab-pencere .form-control.ab-secim {
+    background: #fff;
+    flex: 1 1 260px;
+}
+
+/* ---- Çoklu seçim (eski csDurum / csBorcTuru / cmbBorcunKodu) ---- */
+.ab-coklu {
+    position: relative;
+}
+
+.ab-coklu .ab-coklu-tus {
+    overflow: hidden;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: #fff;
+}
+
+.ab-coklu .ab-coklu-tus::after {
+    content: "\25BE";
+    float: right;
+    color: var(--soluk);
+}
+
+.ab-coklu .ab-coklu-panel {
+    display: none;
+    position: absolute;
+    z-index: 30;
+    top: 100%;
+    left: 0;
+    min-width: 100%;
+    max-width: 420px;
+    max-height: 300px;
+    margin-top: 2px;
+    padding: 4px 0;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .15);
+}
+
+.ab-coklu.open .ab-coklu-panel {
+    display: block;
+}
+
+.ab-coklu .ab-coklu-satir {
+    display: block;
+    margin: 0;
+    padding: 3px 10px;
+    font-weight: 400;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.ab-coklu .ab-coklu-satir:hover {
+    background: var(--tema-acik);
+}
+
+/* ---- Sekmeler ---- */
+.atmab .ab-sekme-basliklar,
+.ab-alt-sekme-basliklar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.atmab .ab-sekme-tus,
+.ab-alt-sekme-tus {
+    padding: 5px 10px;
+    font-size: 12px;
+    color: var(--murekkep);
+    background: transparent;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    margin-bottom: -1px;
+}
+
+.atmab .ab-sekme-tus:hover,
+.ab-alt-sekme-tus:hover {
+    background: var(--tema-acik);
+}
+
+.atmab .ab-sekme-tus.active,
+.ab-alt-sekme-tus.active {
+    font-weight: 600;
+    background: var(--yuzey);
+    border-color: var(--cizgi);
+    box-shadow: inset 0 2px 0 var(--tema-ana);
+}
+
+.ab-alt-sekme-basliklar {
+    margin-top: 6px;
+}
+
+.atmab .ab-tablo-arac,
+.ab-pencere .ab-tablo-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 6px 0;
+}
+
+.atmab .ab-sekme.ab-cerceve-sekme iframe {
+    display: block;
+    width: 100%;
+    height: 420px;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+    background: #fff;
+}
+
+.atmab .ab-bos {
+    margin: 8px 0;
+    color: var(--soluk);
+}
+
+.atmab .ab-surec {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+.atmab .ab-surec label {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.atmab .ab-surec .form-control {
+    height: 26px;
+    font-size: 12px;
+}
+
+/* ---- Tablolar ---- */
+.atmab .ab-grid {
+    height: 420px;
+}
+
+.atmab .ab-grid.ab-grid-kucuk,
+.ab-pencere .ab-grid.ab-grid-kucuk {
+    height: 220px;
+}
+
+.atmab .ab-grid.ab-grid-doldur {
+    height: 420px;
+}
+
+.sgb-grid .ag-row.ab-yeni-satir {
+    background-color: #fffdd8;
+}
+
+.sgb-grid .ag-row.ab-iptal-satir {
+    text-decoration: line-through;
+}
+
+.sgb-grid .ab-komutlar {
+    display: inline-flex;
+    gap: 3px;
+}
+
+.sgb-grid .ab-komutlar .btn-xs,
+.sgb-grid .ab-ac {
+    padding: 0 6px;
+    line-height: 18px;
+}
+
+.sgb-grid .ab-komutlar .ab-sil {
+    color: #b52b27;
+}
+
+.ab-pasif {
+    opacity: .5;
+    pointer-events: none;
+}
+
+/* ---- Pencereler ---- */
+dialog.ab-pencere {
+    width: min(720px, 96vw);
+}
+
+dialog.ab-pencere.ab-pencere-genis {
+    width: min(980px, 96vw);
+}
+
+dialog.ab-pencere.ab-pencere-dar {
+    width: min(420px, 96vw);
+}
+
+dialog.ab-pencere .pencere-govde {
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+}
+
+dialog.ab-pencere .pencere-alt {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+dialog.ab-pencere .pencere-alt .btn {
+    margin: 0;
+}
+
+.ab-pencere .ab-kume {
+    margin: 6px 0 8px;
+    padding: 4px 10px 6px;
+    background: var(--bolum-govde, #f8fafc);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+}
+
+.ab-pencere .ab-kume legend {
+    width: auto;
+    margin: 0;
+    padding: 0 6px;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+}
+
+.ab-pencere .ab-coklu {
+    max-width: 520px;
+}
+
+/* ---- Yerleşim ---- */
+.atmab .ab-govde {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (min-width: 1200px) {
+    body.atmab-sayfa > .sayfa-icerik {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .atmab {
+        flex: 1 1 auto;
+        min-height: 0;
+    }
+
+    .atmab .ab-govde {
+        flex: 1 1 auto;
+        min-height: 0;
+        display: grid;
+        /* sol %25 (sorgu %40, liste %60 yükseklik), sağ %75 (dosya %50, hareketler %50) */
+        grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+        grid-template-rows: minmax(0, 40fr) minmax(0, 10fr) minmax(0, 50fr);
+        gap: 10px;
+    }
+
+    .atmab .bolum-sorgu { grid-column: 1; grid-row: 1; min-height: 0; overflow-y: auto; }
+
+    .atmab .bolum-liste,
+    .atmab .bolum-dosya,
+    .atmab .bolum-hareket {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .atmab .bolum-liste { grid-column: 1; grid-row: 2 / span 2; }
+    .atmab .bolum-dosya { grid-column: 2; grid-row: 1 / span 2; }
+    .atmab .bolum-hareket { grid-column: 2; grid-row: 3; }
+
+    .atmab .bolum-liste > .ab-grid,
+    .atmab .bolum-hareket > .ab-grid {
+        flex: 1 1 auto;
+        min-height: 160px;
+        height: auto;
+    }
+
+    /* Sekme içeriği kendi içinde kayar; İşlem Listesi ve çerçeveler kalan yüksekliği doldurur */
+    .atmab .ab-sekmeler {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+    }
+
+    .atmab .ab-sekme.active[data-sekme="islemler"],
+    .atmab .ab-sekme.active.ab-cerceve-sekme {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .atmab .ab-sekme .ab-grid.ab-grid-doldur,
+    .atmab .ab-sekme.ab-cerceve-sekme iframe {
+        flex: 1 1 auto;
+        min-height: 200px;
+        height: auto;
+    }
+
+    body.menusuz.atmab-sayfa > .sayfa-icerik {
+        height: 100vh;
+    }
+}
+
+/* Dosyalar listesinin başlığı yok: tablo bölümün tamamını kullanır */
+.atmab .bolum-liste > .bolum-baslik {
+    display: none;
+}
+
+.atmab .kutu.bolum.bolum-liste {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+/* Borçlu, Ön Borç, Geri Alım Kararı ve Yorum/Süreç Durum sekmeleri iki sütun:
+   solda son işlem bilgisi (%55), sağda işlem tuşu ve işlem tablosu (%45) */
+.atmab .ab-sekme[data-sekme="borclu"],
+.atmab .ab-sekme[data-sekme="onborc"],
+.atmab .ab-sekme[data-sekme="gak"],
+.atmab .ab-sekme[data-sekme="durum"] {
+    display: grid;
+    grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    column-gap: 14px;
+    align-items: start;
+}
+
+.atmab .ab-sekme[data-sekme="borclu"] > .ab-alanlar,
+.atmab .ab-sekme[data-sekme="onborc"] > .ab-alanlar,
+.atmab .ab-sekme[data-sekme="gak"] > .ab-alanlar,
+.atmab .ab-sekme[data-sekme="durum"] > .ab-alanlar {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    margin-top: 6px;
+}
+
+.atmab .ab-sekme[data-sekme="borclu"] > .ab-tablo-arac,
+.atmab .ab-sekme[data-sekme="onborc"] > .ab-tablo-arac,
+.atmab .ab-sekme[data-sekme="gak"] > .ab-tablo-arac,
+.atmab .ab-sekme[data-sekme="durum"] > .ab-tablo-arac {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.atmab .ab-sekme[data-sekme="borclu"] > .ab-grid,
+.atmab .ab-sekme[data-sekme="onborc"] > .ab-grid,
+.atmab .ab-sekme[data-sekme="gak"] > .ab-grid,
+.atmab .ab-sekme[data-sekme="durum"] > .ab-grid {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: stretch;
+    height: auto;
+    min-height: 220px;
+}
+
+/* Dar ekranda yine alt alta */
+@media (max-width: 899px) {
+    .atmab .ab-sekme[data-sekme="borclu"],
+    .atmab .ab-sekme[data-sekme="onborc"],
+    .atmab .ab-sekme[data-sekme="gak"],
+    .atmab .ab-sekme[data-sekme="durum"] {
+        display: block;
+    }
+
+    .atmab .ab-sekme[data-sekme="borclu"] > .ab-grid,
+    .atmab .ab-sekme[data-sekme="onborc"] > .ab-grid,
+    .atmab .ab-sekme[data-sekme="gak"] > .ab-grid,
+    .atmab .ab-sekme[data-sekme="durum"] > .ab-grid {
+        height: 220px;
+    }
+}
+
+/* Süreç durumu Dosya Bilgileri başlığında ayrı renkle; alttaki satır kullanılmaz */
+.atmab .bolum-dosya > .ab-surec {
+    display: none;
+}
+
+.atmab .ab-surec-baslik {
+    margin-left: 12px;
+    font-weight: 400;
+    color: #b45309;
+}
+
+.atmab .ab-surec-baslik b {
+    font-weight: 600;
+}
+
+/* Taksitlendirme sekmesi iki sütun: solda son taksit bilgisi (%25), sağda taksit tabloları (%75) */
+.atmab .ab-sekme[data-sekme="taksit"] {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    column-gap: 14px;
+    align-items: start;
+}
+
+.atmab .ab-sekme[data-sekme="taksit"] > .ab-alanlar {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    margin-top: 6px;
+    --etiket-genislik: 110px;
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.atmab .ab-sekme[data-sekme="taksit"] > .ab-alt-sekme-basliklar {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.atmab .ab-sekme[data-sekme="taksit"] > .ab-alt-sekme {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+@media (max-width: 899px) {
+    .atmab .ab-sekme[data-sekme="taksit"] {
+        display: block;
+    }
+}
+
+/* sekme dolgu: geniş ekranda iki sütunlu sekmeler bölümün kalan yüksekliğini doldurur, işlem tablosu alta kadar uzar */
+@media (min-width: 1200px) {
+    .atmab .ab-sekme.active[data-sekme="borclu"],
+    .atmab .ab-sekme.active[data-sekme="onborc"],
+    .atmab .ab-sekme.active[data-sekme="gak"],
+    .atmab .ab-sekme.active[data-sekme="durum"],
+    .atmab .ab-sekme.active[data-sekme="taksit"] {
+        min-height: 100%;
+    }
+
+    .atmab .ab-sekme[data-sekme="taksit"] > .ab-alt-sekme {
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .atmab .ab-sekme[data-sekme="taksit"] > .ab-alt-sekme > .ab-grid {
+        flex: 1 1 auto;
+        height: auto;
+        min-height: 160px;
+    }
+
+    .atmab .ab-sekme[data-sekme="borclu"] > .ab-grid,
+    .atmab .ab-sekme[data-sekme="onborc"] > .ab-grid,
+    .atmab .ab-sekme[data-sekme="gak"] > .ab-grid,
+    .atmab .ab-sekme[data-sekme="durum"] > .ab-grid {
+        min-height: 160px;
+    }
+}
+
+/* Taksitlendirme: son taksit bilgisi sıkı satırlar */
+.atmab .ab-sekme[data-sekme="taksit"] > .ab-alanlar .form-group {
+    margin-bottom: 3px;
+}
+
+.atmab .ab-sekme[data-sekme="taksit"] > .ab-alanlar .control-label {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 26px;
+    font-size: 13px;
+}
+
+.atmab .ab-sekme[data-sekme="taksit"] > .ab-alanlar .form-control {
+    height: 26px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: 13px;
+}

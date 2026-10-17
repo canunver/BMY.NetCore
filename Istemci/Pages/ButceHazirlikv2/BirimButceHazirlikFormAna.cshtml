@@ -1,0 +1,32 @@
+@page
+@model BirimButceHazirlikFormAnaModel
+@{
+    ViewData["Title"] = "Birim Bütçe Hazırlığı";
+    ViewData["GovdeSinif"] = "og-cerceve-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<!-- Eski çerçevedeki iki sekme: önceki yıllarda yürütülen faaliyet/projeler ve teklif edilecek diğer faaliyet/projeler. -->
+<div class="og-cerceve bbh-cerceve">
+    <ul class="nav nav-tabs og-sekmeler" role="tablist">
+        <li role="presentation" class="active"><a href="#" role="tab" data-sekme="form" aria-selected="true">Mevcut Proje/Faaliyetler</a></li>
+        <li role="presentation"><a href="#" role="tab" data-sekme="liste" aria-selected="false">Diğer Proje/Faaliyetler</a></li>
+    </ul>
+    <iframe id="cerceveForm" class="og-alt-cerceve" data-sekme="form" data-yeni="0" title="Mevcut Proje/Faaliyetler"
+            src="BirimButceHazirlikForm?yeni=0&menuYok=1"></iframe>
+    <iframe id="cerceveListe" class="og-alt-cerceve" data-sekme="liste" data-yeni="1" title="Diğer Proje/Faaliyetler" hidden
+            data-src="BirimButceHazirlikForm?yeni=1&menuYok=1"></iframe>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/odenekgonderme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/birimbutcehazirlik.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/odenekgondermecerceve.js" asp-append-version="true"></script>
+    <script src="~/js/birimbutcehazirlikcerceve.js" asp-append-version="true"></script>
+}

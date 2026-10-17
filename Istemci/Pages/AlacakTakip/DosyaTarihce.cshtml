@@ -1,0 +1,28 @@
+@page
+@model DosyaTarihceModel
+@{
+    ViewData["Title"] = "Dosya Tarihçesi";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim atm-tanim tek">
+    <section class="tanim-sol">
+        <div class="kutu">
+            <div id="grdTarihce" class="tanim-grid" aria-label="Dosya durum tarihçesi"></div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/atmtanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/dosyatarihce.js" asp-append-version="true"></script>
+}

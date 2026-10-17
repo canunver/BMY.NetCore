@@ -1,0 +1,196 @@
+/* Alt Faaliyet İlişkileri: üstte sorgu alanları, altta alt faaliyet listesi; bölümler renkli başlıklı ayrı kutular. */
+
+.alt-faal {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.alt-faal .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.alt-faal .kutu.bolum.bolum-tablo {
+    --bolum-baslik: #e2f3e8;
+    --bolum-govde: #f4fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.alt-faal .bolum-baslik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    margin: 0 -12px 12px;
+    padding: 9px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.alt-faal .bolum-baslik .alt-baslik {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+.alt-faal .secim-form {
+    --etiket-genislik: 90px;
+    max-width: 620px;
+}
+
+.alt-faal .form-control.yil {
+    max-width: 110px;
+}
+
+.alt-faal .form-control.orta {
+    max-width: 260px;
+}
+
+.alt-faal-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 0 0 10px;
+}
+
+.alt-faal-arac .btn {
+    margin-left: 0;
+}
+
+.alt-faal-arac .tanim-not {
+    margin: 0;
+    font-size: 12px;
+}
+
+.alt-faal-grid {
+    height: calc(100vh - 400px);
+    min-height: 320px;
+}
+
+.alt-faal-grid .ag-cell.degisti {
+    background: #d9f0d3;
+}
+
+.alt-faal-grid .iliski-hucre,
+.alt-faal-grid .komut-hucre {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 100%;
+}
+
+.alt-faal-grid .iliski-ad {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Pencereler */
+.alt-faal-pencere {
+    width: min(720px, calc(100vw - 32px));
+}
+
+.alt-faal-pencere .secim-agac {
+    height: 360px;
+    margin: 8px 0 0;
+    padding: 6px;
+    overflow: auto;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.alt-faal-pencere .pencere-alt {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+.alt-faal-pencere .birim-baslik {
+    margin: 0 0 10px;
+    font-weight: 600;
+}
+
+.alt-faal-pencere .birim-duzen {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px;
+}
+
+.alt-faal-pencere .sablon-form {
+    --etiket-genislik: 100px;
+    padding: 8px 10px;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    background: #f5f8fd;
+    box-shadow: inset 4px 0 0 #2f6fc4;
+}
+
+.alt-faal-pencere .form-control.kisa {
+    max-width: 90px;
+}
+
+.alt-faal-pencere .sablon-dugmeler {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.alt-faal-pencere .sablon-liste {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    background: #f4fbf6;
+    box-shadow: inset 4px 0 0 #2e8b4e;
+}
+
+.alt-faal-pencere .sablon-liste label {
+    margin: 0;
+    font-weight: 600;
+}
+
+.alt-faal-pencere .sablon-liste .btn {
+    align-self: flex-start;
+}
+
+.alt-faal-pencere .birim-agac-kutu {
+    margin-top: 12px;
+    padding: 8px 10px;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    background: #fefaf0;
+    box-shadow: inset 4px 0 0 #b07a00;
+}
+
+.alt-faal-pencere .birim-agac-kutu h3 {
+    margin: 0 0 4px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.alt-faal-pencere .birim-agac-kutu .secim-agac {
+    height: 240px;
+    margin-bottom: 8px;
+}
+
+@media (max-width: 620px) {
+    .alt-faal-pencere .birim-duzen {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

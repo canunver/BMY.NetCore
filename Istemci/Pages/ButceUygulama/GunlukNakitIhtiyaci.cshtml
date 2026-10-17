@@ -1,0 +1,87 @@
+@page
+@model GunlukNakitIhtiyaciModel
+@{
+    ViewData["Title"] = "Günlük Nakit İhtiyacı";
+    // Geniş ekranda sayfa pencereye sığar, tablo kalan alanı doldurur (tanim.css; bölüm görünümü taveneko.css ile ortak).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-eko gunluk-nakit">
+    <!-- Üst: birim ve tarih -->
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Birim ve Tarih</h2>
+            <div class="nakit-form">
+                <div class="nakit-satir">
+                    <label class="nakit-etiket" for="txtMuhasebe">Birim:</label>
+                    <div id="muhBirim"></div>
+                </div>
+                <div class="nakit-satir">
+                    <label class="nakit-etiket" for="txtTarih">Tarih:</label>
+                    <input type="date" id="txtTarih" class="form-control input-sm tarih-sec" title="Listelenecek günlerin ortasındaki tarih" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alt: günlük toplamlar -->
+    <section>
+        <div class="kutu bolum bolum-tavan">
+            <h2 class="bolum-baslik">Günlük Nakit İhtiyacı</h2>
+            <div class="btn-toolbar tavan-arac" role="toolbar" aria-label="İşlemler">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnListele" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+                    </button>
+                    <button type="button" id="btnYazdir" class="btn btn-default" title="Seçilen tarih çevresinde bütün birimlerin günlük toplamları (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                    </button>
+                </div>
+                <ul class="renk-aciklama" aria-label="Renkler">
+                    <li class="acik">Girilebilir gün</li>
+                    <li class="kapali">Hafta sonu / geçmiş gün</li>
+                </ul>
+            </div>
+            <div id="grdGunler" class="tavan-grid" aria-label="Günlük nakit ihtiyacı"></div>
+        </div>
+    </section>
+</div>
+
+<!-- Günlük Nakit Detay (eski gunlukNakitModal): günün harcama türlerine göre tutarları -->
+<dialog id="dlgDetay" class="tanim-pencere nakit-detay" aria-labelledby="dlgDetayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgDetayBaslik">Günlük Nakit Detay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="detay-gun" id="lblDetayGun"></p>
+        <div id="detayAlanlar" class="detay-alanlar"></div>
+        <div class="detay-satir detay-toplam">
+            <label for="txtToplam">Toplam</label>
+            <input type="text" id="txtToplam" class="form-control input-sm" readonly tabindex="-1" />
+        </div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnKaydet" class="btn btn-success btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taveneko.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/gunluknakit.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/gunluknakit.js" asp-append-version="true"></script>
+}

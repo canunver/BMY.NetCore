@@ -55,10 +55,14 @@ namespace Istemci.ButceHazirlik
 
         private static bool Gelir(int tur) { return tur == 2; }
 
-        /// <summary>Eski sayfada yetki denetimi yoktu; burada sistem yöneticisi ya da ilgili bütçe teklifi ekranının yetkilisi.</summary>
+        /// <summary>
+        /// Eski sayfada yetki denetimi yoktu; burada sistem yöneticisi, ilgili bütçe teklifi ekranının yetkilisi ya da sayfayı satırdaki
+        /// düğmeyle açan Alt Faaliyet İlişkileri ekranının yetkilisi.
+        /// </summary>
         public static bool YetkiVar(Kullanici kullanan, string uygulamaKlasoru, int tur)
         {
-            return ButceRakamUclari.YetkiVar(kullanan, uygulamaKlasoru, Gelir(tur) ? 2 : 1, 0);
+            return ButceRakamUclari.YetkiVar(kullanan, uygulamaKlasoru, Gelir(tur) ? 2 : 1, 0)
+                || AltFaaliyetIliskiUclari.YetkiVarHerhangi(kullanan, uygulamaKlasoru);
         }
 
         private static IResult Denetle(HttpContext baglam, IWebHostEnvironment ortam, int tur, out Kullanici kullanan)

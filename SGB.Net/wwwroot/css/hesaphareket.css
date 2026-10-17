@@ -1,0 +1,119 @@
+/* Dosya Hesap Hareket Formu (AlacakTakip/HesapHareket). Üstte araç çubuğu, altında iki ayrı kutu:
+   hesap satırları (Tutar girilir) ve kayıt edilmiş bilgiler. Geniş ekranda sayfa pencereye sığar, tablolar kalan yeri doldurur. */
+
+.hesap-hareket {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.hh-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 0;
+}
+
+.hh-arac .btn-group {
+    margin-left: 0;
+}
+
+.hh-dosya {
+    font-weight: 600;
+    color: var(--soluk);
+}
+
+.hh-kapat {
+    margin-left: auto;
+}
+
+.hh-bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    display: flex;
+    flex-direction: column;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.hh-bolum.hh-bolum-liste {
+    --bolum-baslik: #e2f3e8;
+    --bolum-govde: #f4fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.hh-baslik {
+    margin: 0 -12px 12px;
+    padding: 9px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.hh-islem {
+    font-weight: 400;
+}
+
+.hh-grid-satir {
+    height: 240px;
+}
+
+.hh-grid-liste {
+    height: 320px;
+}
+
+/* Girilebilir hücre beyaz (Tutar); salt okunur hücre açık sarı */
+.hesap-hareket .ag-cell.hh-girilir {
+    background: #fff;
+    box-shadow: inset 0 0 0 1px var(--cizgi);
+    cursor: text;
+}
+
+.hesap-hareket .ag-cell.hh-salt {
+    background: #fffbe6;
+}
+
+.hesap-hareket .ag-right-aligned-cell,
+.hesap-hareket .ag-right-aligned-cell input {
+    text-align: right;
+}
+
+@media (min-width: 992px) {
+    body.hh-sayfa > .sayfa-icerik {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .hesap-hareket {
+        flex: 1 1 auto;
+        min-height: 0;
+    }
+
+    .hh-bolum {
+        min-height: 0;
+    }
+
+    .hh-bolum-satir {
+        flex: 2 1 0;
+    }
+
+    .hh-bolum-liste {
+        flex: 3 1 0;
+    }
+
+    .hh-grid-satir,
+    .hh-grid-liste {
+        flex: 1 1 auto;
+        min-height: 140px;
+        height: auto;
+    }
+}

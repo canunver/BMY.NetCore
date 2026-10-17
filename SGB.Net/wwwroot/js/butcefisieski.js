@@ -252,8 +252,7 @@ $(function () {
 
     Sgb.al('api/butcefisieski/tanim').done(function (t) {
         if (t.hata) { mesaj(t.hata, 'danger'); return; }
-        var $y = $('#ddlYil').empty();
-        $.each(t.yillar || [], function (i, y) { $('<option></option>').val(y).text(y).appendTo($y); });
+        var $y = Sgb.yilKutusu('#ddlYil', t.yillar);
         $y.val(saklananOku('yil', String(t.yil)));
         if (!$y.val()) $y.val(String(t.yil));
 

@@ -282,6 +282,19 @@ window.Sgb = (function ($) {
         }).catch(function () { bildirim('Dosya hazırlanamadı.', 'danger'); });
     }
 
+    // Yıl kutusu: tüm sayfalarda yıl tek tip seçilir, <input type="number" class="sgb-yil">; yukarı / aşağı okla ya da yazarak
+    // değişir. Alt ve üst sınır sunucunun verdiği yıllardan (ve seçili yıldan) alınır, seçili yıl kutuya yazılır.
+    function yilKutusu(kutu, yillar, secili) {
+        var $k = $(kutu);
+        var y = $.map((yillar || []).concat(secili != null && secili !== '' ? [secili] : []), function (x) {
+            x = parseInt(x, 10);
+            return x > 0 ? x : null;
+        });
+        if (y.length) $k.attr({ min: Math.min.apply(null, y), max: Math.max.apply(null, y) });
+        if (secili != null && secili !== '') $k.val(String(secili));
+        return $k;
+    }
+
     // Grafik (pasta, çizgi, sütun): SVG olarak çizilir, ek kütüphane gerekmez. element: grafiğin konacağı kutu.
     //   veri: { baslik, tur: 'pasta' | 'cizgi' | 'sutun', etiketler: [...], seriler: [{ ad, renk, degerler: [...] }], renkler: [...] }
     //   Pastada tek seri çizilir, dilim renkleri veri.renkler'den gelir. Veri /api/grafik ucundan ya da sayfanın kendisinden gelebilir.
@@ -385,5 +398,5 @@ window.Sgb = (function ($) {
         $.each(aciklama, function (i, a) { $('<li></li>').append($('<i aria-hidden="true"></i>').css('background', a.renk)).append(document.createTextNode(a.ad)).appendTo($a); });
     }
 
-    return { KOK: KOK, meta: meta, al: al, gonder: gonder, mesaj: mesaj, bildirim: bildirim, tarih: tarih, bugun: bugun, grid: grid, csvIndir: csvIndir, pencere: pencere, agac: agac, indir: indir, grafik: grafik };
+    return { KOK: KOK, meta: meta, al: al, gonder: gonder, mesaj: mesaj, bildirim: bildirim, tarih: tarih, bugun: bugun, grid: grid, csvIndir: csvIndir, pencere: pencere, agac: agac, indir: indir, grafik: grafik, yilKutusu: yilKutusu };
 })(jQuery);

@@ -1,0 +1,59 @@
+@page
+@model DeflatorFormModel
+@{
+    ViewData["Title"] = "Yatırım Projeleri Deflatörü";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="deflator">
+    <!-- Sorgu alanları (eski FormPanel): alanlar alt alta, etiketler solda -->
+    <div class="kutu bolum bolum-secim">
+        <h2 class="bolum-baslik">Sorgu Alanları</h2>
+        <form id="frmSecim" class="tanim-form secim-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="txtYil">Yıl</label>
+                <div><input type="number" id="txtYil" class="form-control yil" min="2000" step="1" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlSenaryo">Senaryo Kod</label>
+                <div><select id="ddlSenaryo" class="form-control"></select></div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Deflatörler (eski grdDeflator) -->
+    <div class="kutu bolum bolum-tablo">
+        <h2 class="bolum-baslik">
+            <span>Deflatörler</span>
+            <small class="alt-baslik" id="lblOkunan"></small>
+        </h2>
+        <div class="btn-toolbar deflator-arac" role="toolbar" aria-label="Tablo işlemleri">
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" id="btnOku" class="btn btn-default">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                </button>
+                <button type="button" id="btnKaydet" class="btn btn-primary" disabled>
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+            </div>
+            <ul class="renk-aciklama" aria-label="Renkler">
+                <li class="acik">Girilebilir</li>
+                <li class="degisti">Değişti</li>
+            </ul>
+        </div>
+        <div id="grdDeflator" class="deflator-grid" aria-label="Deflatörler"></div>
+    </div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/deflator.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/deflator.js" asp-append-version="true"></script>
+}

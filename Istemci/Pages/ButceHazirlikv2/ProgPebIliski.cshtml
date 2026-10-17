@@ -1,0 +1,140 @@
+@page
+@model ProgPebIliskiModel
+@{
+    ViewData["Title"] = "Alt Faaliyet Bağları";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-eko butce-tanim prog-peb-iliski">
+    <!-- Üst: yıl ve filtre -->
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Alt Faaliyet Seçimi</h2>
+            <form id="frmSecim" class="secim-satir" novalidate>
+                <label class="secim-alan dar">
+                    <span>Yıl</span>
+                    <input type="number" id="txtYil" class="form-control input-sm" min="2000" step="1" />
+                </label>
+                <label class="secim-alan">
+                    <span>Filtre</span>
+                    <input type="search" id="txtFiltre" class="form-control input-sm" maxlength="100" />
+                </label>
+                <div class="secim-tuslar" role="group" aria-label="Liste işlemleri">
+                    <button type="submit" id="btnListele" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                    </button>
+                    <button type="button" id="btnListeleFon" class="btn btn-default btn-sm" title="Fonksiyonel kodu faaliyetinkiyle uyuşmayanları listeler">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele (Fon)
+                    </button>
+                    <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Listeyi Excel olarak indirir">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                    </button>
+                    <button type="button" id="btnKopyala" class="btn btn-default btn-sm" title="Listeyi panoya kopyalar">
+                        <span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Kopyala
+                    </button>
+                    <button type="button" id="btnOncekiYil" class="btn btn-default btn-sm" title="Bir önceki yılın bağlarını seçilen yıla kopyalar">
+                        <span class="glyphicon glyphicon-import" aria-hidden="true"></span> Önc. Yıldan Kopyala
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Alt: liste -->
+    <section>
+        <div class="kutu bolum bolum-tavan">
+            <h2 class="bolum-baslik">Alt Faaliyet Listesi</h2>
+            <div id="grdListe" class="tavan-grid" aria-label="Alt faaliyet bağları"></div>
+        </div>
+    </section>
+</div>
+
+<!-- Bağ ayrıntısı (eski wndDetay) -->
+<dialog id="dlgDetay" class="tanim-pencere genis" aria-labelledby="dlgDetayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgDetayBaslik">Detay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmDetay" class="tanim-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="txtPeb">Alt Faaliyet</label>
+                <div class="kod-secim">
+                    <input type="text" id="txtPeb" class="form-control dar" maxlength="30" />
+                    <button type="button" class="btn btn-default btn-sm" data-agac="14" title="Kod ağacından seç" aria-label="Alt faaliyet kodunu ağaçtan seç">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                    <span id="lblPeb" class="kod-ad"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtProgram">Program</label>
+                <div><input type="text" id="txtProgram" class="form-control prg-kod" data-tur="1" list="lstProgram" autocomplete="off" placeholder="En az 2 karakter yazınız" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAltProgram">Alt Program</label>
+                <div><input type="text" id="txtAltProgram" class="form-control prg-kod" data-tur="2" list="lstAltProgram" autocomplete="off" placeholder="En az 2 karakter yazınız" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtFaaliyet">Faaliyet</label>
+                <div><input type="text" id="txtFaaliyet" class="form-control prg-kod" data-tur="3" list="lstFaaliyet" autocomplete="off" placeholder="En az 2 karakter yazınız" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAltFaaliyet">Alt Faaliyet (PB)</label>
+                <div><input type="text" id="txtAltFaaliyet" class="form-control prg-kod" data-tur="4" list="lstAltFaaliyet" autocomplete="off" placeholder="En az 2 karakter yazınız" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtFon">Fonk. Kod</label>
+                <div class="kod-secim">
+                    <input type="text" id="txtFon" class="form-control dar" maxlength="30" />
+                    <button type="button" class="btn btn-default btn-sm" data-agac="2" title="Kod ağacından seç" aria-label="Fonksiyonel kodu ağaçtan seç">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                    <span id="lblFon" class="kod-ad"></span>
+                </div>
+            </div>
+            <datalist id="lstProgram"></datalist>
+            <datalist id="lstAltProgram"></datalist>
+            <datalist id="lstFaaliyet"></datalist>
+            <datalist id="lstAltFaaliyet"></datalist>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" id="btnSil" class="btn btn-danger btn-sm">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+        </button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+<!-- Kod ağacı (eski KodAgac.aspx) -->
+<dialog id="dlgAgac" class="tanim-pencere tanim-agac-pencere" aria-labelledby="dlgAgacBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgAgacBaslik">Kod Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <ul id="agcKod" aria-label="Kod ağacı"></ul>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taveneko.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/butcetanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/progpebiliski.js" asp-append-version="true"></script>
+}

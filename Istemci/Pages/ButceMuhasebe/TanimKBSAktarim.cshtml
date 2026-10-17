@@ -1,0 +1,52 @@
+@page
+@model TanimKBSAktarimModel
+@{
+    ViewData["Title"] = "KBS Aktarım Tanımlama";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim mt-tek muh-tanim">
+    <section>
+        <div class="kutu bolum izgarali">
+            <h2 class="bolum-baslik">KBS Aktarım Hesapları</h2>
+            <div class="mt-arac" role="toolbar" aria-label="İşlemler">
+                <label for="kbsYil">Yıl</label>
+                <input type="number" id="kbsYil" class="form-control input-sm sgb-yil" min="@Model.IlkYil" max="@(Model.BuYil + 1)" value="@Model.BuYil" />
+                <button type="button" id="btnListele" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Listele</button>
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+                <button type="button" id="btnDetay" class="btn btn-default btn-sm sag" title="Detay hesap kodları"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Detay İşlem</button>
+            </div>
+            <div id="grdKbs" class="tanim-grid"></div>
+        </div>
+    </section>
+</div>
+
+<dialog id="dlgDetay" class="tanim-pencere" aria-labelledby="dlgDetayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgDetayBaslik">Detay Hesap Kodları</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="text-muted">Hesap kodlarını boş satırlara yazın; noktalar kayıtta atılır, boş satırlar kaydedilmez.</p>
+        <div id="grdDetay" class="mt-pencere-grid"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnDetayKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhtanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/muhtanim-kbs.js" asp-append-version="true"></script>
+}

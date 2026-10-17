@@ -59,6 +59,24 @@ namespace OrtakClass
             while (builder.MoveToMergeField(alanAd))
                 builder.Write(deger);
         }
+
+        /// <summary>Varsayılan kurum kodu (eski GenelIslemlerIstemci.VarsayilanKurumBul: /KURUMKOD).</summary>
+        public static string VarsayilanKurumBul()
+        {
+            return TNS.DEG.Arac.DegiskenDegerBul(0, "/KURUMKOD");
+        }
+
+        /// <summary>Varsayılan kurum adı (eski GenelIslemlerIstemci.VarsayilanKurumBulAd: /KURUMAD).</summary>
+        public static string VarsayilanKurumBulAd()
+        {
+            return TNS.DEG.Arac.DegiskenDegerBul(0, "/KURUMAD");
+        }
+
+        /// <summary>Personel organizasyon şemasından mı izleniyor (eski GenelIslemlerIstemci.OrgSemaPersonelKullaniyorMu: /OrgSemaPersonel).</summary>
+        public static bool OrgSemaPersonelKullaniyorMu()
+        {
+            return OrtakFonksiyonlar.ConvertToInt(TNS.DEG.Arac.DegiskenDegerBul(0, "/OrgSemaPersonel"), 0) > 0;
+        }
     }
 
     /// <summary>Eski OrtakClass\GenelIslemler.cs'ten: Excel tablosu oluşturma ve birim çevirme yardımcıları.</summary>
@@ -133,20 +151,44 @@ namespace OrtakClass
         }
 
         /// <summary>
-        /// Bütçe kodunun adı (eski GenelIslemler.KodAd; burada yalnızca bütçe kod türleri 1-6 var). kosul "yıl-kod" biçimindedir.
+        /// Bütçe kodunun adı (eski GenelIslemler.KodAd; burada bütçe kod türleri 1-6, 53 kurumsal yapı ve 58 alt faaliyet var).
+        /// kosul "yıl-kod" biçimindedir; 53'te yalnızca kurumsal yapı kodu.
         /// </summary>
         public static string KodAd(int kodTur, string kosul, bool esitle)
         {
             string uzayAd;
+            if (kodTur == 53)
+            {
+                // Eski: dört parçalı kodda birimin adına üst birimin adı parantez içinde eklenir.
+                TNS.UZY.IUZYServis servisUZY = TNS.UZY.Arac.Tanimla();
+                string[] kosulList = (kosul ?? "").Split('.');
+                if (kosulList.Length == 4)
+                    return servisUZY.UzayDegeriStr(new TNS.KYM.Kullanici(), "BHMKURUMSALYAPI", kosul, esitle, null) + "(" + servisUZY.UzayDegeriStr(new TNS.KYM.Kullanici(), "BHMKURUMSALYAPI", kosulList[0] + "." + kosulList[1] + "." + kosulList[2], esitle, null) + ")";
+                return servisUZY.UzayDegeriStr(new TNS.KYM.Kullanici(), "BHMKURUMSALYAPI", kosul, esitle, null);
+            }
             if (kodTur == 1) uzayAd = "ABSKUR";
             else if (kodTur == 2) uzayAd = "ABSFON";
             else if (kodTur == 3) uzayAd = "ABSFIN";
             else if (kodTur == 4) uzayAd = "ABSEKO";
             else if (kodTur == 5) uzayAd = "ABSGELIRKOD";
             else if (kodTur == 6) uzayAd = "ABSFINANSMANKOD";
+            else if (kodTur == 58) uzayAd = "ABSPEBKOD";
             else return "";
             string ad = TNS.UZY.Arac.Tanimla().UzayDegeriStr(new TNS.KYM.Kullanici(), uzayAd, kosul, esitle, null);
             return (ad ?? "").Replace(",", " ");
+        }
+
+        /// <summary>Değişim oranı (yüzde; eski GenelIslemler.DegisimOranBul): eski 0 ise -1.</summary>
+        public static double DegisimOranBul(double yeni, double eski)
+        {
+            return YuzdeBul(yeni - eski, eski);
+        }
+
+        /// <summary>Miktarın tümdeki yüzdesi (eski GenelIslemler.YuzdeBul): tüm 0 ise -1.</summary>
+        public static double YuzdeBul(double miktar, double tum)
+        {
+            if (tum == 0) return -1;
+            else return ((miktar / tum) * 100);
         }
 
         /// <summary>Kullanıcı değişkeninin ilk değeri (eski GenelIslemler.KullaniciDegiskenGetir); yoksa boş.</summary>

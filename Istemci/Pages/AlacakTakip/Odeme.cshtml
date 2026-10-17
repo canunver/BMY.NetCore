@@ -1,0 +1,217 @@
+@page
+@model OdemeModel
+@{
+    ViewData["Title"] = "Ödeme Bilgileri";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="atmo">
+    <!-- Üst araç çubuğu (eski sayfanın üst Toolbar'ı) -->
+    <div class="btn-toolbar atmo-arac" role="toolbar" aria-label="Ödeme işlemleri">
+        <button type="button" id="btnTaksit" class="btn btn-default btn-sm" title="Dosyaya bir ödeme (taksit) satırı ekler">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ödeme Satırı Aç
+        </button>
+        <span class="atmo-sag">
+            <button type="button" id="btnAnaParaHesapla" class="btn btn-default btn-sm" title="Ödenen tutarın ana para ve faiz ayrımını hesaplar">
+                <span class="glyphicon glyphicon-th" aria-hidden="true"></span> Ana Para Hesapla
+            </button>
+            <button type="button" id="btnKapat" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Kapat
+            </button>
+        </span>
+    </div>
+
+    <div class="atmo-ust">
+        <!-- Ödeme planı (eski FormPanel) -->
+        <section class="kutu atmo-bolum">
+            <h2 class="atmo-baslik">Ödeme Planı</h2>
+            <form id="frmPlan" class="tanim-form atmo-alanlar" novalidate>
+                <div class="form-group">
+                    <span class="control-label">Borç Miktarı</span>
+                    <div><output id="lblBorcMiktari" class="atmo-deger"></output></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtVade">Taksit Sayısı</label>
+                    <div><input type="number" id="txtVade" class="form-control input-sm atmo-dar" min="1" step="1" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtPeriyod">Ödeme Periyodu (Ay)</label>
+                    <div><input type="number" id="txtPeriyod" class="form-control input-sm atmo-dar" min="1" step="1" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtIlkOdemeTarihi">İlk Ödeme Tarihi</label>
+                    <div class="atmo-bitisik">
+                        <input type="date" id="txtIlkOdemeTarihi" class="form-control input-sm atmo-tarih" />
+                        <button type="submit" id="btnOdemePlani" class="btn btn-primary btn-sm" title="Taksit sayısı, periyot ve ilk ödeme tarihine göre taksitleri hazırlar">
+                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Ödeme Planı Hazırla
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <!-- Tahakkuk bilgisi (eski sağ üst panel) -->
+        <section class="kutu atmo-bolum atmo-tahakkuk">
+            <h2 class="atmo-baslik">Tahakkuk Bilgisi</h2>
+            <div class="tanim-form atmo-alanlar">
+                <div class="form-group">
+                    <span class="control-label">Dosya No</span>
+                    <div><output id="lblDosyaNo" class="atmo-deger"></output></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Belge No</span>
+                    <div id="lblOdemeEmriNo" class="atmo-deger"></div>
+                </div>
+            </div>
+            <button type="button" id="btnOdemeEmri" class="btn btn-default btn-sm" title="Dosyanın borcu için açılış tahakkuku (ödeme emri) oluşturur">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Açılış Tahakkuku Oluştur
+            </button>
+        </section>
+    </div>
+
+    <!-- Taksitler (eski grdListe) -->
+    <section class="kutu atmo-bolum atmo-liste">
+        <h2 class="atmo-baslik">
+            Taksitler
+            <button type="button" id="btnYardim" class="btn btn-link btn-xs atmo-yardim" aria-expanded="false" aria-controls="pYardim" title="Açıklama">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span><span class="sr-only">Açıklama</span>
+            </button>
+        </h2>
+        <p class="atmo-not">
+            Faiz Tutarları, Taksidin Ödenmesi Planlanan Tarihlere göre hesaplanmıştır. Ödeme Tarihi alanına, ödemenin yapıldığı tarihi girip
+            kayıt ettiğinizde, bu tarihe göre faiz tutarı tekrar hesaplanacaktır.
+        </p>
+        <p id="pYardim" class="atmo-not" hidden>
+            Beyaz hücreler girilebilir, sarı hücreler hesaplanır.
+            Satırdaki <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> tuşu, ödemesi kaydedilmiş taksit için faiz ve ödeme tahakkuku oluşturur.
+        </p>
+        <div class="btn-toolbar atmo-arac" role="toolbar" aria-label="Taksit işlemleri">
+            <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+            </button>
+            <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Taksit listesi (Excel)">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+            </button>
+        </div>
+        <div id="grdListe" class="atmo-grid" aria-label="Taksitler"></div>
+    </section>
+</div>
+
+<!-- Hesap kodu seçimi (eski wndHesapKodSecim) -->
+<dialog id="dlgHesapKod" class="tanim-pencere atmo-pencere" aria-labelledby="dlgHesapKodBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgHesapKodBaslik">Hesap Kodu Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmHesapKod" class="tanim-form atmo-alanlar" novalidate>
+            <p class="atmo-uyari">Faiz tahakkuku oluşturulacak ise kullanılacaktır</p>
+            <div class="form-group">
+                <label class="control-label" for="txtHesapNoBorc">Borç Hesap Kodu</label>
+                <div class="atmo-bitisik">
+                    <input type="text" id="txtHesapNoBorc" class="form-control input-sm atmo-hesap" autocomplete="off" />
+                    <button type="button" class="btn btn-default btn-sm" data-hesap-sec="#txtHesapNoBorc" title="Hesap planından seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Hesap planından seç</span></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtHesapNoAlacak">Alacak Hesap Kodu</label>
+                <div class="atmo-bitisik">
+                    <input type="text" id="txtHesapNoAlacak" class="form-control input-sm atmo-hesap" autocomplete="off" />
+                    <button type="button" class="btn btn-default btn-sm" data-hesap-sec="#txtHesapNoAlacak" title="Hesap planından seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Hesap planından seç</span></button>
+                </div>
+            </div>
+            <div id="pnlHesapNoOdeme">
+                <p class="atmo-uyari">Ödeme Tahakkukunda kullanılacaktır</p>
+                <div class="form-group">
+                    <label class="control-label" for="txtHesapNoOdeme">Ödeme Hesap Kodu</label>
+                    <div class="atmo-bitisik">
+                        <input type="text" id="txtHesapNoOdeme" class="form-control input-sm atmo-hesap" autocomplete="off" />
+                        <button type="button" class="btn btn-default btn-sm" data-hesap-sec="#txtHesapNoOdeme" title="Hesap planından seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Hesap planından seç</span></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="submit" id="btnOdemeEmriOlustur" form="frmHesapKod" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Tahakkuku Oluştur
+        </button>
+    </div>
+</dialog>
+
+<!-- Ana paradan faiz hesapla (eski wndHesap) -->
+<dialog id="dlgHesap" class="tanim-pencere atmo-pencere" aria-labelledby="dlgHesapBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgHesapBaslik">Ana Paradan Faiz Hesapla</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmHesap" class="tanim-form atmo-alanlar" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="txtHesapOdemeTutari">Ödeme Tutarı</label>
+                <div><input type="text" id="txtHesapOdemeTutari" class="form-control input-sm atmo-tutar" inputmode="decimal" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtHesapOdemeTarihi">Ödeme Tarihi</label>
+                <div><input type="date" id="txtHesapOdemeTarihi" class="form-control input-sm atmo-tarih" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtHesapFaizOrani">Oran</label>
+                <div><input type="text" id="txtHesapFaizOrani" class="form-control input-sm atmo-tutar atmo-salt" readonly /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtTaksitTarihiOrani">Taksit Tarihi Oranı</label>
+                <div><input type="text" id="txtTaksitTarihiOrani" class="form-control input-sm atmo-tutar atmo-salt" readonly /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtHesapAnaPara">Ana Para</label>
+                <div><input type="text" id="txtHesapAnaPara" class="form-control input-sm atmo-tutar atmo-salt atmo-vurgu" readonly /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtHesapFaizTutari">Faiz Tutarı</label>
+                <div><input type="text" id="txtHesapFaizTutari" class="form-control input-sm atmo-tutar atmo-salt" readonly /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtTaksitTarihiFaizi">Taksit Tarihi Faizi</label>
+                <div><input type="text" id="txtTaksitTarihiFaizi" class="form-control input-sm atmo-tutar atmo-salt" readonly /></div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="submit" id="btnHesapla" form="frmHesap" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-th" aria-hidden="true"></span> Hesapla
+        </button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin" class="sonuc"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/makbuz.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/atmodeme.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/atmodeme.js" asp-append-version="true"></script>
+}

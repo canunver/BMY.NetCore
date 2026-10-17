@@ -1,0 +1,178 @@
+@page
+@model SayBulguModel
+@{
+    ViewData["Title"] = "Sayıştay Bulguları";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="say-bulgu">
+    <!-- Seçim (eski "Bulgu Bilgileri" paneli) -->
+    <div class="kutu bolum bolum-secim">
+        <h2 class="bolum-baslik"><span>Bulgu Girişi</span></h2>
+        <form id="frmSecim" class="tanim-form secim-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="spnYil">Yıl</label>
+                <div><input type="number" id="spnYil" class="form-control yil" min="2000" step="1" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="sorDurum">Durum</label>
+                <div><select id="sorDurum" class="form-control durum"></select></div>
+            </div>
+            <div class="secim-tuslar" role="group" aria-label="İşlemler">
+                <button type="submit" id="btnListele" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele</button>
+                <button type="button" id="btnYeni" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Bulgu</button>
+                <button type="button" id="btnOnBulguGirisIzni" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Bulgu İzin</button>
+                <button type="button" id="btnYazdir1" class="btn btn-default btn-sm" title="Bulgu listesi (Excel)"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Liste Yazdır</button>
+                <button type="button" id="btnYazdir2" class="btn btn-default btn-sm" title="Birim cevaplarıyla birlikte bulgu listesi (Excel)"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Cevaplı Liste Yazdır</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bulgular -->
+    <div class="kutu bolum bolum-liste">
+        <h2 class="bolum-baslik"><span>Bulgular</span><small class="alt-baslik" id="lblListe">Listelemek için yıl ve durum seçip Listele'ye basınız.</small></h2>
+        <div id="bulguGrid" class="say-grid"></div>
+    </div>
+</div>
+
+<!-- Bulgu Giriş (EKR004) -->
+<dialog id="onBulguModal" class="tanim-pencere say-pencere genis-pencere" aria-labelledby="onBulguModalLabel">
+    <div class="pencere-baslik">
+        <h2 id="onBulguModalLabel">Sayıştay Bulgu Girişi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmBulgu" class="tanim-form bulgu-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="ob_yil">Yıl</label>
+                <div class="cift-alan">
+                    <input type="number" id="ob_yil" class="form-control yil" readonly />
+                    <label class="sr-only" for="ob_idGoster">Bulgu numarası</label>
+                    <input type="text" id="ob_idGoster" class="form-control kimlik" readonly title="Kayıt numarası (yeni kayıtta 0)" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ob_bitisYil">Bitiş Yılı</label>
+                <div><input type="number" id="ob_bitisYil" class="form-control yil" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ob_butceTurKod">Bulgu Bütçe Türü</label>
+                <div><select id="ob_butceTurKod" class="form-control"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ob_bulguTurKod">Bulgu Türü</label>
+                <div><select id="ob_bulguTurKod" class="form-control"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ob_bulguDurumKod">Bulgu Durumu</label>
+                <div><select id="ob_bulguDurumKod" class="form-control"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ob_bulguNo">Bulgu No</label>
+                <div><input type="text" id="ob_bulguNo" class="form-control kisa" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ob_ongorulenTamamlanmaTarihiDT">Öng. Tam. Tar.</label>
+                <div class="cift-alan">
+                    <input type="date" id="ob_ongorulenTamamlanmaTarihiDT" class="form-control tarih" />
+                    <label class="checkbox-inline"><input type="checkbox" id="ob_yerineGetirildi" /> Yerine Getirildi</label>
+                </div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="ob_bulgu">Bulgu Başlığı</label>
+                <div><textarea id="ob_bulgu" class="form-control" rows="4"></textarea></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="ob_bulguOzeti">Sayıştay Talebi</label>
+                <div><textarea id="ob_bulguOzeti" class="form-control" rows="4"></textarea></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="ob_idareCevabi">İdare Cevabı/Açıklama</label>
+                <div><textarea id="ob_idareCevabi" class="form-control" rows="4"></textarea></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="ob_yapilacakFaaliyetler">Yap. Faaliyetler</label>
+                <div><textarea id="ob_yapilacakFaaliyetler" class="form-control" rows="4"></textarea></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ob_ilgiliBirimKurum">İlg. Birim/Kurum</label>
+                <div><input type="text" id="ob_ilgiliBirimKurum" class="form-control" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ob_gorevOrtagi">Görev Ortağı</label>
+                <div><input type="text" id="ob_gorevOrtagi" class="form-control" /></div>
+            </div>
+            <!-- Eski sayfada da gizliydi; değerleri kayıtta korunur -->
+            <input type="hidden" id="ob_bulguDayanagi" />
+            <input type="hidden" id="ob_idareCevapOzeti" />
+            <input type="hidden" id="ob_sayistayOneri" />
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnObKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kaydet</button>
+    </div>
+</dialog>
+
+<!-- Bulgu Birim İlişki (EKR005) -->
+<dialog id="mdlBirimIliski" class="tanim-pencere say-pencere genis-pencere" aria-labelledby="mdlBirimIliskiLbl">
+    <div class="pencere-baslik">
+        <h2 id="mdlBirimIliskiLbl">Sayıştay Bulgu İlgili Birimler</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="iki-grid">
+            <!-- SOL: İlişkilendirilmiş Birimler -->
+            <section>
+                <h3 class="grid-title">İlişkilendirilmiş Birimler</h3>
+                <div id="gridIliskili" class="grid-wrap"></div>
+            </section>
+            <!-- SAĞ: Arama + Liste + Ekle -->
+            <section>
+                <h3 class="grid-title">Uygun Birimler</h3>
+                <form id="frmBirimAra" class="birim-ara" novalidate>
+                    <label class="sr-only" for="txtBirimAdi">Birim Adı</label>
+                    <input id="txtBirimAdi" type="text" class="form-control input-sm" autocomplete="off" placeholder="Birim adı ya da kodu" />
+                    <button type="submit" id="btnListeleBirim" class="btn btn-primary btn-sm">Listele</button>
+                </form>
+                <div id="gridSonuc" class="grid-wrap"></div>
+            </section>
+        </div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Birimlerin bulgu cevabı veri giriş izni -->
+<dialog id="birimGirisModal" class="tanim-pencere say-pencere genis-pencere" aria-labelledby="birimGirisModalLbl">
+    <div class="pencere-baslik">
+        <h2 id="birimGirisModalLbl">Sayıştay Bulguları Birim Giriş İzni</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <input type="hidden" id="bg_yil" value="" />
+        <div class="izin-tuslar">
+            <button id="btnBGAc" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> Veri Girişine Aç</button>
+            <button id="btnBGKapat" type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Veri Girişine Kapat</button>
+            <span class="text-muted" id="bg_seciliSay"></span>
+        </div>
+        <div id="birimGirisIzni" class="izin-grid"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/saybulgu.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/saybulgu.js" asp-append-version="true"></script>
+}

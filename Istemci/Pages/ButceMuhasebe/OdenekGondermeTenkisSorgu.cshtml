@@ -1,0 +1,224 @@
+@page
+@model OdenekGondermeTenkisSorguModel
+@{
+    ViewData["Title"] = Model.Baslik + " - Belge Arama";
+    ViewData["GovdeSinif"] = "og-sayfa";
+}
+@if (!Model.BelgeTurVar)
+{
+    <div class="alert alert-warning" role="alert">Belge türü bilgisi alınamadı.</div>
+    return;
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="odenek-gonderme og-liste" data-bt="@Model.BelgeTur" data-talep="@(Model.Talep ? "1" : "")">
+    <!-- Arama kriterleri (eski PropertyGrid süzgeci) -->
+    <section class="kutu bolum bolum-kriter">
+        <h2 class="bolum-baslik">Arama Kriterleri</h2>
+        <form id="frmKriter" class="og-kriter" novalidate>
+            <div class="tanim-form og-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="ddlYil">Yıl</label>
+                    <div><input type="number" id="ddlYil" class="form-control input-sm og-yil sgb-yil" min="2000" max="2100" step="1" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlDurum">Durum</label>
+                    <div><select id="ddlDurum" class="form-control input-sm"></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMuhasebe">Muhasebe / Birim</label>
+                    <div id="muhBirim"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtBelgeNo1">Belge No</label>
+                    <div class="og-bitisik">
+                        <input type="text" id="txtBelgeNo1" class="form-control input-sm og-no" maxlength="12" autocomplete="off" aria-label="Belge no başlangıç" />
+                        <span class="og-ayrac">-</span>
+                        <input type="text" id="txtBelgeNo2" class="form-control input-sm og-no" maxlength="12" autocomplete="off" aria-label="Belge no bitiş" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtBelgeTarihi1">Belge Tarihi</label>
+                    <div class="og-bitisik">
+                        <input type="date" id="txtBelgeTarihi1" class="form-control input-sm og-tarih" aria-label="Belge tarihi başlangıç" />
+                        <span class="og-ayrac">-</span>
+                        <input type="date" id="txtBelgeTarihi2" class="form-control input-sm og-tarih" aria-label="Belge tarihi bitiş" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtDurumTarihi1">Durum Tarihi</label>
+                    <div class="og-bitisik">
+                        <input type="date" id="txtDurumTarihi1" class="form-control input-sm og-tarih" aria-label="Durum tarihi başlangıç" />
+                        <span class="og-ayrac">-</span>
+                        <input type="date" id="txtDurumTarihi2" class="form-control input-sm og-tarih" aria-label="Durum tarihi bitiş" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtIcmalNoK">İcmal No</label>
+                    <div class="og-bitisik">
+                        <input type="text" id="txtIcmalNoK" class="form-control input-sm og-no" maxlength="10" autocomplete="off" />
+                        <label class="og-ic-etiket" for="txtIcmalTarihi">İcmal Tarihi</label>
+                        <input type="date" id="txtIcmalTarihi" class="form-control input-sm og-tarih" />
+                    </div>
+                </div>
+            </div>
+            <div class="tanim-form og-alanlar">
+                <partial name="_OdenekDurumKodlar" />
+                <div class="form-group">
+                    <label class="control-label" for="txtTutarBE">Tutar</label>
+                    <div class="og-bitisik">
+                        <input type="text" id="txtTutarBE" class="form-control input-sm og-no" autocomplete="off" placeholder="En az" aria-label="Tutar en az" />
+                        <span class="og-ayrac">-</span>
+                        <input type="text" id="txtTutarKE" class="form-control input-sm og-no" autocomplete="off" placeholder="En çok" aria-label="Tutar en çok" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtIslemYapan">İşlemi Yapan</label>
+                    <div><input type="text" id="txtIslemYapan" class="form-control input-sm" maxlength="50" autocomplete="off" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAciklamaK">Açıklama</label>
+                    <div><input type="text" id="txtAciklamaK" class="form-control input-sm" maxlength="200" autocomplete="off" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtSurecNo">Süreç No</label>
+                    <div class="og-bitisik">
+                        <input type="text" id="txtSurecNo" class="form-control input-sm og-no" maxlength="20" autocomplete="off" />
+                        <label class="og-secenek"><input type="checkbox" id="chkDortDuzey" /> 4. düzey değişim</label>
+                    </div>
+                </div>
+            </div>
+            <div class="og-kriter-tuslar">
+                <button type="button" id="btnKriterTemizle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Belgeler -->
+    <section class="kutu bolum bolum-liste">
+        <h2 class="bolum-baslik">Belgeler <span class="og-toplam" id="lblListeOzet"></span></h2>
+        <div class="btn-toolbar og-arac" role="toolbar" aria-label="Liste işlemleri">
+            <div class="btn-group btn-group-sm">
+                <button type="submit" form="frmKriter" id="btnListele" class="btn btn-primary"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele</button>
+            </div>
+            <div class="btn-group btn-group-sm og-menu">
+                <button type="button" class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Liste Yazdır <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#" class="liste-yazdir" data-tur="1">Başlıklar</a></li>
+                    <li><a href="#" class="liste-yazdir" data-tur="2">Detaylı (Eko 2)</a></li>
+                    <li><a href="#" class="liste-yazdir" data-tur="3">Detaylı (Faal)</a></li>
+                </ul>
+            </div>
+            <div class="btn-group btn-group-sm og-menu">
+                <button type="button" class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Liste İşlemleri <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li id="mnSgb" hidden><a href="#" class="durum-islem" data-islem="sgb">SGB'ye Gönder</a></li>
+                    <li id="mnOnayla" hidden><a href="#" class="durum-islem" data-islem="onayla">Onayla</a></li>
+                    <li><a href="#" id="mnBelgeYazdir">Yazdır</a></li>
+                    <li id="mnMuhasebat"><a href="#" class="durum-islem" data-islem="muhasebat">Muhasebata Gönder</a></li>
+                    <li><a href="#" id="mnIptal">İptal Et</a></li>
+                    <li id="mnTahsis"><a href="#" class="durum-islem" data-islem="tahsis">Tahsis Et</a></li>
+                    <li id="mnYeniYap" hidden><a href="#" class="durum-islem" data-islem="yeniyap">Yeni Yap</a></li>
+                    <li id="mnDegisim"><a href="#" class="durum-islem" data-islem="degisimonayla">Değ. Onayla</a></li>
+                    <li><a href="#" class="durum-islem" data-islem="talepbelge">Talebi belge yap</a></li>
+                </ul>
+            </div>
+            <div class="og-icmal" id="grpIcmal" role="group" aria-label="İcmal işlemleri">
+                <label for="txtIcmalNo">İcmal No</label>
+                <input type="text" id="txtIcmalNo" class="form-control input-sm" maxlength="10" autocomplete="off" />
+                <div class="btn-group btn-group-sm og-menu">
+                    <button type="button" class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                        İcmal İşlemleri <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="durum-islem" data-islem="icmalno">No Ver</a></li>
+                        <li><a href="#" id="mnIcmalYazdir">Yazdır</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="btn-group btn-group-sm og-menu" id="grpDiger" hidden>
+                <button type="button" class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Diğer İşlemler <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#" class="ac-kapa" data-islem="ac">Birimlere Aç</a></li>
+                    <li><a href="#" class="ac-kapa" data-islem="kapa">Birimlere Kapa</a></li>
+                    <li id="mnEbutce"><a href="#" class="durum-islem" data-islem="ebutce">eBütçe Servise Gönder</a></li>
+                    <li id="mnMuhAldi"><a href="#" class="durum-islem" data-islem="muhaldi">Muh. Aldı Yap</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="grdListe" class="og-grid og-grid-liste" aria-label="Belgeler"></div>
+    </section>
+
+</div>
+
+<partial name="_OdenekDurumKodPencere" />
+
+<!-- Belge tarihçesi (eski BelgeTarihce.aspx) -->
+<dialog id="dlgTarihce" class="tanim-pencere og-pencere-genis" aria-labelledby="dlgTarihceBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgTarihceBaslik">Belge Tarihçesi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="og-tarihce-belge" id="lblTarihceBelge"></p>
+        <div id="grdTarihce" class="og-grid og-grid-kucuk" aria-label="Tarihçe"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- İptal gerekçesi -->
+<dialog id="dlgIptal" class="tanim-pencere" aria-labelledby="dlgIptalBaslik">
+    <form id="frmIptal" novalidate>
+        <div class="pencere-baslik">
+            <h2 id="dlgIptalBaslik">İptal Et</h2>
+            <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="pencere-govde">
+            <label for="txtIptalGerekce">İptal gerekçesini giriniz</label>
+            <textarea id="txtIptalGerekce" class="form-control input-sm" rows="3" maxlength="500"></textarea>
+        </div>
+        <div class="pencere-alt">
+            <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+            <button type="submit" class="btn btn-danger btn-sm">İptal Et</button>
+        </div>
+    </form>
+</dialog>
+
+<!-- Onay sorusu -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/odenekdurum.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/odenekgonderme.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/odenekgondermeliste.js" asp-append-version="true"></script>
+}

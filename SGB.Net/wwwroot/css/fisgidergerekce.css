@@ -1,0 +1,143 @@
+/* Gider Cetveli Açıklaması Girişi (KesinHesap/FisGiderGerekce): üç bölüm alt alta, her biri renkli başlıklı ayrı kutu
+   (Seçim mavi, Bütçe Değerleri turuncu, Gerekçe yeşil). Seçim alanları alt alta, etiket solda. */
+
+.fis-gerekce {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.fis-gerekce .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding: 0 16px 16px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.fis-gerekce .kutu.bolum.bolum-deger {
+    --bolum-baslik: #fbefd3;
+    --bolum-govde: #fffbf2;
+    --bolum-vurgu: #b07a00;
+}
+
+.fis-gerekce .kutu.bolum.bolum-gerekce {
+    --bolum-baslik: #e2f2e6;
+    --bolum-govde: #f6fbf7;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.fis-gerekce .bolum-baslik {
+    margin: 0 -16px 14px;
+    padding: 9px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.fis-gerekce .bolum-baslik label {
+    margin: 0;
+    font-weight: 600;
+}
+
+.fis-gerekce .bolum-baslik small {
+    color: #c62828;
+    font-weight: 400;
+}
+
+/* Araç çubuğu: yönetici tuşları sağa yaslanır */
+.fis-gerekce .gerekce-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.fis-gerekce .gerekce-arac .btn {
+    margin-left: 0;
+}
+
+.fis-gerekce .arac-bosluk {
+    flex: 1 1 auto;
+}
+
+/* Seçim alanları: etiket solda, alanlar sağda, satırlar alt alta */
+.fis-gerekce .form-satir {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 0 0 8px;
+}
+
+.fis-gerekce .form-satir:last-child {
+    margin-bottom: 0;
+}
+
+.fis-gerekce .form-satir > label {
+    flex: 0 0 70px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.fis-gerekce .satir-icerik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.fis-gerekce .form-control.yil {
+    width: 100px;
+}
+
+.fis-gerekce .form-control.tertip {
+    width: 320px;
+    max-width: 100%;
+}
+
+/* Bütçe değerleri tablosu (eski lblButceDeger) */
+.fis-gerekce .deger-tablo {
+    width: auto;
+    margin: 0;
+    background: var(--yuzey);
+}
+
+.fis-gerekce .deger-tablo th {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.fis-gerekce .deger-tablo td {
+    min-width: 120px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.fis-gerekce .deger-tablo td.bos-ipucu {
+    text-align: left;
+    color: var(--soluk, #6b7280);
+    font-style: italic;
+}
+
+/* Gerekçe metni; şablondan gelen (kaydedilmemiş) metin eskisi gibi kırmızı */
+.fis-gerekce #txtGerekce {
+    min-height: 260px;
+    font-family: "Times New Roman", Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    text-align: justify;
+    resize: vertical;
+}
+
+.fis-gerekce #txtGerekce.kirmizi {
+    color: #c62828;
+}

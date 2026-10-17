@@ -1,0 +1,202 @@
+/* Gider Cetveli Detay Açıklamalar (KesinHesap/FisGiderGerekceDetay): solda Seçim (mavi) ve Tertipler (turuncu), sağda
+   Açıklama (yeşil); her biri renkli başlıklı ayrı kutu. Dar ekranda alt alta. Seçim alanları alt alta, etiket solda. */
+
+.fis-gerekce-detay {
+    display: grid;
+    grid-template-columns: minmax(360px, 480px) minmax(0, 1fr);
+    gap: 14px;
+    align-items: start;
+}
+
+@media (max-width: 991px) {
+    .fis-gerekce-detay {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.fis-gerekce-detay .sol {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+}
+
+.fis-gerekce-detay .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    min-width: 0;
+    padding: 0 16px 16px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.fis-gerekce-detay .kutu.bolum.bolum-liste {
+    --bolum-baslik: #fbefd3;
+    --bolum-govde: #fffbf2;
+    --bolum-vurgu: #b07a00;
+}
+
+.fis-gerekce-detay .kutu.bolum.bolum-aciklama {
+    --bolum-baslik: #e2f2e6;
+    --bolum-govde: #f6fbf7;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.fis-gerekce-detay .bolum-baslik {
+    margin: 0 -16px 14px;
+    padding: 9px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.fis-gerekce-detay .bolum-baslik small {
+    color: var(--soluk, #6b7280);
+    font-weight: 400;
+}
+
+/* Araç çubukları: yönetici tuşu sağa yaslanır */
+.fis-gerekce-detay .detay-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.fis-gerekce-detay .detay-arac .btn {
+    margin-left: 0;
+}
+
+.fis-gerekce-detay .arac-bosluk {
+    flex: 1 1 auto;
+}
+
+/* Alanlar: etiket solda, alan sağda, satırlar alt alta */
+.fis-gerekce-detay .form-satir {
+    display: flex;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 0 0 8px;
+}
+
+.fis-gerekce-detay .form-satir:last-child {
+    margin-bottom: 0;
+}
+
+.fis-gerekce-detay .form-satir > label {
+    flex: 0 0 76px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.fis-gerekce-detay .satir-icerik {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.fis-gerekce-detay .satir-icerik.input-group {
+    display: table;
+}
+
+.fis-gerekce-detay .form-control.yil {
+    width: 100px;
+}
+
+/* Tertip listesi */
+.fis-gerekce-detay .tertip-grid {
+    height: calc(100vh - 470px);
+    min-height: 260px;
+}
+
+.fis-gerekce-detay .bos-ipucu {
+    color: var(--soluk, #6b7280);
+    font-style: italic;
+}
+
+/* Açıklama */
+.fis-gerekce-detay .tutarlar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    margin-bottom: 12px;
+}
+
+.fis-gerekce-detay .tutarlar .form-satir {
+    margin: 0;
+}
+
+.fis-gerekce-detay .form-control.tutar {
+    width: 170px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.fis-gerekce-detay .aciklama-etiket {
+    display: block;
+    font-weight: 600;
+}
+
+.fis-gerekce-detay #txtGerekce {
+    min-height: 360px;
+    font-family: "Times New Roman", Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    text-align: justify;
+    resize: vertical;
+}
+
+/* Kod ağacı penceresi */
+.sgb-kod-pencere {
+    width: min(640px, calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    padding: 0;
+    color: var(--murekkep);
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .25);
+}
+
+.sgb-kod-pencere::backdrop {
+    background: rgba(0, 0, 0, .45);
+}
+
+.sgb-kod-pencere .pencere-baslik {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.sgb-kod-pencere .pencere-baslik h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.sgb-kod-pencere .pencere-govde {
+    padding: 16px;
+}
+
+.sgb-kod-pencere .sgb-agac {
+    max-height: min(520px, calc(100vh - 220px));
+    overflow: auto;
+    margin: 0;
+}
+
+.sgb-kod-pencere .pencere-alt {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 12px 16px;
+    border-top: 1px solid var(--cizgi);
+}

@@ -1,0 +1,114 @@
+@model bool
+@* Ödenek Durum Bilgisi sonuç bölümleri; model true ise birim sayfası (ödenek ve AHP bölümleri yok). Değerler data-deger
+   alanlarına odenekdurum.js ile yazılır (adlar eski sayfadaki etiketlerin adları). *@
+@{
+    bool birim = Model;
+}
+<div class="od-sonuc">
+    @if (!birim)
+    {
+        <!-- Ödenek (eski tblDurum) -->
+        <div class="kutu bolum bolum-odenek">
+            <h2 class="bolum-baslik">Ödenek</h2>
+            <div class="od-govde">
+                <table class="od-satirlar">
+                    <tr><th>KBÖ</th><td data-deger="KBO"></td></tr>
+                    <tr><th>Eklenen</th><td data-deger="Eklenen"></td></tr>
+                    <tr><th>Düşülen</th><td data-deger="Dusulen"></td></tr>
+                    <tr><th>Bloke</th><td data-deger="Bloke"></td></tr>
+                </table>
+                <div class="od-kartlar">
+                    <div class="od-kart od-mavi"><span>Toplam Ödenek</span><strong data-deger="TOdenek"></strong></div>
+                    <div class="od-kart od-yesil"><span>Serbest</span><strong data-deger="Serbest"></strong></div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Ödenek gönderme / tenkis (eski tblDurum2) -->
+    <div class="kutu bolum bolum-gonderme">
+        <h2 class="bolum-baslik">Ödenek Gönderme</h2>
+        <div class="od-govde">
+            <table class="od-satirlar">
+                <tr><th>Ö.Gönderme</th><td data-deger="ToplamOdenekGonderme"></td></tr>
+                <tr><th>Tenkis</th><td data-deger="ToplamTenkis"></td></tr>
+                @if (!birim)
+                {
+                    <tr><th>Toplam</th><td data-deger="ToplamGONTEN"></td></tr>
+                }
+                <tr><th>Talep Edilen</th><td data-deger="OdenekTalep"></td></tr>
+            </table>
+            <div class="od-kartlar">
+                @if (birim)
+                {
+                    <div class="od-kart od-mavi"><span>Toplam Ödenek</span><strong data-deger="ToplamGONTEN"></strong></div>
+                }
+                else
+                {
+                    <div class="od-kart od-pembe"><span>Hazırlanabilir Ödenek Gönderme</span><strong data-deger="Kullanilabilir"></strong></div>
+                }
+            </div>
+        </div>
+        <details class="od-ayrinti">
+            <summary><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Ayrıntı (onaysız / onaylı)</summary>
+            <table class="table table-condensed od-ayrinti-tablo">
+                <thead><tr><th></th><th>Onaysız</th><th>Onaylı</th><th>Toplam</th></tr></thead>
+                <tbody>
+                    <tr><th>Ö.Gönderme</th><td data-deger="OnaysizOdenekGonderme"></td><td data-deger="OnayliOdenekGonderme"></td><td data-deger="ToplamOdenekGonderme"></td></tr>
+                    <tr><th>Tenkis</th><td data-deger="OnaysizTenkis"></td><td data-deger="OnayliTenkis"></td><td data-deger="ToplamTenkis"></td></tr>
+                    <tr class="toplam"><th>Toplam</th><td data-deger="OnaysizGONTEN"></td><td data-deger="OnayliGONTEN"></td><td data-deger="ToplamGONTEN"></td></tr>
+                </tbody>
+            </table>
+        </details>
+    </div>
+
+    <!-- Harcama (eski tblDurum3) -->
+    <div class="kutu bolum bolum-harcama">
+        <h2 class="bolum-baslik">Harcama</h2>
+        <div class="od-govde">
+            <table class="od-satirlar">
+                <tr><th>sgb.NET Harcama</th><td data-deger="ToplamODEMIF"></td></tr>
+                <tr><th>say2000i Harcama</th><td data-deger="Harcama"></td></tr>
+            </table>
+            <div class="od-kartlar">
+                <div class="od-kart od-bej"><span>Harcanabilir Miktar</span><strong data-deger="SerbestKalan"></strong></div>
+            </div>
+        </div>
+        <details class="od-ayrinti">
+            <summary><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Ayrıntı (onaysız / onaylı)</summary>
+            <table class="table table-condensed od-ayrinti-tablo">
+                <thead><tr><th></th><th>Onaysız</th><th>Onaylı</th><th>Toplam</th></tr></thead>
+                <tbody>
+                    <tr><th>Ödeme Emri</th><td data-deger="OnaysizOdemeEmri"></td><td data-deger="OnayliOdemeEmri"></td><td data-deger="ToplamOdemeEmri"></td></tr>
+                    <tr><th>MİF</th><td data-deger="OnaysizMIF"></td><td data-deger="OnayliMIF"></td><td data-deger="ToplamMIF"></td></tr>
+                    <tr class="toplam"><th>Toplam</th><td data-deger="OnaysizODEMIF"></td><td data-deger="OnayliODEMIF"></td><td data-deger="ToplamODEMIFDetay"></td></tr>
+                    <tr><th>Avans</th><td></td><td></td><td data-deger="Avans"></td></tr>
+                    <tr><th>Bloke Edilen</th><td></td><td></td><td data-deger="BlokeEdilen"></td></tr>
+                    <tr class="toplam"><th>sgb.NET Harcama</th><td></td><td></td><td data-deger="ToplamODEMIF"></td></tr>
+                </tbody>
+            </table>
+        </details>
+    </div>
+
+    @if (!birim)
+    {
+        <!-- Ayrıntılı harcama programı (eski tblDurum4) -->
+        <div class="kutu bolum bolum-ahp">
+            <h2 class="bolum-baslik">Ayrıntılı Harcama Programı</h2>
+            <table class="table table-condensed table-bordered od-ahp">
+                <tbody>
+                    <tr class="baslik"><th>Ocak</th><th>Şubat</th><th>Mart</th><th>1. 3 Ay</th></tr>
+                    <tr><td data-deger="Ocak"></td><td data-deger="Subat"></td><td data-deger="Mart"></td><td class="toplam" data-deger="Toplam1_3"></td></tr>
+                    <tr class="baslik"><th>Nisan</th><th>Mayıs</th><th>Haziran</th><th>2. 3 Ay</th></tr>
+                    <tr><td data-deger="Nisan"></td><td data-deger="Mayis"></td><td data-deger="Haziran"></td><td class="toplam" data-deger="Toplam4_6"></td></tr>
+                    <tr class="baslik"><th>Temmuz</th><th>Ağustos</th><th>Eylül</th><th>3. 3 Ay</th></tr>
+                    <tr><td data-deger="Temmuz"></td><td data-deger="Agustos"></td><td data-deger="Eylul"></td><td class="toplam" data-deger="Toplam7_9"></td></tr>
+                    <tr class="baslik"><th>Ekim</th><th>Kasım</th><th>Aralık</th><th>4. 3 Ay</th></tr>
+                    <tr><td data-deger="Ekim"></td><td data-deger="Kasim"></td><td data-deger="Aralik"></td><td class="toplam" data-deger="Toplam10_12"></td></tr>
+                    <tr class="baslik"><th>1. 6 Ay Toplam</th><th>2. 6 Ay Toplam</th><th></th><th>AHP Toplamı</th></tr>
+                    <tr class="toplam"><td data-deger="Toplam1_6"></td><td data-deger="Toplam7_12"></td><td></td><td data-deger="ToplamAHP"></td></tr>
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

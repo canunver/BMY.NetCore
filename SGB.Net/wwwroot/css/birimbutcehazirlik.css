@@ -1,0 +1,111 @@
+/* Birim Bütçe Hazırlığı çerçevesi ve Birim Bütçe Teklifi: bölüm görünümü, araç çubuğu ve tablo renkleri taveneko.css'ten
+   (.tavan-eko), çerçeve sekmeleri odenekgonderme.css'ten (.og-cerceve) gelir; burada yalnızca bu sayfalara özgü olanlar var. */
+
+/* Çerçeve sekmeleri (eski sayfadaki gibi büyük ve bordo) */
+.bbh-cerceve .og-sekmeler > li > a {
+    font-size: 16px;
+    color: #800000;
+}
+
+/* Teklif Bilgileri: alanlar alt alta, etiket solda */
+.birim-butce-hazirlik .bbh-satir {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 0 0 8px;
+}
+
+.birim-butce-hazirlik .bbh-satir:last-child {
+    margin-bottom: 0;
+}
+
+.birim-butce-hazirlik .bbh-etiket {
+    flex: 0 0 190px;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.birim-butce-hazirlik .bbh-satir .form-control {
+    display: block;
+    flex: 0 0 auto;
+}
+
+.birim-butce-hazirlik .bbh-yil      { width: 100px; }
+.birim-butce-hazirlik .bbh-faaliyet { width: 440px; max-width: 100%; }
+.birim-butce-hazirlik .bbh-kod      { width: 440px; max-width: 100%; }
+
+.birim-butce-hazirlik .bbh-kod .form-control {
+    flex: 1 1 auto;
+}
+
+.birim-butce-hazirlik .bbh-durum {
+    padding: 0;
+    font-weight: 600;
+}
+
+.birim-butce-hazirlik .bbh-isaret {
+    margin: 0;
+    font-weight: normal;
+}
+
+/* Sekmenin açıklaması (eski lacivert bilgi şeridi) */
+.birim-butce-hazirlik .bbh-bilgi {
+    margin: 10px 0 0;
+    padding: 8px 12px;
+    border-radius: 3px;
+    background: #000080;
+    color: #fff;
+    font-size: 14px;
+}
+
+.birim-butce-hazirlik .bbh-bilgi:empty {
+    display: none;
+}
+
+/* Dar ekranda etiket alanların üstünde */
+@media (max-width: 600px) {
+    .birim-butce-hazirlik .bbh-etiket {
+        flex-basis: 100%;
+    }
+}
+
+/* Ana (eko 2) satırları eski sayfadaki gibi turuncu ve kalın; detayda girilemeyen hücreler açık sarı (.kapali, taveneko.css) */
+.birim-butce-hazirlik .ag-row.ana .ag-cell,
+.bbh-onaydurum .ag-cell.ana-hucre {
+    font-weight: 700;
+    background: #faba9f;
+}
+
+.birim-butce-hazirlik .ag-row:not(.ana) .ag-cell.girilir:not(.ag-cell-inline-editing) {
+    box-shadow: inset 0 0 0 1px #c9d6e3;
+    cursor: text;
+}
+
+/* Pencereler */
+.bbh-tarihce {
+    width: min(640px, calc(100vw - 32px));
+}
+
+.bbh-tarihce .tarihce-grid {
+    height: min(320px, calc(100vh - 220px));
+}
+
+.bbh-onaydurum {
+    width: min(720px, calc(100vw - 32px));
+}
+
+.bbh-onaydurum .durum-grid {
+    height: min(520px, calc(100vh - 260px));
+}
+
+.bbh-agac {
+    width: min(640px, calc(100vw - 32px));
+}
+
+.bbh-agac .sgb-agac {
+    max-height: min(520px, calc(100vh - 220px));
+    overflow: auto;
+    margin: 0;
+}

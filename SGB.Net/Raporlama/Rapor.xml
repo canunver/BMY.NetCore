@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RAPORLAR>
+  <RAPORGRUP YETKI="" GRUPNO="0">
+    <KISTAS>
+      <KISTASALAN DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1"/>
+      <KISTASALAN DEGISKEN="Senaryo" DEGISKENAD="SenaryoAd" TIP="SENARYO" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="KurKod" DEGISKENAD="KurAd" TIP="BIRIM" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" GIZLI="1" ILKDEGER="EXCEL"/>
+      <KISTASALAN DEGISKEN="AyNo" TIP="YAZI" ILKDEGER="6" GIZLI="1"/>
+      <KISTASALAN DEGISKEN="AyAd" TIP="YAZI" ILKDEGER="Haziran" GIZLI="1"/>
+      <KISTASALAN DEGISKEN="TahminSenaryo" TIP="YAZI" ILKDEGER="00.00" GIZLI="1"/>
+    </KISTAS>
+    <RAPORBOLUM NO="1" AD=""></RAPORBOLUM>
+
+    <RAPOR NO="18" SABLON="BHF\TemizlikHizmeti.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceForm.ButceFormRaporlari" EKBILGI="F1" />
+    <RAPOR NO="1"  SABLON="BHM\Form02.xlt" YETKI="" RAPORTIP="EXCEL" DLL="" NESNE="" />
+    <RAPOR NO="2"  SABLON="BHM\Form03.xlt" YETKI="" RAPORTIP="EXCEL" DLL="" NESNE="" />
+    <RAPOR NO="3"  SABLON="BHM\Form04.xlt" YETKI="" RAPORTIP="EXCEL" DLL="" NESNE="" />
+    <RAPOR NO="26" SABLON="BHM\Form04_2.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="F4_2" />
+    <RAPOR NO="4"  SABLON="BHM\Form05.xlt" YETKI="" RAPORTIP="EXCEL" DLL="" NESNE="" />
+    <RAPOR NO="27" SABLON="BHMv2\KurumsalEkonomik.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="F5_2" />
+    <RAPOR NO="16" SABLON="BHF\Form07.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceForm.ButceFormRaporlari" EKBILGI="F6" />
+    <RAPOR NO="17" SABLON="BHF\Form07.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceForm.ButceFormRaporlari" EKBILGI="F7" />
+    <RAPOR NO="5"  SABLON="BHM\Form08.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="F8"/>
+    <RAPOR NO="6"  SABLON="BHM\Form09.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="F9"/>
+    <RAPOR NO="7"  SABLON="BHF\BirimHizmetMaliyeti.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceForm.ButceFormRaporlari" EKBILGI="F10" />
+    <RAPOR NO="19" SABLON="BHF\FizikselDegerler.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceForm.ButceFormRaporlari" EKBILGI="F11" />
+    <RAPOR NO="8"  SABLON="BHM\Form14.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="F14" />
+    <RAPOR NO="9"  SABLON="" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="F15"/>
+    <RAPOR NO="10" SABLON="" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="F15_1"/>
+    <RAPOR NO="11" SABLON="BHM\Form16.xlt" YETKI="" RAPORTIP="EXCEL" DLL="" NESNE="" />
+    <RAPOR NO="12" SABLON="BHM\Form17.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="F17" />
+    <RAPOR NO="13" SABLON="BHM\Form18.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="F18" />
+    <RAPOR NO="20" SABLON="BHF\UluslararasiKuruluslar.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceForm.ButceFormRaporlari" EKBILGI="F17" />
+    <RAPOR NO="21" SABLON="BHF\EdinilecekTasitlar.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceForm.ButceFormRaporlari" EKBILGI="F18" />
+    <RAPOR NO="22" SABLON="BHF\OzelGuvenlik.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceForm.ButceFormRaporlari" EKBILGI="F21" />
+    <RAPOR NO="14" SABLON="BHF\TemizlikHizmeti.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceForm.ButceFormRaporlari" EKBILGI="F22" />
+    <RAPOR NO="23" SABLON="BHF\DonerSermaye.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceForm.ButceFormRaporlari" EKBILGI="F23" />
+    <RAPOR NO="24" SABLON="BHF\FonGelirGider.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceForm.ButceFormRaporlari" EKBILGI="F24" />
+    <RAPOR NO="15" SABLON="BHF\TavanUstuOdenek.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceForm.ButceFormRaporlari" EKBILGI="F25" />
+    <RAPOR NO="25" SABLON="BHF\TavanUstuOdenek.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceForm.ButceFormRaporlari" EKBILGI="F25d" />
+    <!--<RAPOR NO="14" AD="Form 19: İşçilik Gerçekleşmeleri, Tahmin ve Teklifleri" SABLON="BHM\Form19.xlt" YETKI="" RAPORTIP="EXCEL" DLL="" NESNE="" />-->
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="1">
+    <KISTAS>
+      <KISTASALAN DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1"/>
+    </KISTAS>
+    <RAPOR NO="1" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.FaaliyetRaporuRaporlari" EKBILGI="1" SABLON="BHMv2\FR_YilKarsilastirma.dotx" />
+
+    <RAPOR NO="2" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.FaaliyetRaporuRaporlari" EKBILGI="2"   SABLON="BHMv2\FR_GiderEkoSinif.dotx" />
+    <RAPOR NO="3" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.FaaliyetRaporuRaporlari" EKBILGI="3"   SABLON="BHMv2\FR_GiderEkoSinif.dotx" />
+    <RAPOR NO="4" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.FaaliyetRaporuRaporlari" EKBILGI="4"   SABLON="BHMv2\FR_GiderEkoSinif.dotx" />
+    <RAPOR NO="5" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.FaaliyetRaporuRaporlari" EKBILGI="5"   SABLON="BHMv2\FR_GiderEkoSinif.dotx" />
+    <RAPOR NO="6" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.FaaliyetRaporuRaporlari" EKBILGI="6"   SABLON="BHMv2\FR_GiderEkoSinif.dotx" />
+    <RAPOR NO="7" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.FaaliyetRaporuRaporlari" EKBILGI="7"   SABLON="BHMv2\FR_GiderEkoSinif.dotx" />
+    <RAPOR NO="8" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.FaaliyetRaporuRaporlari" EKBILGI="8"   SABLON="BHMv2\FR_GiderEkoSinif.dotx" />
+
+    <RAPOR NO="9" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.FaaliyetRaporuRaporlari" EKBILGI="9" SABLON="BHMv2\FR_YatirimProje.dotx" />
+    <RAPOR NO="10" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.FaaliyetRaporuRaporlari" EKBILGI="10" SABLON="BHMv2\FR_YatirimProje.dotx" />
+    <RAPOR NO="11" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.FaaliyetRaporuRaporlari" EKBILGI="11" SABLON="BHMv2\FR_YatirimProje.dotx" />
+    <RAPOR NO="12" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.FaaliyetRaporuRaporlari" EKBILGI="12" SABLON="BHMv2\FR_YatirimProje.dotx" />
+    <RAPOR NO="13" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.FaaliyetRaporuRaporlari" EKBILGI="13" SABLON="BHMv2\FR_YatirimProje.dotx" />
+    <RAPOR NO="14" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.FaaliyetRaporuRaporlari" EKBILGI="14" SABLON="BHMv2\FR_YatirimProje.dotx" />
+    <RAPOR NO="15" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.FaaliyetRaporuRaporlari" EKBILGI="15" SABLON="BHMv2\FR_GiderProgram.dotx" />
+
+    <RAPOR NO="99" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.FaaliyetRaporuRaporlari" EKBILGI="99" SABLON="BHMv2\FR_Rapor.dotx" />
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="500">
+    <KISTAS>
+      <KISTASALAN DEGISKEN="TCKimlikNo" TIP="YAZI" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="DUZENLEYENAD" TIP="YAZI" />
+      <KISTASALAN DEGISKEN="DUZENLEYENUNVAN" TIP="YAZI" />
+      <KISTASALAN DEGISKEN="ONAYLAYANAD" TIP="YAZI" />
+      <KISTASALAN DEGISKEN="ONAYLAYANUNVAN" TIP="YAZI"/>
+    </KISTAS>
+    <RAPOR NO="1" YETKI="" RAPORTIP="METOD" DLL="KimlikPaylasim" NESNE="KimlikPaylasim.NufusYazdir" EKBILGI="1" SABLON="KPM\IkametgahIlmuhaberi.rtf" />
+    <RAPOR NO="2" YETKI="" RAPORTIP="METOD" DLL="KimlikPaylasim" NESNE="KimlikPaylasim.NufusYazdir" EKBILGI="2" SABLON="KPM\NufusCuzdanOrnegi.rtf" />
+    <RAPOR NO="3" YETKI="" RAPORTIP="METOD" DLL="KimlikPaylasim" NESNE="KimlikPaylasim.NufusYazdir" EKBILGI="3" SABLON="KPM\VukuatliNufusKayitOrnegi.rtf" />
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="700">
+    <KISTAS>
+      <KISTASALAN DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1"/>
+      <KISTASALAN DEGISKEN="Senaryo" DEGISKENAD="SenaryoAd" TIP="SENARYO" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="KurKod" DEGISKENAD="KurAd" TIP="BIRIM" ZORUNLU="1"/>
+    </KISTAS>
+    <RAPOR NO="1" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceIstisnaRaporlari" EKBILGI="1" SABLON="BHMv2\TertipListe.xlt" />
+    <RAPOR NO="2" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceIstisnaRaporlari" EKBILGI="2" SABLON="BHMv2\TertipListe.xlt" />
+    <RAPOR NO="3" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceIstisnaRaporlari" EKBILGI="3" SABLON="BHMv2\TertipListe.xlt" />
+    <RAPOR NO="4" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceIstisnaRaporlari" EKBILGI="4" SABLON="BHMv2\TertipListe.xlt" />
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="2000">
+    <KISTAS>
+      <KISTASALAN DEGISKEN="DonemBYil" TIP="YIL" ZORUNLU="1" EKBILGI="1" />
+      <KISTASALAN DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1" />
+      <KISTASALAN DEGISKEN="Senaryo" DEGISKENAD="SenaryoAd" TIP="SENARYO" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="KurKod" DEGISKENAD="KurAd" TIP="BIRIM" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" GIZLI="1" ILKDEGER="EXCEL"/>
+      <KISTASALAN DEGISKEN="HarcamaAy" TIP="YAZI" ILKDEGER="6" GIZLI="1"/>
+      <KISTASALAN DEGISKEN="AyAd" TIP="YAZI" ILKDEGER="Haziran" GIZLI="1"/>
+      <KISTASALAN DEGISKEN="EkoUz" TIP="COMBO_KODAD" ILKDEGER="1"  LISTE="1-1 Kırılım;2-2 Kırılım;4-4 Kırılım" GOSTERILECEKRAPOR="17"/>
+      <!--<KISTASALAN ETIKET="Stratejik Amaç" DEGISKEN="StrAmacKod" TIP="YAZI" />
+      <KISTASALAN ETIKET="Stratejik Hedef" DEGISKEN="StrHedefKod" TIP="YAZI"  />-->
+    </KISTAS>
+    <RAPORBOLUM NO="1" AD=""></RAPORBOLUM>
+    <RAPOR NO="1"  SABLON="PEB\StrAmac.xlt" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.PerformansButceRaporlari" EKBILGI="StrAmac" />
+    <RAPOR NO="2"  SABLON="PEB\StrHedef.xlt" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.PerformansButceRaporlari" EKBILGI="StrHedef" />
+    <RAPOR NO="3"  SABLON="PEB\OdenekDurum.xlt" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.PerformansButceRaporlari" EKBILGI="OdenekDurum2Duzey" />
+    <RAPOR NO="4"  SABLON="PEB\OdenekDurum.xlt" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.PerformansButceRaporlari" EKBILGI="OdenekDurum4Duzey" />
+    <RAPOR NO="5"  SABLON="PEB\ButceFaaliyetDagilim.xlt" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.PerformansButceRaporlari" EKBILGI="ButceFPDagilim" />
+    <RAPOR NO="6"  SABLON="PEB\PerformansHedefDagilim.xlt" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.PerformansButceRaporlari" EKBILGI="PHDagilim" />
+    <RAPOR NO="7"  SABLON="PEB\PEBOzet.xlt" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.PerformansButceRaporlari" EKBILGI="PEBOzet" />
+    <RAPOR NO="8"  SABLON="PEB\StrHedefEkoOdenekDagilim.xlt" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.PerformansButceRaporlari" EKBILGI="SHOdenekDagilimEko" />
+    <RAPOR NO="9"  SABLON="PEB\StrHedefFonOdenekDagilim.xlt" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.PerformansButceRaporlari" EKBILGI="SHOdenekDagilimFon" />
+    <RAPOR NO="10" SABLON="PEB\StrAmacEkoOdenekDagilim.xlt" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.PerformansButceRaporlari" EKBILGI="SAOdenekDagilimEko" />
+    <RAPOR NO="11" SABLON="PEB\StrAmacFonOdenekDagilim.xlt" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.PerformansButceRaporlari" EKBILGI="SAOdenekDagilimFon" />
+    <RAPOR NO="12" SABLON="PEB\PerformansGostergeOdenek.xlt" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.PerformansButceRaporlari" EKBILGI="PerGosOdenek" />
+    <RAPOR NO="13" SABLON="PEB\StratejikPlanOzetTablo.xlt" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.PerformansButceRaporlari" EKBILGI="StratejikPlanOzetTablo" />
+    <RAPOR NO="14" SABLON="PEB\PerformansHedefTablosu.dotx" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.PerformansButceRaporlari" EKBILGI="14" />
+    <RAPOR NO="15" SABLON="PEB\FaaliyetMaaliyetleriTablosu.dotx" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.PerformansButceRaporlari" EKBILGI="15" />
+    <RAPOR NO="16" SABLON="PEB\IdarePerformansTablosu.dotx" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.PerformansButceRaporlari" EKBILGI="16" />
+    <RAPOR NO="17" SABLON="PEB\ToplamKaynakIhtiyaciTablosu.xltx" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.PerformansButceRaporlari" EKBILGI="17" />
+    <RAPOR NO="18" SABLON="PEB\EylemIzlemeRaporu.xltx" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.EylemPlaniRaporlari" EKBILGI="18" />
+    <RAPOR NO="19" SABLON="PEB\EylemSPRaporu.xltx" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.EylemPlaniRaporlari" EKBILGI="19" />
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="2001">
+    <KISTAS>
+      <KISTASALAN DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1" />
+      <KISTASALAN DEGISKEN="GGKurKod" TIP="YAZI" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="PHKod" TIP="YAZI" />
+      <KISTASALAN DEGISKEN="Donem" TIP="YAZI" ILKDEGER="12" ZORUNLU="0"/>
+
+      <KISTASALAN DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" GIZLI="1" ILKDEGER="EXCEL"/>
+    </KISTAS>
+    <RAPORBOLUM NO="1" AD=""></RAPORBOLUM>
+    <RAPOR NO="1"  SABLON="PEB\GGDetay.xlt" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.GostergeRaporlari" EKBILGI="1" />
+    <RAPOR NO="2"  SABLON="PEB\GGIcmal.xlt" YETKI="" RAPORTIP="METOD" DLL="PerformansButce" NESNE="PerformansButce.GostergeRaporlari" EKBILGI="2" />
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="2002">
+    <KISTAS>
+      <KISTASALAN DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1" />
+      <KISTASALAN DEGISKEN="Senaryo" DEGISKENAD="SenaryoAd" TIP="SENARYO" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="KurKod" DEGISKENAD="KurAd" TIP="BIRIM" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="SektorKod" DEGISKENAD="SektorAd" TIP="COMBO_DINAMIK" ILKDEGER=""  LISTE="117" />
+      <KISTASALAN DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" GIZLI="1" ILKDEGER="EXCEL"/>
+    </KISTAS>
+    <RAPORBOLUM NO="1"></RAPORBOLUM>
+    <RAPOR NO="1" SABLON="YAT\YAT-Tablo1.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="1" />
+    <RAPOR NO="2" SABLON="YAT\YAT-Tablo2.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="2" />
+    <RAPOR NO="13" SABLON="YAT\YAT-Tablo2.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="13" />
+    <RAPOR NO="17" SABLON="YAT\YAT-Tablo2.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="2-o" />
+    <RAPOR NO="3" SABLON="YAT\YAT-Tablo2.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="2-1" />
+    <RAPOR NO="14" SABLON="YAT\YatStrPlan.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="14" />
+    <RAPOR NO="4" SABLON="YAT\YAT-Tablo3.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="3" />
+    <RAPOR NO="5" SABLON="YAT\YAT-Tablo4.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="4" />
+    <RAPOR NO="6" SABLON="YAT\YAT-Tablo5.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="5" />
+    <RAPOR NO="15" SABLON="YAT\Yat-Dis-Kredi.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="15" />
+    <RAPOR NO="8" SABLON="YAT\YAT-Tablo7.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="7" />
+    <RAPOR NO="9" SABLON="YAT\YAT-Tablo10.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="10" />
+    <RAPOR NO="10" SABLON="YAT\YAT-Tablo12-13.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="12_13-1" />
+    <RAPOR NO="11" SABLON="YAT\YAT-Tablo12-13.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="12_13-2" />
+    <RAPOR NO="12" SABLON="YAT\YAT-Tablo12-13.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="12_13-3" />
+    <RAPOR NO="16" SABLON="YAT\YatUygulamaRaporu.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="16" />
+    <RAPOR NO="18" SABLON="YAT\ProjeBilgiFormu.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="ProjeBilgiFormu" />
+    <RAPOR NO="19" SABLON="YAT\ProjeBilgiListe.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="ProjeBilgiListe" />
+    <RAPOR NO="20" SABLON="YAT\YAT-Tablo2 (Yeni).xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="Yeni2" />
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="2003">
+    <KISTAS>
+      <KISTASALAN DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1" />
+      <KISTASALAN DEGISKEN="Senaryo" DEGISKENAD="SenaryoAd" TIP="SENARYO" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="KurKod" DEGISKENAD="KurAd" TIP="BIRIM" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="avansDurum" TIP="COMBO_KODAD" ILKDEGER="1"  LISTE="1-Hariç;2-Dahil" GOSTERILECEKRAPOR="12,15"/>
+      <KISTASALAN DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" GIZLI="1" ILKDEGER="EXCEL"/>
+    </KISTAS>
+    <RAPORBOLUM NO="1" ></RAPORBOLUM>
+    <RAPOR NO="1" SABLON="YAT\YATOzel-TeklifDagilim.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="TeklifDagilim" />
+    <RAPOR NO="2" SABLON="YAT\YATOzel-SektorDagilim.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="SektorDagilim" />
+    <RAPOR NO="3" SABLON="YAT\YATOzel-BirimProjeleri.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="BirimProjeleri" />
+    <RAPOR NO="4" SABLON="YAT\YATOzel-KarakterDagilim.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="KarakterDagilim" />
+    <RAPOR NO="5" SABLON="YAT\YATOzel-KonsolideYatirim.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="KonsolideYatirim" />
+    <RAPOR NO="6" SABLON="YAT\YATOzel-ProjeTakip.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="ProjeTakip" />
+    <RAPOR NO="7" SABLON="YAT\YATOzel-ProjelerArasiOdenekAktarmasi.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="ProjelerArasiOdenek" />
+    <RAPOR NO="8" SABLON="YAT\YATOzel-TertipDagilim.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="TertipDagilim" />
+    <RAPOR NO="9" SABLON="YAT\YAT-Tablo2 (Ozel).xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="2Ozel" />
+    <RAPOR NO="10" SABLON="YAT\YATOzel-DPTVizeCetveli.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="DPTVizeCetveli" />
+    <RAPOR NO="11" SABLON="YAT\YATOzel-VizeCetveli.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="VizeCetveli" />
+    <RAPOR NO="12" SABLON="YAT\YATButceSonuc.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="ButceSonuc" />
+    <RAPOR NO="13" SABLON="YAT\YATButceIslem.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="ButceIslem" />
+    <RAPOR NO="14" SABLON="YAT\YATYollukPlanlama.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="YP" />
+    <RAPOR NO="15" SABLON="YAT\YATButceSonucHiy.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YatirimRaporlari" EKBILGI="ButceSonucHiy" />
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="2004">
+    <KISTAS>
+      <KISTASALAN DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1" />
+      <KISTASALAN DEGISKEN="Senaryo" DEGISKENAD="SenaryoAd" TIP="SENARYO" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="ProjeNo" TIP="YAZI" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="AltProjeNo" TIP="YAZI" ZORUNLU="0"/>
+      <KISTASALAN DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" GIZLI="1" ILKDEGER="EXCEL"/>
+    </KISTAS>
+    <RAPORBOLUM NO="1"></RAPORBOLUM>
+    <RAPOR NO="1" SABLON="YAT\YATD-Kapak.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeDosyasiRaporlari" EKBILGI="Kapak" />
+    <RAPOR NO="2" SABLON="YAT\YATD-ProjeOzeti.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeDosyasiRaporlari" EKBILGI="Ozet" />
+    <RAPOR NO="3" SABLON="YAT\YATD-ProjeTutari.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeDosyasiRaporlari" EKBILGI="Tutar" />
+    <RAPOR NO="4" SABLON="YAT\YATD-OdenekHarcama.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeDosyasiRaporlari" EKBILGI="Harc" />
+
+    <RAPOR NO="5" SABLON="YAT\YATD-KrediHibeGiris.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeDosyasiRaporlari" EKBILGI="KrediHibe1" />
+    <RAPOR NO="6" SABLON="YAT\YATD-KrediHibeGiris.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeDosyasiRaporlari" EKBILGI="KrediHibe2" />
+
+    <RAPOR NO="7" SABLON="YAT\YATD-YatirimTeklif.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeDosyasiRaporlari" EKBILGI="Teklif0" />
+    <RAPOR NO="8" SABLON="YAT\YATD-YatirimTeklif.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeDosyasiRaporlari" EKBILGI="Teklif1" />
+    <RAPOR NO="9" SABLON="YAT\YATD-YatirimTeklif.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeDosyasiRaporlari" EKBILGI="Teklif2" />
+    <RAPOR NO="10" SABLON="YAT\YATD-HizmetGerekcesi.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeDosyasiRaporlari" EKBILGI="Bilgi" />
+    <RAPOR NO="11" SABLON="YAT\YATD-YatirimTeklifTam.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeDosyasiRaporlari" EKBILGI="TeklifTam" />
+    <RAPOR NO="12" SABLON="YAT\YATD-KrediHibe.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeDosyasiRaporlari" EKBILGI="KrediHibe" />
+    <RAPOR NO="13" SABLON="YAT\YATD-ProjeDetayProgram.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeDosyasiRaporlari" EKBILGI="DetayP" />
+    <RAPOR NO="14" SABLON="YAT\YID-RaporBos.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeIzlemeDegerlendirme" EKBILGI="ProjeDurum" />
+    <RAPOR NO="15" SABLON="YAT\YID-Rapor.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeIzlemeDegerlendirme" EKBILGI="ProjeIzleme" />
+    <RAPOR NO="16" SABLON="YAT\YID-RaporBos.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeIzlemeDegerlendirme" EKBILGI="ProjeDurumBirim" />
+    <RAPOR NO="17" SABLON="YAT\YID-SektorlereGore.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeIzlemeDegerlendirme" EKBILGI="SektoreGore" />
+    <RAPOR NO="18" SABLON="YAT\YID-EkoKodaGore.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeIzlemeDegerlendirme" EKBILGI="EkoKodaGore" />
+    <RAPOR NO="19" SABLON="YAT\YID-SektorEkoKodaGore.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProjeIzlemeDegerlendirme" EKBILGI="SektorEkoKodaGore" />
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="3000">
+    <KISTAS>
+      <KISTASALAN DEGISKEN="Yil" TIP="YIL" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="HavaleTarihi1" TIP="SONTARIH" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="HavaleTarihi2" TIP="TARIH"/>
+      <KISTASALAN DEGISKEN="HavaleBirim" TIP="YAZI"/>
+      <KISTASALAN DEGISKEN="SayfaAyirac" TIP="CHECKBOX" ILKDEGER="1"/>
+      <KISTASALAN DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" GIZLI="1" ILKDEGER="EXCEL"/>
+    </KISTAS>
+    <RAPORBOLUM NO="1" ></RAPORBOLUM>
+    <RAPOR NO="1" SABLON="EVR\ZimmetFis.xlt" YETKI="" RAPORTIP="METOD" DLL="Evrak" NESNE="Evrak.ZimmetListesi" EKBILGI="" />
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="3001">
+    <KISTAS>
+      <KISTASALAN DEGISKEN="Yil" TIP="YIL" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="EvrakTip" TIP="COMBO" LISTE=" ;Gelen;Giden" ILKDEGER=" "/>
+      <KISTASALAN DEGISKEN="Tarih1" TIP="ILKTARIH"/>
+      <KISTASALAN DEGISKEN="Tarih2" TIP="SONTARIH"/>
+      <KISTASALAN DEGISKEN="Konusu" TIP="YAZI"/>
+      <KISTASALAN DEGISKEN="GeldigiYer" TIP="YAZI"/>
+      <KISTASALAN DEGISKEN="SadeceKaydettigimEvraklar" TIP="CHECKBOX" ILKDEGER="0"/>
+      <KISTASALAN DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" GIZLI="1" ILKDEGER="EXCEL"/>
+    </KISTAS>
+    <RAPORBOLUM NO="1" ></RAPORBOLUM>
+    <RAPOR NO="1" SABLON="EVR\RaporEvrakSayilariBirim.xlt" YETKI="" RAPORTIP="METOD" DLL="Evrak" NESNE="Evrak.EvrakSayisi" EKBILGI="BIRIM" />
+    <RAPOR NO="2" SABLON="EVR\RaporEvrakSayilariKonuVeGeldigiYer.xlt" YETKI="" RAPORTIP="METOD" DLL="Evrak" NESNE="Evrak.EvrakSayisi" EKBILGI="KONU" />
+    <RAPOR NO="3" SABLON="EVR\RaporEvrakSayilariKonuVeGeldigiYer.xlt" YETKI="" RAPORTIP="METOD" DLL="Evrak" NESNE="Evrak.EvrakSayisi" EKBILGI="GELDIGIYER" />
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="3002">
+    <KISTAS>
+      <KISTASALAN DEGISKEN="Yil" TIP="YIL" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="Tarih1" TIP="ILKTARIH"/>
+      <KISTASALAN DEGISKEN="Tarih2" TIP="SONTARIH"/>
+      <KISTASALAN DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" GIZLI="1" ILKDEGER="EXCEL"/>
+    </KISTAS>
+    <RAPORBOLUM NO="1" ></RAPORBOLUM>
+    <RAPOR NO="1" SABLON="EVR\RaporEvrakSayilariGelisSekli.xlt" YETKI="" RAPORTIP="METOD" DLL="Evrak" NESNE="Evrak.EvrakGelis" EKBILGI="GELISSEKLI" />
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="3003">
+    <KISTAS>
+      <!--<KISTASALAN DEGISKEN="Yil" TIP="YIL"/>-->
+      <KISTASALAN DEGISKEN="Tarih1" TIP="ILKTARIH" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="Tarih2" TIP="SONTARIH" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="EvrakTipi" TIP="COMBO" LISTE=" ;Gelen;Giden" ILKDEGER=" "/>
+      <KISTASALAN DEGISKEN="TCNo" TIP="YAZI" ZORUNLU="1"/>
+      <!--<KISTASALAN DEGISKEN="KisiAdi" TIP="YAZI"/>-->
+      <KISTASALAN DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" GIZLI="1" ILKDEGER="EXCEL"/>
+    </KISTAS>
+    <RAPORBOLUM NO="1" ></RAPORBOLUM>
+    <RAPOR NO="1" SABLON="EVR\RaporEvrakBeklemeSuresi.xlt" YETKI="" RAPORTIP="METOD" DLL="Evrak" NESNE="Evrak.BekleyenEvrak" EKBILGI="BEKLEYENEVRAK" />
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="4000">
+    <KISTAS>
+      <KISTASALAN DEGISKEN="Adi" TIP="YAZI"/>
+      <KISTASALAN DEGISKEN="Yil" TIP="COMBO" LISTE="Yıl Seçiniz;1990;1991;1992;1993;1994;1995;1996;1997;1998;1999;2000;2001;2002;2003;2004;2005;2006;2007;2008;2009;2010;2011;2012;2013;2014;2015;2016;2017;2018;2019;2020" ILKDEGER="Yıl Seçiniz"/>
+      <KISTASALAN DEGISKEN="Donem" TIP="COMBO" LISTE="Dönem Seçiniz;I. 6 Aylık;II. 6 Aylık" ILKDEGER="Dönem Seçiniz"/>
+      <KISTASALAN DEGISKEN="Kurulus" TIP="YAZI"/>
+      <KISTASALAN DEGISKEN="Yer" TIP="YAZI"/>
+    </KISTAS>
+    <RAPORBOLUM NO="1" ></RAPORBOLUM>
+    <RAPOR NO="1" SABLON="PERV2\Egitim.xlt" YETKI="" RAPORTIP="METOD" DLL="InsanKaynaklari" NESNE="Personelv2.PersonelRaporlari" EKBILGI="Egitim" />
+    <RAPOR NO="2" SABLON="PERV2\Personel.xlt" YETKI="" RAPORTIP="METOD" DLL="InsanKaynaklari" NESNE="Personelv2.PersonelRaporlari" EKBILGI="Personel" />
+    <RAPOR NO="3" SABLON="PERV2\Faaliyet.xlt" YETKI="" RAPORTIP="METOD" DLL="InsanKaynaklari" NESNE="Personelv2.PersonelRaporlari" EKBILGI="Faaliyet" />
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="5000">
+    <KISTAS>
+      <KISTASALAN DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1"/>
+      <KISTASALAN DEGISKEN="AyNo" DEGISKENAD="AyAd" TIP="AY" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="Muhasebe" TIP="YAZI" ILKDEGER="" ZORUNLU="" GOSTERILECEKRAPOR="1,2,3,23,4,13,11,5,19,15,17,6,7,8,9,10,14,12,16,18,20,21,22"/>
+      <KISTASALAN DEGISKEN="Birim" TIP="YAZI" ILKDEGER="" ZORUNLU="" GOSTERILECEKRAPOR="1,2,3,23,4,13,11,5,19,15,17,6,7,8,9,10,14,12,16,18,20,21,22"/>
+      <KISTASALAN DEGISKEN="Kur" TIP="YAZIKURUMSAL" ILKDEGER="" ZORUNLU="1" />
+      <KISTASALAN DEGISKEN="Fon" TIP="YAZI" ILKDEGER="" ZORUNLU="" GOSTERILECEKRAPOR="1,2,3,23,4,13,11,5,19,15,17,6,7,8,9,10,14,12,16,18,20,21,22"/>
+      <KISTASALAN DEGISKEN="Fin" TIP="YAZI" ILKDEGER="" ZORUNLU="" GOSTERILECEKRAPOR="1,2,3,23,4,13,11,5,19,15,17,6,7,8,9,10,14,12,16,18,20,21,22"/>
+      <KISTASALAN DEGISKEN="Eko" TIP="YAZI" ILKDEGER="" ZORUNLU="" GOSTERILECEKRAPOR="1,2,3,23,4,13,11,5,19,15,17,6,7,8,9,10,14,12,16,18,20,21,22"/>
+      <KISTASALAN DEGISKEN="Peb" TIP="YAZI" ILKDEGER="" ZORUNLU="" GOSTERILECEKRAPOR="1,2,3,23,4,13,11,5,19,15,17,6,7,8,9,10,14,12,16,18,20,21,22"/>
+      <KISTASALAN DEGISKEN="EkoKirilim" TIP="COMBO_KODAD" LISTE="2-2;23-2 ve 3;4-4" GIZLI="" ILKDEGER="2" ZORUNLU="1" GOSTERILECEKRAPOR="1,2,4,13,11,5,19,15,17,6,7,8,10"/>
+      <KISTASALAN DEGISKEN="avansDurum" TIP="COMBO_KODAD" ILKDEGER="1"  LISTE="1-Hariç;2-Dahil" GOSTERILECEKRAPOR="16"/>
+      <KISTASALAN DEGISKEN="odenekTur"  TIP="COMBO_KODAD" ILKDEGER="1"  LISTE="1-Masraf Planı;2-Harcama" GOSTERILECEKRAPOR="24"/>
+      <KISTASALAN DEGISKEN="katsayi"    TIP="YAZI" ILKDEGER="1" GOSTERILECEKRAPOR="24"/>
+      <KISTASALAN DEGISKEN="CiktiYeri"  TIP="COMBO" LISTE="EXCEL" ILKDEGER="EXCEL" ZORUNLU="1" GIZLI="1"/>
+    </KISTAS>
+    <RAPORBOLUM NO="1"></RAPORBOLUM>
+    <RAPOR NO="1"  SABLON="MUH/MUH-MasrafCetveliTertip.XLT"        YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.MasrafCetveliTertip" />
+    <RAPOR NO="2"  SABLON="MUH/MUH-MasrafCetveliTertipKasanet.XLT" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.MasrafCetveliTertip" />
+    <RAPOR NO="3"  SABLON="MUH/MUH-MasrafCetveliMalHizmet.XLT"     YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.MasrafCetveliMalHizmet" />
+    <RAPOR NO="23" SABLON="MUH/MUH-MasrafCetveliBirim.XLT"         YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.MasrafCetveliMuhasebe" EKBILGI="PRGBUTCETERTIP"/>
+    <RAPOR NO="4"  SABLON="MUH/MUH-MasrafCetveliMuhasebe.XLT"      YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.MasrafCetveliMuhasebe" EKBILGI="FAALIYETYOK"/>
+    <RAPOR NO="13" SABLON="MUH/MUH-MasrafCetveliFark.XLT"          YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.MasrafCetveliMuhasebe" EKBILGI="FARKVAR"/>
+    <RAPOR NO="11" SABLON="MUH/MUH-MasrafCetveliBirim.XLT"         YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.MasrafCetveliMuhasebe" EKBILGI="FAALIYETYOK"/>
+    <RAPOR NO="5"  SABLON="MUH/MUH-MasrafCetveliBirim.XLT"         YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.MasrafCetveliMuhasebe"/>
+    <RAPOR NO="19" SABLON="MUH/MUH-MasrafCetveliBirim.XLT"         YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.MasrafCetveliMuhasebatSgb"/>
+    <RAPOR NO="15" SABLON="MUH/MUH-YuzdeOnRapor.xlt"               YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.MasrafCetveliYuzdeOn" EKBILGI="R"/>
+    <RAPOR NO="17" SABLON="MUH/MUH-YuzdeOnRapor.xlt"               YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.MasrafCetveliYuzdeOn" EKBILGI="S"/>
+    <RAPOR NO="6"  SABLON="MUH/MUH-MasrafCetveliYuzdeOn.XLT"       YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.MasrafCetveliYuzdeOn" />
+    <RAPOR NO="7"  SABLON="MUH/MUH-MasrafCetveliYuzdeOn2Duzey.XLT" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.MasrafCetveliYuzdeOn2Duzey" />
+    <RAPOR NO="8"  SABLON="MUH/MUH-MuhasebatGiderFonEkoListe.XLT"  YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.MuhasebatButceGideriFonEkoListe"/>
+    <RAPOR NO="9"  SABLON="MUH/MUH-OdenekUstuHarcama.XLT"          YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.OdenekUstuHarcama"/>
+    <RAPOR NO="10" SABLON="MUH/MUH-GelirCetveli.XLT"               YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.GelirCetveliMuhasebe"/>
+    <RAPOR NO="14" SABLON="BHMv2/EkoFinGerceklesmeUcgen.xlt"       YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="GiderGerceklesmeEko"/>
+    <RAPOR NO="12" SABLON="MUH/MUH-ISLHarcamaAylik.XLT"            YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.ISLHarcamaAylik"/>
+    <RAPOR NO="16" SABLON="BHMv2/FonksiyonaGore.XLT"               YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="GiderGerceklesmeFon"/>
+    <RAPOR NO="18" SABLON="BHMv2/FaaliyetDurum.XLTX"               YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="FaaliyetDurum"/>
+    <RAPOR NO="20" SABLON="MUH/MUH-MasrafCetveliTertipGrp.XLT"     YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.MasrafCetveliTertipKur" />
+    <RAPOR NO="21" SABLON="BHMv2/YilSonuKalanOdenekler.XLTX"       YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YIKOBRaporlar" EKBILGI="21"/>
+    <RAPOR NO="22" SABLON="BHMv2/YilSonuKalanOdeneklerDetay.XLTX"  YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.YIKOBRaporlar" EKBILGI="22"/>
+    <RAPOR NO="24" SABLON="MUH/NakitPlani.xltx"                    YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.NakitPlani" EKBILGI="23"/>
+    <RAPOR NO="25" SABLON="MUH/MUH-PersonelTahminiHarcama.xltx"    YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe"   NESNE="ButceMuhasebe.PersonelTahminiHarcama" />
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="6010">
+    <KISTAS>
+      <KISTASALAN ETIKET="Bütçe Yılı" DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1"/>
+      <KISTASALAN ETIKET="Ay" DEGISKEN="AyNo" DEGISKENAD="AyAd" TIP="AY" ZORUNLU="1" ILKDEGER="12"/>
+      <KISTASALAN ETIKET="Kurumsal" DEGISKEN="Kur" TIP="YAZIKURUMSAL" ILKDEGER="" ZORUNLU="1" />
+      <KISTASALAN ETIKET="Fonksiyonel" DEGISKEN="Fon" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN ETIKET="Finans" DEGISKEN="Fin" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN ETIKET="Ekonomik" DEGISKEN="Eko" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN ETIKET="Çıktı Yeri" DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" ILKDEGER="EXCEL" ZORUNLU="1" GIZLI="1"/>
+    </KISTAS>
+    <RAPORBOLUM NO="1" AD="Kesin Hesap Gider Cetvelleri"></RAPORBOLUM>
+    <RAPOR NO="1" SABLON="KHM\KH-Form3.XLT" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapGider.ExcelRaporGiderForm3" />
+    <RAPOR NO="2" SABLON="KHM\KH-Form3-1.XLT" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapGider.ExcelRaporGiderForm31" />
+    <RAPOR NO="3" SABLON="KHM\KH-Form3-2.XLT" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapGider.ExcelRaporGiderForm32" />
+    <RAPOR NO="4" SABLON="KHM\KH-Form3-3.XLT" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapGider.ExcelRaporGiderForm33" />
+    <RAPOR NO="12" SABLON="KHM\KH-Form3-3A.XLT" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapGider.ExcelRaporGiderForm33A" />
+    <RAPOR NO="13" SABLON="KHM\KH-Form3-3C.XLT" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapGider.ExcelRaporGiderForm33C" />
+    <RAPOR NO="5" SABLON="KHM\KH-Form3-4.xlt" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapGider.ExcelRaporGiderForm34" />
+    <RAPOR NO="6" SABLON="KHM\KH-Form3-5.XLT" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapGider.ExcelRaporGiderForm35" />
+    <RAPOR NO="7" SABLON="KHM\KH-Form3-6.XLT" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapGider.ExcelRaporGiderForm36" />
+    <RAPOR NO="8" SABLON="KHM\KH-Form3-7.XLT" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapGider.ExcelRaporGiderForm37" />
+    <RAPOR NO="9" SABLON="KHM\KH-Form3-8.xlt" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapGider.ExcelRaporGiderForm38" />
+    <RAPOR NO="10" SABLON="KHM\KH-Form3-9.XLT" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapGider.ExcelRaporGiderForm39" />
+    <RAPOR NO="11" SABLON="KHM\KH-Form4-2.XLT" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapGelir.ExcelRaporGelirForm42" />
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="6020">
+    <KISTAS>
+      <KISTASALAN ETIKET="Bütçe Yılı" DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1"/>
+      <KISTASALAN ETIKET="Ay" DEGISKEN="AyNo" DEGISKENAD="AyAd" TIP="AY" ZORUNLU="1" ILKDEGER="12"/>
+      <KISTASALAN ETIKET="Kurumsal" DEGISKEN="Kur" TIP="YAZIKURUMSAL" ILKDEGER="" ZORUNLU="1" />
+      <KISTASALAN ETIKET="Fonksiyonel" DEGISKEN="Fon" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN ETIKET="Finans" DEGISKEN="Fin" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN ETIKET="Ekonomik" DEGISKEN="Eko" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN ETIKET="Çıktı Yeri" DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" ILKDEGER="EXCEL" ZORUNLU="1" GIZLI="1"/>
+    </KISTAS>
+    <RAPORBOLUM NO="1" AD="Kontrol Raporları"></RAPORBOLUM>
+    <RAPOR NO="1" AD="" SABLON="KHM\KH-Kontrol-Ekonomik1.xlt" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapKontrol.ExcelRaporGiderEkonomik" />
+    <RAPOR NO="2" AD="" SABLON="KHM\KH-Kontrol-Ekonomik2.xlt" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapKontrol.ExcelRaporGiderEkonomikDetay" />
+    <RAPOR NO="3" AD="" SABLON="KHM\KH-Kontrol-Fonksiyonel2.xlt" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapKontrol.ExcelRaporGiderFonksiyonelDetay" />
+    <RAPOR NO="4" AD="" SABLON="KHM\KH-Kontrol-OdenekUstu.xlt" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapKontrol.ExcelRaporGiderOdenekUstu" />
+    <RAPOR NO="5" AD="" SABLON="KHM\KH-Kontrol-Iptal.xlt" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapKontrol.ExcelRaporGiderIptal" />
+    <RAPOR NO="6" AD="" SABLON="KHM\KH-Kontrol-Devir.xlt" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapKontrol.ExcelRaporGiderDevir" />
+    <RAPOR NO="7" AD="" SABLON="KHM\KH-Kontrol-Yedek.xlt" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapKontrol.ExcelRaporGiderYedek" />
+    <RAPOR NO="8" AD="" SABLON="KHM\KH-Kontrol-Akreditif.xlt" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapKontrol.ExcelRaporGiderAkreditif" />
+    <RAPOR NO="9" AD="" SABLON="KHM\KH-Kontrol-Ozellikli.xlt" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapKontrol.ExcelRaporGiderOzellikli" />
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="6030">
+    <KISTAS>
+      <KISTASALAN ETIKET="Bütçe Yılı" DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1"/>
+      <KISTASALAN ETIKET="Ay" DEGISKEN="AyNo" DEGISKENAD="AyAd" TIP="AY" ZORUNLU="1" ILKDEGER="12"/>
+      <KISTASALAN ETIKET="Kurumsal" DEGISKEN="Kur" TIP="YAZIKURUMSAL" ILKDEGER="" ZORUNLU="1" />
+      <KISTASALAN ETIKET="Ekonomik" DEGISKEN="Eko" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN ETIKET="Çıktı Yeri" DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" ILKDEGER="EXCEL" ZORUNLU="1" GIZLI="1"/>
+    </KISTAS>
+    <RAPOR NO="1" SABLON="KHM\KH-Form4.XLT" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapGelir.ExcelRaporGelirCetveliDinamik" />
+    <RAPOR NO="2" SABLON="KHM\KH-Form2.XLT" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapGelir.ExcelRaporGeciciMizan" />
+    <RAPOR NO="3" SABLON="KHM\KH-Form2-1.XLT" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapGelir.ExcelRaporKesinMizan" />
+    <RAPOR NO="4" SABLON="KHM\KH-Form4-3.XLT" YETKI="" RAPORTIP="METOD" DLL="KesinHesap" NESNE="KesinHesapGelir.ExcelRaporGelirForm43" />
+  </RAPORGRUP>
+
+  <RAPORGRUP AD="Masraf Planı Giriş Raporları" YETKI="" GRUPNO="999" YETKIKONTROLUYAPMA="1">
+    <KISTAS AD="Masraf Planı Giriş Raporları">
+      <KISTASALAN ETIKET="Bütçe Yılı" DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1"/>
+      <KISTASALAN ETIKET="Kurumsal Yapı" DEGISKEN="KurumsalYapiKod" TIP="YAZI" ILKDEGER="" ZORUNLU="1" />
+    </KISTAS>
+    <RAPOR NO="1" BOLUMNO="1" AD="Harcama türlerine göre" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.GrafikOlusturIc" EKBILGI="1"/>
+  </RAPORGRUP>
+
+  <RAPORGRUP AD="Masraf Planı Raporları" YETKI="" GRUPNO="998">
+    <KISTAS AD="Masraf Planı Raporları">
+      <KISTASALAN ETIKET="Bütçe Yılı" DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1"/>
+      <KISTASALAN ETIKET="Kurumsal Yapı" DEGISKEN="kurumsalyapi" TIP="YAZI" ZORUNLU="" EKBILGI="1"/>
+      <KISTASALAN ETIKET="Adı" DEGISKEN="BirimAd" TIP="YAZI" ZORUNLU="" EKBILGI="1"/>
+      <KISTASALAN ETIKET="Aşama" DEGISKEN="Asama" TIP="YAZI" ZORUNLU="" EKBILGI="1"/>
+      <KISTASALAN ETIKET="Aşama Adı" DEGISKEN="AsamaAd" TIP="YAZI" ZORUNLU="" EKBILGI="1"/>
+
+      <KISTASALAN ETIKET="KurKod" DEGISKEN="KurKod" TIP="YAZI" ZORUNLU="" EKBILGI="1"/>
+      <KISTASALAN ETIKET="KurAd" DEGISKEN="KurAd" TIP="YAZI" ZORUNLU="" EKBILGI="1"/>
+      <KISTASALAN ETIKET="EkoKod" DEGISKEN="EkoKod" TIP="YAZI" ZORUNLU="" EKBILGI="1"/>
+      <KISTASALAN ETIKET="EkoAd" DEGISKEN="EkoAd" TIP="YAZI" ZORUNLU="" EKBILGI="1"/>
+
+      <KISTASALAN ETIKET="Hazırlayan Kişi" DEGISKEN="HazKisi" TIP="YAZI" ZORUNLU="" EKBILGI="1"/>
+      <KISTASALAN ETIKET="Görevi" DEGISKEN="HazGorev" TIP="YAZI" ZORUNLU="" EKBILGI="1"/>
+      <KISTASALAN ETIKET="İmzalayan Kişi" DEGISKEN="ImzKisi" TIP="YAZI" ZORUNLU="" EKBILGI="1"/>
+      <KISTASALAN ETIKET="Görevi" DEGISKEN="ImzGorev" TIP="YAZI" ZORUNLU="" EKBILGI="1"/>
+    </KISTAS>
+    <RAPORBOLUM NO="1" AD="Masraf Planı Raporları"></RAPORBOLUM>
+
+    <RAPOR NO="5"  AD="Form 1: Birim Düzey Masra Planı İcmali" SABLON="BHMv2\MPG-BirimDonem.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.RaporlarBirimDonem" />
+    <RAPOR NO="3"  AD="Form 2/3: Merkez/İl/Birim Ekonomik-2 Düzey Masra Planı İcmali (TOP)" SABLON="BHMv2\MPG-Eko2.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.RaporlarEko2" EKBILGI =""/>
+    <RAPOR NO="7"  AD="Form 2/3: Merkez/İl/Birim Ekonomik-2 Düzey Masra Planı İcmali (MP)" SABLON="BHMv2\MPG-Eko2.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.RaporlarEko2" EKBILGI ="0/8"/>
+    <RAPOR NO="8"  AD="Form 2/3: Merkez/İl/Birim Ekonomik-2 Düzey Masra Planı İcmali (SP)" SABLON="BHMv2\MPG-Eko2.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.RaporlarEko2" EKBILGI ="9"/>
+    <RAPOR NO="6"  AD="Ekonomik-1 Düzey Masra Planı/AHP İcmali" SABLON="BHMv2\MPG-Eko1MPSP.xlt" YETKI="" RAPORTIP="EXCEL" DLL="" NESNE="" />
+    <RAPOR NO="2"  AD="Merkez/İl/Birim Ekonomik-1 Düzey Masraf Planı İcmali" SABLON="BHMv2\MPG-Eko1.xlt" YETKI="" RAPORTIP="EXCEL" DLL="" NESNE="" />
+    <RAPOR NO="4"  AD="Merkez/İl/Birim ve Ekonomik-1 Düzey Masraf Planı İcmali" SABLON="BHMv2\MPG-BirimEko.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.RaporlarBirimEko" />
+    <RAPOR NO="1"  AD="Masraf Planı Ödenek Cetveli (4 Düzey)" SABLON="BHM\Form08_TASRA.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="F8_MP"/>
+
+    <RAPOR NO="20"  AD="Masra Planı - AHP"               SABLON="BHMv2\MPRaporDetay.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPRaporDetay" EKBILGI=""/>
+    <RAPOR NO="30"  AD="Gönderilen Fazla"                SABLON=""                       YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPRaporDetay" EKBILGI="GOND_FAZ"/>
+    <RAPOR NO="31"  AD="Gönderilen Az"                   SABLON=""                       YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPRaporDetay" EKBILGI="GOND_AZ"/>
+    <RAPOR NO="32"  AD="Gönderilen Fazla (eko2)"         SABLON=""                       YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPRaporDetay" EKBILGI="GOND_FAZ2"/>
+    <RAPOR NO="33"  AD="Gönderilen Az (eko2)"            SABLON=""                       YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPRaporDetay" EKBILGI="GOND_AZ2"/>
+    <RAPOR NO="34"  AD="Masra Planı - Gönderilen"        SABLON=""                       YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPRaporDetay" EKBILGI="HEPSI"/>
+    <RAPOR NO="35"  AD="Masra Planı - Gönderilen (eko2)" SABLON=""                       YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPRaporDetay" EKBILGI="HEPSI2"/>
+
+    <RAPOR NO="36"  AD="Masra Planı - AHP"               SABLON=""                       YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPRaporDetay" EKBILGI="36"/>
+    <RAPOR NO="37"  AD="Masra Planı - Hata"              SABLON=""                       YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPRaporDetay" EKBILGI="37"/>
+
+    <RAPOR NO="41"  AD="Detay Program- Taşra Detay"      SABLON="BHMv2\MPDetayProgram2.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPDetayProgram" EKBILGI="1"/>
+    <RAPOR NO="42"  AD="Detay Program- Taşra Özet"       SABLON="BHMv2\MPDetayProgram1.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPDetayProgram" EKBILGI="2"/>
+    <RAPOR NO="43"  AD="Detay Program- Merkez Detay"     SABLON="BHMv2\MPDetayProgram2.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPDetayProgram" EKBILGI="3"/>
+    <RAPOR NO="44"  AD="Detay Program- Merkez Özet"      SABLON="BHMv2\MPDetayProgram1.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPDetayProgram" EKBILGI="4"/>
+    <RAPOR NO="45"  AD="Detay Program- Merkez Merkez Detay" SABLON="BHMv2\MPDetayProgram2.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPDetayProgram" EKBILGI="5"/>
+    <RAPOR NO="46"  AD="Detay Program- Merkez Merkez Özet"  SABLON="BHMv2\MPDetayProgram1.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPDetayProgram" EKBILGI="6"/>
+
+    <RAPOR NO="47"  AD="Detay Program- Ödenek İcmali (Prg)"  SABLON="BHMv2\MPDetayProgramOzet.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPDetayProgram" EKBILGI="7"/>
+    <RAPOR NO="48"  AD="Detay Program- Ödenek İcmali (Eko)"  SABLON="BHMv2\MPDetayProgramOzet.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPDetayProgram" EKBILGI="8"/>
+    <RAPOR NO="49"  AD="Detay Program- Ödenek İcmali (Eko2)"  SABLON="BHMv2\MPDetayProgramOzet2.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPDetayProgram" EKBILGI="9"/>
+    <RAPOR NO="50"  AD="Detay Program- Ödenek İcmali (01,02,05,08)"  SABLON="BHMv2\MPDetayProgramButce.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPDetayProgram" EKBILGI="10"/>
+    <RAPOR NO="51"  AD="Detay Program- Ödenek İcmali (03)"  SABLON="BHMv2\MPDetayProgramButce.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPDetayProgram" EKBILGI="11"/>
+    <RAPOR NO="52"  AD="Detay Program- Ödenek İcmali (06)"  SABLON="BHMv2\MPDetayProgramButce.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPDetayProgram" EKBILGI="12"/>
+    <RAPOR NO="53"  AD="Detay Program- Ödenek İcmali (07)"  SABLON="BHMv2\MPDetayProgramButce.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPDetayProgram" EKBILGI="13"/>
+
+    <RAPOR NO="99"  AD="Açık avans kapat"  SABLON="" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.MPDetayProgram" EKBILGI="99"/>
+  </RAPORGRUP>
+
+  <RAPORGRUP AD="Bilgilendirme Raporlari" YETKI="" GRUPNO="7000" YETKIKONTROLUYAPMA="1">
+    <KISTAS AD="Bilgilendirme Raporlari">
+      <KISTASALAN ETIKET="Çıktı Yeri" DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" ILKDEGER="EXCEL" ZORUNLU="" GIZLI="1"/>
+    </KISTAS>
+    <RAPOR NO="1" BOLUMNO="1" AD="Ödenek Durum" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.BilgilendirmeRaporlari" EKBILGI="1"/>
+  </RAPORGRUP>
+
+  <RAPORGRUP AD="Anket Raporlari" YETKI="" GRUPNO="7100" YETKIKONTROLUYAPMA="1">
+    <KISTAS AD="Anket Raporlari">
+      <KISTASALAN ETIKET="Çıktı Yeri" DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" ILKDEGER="EXCEL" ZORUNLU="" GIZLI="1"/>
+    </KISTAS>
+    <RAPOR NO="1" BOLUMNO="1" AD="Anket Rapor" YETKI="" RAPORTIP="METOD" DLL="Istemci" NESNE="KYM.AnketRaporlar" SABLON="KYM\AnketForm.xlt" EKBILGI="1"/>
+    <RAPOR NO="2" BOLUMNO="1" AD="Anket İstatistik" YETKI="" RAPORTIP="METOD" DLL="Istemci" NESNE="KYM.AnketRaporlar" SABLON="KYM\AnketIstatistik.xlt" EKBILGI="2"/>
+    <RAPOR NO="3" BOLUMNO="1" AD="Soru İstatistik" YETKI="" RAPORTIP="METOD" DLL="Istemci" NESNE="KYM.AnketRaporlar" SABLON="KYM\AnketTekSoru.xlt" EKBILGI="3"/>
+    <RAPOR NO="4" BOLUMNO="1" AD="Çapraz İstatistik" YETKI="" RAPORTIP="METOD" DLL="Istemci" NESNE="KYM.AnketRaporlar" SABLON="KYM\AnketCapraz.xlt" EKBILGI="4"/>
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="7500">
+    <KISTAS>
+      <KISTASALAN DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1"/>
+      <KISTASALAN DEGISKEN="KurKod" DEGISKENAD="KurAd" TIP="BIRIM" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" GIZLI="1" ILKDEGER="EXCEL"/>
+    </KISTAS>
+    <RAPORBOLUM NO="1" AD=""></RAPORBOLUM>
+    <RAPOR NO="1" SABLON="BHMv2\RAPOR_7500_1.xlt" YETKI="" RAPORTIP="EXCEL" DLL="" NESNE="" />
+    <RAPOR NO="2" SABLON="BHMv2\YatirimGorusme.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.GorusmeRaporu" EKBILGI="1"/>
+    <RAPOR NO="3" SABLON="BHMv2\YatirimGorusme.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.GorusmeRaporu" EKBILGI="2"/>
+    <RAPOR NO="4" SABLON="BHMv2\CariGorusme.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.GorusmeRaporu" EKBILGI="3"/>
+    <RAPOR NO="5" SABLON="BHMv2\CariGorusme.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.GorusmeRaporu" EKBILGI="4"/>
+    <RAPOR NO="6" SABLON="BHMv2\KoordinasyonRapor.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.GorusmeRaporu" EKBILGI="6"/>
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="8000">
+    <KISTAS>
+      <KISTASALAN DEGISKEN="Yil" TIP="YIL" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="Ay"  TIP="AY" ZORUNLU="1" ILKDEGER="1"/>
+      <KISTASALAN DEGISKEN="KurKod" TIP="YAZI" ZORUNLU="" EKBILGI="1"/>
+      <KISTASALAN DEGISKEN="Muhasebe" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN DEGISKEN="Birim" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN DEGISKEN="FirmaSayi" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN DEGISKEN="VergiNo" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+    </KISTAS>
+    <RAPORBOLUM NO="1" AD="Harcama Yönetimi Raporları"></RAPORBOLUM>
+    <RAPOR NO="1" SABLON="HRC\IhaleFirma.xlt" YETKI="" RAPORTIP="METOD" DLL="HarcamaSurecleri" NESNE="HarcamaSurecleri.HarcamaRaporlari" />
+    <RAPOR NO="2" SABLON="HRC\SeyyarGorevAdamGunTespitListesi.xlt" YETKI="" RAPORTIP="METOD" DLL="HarcamaSurecleri" NESNE="HarcamaSurecleri.SeyyarRapor" />
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="8001">
+    <KISTAS>
+      <KISTASALAN DEGISKEN="Yil" TIP="YIL" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="asama" TIP="YAZI" ILKDEGER="3" ZORUNLU="" />
+      <KISTASALAN DEGISKEN="Ilkod" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN DEGISKEN="KurKod" TIP="YAZI" ILKDEGER="" ZORUNLU="" EKBILGI="1"/>
+      <KISTASALAN DEGISKEN="Muhasebe" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN DEGISKEN="Birim" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN DEGISKEN="BelgeTur" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN DEGISKEN="BelgeNo" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+    </KISTAS>
+    <RAPORBOLUM NO="1" AD="Harcama Yönetimi Raporları"></RAPORBOLUM>
+    <RAPOR NO="1" SABLON="HRC\SeyyarGorevIlToplam.xltx" YETKI="" RAPORTIP="METOD" DLL="HarcamaSurecleri" NESNE="HarcamaSurecleri.SeyyarRapor"  EKBILGI="ILTOP" />
+    <RAPOR NO="2" SABLON="HRC\SeyyarGorevIlDetay.xltx" YETKI="" RAPORTIP="METOD" DLL="HarcamaSurecleri" NESNE="HarcamaSurecleri.SeyyarRapor"  EKBILGI="ILDET" />
+    <RAPOR NO="3" SABLON="HRC\SeyyarGorevAdamGunTespitListesi.xlt" YETKI="" RAPORTIP="METOD" DLL="HarcamaSurecleri" NESNE="HarcamaSurecleri.SeyyarRapor"  EKBILGI="BIRIM" />
+    <RAPOR NO="4" SABLON="HRC\SeyyarGorevIlTavanRevize.xltx" YETKI="" RAPORTIP="METOD" DLL="HarcamaSurecleri" NESNE="HarcamaSurecleri.SeyyarRapor"  EKBILGI="ILREVIZE" />
+    <RAPOR NO="5" SABLON="HRC\SeyyarGorevRevize.xltx" YETKI="" RAPORTIP="METOD" DLL="HarcamaSurecleri" NESNE="HarcamaSurecleri.SeyyarRapor"  EKBILGI="DETAYREVIZE" />
+    <RAPOR NO="6" SABLON="HRC\SeyyarGorevDurum.xltx" YETKI="" RAPORTIP="METOD" DLL="HarcamaSurecleri" NESNE="HarcamaSurecleri.SeyyarRapor"  EKBILGI="DETAYDURUM" />
+    <RAPOR NO="7" SABLON="HRC\SeyyarGorevRevize.xltx" YETKI="" RAPORTIP="METOD" DLL="HarcamaSurecleri" NESNE="HarcamaSurecleri.SeyyarRapor"  EKBILGI="TOPLAMREVIZE" />
+    <RAPOR NO="8" SABLON="HRC\SeyyarGorevUnvanListesi.xltx" YETKI="" RAPORTIP="METOD" DLL="HarcamaSurecleri" NESNE="HarcamaSurecleri.SeyyarRapor"  EKBILGI="UNVANLISTE" />
+    <RAPOR NO="9" SABLON="HRC\SeyyarGorevRevizeIl.xltx" YETKI="" RAPORTIP="METOD" DLL="HarcamaSurecleri" NESNE="HarcamaSurecleri.SeyyarRapor"  EKBILGI="TOPLAMREVIZEIL" />
+  </RAPORGRUP>
+
+  <RAPORGRUP YETKI="" GRUPNO="997" YETKIKONTROLUYAPMA="1">
+    <KISTAS AD="Ekonomik Detay Raporları">
+      <KISTASALAN DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1"/>
+      <KISTASALAN DEGISKEN="Senaryo" DEGISKENAD="SenaryoAd" TIP="SENARYO" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="KurKod" DEGISKENAD="KurAd" TIP="YAZIKURUMSAL" ILKDEGER="" ZORUNLU="1" />
+      <KISTASALAN DEGISKEN="FonKod" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN DEGISKEN="FinKod" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN DEGISKEN="EkoKod" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN DEGISKEN="PebKod" TIP="YAZI" ILKDEGER="" ZORUNLU="" GIZLI="1"/>
+      <KISTASALAN DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" GIZLI="1" ILKDEGER="EXCEL"/>
+    </KISTAS>
+    <RAPOR NO="1" SABLON="BHMv2\EkonomikDetay.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="EkonomikDetay"/>
+    <RAPOR NO="2" SABLON="BHMv2\FaaliyetEkonomikCapraz.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="FaaliyetEkonomikCapraz"/>
+    <RAPOR NO="3" SABLON="BHMv2\GiderButceBirlestirme.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="GiderButceBirlestirme"/>
+    <RAPOR NO="4" SABLON="BHMv2\EkoPebUcgen.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="GiderUcgenEko"/>
+    <RAPOR NO="5" SABLON="BHMv2\EkoPebUcgen.xlt" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="GelirUcgenEko"/>
+    <RAPOR NO="6" SABLON="BHMv2\EkOdenek.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceHazirlikRaporlari" EKBILGI="EkOdenek"/>
+    <RAPOR NO="7" SABLON="BHMv2\PBListe.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ProgramButceRaporlari" EKBILGI="Liste"/>
+  </RAPORGRUP>
+
+  <RAPORGRUP AD="Taşınır Mal Raporları" YETKI="" GRUPNO="9000">
+    <KISTAS>
+      <KISTASALAN DEGISKEN="yil" TIP="YIL" ZORUNLU="1" EKBILGI="1"/>
+      <KISTASALAN DEGISKEN="muhasebeKod" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN DEGISKEN="harcamaKod" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN DEGISKEN="ambarKod" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+      <KISTASALAN DEGISKEN="hesapPlanKod" TIP="YAZI" ILKDEGER="" ZORUNLU="" />
+    </KISTAS>
+    <RAPOR NO="1" SABLON="TMM\DAYANIKLIDEFTERI_Amortisman.xlt" YETKI="" RAPORTIP="METOD" DLL="TasinirMal" NESNE="TasinirMal.AmortismanRapor" EKBILGI="dtd"/>
+    <RAPOR NO="2" SABLON="TMM\AmortismanRaporu.xlt"            YETKI="" RAPORTIP="METOD" DLL="TasinirMal" NESNE="TasinirMal.AmortismanRapor" EKBILGI="ar"/>
+    <RAPOR NO="3" SABLON="TMM\AmortismanMIF.xlt"               YETKI="" RAPORTIP="METOD" DLL="TasinirMal" NESNE="TasinirMal.AmortismanRapor" EKBILGI="mif"/>
+  </RAPORGRUP>
+
+  <RAPORGRUP AD="State Budget Reports" YETKI="" GRUPNO="10000" YETKIKONTROLUYAPMA="1">
+    <KISTAS AD="TJK rep">
+      <KISTASALAN DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1"/>
+      <KISTASALAN DEGISKEN="Senaryo" DEGISKENAD="SenaryoAd" TIP="SENARYO" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="KurKod" TIP="YAZI" ZORUNLU="" EKBILGI="1"/>
+      <KISTASALAN DEGISKEN="Terr" DEGISKENAD="Terr" TIP="YAZI" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" GIZLI="1" ILKDEGER="XLS"/>
+    </KISTAS>
+    <RAPOR NO="1" SABLON="TJK\SB_BEFunc.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SB_BEFunc" EKBILGI=""/>
+    <RAPOR NO="2" SABLON="TJK\SB_Total_Exp_Base_Func_Class_Source.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SB_Total_Exp_Base_Func_Class_Source" EKBILGI=""/>
+    <RAPOR NO="3" SABLON="TJK\SB_SDBFunc.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SB_SDBFunc" EKBILGI=""/>
+    <RAPOR NO="7" SABLON="TJK\SB_Total_Exp_Bud_Type.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SB_Total_Exp_Bud_Type" EKBILGI=""/>
+    <RAPOR NO="8" SABLON="TJK\SB_BRG.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SB_BRG" EKBILGI=""/>
+    <RAPOR NO="9" SABLON="TJK\SB_Supervisiors.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SB_Supervisiors" EKBILGI=""/>
+    <RAPOR NO="17" SABLON="TJK\SB_SIF.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SB_SIF" EKBILGI=""/>
+    <RAPOR NO="13" SABLON="TJK\SB_SectorPrev.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SB_SectorPrev" EKBILGI=""/>
+    <RAPOR NO="10" SABLON="TJK\SB_SectorBugdetPrev.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SB_SectorBugdetPrev" EKBILGI=""/>
+    <RAPOR NO="11" SABLON="TJK\SB_SupervisiorsType2.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SB_SupervisiorsType2" EKBILGI=""/>
+    <RAPOR NO="12" SABLON="TJK\SB_SourceFund.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SB_SourceFund" EKBILGI=""/>
+    <RAPOR NO="4" SABLON="TJK\State Budget (Eco).xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.TJKREPOrg" EKBILGI=""/>
+    <RAPOR NO="16" SABLON="TJK\SB_Sectors.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SB_Sectors" EKBILGI=""/>
+    <RAPOR NO="5" SABLON="TJK\SB_CCI.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SB_CCI" EKBILGI=""/>
+    <RAPOR NO="6" SABLON="TJK\SB_PayRoll_Exp_Base_Func_Class.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SB_PayRoll_Exp_Base_Func_Class" EKBILGI=""/>
+    <RAPOR NO="14" SABLON="TJK\SB_Spe_Fund_Exp_Base_Func_Class.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SB_Spe_Fund_Exp_Base_Func_Class" EKBILGI=""/>
+    <RAPOR NO="19" SABLON="TJK\SB_Spe_Fund_Exp_Base_Adm_Class.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SB_Spe_Fund_Exp_Base_Adm_Class" EKBILGI=""/>
+    <RAPOR NO="15" SABLON="TJK\SB_Spe_Fund_Exp_By_Sector.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SB_Spe_Fund_Exp_By_Sector" EKBILGI=""/>
+    <RAPOR NO="18" SABLON="TJK\SF_Budget (Eco).xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SF_Budjet" EKBILGI=""/>
+    <RAPOR NO="20" SABLON="TJK\SF_Budget (Eco)_Total.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.SF_Budjet_Total" EKBILGI=""/>
+  </RAPORGRUP>
+  <RAPORGRUP AD="Republican Budget Reports" YETKI="" GRUPNO="10001" YETKIKONTROLUYAPMA="1">
+    <KISTAS AD="TJK rep">
+      <KISTASALAN DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1"/>
+      <KISTASALAN DEGISKEN="Senaryo" DEGISKENAD="SenaryoAd" TIP="SENARYO" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="KurKod" TIP="YAZI" ZORUNLU="" EKBILGI="1"/>
+      <KISTASALAN DEGISKEN="Terr" DEGISKENAD="Terr" TIP="YAZI" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="CiktiYeri" TIP="COMBO" LISTE="EXCEL" GIZLI="1" ILKDEGER="XLS"/>
+    </KISTAS>
+    <RAPOR NO="1" SABLON="TJK\RB_Exp_Base_Adm_Class.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.RB_Exp_Base_Adm_Class" EKBILGI=""/>
+    <RAPOR NO="2" SABLON="TJK\RB_Exp_Base_Func_Class.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.RB_Exp_Base_Func_Class" EKBILGI=""/>
+    <RAPOR NO="3" SABLON="TJK\RB_Exp_Base_Adm_Class_and_Fin_Source.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.RB_Exp_Base_Adm_Class_and_Fin_Source" EKBILGI=""/>
+    <RAPOR NO="4" SABLON="TJK\RB_Exp_Base_Eco_Class.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.RB_Exp_Base_Eco_Class" EKBILGI=""/>
+    <RAPOR NO="11" SABLON="TJK\RB_Exp_Base_Eco_Class _PR.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.RB_Exp_Base_Eco_Class_PR" EKBILGI=""/>
+    <RAPOR NO="5" SABLON="TJK\RB_Exp_Base_Admin_Class_Inc_CCI.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.RB_Exp_Base_Adm_Class_Inc_CCI" EKBILGI=""/>
+    <RAPOR NO="6" SABLON="TJK\RB_Exp_Base_Func_Class_Inc_of_CCI.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.RB_Exp_Base_Func_Class_Inc_of_CCI" EKBILGI=""/>
+    <RAPOR NO="7" SABLON="TJK\RB_OExp_Base_Func_Class.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.RB_OExp_Base_Func_Class" EKBILGI=""/>
+    <RAPOR NO="8" SABLON="TJK\RB_Pay_Exp_Base_Adm_Class.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.RB_Pay_Exp_Base_Adm_Class" EKBILGI=""/>
+    <RAPOR NO="9" SABLON="TJK\RB_Seg_Sec_2011.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.RB_Seg_Sec_2011" EKBILGI=""/>
+    <RAPOR NO="10" SABLON="TJK\RB_Exp_Min_Fin_of_Rep_Tajik__Base_Adm_Class.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.RB_Exp_Min_Fin_of_Rep_Tajik__Base_Adm_Class" EKBILGI=""/>
+  </RAPORGRUP>
+  <RAPORGRUP AD="Local Budget Reports" YETKI="" GRUPNO="10002" YETKIKONTROLUYAPMA="1">
+    <KISTAS AD="TJK rep">
+      <KISTASALAN DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1"/>
+      <KISTASALAN DEGISKEN="Senaryo" DEGISKENAD="SenaryoAd" TIP="SENARYO" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="KurKod" TIP="YAZI" ZORUNLU="" EKBILGI="1"/>
+      <KISTASALAN DEGISKEN="Terr" DEGISKENAD="Terr" TIP="YAZI" ZORUNLU="1"/>
+    </KISTAS>
+    <RAPOR NO="1" SABLON="TJK\LB_Total_Exp_Base_Admin_Class_Source_Financing.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.LB_Total_Exp_Base_Admin_Class_Source_Financing" EKBILGI=""/>
+    <RAPOR NO="2" SABLON="TJK\TLB_Exp_Bas_Adm_Class.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.TLB_Exp_Bas_Adm_Class" EKBILGI=""/>
+    <RAPOR NO="3" SABLON="TJK\TLB_Exp_Bas_Func_Class.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.TLB_Exp_Bas_Func_Class" EKBILGI=""/>
+    <RAPOR NO="4" SABLON="TJK\LB_Exp_For_Dush_Base_Eco_Class.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.LB_Exp_For_Dush_Base_Eco_Class" EKBILGI=""/>
+    <RAPOR NO="5" SABLON="TJK\LB_Exp_By_Adm.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.LB_Exp_By_Adm" EKBILGI=""/>
+    <RAPOR NO="6" SABLON="TJK\LB_Exp_Base_Func_Class_CCI.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.LB_Exp_Base_Func_Class_CCI" EKBILGI=""/>
+    <RAPOR NO="7" SABLON="TJK\LB_Exp_Base_Func_Class.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.LB_Exp_Base_Func_Class" EKBILGI=""/>
+    <RAPOR NO="8" SABLON="TJK\LB_07EKO.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.LB_07EKO" EKBILGI=""/>
+    <RAPOR NO="9" SABLON="TJK\LB_Exp_By_Oblasts.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.LB_Exp_By_Oblasts" EKBILGI=""/>
+    <RAPOR NO="10" SABLON="TJK\LB_Pay_Exp_Base_Adm_Class.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.LB_Pay_Exp_Base_Adm_Class" EKBILGI=""/>
+    <RAPOR NO="11" SABLON="TJK\LB_Pay_Exp_Base_Func_Class.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.LB_Pay_Exp_Base_Func_Class" EKBILGI=""/>
+  </RAPORGRUP>
+  <RAPORGRUP AD="Budget Main Resource Reports" YETKI="" GRUPNO="10003" YETKIKONTROLUYAPMA="1">
+    <KISTAS AD="TJK rep">
+      <KISTASALAN DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1"/>
+      <KISTASALAN DEGISKEN="Senaryo" DEGISKENAD="SenaryoAd" TIP="SENARYO" ZORUNLU="1"/>
+    </KISTAS>
+    <RAPOR NO="1" SABLON="TJK\RB_Seg_Sec_2011.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.TJKREP_RB_Seg_Sec_2011" EKBILGI=""/>
+    <RAPOR NO="2" SABLON="TJK\RB_Exp_Base_Eco_Class.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.TJKREP_RB_Exp_Base_Eco_Class" EKBILGI=""/>
+  </RAPORGRUP>
+  <RAPORGRUP AD="Organization Budget Reports" YETKI="" GRUPNO="10004" YETKIKONTROLUYAPMA="1">
+    <KISTAS AD="TJK rep">
+      <KISTASALAN DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1"/>
+      <KISTASALAN DEGISKEN="Senaryo" DEGISKENAD="SenaryoAd" TIP="SENARYO" ZORUNLU="1"/>
+    </KISTAS>
+    <RAPOR NO="1" SABLON="TJK\RB_Seg_Sec_2011.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.TJKREP_RB_Seg_Sec_2011" EKBILGI=""/>
+    <RAPOR NO="2" SABLON="TJK\RB_Exp_Base_Eco_Class.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.TJKREP_RB_Exp_Base_Eco_Class" EKBILGI=""/>
+  </RAPORGRUP>
+  <RAPORGRUP AD="Distributors Budget Reports" YETKI="" GRUPNO="10005" YETKIKONTROLUYAPMA="1">
+    <KISTAS AD="TJK rep">
+      <KISTASALAN DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1"/>
+      <KISTASALAN DEGISKEN="Senaryo" DEGISKENAD="SenaryoAd" TIP="SENARYO" ZORUNLU="1"/>
+    </KISTAS>
+    <RAPOR NO="1" SABLON="TJK\RB_Seg_Sec_2011.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.TJKREP_RB_Seg_Sec_2011" EKBILGI=""/>
+    <RAPOR NO="2" SABLON="TJK\RB_Exp_Base_Eco_Class.xlt" YETKI="" RAPORTIP="METOD" DLL="TJKBudget" NESNE="TJKBudget.TJKREP_RB_Exp_Base_Eco_Class" EKBILGI=""/>
+  </RAPORGRUP>
+  <RAPORGRUP AD="GRV" YETKI="" GRUPNO="9901">
+    <RAPORBOLUM NO="1" AD="RaporA" EKBILGI="Genel Raporlar"></RAPORBOLUM>
+    <RAPOR NO="1" BOLUMNO="1" AD="RaporA01" EKBILGI="Birim Faaliyet Raporu" SABLON="GRV_Genel_Rapor01.rpt" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="2" BOLUMNO="1" AD="RaporA02" EKBILGI="Birim Proje Raporu" SABLON="GRV_Genel_Rapor02.rpt" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="3" BOLUMNO="1" AD="RaporA03" EKBILGI="Kişi Görev Raporu" SABLON="GRV_Genel_Rapor03.rpt" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="4" BOLUMNO="1" AD="RaporA04" EKBILGI="Faaliyet Bilgileri Raporu" SABLON="GRV_Genel_Rapor04.rpt" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="5" BOLUMNO="1" AD="RaporA05" EKBILGI="NORM Raporu Analiz" SABLON="GRV_Norm_Rapor01.rpt" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="6" BOLUMNO="1" AD="RaporA06" EKBILGI="Birim Norm Raporu" SABLON="GRV_Norm_Rapor02.rpt" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="7" BOLUMNO="1" AD="RaporA07" EKBILGI="Birim Faaliyet Bazlı Norm Raporu" SABLON="GRV_Norm_Rapor03.rpt" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+  </RAPORGRUP>
+  <RAPORGRUP AD="GRVEYLEM" YETKI="" GRUPNO="9902">
+    <RAPORBOLUM NO="1" AD="RaporA" EKBILGI="Strateji Raporları"></RAPORBOLUM>
+    <RAPOR NO="1" BOLUMNO="1" AD="RaporB01" EKBILGI="Strateji Planı Amaç/Hedef - Eylem İlişkisi (Genel Müdürlük Düzeyinde)" SABLON="GRV_Eylem_Rapor01.rpt" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="2" BOLUMNO="1" AD="RaporB02" EKBILGI="Strateji Planı Amaç/Stratejiler - Eylem İlişkisi (Genel Müdürlük Düzeyinde)" SABLON="GRV_Eylem_Rapor01.rpt" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="3" BOLUMNO="1" AD="RaporB03" EKBILGI="Strateji Planı Hedef - Eylem İlişkisi (Genel Müdürlük Düzeyinde)" SABLON="GRV_Eylem_Rapor02.rpt" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="4" BOLUMNO="1" AD="RaporB04" EKBILGI="Strateji Planı Stratejiler - Eylem İlişkisi (Genel Müdürlük Düzeyinde)" SABLON="GRV_Eylem_Rapor02.rpt" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="5" BOLUMNO="1" AD="RaporB05" EKBILGI="Strateji Planı Amaç/Hedef - Eylem İlişkisi Grafik01" SABLON="GRV_Eylem_Rapor01_Grafik01.rpt" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="6" BOLUMNO="1" AD="RaporB06" EKBILGI="Strateji Planı Amaç/Hedef - Eylem İlişkisi Grafik02" SABLON="GRV_Eylem_Rapor01_Grafik02.rpt" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPORBOLUM NO="2" AD="RaporB" EKBILGI="Eylem Raporları"></RAPORBOLUM>
+    <RAPOR NO="11" BOLUMNO="2" AD="RaporB11" EKBILGI="Eylem Planı Bakanlığımız Merkez Birimleri Eylem Sayıları (AltBirim Bazında) " SABLON="GRV_Eylem_Rapor05.rpt" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="12" BOLUMNO="2" AD="RaporB12" EKBILGI="Eylem Rapor 01 _ Bakanlığımız Merkez Birimleri Eylem Sayıları " SABLON="EylemRapor01.rtf" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="13" BOLUMNO="2" AD="RaporB13" EKBILGI="Eylem Rapor 02 _ Bakanlığımız Merkez Birimleri (AltBirim Bazında) Eylem Sayıları " SABLON="EylemRapor02.rtf" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="14" BOLUMNO="2" AD="RaporB14" EKBILGI="Eylem Rapor 03 _ Bakanlığımız Merkez Birimleri Uygulama Sonuçları (1.Dönem)" SABLON="EylemRapor03.rtf" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="15" BOLUMNO="2" AD="RaporB15" EKBILGI="Eylem Rapor 04 _ Bakanlığımız Merkez Birimleri Uygulama Sonuçları (2.Dönem)" SABLON="EylemRapor03.rtf" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="16" BOLUMNO="2" AD="RaporB16" EKBILGI="Eylem Rapor 05 _ Bakanlığımız Merkez Birimleri Uygulama Sonuçları (1.Dönem) (AltBirim Bazında)" SABLON="EylemRapor04.rtf" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="17" BOLUMNO="2" AD="RaporB17" EKBILGI="Eylem Rapor 06 _ Bakanlığımız Merkez Birimleri Uygulama Sonuçları (2.Dönem) (AltBirim Bazında)" SABLON="EylemRapor04.rtf" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="18" BOLUMNO="2" AD="RaporB18" EKBILGI="Eylem Rapor 07 _ Bakanlığımız Merkez Birimleri Uygulama Sonuçları Tablosu (AltBirim Bazında)" SABLON="EylemRapor05.rtf" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="19" BOLUMNO="2" AD="RaporB19" EKBILGI="Eylem Rapor 08 _ Bakanlığımız Merkez Birimleri Uygulama Gerçekleştirilmeyen Tablosu (1.Dönem) (AltBirim Bazında)" SABLON="EylemRapor06.rtf" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+    <RAPOR NO="20" BOLUMNO="2" AD="RaporB20" EKBILGI="Eylem Rapor 09 _ Bakanlığımız Merkez Birimleri Uygulama Gerçekleştirilmeyen Tablosu (2.Dönem) (AltBirim Bazında)" SABLON="EylemRapor06.rtf" YETKI="" RAPORTIP="METOD" DLL="" NESNE="" />
+  </RAPORGRUP>
+
+  <RAPORGRUP AD="Gizli" YETKI="" GRUPNO="11000">
+    <KISTAS AD="Ekonomik Detay Raporları">
+      <KISTASALAN DEGISKEN="iPARDDonemi" TIP="YAZI" ZORUNLU="" EKBILGI=""/>
+      <KISTASALAN DEGISKEN="dosyaAnahtar" TIP="YAZI" ZORUNLU="" EKBILGI=""/>
+    </KISTAS>
+    <RAPOR NO="1" SABLON="ATM\6307 Faiz Hesaplama.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="1"/>
+    <RAPOR NO="2" SABLON="ATM\6309 Geri Alınan Borçların Bildirimi.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="2"/>
+    <RAPOR NO="3" SABLON="ATM\6305 Borclu Defteri.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="3"/>
+    <RAPOR NO="4" SABLON="ATM\6305 Borclu Defteri.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="4"/>
+    <RAPOR NO="5" SABLON="ATM\6305 Borclu Defteri Yeni.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="5"/>
+    <RAPOR NO="6" SABLON="ATM\6305 Borclu Defteri Yeni.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="6"/>
+    <RAPOR NO="7" SABLON="ATM\6310 Geri Alınması Gereken Tutarlar.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="7"/>
+    <RAPOR NO="8" SABLON="ATM\6307 Faiz Hesaplama.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="8"/>
+    <RAPOR NO="9" SABLON="ATM\6806 Silinecek Tutarların Bildirimi.dotx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="9"/>
+    <RAPOR NO="10" SABLON="ATM\6807 Debt and Recovery Report.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="10"/>
+    <RAPOR NO="11" SABLON="ATM\6403 Reconciliation Form D1.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="11"/>
+    <RAPOR NO="12" SABLON="ATM\6404 Reconciliation of D2 to D1.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="12"/>
+    <RAPOR NO="13" SABLON="ATM\6405 Borçlu Defteri ile TKDK.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="13"/>
+    <RAPOR NO="14" SABLON="ATM\6406 Borçlu Defteri ile Borç Kaydı.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="14"/>
+    <RAPOR NO="15" SABLON="ATM\6804 Summary Report on Recoveries.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="15"/>
+    <RAPOR NO="16" SABLON="ATM\6805 Overpayment.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="16"/>
+    <RAPOR NO="17" SABLON="ATM\ATM-TaksitTablosu.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="17"/>
+    <RAPOR NO="18" SABLON="" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="18"/>
+    <RAPOR NO="19" SABLON="ATM\BorcluTablosu.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="19"/>
+    <RAPOR NO="20" SABLON="ATM\BorcluTablosu.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="20"/>
+    <RAPOR NO="21" SABLON="ATM\YenidenHesap.xltx" YETKI="" RAPORTIP="METOD" DLL="ButceMuhasebe" NESNE="AlacakTakip.AlacakTakipABRaporlar" EKBILGI="21"/>
+  </RAPORGRUP>
+
+  <RAPORGRUP AD="Gizli" YETKI="" GRUPNO="20000">
+    <KISTAS AD="Ekonomik Detay Raporları">
+      <KISTASALAN DEGISKEN="tcKimlikNo" TIP="YAZI" ZORUNLU="" EKBILGI=""/>
+    </KISTAS>
+    <RAPOR NO="1" SABLON="HRC\BordroKisiListe.xltx" YETKI="" RAPORTIP="METOD" DLL="HarcamaSurecleri" NESNE="HarcamaSurecleri.BordroRaporlari" EKBILGI="Liste"/>
+  </RAPORGRUP>
+
+  <RAPORGRUP AD="Gizli" YETKI="" GRUPNO="20001">
+    <KISTAS AD="Bütçe Sunum Raporları">
+      <KISTASALAN DEGISKEN="ButceYil" TIP="YIL" ZORUNLU="1" EKBILGI="1"/>
+      <KISTASALAN DEGISKEN="Senaryo" DEGISKENAD="SenaryoAd" TIP="SENARYO" ZORUNLU="1"/>
+      <KISTASALAN DEGISKEN="SenaryoOnc" DEGISKENAD="SenaryoAdOnc" TIP="SENARYO" ZORUNLU="1" GOSTERILECEKRAPOR="1,2,3,4,5,7,8,9,10,14" ILKDEGER="06.00"/>
+      <KISTASALAN DEGISKEN="EkoKod" DEGISKENAD="EkoAd" TIP="COMBO_KODAD" ILKDEGER="06"  LISTE="06-SERMAYE GİDERLERİ (PROJE);07-SERMAYE TRANSFERİ;08-BORÇ VERME"  GOSTERILECEKRAPOR="8,1,2,3"/>
+      <KISTASALAN DEGISKEN="Eko" TIP="YAZI" ILKDEGER="05.04" ZORUNLU="" GOSTERILECEKRAPOR="12,13"/>
+      <KISTASALAN DEGISKEN="KurSec" DEGISKENAD="KurSecAd" TIP="COMBO_KODAD" ILKDEGER="01"  LISTE="01-Sadece Merkez;07-Tüm Kurum"  GOSTERILECEKRAPOR="12,13"/>
+    </KISTAS>
+    <RAPOR NO="4" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceSunumRaporlari" EKBILGI="Yil" SABLON="BHMv2\ButceSunum\YillaraGoreOdenekler.dotx" />
+    <RAPOR NO="5" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceSunumRaporlari" EKBILGI="YilTklf" SABLON="BHMv2\ButceSunum\YiliButceTeklifi.dotx" />
+    <RAPOR NO="6" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceSunumRaporlari" EKBILGI="BrmTklf" SABLON="BHMv2\ButceSunum\BirimButceTeklifleri.dotx" />
+    <RAPOR NO="7" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceSunumRaporlari" EKBILGI="Prg" SABLON="BHMv2\ButceSunum\ProgramYapisi.dotx" />
+    <RAPOR NO="8" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceSunumRaporlari" EKBILGI="Sektor" SABLON="BHMv2\ButceSunum\SektorelDagilim.dotx" />
+    <RAPOR NO="1" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceSunumRaporlari" EKBILGI="Birim" SABLON="BHMv2\ButceSunum\BirimlereGoreOdenekler.dotx" />
+    <RAPOR NO="2" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceSunumRaporlari" EKBILGI="Talep" SABLON="BHMv2\ButceSunum\ProjeOdenekTalepleri.dotx" />
+    <RAPOR NO="3" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceSunumRaporlari" EKBILGI="Yeni" SABLON="BHMv2\ButceSunum\YeniProjeTeklifleri.dotx" />
+    <RAPOR NO="9" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceSunumRaporlari" EKBILGI="TarimDestek" SABLON="BHMv2\ButceSunum\TarimsalAmacliDestek.dotx" />
+    <RAPOR NO="10" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceSunumRaporlari" EKBILGI="DigerCari" SABLON="BHMv2\ButceSunum\DigerCariTransferler.dotx" />
+    <RAPOR NO="11" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceSunumRaporlari" EKBILGI="CariEk" SABLON="BHMv2\ButceSunum\CariEkOdenek.dotx" />
+    <RAPOR NO="12" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceSunumRaporlari" EKBILGI="Destek" SABLON="BHMv2\ButceSunum\Destek.dotx" />
+    <RAPOR NO="13" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceSunumRaporlari" EKBILGI="DestekPrg" SABLON="BHMv2\ButceSunum\Destek.dotx" />
+    <RAPOR NO="15" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceSunumRaporlari" EKBILGI="GercEko1" SABLON="BHMv2\ButceSunum\GercEko1.dotx" />
+    <RAPOR NO="14" YETKI="" RAPORTIP="METOD" DLL="ButceHazirlikv2" NESNE="ButceHazirlikv2.ButceSunumRaporlari" EKBILGI="Toplu" SABLON="BHMv2\ButceSunum\ButceSunum.dotx" />
+  </RAPORGRUP>
+</RAPORLAR>

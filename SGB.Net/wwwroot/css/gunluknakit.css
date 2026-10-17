@@ -1,0 +1,87 @@
+/* Günlük Nakit İhtiyacı: bölüm görünümü, araç çubuğu ve tablo taveneko.css'ten (.tavan-eko) gelir;
+   burada yalnızca bu sayfaya özgü olanlar var. */
+
+/* Birim ve Tarih: alanlar alt alta, etiket solda */
+.gunluk-nakit .nakit-satir {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 0 0 8px;
+}
+
+.gunluk-nakit .nakit-satir:last-child {
+    margin-bottom: 0;
+}
+
+.gunluk-nakit .nakit-etiket {
+    flex: 0 0 90px;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.gunluk-nakit .tarih-sec {
+    display: block;
+    width: 150px;
+}
+
+@media (max-width: 600px) {
+    .gunluk-nakit .nakit-etiket {
+        flex-basis: 100%;
+    }
+}
+
+/* Hafta sonu, bugün ve geçmiş günler (eski row-disabled gibi gri); girilebilir günler beyaz */
+.gunluk-nakit .ag-row.kapali-gun .ag-cell {
+    color: #888;
+    background: #f0f0f0;
+}
+
+.gunluk-nakit .renk-aciklama .kapali::before {
+    background: #f0f0f0;
+}
+
+.gunluk-nakit .ag-cell .btn-xs {
+    padding: 0 6px;
+    line-height: 1.5;
+}
+
+/* Detay penceresi: etiket solda, tutar sağa dayalı */
+.nakit-detay {
+    width: min(460px, calc(100vw - 32px));
+}
+
+.nakit-detay .detay-gun {
+    margin: 0 0 12px;
+    font-weight: 600;
+}
+
+.nakit-detay .detay-satir {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 8px;
+}
+
+.nakit-detay .detay-satir label {
+    flex: 0 0 160px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.nakit-detay .detay-satir input {
+    flex: 0 0 200px;
+    width: 200px;
+    text-align: right;
+}
+
+.nakit-detay .detay-toplam {
+    margin: 12px 0 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--cizgi);
+}
+
+.nakit-detay .detay-toplam input {
+    font-weight: 700;
+}

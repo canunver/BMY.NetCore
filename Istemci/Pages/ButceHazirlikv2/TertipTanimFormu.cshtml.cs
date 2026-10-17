@@ -22,11 +22,14 @@ namespace Istemci.Pages.ButceHazirlikv2
         public bool Yetkili { get; private set; }
         public int Tur { get; private set; }
         public int Yil { get; private set; }
+        /// <summary>Alt Faaliyet İlişkileri'nden açılınca (eski Request["pebKod"]): faaliyet kodu yazılı gelir ve listelenir.</summary>
+        public string PebKod { get; private set; }
 
-        public void OnGet(int Tur = 1, int yil = 0)
+        public void OnGet(int Tur = 1, int yil = 0, string pebKod = null)
         {
             this.Tur = Tur == 2 ? 2 : 1;
             Yil = yil >= 2000 ? yil : 0;
+            PebKod = (pebKod ?? "").Trim();
             Yetkili = TertipTanimUclari.YetkiVar(OturumBilgisi.KullaniciOku(HttpContext), ortam.ContentRootPath, this.Tur);
         }
     }

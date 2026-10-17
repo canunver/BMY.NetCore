@@ -1,0 +1,32 @@
+@page
+@model SayfaMenuModel
+@{
+    ViewData["Title"] = "Menü";
+}
+<div class="sayfa-menu">
+    <div class="sayfa-menu-ust">
+        <h1 id="baslik" class="sayfa-menu-baslik"></h1>
+        <div class="btn-group btn-group-sm" role="group" aria-label="Süzme">
+            <button type="button" class="btn btn-default active" data-suz="">Tümü <span class="badge" id="sayiTumu"></span></button>
+            <button type="button" class="btn btn-default" data-suz="tasindi">
+                <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Taşınan <span class="badge" id="sayiTasinan"></span>
+            </button>
+            <button type="button" class="btn btn-default" data-suz="kalan">
+                <span class="glyphicon glyphicon-time" aria-hidden="true"></span> Kalan <span class="badge" id="sayiKalan"></span>
+            </button>
+        </div>
+        <input type="search" id="ara" class="form-control input-sm sayfa-menu-ara" placeholder="Ara..." aria-label="Seçeneklerde ara" />
+        <label class="checkbox-inline sayfa-menu-tumu" id="tumuAlan" hidden title="Modül, yetki ya da Gizli niteliği yüzünden menüde görünmeyen seçenekleri de gösterir">
+            <input type="checkbox" id="tumu" /> Gizlenenleri de göster
+        </label>
+    </div>
+    <div id="hata" class="alert alert-danger" role="alert" hidden></div>
+    <div id="kolonlar" class="sayfa-menu-kolonlar" aria-live="polite"></div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/sayfamenu.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/sayfamenu.js" asp-append-version="true"></script>
+}

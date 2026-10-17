@@ -1,7 +1,7 @@
 // Birimlerin Hizmet Maliyetinin Tespitine İlişkin Bilgi Formu, taşra (ButceForm/HizmetMaliyetiTespitiTasra): seçilen yıl ve
 // muhasebe / birim için hizmet maliyeti tutarları. Kod hiç girilmez; tutarlar yalnızca degerGirilsinMi olan satırlarda girilir
 // (diğerleri sarı başlık satırlarıdır); açıklama yalnızca "6" ile başlayan diğer gider satırlarında yazılır. Sütun başlıklarının
-// üstünde yıllar (yıl-2 .. yıl+2) yazar. Yazdır seçili birimin Excel raporunu verir; sistem yöneticisi kurumsal kodun toplu raporunu,
+// üstünde yıllar (yıl-2 .. yıl+2) yazar. Yazdır seçili birimin Excel raporunu verir; sistem yöneticisi seçili birimin kurumsal kodunun toplu raporunu,
 // formu girmeyenlerin listesini alır ve formu bütün birimler için veri girişine kapatır / açar (Onayla / Onay Kaldır).
 $(function () {
     'use strict';
@@ -60,7 +60,7 @@ $(function () {
                 editable: aciklamaGirilir, cellClass: hucreSinif(aciklamaGirilir) }
         ].concat($.map(TUTARLAR, function (t) {
             return {
-                headerName: String(yil + t.fark), headerClass: 'orta',
+                headerName: String(yil + t.fark), headerClass: 'sayi', suppressStickyLabel: true,
                 children: [{
                     field: t.alan, headerName: t.ad, width: 130, type: 'sayi', headerClass: 'sayi',
                     editable: tutarGirilir, cellClass: hucreSinif(tutarGirilir, 'sayi'), cellEditor: 'agTextCellEditor',
@@ -242,7 +242,9 @@ $(function () {
         var yil = yilOku();
         if (yil <= 0) { mesaj('Yıl alanı boş bırakılamaz.', 'warning'); return; }
         var $d = $(this).prop('disabled', true);
-        Sgb.indir('api/hizmetmaliyetitasra/yazdir', { yil: yil, kurumsal: $('#ddlKurumsal').val() || '', toplu: true })
+        // Kurumsal kod Muhasebe Kodu alanındaki birimin kurumsal kodudur; muhasebe boşsa sunucu bütün kurumun raporunu verir.
+        var kurumsal = muhBirim.deger().muhasebe > 0 ? muhBirim.deger().kurumsal : '';
+        Sgb.indir('api/hizmetmaliyetitasra/yazdir', { yil: yil, kurumsal: kurumsal, toplu: true })
             .then(function () { $d.prop('disabled', false); });
     });
 
@@ -284,8 +286,6 @@ $(function () {
             tanim = t;
             $('#txtYil').val(t.yil).data('onceki', String(t.yil));
             muhBirim.ata({ muhasebe: t.muhasebe, birim: t.birim, kurumsal: t.kurumsal, birimAd: t.birimAd });
-            var $k = $('#ddlKurumsal').empty();
-            $.each(t.kurumlar || [], function (i, k) { $('<option></option>').val(k.kod).text(k.ad).appendTo($k); });
             $('.yonetici').prop('hidden', !t.sistemYoneticisi);
             grid.setGridOption('columnDefs', sutunlar(t.yil));
         })

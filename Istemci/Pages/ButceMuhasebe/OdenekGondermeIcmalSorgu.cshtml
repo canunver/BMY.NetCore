@@ -1,0 +1,116 @@
+@page
+@model OdenekGondermeIcmalSorguModel
+@{
+    ViewData["Title"] = Model.Baslik + " - Belge Arama";
+    ViewData["GovdeSinif"] = "og-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="odenek-gonderme og-liste og-icmal-liste">
+    <!-- Sorgu alanları -->
+    <section class="kutu bolum bolum-kriter">
+        <h2 class="bolum-baslik">Sorgu Alanları</h2>
+        <form id="frmKriter" class="og-kriter" novalidate>
+            <div class="tanim-form og-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="ddlYil">Yıl</label>
+                    <div><input type="number" id="ddlYil" class="form-control input-sm og-yil sgb-yil" min="2000" max="2100" step="1" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlBelgeTur">Belge Türü</label>
+                    <div><select id="ddlBelgeTur" class="form-control input-sm"></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlDurum">Durum</label>
+                    <div><select id="ddlDurum" class="form-control input-sm"></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtIcmalBas">İcmal No</label>
+                    <div class="og-bitisik">
+                        <input type="number" id="txtIcmalBas" class="form-control input-sm og-no" min="1" step="1" autocomplete="off" aria-label="İcmal no başlangıç" />
+                        <span class="og-ayrac">-</span>
+                        <input type="number" id="txtIcmalBit" class="form-control input-sm og-no" min="1" step="1" autocomplete="off" aria-label="İcmal no bitiş" />
+                    </div>
+                </div>
+            </div>
+            <div class="tanim-form og-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="txtKurKod">Kurumsal Kod</label>
+                    <div class="og-bitisik">
+                        <input type="text" id="txtKurKod" class="form-control input-sm og-kur" maxlength="20" autocomplete="off" />
+                        <button type="button" id="btnKurSec" class="btn btn-default btn-sm" title="Kurumsal kod seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Kurumsal kod seç</span></button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtIslemYapan">Kullanıcı</label>
+                    <div><input type="text" id="txtIslemYapan" class="form-control input-sm" maxlength="50" autocomplete="off" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtBasTarih">Tarih</label>
+                    <div class="og-bitisik">
+                        <input type="date" id="txtBasTarih" class="form-control input-sm og-tarih" aria-label="Başlangıç tarihi" />
+                        <span class="og-ayrac">-</span>
+                        <input type="date" id="txtBitTarih" class="form-control input-sm og-tarih" aria-label="Bitiş tarihi" />
+                    </div>
+                </div>
+            </div>
+            <div class="og-kriter-tuslar">
+                <button type="button" id="btnKriterTemizle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- İcmaller -->
+    <section class="kutu bolum bolum-liste">
+        <h2 class="bolum-baslik">İcmaller <span class="og-toplam" id="lblListeOzet"></span></h2>
+        <div class="btn-toolbar og-arac" role="toolbar" aria-label="Liste işlemleri">
+            <div class="btn-group btn-group-sm">
+                <button type="submit" form="frmKriter" id="btnListele" class="btn btn-primary"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele</button>
+                <button type="button" id="btnOnayla" class="btn btn-default"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Onayla</button>
+                <button type="button" id="btnYeniYap" class="btn btn-default"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Yap</button>
+            </div>
+        </div>
+        <div id="grdListe" class="og-grid og-grid-liste" aria-label="İcmaller"></div>
+    </section>
+</div>
+
+<!-- Kurumsal kod seçimi (eski açılır ağaç) -->
+<dialog id="dlgKod" class="tanim-pencere og-agac" aria-labelledby="dlgKodBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKodBaslik">Kurumsal Kod Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde" id="agacKutu"><ul aria-label="Kurumsal kod ağacı"></ul></div>
+    <div class="pencere-alt">
+        <button type="button" id="btnKodTemizle" class="btn btn-default btn-sm">Temizle</button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/odenekgonderme.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/odenekgondermeicmalliste.js" asp-append-version="true"></script>
+}

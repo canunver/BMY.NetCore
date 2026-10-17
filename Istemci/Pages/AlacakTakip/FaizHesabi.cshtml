@@ -1,0 +1,76 @@
+@page
+@model FaizHesabiModel
+@{
+    ViewData["Title"] = "Faiz Hesaplama ve Detay";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim atm-tanim faiz-hesabi">
+    <section>
+        <div class="kutu">
+            <h2 class="kutu-baslik">Hesap Bilgileri</h2>
+            <form id="frmFaiz" class="tanim-form" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="txtAnaPara">Ana Para</label>
+                    <div><input type="number" id="txtAnaPara" class="form-control dar fh-tutar" step="0.01" min="0" value="100.00" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtFaizBasla">Faiz Başlangıç Tarihi</label>
+                    <div><input type="date" id="txtFaizBasla" class="form-control dar" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="cmbTecilTur">Tecil Durumu</label>
+                    <div>
+                        <select id="cmbTecilTur" class="form-control dar">
+                            <option value="0" selected>Tecil Yok</option>
+                            <option value="1">Normal Tecil</option>
+                            <option value="2">Tüzel Tecil</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" id="grpTecilBasla" hidden>
+                    <label class="control-label" for="txtTecilBasla">Tecil Başlangıç Tarihi</label>
+                    <div><input type="date" id="txtTecilBasla" class="form-control dar" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtIslemTar">İşlem Tarihi</label>
+                    <div><input type="date" id="txtIslemTar" class="form-control dar" /></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label"></span>
+                    <div class="atm-tuslar">
+                        <button type="submit" id="btnHesapla" class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-th" aria-hidden="true"></span> Hesapla
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group fh-ayrac">
+                    <label class="control-label" for="txtFaiz">Faizi</label>
+                    <div><input type="text" id="txtFaiz" class="form-control dar fh-tutar okuma" readonly /></div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section>
+        <div class="kutu fh-sonuc-kutu">
+            <h2 class="kutu-baslik">Sonuç</h2>
+            <textarea id="txtSonuc" class="form-control okuma fh-sonuc" readonly aria-label="Hesap ayrıntısı"
+                      placeholder="Bilgileri girip Hesapla'ya basınız."></textarea>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/atmtanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/faizhesabi.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/faizhesabi.js" asp-append-version="true"></script>
+}

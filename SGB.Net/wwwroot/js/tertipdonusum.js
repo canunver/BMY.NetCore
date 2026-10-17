@@ -18,9 +18,9 @@
     var grid = Sgb.grid('#grdTertip', {
         columnDefs: [
             { headerName: '', width: 56, sortable: false, resizable: false, valueGetter: 'node.rowIndex + 1', cellClass: 'sira' },
-            { field: 'tertipKoduEski', headerName: 'Analitik Tertip', flex: 1, minWidth: 260, editable: true, tooltipField: 'tertipKoduEski',
+            { field: 'TertipKoduEski', headerName: 'Analitik Tertip', flex: 1, minWidth: 260, editable: true, tooltipField: 'TertipKoduEski',
                 cellClass: function (p) { return p.data && p.data.uretilen === 'eski' ? 'girilir uretildi' : 'girilir'; } },
-            { field: 'tertipKoduYeni', headerName: 'Program Tertip', flex: 1, minWidth: 260, editable: true, tooltipField: 'tertipKoduYeni',
+            { field: 'TertipKoduYeni', headerName: 'Program Tertip', flex: 1, minWidth: 260, editable: true, tooltipField: 'TertipKoduYeni',
                 cellClass: function (p) { return p.data && p.data.uretilen === 'yeni' ? 'girilir uretildi' : 'girilir'; } }
         ],
         suppressCellFocus: false,
@@ -37,7 +37,7 @@
         }
     });
 
-    function satir(eski, yeni) { return { id: 's' + (sira++), tertipKoduEski: eski || '', tertipKoduYeni: yeni || '' }; }
+    function satir(eski, yeni) { return { id: 's' + (sira++), TertipKoduEski: eski || '', TertipKoduYeni: yeni || '' }; }
 
     // Dolu satırlar (en az bir sütunu yazılmış), tablodaki sırasıyla.
     function doluSatirlar() {
@@ -45,14 +45,14 @@
         var r = [];
         grid.forEachNode(function (n) {
             var d = n.data;
-            if ($.trim(d.tertipKoduEski) || $.trim(d.tertipKoduYeni)) r.push({ tertipKoduEski: $.trim(d.tertipKoduEski), tertipKoduYeni: $.trim(d.tertipKoduYeni) });
+            if ($.trim(d.TertipKoduEski) || $.trim(d.TertipKoduYeni)) r.push({ TertipKoduEski: $.trim(d.TertipKoduEski), TertipKoduYeni: $.trim(d.TertipKoduYeni) });
         });
         return r;
     }
 
     // Tablo verilen satırlarla doldurulur, sonuna yeni giriş için boş satırlar eklenir.
     function doldur(liste) {
-        var r = $.map(liste || [], function (t) { var s = satir(t.tertipKoduEski, t.tertipKoduYeni); s.uretilen = t.uretilen || null; return s; });
+        var r = $.map(liste || [], function (t) { var s = satir(t.TertipKoduEski, t.TertipKoduYeni); s.uretilen = t.uretilen || null; return s; });
         for (var i = 0; i < BOS_SATIR; i++) r.push(satir());
         grid.setGridOption('rowData', r);
     }
@@ -74,8 +74,8 @@
             var bulunamayan = 0;
             var sonuc = $.map(v.tertipler || [], function (t, i) {
                 var once = r[i] || {};
-                t.uretilen = !once.tertipKoduEski && t.tertipKoduEski ? 'eski' : (!once.tertipKoduYeni && t.tertipKoduYeni ? 'yeni' : null);
-                if (!t.tertipKoduEski || !t.tertipKoduYeni) bulunamayan++;
+                t.uretilen = !once.TertipKoduEski && t.TertipKoduEski ? 'eski' : (!once.TertipKoduYeni && t.TertipKoduYeni ? 'yeni' : null);
+                if (!t.TertipKoduEski || !t.TertipKoduYeni) bulunamayan++;
                 return t;
             });
             doldur(sonuc);
@@ -151,7 +151,7 @@
         var r = doluSatirlar();
         $.each(satirlar, function (i, s) {
             var d = s.replace(/\r$/, '').split('\t');
-            r.push({ tertipKoduEski: $.trim(d[0] || ''), tertipKoduYeni: $.trim(d[1] || '') });
+            r.push({ TertipKoduEski: $.trim(d[0] || ''), TertipKoduYeni: $.trim(d[1] || '') });
         });
         doldur(r);
         mesaj(satirlar.length + ' satır yapıştırıldı.', 'info');
@@ -170,7 +170,7 @@
     $('#btnKopyala').on('click', function () {
         var r = doluSatirlar();
         if (!r.length) { mesaj('Kopyalanacak tertip yok.', 'warning'); return; }
-        var metin = $.map(r, function (t) { return t.tertipKoduEski + '\t' + t.tertipKoduYeni; }).join('\r\n') + '\r\n';
+        var metin = $.map(r, function (t) { return t.TertipKoduEski + '\t' + t.TertipKoduYeni; }).join('\r\n') + '\r\n';
         var pencere = function () { $('#txtKopyala').val(metin); dlgKopyala.showModal(); $('#txtKopyala').trigger('focus').trigger('select'); };
         if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext)
             navigator.clipboard.writeText(metin).then(function () { mesaj(r.length + ' satır panoya kopyalandı.', 'success'); }, pencere);

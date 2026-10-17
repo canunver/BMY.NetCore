@@ -1,0 +1,53 @@
+@page
+@model OdenekGondermeTenkisEkonomikModel
+@{
+    ViewData["Title"] = "Ödenek Gönderme/Tenkis Bilgisi";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="ogt-ekonomik">
+    <!-- Sol sütun (1/4): sorgu alanları, alt alta, etiketler solda -->
+    <div class="kutu bolum bolum-secim ogt-sol">
+        <h2 class="bolum-baslik">Sorgu Alanları</h2>
+        <form id="frmSecim" class="tanim-form ogt-secim" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="ddlYil">Yıl</label>
+                <div><input type="number" id="ddlYil" class="form-control input-sm ogt-yil sgb-yil" min="2000" max="2100" step="1" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtMuhasebe">Muh. / Birim</label>
+                <div id="muhBirim"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtEko">Ekonomik Kod</label>
+                <div><input type="text" id="txtEko" class="form-control input-sm ogt-eko" maxlength="5" autocomplete="off" /></div>
+            </div>
+            <div class="ogt-tuslar">
+                <button type="submit" id="btnListele" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Sağ sütun (3/4): tertip başına ödenek gönderme / tenkis ve harcama -->
+    <div class="kutu bolum bolum-liste ogt-sag">
+        <h2 class="bolum-baslik">Ödenek Gönderme / Tenkis ve Harcama</h2>
+        <div id="grdListe" class="ogt-grid" aria-label="Ödenek gönderme / tenkis ve harcama"></div>
+    </div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ogtekonomik.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/ogtekonomik.js" asp-append-version="true"></script>
+}

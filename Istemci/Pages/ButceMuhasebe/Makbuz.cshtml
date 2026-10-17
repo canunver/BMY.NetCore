@@ -1,0 +1,134 @@
+@page
+@model MakbuzModel
+@{
+    ViewData["Title"] = "Makbuz Bilgileri";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="makbuz makbuz-liste">
+    <!-- Sorgu (eski sol form) -->
+    <section class="kutu bolum bolum-sorgu">
+        <h2 class="bolum-baslik">Sorgu</h2>
+        <form id="frmSorgu" class="tanim-form mk-alanlar" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="txtMuhasebe">Muhasebe / Birim</label>
+                <div id="muhBirim"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtBasla">Makbuz Tarihi</label>
+                <div class="mk-bitisik">
+                    <input type="date" id="txtBasla" class="form-control input-sm mk-tarih" aria-label="Başlangıç tarihi" />
+                    <span class="mk-ayrac" aria-hidden="true">-</span>
+                    <input type="date" id="txtBitis" class="form-control input-sm mk-tarih" aria-label="Bitiş tarihi" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlMakbuzTipi">Makbuz Tipi</label>
+                <div><select id="ddlMakbuzTipi" class="form-control input-sm"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtYevmiyeNo">Yevmiye No</label>
+                <div><input type="text" id="txtYevmiyeNo" class="form-control input-sm mk-no" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtHesapKod">Hesap Kod</label>
+                <div class="mk-bitisik">
+                    <input type="text" id="txtHesapKod" class="form-control input-sm" autocomplete="off" title="Son kırılım hesap kodu" />
+                    <button type="button" id="btnHesapSec" class="btn btn-default btn-sm" title="Hesap planından seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Hesap planından seç</span></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtTcKimlik">TC Kimlik / Vergi No</label>
+                <div><input type="text" id="txtTcKimlik" class="form-control input-sm mk-no" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtKisiAd">Kişi Adı</label>
+                <div><input type="text" id="txtKisiAd" class="form-control input-sm" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlDurum">Durum</label>
+                <div><select id="ddlDurum" class="form-control input-sm mk-durum"></select></div>
+            </div>
+        </form>
+    </section>
+
+    <!-- Makbuzlar (eski grdMakbuzlar) -->
+    <section class="kutu bolum bolum-liste">
+        <h2 class="bolum-baslik">Makbuzlar</h2>
+        <div class="btn-toolbar mk-arac" role="toolbar" aria-label="Makbuz işlemleri">
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="submit" id="btnListele" form="frmSorgu" class="btn btn-primary" title="Sorgu kriterlerine uyan makbuzları listeler">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+                </button>
+            </div>
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" id="btnYeni" class="btn btn-success">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Makbuz
+                </button>
+                <button type="button" id="btnIptal" class="btn btn-default" title="Seçili makbuzları iptal eder">
+                    <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Seçilenleri İptal Et
+                </button>
+            </div>
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" id="btnKesilen" class="btn btn-default" title="Kriterlere uyan makbuzların listesi (Excel)">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Kesilen Makbuzlar
+                </button>
+                <button type="button" id="btnRaporHesap" class="btn btn-default" title="Kriterlere uyan makbuzların hesap satırları (Excel)">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Hesap Bazında Rapor
+                </button>
+            </div>
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" id="btnOdemeEmri" class="btn btn-default" title="Tarih aralığındaki ödenmiş makbuzlardan ödeme emri oluşturur.">
+                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Ödeme Emri Oluştur
+                </button>
+            </div>
+            <span id="lblSayi" class="mk-sayi" aria-live="polite"></span>
+        </div>
+        <div id="grdMakbuzlar" class="mk-grid" aria-label="Makbuzlar"></div>
+    </section>
+</div>
+
+<!-- Onay sorusu -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+<!-- Ödeme emri sonucu (eski MesajKutusu) -->
+<dialog id="dlgSonuc" class="tanim-pencere" aria-labelledby="dlgSonucBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSonucBaslik">Bilgi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <ul id="lstSonuc" class="mk-sonuc"></ul>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-primary btn-sm" data-kapat>Tamam</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/makbuz.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/makbuz.js" asp-append-version="true"></script>
+}

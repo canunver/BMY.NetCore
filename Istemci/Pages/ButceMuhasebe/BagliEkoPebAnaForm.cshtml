@@ -1,0 +1,71 @@
+@page
+@model BagliEkoPebAnaFormModel
+@{
+    ViewData["Title"] = Metin.Muhasebe("BagliEkoPebAna001");
+    // Geniş ekranda sayfa pencereye sığar, bölmeler kendi içinde kayar (tanim.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">@Metin.Muhasebe("Yetkisiz")</div>
+    return;
+}
+
+<div class="tanim liste-genis">
+    <!-- Sol: ilişki kurulmuş tertip ve faaliyetler -->
+    <section class="tanim-sol">
+        <div class="kutu">
+            <h2 class="kutu-baslik">@Metin.Muhasebe("BagliEkoPebListe")</h2>
+            <form id="frmSuz" class="tanim-arama" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="txtSuz">@Metin.Muhasebe("Arama")</label>
+                    <div class="arama-satir">
+                        <input type="search" id="txtSuz" class="form-control" placeholder="@Metin.Muhasebe("BagliEkoPebSuzIpucu")" />
+                        <button type="button" id="btnOku" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> @Metin.Muhasebe("BagliEkoPebAna010")
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div id="grdBagliEkoPeb" class="tanim-grid"></div>
+        </div>
+    </section>
+
+    <!-- Sağ: yeni ilişki -->
+    <section class="tanim-sag">
+        <div class="kutu">
+            <h2 class="kutu-baslik">@Metin.Muhasebe("BagliEkoPebYeni")</h2>
+            <form id="frmBagliEkoPeb" class="tanim-form" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="txtTertip">@Metin.Muhasebe("BagliEkoPebAna006")</label>
+                    <div>
+                        <input type="text" id="txtTertip" class="form-control" required aria-describedby="txtTertipIpucu" />
+                        <span id="txtTertipIpucu" class="help-block">@Metin.Muhasebe("BagliEkoPebAna007")</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtPeb">@Metin.Muhasebe("BagliEkoPebAna008")</label>
+                    <div>
+                        <input type="text" id="txtPeb" class="form-control" required aria-describedby="txtPebIpucu" />
+                        <span id="txtPebIpucu" class="help-block">@Metin.Muhasebe("BagliEkoPebAna009")</span>
+                    </div>
+                </div>
+            </form>
+            <div class="btn-toolbar" role="toolbar">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> @Metin.Muhasebe("BagliEkoPebAna011")
+                </button>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script type="application/json" id="metinler">@Html.Raw(Model.MetinlerJson)</script>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/bagliekopeb.js" asp-append-version="true"></script>
+}

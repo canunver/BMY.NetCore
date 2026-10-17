@@ -1,0 +1,38 @@
+@page
+@model SakliRaporlarModel
+@{
+    ViewData["Title"] = "Saklı Raporlar";
+    ViewData["GovdeSinif"] = "sakli-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="sakli-raporlar">
+    <ul class="nav nav-tabs sakli-sekmeler" role="tablist" aria-label="Rapor grupları">
+        @for (int i = 0; i < Model.Gruplar.Length; i++)
+        {
+            var g = Model.Gruplar[i];
+            <li role="presentation" class="@(i == 0 ? "active" : "")">
+                <a href="#sek_@(g.kod)" id="sekme_@(g.kod)" role="tab" aria-controls="sek_@(g.kod)"
+                   aria-selected="@(i == 0 ? "true" : "false")" tabindex="@(i == 0 ? "0" : "-1")">@g.ad</a>
+            </li>
+        }
+    </ul>
+    @for (int i = 0; i < Model.Gruplar.Length; i++)
+    {
+        var g = Model.Gruplar[i];
+        <div id="sek_@(g.kod)" class="sakli-panel" role="tabpanel" aria-labelledby="sekme_@(g.kod)" hidden="@(i != 0)">
+            <iframe title="@g.ad" data-src="../Duyuru/EkliDosyalarForm?mdl=@Uri.EscapeDataString(Model.Modul)&amp;frm=@Uri.EscapeDataString(g.kod)&amp;menuYok=1"></iframe>
+        </div>
+    }
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/sakliraporlar.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/sakliraporlar.js" asp-append-version="true"></script>
+}

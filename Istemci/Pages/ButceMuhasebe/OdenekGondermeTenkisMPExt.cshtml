@@ -1,0 +1,255 @@
+@page
+@model OdenekGondermeTenkisMPExtModel
+@{
+    ViewData["Title"] = Model.Baslik;
+    ViewData["GovdeSinif"] = "og-sayfa";
+}
+@if (!Model.BelgeTurVar)
+{
+    <div class="alert alert-warning" role="alert">Belge türü bilgisi alınamadı.</div>
+    return;
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="odenek-gonderme og-form" data-bt="@Model.BelgeTur" data-talep="@(Model.Talep ? "1" : "")">
+    <!-- Araç çubuğu (eski üst düğmeler) -->
+    <div class="btn-toolbar og-arac" role="toolbar" aria-label="Belge işlemleri">
+        <div class="btn-group btn-group-sm" role="group">
+            <button type="button" id="btnKaydet" class="btn btn-primary">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+            </button>
+            <button type="button" id="btnTalepGonder" class="btn btn-default" hidden>
+                <span class="glyphicon glyphicon-send" aria-hidden="true"></span> Talep Gönder
+            </button>
+            <button type="button" id="btnYazdir" class="btn btn-default">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+            </button>
+            <button type="button" id="btnTemizle" class="btn btn-default">
+                <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle
+            </button>
+            <button type="button" id="btnRevizeIptal" class="btn btn-default" hidden>
+                <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Revize İptal
+            </button>
+        </div>
+        <div class="og-hizli" role="group" aria-label="Hızlı rapor">
+            <select id="ddlHizliRapor" class="form-control input-sm" aria-label="Hızlı rapor">
+                <option value="1">KBS-SGB Fark</option>
+                <option value="2">Seyyar Görev</option>
+            </select>
+            <button type="button" id="btnRaporAl" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-save-file" aria-hidden="true"></span> Rapor Al
+            </button>
+        </div>
+        <div class="btn-group btn-group-sm" role="group">
+            <button type="button" id="btnOncekiler" class="btn btn-link" title="Seçili muhasebe birimine önceden gönderilen ödenekler">Önceden gönderilen ödenekler</button>
+            <button type="button" id="btnDokuman" class="btn btn-default">
+                <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Belgeye Doküman Ekle
+            </button>
+        </div>
+    </div>
+
+    <div class="og-ust">
+        <!-- Belge bilgileri: alanlar alt alta, etiket solda -->
+        <section class="kutu bolum bolum-belge">
+            <h2 class="bolum-baslik">Belge Bilgileri</h2>
+            <div class="tanim-form og-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="ddlYil">Yıl</label>
+                    <div class="og-bitisik">
+                        <input type="number" id="ddlYil" class="form-control input-sm og-yil sgb-yil" min="2000" max="2100" step="1" />
+                        <label class="og-ic-etiket" for="txtBelgeTarih">Belge Tarihi</label>
+                        <input type="date" id="txtBelgeTarih" class="form-control input-sm og-tarih" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlKurumsal">Kurum Kodu</label>
+                    <div><select id="ddlKurumsal" class="form-control input-sm"></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMuhasebe">Muhasebe / Birim</label>
+                    <div id="muhBirim"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="btnIsSec">İÖİ/YİKOB İşi</label>
+                    <div class="og-bitisik">
+                        <button type="button" id="btnIsSec" class="btn btn-default btn-sm" title="İş seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">İş seç</span></button>
+                        <span id="lblIsAdi" class="og-is-adi"></span>
+                    </div>
+                </div>
+                @if (!Model.Talep)
+                {
+                    <div class="form-group">
+                        <label class="control-label" for="txtYaziNo">Yazının Numarası</label>
+                        <div class="og-bitisik">
+                            <input type="text" id="txtYaziNo" class="form-control input-sm og-no" maxlength="50" />
+                            <label class="og-ic-etiket" for="txtYaziTarih">Yazının Tarihi</label>
+                            <input type="date" id="txtYaziTarih" class="form-control input-sm og-tarih" />
+                        </div>
+                    </div>
+                }
+                <div class="form-group">
+                    <label class="control-label" for="txtIstekNo">İstek Yazı Numarası</label>
+                    <div class="og-bitisik">
+                        <input type="text" id="txtIstekNo" class="form-control input-sm og-no" maxlength="50" />
+                        <label class="og-ic-etiket" for="txtIstekTarih">İstek Yazı Tarihi</label>
+                        <input type="date" id="txtIstekTarih" class="form-control input-sm og-tarih" />
+                    </div>
+                </div>
+                <div class="form-group ust-hizali">
+                    <label class="control-label" for="txtAciklama">Açıklama</label>
+                    <div><textarea id="txtAciklama" class="form-control input-sm" rows="2" maxlength="2000"></textarea></div>
+                </div>
+                <div class="form-group" id="grpSecenekler" hidden>
+                    <span class="control-label">İşlem Seçenekleri</span>
+                    <div class="og-secenekler">
+                        <label id="lblPlanlanan" hidden><input type="checkbox" id="chkPlanlanan" /> Dönem ödeneği gönder</label>
+                        <label id="lblMuhHarcama" hidden><input type="checkbox" id="chkMuhHarcama" /> Muh. Harcama Kontrolü Yapma</label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Belge no, durum, süreç, vergi no, ekli belgeler -->
+        <section class="kutu bolum bolum-durum">
+            <h2 class="bolum-baslik">Belge Durumu</h2>
+            <div class="tanim-form og-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="txtBelgeNo">Belge No</label>
+                    <form id="frmBelgeNo" class="og-bitisik" novalidate>
+                        <input type="text" id="txtBelgeNo" class="form-control input-sm og-no" maxlength="12" autocomplete="off" />
+                        <button type="submit" id="btnListele" class="btn btn-default btn-sm" title="Belgeyi listele"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele</button>
+                    </form>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Durum</span>
+                    <div><span id="lblDurum" class="og-durum"></span></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Süreç No</span>
+                    <div class="og-bitisik">
+                        <span id="lblSurecNo" class="og-deger"></span>
+                        <button type="button" id="btnSurecAc" class="btn btn-default btn-sm" title="Süreci aç" disabled><span class="glyphicon glyphicon-share" aria-hidden="true"></span><span class="sr-only">Süreci aç</span></button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Vergi No</span>
+                    <div><span id="lblVergiNo" class="og-deger"></span></div>
+                </div>
+                <div id="grpEkDosyalar" hidden>
+                    <div class="form-group og-ek" data-no="1">
+                        <span class="control-label">İmzalı Belge</span>
+                        <div class="og-bitisik">
+                            <input type="text" class="form-control input-sm og-ek-ad" readonly aria-label="İmzalı belge" />
+                            <input type="file" class="og-ek-dosya" hidden />
+                            <button type="button" class="btn btn-default btn-sm og-ek-yukle"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Yükle</button>
+                            <button type="button" class="btn btn-default btn-sm og-ek-indir"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> İndir</button>
+                        </div>
+                    </div>
+                    <div class="form-group og-ek" data-no="2">
+                        <span class="control-label">Destekleyici Belge</span>
+                        <div class="og-bitisik">
+                            <input type="text" class="form-control input-sm og-ek-ad" readonly aria-label="Destekleyici belge" />
+                            <input type="file" class="og-ek-dosya" hidden />
+                            <button type="button" class="btn btn-default btn-sm og-ek-yukle"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Yükle</button>
+                            <button type="button" class="btn btn-default btn-sm og-ek-indir"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> İndir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Tertip satırları -->
+    <section class="kutu bolum bolum-tertip">
+        <h2 class="bolum-baslik">Gider Bütçesi Tertipleri <span class="og-toplam">Toplam: <strong id="lblToplam">0,00</strong></span></h2>
+        <div class="btn-toolbar og-arac" role="toolbar" aria-label="Satır işlemleri">
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" id="btnSatirAc" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Aç</button>
+                <button type="button" id="btnSatirSil" class="btn btn-default"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Satır Sil</button>
+                <button type="button" id="btnHepsiniSec" class="btn btn-default" title="Bütün satırları seç"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> H.Seç</button>
+                <button type="button" id="btnKopyala" class="btn btn-default"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Kopyala</button>
+                <button type="button" id="btnYapistir" class="btn btn-default"><span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Yapıştır</button>
+            </div>
+            <p class="og-not">Tertip hücresine kod yazılabilir ya da satırdaki mercekle seçilebilir. Sarı sütunlar bilgi amaçlıdır.</p>
+        </div>
+        <div id="grdTertip" class="og-grid" aria-label="Tertipler"></div>
+    </section>
+</div>
+
+<!-- İÖİ / YİKOB iş seçimi (eski ButceHazirlikv2/IOIProjeSecim) -->
+<dialog id="dlgIs" class="tanim-pencere og-pencere-genis" aria-labelledby="dlgIsBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgIsBaslik">İÖİ / YİKOB İş Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmIsAra" class="og-tertip-ara" novalidate>
+            <div class="og-kod">
+                <label for="txtIsAdi">İş Adı</label>
+                <input type="text" id="txtIsAdi" class="form-control input-sm" autocomplete="off" />
+            </div>
+            <div class="og-secenekler">
+                <label><input type="radio" name="isTur" value="1" checked /> İÖİ</label>
+                <label><input type="radio" name="isTur" value="2" /> YİKOB</label>
+                <label><input type="radio" name="isTur" value="0" /> Hepsi</label>
+            </div>
+            <div class="og-tertip-tuslar">
+                <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> İş Ara</button>
+                <button type="button" id="btnIsTemizle" class="btn btn-default btn-sm">Kod Temizle</button>
+            </div>
+        </form>
+        <p class="help-block small">Seçmek için satıra çift tıklayınız.</p>
+        <div id="grdIs" class="og-grid og-grid-pencere" aria-label="İşler"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Belgeye Doküman Ekle (eski DosyaIslem.aspx: modül BUM) -->
+<dialog id="dlgDokuman" class="tanim-pencere og-pencere-genis" aria-labelledby="dlgDokumanBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgDokumanBaslik">Belgeye Doküman Ekle</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div id="ekliDosyalar"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/eklidosya.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/odenekgonderme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tertipsec.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/tertipsec.js" asp-append-version="true"></script>
+    <script src="~/js/eklidosya.js" asp-append-version="true"></script>
+    <script src="~/js/odenekgonderme.js" asp-append-version="true"></script>
+}

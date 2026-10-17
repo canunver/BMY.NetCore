@@ -1,0 +1,60 @@
+@page
+@model TanimTeminatNeviModel
+@{
+    ViewData["Title"] = "Teminat Mektubu Nevi Tanımlama";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim mt-tek ust-form muh-tanim">
+    <section class="tanim-sag">
+        <div class="kutu bolum yesil">
+            <h2 class="bolum-baslik">Teminat Mektubu Nevi</h2>
+            <div class="mt-arac" role="toolbar" aria-label="İşlemler">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil</button>
+                <button type="button" id="btnBul" class="btn btn-default btn-sm" title="Formdaki bilgilere uyan kayıtları listeler"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Bul</button>
+                <button type="button" id="btnTemizle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle</button>
+            </div>
+            <form id="frmBilgi" class="tanim-form mt-sik mt-sinirli" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="tnKod">Kod</label>
+                    <div><input type="number" id="tnKod" class="form-control kisa" min="0" data-alan="kod" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="tnAdi">Adı</label>
+                    <div><input type="text" id="tnAdi" class="form-control" data-alan="adi" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="tnHesap">Hesap Kodu</label>
+                    <div><input type="text" id="tnHesap" class="form-control kisa" data-alan="hesapKodu" data-hesap-kodu data-ad /></div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="tanim-sol">
+        <div class="kutu bolum izgarali">
+            <h2 class="bolum-baslik">Teminat Mektubu Nevileri</h2>
+            <div id="grdListe" class="tanim-grid"></div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/makbuz.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hesapkodu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhtanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/hesapkodu.js" asp-append-version="true"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/muhtanim-teminat.js" asp-append-version="true"></script>
+}

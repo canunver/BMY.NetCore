@@ -1,0 +1,25 @@
+@* Ödenek Durum Bilgisi sayfalarının tertip kodu alanları (eski PropertyGrid'deki açılır kod ağaçları). Kod yazılabilir ya da
+   ağaçtan seçilir (odenekdurum.js; data-tur: eski nodeLoadPar kod türü). *@
+@{
+    var alanlar = new[]
+    {
+        new { tur = "1", alan = "kur", ad = "Kurumsal Kod" },
+        new { tur = "2", alan = "fon", ad = "Fonksiyonel Kod" },
+        new { tur = "3", alan = "fin", ad = "Finans Kod" },
+        new { tur = "4", alan = "eko", ad = "Ekonomik Kod" },
+        new { tur = "14", alan = "peb", ad = "Faaliyet Kodu" }
+    };
+}
+@foreach (var a in alanlar)
+{
+    <div class="form-group kod-alan" data-tur="@a.tur" data-alan="@a.alan">
+        <label class="control-label" for="txt_@a.alan">@a.ad</label>
+        <div class="input-group input-group-sm">
+            <input type="text" id="txt_@a.alan" class="form-control" autocomplete="off" placeholder="Tümü" title="@a.ad (Alt+Aşağı: kod ağacı)" />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">@a.ad seç</span></button>
+                <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">@a.ad temizle</span></button>
+            </span>
+        </div>
+    </div>
+}

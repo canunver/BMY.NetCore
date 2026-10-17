@@ -1,0 +1,35 @@
+/* Alacak Takip tanım sayfaları (TanimFaizTur, ListeFaizTur, TanimDurum): tanim.css üzerine küçük eklemeler.
+   Solda form (alanlar alt alta, etiket solda; tuşlar altta), sağda liste. Liste kalan yüksekliği doldurur (tanim-sol). */
+
+.atm-tanim .tanim-form .dar {
+    max-width: 140px;
+}
+
+.atm-tuslar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.atm-liste-arama {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.atm-liste-arama .control-label {
+    margin: 0;
+    font-weight: 600;
+}
+
+.atm-liste-arama .dar {
+    width: 110px;
+}
+
+@media (min-width: 992px) {
+    /* Seçim penceresi: tek bölme */
+    .tanim.atm-tanim.tek {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

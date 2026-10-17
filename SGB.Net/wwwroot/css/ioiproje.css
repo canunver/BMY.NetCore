@@ -1,0 +1,189 @@
+/* İl Özel İdaresi Projeleri (IOIProjeListeForm): üstte sıkı kriter bölümü, altta sayfanın kalanını dolduran proje tablosu;
+   bölümler renkli başlıklı ayrı kutular. Giriş tablolarında (tahsis, harcama) düzenlenen hücreler beyazdır. */
+
+.ioi-proje {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ioi-proje .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding: 0 12px 10px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    min-width: 0;
+}
+
+.ioi-proje .kutu.bolum.bolum-tablo {
+    --bolum-baslik: #e6e6fa;
+    --bolum-govde: #fafaff;
+    --bolum-vurgu: #6a5acd;
+    padding-top: 10px;
+}
+
+.ioi-proje .bolum-baslik {
+    margin: 0 -12px 8px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+/* Kriterler: iki kolon, 12px yazı, sık satırlar */
+.ioi-proje .ioi-kriter {
+    --etiket-genislik: 110px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 0 18px;
+    font-size: 12px;
+}
+
+.ioi-proje .ioi-kriter .form-group {
+    margin-bottom: 4px;
+}
+
+.ioi-proje .ioi-kriter .control-label,
+.ioi-proje .ioi-kriter .form-control,
+.ioi-proje .ioi-kriter .ioi-isaret {
+    font-size: 12px;
+}
+
+.ioi-proje .ioi-kriter .form-control {
+    height: 26px;
+    padding: 2px 6px;
+}
+
+.ioi-yanyana {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+.ioi-yanyana .form-control {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.ioi-yanyana .form-control.ioi-yil,
+.ioi-yil {
+    flex: 0 0 96px;
+    max-width: 96px;
+}
+
+.ioi-ayrac {
+    color: var(--soluk);
+}
+
+.ioi-isaret {
+    margin: 0 12px 0 0;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.ioi-proje .ioi-arac {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 8px;
+}
+
+.ioi-proje .ioi-arac .btn-group {
+    margin-left: 0;
+}
+
+.ioi-proje .ioi-grid {
+    height: 420px;
+}
+
+.ioi-komut {
+    display: inline-flex;
+    gap: 3px;
+}
+
+.ioi-komut .btn-xs {
+    padding: 0 5px;
+}
+
+/* Pencereler */
+.ioi-pencere {
+    width: min(760px, calc(100vw - 32px));
+}
+
+.ioi-pencere.ioi-pencere-genis {
+    width: min(860px, calc(100vw - 32px));
+}
+
+.ioi-pencere .tanim-form {
+    --etiket-genislik: 150px;
+}
+
+.ioi-pencere .ioi-tutar {
+    max-width: 200px;
+    text-align: right;
+}
+
+.ioi-pencere .form-control.sayi {
+    text-align: right;
+}
+
+.ioi-pencere .ioi-durum {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 10px;
+    padding: 6px 10px;
+    background: #f5fbf6;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.ioi-pencere .ioi-durum strong {
+    margin-right: auto;
+}
+
+.ioi-pencere .ioi-alt-baslik {
+    margin: 10px 0 6px;
+    padding-top: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    border-top: 1px solid var(--cizgi);
+}
+
+.ioi-pencere .ioi-alt-grid {
+    height: 150px;
+}
+
+.ioi-pencere .ioi-giris-grid,
+.ioi-pencere .ioi-onay-grid {
+    height: min(380px, calc(100vh - 260px));
+}
+
+.ioi-pencere .ioi-ipucu {
+    margin: 0 0 6px;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.ioi-pencere .ioi-pencere-proje {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+.ioi-pencere .pencere-alt .ioi-sol {
+    margin-right: auto;
+}
+
+/* Giriş tablolarında düzenlenen hücreler beyaz (salt okunur hücre yok) */
+.ioi-pencere .ioi-giris-grid .ag-cell {
+    background: #fff;
+}

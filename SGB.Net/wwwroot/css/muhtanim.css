@@ -1,0 +1,348 @@
+/* Muhasebe Tanımları sayfaları (menüde Kaynak Yönetimi > Muhasebe Tanımları; ButceMuhasebe/Tanim*, Imza, IstatistikKodGirisForm,
+   KapaliMuhasebeBirimForm, HarcamaSurecleri/TanimTeminatNevi). Yerleşim tanim.css'ten (solda liste, sağda form);
+   bölümler renkli başlıklı ayrı kutular. Girilen hücre / alan beyaz, salt okunur hücre / alan sarı. */
+
+.muh-tanim .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+}
+
+.muh-tanim .kutu.bolum.yesil {
+    --bolum-baslik: #e2f3e6;
+    --bolum-govde: #f5fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.muh-tanim .kutu.bolum.turuncu {
+    --bolum-baslik: #fbeedd;
+    --bolum-govde: #fdf8f1;
+    --bolum-vurgu: #c7762a;
+}
+
+.muh-tanim .kutu.bolum.mor {
+    --bolum-baslik: #ece6f7;
+    --bolum-govde: #f8f6fc;
+    --bolum-vurgu: #6f4fb3;
+}
+
+.muh-tanim .kutu.bolum + .kutu.bolum {
+    margin-top: 12px;
+}
+
+.muh-tanim .bolum-baslik {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 8px;
+    margin: 0 -12px 10px;
+    padding: 8px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.muh-tanim .bolum-baslik .bolum-not {
+    margin-left: auto;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+/* Araç çubuğu: düğmeler yan yana, sığmazsa alt satıra */
+.muh-tanim .mt-arac {
+    display: flex;
+    flex: none;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 10px;
+}
+
+.muh-tanim .mt-arac .sag {
+    margin-left: auto;
+}
+
+.muh-tanim .mt-arac .btn-group {
+    margin: 0;
+}
+
+/* Araç çubuğundaki kıstaslar (yıl, belge, birim) */
+.muh-tanim .mt-arac > label {
+    margin: 0 0 0 4px;
+    font-weight: 600;
+}
+
+.muh-tanim .mt-arac > .form-control {
+    width: auto;
+    max-width: 260px;
+}
+
+.muh-tanim .mt-arac > .form-control.sgb-yil {
+    width: 90px;
+}
+
+.muh-tanim .mt-arac > .form-control.birim {
+    width: 70px;
+}
+
+.muh-tanim .tanim-form {
+    --etiket-genislik: 150px;
+}
+
+.muh-tanim .tanim-form.genis-etiket {
+    --etiket-genislik: 190px;
+}
+
+.muh-tanim .tanim-form .kisa,
+.tanim-pencere .tanim-form .kisa {
+    max-width: 110px;
+}
+
+.muh-tanim .mt-yanyana,
+.tanim-pencere .mt-yanyana {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.muh-tanim .mt-yanyana .form-control,
+.tanim-pencere .mt-yanyana .form-control {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.muh-tanim .mt-yanyana .form-control.kisa,
+.tanim-pencere .mt-yanyana .form-control.kisa {
+    flex: 0 0 110px;
+}
+
+/* Salt okunur alanlar sarı, girilen alanlar beyaz */
+.muh-tanim .form-control[readonly],
+.tanim-pencere .form-control[readonly] {
+    background: #fcfcd4;
+}
+
+.muh-tanim .tanim-form .form-control:not([readonly]):not([disabled]),
+.tanim-pencere .tanim-form .form-control:not([readonly]):not([disabled]) {
+    background: #fff;
+}
+
+/* Tablo hücreleri: mt-girilir (beyaz) girilen, mt-sari salt okunur */
+.mt-girilir {
+    background: #fff;
+}
+
+.mt-sari {
+    background: #fcfcd4;
+}
+
+/* Nitelik onay kutuları: iki sütun, çerçeveli */
+.muh-tanim .mt-nitelik,
+.tanim-pencere .mt-nitelik {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2px 12px;
+    padding: 6px 8px;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 4px;
+}
+
+.muh-tanim .mt-nitelik label,
+.tanim-pencere .mt-nitelik label {
+    margin: 0;
+    font-weight: 400;
+}
+
+.muh-tanim .mt-ipucu {
+    margin: 0 0 8px;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+/* Tam genişlik tek bölme (KBS, İmza, İstatistik kodları) */
+.tanim.mt-tek {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 992px) {
+    .tanim.mt-tek {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tanim.mt-tek.ust-form {
+        grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    .tanim.mt-tek.ust-form > section:first-child .kutu {
+        flex: none;
+    }
+}
+
+/* Form solda, liste sağda (Hesap Planı): bölümler DOM sırasıyla yer alır, liste daha geniştir */
+@media (min-width: 992px) {
+    .tanim.form-solda {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    }
+
+    /* Kriter kutusu ayrı ve sabit; altındaki liste kutusu kalan yüksekliği doldurur (Mutemet Limit) */
+    .tanim-sol .kutu.mt-kriter {
+        flex: none;
+    }
+
+    /* Formu küçük sayfalar (Makbuz Tipi): form solda dar, liste sağda geniş */
+    .tanim.form-solda.liste-genis {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    }
+}
+
+/* Sık form: satır aralıkları ve alan yükseklikleri küçük (Hesap Planı) */
+.muh-tanim .tanim-form.mt-sik .form-group {
+    margin-bottom: 4px;
+}
+
+.muh-tanim .tanim-form.mt-sik .form-control {
+    height: 28px;
+    padding: 3px 8px;
+    font-size: 13px;
+}
+
+.muh-tanim .tanim-form.mt-sik .btn-sm {
+    padding: 3px 8px;
+}
+
+/* Üstte duran form çok yayılmasın (Aktarım Tür) */
+.muh-tanim .tanim-form.mt-sinirli {
+    --etiket-genislik: 100px;
+    max-width: 560px;
+}
+
+/* Üstte form, yanında kendi satır tablosu (TKDK Talep Formu) */
+.muh-tanim .mt-form-tablo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 12px 20px;
+}
+
+.muh-tanim .mt-form-tablo > .tanim-form {
+    flex: 0 1 560px;
+}
+
+.muh-tanim .mt-form-tablo-sag {
+    flex: 1 1 360px;
+    min-width: 0;
+}
+
+.muh-tanim .mt-satir-grid {
+    width: 100%;
+    height: 220px;
+}
+
+/* Kriterler tek satırda, sığmazsa alt satıra (form üstte olan sayfalarda liste yer kazansın) */
+@media (min-width: 992px) {
+    .muh-tanim .tanim-arama.mt-arama-yatay {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 4px 20px;
+    }
+
+    .muh-tanim .tanim-arama.mt-arama-yatay .form-group {
+        margin-bottom: 0;
+    }
+}
+
+.muh-tanim .mt-arac .checkbox-inline {
+    padding-top: 0;
+    font-weight: 400;
+}
+
+/* Sekmeli bölüm: başlık satırı sekme düğmeleridir; kutunun rengi etkin sekmeninkidir */
+.muh-tanim .mt-sekme-basliklar {
+    align-items: flex-end;
+    gap: 2px;
+    padding: 6px 12px 0;
+}
+
+.muh-tanim .mt-sekme-tus {
+    margin-bottom: -1px;
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--murekkep);
+    background: transparent;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+}
+
+.muh-tanim .mt-sekme-tus:hover {
+    background: rgba(255, 255, 255, .6);
+}
+
+.muh-tanim .mt-sekme-tus.active {
+    font-weight: 600;
+    background: var(--bolum-govde);
+    border-color: var(--cizgi);
+    box-shadow: inset 0 3px 0 var(--bolum-vurgu);
+}
+
+.muh-tanim .mt-sekme-basliklar .bolum-not {
+    align-self: center;
+    padding-bottom: 6px;
+}
+
+.muh-tanim .mt-sekme-sayi:not(:empty) {
+    display: inline-block;
+    min-width: 18px;
+    margin-left: 4px;
+    padding: 0 5px;
+    font-size: 11px;
+    line-height: 16px;
+    text-align: center;
+    color: #fff;
+    background: var(--bolum-vurgu);
+    border-radius: 8px;
+}
+
+.muh-tanim .mt-kriter .tanim-arama {
+    margin-bottom: 0;
+}
+
+/* Hesap Planı > Yansıtmalar: ekleme satırı ve küçük liste */
+.muh-tanim .mt-yansitma-ekle {
+    margin: 0 0 8px;
+}
+
+.muh-tanim .mt-yansitma-ekle label {
+    flex: none;
+    margin: 0;
+    font-weight: 600;
+}
+
+.muh-tanim .mt-yansitma-grid {
+    width: 100%;
+    height: 220px;
+}
+
+/* Pencere içindeki tablolar */
+.mt-pencere-grid {
+    width: 100%;
+    height: 360px;
+}
+
+.tanim-pencere.mt-genis {
+    width: min(820px, calc(100vw - 32px));
+}
+
+.muh-tanim .mt-sonuc {
+    margin: 8px 0 0;
+    white-space: pre-line;
+}

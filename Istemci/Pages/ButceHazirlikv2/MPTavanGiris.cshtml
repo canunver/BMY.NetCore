@@ -1,0 +1,121 @@
+@page
+@model MPTavanGirisModel
+@{
+    var p = Model.Param;
+    bool detay = p.DetayMi();
+    bool merkezDetay = p.MerkezDetayMi();
+    ViewData["Title"] = detay ? "Harcama Birimi Tavan Girişi" : "İl Tavan Girişi";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="mp-tavan mp-giris" data-yil="@p.Yil" data-senaryo="@p.Senaryo" data-tertip="@p.Tertip" data-dg="@p.DG"
+     data-kykod="@p.KyKod" data-saybir="@p.SayBir">
+    <!-- Tertip ve toplamlar (eski üst panel) -->
+    <div class="kutu bolum bolum-secim">
+        <h2 class="bolum-baslik">@(detay ? "Harcama Birimi Tavanları" : "İl Tavanları")</h2>
+        <div class="tanim-form mp-form mp-giris-form">
+            <div class="form-group">
+                <span class="control-label">Tertip</span>
+                <div class="mp-deger"><strong>@p.Tertip</strong> <span id="lblTertipAdi" class="mp-soluk"></span></div>
+            </div>
+            @if (merkezDetay)
+            {
+                <div class="form-group kod-alan" data-agac="17" data-ad="53" data-alan="ky">
+                    <label class="control-label" for="txt_ky">Kurumsal Yapı</label>
+                    <div class="kod-satir">
+                        <div class="input-group input-group-sm">
+                            <input type="text" id="txt_ky" class="form-control" autocomplete="off" value="@p.KyKod" title="Kurumsal yapı kodu (Alt+Aşağı: kod ağacı)" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Kurumsal yapı seç</span></button>
+                                <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Kurumsal yapı temizle</span></button>
+                            </span>
+                        </div>
+                        <span class="kod-ad" aria-live="polite"></span>
+                    </div>
+                </div>
+            }
+            <div class="form-group">
+                <span class="control-label">@(detay ? "Birim Tavanı" : "Ödenek")</span>
+                <div class="mp-deger"><strong id="lblToplam" class="sayi"></strong></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label">Dağıtılmayan</span>
+                <div class="mp-deger"><strong id="lblDagitilmayan" class="sayi"></strong></div>
+            </div>
+            <div class="mp-tuslar">
+                <button type="button" id="btnListele" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+                </button>
+                <button type="button" id="btnKaydet" class="btn btn-success btn-sm" disabled>
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+                @if (merkezDetay)
+                {
+                    <input type="file" id="fuTavan" accept=".xls,.xlsx" hidden />
+                    <button type="button" id="btnDosyaYukle" class="btn btn-default btn-sm" title="Excel'den birim tavanlarını yükle">
+                        <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Dosya Yükle
+                    </button>
+                }
+            </div>
+            @if (merkezDetay)
+            {
+                <p class="mp-ipucu">
+                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                    Dosya Yükle: 1. satırda başlıklar olmalıdır: tertip, saymanlik, birim, tavan veya tertip, kurumsalyapi, tavan.
+                    Dosyadaki tavanlar doğrudan kaydedilir.
+                </p>
+            }
+        </div>
+    </div>
+
+    <!-- Birim tavanları (eski grdOdenek) -->
+    <div class="kutu bolum bolum-tablo">
+        <h2 class="bolum-baslik">@(detay ? "Harcama Birimleri" : "Birimler")</h2>
+        <ul class="renk-aciklama" aria-label="Açıklama">
+            <li class="salt">Salt okunur (tavan beyaz alana girilir)</li>
+            @if (!detay)
+            {
+                <li class="bag">Tıklanınca harcama birimi tavanları açılır</li>
+            }
+        </ul>
+        <div id="grdTavan" class="mp-grid mp-giris-grid" aria-label="Birim tavanları"></div>
+    </div>
+</div>
+
+<!-- Kod ağacı penceresi (eski KodAgac.aspx) -->
+<dialog id="dlgKod" class="tanim-pencere mp-agac" aria-labelledby="dlgKodBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKodBaslik">Kod Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde" id="agacKutu"></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Uzun sonuç metinleri (yükleme uyarıları) -->
+<dialog id="dlgSonuc" class="tanim-pencere mp-sonuc" aria-labelledby="dlgSonucBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSonucBaslik">Sonuç</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde"><pre id="sonucMetin" class="mp-sonuc-metin"></pre></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/mptavan.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/mptavan-ortak.js" asp-append-version="true"></script>
+    <script src="~/js/mptavangiris.js" asp-append-version="true"></script>
+}

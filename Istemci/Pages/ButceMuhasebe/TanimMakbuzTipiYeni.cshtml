@@ -1,0 +1,78 @@
+@page
+@model TanimMakbuzTipiYeniModel
+@{
+    ViewData["Title"] = "Makbuz Tipi Bilgileri";
+    // Geniş ekranda sayfa pencereye sığar; solda makbuz tipleri, sağda seçili tipin bilgileri (tanim.css, muhtanim.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim form-solda liste-genis muh-tanim">
+
+    <section class="tanim-sag">
+        <div class="kutu bolum yesil">
+            <h2 class="bolum-baslik">Makbuz Tipi</h2>
+            <div class="mt-arac" role="toolbar" aria-label="İşlemler">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil</button>
+                <button type="button" id="btnBul" class="btn btn-default btn-sm" title="Formdaki bilgilere uyan makbuz tiplerini listeler"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Bul</button>
+                <button type="button" id="btnTemizle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle</button>
+            </div>
+            <form id="frmBilgi" class="tanim-form" novalidate>
+                <input type="hidden" data-alan="kod" />
+                <div class="form-group">
+                    <label class="control-label" for="mtAciklama">Açıklama</label>
+                    <div><input type="text" id="mtAciklama" class="form-control" data-alan="aciklama" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="mtHesap">Hesap Kodu</label>
+                    <div><input type="text" id="mtHesap" class="form-control dar" data-alan="hesapKod" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="mtKredi">Kart Ödeme Hesap Kod</label>
+                    <div><input type="text" id="mtKredi" class="form-control dar" data-alan="krediHesapKod" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="mtKdv">KDV(%)</label>
+                    <div><input type="number" id="mtKdv" class="form-control kisa" min="0" max="100" data-alan="kdv" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="mtKdvHesap">KDV Hesap Kodu</label>
+                    <div><input type="text" id="mtKdvHesap" class="form-control dar" data-alan="kdvHesapKod" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="mtKasa">Kasa Hesap Kodu</label>
+                    <div><input type="text" id="mtKasa" class="form-control dar" data-alan="kasaHesapKod" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="mtYansitma">Yansıtma Hesap Kodu</label>
+                    <div><input type="text" id="mtYansitma" class="form-control dar" data-alan="yansitmaHesapKod" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="mtDurum">Durum</label>
+                    <div><select id="mtDurum" class="form-control dar" data-alan="durum"><option value="1">Aktif</option><option value="2">Pasif</option></select></div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="tanim-sol">
+        <div class="kutu bolum izgarali">
+            <h2 class="bolum-baslik">Makbuz Tipleri</h2>
+            <div id="grdListe" class="tanim-grid"></div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhtanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/muhtanim-makbuztipi.js" asp-append-version="true"></script>
+}

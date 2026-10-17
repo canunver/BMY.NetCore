@@ -1,0 +1,164 @@
+/* Faaliyet Raporu (FaaliyetRaporuForm) ve Faaliyet Raporu Raporları (FaaliyetRaporuAl): bölümler renkli başlıklı ayrı kutular. */
+
+.faal-rapor {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.faal-rapor .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.faal-rapor .kutu.bolum.bolum-metin {
+    --bolum-baslik: #e2f3e8;
+    --bolum-govde: #f4fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.faal-rapor .kutu.bolum.bolum-not,
+.faal-rapor .kutu.bolum.bolum-kistas {
+    --bolum-baslik: #fbf0dc;
+    --bolum-govde: #fefaf2;
+    --bolum-vurgu: #c98a12;
+}
+
+.faal-rapor .bolum-baslik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    margin: 0 -12px 12px;
+    padding: 9px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.faal-rapor .bolum-baslik .alt-baslik {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+.faal-rapor .form-control.yil {
+    width: 110px;
+    max-width: 110px;
+}
+
+.faal-rapor-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 0;
+}
+
+.faal-rapor-arac > .control-label {
+    margin: 0;
+}
+
+.faal-rapor-arac .btn-group {
+    margin-left: 0;
+}
+
+/* Raporlar menüsü: Bootstrap betiği yüklenmediğinden .open ile faaliyetraporu.js'ten açılır */
+.faal-rapor .rapor-menu .dropdown-menu {
+    min-width: 320px;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 6px 0;
+}
+
+.faal-rapor .rapor-secenek {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 0;
+    padding: 4px 16px 8px;
+    border: 0;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.faal-rapor .rapor-secenek label,
+.faal-rapor label.rapor-secenek {
+    margin: 0;
+    font-weight: 400;
+}
+
+.faal-rapor .rapor-liste button {
+    display: block;
+    width: 100%;
+    padding: 4px 16px;
+    border: 0;
+    background: none;
+    text-align: left;
+    white-space: nowrap;
+    color: var(--murekkep);
+}
+
+.faal-rapor .rapor-liste button:hover,
+.faal-rapor .rapor-liste button:focus {
+    background: #e3edfa;
+    outline: none;
+}
+
+/* Editörler: her metin kendi kutusunda, başlığı üstte */
+.faal-rapor .metin-liste {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.faal-rapor .metin-kutu > label {
+    display: block;
+    margin: 0 0 4px;
+    font-weight: 600;
+    color: var(--murekkep);
+}
+
+.faal-rapor .metin-kutu .jodit-wysiwyg {
+    font-family: "Times New Roman", tahoma, arial, helvetica, sans-serif;
+    text-align: justify;
+}
+
+/* Faaliyet Raporu Raporları: solda rapor listesi, sağda kriterler */
+.faal-rapor.faal-rapor-al {
+    display: grid;
+    grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+    align-items: start;
+}
+
+.faal-rapor-al .kistas-form {
+    --etiket-genislik: 110px;
+    max-width: 620px;
+}
+
+.faal-rapor-al .faal-rapor-arac {
+    margin-top: 6px;
+    padding-left: var(--etiket-genislik);
+}
+
+.faal-rapor-al .rapor-agac {
+    margin: 0;
+}
+
+@media (max-width: 767px) {
+    .faal-rapor.faal-rapor-al {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .faal-rapor-al .faal-rapor-arac {
+        padding-left: 0;
+    }
+}

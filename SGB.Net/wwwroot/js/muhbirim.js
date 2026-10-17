@@ -8,7 +8,9 @@
 //       kimlik:    { muhasebe: 'txtMuhasebe', birim: 'txtBirim', kurumsal: 'txtKurumsal', ad: 'lblBirimAd' },  // isteğe bağlı
 //       yil:       function () { return 2026; },        // kurumsal kod yapısının yılı (isteğe bağlı; yoksa bu yıl)
 //       oncesi:    function () { return true; },        // değişiklikten önce sorulur; false dönerse eski değer geri yazılır
-//       degisince: function (deger) { }                 // birim değişip adı okunduktan sonra
+//       degisince: function (deger) { },                // birim değişip adı okunduktan sonra
+//       kurumsalGizle: true,                            // kurumsal kod alanı gösterilmez (değeri yine okunur)
+//       adGizle: true                                   // birim adı yazılmaz; ad, alanların üzerine gelince ipucu olarak görünür
 //   });
 //   mb.deger()  -> { muhasebe: 1, birim: '000', kurumsal: '13.99.01.01', birimAd: '...' }
 //   mb.ata({ muhasebe, birim, kurumsal, birimAd })     // olay çıkarmadan yazar (ör. açılışta kullanıcının birimi)
@@ -38,6 +40,8 @@
             .append($muh, '<span class="mb-ayrac" aria-hidden="true">-</span>', $brm, '<span class="mb-ayrac" aria-hidden="true">-</span>', $kur, $sec)
             .appendTo($kok);
         $kok.append($ad);
+        if (o.kurumsalGizle) { $kur.prop('hidden', true).prev('.mb-ayrac').prop('hidden', true); }
+        if (o.adGizle) $ad.prop('hidden', true);
 
         var kayitli = { muhasebe: '', birim: '' }; // son kabul edilen değer: oncesi() false dönerse geri yazılır
 
@@ -53,7 +57,10 @@
             };
         }
 
-        function adYaz(ad) { $ad.text(ad || '').attr('title', ad || ''); }
+        function adYaz(ad) {
+            $ad.text(ad || '').attr('title', ad || '');
+            if (o.adGizle) $muh.add($brm).attr('title', ad || null);
+        }
 
         function ata(v) {
             v = v || {};

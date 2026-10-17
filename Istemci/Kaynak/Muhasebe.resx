@@ -204,4 +204,64 @@
   <data name="TasiHazirDegil" xml:space="preserve">
     <value>Saymanlık taşıma, Harcama Süreçleri (HRC) servisi yeni sisteme taşındığında kullanılabilecek.</value>
   </data>
+  <data name="BagliEkoPebAna001" xml:space="preserve">
+    <value>Tertip Faaliyet İlişkisi</value>
+  </data>
+  <data name="BagliEkoPebAna003" xml:space="preserve">
+    <value>Tertip ve faaliyet kodunu girmelisiniz.</value>
+  </data>
+  <data name="BagliEkoPebAna004" xml:space="preserve">
+    <value>Kayıt işlemi başarıyla gerçekleşti.</value>
+  </data>
+  <data name="BagliEkoPebAna005" xml:space="preserve">
+    <value>Silinecek satırın tertip ve faaliyet kodu eksik.</value>
+  </data>
+  <data name="BagliEkoPebAna006" xml:space="preserve">
+    <value>Tertip</value>
+  </data>
+  <data name="BagliEkoPebAna007" xml:space="preserve">
+    <value>Tertibi ekonomik tam, faaliyetsiz giriniz.</value>
+  </data>
+  <data name="BagliEkoPebAna008" xml:space="preserve">
+    <value>Faaliyet Kodu</value>
+  </data>
+  <data name="BagliEkoPebAna009" xml:space="preserve">
+    <value>Faaliyet kodunu giriniz.</value>
+  </data>
+  <data name="BagliEkoPebAna010" xml:space="preserve">
+    <value>Oku</value>
+  </data>
+  <data name="BagliEkoPebAna011" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="BagliEkoPebAna013" xml:space="preserve">
+    <value>Tertip</value>
+  </data>
+  <data name="BagliEkoPebAna014" xml:space="preserve">
+    <value>Faaliyet</value>
+  </data>
+  <data name="BagliEkoPebListe" xml:space="preserve">
+    <value>İlişki kurulmuş tertip ve faaliyetler</value>
+  </data>
+  <data name="BagliEkoPebYeni" xml:space="preserve">
+    <value>Yeni tertip - faaliyet ilişkisi</value>
+  </data>
+  <data name="BagliEkoPebSuzIpucu" xml:space="preserve">
+    <value>Tertip ya da faaliyet ile süz</value>
+  </data>
+  <data name="BagliEkoPebBos" xml:space="preserve">
+    <value>İlişki kurulmuş tertip ve faaliyet yok.</value>
+  </data>
+  <data name="BagliEkoPebKaydetOnay" xml:space="preserve">
+    <value>Kaydetmek istiyor musunuz?</value>
+  </data>
+  <data name="BagliEkoPebSilOnay" xml:space="preserve">
+    <value>Seçili satır silinecek. Onaylıyor musunuz?</value>
+  </data>
+  <data name="Kopyala" xml:space="preserve">
+    <value>Kopyala</value>
+  </data>
+  <data name="Kopyalandi" xml:space="preserve">
+    <value>Panoya kopyalandı.</value>
+  </data>
 </root>

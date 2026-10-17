@@ -1,0 +1,118 @@
+@page
+@model BUMKOVeriGonderModel
+@{
+    ViewData["Title"] = "BÜMKO'ya Bütçe Hazırlık Verisi Gönderme";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-eko butce-tanim bumko-aktarim">
+    <p id="lblKurum" class="bumko-kurum"></p>
+
+    <form id="frmAktar" novalidate autocomplete="off">
+        <!-- Yıl, senaryo ve aşama -->
+        <section>
+            <div class="kutu bolum bolum-secim">
+                <h2 class="bolum-baslik">Yıl / Senaryo / SBB Aşama</h2>
+                <div class="tanim-form">
+                    <div class="form-group">
+                        <label class="control-label" for="txtYil">Yıl</label>
+                        <div><input type="number" id="txtYil" class="form-control dar" min="2003" step="1" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="ddlSenaryo">Senaryo</label>
+                        <div><select id="ddlSenaryo" class="form-control"></select></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="ddlAsama">SBB Aşama</label>
+                        <div>
+                            <select id="ddlAsama" class="form-control">
+                                <option value="0">Birim Teklifi</option>
+                                <option value="1" selected>İdare Teklifi</option>
+                                <option value="7">Yatırım Vize</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- e-Bütçe kullanıcı bilgisi -->
+        <section>
+            <div class="kutu bolum">
+                <h2 class="bolum-baslik">e-Bütçe Kullanıcı / Şifre</h2>
+                <div class="tanim-form">
+                    <div class="form-group">
+                        <label class="control-label" for="txtKullanici">e-Bütçe kullanıcı adı</label>
+                        <div><input type="text" id="txtKullanici" class="form-control" maxlength="100" autocomplete="off" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtParola">e-Bütçe kullanıcı şifresi</label>
+                        <div><input type="password" id="txtParola" class="form-control" maxlength="100" autocomplete="new-password" /></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Aktarılacak veri -->
+        <section>
+            <div class="kutu bolum">
+                <h2 class="bolum-baslik">Aktarılacak Veri</h2>
+                <fieldset class="bumko-secim">
+                    <legend class="sr-only">Aktarılacak veri</legend>
+                    <div class="secim-satir">
+                        <label class="radio-inline"><input type="radio" name="secim" value="odenek" checked /> Program Bütçe (Ödenek, YSHT, Tavan Üstü)</label>
+                        <select id="ddlEko" class="form-control input-sm eko-secim" aria-label="Ödenekler için ekonomik kod">
+                            @foreach (string eko in BUMKOVeriGonderModel.EkoKodlar)
+                            {
+                                <option value="@eko">@eko</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="secim-satir">
+                        <label class="radio-inline"><input type="radio" name="secim" value="gerekce" /> Bütçe Fiş/Ek Öd. Ger.</label>
+                        <select id="ddlEkoGerekce" class="form-control input-sm eko-secim" aria-label="Gerekçeler için ekonomik kod">
+                            @foreach (string eko in BUMKOVeriGonderModel.EkoKodlar)
+                            {
+                                <option value="@eko">@eko</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="secim-satir">
+                        <label class="radio-inline"><input type="radio" name="secim" value="faaliyet" /> Faaliyet Gerekçesi</label>
+                    </div>
+                </fieldset>
+                <div class="bumko-tuslar">
+                    <button type="submit" id="btnAktar" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-send" aria-hidden="true"></span> Aktar
+                    </button>
+                </div>
+                <div id="sonuc" class="alert bumko-sonuc" role="status" hidden></div>
+            </div>
+        </section>
+
+        <!-- Raporlar -->
+        <section>
+            <div class="kutu bolum bolum-tavan">
+                <h2 class="bolum-baslik">Raporlar</h2>
+                <div class="bumko-tuslar">
+                    <button type="button" id="btnOdenekKontrol" class="btn btn-default btn-sm" title="SBB ayrıntılı harcama programı ile SGB masraf planını karşılaştırır (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Ödenek Kontrol
+                    </button>
+                </div>
+            </div>
+        </section>
+    </form>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taveneko.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/butcetanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/bumko.js" asp-append-version="true"></script>
+}

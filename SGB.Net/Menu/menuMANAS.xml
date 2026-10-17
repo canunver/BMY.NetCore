@@ -449,9 +449,6 @@
 					<Node ID="Menu5_2_1_4" Text="Diğer Raporlar" URL="../Raporlama/RaporGrupListe.aspx?raporGrup=5010" Yetki="1,2,17,18,21" Modul="HRC"></Node>
 					<Node ID="Menu5_2_1_5" Text="Ödenek Gönderme/Tenkis Bilgisi" URL="../ButceMuhasebe/OdenekGondermeTenkisEkonomik.aspx" Yetki="1,2,18,21" Modul="HRC"></Node>
 				</Node>
-				<Node ID="Menu5_2_5" Tip="AltBolum" Text="Alacak Takip Raporları" Modul="ATM">
-					<Node ID="Menu5_2_5_1" Text="Alacak Takip Raporları" URL="../AlacakTakip/Rapor.aspx" Yetki="1,2,23" ></Node>
-				</Node>
 				<Node ID="Menu5_2_6" Tip="AltBolum" Text="Kütüphane Raporları" Modul="KTP">
 					<Node ID="Menu5_2_6_1" Text="Kütüphane Raporları" URL="../Kutuphane/Raporlar.aspx" Yetki="1,16" ></Node>
 				</Node>

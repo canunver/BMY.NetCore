@@ -123,13 +123,32 @@ $(function () {
             .always(function () { mesgul(false); });
     });
 
+    // ---------------------------------------------------------------- ölçü birimleri
+
+    function olculeriDoldur(olculer) {
+        var $o = $('#ddlOlcuBirim'), secili = $o.val();
+        $o.empty().append('<option value=""></option>');
+        $.each(olculer || [], function (i, o) { $('<option></option>').val(o.kod).text(o.ad).appendTo($o); });
+        $o.val(secili || '');
+    }
+
+    // Ölçü birimi sayfası pencerede açılır; kapanınca seçim listesi ve (ad değişmiş olabilir) göstergeler yeniden okunur.
+    $('#btnOlcuTanim').on('click', function () {
+        Sgb.pencere('TanimSPOlcuBirim', 'Ölçü Birimleri', function () {
+            Sgb.al('api/spgosterge/olcu-liste').done(function (veri) {
+                if (veri.hata) return;
+                olculeriDoldur(veri.satirlar);
+                listele(parseInt($('#txtKod').val(), 10) || 0);
+            });
+        });
+    });
+
     // ---------------------------------------------------------------- açılış
 
     Sgb.al('api/spgosterge/tanim')
         .done(function (t) {
             if (t.hata) { mesaj(t.hata, 'danger'); return; }
-            var $o = $('#ddlOlcuBirim').empty().append('<option value=""></option>');
-            $.each(t.olculer || [], function (i, o) { $('<option></option>').val(o.kod).text(o.ad).appendTo($o); });
+            olculeriDoldur(t.olculer);
             temizle();
             listele();
         })

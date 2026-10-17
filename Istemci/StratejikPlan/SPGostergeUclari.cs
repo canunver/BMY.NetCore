@@ -27,17 +27,28 @@ namespace Istemci.StratejikPlan
         public int OndalikSayisi { get; set; }
     }
 
+    public class SPOlcuBirimIstegi
+    {
+        /// <summary>Ölçü birimi kodu; yenide 0.</summary>
+        public int Kod { get; set; }
+        public string Ad { get; set; }
+    }
+
     /// <summary>
     /// Stratejik plan gösterge tanımları (eski PerformansButce/TanimPerformansGostergeYeni.aspx; yeni sayfa
     /// PerformansButce/TanimSPGosterge) uçları:
     ///   GET  /api/spgosterge/tanim (ölçü birimleri), /api/spgosterge/liste
     ///   POST /api/spgosterge/kaydet, /api/spgosterge/sil
+    /// ve ölçü birimi tanımları (eski PerformansButce/TanimOlcuBirimYeni.aspx; yeni sayfa PerformansButce/TanimSPOlcuBirim):
+    ///   GET  /api/spgosterge/olcu-liste
+    ///   POST /api/spgosterge/olcu-kaydet, /api/spgosterge/olcu-sil
     /// Göstergeler üzerinde çalışılan kurumundur (Stratejik Plan'da seçili dönemin kurumu, seçilmemişse varsayılan kurum);
     /// Stratejik Plan'ın hedef gösterge listesi de aynı kurumun göstergelerini gösterir.
     /// </summary>
     public static class SPGostergeUclari
     {
         public const string SayfaAdresi = "../PerformansButce/TanimSPGosterge.aspx";
+        public const string OlcuSayfaAdresi = "../PerformansButce/TanimSPOlcuBirim.aspx";
 
         public static void Ekle(WebApplication app)
         {
@@ -45,16 +56,21 @@ namespace Istemci.StratejikPlan
             app.MapGet("/api/spgosterge/liste", Liste);
             app.MapPost("/api/spgosterge/kaydet", Kaydet);
             app.MapPost("/api/spgosterge/sil", Sil);
+            app.MapGet("/api/spgosterge/olcu-liste", OlcuListe);
+            app.MapPost("/api/spgosterge/olcu-kaydet", OlcuKaydet);
+            app.MapPost("/api/spgosterge/olcu-sil", OlcuSil);
         }
 
-        /// <summary>Menüde bu sayfayı görebilen ya da Stratejik Plan sayfasını kullanabilen (gösterge penceresinden açılır) kullanıcı.</summary>
+        /// <summary>Menüde gösterge ya da ölçü birimi sayfasını görebilen veya Stratejik Plan sayfasını kullanabilen (pencereden açılır) kullanıcı.</summary>
         public static bool YetkiVar(Kullanici kullanan, string uygulamaKlasoru)
         {
             if (kullanan == null) return false;
             if (StratejikPlanUclari.YetkiVar(kullanan, uygulamaKlasoru)) return true;
             try
             {
-                return new MenuOkuyucu(kullanan).SayfaYetkili(MenuOkuyucu.DosyaYolu(uygulamaKlasoru), SayfaAdresi);
+                MenuOkuyucu menu = new MenuOkuyucu(kullanan);
+                string dosya = MenuOkuyucu.DosyaYolu(uygulamaKlasoru);
+                return menu.SayfaYetkili(dosya, SayfaAdresi) || menu.SayfaYetkili(dosya, OlcuSayfaAdresi);
             }
             catch (Exception)
             {
@@ -151,6 +167,57 @@ namespace Istemci.StratejikPlan
             if (!sonuc.islemSonuc) return Hata(HataMetni(sonuc, "Gösterge silinemedi."));
             return Results.Json(new { basarili = true, bilgi = "Gösterge silindi." });
         }
+
+        // ------------------------------------------------------------------ ölçü birimleri
+
+        private static IResult OlcuListe(HttpContext baglam, IWebHostEnvironment ortam)
+        {
+            IResult ret = Denetle(baglam, ortam, out Kullanici kullanan);
+            if (ret != null) return ret;
+
+            ObjectArray liste = TNS.PEB.Arac.Tanimla().OlcuBirimListele(kullanan, new OlcuBirim());
+            if (!liste.sonuc.islemSonuc) return Hata(HataMetni(liste.sonuc, "Ölçü birimleri okunamadı."));
+            List<object> satirlar = new List<object>();
+            foreach (OlcuBirim o in liste.objeler)
+                satirlar.Add(new { kod = o.kod, ad = o.ad });
+            return Results.Json(new { satirlar = satirlar });
+        }
+
+        private static async Task<IResult> OlcuKaydet(HttpContext baglam, IWebHostEnvironment ortam, SPOlcuBirimIstegi istek, IAntiforgery sahtecilik)
+        {
+            if (!await sahtecilik.IsRequestValidAsync(baglam)) return Results.BadRequest();
+            IResult ret = Denetle(baglam, ortam, out Kullanici kullanan);
+            if (ret != null) return ret;
+            if (istek == null) return Results.BadRequest();
+            if (string.IsNullOrWhiteSpace(istek.Ad)) return Hata("Ölçü biriminin adını yazınız.");
+
+            OlcuBirim birim = new OlcuBirim();
+            birim.kod = Math.Max(0, istek.Kod);
+            birim.ad = istek.Ad.Trim();
+            // Eski sayfa e-bütçe kodunu ölçü birimi kodundan veriyordu (yenide "0"); aynen korunur.
+            birim.ebutceKod = birim.kod.ToString();
+
+            Sonuc sonuc = TNS.PEB.Arac.Tanimla().OlcuBirimKaydet(kullanan, birim);
+            if (!sonuc.islemSonuc) return Hata(HataMetni(sonuc, "Ölçü birimi kaydedilemedi."));
+            return Results.Json(new { basarili = true, bilgi = "Ölçü birimi kaydedildi.", kod = OrtakFonksiyonlar.ConvertToInt((sonuc.anahtar ?? "").Trim(), birim.kod) });
+        }
+
+        private static async Task<IResult> OlcuSil(HttpContext baglam, IWebHostEnvironment ortam, SPOlcuBirimIstegi istek, IAntiforgery sahtecilik)
+        {
+            if (!await sahtecilik.IsRequestValidAsync(baglam)) return Results.BadRequest();
+            IResult ret = Denetle(baglam, ortam, out Kullanici kullanan);
+            if (ret != null) return ret;
+            if (istek == null || istek.Kod <= 0) return Results.BadRequest();
+
+            OlcuBirim birim = new OlcuBirim();
+            birim.kod = istek.Kod;
+            Sonuc sonuc = TNS.PEB.Arac.Tanimla().OlcuBirimSil(kullanan, birim);
+            // Göstergelerde kullanılmış ölçü birimi silinmez; iş kuralının uyarısı olduğu gibi gösterilir.
+            if (!sonuc.islemSonuc) return Hata(HataMetni(sonuc, "Ölçü birimi silinemedi."));
+            return Results.Json(new { basarili = true, bilgi = "Ölçü birimi silindi." });
+        }
+
+        // ------------------------------------------------------------------ yardımcılar
 
         private static IResult Hata(string metin)
         {

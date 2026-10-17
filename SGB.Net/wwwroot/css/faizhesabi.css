@@ -1,0 +1,49 @@
+/* Faiz Hesaplama ve Detay (AlacakTakip/FaizHesabi): solda hesap bilgileri, sağda hesabın ayrıntısı (Sonuç) kalan yüksekliği doldurur. */
+
+.faiz-hesabi .tanim-form {
+    --etiket-genislik: 170px;
+}
+
+.faiz-hesabi .fh-tutar {
+    text-align: right;
+}
+
+.faiz-hesabi .fh-ayrac {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--cizgi);
+}
+
+/* Salt okunur alanlar sarı (giriş alanları beyaz) */
+.faiz-hesabi .form-control.okuma {
+    background: #fff8d6;
+    cursor: default;
+}
+
+.faiz-hesabi .fh-sonuc {
+    width: 100%;
+    min-height: 400px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 12px;
+    white-space: pre;
+    resize: vertical;
+}
+
+@media (min-width: 992px) {
+    .faiz-hesabi.tanim {
+        grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    }
+
+    .faiz-hesabi .fh-sonuc-kutu {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        min-height: 0;
+    }
+
+    .faiz-hesabi .fh-sonuc {
+        flex: 1 1 auto;
+        min-height: 200px;
+        resize: none;
+    }
+}

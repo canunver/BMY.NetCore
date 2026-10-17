@@ -61,7 +61,7 @@
                 return yanit.json();
             })
             .catch(function () {
-                return { basarili: false, hata: metin.sunucuYok || 'Sunucuya ulaşılamadı. Lütfen tekrar deneyiniz.' };
+                return { Basarili: false, Hata: metin.sunucuYok || 'Sunucuya ulaşılamadı. Lütfen tekrar deneyiniz.' };
             })
             .then(function (sonuc) {
                 mesgul(form, false);
@@ -70,18 +70,18 @@
     }
 
     function sonucuIsle(sonuc) {
-        if (!sonuc.basarili) {
-            goster(kutuHata, duzMetin(sonuc.hata));
+        if (!sonuc.Basarili) {
+            goster(kutuHata, duzMetin(sonuc.Hata));
             return;
         }
-        if (sonuc.yonlen) {
-            window.location.href = sonuc.yonlen;
+        if (sonuc.Yonlen) {
+            window.location.href = sonuc.Yonlen;
             return;
         }
-        if (sonuc.ikinciFaktorGerekli) {
+        if (sonuc.IkinciFaktorGerekli) {
             frmParola.hidden = true;
             frmKod.hidden = false;
-            goster(kutuBilgi, sonuc.bilgi);
+            goster(kutuBilgi, sonuc.Bilgi);
             txtKod.value = '';
             txtKod.focus();
         }

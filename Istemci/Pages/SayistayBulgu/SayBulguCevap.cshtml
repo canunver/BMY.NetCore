@@ -1,0 +1,94 @@
+@page
+@model SayBulguCevapModel
+@{
+    ViewData["Title"] = "Sayıştay Ön Bulgu Cevapları";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="say-bulgu">
+    <!-- Seçim -->
+    <div class="kutu bolum bolum-secim">
+        <h2 class="bolum-baslik"><span>Ön Bulgu Cevapları</span></h2>
+        <form id="frmSecim" class="tanim-form secim-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="spnYil">Yıl</label>
+                <div><input type="number" id="spnYil" class="form-control yil" min="2000" step="1" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtBirim">Birim</label>
+                <div><select id="txtBirim" class="form-control"></select></div>
+            </div>
+            <div class="secim-tuslar" role="group" aria-label="İşlemler">
+                <button type="submit" id="btnListele" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele</button>
+                <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Birimin cevaplarıyla bulgu listesi (Excel)"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Ön Bulgular -->
+    <div class="kutu bolum bolum-liste">
+        <h2 class="bolum-baslik"><span>Ön Bulgular</span><small class="alt-baslik" id="lblListe">Listelemek için yıl ve birim seçip Listele'ye basınız.</small></h2>
+        <div id="bulguGrid" class="say-grid"></div>
+    </div>
+</div>
+
+<!-- Cevap girişi -->
+<dialog id="onBulguCevapModal" class="tanim-pencere say-pencere genis-pencere" aria-labelledby="onBulguModalLabel">
+    <div class="pencere-baslik">
+        <h2 id="onBulguModalLabel">Sayıştay Ön Bulgu Cevap Girişi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <input type="hidden" id="ob_idGoster" />
+        <input type="hidden" id="ob_yilGoster" />
+        <form id="frmCevap" class="tanim-form bulgu-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="ob_bulguNo">Bulgu No</label>
+                <div><input type="text" id="ob_bulguNo" class="form-control kisa" readonly /></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="ob_bulguBasligi">Bulgu</label>
+                <div><textarea id="ob_bulguBasligi" class="form-control" rows="4" readonly></textarea></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="ob_bulguOzeti">Bulgu Özeti</label>
+                <div><textarea id="ob_bulguOzeti" class="form-control" rows="4" readonly></textarea></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="ob_birimCevap">Birim Cevabı</label>
+                <div><textarea id="ob_birimCevap" class="form-control" rows="6"></textarea></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="ob_birimIsler">Yapılacak İşler</label>
+                <div><textarea id="ob_birimIsler" class="form-control" rows="4"></textarea></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ob_ongorulenTamamlanmaTarihiCevapDT">Öng. Tam. Tar.</label>
+                <div class="cift-alan">
+                    <input type="date" id="ob_ongorulenTamamlanmaTarihiCevapDT" class="form-control tarih" />
+                    <label class="checkbox-inline"><input type="checkbox" id="ob_yerineGetirildiCevap" /> Yerine Getirildi</label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnObKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kaydet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css" />
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/saybulgu.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/select2/js/select2.min.js"></script>
+    <script src="~/lib/select2/js/i18n/tr.js"></script>
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/saybulgucevap.js" asp-append-version="true"></script>
+}

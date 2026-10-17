@@ -1,0 +1,126 @@
+/* Sgb.tertipSec (js/tertipsec.js): ortak tertip seçimi penceresi. Pencere çerçevesi tanim.css'teki .tanim-pencere'dir. */
+
+.tanim-pencere.tertip-sec {
+    width: min(1100px, calc(100vw - 32px));
+}
+
+.tertip-sec [hidden] {
+    display: none !important;
+}
+
+/* Kıstaslar: kod kutuları yan yana (kutu + mercek, altında adı), sağda Listele / Aradığım tertip listede yok. */
+.tertip-sec .ts-kriter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 6px 12px;
+    margin-bottom: 4px;
+    font-size: 12px;
+}
+
+.tertip-sec .ts-alanlar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+}
+
+.tertip-sec .ts-kod {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 190px;
+}
+
+.tertip-sec .ts-kod label {
+    margin: 0;
+    font-weight: 600;
+}
+
+.tertip-sec .ts-kod .form-control,
+.tertip-sec .ts-kod .btn {
+    height: 26px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: 12px;
+}
+
+.tertip-sec .ts-kod-ad {
+    display: block;
+    min-height: 15px;
+    overflow: hidden;
+    font-size: 11px;
+    color: var(--soluk);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tertip-sec .ts-tuslar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-self: center;
+}
+
+.tertip-sec .ts-yardim {
+    margin: 0 0 6px;
+}
+
+/* Tablolar */
+.tertip-sec .ts-grid {
+    width: 100%;
+}
+
+.tertip-sec .ts-ana {
+    height: min(440px, calc(100vh - 300px));
+}
+
+.tertip-sec.ts-alt-acik .ts-ana {
+    height: min(260px, calc(50vh - 150px));
+}
+
+.tertip-sec .ts-eko {
+    color: #c62828;
+    font-weight: 600;
+}
+
+.tertip-sec .ts-girilir {
+    background: #fff;
+}
+
+/* Ekonomik kodun alt düzeyleri ve seçilenler: yan yana iki tablo */
+.tertip-sec .ts-alt {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.tertip-sec .ts-alt:has(.ts-secilen-kutu[hidden]) {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.tertip-sec .ts-alt .ts-grid {
+    height: min(240px, calc(50vh - 150px));
+}
+
+.tertip-sec .ts-alt-baslik {
+    margin: 0 0 4px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Kod ağacı penceresi */
+.tertip-sec-agac {
+    width: min(560px, calc(100vw - 32px));
+}
+
+.tertip-sec-agac .sgb-agac {
+    max-height: min(520px, calc(100vh - 220px));
+    overflow: auto;
+    margin: 0;
+}
+
+@media (max-width: 767px) {
+    .tertip-sec .ts-kod { width: 100%; }
+    .tertip-sec .ts-alt { grid-template-columns: minmax(0, 1fr); }
+}

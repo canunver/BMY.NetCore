@@ -1,0 +1,30 @@
+@page
+@model MasrafPlaniButceIslemFrameModel
+@{
+    ViewData["Title"] = "Bütçe İşlemi";
+    ViewData["GovdeSinif"] = "og-cerceve-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<!-- Eski çerçevedeki iki sekme: Form (MasrafPlaniRevize) ve Belge Arama (MasrafPlaniRevizeSorgu). Aramadan açılan belge Form sekmesinde okunur. -->
+<div class="og-cerceve">
+    <ul class="nav nav-tabs og-sekmeler" role="tablist">
+        <li role="presentation" class="active"><a href="#" role="tab" data-sekme="form" aria-selected="true">Form</a></li>
+        <li role="presentation"><a href="#" role="tab" data-sekme="liste" aria-selected="false">Belge Arama</a></li>
+    </ul>
+    <iframe id="cerceveForm" class="og-alt-cerceve" data-sekme="form" title="Form"
+            src="MasrafPlaniRevize?menuYok=1"></iframe>
+    <iframe id="cerceveListe" class="og-alt-cerceve" data-sekme="liste" title="Belge Arama" hidden
+            data-src="MasrafPlaniRevizeSorgu?menuYok=1"></iframe>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/odenekgonderme.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/odenekgondermecerceve.js" asp-append-version="true"></script>
+}

@@ -242,6 +242,12 @@ namespace Istemci.OrtakSayfa
             return false;
         }
 
+        /// <summary>Düğüm bu kullanıcıya görünür mü (Gizli / Modul / Kullanici / Yetki); üst düğümlere bakılmaz. Bkz. SayfaMenuUclari.</summary>
+        public bool DugumGorunur(XmlNode dugum)
+        {
+            return Gorunur(dugum);
+        }
+
         private bool Gorunur(XmlNode dugum)
         {
             if (Ozellik(dugum, "Gizli") != "") return false;

@@ -1,0 +1,200 @@
+@page
+@model MakbuzGirisModel
+@{
+    ViewData["Title"] = "Makbuz Giriş Sayfası";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="makbuz makbuz-form">
+    <!-- Makbuz bilgileri: alanlar alt alta, etiket solda -->
+    <section class="kutu bolum bolum-bilgi">
+        <h2 class="bolum-baslik">
+            Makbuz Bilgileri
+            <span class="mk-ust-bilgi">
+                <span id="lblDurum" class="label label-default" hidden></span>
+                <span id="lblYevmiyeNo" class="mk-yevmiye">Yevmiye No:</span>
+            </span>
+        </h2>
+        <div class="tanim-form mk-alanlar">
+            <div class="form-group">
+                <span class="control-label">Muhasebe / Birim</span>
+                <div><span id="lblBirim" class="mk-deger"></span></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtMakbuzTarih">Makbuz Tarihi</label>
+                <div class="mk-bitisik">
+                    <input type="date" id="txtMakbuzTarih" class="form-control input-sm mk-tarih" />
+                    <span id="grpMakbuzBirim" class="mk-bitisik" hidden>
+                        <label class="mk-ic-etiket" for="txtMakbuzBirim">Birim</label>
+                        <input type="text" id="txtMakbuzBirim" class="form-control input-sm mk-birim" maxlength="3" autocomplete="off" title="Makbuzun birimi" />
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtTcKimlikVergiNo">Kimlik No / Adı</label>
+                <div class="mk-bitisik">
+                    <input type="text" id="txtTcKimlikVergiNo" class="form-control input-sm mk-no" autocomplete="off" />
+                    <button type="button" id="btnKisiSec" class="btn btn-default btn-sm" title="Kişi / firma listesi"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Kişi / firma listesi</span></button>
+                    <input type="text" id="txtKisiAd" class="form-control input-sm mk-ad" readonly aria-label="Kişi / firma adı" />
+                    <button type="button" id="btnPlaka" class="btn btn-default btn-sm" hidden><span class="glyphicon glyphicon-road" aria-hidden="true"></span> Plaka</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlMakbuzTipi">Makbuz Tipi</label>
+                <div class="mk-bitisik">
+                    <select id="ddlMakbuzTipi" class="form-control input-sm mk-tip"></select>
+                    <label class="mk-ic-etiket" for="txtMTTutar">Tutarı</label>
+                    <input type="text" id="txtMTTutar" class="form-control input-sm mk-tutar" inputmode="decimal" autocomplete="off" />
+                    <select id="ddlParaBirimi" class="form-control input-sm mk-para" aria-label="Para birimi" hidden></select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hesap satırları (eski grdHesaplar) -->
+    <section class="kutu bolum bolum-hesap">
+        <h2 class="bolum-baslik">
+            Hesaplar
+            <span class="mk-ust-bilgi"><span id="lblTutar" class="mk-toplam">Toplam Tutar: 0,00</span></span>
+        </h2>
+        <div class="btn-toolbar mk-arac" role="toolbar" aria-label="Satır işlemleri">
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" id="btnSatirEkle" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Ekle</button>
+            </div>
+            <p class="mk-not">Hücreye tıklayıp kod yazılabilir ya da satırdaki mercekle seçilebilir.</p>
+        </div>
+        <div id="grdHesaplar" class="mk-grid mk-grid-hesap" aria-label="Hesaplar"></div>
+    </section>
+
+    <!-- Açıklama, düzenleyen, kart ile ödenen -->
+    <section class="kutu bolum bolum-aciklama">
+        <h2 class="bolum-baslik">Açıklama ve Düzenleyen</h2>
+        <div class="tanim-form mk-alanlar">
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="txtAciklama">Açıklama</label>
+                <div>
+                    <textarea id="txtAciklama" class="form-control input-sm" rows="3"></textarea>
+                    <button type="button" id="btnAciklamaListesi" class="btn btn-default btn-xs mk-aciklama-tus"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Açıklama Listesi</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtDuzenleyen">Düzenleyen</label>
+                <div class="mk-bitisik">
+                    <input type="text" id="txtDuzenleyen" class="form-control input-sm" placeholder="Düzenleyen" autocomplete="off" />
+                    <input type="text" id="txtUnvan" class="form-control input-sm" placeholder="Unvan" aria-label="Unvan" autocomplete="off" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtKrediKarti">Kart ile ödenen</label>
+                <div><input type="text" id="txtKrediKarti" class="form-control input-sm mk-tutar" inputmode="decimal" autocomplete="off" /></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- İşlemler (eski alt araç çubuğu) -->
+    <div class="btn-toolbar mk-arac mk-alt" role="toolbar" aria-label="Makbuz işlemleri">
+        <div class="btn-group btn-group-sm" role="group">
+            <button type="button" id="btnYeni" class="btn btn-default">
+                <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Yeni Kayıt
+            </button>
+        </div>
+        <div class="btn-group btn-group-sm mk-sag" role="group">
+            <button type="button" id="btnKaydet" class="btn btn-primary" hidden>
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+            </button>
+            <button type="button" id="btnYazdir" class="btn btn-default" hidden>
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+            </button>
+            <button type="button" id="btnOdendi" class="btn btn-default" hidden>
+                <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Ödendi
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Açıklama Tanımlama (eski wndMakbuzAciklama) -->
+<dialog id="dlgAciklama" class="tanim-pencere mk-pencere" aria-labelledby="dlgAciklamaBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgAciklamaBaslik">Açıklama Tanımlama</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="btn-toolbar mk-arac" role="toolbar" aria-label="Açıklama işlemleri">
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" id="btnAciklamaListele" class="btn btn-default"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele</button>
+                <button type="button" id="btnAciklamaYeni" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Kayıt</button>
+                <button type="button" id="btnAciklamaKaydet" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+                <button type="button" id="btnAciklamaSil" class="btn btn-default" disabled><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil</button>
+            </div>
+        </div>
+        <div class="tanim-form mk-alanlar">
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="txtEditor">Açıklama</label>
+                <div><textarea id="txtEditor" class="form-control input-sm" rows="2"></textarea></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlAciklamaTip">Makbuz Tipi</label>
+                <div><select id="ddlAciklamaTip" class="form-control input-sm"></select></div>
+            </div>
+        </div>
+        <p class="help-block small">Satıra tıklayınca açıklama düzenlenmek üzere yukarıya gelir; + tuşu açıklamayı makbuza aktarır.</p>
+        <div id="grdAciklama" class="mk-grid mk-grid-pencere" aria-label="Açıklamalar"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Tertip seçimi (eski ListeTertip, seç ve kapat) -->
+<dialog id="dlgTertip" class="tanim-pencere mk-pencere-genis" aria-labelledby="dlgTertipBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgTertipBaslik">Tertip Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmTertipAra" class="mk-ara" novalidate>
+            <label>Kurumsal <input type="text" id="txtTKur" class="form-control input-sm" autocomplete="off" /></label>
+            <label>Ekonomik <input type="text" id="txtTEko" class="form-control input-sm" autocomplete="off" /></label>
+            <label>Faaliyet <input type="text" id="txtTPeb" class="form-control input-sm" autocomplete="off" /></label>
+            <span class="mk-ara-tus">
+                <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele</button>
+                <button type="button" id="btnTertipHepsi" class="btn btn-default btn-sm">Aradığım tertip listede yok</button>
+            </span>
+        </form>
+        <p class="help-block small">En az iki alana değer giriniz. Birden fazla kod virgülle ayrılabilir. Seçmek için satıra çift tıklayınız ya da satırları işaretleyip Seç ve Kapat'a basınız.</p>
+        <div id="grdTertip" class="mk-grid mk-grid-pencere" aria-label="Tertipler"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnTertipAktar" class="btn btn-primary btn-sm">Seç ve Kapat</button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu / bilgi -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/makbuz.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/makbuzgiris.js" asp-append-version="true"></script>
+}

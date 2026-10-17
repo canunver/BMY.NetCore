@@ -1,0 +1,76 @@
+@page
+@model YatTopluVeriGirisFormModel
+@{
+    ViewData["Title"] = "Yatırım Projeleri Geçmiş Veri Girişi";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="yat-toplu">
+    <!-- Sorgu alanları (eski FormPanel): alanlar alt alta, etiketler solda -->
+    <div class="kutu bolum bolum-secim">
+        <h2 class="bolum-baslik">Sorgu Alanları</h2>
+        <form id="frmSecim" class="tanim-form secim-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="txtYil">Yıl</label>
+                <div><input type="number" id="txtYil" class="form-control yil" min="2000" step="1" title="Yatırım Projeleri Geçmiş Yıl Verilerinin Girileceği Yıl" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlAsama">Aşama</label>
+                <div><select id="ddlAsama" class="form-control"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlSektor">Sektör</label>
+                <div><select id="ddlSektor" class="form-control"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtProjeAd">Proje Adı</label>
+                <div><input type="text" id="txtProjeAd" class="form-control" maxlength="200" /></div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bütçe kaynakları (eski grdYatTopluGirisDetay) -->
+    <div class="kutu bolum bolum-tablo">
+        <h2 class="bolum-baslik">
+            <span>Bütçe Kaynakları</span>
+            <small class="alt-baslik" id="lblOkunan"></small>
+        </h2>
+        <div class="btn-toolbar yat-toplu-arac" role="toolbar" aria-label="Tablo işlemleri">
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" id="btnOku" class="btn btn-default">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                </button>
+                <button type="button" id="btnKaydet" class="btn btn-primary" disabled>
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+            </div>
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" id="btnKopyala" class="btn btn-default" title="Tablodaki bütün satırları panoya kopyalar (Excel'e yapıştırılabilir)">
+                    <span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Kopyala
+                </button>
+                <button type="button" id="btnYapistir" class="btn btn-default" title="Panodaki değerleri seçili satırdan başlayarak Proje Tutarı (Dış) sütunundan itibaren yazar">
+                    <span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Yapıştır
+                </button>
+            </div>
+            <ul class="renk-aciklama" aria-label="Renkler">
+                <li class="acik">Girilebilir</li>
+                <li class="degisti">Değişti</li>
+            </ul>
+        </div>
+        <div id="grdToplu" class="yat-toplu-grid" aria-label="Bütçe kaynakları"></div>
+        <p class="tanim-not duz yat-toplu-not">Excel'den kopyalanan değerler bir hücre seçilip Ctrl+V ile de yapıştırılabilir.</p>
+    </div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/yattoplu.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/yattoplu.js" asp-append-version="true"></script>
+}

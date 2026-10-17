@@ -1,0 +1,41 @@
+/* Saklı Raporlar (AlacakTakip/SakliRaporlar): sekmeler ve her sekmede ekli dosyalar çerçevesi. Çerçeve kalan yüksekliği doldurur. */
+
+.sakli-raporlar {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - var(--ust-yukseklik, 0px) - 120px);
+    padding: 12px;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.sakli-sekmeler {
+    flex: none;
+    margin-bottom: 0;
+}
+
+.sakli-sekmeler > li > a {
+    cursor: pointer;
+}
+
+.sakli-panel {
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 420px;
+    border: 1px solid var(--cizgi);
+    border-top: 0;
+}
+
+.sakli-panel[hidden] {
+    display: none;
+}
+
+.sakli-panel iframe {
+    display: block;
+    flex: 1 1 auto;
+    width: 100%;
+    min-height: 420px;
+    border: 0;
+    background: var(--yuzey);
+}

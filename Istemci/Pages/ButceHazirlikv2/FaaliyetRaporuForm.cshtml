@@ -1,0 +1,70 @@
+@page
+@model FaaliyetRaporuFormModel
+@{
+    ViewData["Title"] = "Faaliyet Raporu";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="faal-rapor">
+    <!-- Yıl ve işlemler (eski üst araç çubuğu) -->
+    <div class="kutu bolum bolum-secim">
+        <h2 class="bolum-baslik">
+            <span>Faaliyet Raporu</span>
+            <small class="alt-baslik" id="lblOkunan"></small>
+        </h2>
+        <form id="frmSecim" class="faal-rapor-arac" novalidate>
+            <label class="control-label" for="txtYil">Yıl</label>
+            <input type="number" id="txtYil" class="form-control yil" min="2000" step="1" />
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="submit" id="btnOku" class="btn btn-default">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Oku
+                </button>
+                <button type="button" id="btnKaydet" class="btn btn-primary" hidden disabled>
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kaydet
+                </button>
+            </div>
+            <!-- Raporlar menüsü (eski: gruplama seçimi, PDF seçimi ve raporlar) -->
+            <div class="btn-group btn-group-sm rapor-menu" id="grpRapor">
+                <button type="button" id="btnRapor" class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Raporlar <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu" role="menu" aria-labelledby="btnRapor">
+                    <fieldset class="rapor-secenek">
+                        <legend class="sr-only">Gruplama</legend>
+                        <label><input type="radio" name="grup" value="0" checked /> Grupsuz</label>
+                        <label><input type="radio" name="grup" value="1" /> Sektör Gruplu</label>
+                        <label><input type="radio" name="grup" value="2" /> Birim Gruplu</label>
+                    </fieldset>
+                    <label class="rapor-secenek rapor-pdf" hidden><input type="checkbox" id="chkPdf" /> PDF Olarak Raporla</label>
+                    <div class="rapor-liste" id="lstRapor"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Rapor bölümleri (eski bölüm 4, 4.1, 4.2 editörleri) -->
+    <div class="kutu bolum bolum-metin">
+        <h2 class="bolum-baslik">Rapor Bölümleri</h2>
+        <div id="bolumler" class="metin-liste"></div>
+    </div>
+
+    <!-- Tablo notları (eski Tablo 1..15 Notu editörleri; başlıklar yıla göre) -->
+    <div class="kutu bolum bolum-not">
+        <h2 class="bolum-baslik">Tablo Notları</h2>
+        <div id="notlar" class="metin-liste"></div>
+    </div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/lib/jodit/jodit.min.css" />
+    <link rel="stylesheet" href="~/css/faaliyetraporu.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/jodit/jodit.min.js"></script>
+    <script src="~/js/editor.js" asp-append-version="true"></script>
+    <script src="~/js/faaliyetraporu.js" asp-append-version="true"></script>
+}

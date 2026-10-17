@@ -1,0 +1,69 @@
+@page
+@model TanimVergiDairesiAktarimTurModel
+@{
+    ViewData["Title"] = Model.Baslik;
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim mt-tek ust-form muh-tanim" data-tur="@Model.Tur">
+    <section class="tanim-sag">
+        <div class="kutu bolum yesil">
+            <h2 class="bolum-baslik">Aktarım Türü</h2>
+            <div class="mt-arac" role="toolbar" aria-label="İşlemler">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil</button>
+                <button type="button" id="btnBul" class="btn btn-default btn-sm" title="Formdaki bilgilere uyan kayıtları listeler"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Bul</button>
+                <button type="button" id="btnTemizle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle</button>
+                <label class="checkbox-inline sag" title="İşaretliyken listede tanımlı olmayan olası kodlar da boş olarak gösterilir; seçip hesap kodunu girerek kaydedebilirsiniz."><input type="checkbox" id="vdOlmayan" /> Olmayanları Ekle</label>
+            </div>
+            <form id="frmBilgi" class="tanim-form mt-sik mt-sinirli" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="vdKod">Kod</label>
+                    <div><input type="text" id="vdKod" class="form-control kisa" readonly data-alan="kod" title="Kayıt numarası; yeni kayıtta 0" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="vdTurKod">Kodu</label>
+                    <div><input type="number" id="vdTurKod" class="form-control kisa" data-alan="turKod" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="vdAdi">Adı</label>
+                    <div><input type="text" id="vdAdi" class="form-control" data-alan="adi" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="vdHesap">Hesap Kodu</label>
+                    <div><input type="text" id="vdHesap" class="form-control kisa" data-alan="hesapKod" data-hesap-kodu data-ad /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="vdOran">Oranı</label>
+                    <div><input type="text" id="vdOran" class="form-control kisa" inputmode="decimal" data-alan="orani" /></div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="tanim-sol">
+        <div class="kutu bolum izgarali">
+            <h2 class="bolum-baslik">@Model.Baslik</h2>
+            <div id="grdListe" class="tanim-grid"></div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/makbuz.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hesapkodu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhtanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/hesapkodu.js" asp-append-version="true"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/muhtanim-vdaktarim.js" asp-append-version="true"></script>
+}

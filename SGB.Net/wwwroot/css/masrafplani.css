@@ -1,0 +1,300 @@
+/* Masraf Planı (MasrafPlaniGenel) ve Masraf Planı Dağıtım (MPDagitim): mptavan.css'teki renkli başlıklı bölümlerin üstüne sayfa düzeni. */
+
+/* ---------------------------------------------------------------- Masraf Planı Dağıtım */
+
+.mp-dagitim {
+    display: grid;
+    grid-template-columns: minmax(0, 400px) minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+}
+
+.mp-dagitim .mp-sag {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+}
+
+.mp-dagitim .kutu.bolum.bolum-liste { --bolum-baslik: #fdf0dc; --bolum-govde: #fffbf4; --bolum-vurgu: #c7832a; }
+
+.mp-dagitim .mp-liste-grid {
+    height: max(420px, calc(100vh - 260px));
+}
+
+.mp-dagitim .mp-birim-grid {
+    height: max(300px, calc(100vh - 520px));
+}
+
+.mp-dagitim .mp-form {
+    --etiket-genislik: 130px;
+}
+
+.mp-dagitim .mp-kayit-no {
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--soluk);
+}
+
+.mp-tavan .mp-tutar {
+    max-width: 200px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.mp-tavan .mp-ay {
+    width: 64px;
+}
+
+.mp-tavan .mp-revize {
+    gap: 4px;
+}
+
+.mp-tavan .mp-ipucu[hidden] { display: none; }
+
+/* Tertip Bölümleri: küçük yazı, sık satırlar; tuşlar Dağıtılacak Miktar'ın sağında */
+.mp-dagitim .bolum-secim .bolum-baslik {
+    margin-bottom: 8px;
+    padding: 5px 12px;
+    font-size: 14px;
+}
+
+.mp-dagitim .bolum-secim { padding-bottom: 8px; }
+
+.mp-dagitim .bolum-secim .mp-form {
+    --etiket-genislik: 115px;
+    font-size: 12px;
+}
+
+.mp-dagitim .bolum-secim .form-group { margin-bottom: 4px; column-gap: 6px; }
+.mp-dagitim .bolum-secim .form-control,
+.mp-dagitim .bolum-secim .input-group-sm > .form-control,
+.mp-dagitim .bolum-secim .input-group-sm .btn {
+    height: 26px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: 12px;
+}
+
+.mp-dagitim .bolum-secim .btn-sm { padding: 3px 8px; font-size: 12px; }
+.mp-dagitim .bolum-secim .kod-satir { gap: 6px; }
+.mp-dagitim .bolum-secim .kod-satir .input-group { flex-basis: 170px; width: 170px; }
+.mp-dagitim .bolum-secim .kod-ad { font-size: 11px; }
+.mp-dagitim .mp-miktar-satir { margin: 0; gap: 4px 6px; }
+.mp-dagitim .mp-miktar-satir .mp-tutar { width: 160px; }
+.mp-dagitim .mp-yardim.active { background: #e3edfa; }
+
+/* Birim seçim penceresi */
+.mp-birim-sec {
+    width: min(820px, calc(100vw - 32px));
+}
+
+.mp-birim-sec .mp-satir {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 8px;
+    margin-bottom: 8px;
+}
+
+.mp-birim-sec .mp-satir label {
+    margin: 0;
+    font-weight: 600;
+}
+
+.mp-birim-sec .mp-kriter {
+    flex: 1 1 280px;
+}
+
+.mp-birim-sec .mp-birim-sonuc {
+    height: min(440px, calc(100vh - 260px));
+}
+
+/* ---------------------------------------------------------------- Masraf Planı */
+
+.mp-genel .mp-ust {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: 10px;
+    align-items: start;
+}
+
+.mp-genel .kutu.bolum { padding: 0 10px 6px; }
+.mp-genel .kutu.bolum.bolum-tablo { padding-top: 8px; }
+.mp-genel .kutu.bolum.bolum-islem { --bolum-baslik: #fdf0dc; --bolum-govde: #fffbf4; --bolum-vurgu: #c7832a; }
+
+.mp-genel .bolum-baslik {
+    margin: 0 -10px 6px;
+    padding: 4px 10px;
+    font-size: 13px;
+}
+
+/* Kriterler ve İşlemler: küçük yazı, sık satırlar */
+.mp-genel .mp-ust .mp-form {
+    --etiket-genislik: 78px;
+    font-size: 12px;
+}
+
+.mp-genel .mp-ust .form-group { margin-bottom: 3px; column-gap: 6px; }
+.mp-genel .mp-ust .form-control,
+.mp-genel .mp-ust .input-group-sm > .form-control,
+.mp-genel .mp-ust .input-group-sm .btn {
+    height: 24px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-size: 12px;
+}
+
+.mp-genel .btn-sm { padding: 2px 8px; font-size: 12px; }
+.mp-genel .mp-ust .kod-satir { gap: 6px; }
+.mp-genel .mp-ust .kod-satir .input-group { flex: 0 0 150px; width: 150px; }
+.mp-genel .mp-ust .kod-ad { font-size: 11px; }
+
+.mp-genel .mp-kriter-kolonlar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 14px;
+}
+
+.mp-genel .mp-asama { max-width: 200px; }
+.mp-genel .mp-satir { gap: 4px 6px; }
+.mp-genel .mp-satir + .mp-satir { margin-top: 4px; }
+.mp-genel .mp-rapor { flex: 1 1 220px; min-width: 0; }
+.mp-genel .mp-ay-sec { width: auto; }
+.mp-genel .mp-yardim.active { background: #e3edfa; }
+.mp-genel .mp-ipucu { margin: 4px 0 0; font-size: 11px; }
+.mp-genel .mp-arac { margin-bottom: 6px; gap: 4px 6px; }
+
+.mp-genel .mp-grid {
+    height: max(380px, calc(100vh - 300px));
+}
+
+.mp-genel .ag-header-group-cell-label {
+    justify-content: center;
+}
+
+/* ---------------------------------------------------------------- Masraf Planı Düzenleme (MP Düzelt) */
+
+.mp-ayarla .mp-ust {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: 10px;
+    align-items: start;
+}
+
+.mp-ayarla .kutu.bolum { padding: 0 10px 6px; }
+.mp-ayarla .kutu.bolum.bolum-tablo { padding-top: 8px; }
+.mp-ayarla .kutu.bolum.bolum-islem { --bolum-baslik: #fdf0dc; --bolum-govde: #fffbf4; --bolum-vurgu: #c7832a; }
+
+.mp-ayarla .bolum-baslik {
+    margin: 0 -10px 6px;
+    padding: 4px 10px;
+    font-size: 13px;
+}
+
+.mp-ayarla .mp-form {
+    --etiket-genislik: 90px;
+    font-size: 12px;
+}
+
+.mp-ayarla .form-group { margin-bottom: 3px; column-gap: 6px; }
+.mp-ayarla .mp-ust .form-control,
+.mp-ayarla .mp-ust .input-group-sm > .form-control,
+.mp-ayarla .mp-ust .input-group-sm .btn {
+    height: 24px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-size: 12px;
+}
+
+.mp-ayarla .btn-sm { padding: 2px 8px; font-size: 12px; }
+.mp-ayarla .kod-satir { gap: 6px; }
+.mp-ayarla .kod-satir .input-group { flex: 0 0 150px; width: 150px; }
+.mp-ayarla .kod-ad { font-size: 11px; }
+.mp-ayarla .mp-kuryapi { max-width: 150px; }
+.mp-ayarla .mp-islem { width: auto; }
+.mp-ayarla .mp-tuslar { gap: 4px 6px; margin-top: 2px; }
+.mp-ayarla .mp-yardim.active { background: #e3edfa; }
+.mp-ayarla .mp-ipucu { margin: 4px 0 0; font-size: 11px; }
+
+.mp-ayarla .mp-kriter-kolonlar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 14px;
+}
+
+.mp-ayarla .mp-tertip { min-width: 0; overflow-wrap: anywhere; padding-top: 3px; }
+.mp-ayarla .mp-tertip-kod { font-weight: 600; font-variant-numeric: tabular-nums; }
+.mp-ayarla .mp-tertip-bilgi { display: block; color: var(--soluk); font-size: 11px; }
+.mp-ayarla .mp-toplam { font-variant-numeric: tabular-nums; }
+
+.mp-ayarla .mp-alt {
+    display: grid;
+    grid-template-columns: minmax(0, 620px) minmax(0, 1fr);
+    gap: 10px;
+    align-items: stretch;
+}
+
+.mp-ayarla .mp-ay-grid { height: 430px; }
+.mp-ayarla .mp-komut-kutu { display: flex; flex-direction: column; min-width: 0; }
+.mp-ayarla .mp-komut-kutu label { margin: 0 0 4px; font-size: 12px; font-weight: 600; }
+.mp-ayarla .mp-komut {
+    flex: 1 1 auto;
+    min-height: 160px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 11px;
+    white-space: pre;
+    resize: vertical;
+}
+
+@media (max-width: 1199px) {
+    .mp-ayarla .mp-ust,
+    .mp-ayarla .mp-alt { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Kontrol dönemi penceresi */
+.mp-kontrol {
+    width: min(560px, calc(100vw - 32px));
+}
+
+.mp-kontrol .tanim-form {
+    --etiket-genislik: 150px;
+}
+
+.mp-kontrol fieldset {
+    margin: 0 0 10px;
+    padding: 6px 10px 10px;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+}
+
+.mp-kontrol legend {
+    width: auto;
+    margin: 0;
+    padding: 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 0;
+}
+
+.mp-kontrol .mp-tuslar {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mp-imza .tanim-form {
+    --etiket-genislik: 130px;
+}
+
+.mp-imza {
+    width: min(520px, calc(100vw - 32px));
+}
+
+@media (max-width: 1199px) {
+    .mp-genel .mp-ust { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 991px) {
+    .mp-dagitim,
+    .mp-genel .mp-kriter-kolonlar { grid-template-columns: minmax(0, 1fr); }
+}

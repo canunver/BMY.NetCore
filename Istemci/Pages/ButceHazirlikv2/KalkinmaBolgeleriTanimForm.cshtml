@@ -1,0 +1,82 @@
+@page
+@model KalkinmaBolgeleriTanimFormModel
+@{
+    ViewData["Title"] = "Kalkınma Bölgeleri";
+    // Geniş ekranda sayfa pencereye sığar, tablo kalan alanı doldurur (tanim.css; bölüm görünümü taveneko.css ile ortak).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-eko butce-tanim kalkinma-bolge">
+    <!-- Üst: bölge -->
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Kalkınma Bölgesi</h2>
+            <form id="frmBolge" class="tanim-form" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="txtBolgeKod">Bölge Kodu</label>
+                    <div class="arama-satir">
+                        <input type="text" id="txtBolgeKod" class="form-control dar" list="lstBolgeler" maxlength="20" autocomplete="off" title="Bölge kodu; listeden seçebilir ya da yeni kod yazabilirsiniz" />
+                        <datalist id="lstBolgeler"></datalist>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtBolgeAd">Bölge Adı</label>
+                    <div><input type="text" id="txtBolgeAd" class="form-control" maxlength="200" /></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label"></span>
+                    <div class="secim-tuslar">
+                        <button type="submit" id="btnOku" class="btn btn-primary btn-sm" title="Bölge koduna göre adı ve illeri okur">
+                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Oku
+                        </button>
+                        <button type="button" id="btnKaydet" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                        </button>
+                        <button type="button" id="btnYeni" class="btn btn-default btn-sm" title="Formu ve il listesini temizler">
+                            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Alt: bölgedeki iller -->
+    <section>
+        <div class="kutu bolum bolum-tavan">
+            <h2 class="bolum-baslik">
+                Bölgede Bulunan İller
+                <span id="kirliEtiket" class="label label-warning" hidden>Kaydedilmedi</span>
+            </h2>
+            <div class="btn-toolbar tavan-arac" role="toolbar" aria-label="Satır işlemleri">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnSatirAc" class="btn btn-default">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Ekle
+                    </button>
+                    <button type="button" id="btnSatirSil" class="btn btn-default" title="İşaretli satırları siler">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Satır Sil
+                    </button>
+                </div>
+                <ul class="renk-aciklama" aria-label="Açıklama">
+                    <li class="acik">İl hücresine tıklayıp listeden seçiniz</li>
+                </ul>
+            </div>
+            <div id="grdIller" class="tavan-grid" aria-label="Bölgedeki iller"></div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taveneko.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/butcetanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/kalkinmabolge.js" asp-append-version="true"></script>
+}

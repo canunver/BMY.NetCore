@@ -1,0 +1,143 @@
+@page
+@model AltFaaliyetIliskiModel
+@{
+    ViewData["Title"] = Model.Tur == 2 ? "Alt Faaliyet - Proje Bağı" : "Alt Faaliyet - Faaliyet Bağı";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="alt-faal" data-tur="@Model.Tur">
+    <!-- Sorgu alanları (eski üst araç çubuğu): alanlar alt alta, etiketler solda -->
+    <div class="kutu bolum bolum-secim">
+        <h2 class="bolum-baslik">Sorgu Alanları</h2>
+        <form id="frmSecim" class="tanim-form secim-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="txtYil">Yıl</label>
+                <div><input type="number" id="txtYil" class="form-control yil" min="2000" step="1" /></div>
+            </div>
+            @if (Model.Tur == 2)
+            {
+                <div class="form-group">
+                    <label class="control-label" for="ddlAsama">Aşama</label>
+                    <div><select id="ddlAsama" class="form-control"></select></div>
+                </div>
+            }
+            <div class="form-group">
+                <label class="control-label" for="txtKod">Kod Maske</label>
+                <div><input type="text" id="txtKod" class="form-control orta" maxlength="40" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAd">Ad Maske</label>
+                <div><input type="text" id="txtAd" class="form-control" maxlength="200" /></div>
+            </div>
+            <button type="submit" hidden></button>
+        </form>
+    </div>
+
+    <!-- Alt faaliyetler (eski grdAltFaaliyet) -->
+    <div class="kutu bolum bolum-tablo">
+        <h2 class="bolum-baslik">
+            <span>Alt Faaliyet Listesi</span>
+            <small class="alt-baslik" id="lblOkunan"></small>
+        </h2>
+        <div class="btn-toolbar alt-faal-arac" role="toolbar" aria-label="Liste işlemleri">
+            <button type="button" id="btnListele" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+            </button>
+            <button type="button" id="btnKaydet" class="btn btn-primary btn-sm" disabled>
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+            </button>
+            <span class="tanim-not duz">İlişkiyi seçmek için hücredeki büyütece basınız; yalnızca değişen satırlar kaydedilir.</span>
+        </div>
+        <div id="grdAltFaaliyet" class="alt-faal-grid" aria-label="Alt faaliyetler"></div>
+    </div>
+</div>
+
+<!-- Faaliyet / DPT projesi seçimi (eski FaalSabitSozluk.aspx / AltProjeSozluk.aspx) -->
+<dialog id="dlgSec" class="tanim-pencere alt-faal-pencere" aria-labelledby="dlgSecBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSecBaslik">@(Model.Tur == 2 ? "DPT Projesi Seçimi" : "Faaliyet Seçimi")</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <input type="search" id="txtSecAra" class="form-control input-sm" placeholder="Ada göre süz" aria-label="Ada göre süz" />
+        <ul id="agcSec" class="secim-agac" aria-label="Seçenekler"></ul>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" id="btnSecKaldir" class="btn btn-default btn-sm" title="Satırdaki ilişkiyi kaldırır">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> İlişkiyi Kaldır
+        </button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Birimler (eski ListeKurumsalYapiParametreForm.aspx) -->
+<dialog id="dlgBirim" class="tanim-pencere alt-faal-pencere" aria-labelledby="dlgBirimBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgBirimBaslik">Kurumsal Yapı Parametreleri</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="birim-baslik" id="lblBirimPeb"></p>
+        <div class="birim-duzen">
+            <form id="frmSablon" class="tanim-form sablon-form" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="txtMT">Merkez Taşra</label>
+                    <div><input type="text" id="txtMT" class="form-control kisa" maxlength="1" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtSablonIl">İl</label>
+                    <div><input type="text" id="txtSablonIl" class="form-control kisa" maxlength="2" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtSablonIlce">İlçe</label>
+                    <div><input type="text" id="txtSablonIlce" class="form-control kisa" maxlength="3" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtSablonBirim">Birim</label>
+                    <div><input type="text" id="txtSablonBirim" class="form-control kisa" maxlength="5" /></div>
+                </div>
+                <div class="sablon-dugmeler">
+                    <button type="submit" id="btnSablonEkle" class="btn btn-default btn-sm" title="Yazılan şablonu listeye ekler">
+                        <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> Ekle
+                    </button>
+                    <button type="button" id="btnBirimSec" class="btn btn-default btn-sm" title="Birimleri kurumsal yapı ağacından seçer">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Birim Seç
+                    </button>
+                </div>
+            </form>
+            <div class="sablon-liste">
+                <label for="lstSablon">Şablonlar</label>
+                <select id="lstSablon" class="form-control" multiple size="9"></select>
+                <button type="button" id="btnSablonCikart" class="btn btn-default btn-sm" title="Seçili şablonları listeden çıkartır">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Çıkart
+                </button>
+            </div>
+        </div>
+        <div class="birim-agac-kutu" id="kutuBirimAgac" hidden>
+            <h3>Birim Seç</h3>
+            <ul id="agcBirim" class="secim-agac" aria-label="Kurumsal yapı ağacı"></ul>
+            <button type="button" id="btnBirimEkle" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> İşaretlileri Ekle
+            </button>
+        </div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" id="btnBirimKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/altfaaliyetiliski.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/altfaaliyetiliski.js" asp-append-version="true"></script>
+}

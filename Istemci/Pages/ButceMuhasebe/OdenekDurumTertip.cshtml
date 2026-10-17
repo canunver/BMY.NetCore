@@ -1,0 +1,50 @@
+@page
+@model OdenekDurumTertipModel
+@{
+    ViewData["Title"] = "Ödenek Durum Bilgisi";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="odenek-durum od-iki-sutun" data-sayfa="tertip">
+    <!-- Sol sütun (1/3): sorgu alanları (eski soldaki PropertyGrid): alanlar alt alta, etiketler solda -->
+    <div class="kutu bolum bolum-secim od-sol">
+        <h2 class="bolum-baslik">Sorgu Alanları</h2>
+        <form id="frmSecim" class="tanim-form od-secim" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="ddlYil">Yıl</label>
+                <div><input type="number" id="ddlYil" class="form-control input-sm yil sgb-yil" min="2000" max="2100" step="1" title="Yıl" /></div>
+            </div>
+            <partial name="_OdenekDurumKodlar" />
+            <div class="od-tuslar" role="group" aria-label="İşlemler">
+                <button type="submit" id="btnListele" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                </button>
+                <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Ödenek durum raporu (Excel)">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Sağ sütun (2/3): sonuç bölümleri -->
+    <div class="od-sag">
+        <p id="odIpucu" class="od-ipucu">Yılı ve tertip kodlarını seçip Listele'ye basınız.</p>
+        <div id="odSonuc" hidden>
+            <partial name="_OdenekDurumSonuc" model="false" />
+        </div>
+    </div>
+</div>
+
+<partial name="_OdenekDurumKodPencere" />
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/odenekdurum.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/odenekdurum.js" asp-append-version="true"></script>
+}

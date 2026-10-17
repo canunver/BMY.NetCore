@@ -288,6 +288,11 @@
     margin-bottom: 10px;
 }
 
+/* Form alanı içinde (seçim + yanındaki düğme) alt boşluk form-group'tan gelir */
+.tanim-form .tanim-ekle {
+    margin-bottom: 0;
+}
+
 .tanim-ekle .form-control {
     flex: 1 1 auto;
     min-width: 0;

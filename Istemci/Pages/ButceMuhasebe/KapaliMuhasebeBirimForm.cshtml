@@ -1,0 +1,83 @@
+@page
+@model KapaliMuhasebeBirimFormModel
+@{
+    ViewData["Title"] = "Kapalı Birim Bilgileri";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim liste-genis muh-tanim">
+    <section class="tanim-sol">
+        <div class="kutu bolum izgarali">
+            <h2 class="bolum-baslik">Kapalı Birimler</h2>
+            <div id="grdListe" class="tanim-grid"></div>
+        </div>
+    </section>
+
+    <section class="tanim-sag">
+        <div class="kutu bolum yesil">
+            <h2 class="bolum-baslik">Muhasebe Birimi</h2>
+            <div class="mt-arac" role="toolbar" aria-label="İşlemler">
+                <button type="button" id="btnListele" class="btn btn-primary btn-sm" title="Girilen kodlara uyan kapalı birimleri listeler"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Listele</button>
+                <button type="button" id="btnKapat" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Birim Kapat</button>
+                <button type="button" id="btnAc" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> Birim Aç</button>
+                <button type="button" id="btnTemizle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle</button>
+                <button type="button" id="btnVeriAktar" class="btn btn-default btn-sm sag"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Veri Aktar</button>
+            </div>
+            <form id="frmBilgi" class="tanim-form" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="kbMuhasebe">Muhasebe Kodu</label>
+                    <div><input type="text" id="kbMuhasebe" class="form-control dar" inputmode="numeric" data-alan="muhasebe" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="kbBirim">Birim Kodu</label>
+                    <div><input type="text" id="kbBirim" class="form-control kisa" maxlength="10" data-alan="birimKod" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="kbKurum">Kurumsal Kod</label>
+                    <div><input type="text" id="kbKurum" class="form-control dar" data-alan="kurum" /></div>
+                </div>
+            </form>
+            <p class="mt-ipucu">Birim Kapat / Birim Aç formdaki muhasebe, birim ve kurumsal kodla yapılır; listeden seçilen birim forma yazılır.</p>
+        </div>
+    </section>
+</div>
+
+<!-- Veri Aktar: kapatılan birimdeki personeli başka saymanlık / birime taşır (eski Personel Taşı) -->
+<dialog id="dlgTasi" class="tanim-pencere" aria-labelledby="dlgTasiBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgTasiBaslik">Veri Aktar</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="text-muted">Formdaki muhasebe ve birimdeki personel aşağıdaki saymanlık / birime taşınır.</p>
+        <form class="tanim-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="kbYeniSay">Aktarılacağı Saymanlık</label>
+                <div><input type="text" id="kbYeniSay" class="form-control dar" inputmode="numeric" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="kbYeniBirim">Aktarılacağı Birim</label>
+                <div><input type="text" id="kbYeniBirim" class="form-control kisa" maxlength="10" /></div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnPersonelTasi" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Personel Taşı</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhtanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/muhtanim-kapalibirim.js" asp-append-version="true"></script>
+}

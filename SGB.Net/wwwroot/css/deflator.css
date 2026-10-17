@@ -1,0 +1,117 @@
+/* Yatırım Projeleri Deflatörü: üstte sorgu alanları, altta deflatör tablosu; bölümler renkli başlıklı ayrı kutular. */
+
+.deflator {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.deflator .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.deflator .kutu.bolum.bolum-tablo {
+    --bolum-baslik: #e2f3e8;
+    --bolum-govde: #f4fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.deflator .bolum-baslik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    margin: 0 -12px 12px;
+    padding: 9px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.deflator .bolum-baslik .alt-baslik {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+.deflator .secim-form {
+    --etiket-genislik: 100px;
+    max-width: 620px;
+}
+
+.deflator .form-control.yil {
+    max-width: 110px;
+}
+
+.deflator-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 0 0 10px;
+}
+
+.deflator-arac .btn-group {
+    margin-left: 0;
+}
+
+.deflator .renk-aciklama {
+    display: flex;
+    gap: 10px;
+    margin: 0 0 0 auto;
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.deflator .renk-aciklama li::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+    vertical-align: -1px;
+    border: 1px solid var(--cizgi);
+    border-radius: 2px;
+}
+
+.deflator .renk-aciklama .acik::before    { background: #fff; }
+.deflator .renk-aciklama .degisti::before { background: #d9f0d3; }
+
+.deflator-grid {
+    max-width: 760px;
+    height: calc(100vh - 400px);
+    min-height: 320px;
+}
+
+/* Hücreler: sektör sütunları açık sarı, girilebilen deflatör beyaz, değişenler yeşil; rakamlar sağa yaslı */
+.deflator-grid .ag-cell.kapali {
+    background: #fcfcd4;
+}
+
+.deflator-grid .ag-cell.girilir {
+    background: #fff;
+    box-shadow: inset 0 0 0 1px #c9d6e3;
+    cursor: text;
+}
+
+.deflator-grid .ag-cell.girilir.degisti {
+    background: #d9f0d3;
+}
+
+.deflator-grid .ag-cell.sayi,
+.deflator-grid .ag-header-cell.sayi .ag-header-cell-label {
+    justify-content: flex-end;
+    text-align: right;
+}

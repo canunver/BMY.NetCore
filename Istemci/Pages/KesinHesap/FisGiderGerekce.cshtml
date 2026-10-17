@@ -1,0 +1,94 @@
+@page
+@model FisGiderGerekceModel
+@{
+    ViewData["Title"] = "Gider Cetveli Açıklaması Girişi";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="fis-gerekce">
+    <!-- Seçim: yıl ve tertip; işlem tuşları -->
+    <section class="kutu bolum bolum-secim">
+        <h2 class="bolum-baslik">Seçim</h2>
+        <div class="btn-toolbar gerekce-arac" role="toolbar" aria-label="Gerekçe işlemleri">
+            <button type="button" id="btnListele" class="btn btn-default btn-sm" disabled>
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Listele
+            </button>
+            <button type="button" id="btnKaydet" class="btn btn-primary btn-sm" disabled>
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kaydet
+            </button>
+            <button type="button" id="btnYazdir" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+            </button>
+            <button type="button" id="btnYazdirTablosuz" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır (Tablosuz)
+            </button>
+            <span class="arac-bosluk"></span>
+            <button type="button" id="btnVeriYukle" class="btn btn-warning btn-sm" hidden>
+                <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Verileri Yükle
+            </button>
+            <input type="file" id="dosyaYukle" accept=".xls,.xlsx" hidden />
+            <button type="button" id="btnUret" class="btn btn-warning btn-sm" hidden disabled>
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Gerekçeleri Üret
+            </button>
+        </div>
+        <div class="secim-alanlar">
+            <div class="form-satir">
+                <label for="txtYil">Yıl</label>
+                <div class="satir-icerik">
+                    <input type="number" id="txtYil" class="form-control yil" step="1" />
+                    <button type="button" id="btnTertipYenile" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Tertipleri Yenile
+                    </button>
+                </div>
+            </div>
+            <div class="form-satir">
+                <label for="ddlTertip">Tertip</label>
+                <div class="satir-icerik">
+                    <select id="ddlTertip" class="form-control tertip"></select>
+                    <button type="button" id="btnSablon" class="btn btn-default btn-sm" disabled>
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Şablon
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tertibin bütçe değerleri (eski lblButceDeger tablosu) -->
+    <section class="kutu bolum bolum-deger">
+        <h2 class="bolum-baslik">Bütçe Değerleri</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed deger-tablo">
+                <thead>
+                    <tr>
+                        <th>Top. Ödenek</th>
+                        <th>Harcama</th>
+                        <th>İptal Ödenek</th>
+                        <th>Ödenek Üstü</th>
+                        <th>Eklenen</th>
+                        <th>Düşülen</th>
+                    </tr>
+                </thead>
+                <tbody id="degerSatir">
+                    <tr><td colspan="6" class="bos-ipucu">Tertip seçiniz.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Gerekçe metni -->
+    <section class="kutu bolum bolum-gerekce">
+        <h2 class="bolum-baslik"><label for="txtGerekce">Gerekçe</label> <small id="sablonNot" hidden>(şablondan üretildi, henüz kaydedilmedi)</small></h2>
+        <textarea id="txtGerekce" class="form-control" rows="12" disabled></textarea>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/fisgidergerekce.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/fisgidergerekce.js" asp-append-version="true"></script>
+}

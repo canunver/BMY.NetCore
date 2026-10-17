@@ -1,0 +1,305 @@
+/* Takip İşlemleri (AlacakTakip/AlacakTakipListe). Üstte araç çubuğu; solda sıkı sorgu kutusu ve altında dosya listesi,
+   sağda dosya bilgileri formu. Bölümler renkli başlıklı ayrı kutular. Geniş ekranda sayfa pencereye sığar,
+   liste kalan yüksekliği doldurur ve form kendi içinde kayar. */
+
+.atl {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ---- Araç çubuğu ---- */
+.atl .atl-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+}
+
+.atl .atl-arac > .btn,
+.atl .atl-arac > .btn-group {
+    float: none;
+    margin: 0;
+}
+
+.atl .atl-ayrac {
+    width: 1px;
+    height: 24px;
+    margin: 0 4px;
+    background: var(--cizgi);
+}
+
+.atl .atl-sag {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-left: auto;
+}
+
+/* Bootstrap JS yüklenmediği için açılır menüler .open ile elle açılır (alacaktakip.js). */
+.atl .btn-group.open > .dropdown-menu {
+    display: block;
+}
+
+/* ---- Bölümler ---- */
+.atl .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.atl .kutu.bolum.bolum-liste {
+    --bolum-baslik: #e2f3e8;
+    --bolum-govde: #f4fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.atl .kutu.bolum.bolum-form {
+    --bolum-baslik: #efe6f8;
+    --bolum-govde: #faf6fd;
+    --bolum-vurgu: #7a4bb0;
+}
+
+.atl .bolum-baslik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    margin: 0 -12px 10px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.atl .atl-sayi {
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+/* ---- Alanlar (etiket solda, alt alta) ---- */
+.atl .atl-alanlar {
+    --etiket-genislik: 170px;
+}
+
+.atl .atl-alanlar .form-group {
+    margin-bottom: 6px;
+}
+
+/* Sorgu sıkıdır: küçük yazı, iki sütun; listeye daha çok yer kalsın */
+.atl .atl-sorgu {
+    --etiket-genislik: 110px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    column-gap: 16px;
+    font-size: 12px;
+}
+
+.atl .atl-sorgu .form-group {
+    margin-bottom: 4px;
+}
+
+.atl .atl-sorgu .form-control {
+    height: 26px;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.atl .atl-yil {
+    max-width: 100px;
+}
+
+.atl-bitisik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.atl .atl-bitisik .form-control {
+    width: auto;
+}
+
+.atl .atl-bitisik > span[aria-hidden] {
+    color: var(--soluk);
+}
+
+.atl .atl-kisa { width: 90px !important; }
+.atl .atl-orta { width: 150px !important; }
+.atl .atl-tarih { width: 140px !important; }
+.atl .atl-para { width: 110px !important; }
+
+.atl .atl-tutar {
+    text-align: right;
+}
+
+.atl .atl-not {
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+/* Salt okunur alanlar sarı; girilebilir alanlar beyaz kalır. */
+.atl .form-control.okuma,
+.atl .form-control[readonly]:not(.mb-kurumsal) {
+    background: #fff8d6;
+    cursor: default;
+}
+
+/* ---- Liste ---- */
+.atl .atl-grid {
+    height: 420px;
+}
+
+.atl .atl-grid .atl-bag {
+    color: #2f6fc4;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* ---- Yerleşim ---- */
+.atl .atl-govde {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (min-width: 1200px) {
+    body.atl-sayfa > .sayfa-icerik {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .atl {
+        flex: 1 1 auto;
+        min-height: 0;
+    }
+
+    .atl .atl-govde {
+        flex: 1 1 auto;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: minmax(0, 45fr) minmax(0, 55fr); /* liste %45, dosya bilgileri %55 */
+        grid-template-rows: auto minmax(0, 1fr);
+        gap: 10px;
+    }
+
+    .atl .bolum-sorgu { grid-column: 1; grid-row: 1; }
+
+    .atl .bolum-liste {
+        grid-column: 1;
+        grid-row: 2;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .atl .bolum-liste .atl-grid {
+        flex: 1 1 auto;
+        min-height: 200px;
+        height: auto;
+    }
+
+    .atl .bolum-form {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        min-height: 0;
+        overflow-y: auto;
+    }
+
+    .atl .bolum-form .bolum-baslik {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    body.menusuz.atl-sayfa > .sayfa-icerik {
+        height: 100vh;
+    }
+}
+
+/* ---- Dosya Bilgileri sıkı: orta boy yazı, dar satır aralığı; form tek ekrana sığsın ---- */
+.atl .bolum-form .bolum-baslik {
+    margin-bottom: 8px;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.atl .bolum-form .atl-alanlar {
+    --etiket-genislik: 250px; /* en uzun etiket ("Saymanlığa Giden Yazı Tarih / Sayı") tek satıra sığsın */
+    font-size: 13px;
+}
+
+.atl .bolum-form .atl-alanlar .form-group {
+    margin-bottom: 5px;
+}
+
+.atl .bolum-form .control-label {
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.atl .bolum-form .form-control,
+.atl .bolum-form .btn-sm {
+    height: 28px;
+    padding: 3px 8px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.atl .bolum-form textarea.form-control {
+    height: auto;
+    min-height: 46px;
+}
+
+.atl .bolum-form .atl-bitisik {
+    gap: 5px;
+}
+
+.atl .bolum-form .muh-birim .form-control,
+.atl .bolum-form .muh-birim .btn {
+    height: 28px;
+    padding: 3px 8px;
+    font-size: 13px;
+}
+
+/* ---- Bölüm başlığındaki tuşlar: Dosyalar başlığında liste tuşları, Dosya Bilgileri başlığında dosya tuşları ---- */
+.atl .bolum-baslik h2 {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    margin: 0;
+    font-size: inherit;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.atl .bolum-baslik .atl-arac {
+    margin-left: auto;
+    font-weight: 400;
+}
+
+.atl .bolum-baslik .dropdown-menu {
+    font-size: 13px;
+}
+
+/* Dosya Bilgileri başlığındaki tuşlar tek satıra sığsın */
+.atl .bolum-form .bolum-baslik .atl-arac {
+    gap: 4px;
+}
+
+.atl .bolum-form .bolum-baslik .btn-sm {
+    padding: 3px 7px;
+}

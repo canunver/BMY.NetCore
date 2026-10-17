@@ -1,0 +1,117 @@
+@page
+@model FisGiderGerekceDetayModel
+@{
+    ViewData["Title"] = "Gider Cetveli Detay Açıklamalar";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="fis-gerekce-detay">
+    <!-- Solda: seçim ve tertip listesi -->
+    <div class="sol">
+        <section class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Seçim</h2>
+            <div class="btn-toolbar detay-arac" role="toolbar" aria-label="Liste işlemleri">
+                <button type="button" id="btnListele" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Listele
+                </button>
+                <button type="button" id="btnYazdir" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                </button>
+                <span class="arac-bosluk"></span>
+                <button type="button" id="btnOnayKaldir" class="btn btn-warning btn-sm" hidden>
+                    <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> Onay Kaldır
+                </button>
+            </div>
+            <div class="form-satir">
+                <label for="txtYil">Yıl</label>
+                <div class="satir-icerik">
+                    <input type="number" id="txtYil" class="form-control yil" step="1" />
+                </div>
+            </div>
+            <div class="form-satir kod-alan" data-tur="1">
+                <label for="txtKur">Kurumsal</label>
+                <div class="satir-icerik input-group input-group-sm">
+                    <input type="text" id="txtKur" class="form-control" autocomplete="off" placeholder="Tümü" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span><span class="sr-only">Kurumsal kod seç</span></button>
+                        <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Kurumsal kodu temizle</span></button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-satir kod-alan" data-tur="4">
+                <label for="txtEko">Ekonomik</label>
+                <div class="satir-icerik input-group input-group-sm">
+                    <input type="text" id="txtEko" class="form-control" autocomplete="off" placeholder="Tümü" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span><span class="sr-only">Ekonomik kod seç</span></button>
+                        <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Ekonomik kodu temizle</span></button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-satir kod-alan" data-tur="14">
+                <label for="txtProg">Faaliyet</label>
+                <div class="satir-icerik input-group input-group-sm">
+                    <input type="text" id="txtProg" class="form-control" autocomplete="off" placeholder="Tümü" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span><span class="sr-only">Faaliyet kod seç</span></button>
+                        <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Faaliyet kodu temizle</span></button>
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <section class="kutu bolum bolum-liste">
+            <h2 class="bolum-baslik">Tertipler <small id="listeSayi"></small></h2>
+            <div id="grdTertipler" class="tertip-grid"></div>
+        </section>
+    </div>
+
+    <!-- Sağda: seçilen tertibin açıklaması -->
+    <section class="kutu bolum bolum-aciklama sag">
+        <h2 class="bolum-baslik" id="txtBaslik">Açıklama</h2>
+        <div class="btn-toolbar detay-arac" role="toolbar" aria-label="Açıklama işlemleri">
+            <button type="button" id="btnKaydet" class="btn btn-primary btn-sm" disabled>
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+            </button>
+            <button type="button" id="btnGonder" class="btn btn-success btn-sm" disabled
+                    title="Girdiğiniz gerekçeyi SGB'ye göndermek için basınız. Bu tuşa basıldıktan sonra gerekçe metni değiştirilemez!">
+                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> Gönder
+            </button>
+        </div>
+        <div class="tutarlar">
+            <div class="form-satir">
+                <label for="txtKBO">KBÖ</label>
+                <input type="text" id="txtKBO" class="form-control tutar" readonly />
+            </div>
+            <div class="form-satir">
+                <label for="txtHarcanan">Harcanan</label>
+                <input type="text" id="txtHarcanan" class="form-control tutar" readonly />
+            </div>
+        </div>
+        <label for="txtGerekce" class="aciklama-etiket">Açıklama</label>
+        <textarea id="txtGerekce" class="form-control" rows="16" disabled placeholder="Listeden tertip seçiniz."></textarea>
+    </section>
+</div>
+
+<dialog id="dlgKod" class="sgb-kod-pencere" aria-labelledby="dlgKodBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKodBaslik">Kod Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde" id="agacKutu"></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/fisgidergerekcedetay.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/fisgidergerekcedetay.js" asp-append-version="true"></script>
+}

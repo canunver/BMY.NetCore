@@ -1,0 +1,86 @@
+@page
+@model TanimTKDKTalepFormModel
+@{
+    ViewData["Title"] = "Tanım Talep Formu";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+    string[] aylar = { "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık" };
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim mt-tek ust-form muh-tanim">
+    <section class="tanim-sag">
+        <div class="kutu bolum yesil">
+            <h2 class="bolum-baslik">Talep Formu</h2>
+            <div class="mt-arac" role="toolbar" aria-label="İşlemler">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil</button>
+                <button type="button" id="btnTemizle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle</button>
+                <button type="button" id="btnSonrakiAy" class="btn btn-default btn-sm sag" title="Seçili formu bir sonraki aya kopyalar"><span class="glyphicon glyphicon-forward" aria-hidden="true"></span> Sonraki Aya Aktar</button>
+            </div>
+            <div class="mt-form-tablo">
+            <form id="frmBilgi" class="tanim-form mt-sik mt-sinirli" novalidate>
+                <input type="hidden" data-alan="kod" />
+                <div class="form-group">
+                    <label class="control-label" for="tkYil">Yıl</label>
+                    <div><input type="number" id="tkYil" class="form-control kisa sgb-yil" min="2006" max="@(Model.BuYil + 1)" data-alan="yil" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="tkAy">Ay</label>
+                    <div>
+                        <select id="tkAy" class="form-control dar" data-alan="ay">
+                            @for (int i = 0; i < aylar.Length; i++)
+                            {
+                                <option value="@(i + 1)">@aylar[i]</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="tkTur">Talep Türü</label>
+                    <div>
+                        <select id="tkTur" class="form-control dar" data-alan="talepTur">
+                            <option value=""></option>
+                            <option value="1">Nakit</option>
+                            <option value="2">Ödenek Aktarma</option>
+                            <option value="3">Ek Ödenek</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" id="tkHesapSatir">
+                    <label class="control-label" for="tkHesap">Ekonomik Kod</label>
+                    <div class="mt-yanyana">
+                        <input type="text" id="tkHesap" class="form-control" list="tkHesapListe" autocomplete="off" placeholder="Kod ya da ad yazın (830 altı)" />
+                        <datalist id="tkHesapListe"></datalist>
+                        <button type="button" id="btnSatirEkle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekle</button>
+                    </div>
+                </div>
+            </form>
+            <div class="mt-form-tablo-sag">
+                <div id="grdSatir" class="mt-satir-grid"></div>
+                <p class="mt-ipucu" id="tkIpucu"></p>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tanim-sol">
+        <div class="kutu bolum izgarali">
+            <h2 class="bolum-baslik">Talep Formları</h2>
+            <div id="grdListe" class="tanim-grid"></div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhtanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/muhtanim-tkdk.js" asp-append-version="true"></script>
+}

@@ -382,7 +382,7 @@
             if (t.hata) { Sgb.bildirim(t.hata, 'danger'); return; }
             tanim = t;
             var sak = saklananOku();
-            doldur($('#ddlYil'), $.map(t.yillar, function (y) { return { kod: String(y), ad: String(y) }; }), sak.yil || t.yil);
+            Sgb.yilKutusu('#ddlYil', t.yillar, sak.yil || t.yil);
             doldur($('#ddlSenaryo'), t.senaryolar || [], sak.senaryo || t.senaryo);
             doldur($('#ddlBirim'), $.map(t.birimler || [], function (b) { return { kod: b.kod, ad: b.kod + ' - ' + b.ad, adSade: b.ad }; }), sak.kur || t.kurum);
             var ilk = $.grep(FORMLAR, function (f) { return f.id === sak.form; })[0] || FORMLAR[0];

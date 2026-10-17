@@ -1,0 +1,364 @@
+/* Makbuz Bilgileri (Makbuz) ve makbuz formu (MakbuzGiris). Bölümler renkli başlıklı ayrı kutular. */
+
+/* ---- Ortak ---- */
+.makbuz {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.makbuz .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.makbuz .kutu.bolum.bolum-liste,
+.makbuz .kutu.bolum.bolum-hesap {
+    --bolum-baslik: #e2f3e8;
+    --bolum-govde: #f4fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.makbuz .kutu.bolum.bolum-aciklama {
+    --bolum-baslik: #efe6f8;
+    --bolum-govde: #faf6fd;
+    --bolum-vurgu: #7a4bb0;
+}
+
+.makbuz .bolum-baslik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 12px;
+    margin: 0 -12px 12px;
+    padding: 9px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.makbuz .mk-ust-bilgi {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    font-size: 14px;
+}
+
+/* ---- Alanlar (etiket solda, alt alta) ---- */
+.makbuz .mk-alanlar {
+    --etiket-genislik: 140px;
+}
+
+.mk-bitisik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.makbuz .mk-bitisik .form-control {
+    width: auto;
+}
+
+.makbuz .mk-ic-etiket {
+    margin: 0 0 0 6px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.makbuz .mk-ayrac {
+    color: var(--soluk);
+}
+
+.makbuz .mk-tarih {
+    width: 140px;
+}
+
+.makbuz .mk-no {
+    width: 140px;
+}
+
+.makbuz .mk-bitisik .mk-ad {
+    flex: 1 1 220px;
+    min-width: 180px;
+}
+
+.makbuz .mk-tip {
+    min-width: 220px;
+}
+
+.makbuz .mk-tutar {
+    width: 130px;
+    text-align: right;
+}
+
+.makbuz .mk-bitisik .mk-para {
+    width: 110px;
+}
+
+.makbuz .mk-bitisik .mk-birim {
+    width: 70px;
+}
+
+.makbuz .mk-durum {
+    max-width: 180px;
+}
+
+.makbuz .mk-deger {
+    font-weight: 600;
+}
+
+.makbuz .mk-yevmiye {
+    font-weight: 700;
+    color: #c62828;
+}
+
+.makbuz .mk-toplam {
+    font-size: 16px;
+    font-weight: 700;
+    color: #c62828;
+}
+
+.makbuz .mk-aciklama-tus {
+    margin-top: 4px;
+}
+
+.makbuz .mk-sorgu-tus {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+/* ---- Araç çubukları ---- */
+.makbuz .mk-arac,
+.tanim-pencere .mk-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 8px;
+}
+
+.mk-arac .btn-group {
+    float: none;
+    margin: 0;
+}
+
+.makbuz .mk-arac .mk-sag {
+    margin-left: auto;
+}
+
+.makbuz .mk-alt {
+    padding: 8px 12px;
+    margin: 0;
+    background: #f7f7f7;
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.makbuz .mk-not {
+    margin: 0;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.makbuz .mk-sayi {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.mk-sonuc {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.mk-sonuc li {
+    margin-bottom: 4px;
+}
+
+/* ---- Liste sayfası: solda sorgu, sağda makbuzlar ---- */
+.makbuz.makbuz-liste {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    align-items: start;
+    gap: 10px;
+}
+
+.makbuz-liste .bolum-sorgu {
+    padding: 0 8px 8px;
+    font-size: 12px;
+}
+
+.makbuz-liste .bolum-sorgu .bolum-baslik {
+    margin: 0 -8px 6px;
+    padding: 4px 8px;
+    font-size: 13px;
+}
+
+.makbuz-liste .bolum-sorgu .mk-alanlar {
+    --etiket-genislik: 96px;
+}
+
+/* Sorgu alanlarında etiket alanın üstünde (kriter az, sütun dar). */
+.makbuz-liste .bolum-sorgu .tanim-form .form-group {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 2px;
+    margin: 0 0 6px;
+}
+
+.makbuz-liste .bolum-sorgu .tanim-form .control-label {
+    padding-top: 0;
+    text-align: left;
+}
+
+.makbuz-liste .bolum-sorgu .control-label {
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+.makbuz-liste .bolum-sorgu .form-control.input-sm,
+.makbuz-liste .bolum-sorgu .btn-sm {
+    height: 24px;
+    padding: 1px 4px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.makbuz-liste .bolum-sorgu .mk-bitisik {
+    flex-wrap: nowrap;
+    gap: 3px;
+}
+
+.makbuz-liste .bolum-sorgu .mk-bitisik .form-control,
+.makbuz-liste .bolum-sorgu .mk-no,
+.makbuz-liste .bolum-sorgu .mk-durum {
+    flex: 1 1 0;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+}
+
+.makbuz-liste .bolum-liste {
+    min-width: 0;
+}
+
+/* ---- Tablolar ---- */
+.makbuz .mk-grid {
+    width: 100%;
+    height: max(360px, calc(100vh - 230px));
+}
+
+.makbuz .mk-grid-hesap {
+    height: 300px;
+}
+
+.mk-grid-pencere {
+    width: 100%;
+    height: 340px;
+}
+
+.makbuz .ag-right-aligned-cell,
+.makbuz .ag-right-aligned-cell input,
+.mk-grid-pencere .ag-right-aligned-cell {
+    text-align: right;
+}
+
+.makbuz .mk-ac {
+    padding: 0 4px;
+    font-weight: 600;
+}
+
+.makbuz .mk-iptal {
+    color: #9e9e9e;
+    text-decoration: line-through;
+}
+
+.makbuz .mk-girilir {
+    background: #fff;
+}
+
+.mk-hucre-sec {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+}
+
+.mk-hucre-sec .mk-hucre-metin {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mk-hucre-sec .mk-mercek {
+    padding: 0 4px;
+    line-height: 1;
+    color: var(--bolum-vurgu, #2e8b4e);
+}
+
+/* ---- Pencereler ---- */
+.tanim-pencere.mk-pencere {
+    width: min(760px, calc(100vw - 32px));
+}
+
+.tanim-pencere.mk-pencere-genis {
+    width: min(1100px, calc(100vw - 32px));
+}
+
+.mk-ara {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.mk-ara label {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.mk-ara label .form-control {
+    width: 180px;
+}
+
+.mk-ara .mk-ara-tus {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.mk-pencere .deger-liste.mk-hesap-dal,
+.mk-pencere .deger-liste.mk-hesap-sonuc {
+    max-height: min(460px, calc(100vh - 260px));
+    margin: 0;
+    overflow: auto;
+}
+
+@media (max-width: 991px) {
+    .makbuz.makbuz-liste {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .makbuz .tanim-form .form-group {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 4px;
+    }
+}

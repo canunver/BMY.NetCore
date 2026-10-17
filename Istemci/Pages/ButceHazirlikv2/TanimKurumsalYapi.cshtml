@@ -1,0 +1,73 @@
+@page
+@model TanimKurumsalYapiModel
+@{
+    ViewData["Title"] = "Eski Kurumsal Yapı Tanımlama";
+    // Geniş ekranda sayfa pencereye sığar, tablo kalan alanı doldurur (tanim.css; bölüm görünümü taveneko.css ile ortak).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-eko butce-tanim kurumsal-yapi">
+    <!-- Üst: kurumsal yapı bilgileri (Listele'de ölçüt olarak da kullanılır) -->
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Kurumsal Yapı</h2>
+            <form id="frmKayit" class="tanim-form" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="txtKod">Kod</label>
+                    <div><input type="text" id="txtKod" class="form-control dar" maxlength="50" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAd">Ad</label>
+                    <div><input type="text" id="txtAd" class="form-control" maxlength="250" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMuhasebe">Muhasebe - Birim</label>
+                    <div id="muhBirim"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlKur">Kurumsal Kod</label>
+                    <div><select id="ddlKur" class="form-control"><option value=""></option></select></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label"></span>
+                    <div class="secim-tuslar">
+                        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                        </button>
+                        <button type="submit" id="btnAra" class="btn btn-default btn-sm" title="Formdaki değerlere uyan kayıtları listeler">
+                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                        </button>
+                        <button type="button" id="btnTemizle" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Alt: liste -->
+    <section>
+        <div class="kutu bolum bolum-tavan">
+            <h2 class="bolum-baslik">Liste</h2>
+            <div id="grdListe" class="tavan-grid" aria-label="Kurumsal yapılar"></div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taveneko.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/butcetanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/kurumsalyapi.js" asp-append-version="true"></script>
+}

@@ -91,7 +91,7 @@
             tertipTablo.setGridOption('rowData', tl);
             maliyetTablo.setGridOption('rowData', $.map(o.maliyetAdlari, function (ad, i) {
                 var m = (d.maliyetler || [])[i] || {};
-                return { ad: ad, harcama: m.harcama == null ? null : m.harcama, tahmin: m.tahmin == null ? null : m.tahmin, teklif: m.teklif == null ? null : m.teklif };
+                return { ad: ad, harcama: m.Harcama == null ? null : m.Harcama, tahmin: m.Tahmin == null ? null : m.Tahmin, teklif: m.Teklif == null ? null : m.Teklif };
             }));
         }
 

@@ -1,0 +1,162 @@
+@page
+@model MasrafPlaniYatirimAyarlaModel
+@{
+    ViewData["Title"] = "Masraf Planı Düzenleme";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı yalnızca sistem yöneticisi kullanabilir.</div>
+    return;
+}
+
+<div class="mp-tavan mp-ayarla">
+    <div class="mp-ust">
+        <!-- Tertip kodları (eski üst form) -->
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Tertip</h2>
+            <form id="frmSecim" class="tanim-form mp-form" novalidate>
+                @{
+                    var sol = new[]
+                    {
+                        new { agac = "1", ad = "1", alan = "kur", etiket = "Kurumsal" },
+                        new { agac = "2", ad = "2", alan = "fon", etiket = "Fonksiyonel" }
+                    };
+                    var sag = new[]
+                    {
+                        new { agac = "3", ad = "3", alan = "fin", etiket = "Finans" },
+                        new { agac = "4", ad = "4", alan = "eko", etiket = "Ekonomik" },
+                        new { agac = "14", ad = "58", alan = "peb", etiket = "Faaliyet" }
+                    };
+                }
+                <div class="mp-kriter-kolonlar">
+                    <div class="mp-kriter-kolon">
+                        <div class="form-group">
+                            <label class="control-label" for="ddlYil">Yıl</label>
+                            <div><input type="number" id="ddlYil" class="form-control input-sm mp-yil sgb-yil" min="2000" max="2100" step="1" /></div>
+                        </div>
+                        @foreach (var a in sol)
+                        {
+                            <div class="form-group kod-alan" data-agac="@a.agac" data-ad="@a.ad" data-alan="@a.alan">
+                                <label class="control-label" for="txt_@a.alan">@a.etiket</label>
+                                <div class="kod-satir">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" id="txt_@a.alan" class="form-control" autocomplete="off" title="@a.etiket kodu (Alt+Aşağı: kod ağacı)" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">@a.etiket seç</span></button>
+                                            <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">@a.etiket temizle</span></button>
+                                        </span>
+                                    </div>
+                                    <span class="kod-ad" aria-live="polite"></span>
+                                </div>
+                            </div>
+                        }
+                        <div class="form-group">
+                            <label class="control-label" for="txtKurYapi">Eski Kur. Yapı</label>
+                            <div><input type="text" id="txtKurYapi" class="form-control input-sm mp-kuryapi" autocomplete="off" placeholder="90000000000" title="Eski kurumsal yapı (harcama birimi) kodu; boşsa 90000000000 (dağıtılmayan)" /></div>
+                        </div>
+                    </div>
+                    <div class="mp-kriter-kolon">
+                        @foreach (var a in sag)
+                        {
+                            <div class="form-group kod-alan" data-agac="@a.agac" data-ad="@a.ad" data-alan="@a.alan">
+                                <label class="control-label" for="txt_@a.alan">@a.etiket</label>
+                                <div class="kod-satir">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" id="txt_@a.alan" class="form-control" autocomplete="off" title="@a.etiket kodu (Alt+Aşağı: kod ağacı)" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default kod-sec" title="Kod ağacından seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">@a.etiket seç</span></button>
+                                            <button type="button" class="btn btn-default kod-temizle" title="Temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">@a.etiket temizle</span></button>
+                                        </span>
+                                    </div>
+                                    <span class="kod-ad" aria-live="polite"></span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="mp-tuslar">
+                    <button type="button" id="btnDusulecek" class="btn btn-default btn-sm" data-tur="1" title="Bu kodlarla düşülecek tertibi bulur ve aylık masraf planını getirir">
+                        <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> Düşülecek Tertip
+                    </button>
+                    <button type="button" id="btnEklenecek" class="btn btn-default btn-sm" data-tur="2" title="Bu kodlarla eklenecek tertibi bulur">
+                        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> Eklenecek Tertip
+                    </button>
+                    <button type="button" id="btnYardim" class="btn btn-default btn-sm mp-yardim" title="Açıklama" aria-expanded="false" aria-controls="pnlIpucu">
+                        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span><span class="sr-only">Açıklama</span>
+                    </button>
+                </div>
+                <p id="pnlIpucu" class="mp-ipucu" hidden>
+                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                    Kodları girip önce Düşülecek Tertip'e, faaliyeti değiştirip Eklenecek Tertip'e basınız. İki tertibin kurumsal, fonksiyonel,
+                    finans ve ekonomik kodları aynı, faaliyetleri farklı olmalıdır; eski kurumsal yapı ya ikisinde de birim ya da ikisinde de
+                    dağıtılmayan (9 ile başlayan) olmalıdır. Aylara düşülecek tutarları yazıp işlemi seçiniz: Masraf Planı (masraf planı + AHP +
+                    KBÖ/tavan), AHP (AHP + KBÖ/tavan) ya da Tavan (yalnızca KBÖ/tavan).
+                </p>
+            </form>
+        </div>
+
+        <!-- İşlem (eski alt form) -->
+        <div class="kutu bolum bolum-islem">
+            <h2 class="bolum-baslik">İşlem</h2>
+            <div class="tanim-form mp-form">
+                <div class="form-group">
+                    <span class="control-label">Düşülecek</span>
+                    <div class="mp-tertip"><span id="lblDusTertip" class="mp-tertip-kod">-</span> <span id="lblDusBilgi" class="mp-tertip-bilgi"></span></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Eklenecek</span>
+                    <div class="mp-tertip"><span id="lblEkleTertip" class="mp-tertip-kod">-</span> <span id="lblEkleBilgi" class="mp-tertip-bilgi"></span></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Düş. Toplam</span>
+                    <div><strong id="lblToplam" class="mp-toplam">0,00</strong></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlIslem">İşlem</label>
+                    <div class="mp-satir">
+                        <select id="ddlIslem" class="form-control input-sm mp-islem">
+                            <option value="1" selected>Masraf Planı</option>
+                            <option value="2">AHP</option>
+                            <option value="3">Tavan</option>
+                        </select>
+                        <button type="button" id="btnIslemYap" class="btn btn-danger btn-sm" title="Komutları üretir; hata yoksa doğrudan veri tabanında çalıştırır">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> İşlem Yap
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Aylar (eski grdMpEkonomik) ve üretilen komutlar -->
+    <div class="kutu bolum bolum-tablo mp-alt">
+        <div id="grdAylar" class="mp-ay-grid" aria-label="Aylık masraf planı ve düşülecek tutarlar"></div>
+        <div class="mp-komut-kutu">
+            <label for="txtKomut">Komutlar</label>
+            <textarea id="txtKomut" class="form-control input-sm mp-komut" readonly spellcheck="false"></textarea>
+        </div>
+    </div>
+</div>
+
+<!-- Kod ağacı penceresi (eski KodAgac) -->
+<dialog id="dlgKod" class="tanim-pencere mp-agac" aria-labelledby="dlgKodBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKodBaslik">Kod Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde" id="agacKutu"></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/mptavan.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/masrafplani.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/mptavan-ortak.js" asp-append-version="true"></script>
+    <script src="~/js/mpayarla.js" asp-append-version="true"></script>
+}

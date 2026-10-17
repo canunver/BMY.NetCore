@@ -1,0 +1,48 @@
+@page
+@model ImzaModel
+@{
+    ViewData["Title"] = "İmza Bilgileri Tanımlama";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim mt-tek muh-tanim">
+    <section>
+        <div class="kutu bolum izgarali">
+            <h2 class="bolum-baslik">İmza Bilgileri</h2>
+            <div class="mt-arac" role="toolbar" aria-label="İşlemler">
+                <label class="sr-only" for="imBelge">Belge</label>
+                <select id="imBelge" class="form-control input-sm" title="Belge">
+                    <option value="1">Ödeme Emri</option>
+                    <option value="2">Muhasebe İşlem Fişi</option>
+                    <option value="3">Ödenek Gönderme</option>
+                    <option value="4">Tenkis</option>
+                    <option value="11">Ödeme Emri (Yüksek)</option>
+                    <option value="12">Muhasebe İşlem Fişi (Yüksek)</option>
+                    <option value="13">Ödenek Gönderme (Yüksek)</option>
+                    <option value="14">Tenkis (Yüksek)</option>
+                </select>
+                <label for="imBirim">Muhasebe Birim Kodu</label>
+                <input type="text" id="imBirim" class="form-control input-sm birim" maxlength="3" />
+                <button type="button" id="btnListele" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Listele</button>
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+            </div>
+            <p class="mt-ipucu">Muhasebe birim kodu boş olarak kaydedilirse, belge yazdırmada muhasebe birim kodu ne olursa olsun bu bilgiler kullanılır. Ad soyad, ünvan, görev ve onay kutuları tabloda doğrudan değiştirilir.</p>
+            <div id="grdImza" class="tanim-grid"></div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhtanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/muhtanim-imza.js" asp-append-version="true"></script>
+}

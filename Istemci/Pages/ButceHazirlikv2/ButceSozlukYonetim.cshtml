@@ -1,0 +1,57 @@
+@page
+@model ButceSozlukYonetimModel
+@{
+    ViewData["Title"] = "Bütçe Sözlük Bilgileri";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-eko butce-tanim butce-sozluk">
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">İşlem Yılı</h2>
+            <form id="frmYil" class="secim-satir" novalidate>
+                <label class="secim-alan dar">
+                    <span>Yıl</span>
+                    <input type="number" id="txtYil" class="form-control input-sm" min="2003" step="1" />
+                </label>
+            </form>
+        </div>
+    </section>
+
+    <section>
+        <div class="kutu bolum">
+            <h2 class="bolum-baslik">Sözlük Bilgileri</h2>
+            <table class="table table-condensed sozluk-tablo" data-bolum="Sözlük Bilgileri">
+                <thead>
+                    <tr><th scope="col">Veri Türü</th><th scope="col" class="sayi bu-yil"></th><th scope="col" class="sayi onc-yil"></th><th scope="col"><span class="sr-only">İşlemler</span></th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <div class="kutu bolum">
+            <h2 class="bolum-baslik">Gerekçeler</h2>
+            <table class="table table-condensed sozluk-tablo" data-bolum="Gerekçeler">
+                <thead>
+                    <tr><th scope="col">Veri Türü</th><th scope="col" class="sayi bu-yil"></th><th scope="col" class="sayi onc-yil"></th><th scope="col"><span class="sr-only">İşlemler</span></th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taveneko.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/butcetanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/butcesozluk.js" asp-append-version="true"></script>
+}

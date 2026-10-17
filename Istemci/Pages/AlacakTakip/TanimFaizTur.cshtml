@@ -1,0 +1,64 @@
+@page
+@model TanimFaizTurModel
+@{
+    ViewData["Title"] = "Faiz Türü Tanımlama";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim atm-tanim">
+    <section>
+        <div class="kutu">
+            <h2 class="kutu-baslik">Faiz Türü</h2>
+            <form id="frmFaizTur" class="tanim-form" novalidate>
+                <input type="hidden" id="hdnKod" />
+                <div class="form-group">
+                    <label class="control-label" for="txtYil">Yıl</label>
+                    <div><input type="number" id="txtYil" class="form-control dar sgb-yil" step="1" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAd">Faiz Türü</label>
+                    <div><input type="text" id="txtAd" class="form-control" maxlength="200" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtOran">Oran</label>
+                    <div><input type="number" id="txtOran" class="form-control dar" step="0.01" /></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label"></span>
+                    <div class="atm-tuslar">
+                        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                        </button>
+                        <button type="submit" id="btnAra" class="btn btn-default btn-sm" title="Yıla ve yazılan faiz türü adına göre arar">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Bul
+                        </button>
+                        <button type="button" id="btnTemizle" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="tanim-sol">
+        <div class="kutu">
+            <h2 class="kutu-baslik">Faiz Türleri</h2>
+            <div id="grdFaizTur" class="tanim-grid" aria-label="Faiz türleri"></div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/atmtanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/faiztur.js" asp-append-version="true"></script>
+}

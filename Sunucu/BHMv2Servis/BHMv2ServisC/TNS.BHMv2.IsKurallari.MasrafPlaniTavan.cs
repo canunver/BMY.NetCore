@@ -342,7 +342,7 @@ namespace TNS.BHMv2.IsKurallari
                         if (toplam > tavan)
                         {
                             ve.VeriErisimKapat();
-                            throw new Exception(string.Format("Harcama birimleri için girmiş olduğunuz toplam ({0}), ilinize ayrılan tavandan ({1}) büyük!", toplam, tavan));
+                            throw new Exception(string.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "Harcama birimleri için girmiş olduğunuz toplam ({0:N2}), ilinize ayrılan tavandan ({1:N2}) büyük!", toplam, tavan));
                         }
                     }
                 }
@@ -352,7 +352,7 @@ namespace TNS.BHMv2.IsKurallari
                     if (toplam > tavan)
                     {
                         ve.VeriErisimKapat();
-                        throw new Exception(string.Format("İller için girdiğiniz tavanların toplamı ({0:#,##0}), tertip ({2}) ödeneğinden ({1:#,##0}) büyük!", toplam, tavan, tertipStr));
+                        throw new Exception(string.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "İller için girdiğiniz tavanların toplamı ({0:N2}), tertip ({2}) ödeneğinden ({1:N2}) büyük!", toplam, tavan, tertipStr));
                     }
                 }
             }

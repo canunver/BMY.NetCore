@@ -1,0 +1,34 @@
+@page
+@model ButceParametreModel
+@{
+    ViewData["Title"] = "Bütçe Hazırlık Parametreleri";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim tavan-eko butce-tanim butce-parametre">
+    <section>
+        <div class="kutu bolum bolum-secim">
+            <h2 class="bolum-baslik">Bütçe Parametreleri</h2>
+            <form id="frmYil" class="tanim-form" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="txtYil">Yıl</label>
+                    <div><input type="number" id="txtYil" class="form-control dar" min="2003" step="1" /></div>
+                </div>
+            </form>
+            <div id="parametreler" class="tanim-form parametre-liste" aria-live="polite"></div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taveneko.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/butcetanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/butceparametre.js" asp-append-version="true"></script>
+}

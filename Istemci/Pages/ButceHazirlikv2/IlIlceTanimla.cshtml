@@ -1,0 +1,83 @@
+@page
+@model IlIlceTanimlaModel
+@{
+    ViewData["Title"] = "İl ve İlçe Tanımı";
+    // Geniş ekranda sayfa pencereye sığar, bölmeler kendi içinde kayar (tanim.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim il-ilce">
+    <!-- Sol: iller ve altında ilçeleri (eski fpL) -->
+    <section class="tanim-sol">
+        <div class="kutu bolum bolum-liste">
+            <h2 class="bolum-baslik">İl-İlçeler</h2>
+            <div class="btn-toolbar ilce-arac" role="toolbar" aria-label="Liste işlemleri">
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" id="btnOnceki" class="btn btn-default" title="Listede bir önceki kayıt">
+                        <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span> Önceki
+                    </button>
+                    <button type="button" id="btnSonraki" class="btn btn-default" title="Listede bir sonraki kayıt">
+                        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Sonraki
+                    </button>
+                </div>
+                <button type="button" id="btnYenile" class="btn btn-default btn-sm" title="Listeyi yeniden oku">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Yenile
+                </button>
+            </div>
+            <ul id="agcIlIlce" class="il-ilce-agac" aria-label="İller ve ilçeler"></ul>
+        </div>
+    </section>
+
+    <!-- Sağ: seçili il ya da ilçe (eski ifrmDetay: IlTanimlaDetay / IlceTanimlaDetay) -->
+    <section class="tanim-sag">
+        <div class="kutu bolum bolum-form" id="kutuForm">
+            <h2 class="bolum-baslik" id="formBaslik">İl Tanımlama</h2>
+            <div class="btn-toolbar tanim-arac" role="toolbar" aria-label="Kayıt işlemleri">
+                <button type="button" id="btnYeniIl" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni İl
+                </button>
+                <button type="button" id="btnYeniIlce" class="btn btn-default btn-sm" title="Seçili ilin altına yeni ilçe">
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Yeni İlçe
+                </button>
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm" disabled>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+                </button>
+            </div>
+
+            <form id="frmKayit" class="tanim-form" novalidate>
+                <div class="form-group" id="grpIl" hidden>
+                    <label class="control-label" for="txtIl">İl</label>
+                    <div><input type="text" id="txtIl" class="form-control" readonly /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtKod">Kod</label>
+                    <div><input type="number" id="txtKod" class="form-control dar" min="1" step="1" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAd">Ad</label>
+                    <div><input type="text" id="txtAd" class="form-control" maxlength="100" title="Türkçe Ad" /></div>
+                </div>
+                <div class="form-group" id="grpDuzey">
+                    <label class="control-label" for="txtDuzeyKod">Düzey 2 Bölge Kodu</label>
+                    <div><input type="text" id="txtDuzeyKod" class="form-control dar" maxlength="20" /></div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ililce.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/ililce.js" asp-append-version="true"></script>
+}

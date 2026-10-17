@@ -294,3 +294,10 @@
     margin: 24px 0;
     color: var(--soluk);
 }
+
+/* Yıl kutusu (Sgb.yilKutusu): tüm sayfalarda yıl, oklarla değişen sayı kutusudur. */
+input.sgb-yil {
+    width: 90px;
+    max-width: 100%;
+    font-variant-numeric: tabular-nums;
+}

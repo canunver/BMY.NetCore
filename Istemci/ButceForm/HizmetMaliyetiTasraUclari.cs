@@ -95,8 +95,8 @@ namespace Istemci.ButceForm
         // ------------------------------------------------------------------ okuma
 
         /// <summary>
-        /// Açılış (eski Page_Load): bütçe hazırlık yılı, kullanıcının muhasebe birimi (kullanıcı değişkenleri), kurumsal kodlar
-        /// (eski ddlKurumsal; Yazdır (Toplu) için) ve yönetici tuşları.
+        /// Açılış (eski Page_Load): bütçe hazırlık yılı, kullanıcının muhasebe birimi (kullanıcı değişkenleri), birimin kurumsal
+        /// kodu ve yönetici tuşları. Eski ddlKurumsal yok: Yazdır (Toplu) da seçili muhasebe biriminin kurumsal kodunu kullanır.
         /// </summary>
         private static IResult Tanim(HttpContext baglam, IWebHostEnvironment ortam)
         {
@@ -114,7 +114,6 @@ namespace Istemci.ButceForm
                 {
                     yil = yil, muhasebe = muhasebe, birim = birim, birimAd = birimAd,
                     kurumsal = MuhasebeBirimUclari.KurumsalYaz(yil, kurum),
-                    kurumlar = yonetici ? EkFormUclari.BirimListesi(kullanan) : new List<object>(),
                     sistemYoneticisi = yonetici
                 });
             }
@@ -229,7 +228,7 @@ namespace Istemci.ButceForm
 
         /// <summary>
         /// Yazdır (eski Yazdir("0")): seçili birim, kurum kodu varsayılan kurum. Yazdır (Toplu) (eski Yazdir("1"), sistem yöneticisi):
-        /// muhasebe / birim aranmaz, seçilen kurumsal kodun konsolide raporu. Rapor eski HizmetMaliyetiTespitiHazirlaTasra ile üretilir.
+        /// muhasebe / birim aranmaz, sayfada seçili muhasebe biriminin kurumsal kodunun konsolide raporu (kod boşsa bütün kurum). Rapor eski HizmetMaliyetiTespitiHazirlaTasra ile üretilir.
         /// </summary>
         private static IResult Yazdir(HttpContext baglam, IWebHostEnvironment ortam, int yil, int? muhasebe, string birim, string kurumsal, bool? toplu)
         {
@@ -237,7 +236,8 @@ namespace Istemci.ButceForm
             if (ret != null) return ret;
             bool kurToplam = toplu == true;
             if (kurToplam && !SistemYoneticisi(kullanan)) return Results.StatusCode(StatusCodes.Status403Forbidden);
-            string kurKod = kurToplam ? Temiz(kurumsal) : (TNS.DEG.Arac.VarsayilanKurumBul() ?? "");
+            string kurKod = kurToplam ? Temiz(kurumsal).Replace(".", "") : "";
+            if (kurKod == "") kurKod = TNS.DEG.Arac.VarsayilanKurumBul() ?? "";
             string hata = "";
             if (!kurToplam)
             {

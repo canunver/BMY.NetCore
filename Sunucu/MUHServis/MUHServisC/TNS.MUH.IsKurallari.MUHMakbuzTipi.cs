@@ -173,13 +173,13 @@ namespace TNS.MUH.IsKurallari
                     mt.krediHesapKod = OrtakFonksiyonlar.KodNoktaKoy(kodYapisiHesap, mt.krediHesapKod);
                     mtler.objeler.Add(mt);
                 }
+                dr.Close();
             }
             else
             {
                 mtler.sonuc.hataStr = tMakbuz.Hata();
                 mtler.sonuc.islemSonuc = false;
             }
-            dr.Close();
 
             ve.VeriErisimKapat();
             return mtler;

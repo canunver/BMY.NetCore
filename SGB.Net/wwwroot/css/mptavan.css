@@ -1,0 +1,352 @@
+/* Masraf Planı Tavan (MPTavanAna) ve Tavan Girişi (MPTavanGiris): üstte renkli başlıklı kriter ve rapor bölümleri, altta tablo. */
+
+.mp-tavan {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mp-tavan .mp-ust {
+    display: grid;
+    grid-template-columns: minmax(0, 560px);
+    gap: 12px;
+    align-items: start;
+}
+
+.mp-tavan.rapor-acik .mp-ust {
+    grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
+}
+
+.mp-tavan .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    min-width: 0;
+}
+
+.mp-tavan .kutu.bolum.bolum-rapor { --bolum-baslik: #eaf1dd; --bolum-govde: #fafcf6; --bolum-vurgu: #5f8a2c; }
+.mp-tavan .kutu.bolum.bolum-tablo { --bolum-baslik: #e6e6fa; --bolum-govde: #fafaff; --bolum-vurgu: #6a5acd; }
+.mp-tavan .kutu.bolum[hidden] { display: none; }
+
+.mp-tavan .bolum-baslik {
+    margin: 0 -12px 12px;
+    padding: 9px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.mp-tavan .mp-form {
+    --etiket-genislik: 100px;
+}
+
+.mp-tavan .mp-yil {
+    max-width: 110px;
+}
+
+/* Kod alanı: kod kutusu + mercek + temizle, ardından seçilen kodun adı */
+.mp-tavan .kod-satir {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.mp-tavan .kod-satir .input-group {
+    flex: 0 0 220px;
+    width: 220px;
+}
+
+.mp-tavan .kod-ad {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.mp-tavan .mp-tuslar,
+.mp-tavan .mp-satir,
+.mp-tavan .mp-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 8px;
+}
+
+.mp-tavan .mp-tuslar {
+    margin-top: 4px;
+}
+
+.mp-tavan .mp-arac {
+    margin: 0 0 8px;
+}
+
+.mp-tavan .mp-arac > .btn,
+.mp-tavan .mp-tuslar > .btn-group {
+    float: none;
+    margin: 0;
+}
+
+.mp-tavan .mp-ipucu {
+    flex: 1 1 100%;
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.mp-tavan .mp-oran {
+    width: 90px;
+}
+
+.mp-tavan .mp-satir label {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Açılır menüler (Yönetici İşlemleri, Hata Raporları) */
+.mp-tavan .mp-menu[hidden] { display: none; }
+.mp-tavan .mp-menu .dropdown-menu a { cursor: pointer; }
+
+/* Rapor bölümü */
+.mp-tavan fieldset {
+    margin: 0 0 10px;
+    padding: 6px 10px 10px;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+}
+
+.mp-tavan legend {
+    width: auto;
+    margin: 0;
+    padding: 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 0;
+}
+
+.mp-tavan .mp-kirilim-alanlar {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 6px 10px;
+    align-items: center;
+}
+
+.mp-tavan .mp-kirilim-alanlar label {
+    margin: 0;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+/* Renk açıklaması */
+.mp-tavan .renk-aciklama {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 8px;
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
+}
+
+.mp-tavan .renk-aciklama li::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+    vertical-align: -1px;
+    border: 1px solid #bbb;
+}
+
+.mp-tavan .renk-aciklama .bag::before { background: #2f6fc4; }
+.mp-tavan .renk-aciklama .izin-var::before { background: #3c9a4a; }
+.mp-tavan .renk-aciklama .izin-yok::before { background: #c9302c; }
+.mp-tavan .renk-aciklama .acik::before { background: #fffbe0; }
+.mp-tavan .renk-aciklama .salt::before { background: #fcfcd4; }
+
+/* Tablo */
+.mp-tavan .mp-grid {
+    height: max(420px, calc(100vh - 300px));
+}
+
+.mp-tavan .mp-giris-grid {
+    height: max(360px, calc(100vh - 340px));
+}
+
+.mp-tavan .ag-cell.sayi { text-align: right; font-variant-numeric: tabular-nums; }
+.mp-tavan .ag-cell.eksi,
+.mp-tavan .eksi { color: #b52a2a; }
+.mp-tavan .ag-cell.orta { display: flex; justify-content: center; align-items: center; }
+.mp-tavan .ag-cell.acik { background: #fffbe0; }
+.mp-tavan .ag-cell.salt { background: #fcfcd4; }
+
+.mp-tavan .ag-row-pinned .ag-cell {
+    font-weight: 700;
+    background: #ece9f8;
+}
+
+.mp-tavan .mp-iki-satir {
+    line-height: 1.25;
+    white-space: normal;
+    padding: 3px 0;
+}
+
+.mp-tavan .mp-iki-satir small {
+    display: block;
+    color: var(--soluk);
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mp-tavan .mp-bag {
+    padding: 0;
+    border: 0;
+    font-variant-numeric: tabular-nums;
+}
+
+.mp-tavan .mp-izin {
+    padding: 0;
+    border: 0;
+    font-size: 17px;
+    line-height: 1;
+}
+
+.mp-tavan .mp-izin.izin-var { color: #3c9a4a; }
+.mp-tavan .mp-izin.izin-yok { color: #c9302c; }
+
+/* Tavan girişi üst bilgileri */
+.mp-giris .mp-giris-form {
+    --etiket-genislik: 110px;
+    max-width: 760px;
+}
+
+.mp-giris .mp-deger {
+    padding-top: 5px;
+    min-width: 0;
+}
+
+.mp-giris .mp-deger .sayi {
+    font-variant-numeric: tabular-nums;
+}
+
+.mp-giris .mp-soluk {
+    color: var(--soluk);
+}
+
+/* Pencereler */
+.mp-agac {
+    width: min(640px, calc(100vw - 32px));
+}
+
+.mp-agac .sgb-agac {
+    max-height: min(520px, calc(100vh - 220px));
+    overflow: auto;
+    margin: 0;
+}
+
+.mp-onay {
+    width: min(760px, calc(100vw - 32px));
+}
+
+.mp-onay .mp-onay-mesaj {
+    white-space: pre-line;
+}
+
+.mp-onay .mp-onay-grid {
+    height: min(360px, calc(100vh - 300px));
+}
+
+.mp-onay .mp-onay-grid[hidden] { display: none; }
+
+.mp-uret {
+    width: min(560px, calc(100vw - 32px));
+}
+
+.mp-uret .tanim-form {
+    --etiket-genislik: 100px;
+}
+
+.mp-uret .mp-uret-aciklama {
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.mp-sonuc {
+    width: min(720px, calc(100vw - 32px));
+}
+
+.mp-sonuc .mp-sonuc-metin {
+    max-height: min(480px, calc(100vh - 220px));
+    overflow: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 0;
+}
+
+/* MPTavanAna: kriterler iki sütunda, küçük yazı ve sık satırlar; tabloya daha çok yer kalır. */
+.mp-tavan-ana .mp-ust,
+.mp-tavan-ana.rapor-acik .mp-ust { grid-template-columns: minmax(0, 1fr); }
+.mp-tavan-ana.rapor-acik .mp-ust { grid-template-columns: minmax(0, 1fr) minmax(0, 460px); }
+
+.mp-tavan-ana .kutu.bolum { padding: 0 10px 8px; }
+
+.mp-tavan-ana .bolum-baslik {
+    margin: 0 -10px 8px;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.mp-tavan-ana .mp-ust .mp-form {
+    --etiket-genislik: 80px;
+    font-size: 12px;
+}
+
+.mp-tavan-ana .mp-ust .form-group { margin-bottom: 4px; column-gap: 6px; }
+.mp-tavan-ana .mp-ust .form-control,
+.mp-tavan-ana .mp-ust .input-group-sm > .form-control,
+.mp-tavan-ana .mp-ust .input-group-sm .btn {
+    height: 26px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: 12px;
+}
+
+.mp-tavan-ana .mp-ust .btn-sm { padding: 3px 8px; font-size: 12px; }
+.mp-tavan-ana .mp-ust .kod-satir { gap: 6px; }
+.mp-tavan-ana .mp-ust .kod-satir .input-group { flex-basis: 170px; width: 170px; }
+.mp-tavan-ana .mp-ust .kod-ad { font-size: 11px; }
+
+.mp-tavan-ana .mp-kriter-kolonlar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 16px;
+}
+
+.mp-tavan-ana .mp-tuslar { margin-top: 2px; gap: 4px 6px; }
+.mp-tavan-ana .mp-yardim.active { background: #e3edfa; }
+.mp-tavan-ana .mp-ipucu { margin-top: 6px; }
+
+.mp-tavan-ana .mp-grid {
+    height: max(420px, calc(100vh - 290px));
+}
+
+@media (max-width: 991px) {
+    .mp-tavan-ana .mp-kriter-kolonlar { grid-template-columns: minmax(0, 1fr); }
+    .mp-tavan .mp-ust,
+    .mp-tavan.rapor-acik .mp-ust { grid-template-columns: minmax(0, 1fr); }
+    .mp-tavan .mp-kirilim-alanlar { grid-template-columns: auto minmax(0, 1fr); }
+    .mp-tavan .kod-satir { flex-wrap: wrap; }
+}

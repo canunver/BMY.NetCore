@@ -1722,6 +1722,18 @@ namespace ButceForm
         }
 
         /// <summary>
+        /// Hizmet (faaliyet) gerekçesi raporu (F1); eski HizmetGerekcesiHazirla'nın yerine geçer.
+        /// Üretim kodu HizmetGerekcesiRaporu.cs'e taşınmıştır; burada yalnızca eskisi gibi parametreler raporParam'dan okunup oraya verilir.
+        /// Eskisi gibi Word'ün açtığı HTML (.doc) dosyası üretilir.
+        /// </summary>
+        public string HizmetGerekcesiHazirla(object o_kullanan, object o_servis, string p_SablonAd, string p_SonucDosyaAd, string ciktiYeri, System.Collections.Hashtable raporParam, string ekBilgiler)
+        {
+            DegerAl(o_kullanan, o_servis, raporParam, p_SonucDosyaAd, p_SablonAd, "", "doc");
+            int faalKod = OrtakFonksiyonlar.ConvertToInt(raporParam["FaaliyetKod"] + "", 0);
+            return HizmetGerekcesiRaporu.HizmetGerekcesiHazirla(servis, kullanan, yil, kurKod, faalKod, kurumKod, p_SonucDosyaAd);
+        }
+
+        /// <summary>
         /// Ek bilgiler anahtar alanına göre ilgili rapor fonksiyonunu çağıran fonksiyon
         /// </summary>
         /// <param name="o_kullanan">Kullanıcı değerini tutan Object türünde nesne</param>
@@ -1745,6 +1757,10 @@ namespace ButceForm
             else if (ekBilgiler == "F22")
             {
                 return TemizlikHazirla(o_kullanan, o_servis, sablonAd, sonucDosyaAd, ciktiYeri, raporParam, ekBilgiler);
+            }
+            else if (ekBilgiler == "F1")
+            {
+                return HizmetGerekcesiHazirla(o_kullanan, o_servis, sablonAd, sonucDosyaAd, ciktiYeri, raporParam, ekBilgiler);
             }
             else if (ekBilgiler == "F10")
             {

@@ -104,6 +104,22 @@
     }
 
     var buSayfa = yol(window.location.href);
+    var buSorgu = new URLSearchParams(window.location.search);
+
+    // Menü bağlantısı açık sayfa mı: yol aynı olmalı; bağlantının sorgu değerleri (ör. ?tur=2) varsa sayfanınkilerle aynı olmalı.
+    // Böylece aynı sayfayı farklı sorgu ile açan menü seçenekleri (TanimVergiDairesiAktarimTur?tur=1..4) birbirinden ayrılır.
+    function buSayfaMi(adres) {
+        if (!adres || yol(adres) !== buSayfa) return false;
+        try {
+            var ok = true;
+            new URL(adres, window.location.href).searchParams.forEach(function (deger, ad) {
+                if ((buSorgu.get(ad) || '').toLowerCase() !== (deger || '').toLowerCase()) ok = false;
+            });
+            return ok;
+        } catch (e) {
+            return true;
+        }
+    }
 
     function baglantilar(menu) {
         var liste = [];
@@ -114,8 +130,8 @@
     }
 
     function sayfayiIceriyor(menu) {
-        if (menu.url && yol(menu.url) === buSayfa) return true;
-        return baglantilar(menu).some(function (satir) { return yol(satir.url) === buSayfa; });
+        if (menu.url && buSayfaMi(menu.url)) return true;
+        return baglantilar(menu).some(function (satir) { return buSayfaMi(satir.url); });
     }
 
     // Açık sayfanın menüdeki yeri. Menüde yoksa null döner (başlık olarak sayfanın kendi adı kullanılır).
@@ -123,11 +139,11 @@
         for (var g = 0; g < gruplar.length; g++) {
             var menuler = gruplar[g].menuler;
             for (var m = 0; m < menuler.length; m++) {
-                if (menuler[m].url && yol(menuler[m].url) === buSayfa)
+                if (menuler[m].url && buSayfaMi(menuler[m].url))
                     return { yer: gruplar[g].ad, ad: menuler[m].ad };
                 var satirlar = baglantilar(menuler[m]);
                 for (var i = 0; i < satirlar.length; i++)
-                    if (yol(satirlar[i].url) === buSayfa)
+                    if (buSayfaMi(satirlar[i].url))
                         return { yer: gruplar[g].ad + ' › ' + menuler[m].ad, ad: satirlar[i].ad };
             }
         }
@@ -238,7 +254,7 @@
                 a.target = '_blank';
                 a.rel = 'noopener';
             }
-            if (yol(satir.url) === buSayfa) a.classList.add('burada');
+            if (buSayfaMi(satir.url)) a.classList.add('burada');
             a.addEventListener('click', ekranSecildi);
             kap.appendChild(a);
         }

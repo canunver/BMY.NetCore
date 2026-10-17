@@ -1,0 +1,55 @@
+@page
+@model RaporGrupListeModel
+@{
+    ViewData["Title"] = "Raporlama Formu";
+    ViewData["GovdeSinif"] = "rapor-grup-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="rapor-grup" id="raporGrup" data-rapor-grup="@Model.RaporGrup">
+    <!-- Rapor listesi (eski grdReports) -->
+    <section class="kutu bolum rapor-liste-bolum">
+        <h2 class="bolum-baslik" id="lblGrupAd">Rapor Listesi</h2>
+        <div id="grdRaporlar" class="grid-alan rapor-liste" aria-label="Raporlar"></div>
+    </section>
+
+    <div class="rapor-sag">
+        <div id="kutuMesaj" class="alert" role="alert" hidden></div>
+
+        <!-- Kıstaslar (eski RaporKistasSayfa) -->
+        <section class="kutu bolum">
+            <h2 class="bolum-baslik">
+                <span id="lblRaporAd">Rapor Kıstasları</span>
+                <button type="button" id="btnRaporAl" class="btn btn-primary btn-sm sag-dugme" disabled>
+                    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Rapor Al
+                </button>
+            </h2>
+            <p id="lblKistasBos" class="bos-ipucu">Soldaki listeden bir rapor seçiniz.</p>
+            <form id="frmKistas" class="kistas-form" autocomplete="off" hidden></form>
+        </section>
+
+        <!-- Hazırlanmış raporlar (eski RaporDosya: "Daha önce hazırlanmış raporlar") -->
+        <section class="kutu bolum bolum-yesil">
+            <h2 class="bolum-baslik">Hazırlanmış Raporlar <small>Son 3 rapor geçici olarak saklanır; kalıcı olması için kütüphaneye ekleyiniz.</small></h2>
+            <div id="grdGecici" class="grid-alan dosya-liste" aria-label="Hazırlanmış raporlar"></div>
+        </section>
+
+        <!-- Kütüphane (eski RaporDosya: "Kütüphaneye eklenmiş raporlar") -->
+        <section class="kutu bolum bolum-turuncu">
+            <h2 class="bolum-baslik">Kütüphanedeki Raporlar <small>Kalıcıdır, bu raporu alabilen herkes görür; yalnızca ekleyen silebilir.</small></h2>
+            <div id="grdKutuphane" class="grid-alan dosya-liste" aria-label="Kütüphanedeki raporlar"></div>
+        </section>
+    </div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/raporgrup.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/raporgrup.js" asp-append-version="true"></script>
+}

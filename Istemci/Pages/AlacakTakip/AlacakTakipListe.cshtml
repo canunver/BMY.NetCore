@@ -1,0 +1,265 @@
+@page
+@model AlacakTakipListeModel
+@{
+    ViewData["Title"] = "Takip İşlemleri";
+    // Geniş ekranda sayfa pencereye sığar; liste ve form kendi içinde kayar (alacaktakip.css).
+    ViewData["GovdeSinif"] = "atl-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="atl">
+    <div class="atl-govde">
+        <!-- Sorgu (eski PropertyGrid1) -->
+        <section class="kutu bolum bolum-sorgu">
+            <h2 class="bolum-baslik">Sorgu Alanları</h2>
+            <form id="frmSorgu" class="tanim-form atl-alanlar atl-sorgu" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="sYil">Yıl</label>
+                    <div><input type="number" id="sYil" class="form-control input-sm sgb-yil atl-yil" step="1" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="sDurum">Durum</label>
+                    <div><select id="sDurum" class="form-control input-sm"></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="sMuhasebe">Saymanlık Kodu</label>
+                    <div><input type="text" id="sMuhasebe" class="form-control input-sm" maxlength="5" autocomplete="off" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="sDosyaNo">Dosya No</label>
+                    <div><input type="text" id="sDosyaNo" class="form-control input-sm" autocomplete="off" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="sKimlikNo">Mernis / Vergi No</label>
+                    <div><input type="text" id="sKimlikNo" class="form-control input-sm" autocomplete="off" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="sBorcluAd">Borçlu Adı</label>
+                    <div><input type="text" id="sBorcluAd" class="form-control input-sm" autocomplete="off" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="sIslemYapan">Kullanıcı</label>
+                    <div><input type="text" id="sIslemYapan" class="form-control input-sm" autocomplete="off" /></div>
+                </div>
+                <button type="submit" class="sr-only">Listele</button>
+            </form>
+        </section>
+
+        <!-- Dosyalar (eski grdListe) -->
+        <section class="kutu bolum bolum-liste">
+            <div class="bolum-baslik">
+                <h2>Dosyalar <span id="lblSayi" class="atl-sayi"></span></h2>
+                <div class="btn-toolbar atl-arac" role="toolbar" aria-label="Liste işlemleri">
+                <button type="button" id="btnListele" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+                </button>
+                <div class="btn-group btn-group-sm">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Liste Yazdır <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" data-yazdir="1">Kısa Liste</a></li>
+                        <li><a href="#" data-yazdir="2">Uzun Liste</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group btn-group-sm">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="İşaretli dosyaların durumunu değiştirir">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Durum Değiştir <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" data-durum="6">Tebliğ Et</a></li>
+                        <li><a href="#" data-durum="7">İlan Et</a></li>
+                        <li><a href="#" data-durum="8">İtiraz Edildi</a></li>
+                        <li><a href="#" data-durum="9">Mahkemeye Verildi</a></li>
+                        <li><a href="#" data-durum="15">Hükmen Tahsil Et</a></li>
+                        <li><a href="#" data-durum="20">İptal Et</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#" id="lnkDosyaKapat">Dosya Kapat...</a></li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            <div id="grdListe" class="atl-grid" aria-label="Alacak takip dosyaları"></div>
+        </section>
+
+        <!-- Dosya bilgileri (eski FormPanel) -->
+        <section class="kutu bolum bolum-form">
+            <div class="bolum-baslik">
+                <h2>Dosya Bilgileri <span id="lblDurumAd" class="label label-info" hidden></span></h2>
+                <div class="btn-toolbar atl-arac" role="toolbar" aria-label="Dosya işlemleri">
+                <button type="button" id="btnYeni" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Dosya
+                </button>
+                <button type="button" id="btnKaydet" class="btn btn-success btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+                <button type="button" id="btnHesapHareket" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Hesap Hareket
+                </button>
+                <button type="button" id="btnOdeme" class="btn btn-default btn-sm" hidden title="Tebliğ aşamasından sonra girilir">
+                    <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Ödeme Bilgileri
+                </button>
+                    <button type="button" id="btnTopluOdemeEmri" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Toplu Ödeme Emri Oluştur
+                    </button>
+                    <button type="button" id="btnMuavin" class="btn btn-default btn-sm" title="Borçlunun 140.01 hesabındaki muavin defteri">
+                        <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Muavin Defteri Listesi
+                    </button>
+                </div>
+            </div>
+            <form id="frmDosya" class="tanim-form atl-alanlar" novalidate>
+                <div class="form-group">
+                    <span class="control-label">Dosya No</span>
+                    <div class="atl-bitisik">
+                        <input type="text" id="txtYil" class="form-control input-sm okuma atl-kisa" readonly aria-label="Dosya yılı" />
+                        <span aria-hidden="true">-</span>
+                        <input type="text" id="txtDosyaNo" class="form-control input-sm okuma atl-kisa" readonly aria-label="Dosya no" placeholder="Yeni" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtSDosyaNo">Saymanlık Dosya No</label>
+                    <div><input type="text" id="txtSDosyaNo" class="form-control input-sm atl-orta" autocomplete="off" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMuhasebe">Muhasebe / Harcama Birimi *</label>
+                    <div id="muhBirim"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMernisNo">Mernis No / Vergi No *</label>
+                    <div class="atl-bitisik">
+                        <input type="text" id="txtMernisNo" class="form-control input-sm atl-orta" maxlength="11" autocomplete="off" />
+                        <button type="button" id="btnFirmaSec" class="btn btn-default btn-sm" title="Kişi / firma listesinden seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Kişi / firma seç</span></button>
+                        <button type="button" id="btnKimlik" class="btn btn-default btn-sm" title="Verilen T.C. Kimlik Numarasından Borçlu Adı ve adres bilgilerini getirir"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Kimlik</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtBorcluAd">Borçlu Adı *</label>
+                    <div><input type="text" id="txtBorcluAd" class="form-control input-sm" autocomplete="off" /></div>
+                </div>
+                <div class="form-group ust-hizali">
+                    <label class="control-label" for="txtBorcluAdres">Borçlu Adres</label>
+                    <div><textarea id="txtBorcluAdres" class="form-control input-sm" rows="2"></textarea></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtBorc">Borç Miktarı *</label>
+                    <div class="atl-bitisik">
+                        <input type="text" id="txtBorc" class="form-control input-sm atl-orta atl-tutar" inputmode="decimal" autocomplete="off" />
+                        <select id="ddlParaBirimi" class="form-control input-sm atl-para" aria-label="Para birimi"></select>
+                        <span id="lblTLKarsilik" class="atl-not"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlFaizTuru">Faiz Türü</label>
+                    <div><select id="ddlFaizTuru" class="form-control input-sm"></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtBorcDogus">Borç Doğuş / Faiz Baş. Tarihi</label>
+                    <div class="atl-bitisik">
+                        <input type="date" id="txtBorcDogus" class="form-control input-sm atl-tarih" aria-label="Borç doğuş tarihi" />
+                        <span aria-hidden="true">/</span>
+                        <input type="date" id="txtFaizBaslangic" class="form-control input-sm atl-tarih" aria-label="Faiz başlangıç tarihi" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtBorcTespit">Borç Tespit / Tebliğ Tarihi</label>
+                    <div class="atl-bitisik">
+                        <input type="date" id="txtBorcTespit" class="form-control input-sm atl-tarih" aria-label="Borç tespit tarihi" />
+                        <span aria-hidden="true">/</span>
+                        <input type="date" id="txtTeblig" class="form-control input-sm atl-tarih" aria-label="Tebliğ tarihi" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtBorcDeger">Borç Değer. Tarihi</label>
+                    <div><input type="date" id="txtBorcDeger" class="form-control input-sm atl-tarih" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtTaksitBaslangic">Taksit Başlama Tarihi</label>
+                    <div><input type="date" id="txtTaksitBaslangic" class="form-control input-sm atl-tarih" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtZamanAsimi">Zaman Aşımı Baş. Yılı</label>
+                    <div><input type="number" id="txtZamanAsimi" class="form-control input-sm atl-kisa sgb-yil" step="1" min="1900" max="2100" /></div>
+                </div>
+                <div class="form-group ust-hizali">
+                    <label class="control-label" for="txtBorcSebep">Borç Sebebi</label>
+                    <div><textarea id="txtBorcSebep" class="form-control input-sm" rows="2"></textarea></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtYaziGelYer">Yazının Geldiği Yer / Tarih / Sayı</label>
+                    <div class="atl-bitisik">
+                        <input type="text" id="txtYaziGelYer" class="form-control input-sm atl-orta" aria-label="Yazının geldiği yer" />
+                        <span aria-hidden="true">/</span>
+                        <input type="date" id="txtYaziGelTarih" class="form-control input-sm atl-tarih" aria-label="Yazının geldiği tarih" />
+                        <span aria-hidden="true">/</span>
+                        <input type="text" id="txtYaziGelSayi" class="form-control input-sm atl-kisa" aria-label="Yazının sayısı" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtSayGitTarih">Saymanlığa Giden Yazı Tarih / Sayı</label>
+                    <div class="atl-bitisik">
+                        <input type="date" id="txtSayGitTarih" class="form-control input-sm atl-tarih" aria-label="Saymanlığa giden yazı tarihi" />
+                        <span aria-hidden="true">/</span>
+                        <input type="text" id="txtSayGitSayi" class="form-control input-sm atl-kisa" aria-label="Saymanlığa giden yazı sayısı" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtKisiGitTarih">Kişiye Giden Yazı Tarih / Sayı</label>
+                    <div class="atl-bitisik">
+                        <input type="date" id="txtKisiGitTarih" class="form-control input-sm atl-tarih" aria-label="Kişiye giden yazı tarihi" />
+                        <span aria-hidden="true">/</span>
+                        <input type="text" id="txtKisiGitSayi" class="form-control input-sm atl-kisa" aria-label="Kişiye giden yazı sayısı" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Son İşlem</span>
+                    <div class="atl-bitisik">
+                        <input type="text" id="txtIslemTarihi" class="form-control input-sm okuma atl-tarih" readonly aria-label="Son işlem tarihi" />
+                        <span aria-hidden="true">/</span>
+                        <input type="text" id="txtIslemYapan" class="form-control input-sm okuma" readonly aria-label="Son işlemi yapan" />
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+<!-- Dosya Kapatma penceresi (eski wndDosyaKapat) -->
+<dialog id="dlgDosyaKapat" class="tanim-pencere" aria-labelledby="dlgDosyaKapatBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgDosyaKapatBaslik">Dosya Kapatma</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form class="tanim-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="ddlKapatDurum">Durum</label>
+                <div><select id="ddlKapatDurum" class="form-control input-sm"></select></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <label class="control-label" for="txtKapatAciklama">Açıklama</label>
+                <div><textarea id="txtKapatAciklama" class="form-control input-sm" rows="3"></textarea></div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" id="btnDosyaKapat" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Dosya Kapat</button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/makbuz.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/alacaktakip.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/alacaktakip.js" asp-append-version="true"></script>
+}

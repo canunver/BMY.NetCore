@@ -1,0 +1,161 @@
+/* Genel rapor ekranı (Raporlama/RaporGrupListe): solda rapor listesi, sağda renkli kutularda kıstaslar, hazırlanmış raporlar ve
+   kütüphane. Geniş ekranda iki sütun, dar ekranda alt alta. */
+
+.rapor-grup {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+}
+
+.rapor-sag {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    min-width: 0;
+}
+
+.rapor-sag > .alert {
+    margin: 0;
+}
+
+.rapor-grup .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    padding: 0 16px 16px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.rapor-grup .kutu.bolum.bolum-yesil {
+    --bolum-baslik: #e2f3e6;
+    --bolum-govde: #f5fbf6;
+    --bolum-vurgu: #2e8b4e;
+}
+
+.rapor-grup .kutu.bolum.bolum-turuncu {
+    --bolum-baslik: #fbefd9;
+    --bolum-govde: #fefaf3;
+    --bolum-vurgu: #c7672a;
+}
+
+.rapor-grup .kutu.bolum.rapor-liste-bolum {
+    --bolum-baslik: #ece7f6;
+    --bolum-govde: #f8f6fc;
+    --bolum-vurgu: #7b62b3;
+}
+
+.rapor-grup .bolum-baslik {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    margin: 0 -16px 12px;
+    padding: 9px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.rapor-grup .bolum-baslik small {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--ikincil, #6b7785);
+}
+
+.rapor-grup .sag-dugme {
+    margin-left: auto;
+}
+
+.rapor-grup .bos-ipucu {
+    margin: 0;
+    color: var(--ikincil, #6b7785);
+}
+
+.rapor-liste {
+    height: 420px;
+}
+
+.rapor-liste .tasinmadi {
+    color: var(--ikincil, #8a8f98);
+    font-style: italic;
+}
+
+.dosya-liste {
+    height: 170px;
+}
+
+.dosya-islem {
+    display: inline-flex;
+    gap: 4px;
+}
+
+/* Kıstas formu: etiket solda, alanlar alt alta */
+.kistas-form .form-group {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    align-items: center;
+    column-gap: 10px;
+    margin: 0 0 8px;
+}
+
+.kistas-form .form-group::before,
+.kistas-form .form-group::after {
+    display: none;
+}
+
+.kistas-form .form-group[hidden] {
+    display: none;
+}
+
+.kistas-form .control-label {
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    text-align: left;
+}
+
+.kistas-form .form-control {
+    max-width: 520px;
+}
+
+.kistas-form .form-control.dar {
+    max-width: 160px;
+}
+
+.kistas-form .checkbox {
+    margin: 0;
+}
+
+.kistas-form .zorunlu-isaret {
+    color: #cf4b47;
+}
+
+@media (max-width: 575px) {
+    .kistas-form .form-group {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 4px;
+    }
+}
+
+@media (min-width: 992px) {
+    .rapor-grup {
+        grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+    }
+
+    .rapor-grup .rapor-liste-bolum {
+        position: sticky;
+        top: 12px;
+    }
+
+    .rapor-liste {
+        height: calc(100vh - var(--ust-yukseklik, 0px) - 140px);
+        min-height: 300px;
+    }
+}

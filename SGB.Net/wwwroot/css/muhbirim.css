@@ -68,3 +68,8 @@
     overflow: auto;
     margin: 0;
 }
+
+/* kurumsalGizle / adGizle seçenekleri */
+.muh-birim [hidden] {
+    display: none !important;
+}

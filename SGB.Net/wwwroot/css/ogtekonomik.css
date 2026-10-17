@@ -1,0 +1,49 @@
+/* Ödenek Gönderme/Tenkis Bilgisi (ButceMuhasebe/OdenekGondermeTenkisEkonomik): solda (1/4) sorgu alanları, sağda (3/4) liste. */
+
+.ogt-ekonomik {
+    display: grid;
+    grid-template-columns: minmax(300px, 1fr) minmax(0, 3fr);
+    gap: 10px;
+    align-items: start;
+}
+
+.ogt-ekonomik .kutu.bolum {
+    --bolum-baslik: #e3edfa;
+    --bolum-govde: #f5f8fd;
+    --bolum-vurgu: #2f6fc4;
+    min-width: 0;
+    padding: 0 10px 10px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.ogt-ekonomik .kutu.bolum.bolum-liste { --bolum-baslik: #ddd9c3; --bolum-govde: #fcfbf6; --bolum-vurgu: #8a7d3c; }
+
+.ogt-ekonomik .bolum-baslik {
+    margin: 0 -10px 10px;
+    padding: 7px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.ogt-ekonomik .ogt-secim { --etiket-genislik: 88px; font-size: 12px; }
+.ogt-ekonomik .ogt-secim .form-group { margin-bottom: 6px; }
+.ogt-ekonomik .ogt-secim .form-control { height: 26px; padding-top: 2px; padding-bottom: 2px; font-size: 12px; }
+.ogt-ekonomik .ogt-secim .mb-sec { height: 26px; padding: 2px 8px; }
+.ogt-ekonomik .ogt-secim .muh-birim { flex-wrap: wrap; }
+.ogt-ekonomik .ogt-secim .mb-ad { flex: 1 1 100%; font-size: 12px; }
+.ogt-ekonomik .ogt-yil { max-width: 90px; }
+.ogt-ekonomik .ogt-eko { max-width: 90px; }
+.ogt-ekonomik .ogt-tuslar { display: flex; gap: 6px; padding-left: calc(var(--etiket-genislik) + 10px); }
+
+.ogt-ekonomik .ogt-grid { height: 360px; }
+
+@media (max-width: 991px) {
+    .ogt-ekonomik { grid-template-columns: minmax(0, 1fr); }
+}
