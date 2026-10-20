@@ -1,0 +1,510 @@
+/* Ödeme Emri / MİF belge formu: sıkışık alanlar, renkli bölümler, satır tablosu sayfayı doldurur. */
+
+.oem {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12px;
+}
+
+/* ---- Araç çubuğu ---- */
+.oem .oem-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+}
+
+.oem .oem-arac .oem-sag {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-left: auto;
+}
+
+.oem .oem-arac select.form-control {
+    width: auto;
+    min-width: 160px;
+    display: inline-block;
+}
+
+.oem .oem-prg {
+    margin: 0 4px;
+    padding-top: 0;
+}
+
+.oem .oem-yardim {
+    margin: 0;
+    font-size: 12px;
+}
+
+.oem .oem-yardim ul {
+    margin: 4px 0 0;
+    padding-left: 18px;
+}
+
+/* Bootstrap JS yüklü değil: açılır menüler .open ile elle açılır */
+.oem .btn-group.open > .dropdown-menu,
+.oem .dropdown.open > .dropdown-menu {
+    display: block;
+}
+
+.oem .oem-yazdir-menu {
+    min-width: 260px;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+.oem .oem-imza-satir {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+}
+
+.oem .oem-imza-satir select {
+    flex: 1 1 auto;
+}
+
+/* ---- Üst bölümler: solda belge, sağda bilgiler ---- */
+.oem .oem-ust {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 8px;
+    align-items: start;
+}
+
+.oem .kutu.bolum {
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
+    margin: 0;
+    padding: 0 8px 6px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+}
+
+.oem .kutu.bolum.bolum-bilgi {
+    --bolum-baslik: var(--b4-baslik);
+    --bolum-govde: var(--b4-govde);
+    --bolum-vurgu: var(--b4-vurgu);
+}
+
+.oem .kutu.bolum.bolum-satir {
+    --bolum-baslik: var(--b2-baslik);
+    --bolum-govde: var(--b2-govde);
+    --bolum-vurgu: var(--b2-vurgu);
+}
+
+.oem .bolum-baslik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    margin: 0 -8px 6px;
+    padding: 5px 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 8px 8px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.oem .oem-durum {
+    font-weight: 700;
+    color: var(--soluk);
+    cursor: pointer;
+}
+
+.oem .oem-durum.oem-durum-var {
+    color: firebrick;
+    text-decoration: underline;
+}
+
+/* ---- Alanlar: etiket solda, sıkışık ---- */
+.oem .oem-alanlar {
+    --etiket-genislik: 110px;
+}
+
+.oem .oem-alanlar .form-group {
+    margin-bottom: 3px;
+}
+
+.oem .oem-alanlar .control-label {
+    font-size: 12px;
+    padding-top: 3px;
+}
+
+.oem .form-control.input-sm,
+.oem-pencere .form-control.input-sm {
+    height: 24px;
+    padding: 1px 6px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.oem textarea.form-control.input-sm {
+    height: auto;
+    min-height: 38px;
+}
+
+.oem .btn-sm,
+.oem .btn-group-sm > .btn {
+    padding: 2px 8px;
+    font-size: 12px;
+}
+
+.oem .oem-bitisik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+}
+
+.oem .oem-bitisik > .control-label {
+    margin: 0 0 0 4px;
+    white-space: nowrap;
+}
+
+.oem .oem-tarih {
+    width: 125px;
+}
+
+.oem .oem-no {
+    width: 100px;
+}
+
+.oem .sgb-yil {
+    width: 80px;
+}
+
+/* Belge bölümü içeriği kadar geniştir (birim adı alanların altında ayrı satırda, genişliği bölümü büyütmez); kalan alan bilgi bölümünündür. */
+.oem .bolum-belge .oem-alanlar {
+    --etiket-genislik: 96px;
+}
+
+.oem .bolum-belge .oem-tarih {
+    width: 118px;
+}
+
+.oem .bolum-belge .oem-no {
+    width: 90px;
+}
+
+.oem .bolum-belge .muh-birim {
+    display: flex;
+    max-width: 100%;
+}
+
+.oem .bolum-belge .muh-birim .mb-muhasebe { width: 62px; }
+.oem .bolum-belge .muh-birim .mb-birim    { width: 48px; }
+.oem .bolum-belge .muh-birim .mb-kurumsal { width: 92px; }
+.oem .bolum-belge .muh-birim .mb-ayrac    { padding: 0 3px; }
+
+.oem .bolum-belge .muh-birim .mb-ad {
+    flex: 0 0 100%;
+    width: 0;
+    contain: inline-size;
+    font-size: 12px;
+    white-space: normal;
+}
+
+/* ---- Bilgi sekmeleri ---- */
+.oem .oem-sekmeler {
+    margin: 0 0 6px;
+}
+
+.oem .oem-sekmeler > li > a {
+    padding: 4px 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.oem .oem-sekme[hidden] {
+    display: none;
+}
+
+.oem .oem-sekme[data-sekme="ilgili"]:not([hidden]) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px;
+}
+
+.oem .oem-aciklama textarea {
+    width: 100%;
+    min-height: 120px;
+}
+
+.oem .oem-diger:not([hidden]) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 6px;
+}
+
+.oem .oem-diger fieldset,
+.oem .oem-proje fieldset {
+    margin: 0;
+    padding: 4px 6px;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+    background: #fff;
+}
+
+.oem .oem-diger legend,
+.oem .oem-proje legend {
+    width: auto;
+    margin: 0;
+    padding: 0 4px;
+    border: 0;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.oem .oem-diger .oem-alanlar {
+    --etiket-genislik: 70px;
+}
+
+.oem .oem-proje {
+    max-width: 640px;
+}
+
+.oem .oem-oybs-arac,
+.oem .oem-dokuman-arac,
+.oem .oem-satir-arac {
+    margin-bottom: 4px;
+}
+
+.oem .oem-dosya-sec {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+}
+
+.oem .oem-dosya-sec input[type="file"],
+.oem-pencere .oem-dosya-sec input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.oem-pencere .oem-dosya-sec {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+}
+
+/* ---- Tablolar ---- */
+.oem .oem-grid {
+    width: 100%;
+    height: 360px;
+}
+
+.oem .oem-grid-kucuk,
+.oem-pencere .oem-grid-kucuk {
+    width: 100%;
+    height: 200px;
+}
+
+.oem-grid-pencere {
+    width: 100%;
+    height: 340px;
+}
+
+.oem-grid-pencere.oem-grid-sablon {
+    height: 300px;
+}
+
+.oem .oem-kilitli {
+    opacity: .65;
+    pointer-events: none;
+}
+
+.oem .oem-girilir,
+.oem-pencere .oem-girilir {
+    background: #fff;
+}
+
+.oem .oem-sari,
+.oem-pencere .oem-sari {
+    background: #fcfcd4;
+}
+
+.oem .oem-eksi {
+    color: #c62828;
+    font-weight: 600;
+}
+
+.oem-hucre-sec {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    width: 100%;
+}
+
+.oem-hucre-sec .oem-hucre-metin {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.oem-hucre-sec .oem-mercek {
+    padding: 0 3px;
+    line-height: 1;
+    color: var(--bolum-vurgu, var(--b1-vurgu));
+}
+
+.oem .oem-toplamlar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 4px 16px;
+    margin-top: 4px;
+    font-weight: 700;
+}
+
+.oem .oem-doviz-toplam {
+    color: var(--soluk);
+}
+
+/* Borç/Alacak sağ tık menüsü */
+.oem-baglam {
+    position: fixed;
+    z-index: 2000;
+    display: block;
+    font-size: 12px;
+}
+
+.oem-baglam[hidden] {
+    display: none;
+}
+
+/* ---- Pencereler ---- */
+.tanim-pencere.oem-pencere .tanim-form {
+    --etiket-genislik: 140px;
+}
+
+.tanim-pencere.oem-pencere-genis {
+    width: min(980px, calc(100vw - 32px));
+    max-width: none;
+}
+
+.oem-pencere .oem-sablon-resim {
+    max-width: 100%;
+    margin-top: 6px;
+    border: 1px solid var(--cizgi);
+}
+
+.oem-pencere .oem-not {
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.oem-pencere .oem-soru-belgeler {
+    max-height: 200px;
+    overflow: auto;
+    margin: 6px 0 0;
+    padding-left: 18px;
+}
+
+.oem-pencere .oem-seyyar-toplam {
+    margin-top: 6px;
+    --etiket-genislik: 120px;
+}
+
+.oem-bekle {
+    cursor: progress;
+    opacity: .7;
+}
+
+.ag-right-aligned-cell,
+.ag-right-aligned-cell input {
+    text-align: right;
+}
+
+@media (max-width: 1100px) {
+    .oem .oem-ust,
+    .oem .oem-sekme[data-sekme="ilgili"]:not([hidden]) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .oem .oem-arac .oem-sag {
+        margin-left: 0;
+    }
+}
+
+/* Satır tablosunda başlığın altındaki sabit toplam satırı (salt okunur: sarı) */
+.oem .ag-row.oem-toplam-satir,
+.oem .ag-row.oem-toplam-satir .ag-cell {
+    font-weight: 700;
+    background: #fcfcd4;
+}
+
+.oem .ag-row.oem-toplam-satir .ag-cell[col-id="ALTHESAPKOD"] {
+    color: #c62828;
+    text-align: right;
+}
+
+/* Kutuya bitişik tuş (Ad Soyad / Ünvan, T.C. / Vergi No) */
+.oem .oem-ekli {
+    width: 100%;
+}
+
+.oem .oem-ekli > .input-group-btn > .btn {
+    height: 24px;
+    padding: 1px 8px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* Tablodaki açılır seçim listeleri (Birim, Döviz, Kur Türü) sütundan geniş açılır, uzun adlar tek satırda görünür */
+.oem .ag-select-list {
+    min-width: 380px !important;
+    max-width: 560px;
+}
+
+.oem .ag-select-list-item {
+    white-space: nowrap;
+}
+
+/* Hesap Kodu / Alt Hesap Kodu hücresinde yazdıkça arama listesi */
+.oem-oneri-girdi {
+    width: 100%;
+    height: 100%;
+    padding: 0 6px;
+    border: 0;
+    font-size: 12px;
+}
+
+.oem-oneri-liste {
+    position: fixed;
+    z-index: 2100;
+    max-width: 640px;
+    max-height: 220px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid var(--cizgi, #ccc);
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    font-size: 12px;
+}
+
+.oem-oneri-liste[hidden] {
+    display: none;
+}
+
+.oem-oneri-satir {
+    padding: 3px 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.oem-oneri-satir:hover,
+.oem-oneri-satir.secili {
+    background: var(--b1-baslik);
+}

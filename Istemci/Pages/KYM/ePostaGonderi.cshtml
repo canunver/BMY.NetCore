@@ -1,0 +1,37 @@
+@page
+@model ePostaGonderiModel
+@{
+    // Önceki e-posta Gönderimleri Durum İzleme (eski KYM/ePostaGonderi.aspx).
+    ViewData["Title"] = Metin.Kullanici("FRMEPG010");
+    ViewData["GovdeSinif"] = "eposta-gonderi";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="eposta-liste">
+    <div class="btn-toolbar ep-arac" role="toolbar">
+        <a class="btn btn-default btn-sm" href="ePostaAt">
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> @Metin.Kullanici("FRMEPA004")
+        </a>
+        <button type="button" id="btnYenile" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> @Metin.Kullanici("FRMEPG009")
+        </button>
+        <span class="ep-ipucu text-muted">Kişi sayısına tıklayınca kişi listesi Excel olarak iner.</span>
+    </div>
+    <div id="grdListe" class="ep-grid" aria-label="@Metin.Kullanici("FRMEPG010")"
+         data-mesaj-no="@Metin.Kullanici("FRMEPG001")" data-konu="@Metin.Kullanici("FRMEPG002")"
+         data-gonderen="@Metin.Kullanici("FRMEPG003")" data-tarih="@Metin.Kullanici("FRMEPG004")"
+         data-gonderilecek="@Metin.Kullanici("FRMEPG005")" data-gonderilen="@Metin.Kullanici("FRMEPG006")"
+         data-gonder="@Metin.Kullanici("FRMEPG007")" data-tekrar="@Metin.Kullanici("FRMEPG008")"></div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/eposta.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/epostagonderi.js" asp-append-version="true"></script>
+}

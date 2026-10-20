@@ -10,15 +10,27 @@
     return;
 }
 
-<div class="tanim atm-tanim">
+<div class="tanim liste-genis atm-tanim">
+    <section class="tanim-sol">
+        <div class="kutu">
+            <h2 class="kutu-baslik">Faiz Türleri</h2>
+            <div class="atm-liste-arama">
+                <label class="control-label" for="txtSuz">Ara</label>
+                <input type="search" id="txtSuz" class="form-control input-sm" placeholder="Kod (yıl-kod), faiz türü ya da oran" />
+            </div>
+            <div id="grdFaizTur" class="tanim-grid" aria-label="Faiz türleri"></div>
+        </div>
+    </section>
+
     <section>
         <div class="kutu">
             <h2 class="kutu-baslik">Faiz Türü</h2>
             <form id="frmFaizTur" class="tanim-form" novalidate>
+                <input type="hidden" id="hdnYil" />
                 <input type="hidden" id="hdnKod" />
                 <div class="form-group">
-                    <label class="control-label" for="txtYil">Yıl</label>
-                    <div><input type="number" id="txtYil" class="form-control dar sgb-yil" step="1" /></div>
+                    <label class="control-label" for="txtYilKod">Kod (Yıl-Kod)</label>
+                    <div><input type="text" id="txtYilKod" class="form-control dar atm-okuma" readonly /></div>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="txtAd">Faiz Türü</label>
@@ -31,25 +43,15 @@
                 <div class="form-group">
                     <span class="control-label"></span>
                     <div class="atm-tuslar">
-                        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                        <button type="button" id="btnYeni" class="btn btn-default btn-sm" title="İçinde bulunulan yıl için yeni faiz türü">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni
+                        </button>
+                        <button type="submit" id="btnKaydet" class="btn btn-primary btn-sm">
                             <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
-                        </button>
-                        <button type="submit" id="btnAra" class="btn btn-default btn-sm" title="Yıla ve yazılan faiz türü adına göre arar">
-                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Bul
-                        </button>
-                        <button type="button" id="btnTemizle" class="btn btn-default btn-sm">
-                            <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle
                         </button>
                     </div>
                 </div>
             </form>
-        </div>
-    </section>
-
-    <section class="tanim-sol">
-        <div class="kutu">
-            <h2 class="kutu-baslik">Faiz Türleri</h2>
-            <div id="grdFaizTur" class="tanim-grid" aria-label="Faiz türleri"></div>
         </div>
     </section>
 </div>

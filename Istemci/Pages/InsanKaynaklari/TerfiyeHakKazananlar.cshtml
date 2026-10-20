@@ -1,0 +1,53 @@
+@page
+@model TerfiyeHakKazananlarModel
+@{
+    ViewData["Title"] = "Terfiye Hak Kazananlar";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="terfi" data-sayfa="hakkazanan">
+    <section class="bolum">
+        <h2 class="bolum-baslik">Terfiye Hak Kazananlar</h2>
+        <form id="frmKriter" class="tf-arac" role="search" novalidate>
+            <label for="txtYil">Yıl</label>
+            <input type="number" id="txtYil" class="form-control input-sm sgb-yil tf-yil" step="1" />
+            <label for="cmbAy">Ay</label>
+            <select id="cmbAy" class="form-control input-sm tf-ay"></select>
+            <label for="cmbTip">Tip</label>
+            <select id="cmbTip" class="form-control input-sm tf-tip"></select>
+            <button type="submit" id="btnListele" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+            </button>
+            <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Terfi edecekler listesini Excel olarak indir">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+            </button>
+            <span class="tf-ayrac" aria-hidden="true"></span>
+            <label for="cmbSebep">Hizmet Sebebi</label>
+            <select id="cmbSebep" class="form-control input-sm tf-sebep"></select>
+            <button type="button" id="btnGonder" class="btn btn-primary btn-sm" title="Seçili satırları terfi onayına gönder">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Terfi Onayına Gönder
+            </button>
+            <button type="button" id="btnYardim" class="btn btn-link btn-sm tf-yardim" aria-expanded="false" aria-controls="tfYardim" title="Yardım">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span><span class="sr-only">Yardım</span>
+            </button>
+        </form>
+        <div id="tfYardim" class="tf-yardim-metin" hidden>
+            Yıl, ay ve tip seçilip Listele'ye basılır. Yeşil zeminli hücreler, kazanılmış hak ya da emekliye esas derecesi kadro derecesine
+            ulaşmış personeli gösterir. Terfi onayına göndermek için satırları işaretleyip hizmet sebebini seçin; gönderilenler
+            Terfi Onaylama ekranında "Beklemede" durumunda görünür.
+        </div>
+        <div id="grdListe" class="tf-grid" aria-label="Terfiye hak kazananlar"></div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/terfi.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/terfi.js" asp-append-version="true"></script>
+}

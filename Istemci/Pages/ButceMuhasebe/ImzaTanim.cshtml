@@ -1,0 +1,68 @@
+@page
+@model ImzaTanimModel
+@{
+    ViewData["Title"] = "İmza Bilgileri Tanımlama Sayfası";
+    // Ödeme Emri / MİF formundan pencere (Sgb.pencere) olarak açılır: solda imza tanımları, sağda seçili tanımın belge türü,
+    // adı ve imza yerleri (tanim.css, muhtanim.css, imzatanim.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim muh-tanim imza-tanim">
+    <section class="tanim-sol">
+        <div class="kutu bolum izgarali">
+            <h2 class="bolum-baslik">İmza Listesi</h2>
+            <div id="grdImzaTanim" class="tanim-grid"></div>
+        </div>
+    </section>
+
+    <section class="it-detay">
+        <div class="kutu bolum yesil">
+            <h2 class="bolum-baslik">İmza Tanımı</h2>
+            <div class="mt-arac" role="toolbar" aria-label="İşlemler">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm" disabled><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil</button>
+                <button type="button" id="btnYeniKayit" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Kayıt</button>
+            </div>
+            <form id="frmImzaTanim" class="tanim-form mt-sinirli" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="itBelge">Belge</label>
+                    <div>
+                        <select id="itBelge" class="form-control">
+                            <option value="">Seçiniz...</option>
+                            <option value="1">Ödeme Emri</option>
+                            <option value="2">Muhasebe İşlem Fişi</option>
+                            <option value="3">Ödenek Gönderme</option>
+                            <option value="4">Tenkis</option>
+                            <option value="11">Ödeme Emri (Yüksek)</option>
+                            <option value="12">Muhasebe İşlem Fişi (Yüksek)</option>
+                            <option value="13">Ödenek Gönderme (Yüksek)</option>
+                            <option value="14">Tenkis (Yüksek)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="itAd">Tanım Adı</label>
+                    <div><input type="text" id="itAd" class="form-control" /></div>
+                </div>
+            </form>
+            <p class="mt-ipucu">Ad soyad, ünvan / rütbe, görev ünvanı ve tarih yaz tabloda doğrudan değiştirilir.</p>
+            <div id="grdImzaDetay" class="tanim-grid"></div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhtanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/imzatanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/imzatanim.js" asp-append-version="true"></script>
+}

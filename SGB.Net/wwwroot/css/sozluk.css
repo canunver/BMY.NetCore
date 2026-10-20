@@ -1,0 +1,42 @@
+/* Sözlük Bilgileri (InsanKaynaklari/TanimSozluk): yerleşim tanim.css'ten (solda liste, sağda form);
+   form bölümü renkli başlıklı ayrı kutu. */
+
+.sozluk .bolum {
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
+    margin: 0 0 12px;
+    padding: 0 12px 6px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.sozluk .bolum-baslik {
+    margin: 0 -12px 10px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.sozluk .tanim-form {
+    --etiket-genislik: 110px;
+}
+
+.sozluk .bolum .form-control {
+    background: #fff;
+}
+
+/* Otomatik verilen ve değiştirilemeyen alanlar */
+.sozluk .bolum .form-control[readonly],
+.sozluk .bolum select.form-control:disabled {
+    background: #eef1f5;
+}
+
+.sozluk .dar {
+    max-width: 160px;
+}

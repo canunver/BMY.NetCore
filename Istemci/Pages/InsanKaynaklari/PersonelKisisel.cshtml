@@ -1,0 +1,473 @@
+@page
+@model Istemci.Pages.InsanKaynaklari.PersonelKisiselModel
+@{
+    ViewData["Title"] = "Kişisel Bilgiler";
+    ViewData["GovdeSinif"] = "pb-alt";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+@* Alanlar data-alan ile /api/personelbilgi/kisisel/oku yanıtındaki ve kaydet isteğindeki adlara bağlanır
+   (data-tip="sayi": tamsayı, onay kutusu: true/false). data-alan-salt: yalnızca gösterilir, kaydedilmez. *@
+<div class="pb pb-kisisel" id="pbKisisel" data-personel-kod="@Model.PersonelKod">
+    <div class="pb-arac" role="toolbar" aria-label="Kişisel bilgi işlemleri">
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+        <button type="button" id="btnTemizle" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Kayıt
+        </button>
+        <span class="kisisel-ayrac" aria-hidden="true"></span>
+        <button type="button" class="btn btn-default btn-sm" data-rapor="tanitma" title="Personel tanıtma kartı (PDF)">
+            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Per. Tanıtma Kartı
+        </button>
+        <button type="button" class="btn btn-default btn-sm" data-rapor="mailimza" title="E-posta imzası (PDF)">
+            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Mail İmza
+        </button>
+        <button type="button" class="btn btn-default btn-sm" data-rapor="nufus" data-tur="2" title="Nüfus cüzdanı örneği (Word)">
+            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Nüfus Cüzdanı Örneği
+        </button>
+        <button type="button" class="btn btn-default btn-sm" data-rapor="nufus" data-tur="1" title="İkametgah ilmühaberi (Word)">
+            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> İkametgah İlmühaberi
+        </button>
+        <button type="button" class="btn btn-default btn-sm" data-rapor="nakil" title="Personel nakil bildirimi (Excel)">
+            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Nakil Bildirim
+        </button>
+        <button type="button" class="btn btn-default btn-sm" data-rapor="kisiborcu" title="Maaş iadesi hesaplama cetveli (Excel)">
+            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Kişi Borcu
+        </button>
+        <span class="bosluk"></span>
+        <button type="button" id="btnResimEkle" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Resim Ekle
+        </button>
+        <input type="file" id="fileResim" accept="image/*" hidden />
+    </div>
+
+    <form id="frmKisisel" novalidate autocomplete="off" class="kisisel-duzen">
+        <section class="pb-bolum renk-mavi">
+            <h3>Özlük Bilgileri</h3>
+            <div class="pb-govde">
+                <div class="pb-form iki-sutun kisisel-form">
+                    <div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtTcKimlikNo">T.C. Kimlik No</label>
+                            <div class="kisisel-secim">
+                                <input type="text" id="txtTcKimlikNo" data-alan="tcKimlikNo" class="form-control" maxlength="11" inputmode="numeric"
+                                       title="Yeni personelde T.C. kimlik numarasını yazıp Enter'a basın ya da sorgulayın" />
+                                <button type="button" id="btnKimlikSorgula" class="btn btn-default btn-sm" title="Kimlik bilgisini getir" aria-label="Kimlik bilgisini getir">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" id="btnTcDegistir" class="btn btn-default btn-sm" title="TC Kimlik No Değiştir" aria-label="TC Kimlik No Değiştir" hidden>
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtSicilNo">Sicil No</label>
+                            <div class="kisisel-secim">
+                                <input type="text" id="txtSicilNo" data-alan="sicilNo" class="form-control" />
+                                <button type="button" id="btnSicilOnceki" class="btn btn-default btn-sm" title="Önceki sicil numaralı personel" aria-label="Önceki sicil numaralı personel">
+                                    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" id="btnSicilSonraki" class="btn btn-default btn-sm" title="Sonraki sicil numaralı personel" aria-label="Sonraki sicil numaralı personel">
+                                    <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtAd">Adı</label>
+                            <div><input type="text" id="txtAd" data-alan="ad" data-mernis="1" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtSoyad">Soyad</label>
+                            <div><input type="text" id="txtSoyad" data-alan="soyad" data-mernis="1" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtUnvanAd">Unvanı</label>
+                            <div><input type="text" id="txtUnvanAd" data-alan-salt="unvanAd" class="form-control" readonly tabindex="-1" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtUnvanVekaletAd">Vekalet/Rehber Unvanı</label>
+                            <div><input type="text" id="txtUnvanVekaletAd" data-alan-salt="unvanVekaletAd" class="form-control" readonly tabindex="-1" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtBirimAdi">Birimi</label>
+                            <div><input type="text" id="txtBirimAdi" data-alan-salt="birimAd" class="form-control" readonly tabindex="-1" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtGorevYeri">Görev Yeri</label>
+                            <div><input type="text" id="txtGorevYeri" data-alan-salt="gorevBirimAd" class="form-control" readonly tabindex="-1" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtPersonelTurAd">Personel Türü</label>
+                            <div><input type="text" id="txtPersonelTurAd" data-alan-salt="personelTipAd" class="form-control" readonly tabindex="-1" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtKadroBaslangic">Kadro Başlangıç Tarihi</label>
+                            <div><input type="date" id="txtKadroBaslangic" data-alan-salt="kadroBaslangicTarihi" class="form-control dar" readonly tabindex="-1" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtDereceEkGosterge">Derece EkGösterge</label>
+                            <div><input type="text" id="txtDereceEkGosterge" data-alan-salt="dereceEkGosterge" class="form-control dar" readonly tabindex="-1" /></div>
+                        </div>
+                        <div class="form-group" data-manas-gizle="1">
+                            <label class="control-label" for="ddlSosyalGuvence">Sosyal Güvence</label>
+                            <div><select id="ddlSosyalGuvence" data-alan="sosyalGuvence" data-tip="sayi" class="form-control"></select></div>
+                        </div>
+                        <div class="form-group" data-manas-gizle="1">
+                            <label class="control-label" for="txtEmekliSicilNo">Emekli Sicil No</label>
+                            <div><input type="text" id="txtEmekliSicilNo" data-alan="emekliSicilNo" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtSskSicilNo">SGK Sicil No</label>
+                            <div><input type="text" id="txtSskSicilNo" data-alan="sskSicilNo" class="form-control" /></div>
+                        </div>
+                        <div class="form-group" data-manas-gizle="1">
+                            <label class="control-label" for="txtBagkurSicilNo">Bağkur Sicil No</label>
+                            <div><input type="text" id="txtBagkurSicilNo" data-alan="bagkurSicilNo" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtTitr">Ak. Unvan</label>
+                            <div>
+                                <input type="text" id="txtTitr" data-alan="titr" class="form-control dar" list="lstTitr" title="Yazın ya da listeden seçin" />
+                                <datalist id="lstTitr">
+                                    <option value="Prof.Dr."></option>
+                                    <option value="Prof."></option>
+                                    <option value="Doç.Dr."></option>
+                                    <option value="Doç."></option>
+                                    <option value="Yrd.Doç.Dr."></option>
+                                    <option value="Yrd.Doç."></option>
+                                    <option value="Dr."></option>
+                                </datalist>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="kisisel-resim-satir">
+                            <div class="kisisel-resim-alanlar">
+                                <div class="form-group">
+                                    <label class="control-label" for="txtIlkIseBaslama">İlk İşe Başlama Tarihi</label>
+                                    <div><input type="date" id="txtIlkIseBaslama" data-alan="ilkIseBaslamaTarihi" class="form-control dar" /></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="txtKurumaBaslama">Kuruma Başlama Tarihi</label>
+                                    <div><input type="date" id="txtKurumaBaslama" data-alan="kurumaBaslamaTarihi" class="form-control dar" /></div>
+                                </div>
+                                <div class="form-group" data-manas-gizle="1">
+                                    <label class="control-label" for="txtAsaletTarihi">Asalet Tarihi</label>
+                                    <div><input type="date" id="txtAsaletTarihi" data-alan="asaletTarihi" class="form-control dar" /></div>
+                                </div>
+                                <div class="form-group" data-manas-gizle="1">
+                                    <label class="control-label" for="txtArsivNo">Arşiv No</label>
+                                    <div><input type="text" id="txtArsivNo" data-alan="arsivNo" class="form-control dar" /></div>
+                                </div>
+                                <div class="form-group">
+                                    <span class="control-label">Aktif Mi</span>
+                                    <div class="checkbox kisisel-onay">
+                                        <label><input type="checkbox" id="chkAktifMi" data-alan="aktifMi" disabled /> Evet</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <figure class="kisisel-resim">
+                                <img id="imgResim" alt="Personel resmi" width="125" height="160" hidden />
+                                <span id="lblResimYok" class="kisisel-resim-yok" aria-hidden="true">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                </span>
+                            </figure>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtGeldigiKurum">Geldiği Kurum</label>
+                            <div><input type="text" id="txtGeldigiKurum" data-alan="geldigiKurum" class="form-control" /></div>
+                        </div>
+                        <div class="form-group" data-manas-gizle="1">
+                            <label class="control-label" for="txtGeldigiKurumSicili">Maliye Muhasebe No</label>
+                            <div><input type="text" id="txtGeldigiKurumSicili" data-alan="geldigiKurumSicili" class="form-control" /></div>
+                        </div>
+                        <div class="form-group" data-manas-gizle="1">
+                            <label class="control-label" for="txtVergiDairesi">Vergi Dairesi</label>
+                            <div><input type="text" id="txtVergiDairesi" data-alan="vergiDairesi" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtEposta">E Mail</label>
+                            <div><input type="text" id="txtEposta" data-alan-salt="eposta" class="form-control" readonly tabindex="-1" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtIbanNo">IBAN No</label>
+                            <div><input type="text" id="txtIbanNo" data-alan="bankaIbanNo" class="form-control" maxlength="34" /></div>
+                        </div>
+                        <div class="form-group" hidden>
+                            <label class="control-label" for="ddlSakatlikDurumu">Sakatlık Durumu</label>
+                            <div><select id="ddlSakatlikDurumu" data-alan="sakatlikDurumu" data-tip="sayi" class="form-control"></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="ddlSakatlikDerece">Engellilik Derecesi</label>
+                            <div>
+                                <select id="ddlSakatlikDerece" data-alan="sakatlikDerecesi" data-tip="sayi" class="form-control dar">
+                                    <option value="0">Sakat Değil</option>
+                                    <option value="1">1. Derece</option>
+                                    <option value="2">2. Derece</option>
+                                    <option value="3">3. Derece</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" data-manas-gizle="1">
+                            <span class="control-label">Özel Durum</span>
+                            <div class="yan-yana kisisel-onay">
+                                <label class="checkbox-inline"><input type="checkbox" data-alan="terorMagduru" /> Terör Mağduru</label>
+                                <label class="checkbox-inline"><input type="checkbox" data-alan="hukumlu" /> Hükümlü</label>
+                                <label class="checkbox-inline"><input type="checkbox" data-alan="korunmayaMuhtac" /> Korumaya Muhtaç</label>
+                            </div>
+                        </div>
+                        <div class="form-group" data-manas-gizle="1">
+                            <label class="control-label" for="txtRumuz">Rumuz</label>
+                            <div><input type="text" id="txtRumuz" data-alan="rumuz" class="form-control dar" maxlength="10" /></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pb-bolum renk-yesil" id="pnlNufus">
+            <h3>Nüfus Bilgileri</h3>
+            <div class="pb-govde">
+                <div class="pb-form iki-sutun kisisel-form">
+                    <div>
+                        <div class="form-group">
+                            <label class="control-label" for="ddlCinsiyet">Cinsiyeti</label>
+                            <div><select id="ddlCinsiyet" data-alan="cinsiyet" data-tip="sayi" class="form-control dar"></select></div>
+                        </div>
+                        <div class="form-group" id="grpIlkSoyad">
+                            <label class="control-label" for="txtIlkSoyad">İlk Soyadı</label>
+                            <div><input type="text" id="txtIlkSoyad" data-alan="ilkSoyad" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtBabaAd">Baba Adı</label>
+                            <div><input type="text" id="txtBabaAd" data-alan="babaAd" data-mernis="1" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtAnaAd">Ana Adı</label>
+                            <div><input type="text" id="txtAnaAd" data-alan="anaAd" data-mernis="1" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtDogumTarihi">Doğum Tarihi</label>
+                            <div><input type="date" id="txtDogumTarihi" data-alan="dogumTarihi" data-mernis="1" class="form-control dar" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtDogumYeri">Doğum Yeri</label>
+                            <div><input type="text" id="txtDogumYeri" data-alan="dogumYeri" data-mernis="1" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="ddlMedeniHali">Medeni Hali</label>
+                            <div><select id="ddlMedeniHali" data-alan="medeniHali" data-tip="sayi" data-mernis="1" class="form-control"></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtDini">Dini</label>
+                            <div><input type="text" id="txtDini" data-alan="dini" class="form-control dar" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="ddlKanGrubu">Kan Grubu</label>
+                            <div>
+                                <select id="ddlKanGrubu" data-alan="kanGrubu" class="form-control dar">
+                                    <option value=""></option>
+                                    <option value="ORH-">ORH-</option>
+                                    <option value="ORH+">ORH+</option>
+                                    <option value="ARH-">ARH-</option>
+                                    <option value="ARH+">ARH+</option>
+                                    <option value="BRH-">BRH-</option>
+                                    <option value="BRH+">BRH+</option>
+                                    <option value="ABRH-">ABRH-</option>
+                                    <option value="ABRH+">ABRH+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <fieldset class="kisisel-kume">
+                            <legend>Pasaport Bilgileri</legend>
+                            <div class="form-group">
+                                <label class="control-label" for="txtPasaportNo">Pasaport No</label>
+                                <div><input type="text" id="txtPasaportNo" data-alan="pasaportNo" class="form-control" /></div>
+                            </div>
+                            @* Eski sayfada da yalnızca kimlik sorgusuyla dolar, kaydedilmez ve okunmaz (NOTLAR.md). *@
+                            <div class="form-group">
+                                <label class="control-label" for="txtPasaportVerilisTarihi">Veriliş Tarihi</label>
+                                <div><input type="date" id="txtPasaportVerilisTarihi" data-nufus="pasaportVerilisTarihi" class="form-control dar" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtPasaportVerildigiYer">Verildiği Yer</label>
+                                <div><input type="text" id="txtPasaportVerildigiYer" data-nufus="pasaportVerildigiYer" class="form-control" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtPasaportVerenMakam">Veren Makam</label>
+                                <div><input type="text" id="txtPasaportVerenMakam" data-nufus="pasaportVerenMakam" class="form-control" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtPasaportSuresi">Pasaport Süresi</label>
+                                <div><input type="number" id="txtPasaportSuresi" data-nufus="pasaportSuresi" class="form-control dar" step="1" /></div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtCuzdanSeriNo">Cüzdan Seri No</label>
+                            <div><input type="text" id="txtCuzdanSeriNo" data-alan="cuzdanSeriNo" data-mernis="1" class="form-control dar" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtCuzdanKayitNo">Cüzdan Kayıt No</label>
+                            <div><input type="text" id="txtCuzdanKayitNo" data-alan="cuzdanKayitNo" data-mernis="1" class="form-control dar" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="ddlNufusIl">Nüfus İl</label>
+                            <div><select id="ddlNufusIl" data-alan="nufusIlKod" data-mernis="1" class="form-control"></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="ddlNufusIlce">Nüfus İlçe</label>
+                            <div><select id="ddlNufusIlce" data-alan="nufusIlceKod" data-mernis="1" class="form-control"></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtMahalle">Mahalle/Köy</label>
+                            <div><input type="text" id="txtMahalle" data-alan="nufusMahalleKoy" data-mernis="1" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtCiltNo">Cilt No</label>
+                            <div><input type="text" id="txtCiltNo" data-alan="nufusCiltNo" data-mernis="1" class="form-control dar" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtAileSiraNo">Aile Sıra No</label>
+                            <div><input type="text" id="txtAileSiraNo" data-alan="nufusAileSiraNo" data-mernis="1" class="form-control dar" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtSiraNo">Sıra No</label>
+                            <div><input type="text" id="txtSiraNo" data-alan="nufusSiraNo" data-mernis="1" class="form-control dar" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtVerilisNedeni">Veriliş Nedeni</label>
+                            <div><input type="text" id="txtVerilisNedeni" data-alan="cuzdanVerilisNedeni" data-mernis="1" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtVerildigiYer">Verildiği Yer</label>
+                            <div><input type="text" id="txtVerildigiYer" data-alan="cuzdanVerildigiYer" data-mernis="1" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtVerilisTarihi">Veriliş Tarihi</label>
+                            <div><input type="date" id="txtVerilisTarihi" data-alan="cuzdanVerilisTarihi" data-mernis="1" class="form-control dar" /></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+
+    <section class="pb-bolum renk-gri">
+        <h3>
+            Belgeler
+            <span class="bosluk"></span>
+            <button type="button" id="btnBelgeEkle" class="btn btn-default btn-xs">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Belge Ekle
+            </button>
+            <input type="file" id="fileBelge" hidden />
+        </h3>
+        <div class="pb-govde">
+            <div id="grdBelgeler" class="pb-grid kisisel-belge-grid" aria-label="Belgeler"></div>
+        </div>
+    </section>
+</div>
+
+@* Eski txtTCKimlikNoDegistir menüsü *@
+<dialog id="dlgTcDegistir" class="kisisel-pencere kisisel-pencere-dar" aria-labelledby="dlgTcDegistirBaslik">
+    <form method="dialog" id="frmTcDegistir" novalidate autocomplete="off">
+        <div class="pencere-baslik">
+            <h2 id="dlgTcDegistirBaslik">TC Kimlik No Değiştir</h2>
+            <button type="button" class="close" data-kapat="1" aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="pencere-govde pb-form">
+            <div class="form-group">
+                <label class="control-label" for="txtTcKimlikNoYeni">Yeni TC Kimlik No</label>
+                <div><input type="text" id="txtTcKimlikNoYeni" class="form-control" maxlength="11" inputmode="numeric" /></div>
+            </div>
+        </div>
+        <div class="pencere-alt">
+            <button type="submit" id="btnTcDegistirKaydet" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+            </button>
+            <button type="button" class="btn btn-default btn-sm" data-kapat="1">Vazgeç</button>
+        </div>
+    </form>
+</dialog>
+
+@* Eski wndBirimUnvanOrgAl: yeni personel kaydedilirken birim / unvan / tür *@
+<dialog id="dlgYeniPersonel" class="kisisel-pencere" aria-labelledby="dlgYeniPersonelBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgYeniPersonelBaslik">Yeni Personel Birim/Unvan/Tür Girişi</h2>
+        <button type="button" class="close" data-kapat="1" aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="pb-form kisisel-yeni-form">
+            <div class="form-group">
+                <label class="control-label" for="txtYeniBirimAd">Birimi</label>
+                <div class="kisisel-secim">
+                    <input type="hidden" id="hdnYeniBirim" />
+                    <input type="text" id="txtYeniBirimAd" class="form-control" readonly />
+                    <button type="button" id="btnYeniBirimAc" class="btn btn-default btn-sm" title="Birim seç" aria-label="Birim seç" aria-expanded="false" aria-controls="pnlYeniBirim">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" id="btnYeniBirimTemizle" class="btn btn-default btn-sm" title="Temizle" aria-label="Birim: temizle">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+            <div id="pnlYeniBirim" class="kisisel-agac-panel" hidden>
+                <input type="search" id="txtYeniBirimAra" class="form-control input-sm kisisel-agac-ara" placeholder="Birim ara (en az 3 harf)" aria-label="Birim ara" />
+                <div id="agcYeniBirim" class="kisisel-agac" aria-label="Birimler"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlYeniPersonelTip">Personel Türü</label>
+                <div><select id="ddlYeniPersonelTip" class="form-control"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlYeniUnvan">Unvan</label>
+                <div><select id="ddlYeniUnvan" class="form-control"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtYeniKadroDerece">Derece</label>
+                <div><input type="number" id="txtYeniKadroDerece" class="form-control dar" step="1" min="0" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtYeniEkGosterge">Ek Gösterge</label>
+                <div><input type="number" id="txtYeniEkGosterge" class="form-control dar" step="1" min="0" /></div>
+            </div>
+            <div class="form-group" id="grpAtanacagiKadro" hidden>
+                <label class="control-label" for="ddlAtanacagiKadro">Atanacağı Kadro</label>
+                <div><select id="ddlAtanacagiKadro" class="form-control"></select></div>
+            </div>
+        </div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" id="btnYeniPersonelKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat="1">Kapat</button>
+    </div>
+</dialog>
+
+<dialog id="dlgOnay" class="kisisel-pencere kisisel-pencere-dar" aria-labelledby="dlgOnayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOnayBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat="1" aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde"><p id="dlgOnayMetin"></p></div>
+    <div class="pencere-alt">
+        <button type="button" id="btnOnayEvet" class="btn btn-danger btn-sm">Evet</button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat="1">Hayır</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/personelalt.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personel-kisisel.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/personel-kisisel.js" asp-append-version="true"></script>
+}

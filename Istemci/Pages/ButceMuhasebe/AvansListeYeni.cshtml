@@ -1,0 +1,66 @@
+@page
+@model AvansListeYeniModel
+@{
+    ViewData["Title"] = "Avans Kapatma (Avans Listesi)";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans avans-liste">
+    <section class="kutu bolum bolum-kriter">
+        <h2 class="bolum-baslik">Kıstaslar
+            <button type="button" class="btn btn-link btn-xs avans-yardim-dugme" data-yardim="#avansYardim" title="Yardım" aria-label="Yardım">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+            </button>
+        </h2>
+        <div id="avansYardim" class="alert alert-info avans-yardim" hidden>
+            Yıl zorunludur. Diğer alanlar boş bırakılırsa bütün kayıtlar listelenir. Kalan = Verilen − Alınan.
+        </div>
+        <form id="frmKriter" class="tanim-form avans-alanlar" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label" for="txtYil">Yıl</label>
+                <div><input type="number" id="txtYil" class="form-control input-sm sgb-yil" title="Belge yılını giriniz." /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtMuhasebe">Saymanlık / Birim</label>
+                <div id="muhBirim"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtKimlikNo">TC Kimlik / Vergi No</label>
+                <div><input type="text" id="txtKimlikNo" class="form-control input-sm avans-no" maxlength="11" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAd">Ad Soyad / Firma Ad</label>
+                <div><input type="text" id="txtAd" class="form-control input-sm" /></div>
+            </div>
+        </form>
+    </section>
+
+    <section class="kutu bolum bolum-liste">
+        <div class="avans-arac" role="toolbar" aria-label="İşlemler">
+            <button type="button" id="btnListele" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+            </button>
+            <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Listeyi Excel'e yazdır">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+            </button>
+            <span id="lblOzet" class="avans-ozet"></span>
+        </div>
+        <div id="grdListe" class="avans-grid" aria-label="Avans listesi"></div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/avansliste.js" asp-append-version="true"></script>
+}

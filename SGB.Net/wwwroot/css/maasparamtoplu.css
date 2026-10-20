@@ -1,0 +1,250 @@
+/* Personel Maaş Bilgileri Toplu Düzenleme (InsanKaynaklari/ListePersonelMaasParam): sıkışık kriterler (2 sütun, 12px),
+   altında düğme şeridi ve sayfanın kalan yüksekliğini dolduran tablo. Girilebilir hücreler beyaz, salt okunurlar sarı. */
+
+.mpt {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.mpt .form-control.input-sm,
+.mpt .btn-sm {
+    font-size: 12px;
+}
+
+.mpt .form-control.input-sm {
+    height: 26px;
+    padding: 2px 6px;
+}
+
+.mpt .btn-sm {
+    padding: 3px 8px;
+}
+
+/* ---------------------------------------------------------------- kriterler */
+
+.mpt-kriter {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px 24px;
+    padding: 8px 10px;
+    background: #f3f7fc;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    box-shadow: inset 4px 0 0 #3a78c2;
+}
+
+@media (max-width: 900px) {
+    .mpt-kriter {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.mpt-kolon {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.mpt-satir {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.mpt-etiket {
+    flex: 0 0 110px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.mpt-satir > .form-control,
+.mpt-satir > .mpt-coklu,
+.mpt-satir > .mpt-kosul {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.mpt-kosul {
+    display: flex;
+    gap: 4px;
+}
+
+.mpt-kosul .mpt-alan {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.mpt-kosul .mpt-islec {
+    flex: 0 0 90px;
+}
+
+.mpt-kosul .mpt-deger {
+    flex: 0 0 110px;
+    text-align: right;
+}
+
+/* ---------------------------------------------------------------- çoklu seçim */
+
+.mpt-coklu {
+    position: relative;
+}
+
+.mpt-coklu-dugme {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    height: 26px;
+    text-align: left;
+}
+
+.mpt-coklu-metin {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.mpt-coklu-liste {
+    min-width: 100%;
+    max-height: 320px;
+    overflow: auto;
+    padding: 4px 0;
+    font-size: 12px;
+}
+
+.mpt-coklu-liste label {
+    display: block;
+    margin: 0;
+    padding: 2px 10px;
+    font-weight: normal;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.mpt-coklu-liste label:hover {
+    background: var(--tema-acik);
+}
+
+.mpt-coklu-liste .mpt-coklu-hepsi {
+    font-weight: 600;
+    border-bottom: 1px solid var(--cizgi);
+    margin-bottom: 2px;
+}
+
+.mpt-coklu-bos {
+    padding: 2px 10px;
+    color: var(--soluk);
+}
+
+/* ---------------------------------------------------------------- düğme şeridi ve tablo */
+
+.mpt-liste {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.mpt-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.mpt-ayrac {
+    width: 1px;
+    height: 20px;
+    background: var(--cizgi);
+    margin: 0 2px;
+}
+
+.mpt-ata-alan {
+    width: 220px;
+}
+
+.mpt-ata-deger {
+    width: 110px;
+    text-align: right;
+}
+
+.mpt-kolonlar {
+    width: 160px;
+}
+
+.mpt-kolonlar .mpt-coklu-liste {
+    left: auto;
+    right: 0;
+}
+
+.mpt-sayi {
+    color: var(--soluk);
+}
+
+.mpt-yardim {
+    margin-left: auto;
+}
+
+.mpt-yardim-metin {
+    padding: 8px 10px;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.mpt-grid {
+    width: 100%;
+    height: 480px;
+    --ag-font-size: 12px;
+    --ag-cell-horizontal-padding: 6px;
+}
+
+.mpt-grid .ag-header-cell {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.mpt-grid .ag-header-cell-text {
+    white-space: normal;
+}
+
+.mpt-girilir {
+    background: #fff;
+}
+
+.mpt-salt {
+    background: #fcfcd4;
+}
+
+.mpt-sag {
+    text-align: right;
+}
+
+.mpt-sag-baslik .ag-header-cell-label {
+    justify-content: flex-end;
+}
+
+/* ---------------------------------------------------------------- dosya yükleme penceresi */
+
+.mpt-pencere {
+    width: min(440px, calc(100vw - 32px));
+    font-size: 12px;
+}
+
+.mpt-pencere .pencere-govde {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.mpt-pencere .mpt-etiket {
+    flex-basis: 100px;
+}
+
+.mpt-pencere-not {
+    margin: 4px 0 0;
+    color: var(--soluk);
+}

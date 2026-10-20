@@ -126,4 +126,109 @@
   <data name="Giris_EpostaMesaj" xml:space="preserve">
     <value>Ваш код для входа в {0}: &lt;b&gt;{1}&lt;/b&gt;&lt;br /&gt;Код действителен {2} ч.; в течение этого времени его можно использовать повторно.</value>
   </data>
+  <data name="SikKullanilanlar" xml:space="preserve">
+    <value>Избранное</value>
+  </data>
+  <data name="SikEkle" xml:space="preserve">
+    <value>Добавить в избранное</value>
+  </data>
+  <data name="SikCikar" xml:space="preserve">
+    <value>Удалить из избранного</value>
+  </data>
+  <data name="SikBos" xml:space="preserve">
+    <value>В избранном пока нет экранов. Чтобы добавить экран, нажмите + рядом с названием страницы.</value>
+  </data>
+  <data name="SikHata" xml:space="preserve">
+    <value>Не удалось сохранить избранное.</value>
+  </data>
+  <data name="TemaMor" xml:space="preserve">
+    <value>Фиолетовая</value>
+  </data>
+  <data name="TemaAntrasit" xml:space="preserve">
+    <value>Антрацитовая</value>
+  </data>
+  <data name="TemaAyarlari" xml:space="preserve">
+    <value>Настройки темы...</value>
+  </data>
+  <data name="TemaBaslik" xml:space="preserve">
+    <value>Изменение оформления</value>
+  </data>
+  <data name="TemaSec" xml:space="preserve">
+    <value>Цветовая тема</value>
+  </data>
+  <data name="UstSerit" xml:space="preserve">
+    <value>Верхняя панель</value>
+  </data>
+  <data name="UstSeritRenkli" xml:space="preserve">
+    <value>Цветная</value>
+  </data>
+  <data name="UstSeritSade" xml:space="preserve">
+    <value>Белая</value>
+  </data>
+  <data name="TemaKullanilan" xml:space="preserve">
+    <value>Используется</value>
+  </data>
+  <data name="TemaYardim" xml:space="preserve">
+    <value>Нажмите на тему, чтобы увидеть её на этой странице. Нажмите «Применить», чтобы сохранить выбор для всех экранов.</value>
+  </data>
+  <data name="TemaKaydedildi" xml:space="preserve">
+    <value>Тема сохранена.</value>
+  </data>
+  <data name="TemaKaydedilemedi" xml:space="preserve">
+    <value>Не удалось сохранить тему.</value>
+  </data>
+  <data name="TemaVazgec" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="TemaOkunamadi" xml:space="preserve">
+    <value>Не удалось прочитать тему.</value>
+  </data>
+  <data name="TemaKlasik" xml:space="preserve">
+    <value>Классическая</value>
+  </data>
+  <data name="Giris_GuvenlikKodu" xml:space="preserve">
+    <value>Код безопасности</value>
+  </data>
+  <data name="Giris_GuvenlikKoduGir" xml:space="preserve">
+    <value>Введите код безопасности с картинки.</value>
+  </data>
+  <data name="Giris_GuvenlikKoduYanlis" xml:space="preserve">
+    <value>Неверный код безопасности. Введите код с новой картинки.</value>
+  </data>
+  <data name="Giris_GuvenlikYenile" xml:space="preserve">
+    <value>Новая картинка</value>
+  </data>
+  <data name="Giris_SifremiUnuttum" xml:space="preserve">
+    <value>Забыли пароль?</value>
+  </data>
+  <data name="Sifre_Baslik" xml:space="preserve">
+    <value>Восстановление пароля</value>
+  </data>
+  <data name="Sifre_Bilgi" xml:space="preserve">
+    <value>Идентификационный номер / адрес эл. почты</value>
+  </data>
+  <data name="Sifre_Aciklama1" xml:space="preserve">
+    <value>Введите в поле выше идентификационный номер или адрес электронной почты.</value>
+  </data>
+  <data name="Sifre_Aciklama2" xml:space="preserve">
+    <value>Новый пароль будет отправлен на адрес электронной почты, указанный в данных пользователя. Если вы не знаете этот адрес, обратитесь к администраторам.</value>
+  </data>
+  <data name="Sifre_Gonder" xml:space="preserve">
+    <value>Отправить новый пароль на мою почту</value>
+  </data>
+  <data name="Sifre_BilgiGir" xml:space="preserve">
+    <value>Введите идентификационный номер или адрес электронной почты.</value>
+  </data>
+  <data name="Sifre_BilgiGecersiz" xml:space="preserve">
+    <value>Введите корректный идентификационный номер (11 цифр) или адрес электронной почты.</value>
+  </data>
+  <data name="Sifre_Gonderildi" xml:space="preserve">
+    <value>Запрос принят. Если данные принадлежат зарегистрированному пользователю, новый пароль будет отправлен на адрес электронной почты из данных пользователя. Если письмо не пришло, обратитесь к администраторам.</value>
+  </data>
+  <data name="Sifre_Kullanilamaz" xml:space="preserve">
+    <value>Пароль нельзя сбросить здесь: используется каталог организации (LDAP). Обратитесь к администраторам.</value>
+  </data>
+  <data name="Sifre_GiriseDon" xml:space="preserve">
+    <value>Вернуться ко входу</value>
+  </data>
 </root>

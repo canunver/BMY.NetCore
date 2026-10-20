@@ -1,0 +1,533 @@
+@page
+@model TaahhutKartiModel
+@{
+    bool per = Model.Tur == 2;
+    ViewData["Title"] = per ? "Personel Taahhütleri" : "Sözleşme ve Taahhüt Kartı";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans muh-tanim taahhut" data-tur="@Model.Tur" data-odeme="@(Model.OdemeYetkili ? "1" : "0")" data-doviz="@(Model.Doviz ? "1" : "0")">
+    <div class="th-sekmeler" role="tablist" aria-label="Taahhüt kartı">
+        <button type="button" class="th-sekme active" role="tab" aria-selected="true" aria-controls="sekmeArama" id="tabArama" data-sekme="sekmeArama">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Belge Arama
+        </button>
+        <button type="button" class="th-sekme" role="tab" aria-selected="false" aria-controls="sekmeBelge" id="tabBelge" data-sekme="sekmeBelge">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Belge Düzenleme
+        </button>
+    </div>
+
+    @* ------------------------------------------------------------------ Belge Arama *@
+    <div id="sekmeArama" class="th-sekme-bolme th-arama-yan" role="tabpanel" aria-labelledby="tabArama">
+        <section class="kutu bolum bolum-kriter th-kriter">
+            <h2 class="bolum-baslik">Sorgu Alanları</h2>
+            <form id="frmArama" class="th-ust-etiket" novalidate>
+                <div class="form-group">
+                    <label for="srYil">Yıl</label>
+                    <input type="number" id="srYil" class="form-control input-sm sgb-yil" min="1980" />
+                </div>
+                <div class="form-group">
+                    <label for="srTarih">Tarih</label>
+                    <input type="date" id="srTarih" class="form-control input-sm" title="Bu tarihte devam eden taahhütler" />
+                </div>
+                <div class="form-group">
+                    <label>Muhasebe / Birim</label>
+                    <div id="muhBirimAra"></div>
+                </div>
+                <div class="form-group">
+                    <label for="srVergiNo">@(per ? "Personel TC Kimlik No" : "Müteahhit TC/Vergi No")</label>
+                    <input type="text" id="srVergiNo" class="form-control input-sm" maxlength="20" />
+                </div>
+                <div class="form-group">
+                    <label for="srAdSoyad">@(per ? "Ad ve Soyad" : "Müteahhit Adı/Soy./Ünv.")</label>
+                    <input type="text" id="srAdSoyad" class="form-control input-sm" />
+                </div>
+                <div class="form-group">
+                    <label for="srProjeSiraNo">Proje Sıra No</label>
+                    <input type="text" id="srProjeSiraNo" class="form-control input-sm" />
+                </div>
+                <div class="form-group">
+                    <label for="srKonu">Konu</label>
+                    <input type="text" id="srKonu" class="form-control input-sm" />
+                </div>
+                <div class="form-group">
+                    <label for="srEko">Eko Kod</label>
+                    <input type="text" id="srEko" class="form-control input-sm" />
+                </div>
+                <div class="form-group">
+                    <label for="srIs">İş Adı</label>
+                    <select id="srIs" class="form-control input-sm"><option value="">Hepsi</option></select>
+                </div>
+                <div class="form-group">
+                    <label for="srAlimUsulu">Alım Usulü</label>
+                    <select id="srAlimUsulu" class="form-control input-sm"><option value="">Hepsi</option></select>
+                </div>
+                <div class="form-group">
+                    <label for="srSozBas">Sözleşme Tarihi</label>
+                    <div class="th-op"><span class="th-ek" aria-hidden="true">&gt;=</span><input type="date" id="srSozBas" class="form-control input-sm" aria-label="Sözleşme tarihi en az" /></div>
+                    <div class="th-op"><span class="th-ek" aria-hidden="true">&lt;=</span><input type="date" id="srSozBit" class="form-control input-sm" aria-label="Sözleşme tarihi en çok" /></div>
+                </div>
+                <div class="form-group">
+                    <label for="srDurum">Durum</label>
+                    <select id="srDurum" class="form-control input-sm">
+                        <option value="-1">HEPSİ</option>
+                        <option value="0" selected>DEVAM</option>
+                        <option value="1">KAPANDI</option>
+                        <option value="9">İPTAL</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm th-listele"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele</button>
+            </form>
+        </section>
+
+        <section class="kutu bolum bolum-liste th-sonuc">
+            <div class="avans-arac" role="toolbar" aria-label="Arama işlemleri">
+                <button type="button" id="btnRapor" class="btn btn-default btn-sm" title="Listeyi Excel'e yazdır"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Rapor</button>
+                @if (per)
+                {
+                    <button type="button" id="btnListelePer" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Sözleşmesi Olmayan Per.</button>
+                    <button type="button" id="btnSozUret" class="btn btn-default btn-sm" title="Seçili satırlar için sözleşme üret"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Sözleşme Üret</button>
+                    <button type="button" id="btnDegUret" class="btn btn-default btn-sm" title="Seçili satırlar için maaş farkı üret"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Maaş Farkı Üret</button>
+                    <button type="button" id="btnOEUret" class="btn btn-default btn-sm" title="Seçili birimde MİF üretilmemiş / onaylanmamış sözleşmeler için"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Ödeme Emri Üret</button>
+                }
+                <button type="button" id="btnIptalListe" class="btn btn-default btn-sm" title="Seçili taahhüt kayıtlarını iptal et"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> İptal Et</button>
+                <span id="lblOzet" class="avans-ozet"></span>
+            </div>
+            <div id="grdListe" class="avans-grid" aria-label="Taahhüt listesi"></div>
+        </section>
+    </div>
+
+    @* ------------------------------------------------------------------ Belge Düzenleme *@
+    <div id="sekmeBelge" class="th-sekme-bolme" role="tabpanel" aria-labelledby="tabBelge" hidden>
+        <section class="kutu bolum bolum-arac">
+            <div class="avans-arac mt-arac" role="toolbar" aria-label="Belge işlemleri">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+                <button type="button" id="btnYeni" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Kayıt</button>
+                @if (Model.OdemeYetkili)
+                {
+                    <button type="button" id="btnPlan" class="btn btn-default btn-sm" data-kayit><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Taahhüt Planı</button>
+                }
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-kayit>
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Detay Veriler <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" data-islem="sozlesme" data-tur="1">Sözleşme Koşulları</a></li>
+                        <li><a href="#" data-islem="sozlesme" data-tur="2">Garanti Şartları</a></li>
+                        <li><a href="#" data-islem="sozlesme" data-tur="3">Teminat Şartları</a></li>
+                        <li><a href="#" data-islem="bakim">Bakım Tarihçesi</a></li>
+                        <li><a href="#" data-islem="karaliste">Müteahhit Kara Listesi Yazdır</a></li>
+                        @if (Model.OdemeYetkili)
+                        {
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#" data-islem="teminat">Alınan Teminatlar</a></li>
+                            <li><a href="#" data-islem="avans">Verilen Avans ve Mahsuplar</a></li>
+                            <li><a href="#" data-islem="borc">Borçlar ve Temlikler</a></li>
+                            <li><a href="#" data-islem="odemeemri">Ödeme Emri</a></li>
+                        }
+                    </ul>
+                </div>
+                <button type="button" id="btnYazdir" class="btn btn-default btn-sm" data-kayit><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır</button>
+                @if (Model.OdemeYetkili)
+                {
+                    <button type="button" id="btnAcilis" class="btn btn-default btn-sm" data-kayit><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Açılış Tahakkuku Oluştur</button>
+                }
+                <button type="button" id="btnMuavin" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Muavin Defteri Listesi</button>
+                <button type="button" id="btnBelgeEkle" class="btn btn-default btn-sm" data-kayit><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Belge Ekle</button>
+                @if (Model.OdemeYetkili)
+                {
+                    <button type="button" id="btnSil" class="btn btn-danger btn-sm" data-kayit><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil</button>
+                    <button type="button" id="btnDosyaKapat" class="btn btn-default btn-sm" data-kayit><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Dosya Kapat</button>
+                }
+                <span id="lblKapali" class="th-kapali" hidden><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Dosya kapatılmış</span>
+            </div>
+        </section>
+
+        <form id="frmBelge" class="th-form" novalidate>
+            <input type="hidden" id="hdnKod" />
+            <section class="kutu bolum th-bolum-kart">
+                <h2 class="bolum-baslik">@(per ? "Personel Sözleşmesi" : "Taahhüt Bilgileri")</h2>
+                <div class="tanim-form avans-alanlar">
+                    <div class="form-group">
+                        <label class="control-label" for="txtYil">Yıl</label>
+                        <div><input type="number" id="txtYil" class="form-control input-sm sgb-yil" min="1980" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Muhasebe / Birim</label>
+                        <div id="muhBirim"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtSiraNo">Sıra No</label>
+                        <div class="avans-bitisik">
+                            <input type="text" id="txtSiraNo" class="form-control input-sm th-orta th-salt" readonly title="Proje No (kayıtta verilir)" aria-label="Proje No" placeholder="Proje No" />
+                            <input type="text" id="txtDptSiraNo" class="form-control input-sm th-orta" title="DPT No" aria-label="DPT No" placeholder="DPT No" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <span class="control-label">Tahakkuk Belge No</span>
+                        <div class="th-deger"><a href="#" id="lnkTahakkuk" hidden></a><span id="lblTahakkukYok">Tahakkuk belgesi oluşturulmamış</span></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtKonu">@(per ? "Personel Tip ve Unvanı" : "Taahhüt Konusu")</label>
+                        <div><input type="text" id="txtKonu" class="form-control input-sm" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtVNo">@(per ? "Personel Kimlik No" : "Müteahhit Kimlik No")</label>
+                        <div class="avans-bitisik">
+                            <input type="text" id="txtVNo" class="form-control input-sm th-orta" maxlength="20" />
+                            <button type="button" id="btnFirmaSec" class="btn btn-default btn-sm" title="Kişi / Firma Listesi"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Kişi / Firma Listesi</span></button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtUnvan">@(per ? "Ad ve Soyad" : "Müteahhit Unvanı")</label>
+                        <div><input type="text" id="txtUnvan" class="form-control input-sm th-salt" readonly /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtAdres">Adres</label>
+                        <div><input type="text" id="txtAdres" class="form-control input-sm th-salt" readonly /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtKesifBedeli">Bedel</label>
+                        <div class="avans-bitisik">
+                            <input type="text" id="txtKesifBedeli" class="form-control input-sm th-tutar" inputmode="decimal" placeholder="Keşif Bedeli" title="Keşif Bedeli" aria-label="Keşif Bedeli" />
+                            <input type="text" id="txtIhaleBedeli" class="form-control input-sm th-tutar" inputmode="decimal" placeholder="İhale Bedeli" title="İhale Bedeli" aria-label="İhale Bedeli" />
+                            @if (Model.Doviz)
+                            {
+                                <select id="ddlParaBirimi" class="form-control input-sm th-para" aria-label="Para birimi"><option value=""></option></select>
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtIseBaslama">İşe Başlama / Bitirme</label>
+                        <div class="avans-bitisik">
+                            <input type="date" id="txtIseBaslama" class="form-control input-sm th-tarih" title="İşe Başlama Tarihi" />
+                            <input type="date" id="txtIsBitirme" class="form-control input-sm th-tarih" title="İşi Bitirme Tarihi" aria-label="İşi Bitirme Tarihi" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtSozlesmeTarihi">Sözleşme / Geçici Kabul</label>
+                        <div class="avans-bitisik">
+                            <input type="date" id="txtSozlesmeTarihi" class="form-control input-sm th-tarih" title="Sözleşme Tarihi" />
+                            <input type="date" id="txtGeciciKabul" class="form-control input-sm th-tarih" title="Geçici Kabul Tarihi" aria-label="Geçici Kabul Tarihi" />
+                        </div>
+                    </div>
+                    @if (!per)
+                    {
+                        <div class="form-group">
+                            <label class="control-label" for="txtSure1">Süre Uzatımı</label>
+                            <div class="avans-bitisik">
+                                <input type="text" id="txtSure1" class="form-control input-sm th-kisa" placeholder="1." title="1. Süre Uzatımı" />
+                                <input type="text" id="txtSure2" class="form-control input-sm th-kisa" placeholder="2." title="2. Süre Uzatımı" aria-label="2. Süre Uzatımı" />
+                                <input type="text" id="txtSure3" class="form-control input-sm th-kisa" placeholder="3." title="3. Süre Uzatımı" aria-label="3. Süre Uzatımı" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            @if (!per)
+            {
+                <section class="kutu bolum th-bolum-sozlesme">
+                    <h2 class="bolum-baslik">Sözleşme ve Bütçe Bilgileri</h2>
+                    <div class="tanim-form avans-alanlar">
+                        <div class="form-group">
+                            <label class="control-label" for="ddlIs">İş</label>
+                            <div><select id="ddlIs" class="form-control input-sm"><option value="0"></option></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtGarantiBas">Garanti</label>
+                            <div class="avans-bitisik">
+                                <input type="date" id="txtGarantiBas" class="form-control input-sm th-tarih" title="Garanti Başlama Tarihi" />
+                                <input type="date" id="txtGarantiBit" class="form-control input-sm th-tarih" title="Garanti Bitiş Tarihi" aria-label="Garanti Bitiş Tarihi" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtDVTarih">İhale Kararı Damga V.</label>
+                            <div class="avans-bitisik">
+                                <input type="date" id="txtDVTarih" class="form-control input-sm th-tarih" title="Tarih" />
+                                <input type="text" id="txtDVNo" class="form-control input-sm th-kisa" placeholder="Numara" title="Numarası" aria-label="İhale kararı damga vergisi numarası" />
+                                <input type="text" id="txtDVTutar" class="form-control input-sm th-tutar" inputmode="decimal" placeholder="Tutar" title="Tutarı" aria-label="İhale kararı damga vergisi tutarı" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtSozDVTarih">Sözleşme Damga V.</label>
+                            <div class="avans-bitisik">
+                                <input type="date" id="txtSozDVTarih" class="form-control input-sm th-tarih" title="Tarih" />
+                                <input type="text" id="txtSozDVNo" class="form-control input-sm th-kisa" placeholder="Numara" title="Numarası" aria-label="Sözleşme damga vergisi numarası" />
+                                <input type="text" id="txtSozDVTutar" class="form-control input-sm th-tutar" inputmode="decimal" placeholder="Tutar" title="Tutarı" aria-label="Sözleşme damga vergisi tutarı" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtIndirimOrani">İndirim Oranı</label>
+                            <div><input type="text" id="txtIndirimOrani" class="form-control input-sm th-tutar" inputmode="decimal" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtGerceklesen">Gerçekl. Taahhüt / KDV</label>
+                            <div><input type="text" id="txtGerceklesen" class="form-control input-sm th-tutar" inputmode="decimal" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtOdenekTertip">Ödeneğin Tertibi</label>
+                            <div class="avans-bitisik">
+                                <input type="text" id="txtOdenekTertip" class="form-control input-sm th-tertip" />
+                                <button type="button" class="btn btn-default btn-sm" data-tertip="#txtOdenekTertip" title="Tertip Seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Tertip Seç</span></button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtDuranTertip">Duran Varlığın Tertibi</label>
+                            <div class="avans-bitisik">
+                                <input type="text" id="txtDuranTertip" class="form-control input-sm th-tertip" />
+                                <button type="button" class="btn btn-default btn-sm" data-tertip="#txtDuranTertip" title="Tertip Seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Tertip Seç</span></button>
+                            </div>
+                        </div>
+                        <div class="form-group ust-hizali">
+                            <label class="control-label" for="txtAciklama">Açıklama</label>
+                            <div><textarea id="txtAciklama" class="form-control input-sm" rows="3"></textarea></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="ddlAlimUsulu">Alım Usulü</label>
+                            <div><select id="ddlAlimUsulu" class="form-control input-sm"><option value=""></option></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="ddlSgk">SGK Bildirimi</label>
+                            <div>
+                                <select id="ddlSgk" class="form-control input-sm th-orta">
+                                    <option value="0">Seçiniz</option>
+                                    <option value="1">Var</option>
+                                    <option value="2">Yok</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="control-label">İşlemi Yapan</span>
+                            <div class="th-deger" id="lblIslemYapan"></div>
+                        </div>
+                    </div>
+                </section>
+            }
+        </form>
+
+        <section class="kutu bolum bolum-liste th-bolum-da">
+            <h2 class="bolum-baslik">Sözleşme Değer Artışları</h2>
+            <div class="avans-arac" role="toolbar" aria-label="Değer artışı işlemleri">
+                @if (per)
+                {
+                    <button type="button" id="btnDAPencere" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Değ. Artışı Ekle</button>
+                }
+                else
+                {
+                    <button type="button" id="btnDAEkle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekle</button>
+                    <button type="button" id="btnDASil" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Sil</button>
+                    <span class="avans-not">Satırlar Kaydet ile kartla birlikte kaydedilir.</span>
+                }
+            </div>
+            <div id="grdDegerArtisi" class="th-grid-da" aria-label="Sözleşme değer artışları"></div>
+        </section>
+    </div>
+</div>
+
+@* ------------------------------------------------------------------ pencereler *@
+<dialog id="dlgTeminat" class="tanim-pencere th-pencere th-pencere-genis" aria-labelledby="dlgTeminatBaslik">
+    <div class="pencere-baslik"><h2 id="dlgTeminatBaslik">Alınan Teminatlar</h2><button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button></div>
+    <div class="pencere-govde">
+        <div class="avans-arac">
+            <button type="button" class="btn btn-default btn-sm" data-secim="teminat"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Teminat Ekle</button>
+            <button type="button" class="btn btn-default btn-sm" data-cikar="teminat" disabled><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Çıkar</button>
+        </div>
+        <div id="grdTeminat" class="th-grid-pencere"></div>
+    </div>
+</dialog>
+
+<dialog id="dlgAvans" class="tanim-pencere th-pencere th-pencere-genis" aria-labelledby="dlgAvansBaslik">
+    <div class="pencere-baslik"><h2 id="dlgAvansBaslik">Verilen Avans ve Mahsuplar</h2><button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button></div>
+    <div class="pencere-govde">
+        <div class="avans-arac">
+            <button type="button" class="btn btn-default btn-sm" data-secim="avans"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Avans Ekle</button>
+            <button type="button" class="btn btn-default btn-sm" data-cikar="avans" disabled><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Çıkar</button>
+        </div>
+        <div id="grdAvans" class="th-grid-pencere"></div>
+    </div>
+</dialog>
+
+<dialog id="dlgBorc" class="tanim-pencere th-pencere" aria-labelledby="dlgBorcBaslik">
+    <div class="pencere-baslik"><h2 id="dlgBorcBaslik">Borçlar ve Temlikler</h2><button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button></div>
+    <div class="pencere-govde">
+        <div class="avans-arac">
+            <button type="button" class="btn btn-default btn-sm" data-secim="borc"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Borç ve Temlik Ekle</button>
+            <button type="button" class="btn btn-default btn-sm" data-cikar="borc" disabled><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Çıkar</button>
+        </div>
+        <div id="grdBorc" class="th-grid-pencere"></div>
+    </div>
+</dialog>
+
+<dialog id="dlgSecim" class="tanim-pencere th-pencere th-pencere-genis" aria-labelledby="dlgSecimBaslik">
+    <div class="pencere-baslik"><h2 id="dlgSecimBaslik">Seçim</h2><button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button></div>
+    <div class="pencere-govde">
+        <p class="avans-not" id="lblSecimNot">Eklenecek satırları işaretleyip Kaydet'e basınız.</p>
+        <div id="grdSecim" class="th-grid-pencere"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnSecimKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+    </div>
+</dialog>
+
+<dialog id="dlgOdemeEmri" class="tanim-pencere th-pencere th-pencere-cokgenis" aria-labelledby="dlgOdemeEmriBaslik">
+    <div class="pencere-baslik"><h2 id="dlgOdemeEmriBaslik">Ödeme Emri</h2><button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button></div>
+    <div class="pencere-govde">
+        <div class="avans-arac">
+            <button type="button" id="btnYeniOdemeEmri" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Ödeme Emri</button>
+            <button type="button" id="btnOdemeEmriSil" class="btn btn-default btn-sm" disabled><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Seçili Kayıtları Sil</button>
+        </div>
+        <div id="grdOdemeEmri" class="th-grid-pencere"></div>
+    </div>
+</dialog>
+
+<dialog id="dlgAcilis" class="tanim-pencere th-pencere" aria-labelledby="dlgAcilisBaslik">
+    <div class="pencere-baslik"><h2 id="dlgAcilisBaslik">Açılış Tahakkuku Hesap Kodları</h2><button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button></div>
+    <div class="pencere-govde">
+        <div class="tanim-form avans-alanlar">
+            <div class="form-group">
+                <label class="control-label" for="txtAcBorc">Borç Hesap Kodu</label>
+                <div><input type="text" id="txtAcBorc" class="form-control input-sm th-hesap" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAcAlacak">Alacak Hesap Kodu</label>
+                <div><input type="text" id="txtAcAlacak" class="form-control input-sm th-hesap" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAcYil">Ödeme Emri Belge Yıl</label>
+                <div><input type="number" id="txtAcYil" class="form-control input-sm sgb-yil" min="1980" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAcBelgeNo">Ödeme Emri Belge No</label>
+                <div><input type="text" id="txtAcBelgeNo" class="form-control input-sm th-orta" inputmode="numeric" title="Oluşturulacak belgeye daha önceki bir belgenin numarasını vermek için yazın, aksi halde boş bırakın" /></div>
+            </div>
+        </div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnTahakkukOlustur" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Tahakkuku Oluştur</button>
+    </div>
+</dialog>
+
+<dialog id="dlgDegerArtisi" class="tanim-pencere th-pencere" aria-labelledby="dlgDegerArtisiBaslik">
+    <div class="pencere-baslik"><h2 id="dlgDegerArtisiBaslik">Değer Artışı Düzenleme</h2><button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button></div>
+    <div class="pencere-govde">
+        <form id="frmDA" class="tanim-form avans-alanlar" novalidate>
+            <input type="hidden" data-alan="kod" />
+            <input type="hidden" data-alan="odemeEmriYil" />
+            <input type="hidden" data-alan="odemeEmriNo" />
+            <div class="form-group">
+                <label class="control-label" for="daSozTar">Söz. Tarihi</label>
+                <div><input type="date" id="daSozTar" class="form-control input-sm th-tarih" data-alan="sozlesmeTarihi" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="daOnayTar">Onay Tarihi</label>
+                <div><input type="date" id="daOnayTar" class="form-control input-sm th-tarih" data-alan="onayTarihi" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="daSozTutar">Söz. Tutarı</label>
+                <div><input type="text" id="daSozTutar" class="form-control input-sm th-tutar" inputmode="decimal" data-alan="sozlesmeTutari" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="daDVTarih">Damga V. Tarihi</label>
+                <div><input type="date" id="daDVTarih" class="form-control input-sm th-tarih" data-alan="damgaVergisiTarihi" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="daDVNo">Damga V. No</label>
+                <div><input type="text" id="daDVNo" class="form-control input-sm th-orta" data-alan="damgaVergisiNo" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="daDVTutar">Damga V. Tutarı</label>
+                <div><input type="text" id="daDVTutar" class="form-control input-sm th-tutar" inputmode="decimal" data-alan="damgaVergisiTutari" /></div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnDAKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kaydet</button>
+    </div>
+</dialog>
+
+@if (per)
+{
+    <dialog id="dlgSozParam" class="tanim-pencere th-pencere" aria-labelledby="dlgSozParamBaslik">
+        <div class="pencere-baslik"><h2 id="dlgSozParamBaslik">Sözleşme Üretim Parametreleri</h2><button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button></div>
+        <div class="pencere-govde">
+            <div class="tanim-form avans-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="prBasTar">Söz. Baş. Tarih</label>
+                    <div><input type="date" id="prBasTar" class="form-control input-sm th-tarih" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="prBitTar">Söz. Bit. Tarih</label>
+                    <div><input type="date" id="prBitTar" class="form-control input-sm th-tarih" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="prSaat">Tahmini Saat</label>
+                    <div>
+                        <input type="number" id="prSaat" class="form-control input-sm th-kisa" min="0" />
+                        <span class="avans-not">Koro ve saatli çalışan kişiler için kullanılır.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pencere-alt">
+            <button type="button" class="btn btn-default btn-sm" data-kapat>İptal</button>
+            <button type="button" id="btnSozParamUret" class="btn btn-primary btn-sm">Üret</button>
+        </div>
+    </dialog>
+
+    <dialog id="dlgDegParam" class="tanim-pencere th-pencere" aria-labelledby="dlgDegParamBaslik">
+        <div class="pencere-baslik"><h2 id="dlgDegParamBaslik">Maaş Farkı Parametreleri</h2><button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button></div>
+        <div class="pencere-govde">
+            <div class="tanim-form avans-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="prDegTar">Maaş Farkı Tarihi</label>
+                    <div><input type="date" id="prDegTar" class="form-control input-sm th-tarih" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="prDegSaat">Tahmini Saat</label>
+                    <div>
+                        <input type="number" id="prDegSaat" class="form-control input-sm th-kisa" min="0" />
+                        <span class="avans-not">Koro ve saatli çalışan kişiler için kullanılır.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pencere-alt">
+            <button type="button" class="btn btn-default btn-sm" data-kapat>İptal</button>
+            <button type="button" id="btnDegParamUret" class="btn btn-primary btn-sm">Üret</button>
+        </div>
+    </dialog>
+
+    <dialog id="dlgDurum" class="tanim-pencere th-pencere" aria-labelledby="dlgDurumBaslik">
+        <div class="pencere-baslik"><h2 id="dlgDurumBaslik">Sözleşme üretim işlemi devam ediyor</h2></div>
+        <div class="pencere-govde">
+            <progress id="prgDurum" class="th-ilerleme" max="1" value="0"></progress>
+            <p id="lblDurum" class="avans-not" aria-live="polite"></p>
+        </div>
+    </dialog>
+}
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tertipsec.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hesapkodu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taahhutkarti.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/tertipsec.js" asp-append-version="true"></script>
+    <script src="~/js/hesapkodu.js" asp-append-version="true"></script>
+    <script src="~/js/taahhutkarti.js" asp-append-version="true"></script>
+}

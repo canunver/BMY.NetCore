@@ -1,0 +1,36 @@
+@page
+@model HataDosyaModel
+@{
+    // Sistem Durum Dosya Listesi (eski KYM/HataDosya.aspx). Varsayılan sıra tarihe göre (en yeni üstte); sütun başlığına
+    // tıklanarak tarih, büyüklük ya da ada göre sıralanır.
+    ViewData["Title"] = Metin.Kullanici("FRMHTD001");
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans hata-dosya" data-bos="@Metin.Kullanici("FRMHTD002")">
+    <section class="kutu bolum">
+        <div class="btn-toolbar tanim-arac hd-arac" role="toolbar">
+            <button type="button" id="btnYenile" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Yenile
+            </button>
+            <span id="lblAdet" class="hd-adet" role="status"></span>
+        </div>
+        <div id="hata" class="alert alert-danger" role="alert" hidden></div>
+        <div id="grdDosya" class="hd-grid" aria-label="@Metin.Kullanici("FRMHTD001")"></div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hatadosya.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/hatadosya.js" asp-append-version="true"></script>
+}

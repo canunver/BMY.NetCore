@@ -1,0 +1,83 @@
+@page
+@model PersonelMaasParamModel
+@{
+    ViewData["Title"] = "Maaş Parametreleri";
+    ViewData["GovdeSinif"] = "pb-alt";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="pb pb-maas" id="pbMaas" data-personel-kod="@Model.PersonelKod" data-tc-kimlik-no="@Model.TcKimlikNo">
+    <div class="pb-maas-govde">
+        <div class="pb-maas-sol">
+            <section class="pb-bolum renk-mor" id="bolumSendika" hidden>
+                <h3>Sendika</h3>
+                <div class="pb-govde">
+                    <div class="pb-arac pb-maas-arac" role="toolbar">
+                        <button type="button" id="btnSendikaKaydet" class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Sendika Bilgisi Kaydet
+                        </button>
+                    </div>
+                    <div class="pb-form">
+                        <div class="form-group">
+                            <label class="control-label" for="cmbSendikalar">Sendika</label>
+                            <div><select id="cmbSendikalar" class="form-control"></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="tfSenKesOran">Kesinti Oranı</label>
+                            <div><input type="text" id="tfSenKesOran" class="form-control dar" inputmode="decimal" /></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pb-bolum renk-yesil pb-doldur pb-maas-gelir">
+                <h3>Gelirler</h3>
+                <div class="pb-govde pb-doldur">
+                    <div class="pb-arac pb-maas-arac" role="toolbar">
+                        <button type="button" id="btnKaydetGelirler" class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Değ. Değerleri Kaydet
+                        </button>
+                    </div>
+                    <div id="grdGelirler" class="pb-grid" aria-label="Gelirler"></div>
+                </div>
+            </section>
+        </div>
+
+        <section class="pb-bolum renk-mavi pb-doldur pb-maas-sag">
+            <h3>Matrahlar</h3>
+            <div class="pb-govde pb-doldur">
+                <div class="pb-arac pb-maas-arac" role="toolbar">
+                    <label for="txtYil" class="pb-maas-etiket">Yıl:</label>
+                    <input type="number" id="txtYil" class="form-control input-sm sgb-yil pb-maas-yil" min="1900" max="2999" step="1" />
+                    <button type="button" id="btnListele" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Listele
+                    </button>
+                    <button type="button" id="btnSatirAc" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Ekle
+                    </button>
+                    <button type="button" id="btnKaydetMatrah" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kaydet
+                    </button>
+                    <button type="button" id="btnYazdir" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Bordro Yazdır
+                    </button>
+                </div>
+                <div id="grdMatrahlar" class="pb-grid" aria-label="Matrahlar"></div>
+                <p class="pb-not">Yalnızca süreç numarası olmayan (000000000) satırlar değiştirilip kaydedilebilir.</p>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/personelalt.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personel-maasparam.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/personel-maasparam.js" asp-append-version="true"></script>
+}

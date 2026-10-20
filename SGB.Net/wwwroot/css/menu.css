@@ -1,5 +1,5 @@
 /* Sayfaların ortak çerçevesi: üst şerit, sol menü, alt bilgi.
-   Renkler değişkenlerden gelir; kullanıcı tema değiştirince yalnızca --tema-* değerleri değişir.
+   Renkler değişkenlerden gelir; kullanıcı tema değiştirince yalnızca --tema-* değerleri değişir (css/tema.css).
    Tema rengi dolgu olarak değil vurgu olarak kullanılır: seçili öğe, bağlantı, odak. */
 
 :root {
@@ -18,9 +18,7 @@
     --yan-genislik: var(--yan-dar);
 }
 
-html[data-tema="Theme2"] { --tema-ana: #a83f3f; --tema-acik: #f9e9e8; }
-html[data-tema="Theme3"] { --tema-ana: #3f7a26; --tema-acik: #e8f3df; }
-html[data-tema="Theme4"] { --tema-ana: #9a5b00; --tema-acik: #fbefd9; }
+/* Tema renkleri (Theme1..6) ve temaya göre değişen diğer değişkenler css/tema.css dosyasındadır. */
 
 html[data-menu="acik"] { --yan-genislik: var(--yan-genis); }
 html[data-menu="gizli"] { --yan-genislik: 0px; }
@@ -165,8 +163,98 @@ body.menusuz {
     white-space: nowrap;
 }
 
+/* Sayfa adı ve yanında sık kullanılanlara ekle (+) / çıkar (−) düğmesi */
+.k-sayfa-satir {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.k-sik {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 2px solid #d97706;
+    border-radius: 50%;
+    background: #f59e0b;
+    color: #fff;
+    box-shadow: 0 1px 4px rgba(217, 119, 6, 0.45);
+    cursor: pointer;
+    transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
+}
+
+.k-sik svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 3;
+    stroke-linecap: round;
+}
+
+.k-sik:hover {
+    transform: scale(1.12);
+    background: #d97706;
+    box-shadow: 0 2px 8px rgba(217, 119, 6, 0.55);
+}
+
+/* Sayfa zaten sık kullanılanlarda: çıkarma düğmesi açık zeminli durur, üzerine gelince kırmızılaşır */
+.k-sik.k-sik-var {
+    background: #fef3c7;
+    color: #b45309;
+    box-shadow: none;
+}
+
+.k-sik.k-sik-var:hover {
+    border-color: #b42318;
+    background: #b42318;
+    color: #fff;
+}
+
+.k-sik:disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
 .k-bosluk {
     flex: 1;
+}
+
+/* Sayfanın yardımı (kullanıcı adının solunda) */
+.menu-ust .k-yardim {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: none;
+    margin-right: 6px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    color: var(--soluk);
+    white-space: nowrap;
+}
+
+.menu-ust .k-yardim:hover {
+    background: var(--zemin);
+    color: var(--tema-ana);
+}
+
+.k-yardim svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+@media (max-width: 767px) {
+    .k-yardim-ad {
+        display: none;
+    }
 }
 
 .k-kullanici {
@@ -263,10 +351,7 @@ body.menusuz {
     box-shadow: 0 0 0 2px var(--murekkep);
 }
 
-.k-tema[data-tema="Theme1"] { background: #1d6f8f; }
-.k-tema[data-tema="Theme2"] { background: #a83f3f; }
-.k-tema[data-tema="Theme3"] { background: #3f7a26; }
-.k-tema[data-tema="Theme4"] { background: #9a5b00; }
+/* Tema düğmelerinin rengi css/tema.css dosyasındadır (her düğme kendi temasının değişkenlerini taşır). */
 
 .menu-ust .k-dil {
     padding: 3px 12px;
@@ -510,6 +595,50 @@ html[data-menu="gizli"] .menu-yan:not(.genis) .y-panel {
 
 .y-grup-icerik {
     margin-bottom: 10px;
+}
+
+/* Sol menünün başındaki Sık Kullanılanlar bölümü: modüllerden ayrı, kendi (sarı) renginde */
+.menu-yan .y-grup-baslik.y-sik {
+    --m: #b7791f;
+    --m-acik: #fbf1dc;
+}
+
+.y-sik-yildiz {
+    width: 13px;
+    height: 13px;
+    flex: none;
+    fill: currentColor;
+}
+
+.y-grup-simge {
+    width: 16px;
+    height: 16px;
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.menu-yan .y-sik-yildiz {
+    width: 16px;
+    height: 16px;
+}
+
+.y-sik-bos {
+    padding: 2px 10px 6px 13px;
+    font-size: 12px;
+    color: var(--soluk);
+    white-space: normal;
+}
+
+.menu-yan:not(.genis) .y-sik-bos {
+    visibility: hidden;
+}
+
+html[data-menu="acik"] .menu-yan .y-sik-bos {
+    visibility: visible;
 }
 
 .y-agac > .y-grup-baslik:first-child {
@@ -781,4 +910,15 @@ body.menusuz .sayfa-icerik {
     .y-ok {
         transition: none;
     }
+}
+
+/* Taşınma durumu (menu.xml Durum): Eski normal, Yeni kırmızı, Yok açık gri. */
+.menu-yan .y-baglanti.y-durum-yeni,
+.menu-yan .y-sonuc.y-durum-yeni {
+    color: #c62828;
+}
+
+.menu-yan .y-baglanti.y-durum-yok,
+.menu-yan .y-sonuc.y-durum-yok {
+    color: #a5adb5;
 }

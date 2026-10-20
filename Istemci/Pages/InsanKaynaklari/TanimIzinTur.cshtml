@@ -1,0 +1,83 @@
+@page
+@model TanimIzinTurModel
+@{
+    ViewData["Title"] = "İzin Türleri";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim izin-tur">
+    <!-- Sol: izin türleri -->
+    <section class="tanim-sol">
+        <div class="kutu">
+            <h2 class="kutu-baslik">İzin Türleri</h2>
+            <form id="frmArama" class="tanim-ekle" role="search" novalidate>
+                <input type="search" id="txtAra" class="form-control input-sm" placeholder="Ada göre süz" aria-label="Süz" />
+                <button type="submit" id="btnListele" class="btn btn-default btn-sm" title="Tüm listeyi yeniden oku">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Listele
+                </button>
+            </form>
+            <div id="grdIzinTur" class="tanim-grid" aria-label="İzin türleri"></div>
+        </div>
+    </section>
+
+    <!-- Sağ: seçili izin türü -->
+    <section class="tanim-sag">
+        <div class="kutu">
+            <div class="btn-toolbar tanim-arac" role="toolbar">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm" title="Seçili izin türünü sil">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+                </button>
+                <button type="button" id="btnBul" class="btn btn-default btn-sm" title="Formdaki değerlere uyan izin türlerini listele">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Bul
+                </button>
+                <button type="button" id="btnTemizle" class="btn btn-default btn-sm" title="Formu temizle, listeyi yeniden oku">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Kayıt
+                </button>
+            </div>
+
+            <form id="frmIzinTur" novalidate>
+                <div class="bolum">
+                    <h3 class="bolum-baslik">İzin Türü Bilgileri</h3>
+                    <div class="tanim-form">
+                        <div class="form-group">
+                            <label class="control-label" for="txtAd">İzin Türü Adı</label>
+                            <div><input type="text" id="txtAd" class="form-control" maxlength="255" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtSure">Süre</label>
+                            <div class="it-yanyana">
+                                <input type="number" id="txtSure" class="form-control dar" min="0" step="1" />
+                                <span class="text-muted">gün (0: Süre Sınırı Yok)</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="cmbGorulebilirlik">Görülebilirlik</label>
+                            <div><select id="cmbGorulebilirlik" class="form-control dar"></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtSira">Sıra No</label>
+                            <div><input type="number" id="txtSira" class="form-control dar" min="1" step="1" /></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/izintur.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/izintur.js" asp-append-version="true"></script>
+}

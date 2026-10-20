@@ -1,0 +1,245 @@
+/* Personel Atama penceresi (InsanKaynaklari/PersonelAtama): her satırda etiket | eski kadro (salt okunur) | yeni kadro. */
+
+.pa {
+    --pa-etiket: 170px;
+}
+
+.pa-aciklama {
+    color: var(--soluk);
+    font-size: 12px;
+}
+
+.pa-farkli-ornek,
+.pa .pa-farkli {
+    color: #c62828 !important;
+}
+
+.pa-baslik-satir,
+.pa-satir {
+    display: grid;
+    grid-template-columns: var(--pa-etiket) minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    column-gap: 10px;
+}
+
+.pa-baslik-satir {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    padding: 4px 11px;
+    background: var(--yuzey, #fff);
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.pa-sutun-baslik {
+    font-weight: 600;
+}
+
+.pa-eski-baslik {
+    color: var(--soluk);
+}
+
+.pa-satir {
+    margin: 0 0 5px;
+}
+
+.pa-satir[hidden] {
+    display: none;
+}
+
+.pa-etiket {
+    margin: 0;
+    font-weight: 600;
+}
+
+.pa .form-control {
+    height: 28px;
+    padding: 3px 7px;
+    font-size: 12px;
+}
+
+/* Salt okunur alanlar (eski kadro, hesaplanan gösterge, kayıt durumuna göre kilitlenen alanlar) sarı. */
+.pa .form-control[readonly],
+.pa select.form-control:disabled {
+    background: #fff8d6;
+    cursor: default;
+}
+
+.pa .yan-yana {
+    display: flex;
+    gap: 6px;
+}
+
+.pa .pa-tarih {
+    flex: 0 0 140px;
+    width: 140px;
+}
+
+.pa .pa-esnek {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.pa .pa-kisa {
+    max-width: 120px;
+}
+
+.pa-birim {
+    display: flex;
+    gap: 4px;
+}
+
+.pa-birim .form-control {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.pa-birim .btn {
+    flex: 0 0 auto;
+    height: 28px;
+    padding: 2px 8px;
+}
+
+.pa-birim .form-control[hidden],
+.pa-yeni [hidden],
+.pa-eski [hidden] {
+    display: none !important;
+}
+
+.pa-derece-kutu {
+    overflow-x: auto;
+}
+
+.pa-derece {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 4px 3px;
+}
+
+.pa-derece th {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.pa-derece thead th {
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.pa-derece td {
+    min-width: 70px;
+}
+
+.pa-derece td:nth-child(5),
+.pa-derece tr:not(.pa-eski-satir) td:nth-child(4) {
+    min-width: 140px;
+}
+
+.pa-derece .pa-kim {
+    min-width: 0;
+    width: 40px;
+    color: var(--soluk);
+    font-size: 12px;
+}
+
+.pa-derece tbody tr.pa-eski-satir > * {
+    padding-top: 6px;
+}
+
+/* Pencereler (<dialog>) */
+.pa-pencere {
+    width: min(560px, calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    padding: 0;
+    color: var(--murekkep);
+    background: var(--yuzey, #fff);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .25);
+}
+
+.pa-pencere::backdrop {
+    background: rgba(0, 0, 0, .45);
+}
+
+.pa-pencere .pencere-baslik {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.pa-pencere .pencere-baslik h2 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.pa-pencere .pencere-govde {
+    padding: 12px 14px;
+    overflow-y: auto;
+}
+
+.pa-pencere .pencere-alt {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 10px 14px;
+    border-top: 1px solid var(--cizgi);
+}
+
+.pa-ara-satir {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.pa-ara-satir .form-control {
+    flex: 1 1 auto;
+    width: auto;
+}
+
+.pa-agac {
+    max-height: 60vh;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 700px) {
+    .pa-baslik-satir {
+        display: none;
+    }
+
+    .pa-satir {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 3px;
+        margin-bottom: 10px;
+    }
+
+    .pa-eski::before,
+    .pa-yeni::before {
+        display: block;
+        font-size: 11px;
+        color: var(--soluk);
+    }
+
+    .pa-eski::before { content: "Eski"; }
+    .pa-yeni::before { content: "Yeni"; }
+
+    .pa .yan-yana {
+        flex-wrap: wrap;
+    }
+
+    .pa-eski.yan-yana::before,
+    .pa-yeni.yan-yana::before {
+        flex: 0 0 100%;
+    }
+}
+
+@media (max-width: 700px) {
+    .pa-eski:empty {
+        display: none;
+    }
+}

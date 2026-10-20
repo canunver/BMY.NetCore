@@ -1,0 +1,98 @@
+@page
+@model SendikaBilgiFormModel
+@{
+    ViewData["Title"] = "Sendika Bilgisi";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim sendika">
+    <!-- Sol: sendika listesi -->
+    <section class="tanim-sol">
+        <div class="kutu">
+            <div class="sendika-sol-baslik">
+                <h2 class="kutu-baslik">Sendikalar</h2>
+                <button type="button" id="btnYeni" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Sendika
+                </button>
+            </div>
+            <div id="grdSendika" class="tanim-grid" aria-label="Sendikalar"></div>
+        </div>
+    </section>
+
+    <!-- Sağ: seçili sendika ve personeli -->
+    <section class="tanim-sag">
+        <div class="kutu sendika-sag">
+            <div class="btn-toolbar tanim-arac" role="toolbar">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+                <span class="sendika-oran">
+                    <label for="txtKesintiOrani">Kes. Oranı:</label>
+                    <input type="number" id="txtKesintiOrani" class="form-control input-sm" step="0.0001" min="0" />
+                </span>
+                <button type="button" id="btnPersonelEkle" class="btn btn-default btn-sm" title="Seçilen personeli bu kesinti oranıyla sendikaya ekler">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Personel Ekle
+                </button>
+                <button type="button" id="btnDegerAta" class="btn btn-default btn-sm" title="Listede seçili personele bu kesinti oranını verir">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Değer Ata
+                </button>
+                <button type="button" id="btnPersonelSil" class="btn btn-danger btn-sm" title="Listede seçili personeli sendikadan çıkarır">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Seç. Per. Sil
+                </button>
+            </div>
+
+            <form id="frmSendika" novalidate>
+                <div class="bolum">
+                    <h3 class="bolum-baslik">Sendika</h3>
+                    <div class="tanim-form">
+                        <div class="form-group">
+                            <label class="control-label" for="txtSendikaNo">Sendika No</label>
+                            <div><input type="text" id="txtSendikaNo" class="form-control dar" readonly /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtSendikaAd">Sendika Ad</label>
+                            <div><input type="text" id="txtSendikaAd" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtAdres">Adres</label>
+                            <div><input type="text" id="txtAdres" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtIban">IBAN</label>
+                            <div><input type="text" id="txtIban" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtHesapNo">Muhasebe Hesap No</label>
+                            <div><input type="text" id="txtHesapNo" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtTopluGorusmePuani">Toplu Görüşme Puanı</label>
+                            <div><input type="text" id="txtTopluGorusmePuani" class="form-control dar" inputmode="numeric" /></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="bolum bolum-personel">
+                <h3 class="bolum-baslik">Sendika Personeli</h3>
+                <div id="grdPersonel" class="sendika-personel-grid" aria-label="Sendika Personeli"></div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personelsec.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/sendika.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/personelsec.js" asp-append-version="true"></script>
+    <script src="~/js/sendika.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,112 @@
+@page
+@model TaahhutBorclarVeTemliklerKayitModel
+@{
+    ViewData["Title"] = "Borçlar ve Temlikler";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim liste-genis muh-tanim temlik">
+    <section class="tanim-sol">
+        <div class="kutu bolum mt-kriter">
+            <h2 class="bolum-baslik">Kriterler</h2>
+            <form id="frmArama" class="tanim-arama mt-arama-yatay" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="srKonu">Konu</label>
+                    <div class="arama-satir"><input type="text" id="srKonu" class="form-control genis" data-alan="konu" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="srAcan">Temlik Açan V.No</label>
+                    <div class="arama-satir"><input type="text" id="srAcan" class="form-control" maxlength="15" data-alan="temlikAcanVergiNo" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="srVeren">Temlik Veren V.No</label>
+                    <div class="arama-satir"><input type="text" id="srVeren" class="form-control" maxlength="15" data-alan="temlikVerenVergiNo" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="srAciklama">Açıklama</label>
+                    <div class="arama-satir"><input type="text" id="srAciklama" class="form-control genis" data-alan="aciklama" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="srNoterBas">Noter Onay Tarihi</label>
+                    <div class="arama-satir">
+                        <input type="date" id="srNoterBas" class="form-control temlik-tarih" data-alan="noterBas" aria-label="Noter onay tarihi başlangıç" />
+                        <input type="date" id="srNoterBit" class="form-control temlik-tarih" data-alan="noterBit" aria-label="Noter onay tarihi bitiş" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="srNoterNo">Noter Onay No</label>
+                    <div class="arama-satir">
+                        <input type="text" id="srNoterNo" class="form-control" maxlength="15" data-alan="noterOnayNo" />
+                        <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="kutu bolum turuncu izgarali">
+            <h2 class="bolum-baslik">Temlikler <span id="lblOzet" class="bolum-not"></span></h2>
+            <div id="grdListe" class="tanim-grid"></div>
+        </div>
+    </section>
+
+    <section class="tanim-sag">
+        <div class="kutu bolum yesil">
+            <h2 class="bolum-baslik">Temlik Bilgisi</h2>
+            <div class="mt-arac" role="toolbar" aria-label="İşlemler">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm" disabled><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil</button>
+                <button type="button" id="btnTemizle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle</button>
+            </div>
+            <form id="frmBilgi" class="tanim-form mt-sik" novalidate>
+                <input type="hidden" data-alan="kod" />
+                <div class="form-group ust-hizali">
+                    <label class="control-label" for="tmKonu">Konu</label>
+                    <div><textarea id="tmKonu" class="form-control" rows="3" maxlength="500" data-alan="konu"></textarea></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="tmAlacakli">Alacaklı</label>
+                    <div><input type="text" id="tmAlacakli" class="form-control" maxlength="100" data-alan="alacakliAdSoyad" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="tmAcan">Temlik Açan Vergi No</label>
+                    <div><input type="text" id="tmAcan" class="form-control temlik-kisa" maxlength="15" data-alan="temlikAcanVergiNo" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="tmVeren">Temlik Veren Vergi No</label>
+                    <div><input type="text" id="tmVeren" class="form-control temlik-kisa" maxlength="15" data-alan="temlikVerenVergiNo" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="tmTutar">Temlik Tutarı</label>
+                    <div><input type="text" id="tmTutar" class="form-control temlik-kisa temlik-tutar" inputmode="decimal" data-alan="temlikTutari" /></div>
+                </div>
+                <div class="form-group ust-hizali">
+                    <label class="control-label" for="tmAciklama">Açıklama</label>
+                    <div><textarea id="tmAciklama" class="form-control" rows="3" data-alan="aciklama"></textarea></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="tmNoterTarih">Noter Onay Tarihi</label>
+                    <div><input type="date" id="tmNoterTarih" class="form-control temlik-kisa" data-alan="noterOnayTarihi" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="tmNoterNo">Noter Onay No</label>
+                    <div><input type="text" id="tmNoterNo" class="form-control temlik-kisa" maxlength="15" data-alan="noterOnayNo" /></div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhtanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/temlik.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/temlik.js" asp-append-version="true"></script>
+}

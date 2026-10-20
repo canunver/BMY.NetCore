@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -76,6 +76,9 @@ namespace Istemci
                     yonetici.ApplicationParts.Add(parca);
             });
             servisler.AddMemoryCache();
+
+            // Ayda bir kez: 2 yıldan eski sayfa isteği kayıtlarını KULLANICI_BILGI_ARSIV tablosuna taşır.
+            servisler.AddHostedService<KullaniciBilgiArsivIsi>();
 
             // JSON alan adları C#'taki gibi gider (Kod -> Kod, TERTIP -> TERTIP): büyük/küçük harf değişikliği yapılmaz.
             servisler.ConfigureHttpJsonOptions(secenek => secenek.SerializerOptions.PropertyNamingPolicy = null);
@@ -165,13 +168,28 @@ namespace Istemci
                 return sonraki(baglam);
             });
             app.UseAuthorization();
+            // Oturumdaki kullanıcının açtığı sayfalar KULLANICI_BILGI tablosuna yazılır (eski KullaniciVeriTabaninaYaz).
+            SayfaIstekKaydi.Kullan(app);
 
             app.MapRazorPages();
             GirisUclari.Ekle(app);
+            GuvenlikKodu.Ekle(app);
+            SifremiUnuttumUclari.Ekle(app);
             GirisBilgiUclari.Ekle(app);
             MenuUclari.Ekle(app);
+            SikKullanilanUclari.Ekle(app);
             SayfaMenuUclari.Ekle(app);
             DuyuruUclari.Ekle(app);
+            MesajPanosuUclari.Ekle(app);
+            ParolaDegistirUclari.Ekle(app);
+            EPostaUclari.Ekle(app);
+            ResmiTatilUclari.Ekle(app);
+            CalisanKullaniciUclari.Ekle(app);
+            HataDosyaUclari.Ekle(app);
+            SurumBilgiUclari.Ekle(app);
+            ModulUclari.Ekle(app);
+            KullaniciIslemTarihceUclari.Ekle(app);
+            YardimUclari.Ekle(app);
             EkliDosyaUclari.Ekle(app);
             MuhasebeUclari.Ekle(app);
             Istemci.Muhasebe.OdenekDurumUclari.Ekle(app);
@@ -180,12 +198,57 @@ namespace Istemci
             Istemci.Muhasebe.OdenekGondermeIcmalUclari.Ekle(app);
             Istemci.Muhasebe.MakbuzUclari.Ekle(app);
             Istemci.Muhasebe.BagliEkoPebUclari.Ekle(app);
+            Istemci.Muhasebe.SgbKbsFarkUclari.Ekle(app);
+            Istemci.Muhasebe.SgbGondIslemUclari.Ekle(app);
             KullaniciUclari.Ekle(app);
             GenelGorevUclari.Ekle(app);
             GorevAtaUclari.Ekle(app);
             OrgBirimUclari.Ekle(app);
             StratejikPlanUclari.Ekle(app);
             SPGostergeUclari.Ekle(app);
+            SPDilUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelTipUclari.Ekle(app);
+            Istemci.InsanKaynaklari.SozlukUclari.Ekle(app);
+            Istemci.Kullanicilar.YerleskeOdaUclari.Ekle(app);
+            Istemci.InsanKaynaklari.HizmetSebebiUclari.Ekle(app);
+            Istemci.InsanKaynaklari.UnvanUclari.Ekle(app);
+            Istemci.InsanKaynaklari.IzinTurUclari.Ekle(app);
+            Istemci.InsanKaynaklari.TerfiUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelBilgiUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelKisiselUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelOrtakRaporlar.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelKadroUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelKadroOnaysizUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelAtamaUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelIzinUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelIzinDevirUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelIzinDevirListeUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelGorevUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelAileUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelAdresUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelMaasParamUclari.Ekle(app);
+            Istemci.InsanKaynaklari.ListePersonelMaasParamUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelKullaniciIslemleriUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelGiderUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelOgrenimUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelDilUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelKursUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelCezaOdulUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelMalBildirimiUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelAskerlikUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelTarihceUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelKartUclari.Ekle(app);
+            Istemci.InsanKaynaklari.RaporPersonelUclari.Ekle(app);
+            Istemci.InsanKaynaklari.PersonelSecimUclari.Ekle(app);
+            Istemci.InsanKaynaklari.SendikaBilgiUclari.Ekle(app);
+            Istemci.InsanKaynaklari.IKYIstemciServisUclari.Ekle(app);
+            Istemci.HarcamaSurecleri.BordroTanimUclari.Ekle(app);
+            Istemci.HarcamaSurecleri.BordroTabloUclari.Ekle(app);
+            Istemci.HarcamaSurecleri.BordroParamUclari.Ekle(app);
+            Istemci.HarcamaSurecleri.MaasTemelBilgiUclari.Ekle(app);
+            Istemci.HarcamaSurecleri.GelirVergisiUclari.Ekle(app);
+            Istemci.HarcamaSurecleri.GundelikTanimUclari.Ekle(app);
+            Istemci.HarcamaSurecleri.UnvanGundelikUclari.Ekle(app);
             IzlemeUclari.Ekle(app);
             KurumIzlemeUclari.Ekle(app);
             GrafikUclari.Ekle(app);
@@ -270,6 +333,36 @@ namespace Istemci
             Istemci.AlacakTakip.AlacakTakipABTarihceUclari.Ekle(app);
             Istemci.AlacakTakip.FaizHesabiUclari.Ekle(app);
             Istemci.Muhasebe.MuhTanimOrtak.Ekle(app);
+            Istemci.Muhasebe.OdemeEmriMIFUclari.Ekle(app);
+            Istemci.Muhasebe.OdemeEmriMIFSorguUclari.Ekle(app);
+            Istemci.Muhasebe.OdemeEmriSecimUclari.Ekle(app);
+            Istemci.Muhasebe.MuavinDefteriUclari.Ekle(app);
+            Istemci.Muhasebe.TanimAciklamaUclari.Ekle(app);
+            Istemci.Muhasebe.ImzaTanimUclari.Ekle(app);
+            Istemci.HarcamaSurecleri.BorcuYokBelgesiUclari.Ekle(app);
+            Istemci.HarcamaSurecleri.FirmaKisiListeUclari.Ekle(app);
+            Istemci.HarcamaSurecleri.FirmaTanimUclari.Ekle(app);
+            Istemci.Muhasebe.AvansUclari.Ekle(app);
+            Istemci.Muhasebe.EbutceAktarUclari.Ekle(app);
+            Istemci.Muhasebe.TanimIsUclari.Ekle(app);
+            Istemci.Muhasebe.KapatmaUclari.Ekle(app);
+            Istemci.Muhasebe.BankaListesiUclari.Ekle(app);
+            Istemci.Muhasebe.CekListesiUclari.Ekle(app);
+            Istemci.Muhasebe.VergiAktarimUclari.Ekle(app);
+            Istemci.Muhasebe.CaprazTabloUclari.Ekle(app);
+            Istemci.Muhasebe.MizanBilancoUclari.Ekle(app);
+            Istemci.Muhasebe.TemlikUclari.Ekle(app);
+            Istemci.Muhasebe.ButceAcilisFisiUclari.Ekle(app);
+            Istemci.Muhasebe.YilKapatUclari.Ekle(app);
+            Istemci.Muhasebe.YilSonuIslemleriUclari.Ekle(app);
+            Istemci.Muhasebe.FirmaBilgisiDuzenlemeUclari.Ekle(app);
+            Istemci.Muhasebe.SayistayVerileriUclari.Ekle(app);
+            Istemci.Muhasebe.FaturaUclari.Ekle(app);
+            Istemci.Muhasebe.FaturaTakipUclari.Ekle(app);
+            Istemci.Muhasebe.MuhTanimMudurlukUclari.Ekle(app);
+            Istemci.Muhasebe.MuhasebatAktarimUclari.Ekle(app);
+            Istemci.Muhasebe.TaahhutKartiUclari.Ekle(app);
+            Istemci.Muhasebe.TKDKTalepUclari.Ekle(app);
         }
     }
 }

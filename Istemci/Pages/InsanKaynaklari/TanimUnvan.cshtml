@@ -1,0 +1,89 @@
+@page
+@model TanimUnvanModel
+@{
+    ViewData["Title"] = "Unvan Bilgileri";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim unvan">
+    <!-- Sol: unvan listesi -->
+    <section class="tanim-sol">
+        <div class="kutu">
+            <h2 class="kutu-baslik">Unvan Bilgileri</h2>
+            <div id="grdUnvan" class="tanim-grid" aria-label="Unvanlar"></div>
+        </div>
+    </section>
+
+    <!-- Sağ: seçili unvan -->
+    <section class="tanim-sag">
+        <div class="kutu">
+            <div class="btn-toolbar tanim-arac" role="toolbar">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+                </button>
+                <button type="button" id="btnBul" class="btn btn-default btn-sm" title="Unvan Kodu, Unvan Adı, Sıra No alanlarına göre listele">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Bul
+                </button>
+                <button type="button" id="btnTemizle" class="btn btn-default btn-sm" title="Formu temizle, tüm listeyi oku">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Temizle
+                </button>
+            </div>
+
+            <form id="frmUnvan" novalidate>
+                <div class="bolum">
+                    <h3 class="bolum-baslik">Unvan</h3>
+                    <div class="tanim-form">
+                        <div class="form-group">
+                            <label class="control-label" for="txtKod">Unvan Kodu</label>
+                            <div><input type="text" id="txtKod" class="form-control dar" inputmode="numeric" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtAd">Unvan Adı</label>
+                            <div><input type="text" id="txtAd" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtSinifAdKisa">Sınıf Kısa Adı</label>
+                            <div><input type="text" id="txtSinifAdKisa" class="form-control dar" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="cmbSinif">Sınıf</label>
+                            <div><select id="cmbSinif" class="form-control"></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtSiraNo">Sıra No</label>
+                            <div><input type="text" id="txtSiraNo" class="form-control dar" inputmode="numeric" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtHitapKod">Hitap Kod</label>
+                            <div><input type="text" id="txtHitapKod" class="form-control dar" inputmode="numeric" /></div>
+                        </div>
+                        <div class="form-group">
+                            <span class="control-label"></span>
+                            <div class="unvan-secenekler">
+                                <label><input type="checkbox" id="chkYonetici" /> Yönetici</label>
+                                <label><input type="checkbox" id="chkAktif" /> Aktif</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/unvan.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/unvan.js" asp-append-version="true"></script>
+}

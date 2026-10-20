@@ -1,0 +1,320 @@
+/* İş Tanımları: solda kıstas + iş listesi, sağda iş bilgileri ve sekmeler. Renkli bölümler; geniş ekranda tablolar sayfayı doldurur. */
+
+.tis {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.tis .tis-sol,
+.tis .tis-sag {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.tis .kutu.bolum {
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
+    margin: 0;
+    padding: 0 8px 8px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+}
+
+.tis .kutu.bolum.bolum-liste {
+    --bolum-baslik: var(--b2-baslik);
+    --bolum-govde: var(--b2-govde);
+    --bolum-vurgu: var(--b2-vurgu);
+}
+
+.tis .kutu.bolum.bolum-form {
+    --bolum-baslik: #fdf0de;
+    --bolum-govde: #fffaf3;
+    --bolum-vurgu: #c97a1c;
+}
+
+.tis .kutu.bolum.bolum-sekme {
+    --bolum-baslik: #efe7f8;
+    --bolum-govde: #faf7fd;
+    --bolum-vurgu: #7a4fb5;
+    padding-top: 6px;
+}
+
+.tis .bolum-baslik {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 -8px 6px;
+    padding: 5px 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 8px 8px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.tis .tis-not {
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+.tis .tis-yardim-dugme {
+    padding: 0 2px;
+    color: var(--bolum-vurgu);
+}
+
+.tis .tis-yardim {
+    margin: 0 0 6px;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+/* ---- Alanlar: etiket solda, alt alta ---- */
+.tis .tis-alanlar {
+    --etiket-genislik: 110px;
+}
+
+.tis .tis-alanlar .form-group {
+    margin-bottom: 4px;
+}
+
+.tis .tis-alanlar .control-label {
+    font-size: 12px;
+    padding-top: 3px;
+}
+
+.tis .form-control.input-sm {
+    height: 24px;
+    padding: 1px 6px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.tis textarea.form-control.input-sm {
+    height: auto;
+}
+
+.tis .input-group-sm > .input-group-btn > .btn,
+.tis .btn-sm {
+    padding: 2px 8px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.tis .sgb-yil {
+    width: 90px;
+}
+
+.tis .tis-tarih {
+    width: 150px;
+}
+
+.tis .tis-durum {
+    width: 160px;
+}
+
+.tis .tis-form-iki {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 4px 16px;
+}
+
+.tis .tis-sorumlu {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.tis .tis-tc {
+    width: 170px;
+}
+
+.tis .tis-ad {
+    font-weight: 600;
+}
+
+.tis .tis-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 6px;
+}
+
+.tis .bolum-sorgu .tis-arac {
+    margin: 6px 0 0;
+}
+
+/* ---- Sekmeler ---- */
+.tis .tis-sekme-ust {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 6px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tis .tis-sekmeler {
+    border-bottom: 0;
+}
+
+.tis .tis-sekmeler > li > a {
+    padding: 5px 12px;
+    font-size: 12px;
+}
+
+.tis .tis-sekmeler > li.active > a {
+    font-weight: 600;
+    color: var(--bolum-vurgu);
+}
+
+.tis .tis-sekme-yil {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-bottom: 4px;
+}
+
+.tis .tis-sekme-yil .control-label {
+    margin: 0;
+    font-size: 12px;
+}
+
+.tis .tis-sekme {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* ---- Tablolar ---- */
+.tis .tis-grid-is {
+    width: 100%;
+    height: 360px;
+}
+
+.tis .tis-grid-sekme {
+    width: 100%;
+    height: 320px;
+}
+
+.tis-pencere .tis-grid-pencere {
+    width: 100%;
+    height: 340px;
+}
+
+.tis .tis-sari {
+    background: #fcfcd4;
+}
+
+.tis .tis-girilir {
+    background: #fff;
+}
+
+.tis .tis-sil {
+    padding: 0 4px;
+    color: #b52a2a;
+}
+
+.tis .ag-row-pinned {
+    font-weight: 600;
+}
+
+.ag-right-aligned-cell {
+    text-align: right;
+}
+
+/* ---- Pencereler ---- */
+.tis-pencere {
+    width: min(560px, 95vw);
+}
+
+.tis-pencere.tis-pencere-genis {
+    width: min(860px, 95vw);
+}
+
+.tis-pencere .tis-ara-satir {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.tis-pencere .tis-ara-satir .form-control {
+    flex: 1 1 140px;
+    width: auto;
+}
+
+.tis-pencere .tis-agac {
+    max-height: 60vh;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+}
+
+/* ---- Geniş ekran: iki sütun, tablolar sayfanın kalan yüksekliğini doldurur ---- */
+@media (min-width: 1200px) {
+    body.tis-sayfa > .sayfa-icerik {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    body.menusuz.tis-sayfa > .sayfa-icerik {
+        height: 100vh;
+    }
+
+    .tis {
+        flex: 1 1 auto;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: minmax(300px, 30fr) minmax(0, 70fr);
+        gap: 10px;
+    }
+
+    .tis .tis-sol,
+    .tis .tis-sag {
+        min-height: 0;
+    }
+
+    .tis .bolum-liste,
+    .tis .bolum-sekme {
+        flex: 1 1 auto;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tis .bolum-sekme .tis-sekme {
+        flex: 1 1 auto;
+    }
+
+    .tis .tis-grid-is,
+    .tis .tis-grid-sekme {
+        flex: 1 1 auto;
+        min-height: 160px;
+        height: auto;
+    }
+}
+
+@media (max-width: 900px) {
+    .tis .tis-form-iki {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.tis [hidden],
+.tis-pencere [hidden] {
+    display: none !important;
+}

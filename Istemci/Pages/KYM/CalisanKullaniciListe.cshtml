@@ -1,0 +1,55 @@
+@page
+@model CalisanKullaniciListeModel
+@{
+    // Sistemi Kullanan Kişilerin Listesi (eski KYM/CalisanKullaniciListe.aspx): son N dakikada sayfa açan kullanıcılar.
+    ViewData["Title"] = Metin.Kullanici("FRMCKL010");
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans calisan-kullanici ck-liste"
+     data-no="@Metin.Kullanici("FRMCKL005")" data-ad="@Metin.Kullanici("FRMCKL006")" data-tarih="@Metin.Kullanici("FRMCKL007")"
+     data-yer="@Metin.Kullanici("FRMCKL008")" data-sayfa="@Metin.Kullanici("FRMCKL009")" data-adet="@Metin.Kullanici("FRMCKL011")">
+    <section class="kutu bolum bolum-kriter">
+        <form id="frmKriter" class="tanim-form avans-alanlar" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label" for="txtSayfa">@Metin.Kullanici("FRMCKL001")</label>
+                <div><input type="text" id="txtSayfa" class="form-control input-sm ck-sayfa" maxlength="200" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtSure">@Metin.Kullanici("FRMCKL002")</label>
+                <div class="ck-satir">
+                    <input type="number" id="txtSure" class="form-control input-sm ck-sure" min="1" step="1" value="5" />
+                    <span>@Metin.Kullanici("FRMCKL003")</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="control-label"></span>
+                <div class="ck-satir">
+                    <button type="submit" id="btnListele" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> @Metin.Kullanici("FRMCKL004")
+                    </button>
+                    <span id="lblAdet" class="ck-adet" role="status"></span>
+                </div>
+            </div>
+        </form>
+        <div id="hata" class="alert alert-danger avans-sonuc" role="alert" hidden></div>
+    </section>
+    <section class="kutu bolum bolum-liste">
+        <div id="grdListe" class="ck-grid" aria-label="@Metin.Kullanici("FRMCKL010")"></div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/calisankullanici.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/calisankullanici.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,52 @@
+@page
+@model PersonelTerfiOnaylamaModel
+@{
+    ViewData["Title"] = "Terfi Onaylama";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="terfi" data-sayfa="onay">
+    <section class="bolum">
+        <h2 class="bolum-baslik">Personel Terfi Onaylama</h2>
+        <form id="frmKriter" class="tf-arac" role="search" novalidate>
+            <label for="cmbDurum">Durum</label>
+            <select id="cmbDurum" class="form-control input-sm tf-durum"></select>
+            <label for="cmbTip">Tip</label>
+            <select id="cmbTip" class="form-control input-sm tf-tip"></select>
+            <button type="submit" id="btnListele" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+            </button>
+            <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Seçili duruma göre terfi listesini Excel olarak indir">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+            </button>
+            <span class="tf-ayrac" aria-hidden="true"></span>
+            <button type="button" id="btnOnayla" class="btn btn-success btn-sm" title="Seçili bekleyen terfileri onayla">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Terfiyi Onayla
+            </button>
+            <button type="button" id="btnReddet" class="btn btn-danger btn-sm" title="Seçili bekleyen terfileri reddet">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Terfiyi Reddet
+            </button>
+            <button type="button" id="btnYardim" class="btn btn-link btn-sm tf-yardim" aria-expanded="false" aria-controls="tfYardim" title="Yardım">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span><span class="sr-only">Yardım</span>
+            </button>
+        </form>
+        <div id="tfYardim" class="tf-yardim-metin" hidden>
+            Terfiye Hak Kazananlar ekranından onaya gönderilen kayıtlar burada listelenir. Yalnızca "Beklemede" durumundaki kayıtlar
+            onaylanabilir ya da reddedilebilir. Onaylanan kayıtta personele terfi edilmiş yeni bir kadro (hizmet) kaydı açılır.
+            Yazdır için durum seçilmelidir.
+        </div>
+        <div id="grdListe" class="tf-grid" aria-label="Terfi kayıtları"></div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/terfi.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/terfi.js" asp-append-version="true"></script>
+}

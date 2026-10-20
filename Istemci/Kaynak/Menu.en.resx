@@ -126,4 +126,109 @@
   <data name="Giris_EpostaMesaj" xml:space="preserve">
     <value>Your sign-in code for {0}: &lt;b&gt;{1}&lt;/b&gt;&lt;br /&gt;This code is valid for {2} hours; you can use the same code for sign-ins during this time.</value>
   </data>
+  <data name="SikKullanilanlar" xml:space="preserve">
+    <value>Favorites</value>
+  </data>
+  <data name="SikEkle" xml:space="preserve">
+    <value>Add to favorites</value>
+  </data>
+  <data name="SikCikar" xml:space="preserve">
+    <value>Remove from favorites</value>
+  </data>
+  <data name="SikBos" xml:space="preserve">
+    <value>You have no favorite screens yet. Press the + button next to a page title to add it.</value>
+  </data>
+  <data name="SikHata" xml:space="preserve">
+    <value>Favorites could not be saved.</value>
+  </data>
+  <data name="TemaMor" xml:space="preserve">
+    <value>Purple</value>
+  </data>
+  <data name="TemaAntrasit" xml:space="preserve">
+    <value>Anthracite</value>
+  </data>
+  <data name="TemaAyarlari" xml:space="preserve">
+    <value>Theme settings...</value>
+  </data>
+  <data name="TemaBaslik" xml:space="preserve">
+    <value>Change Theme</value>
+  </data>
+  <data name="TemaSec" xml:space="preserve">
+    <value>Colour theme</value>
+  </data>
+  <data name="UstSerit" xml:space="preserve">
+    <value>Top bar</value>
+  </data>
+  <data name="UstSeritRenkli" xml:space="preserve">
+    <value>Coloured</value>
+  </data>
+  <data name="UstSeritSade" xml:space="preserve">
+    <value>White</value>
+  </data>
+  <data name="TemaKullanilan" xml:space="preserve">
+    <value>In use</value>
+  </data>
+  <data name="TemaYardim" xml:space="preserve">
+    <value>Click a theme to preview it on this page. Press Apply to keep it; your choice is used on every screen.</value>
+  </data>
+  <data name="TemaKaydedildi" xml:space="preserve">
+    <value>Theme saved.</value>
+  </data>
+  <data name="TemaKaydedilemedi" xml:space="preserve">
+    <value>Theme could not be saved.</value>
+  </data>
+  <data name="TemaVazgec" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="TemaOkunamadi" xml:space="preserve">
+    <value>Theme could not be read.</value>
+  </data>
+  <data name="TemaKlasik" xml:space="preserve">
+    <value>Classic</value>
+  </data>
+  <data name="Giris_GuvenlikKodu" xml:space="preserve">
+    <value>Security code</value>
+  </data>
+  <data name="Giris_GuvenlikKoduGir" xml:space="preserve">
+    <value>Enter the security code shown in the image.</value>
+  </data>
+  <data name="Giris_GuvenlikKoduYanlis" xml:space="preserve">
+    <value>The security code is incorrect. Please enter the code in the new image.</value>
+  </data>
+  <data name="Giris_GuvenlikYenile" xml:space="preserve">
+    <value>New image</value>
+  </data>
+  <data name="Giris_SifremiUnuttum" xml:space="preserve">
+    <value>Forgot my password</value>
+  </data>
+  <data name="Sifre_Baslik" xml:space="preserve">
+    <value>Forgot Password</value>
+  </data>
+  <data name="Sifre_Bilgi" xml:space="preserve">
+    <value>Turkish ID No / E-mail address</value>
+  </data>
+  <data name="Sifre_Aciklama1" xml:space="preserve">
+    <value>Enter your Turkish ID number or e-mail address in the field above.</value>
+  </data>
+  <data name="Sifre_Aciklama2" xml:space="preserve">
+    <value>Your new password will be sent to the e-mail address registered in your user information. If you do not know that address, contact the administrators.</value>
+  </data>
+  <data name="Sifre_Gonder" xml:space="preserve">
+    <value>Send my new password to my e-mail address</value>
+  </data>
+  <data name="Sifre_BilgiGir" xml:space="preserve">
+    <value>Please enter your Turkish ID number or e-mail address.</value>
+  </data>
+  <data name="Sifre_BilgiGecersiz" xml:space="preserve">
+    <value>Enter a valid Turkish ID number (11 digits) or e-mail address.</value>
+  </data>
+  <data name="Sifre_Gonderildi" xml:space="preserve">
+    <value>Your request has been received. If the information belongs to a registered user, a new password will be sent to the e-mail address in the user information. If no e-mail arrives, contact the administrators.</value>
+  </data>
+  <data name="Sifre_Kullanilamaz" xml:space="preserve">
+    <value>Your password cannot be reset here because your organisation's directory (LDAP) is used. Please contact the administrators.</value>
+  </data>
+  <data name="Sifre_GiriseDon" xml:space="preserve">
+    <value>Back to sign in</value>
+  </data>
 </root>

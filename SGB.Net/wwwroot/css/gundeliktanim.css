@@ -1,0 +1,97 @@
+/* Geçici / Sürekli Görev Gündelik Tanım Formu (HarcamaSurecleri/TanimPSLSurekliGeciciGorevGundelik):
+   üstte renkli başlıklı form bölümü (etiketler solda, alanlar alt alta; tanim.css .tanim-form), altta liste sayfanın kalanını doldurur.
+   Girilebilir alanlar beyaz. */
+
+.gundelik-tanim .bolum {
+    --bolum-baslik: #fdf0dc;
+    --bolum-govde: #fefaf3;
+    --bolum-vurgu: #c7812a;
+    margin: 0 0 12px;
+    padding: 0 12px 10px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.gundelik-tanim .bolum-baslik {
+    margin: 0 -12px 10px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.gundelik-tanim .gt-form {
+    --etiket-genislik: 150px;
+    max-width: 720px;
+}
+
+.gundelik-tanim .gt-form .form-group {
+    margin-bottom: 6px;
+}
+
+.gundelik-tanim .gt-form .form-group[hidden] {
+    display: none;
+}
+
+.gundelik-tanim .bolum .form-control {
+    background: #fff;
+}
+
+.gundelik-tanim .gt-tur { max-width: 300px; }
+.gundelik-tanim .gt-yil { width: 100px; }
+.gundelik-tanim .gt-kod { width: 80px; }
+.gundelik-tanim .gt-ulke { max-width: 300px; }
+.gundelik-tanim .gt-derece { width: 80px; }
+.gundelik-tanim .gt-gosterge { width: 100px; }
+.gundelik-tanim .gt-deger { width: 120px; text-align: right; }
+.gundelik-tanim .gt-para { width: 100px; }
+
+.gundelik-tanim .gt-aralik {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.gundelik-tanim .gt-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 10px 0 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--cizgi);
+}
+
+.gundelik-tanim .gt-yardim {
+    margin-left: auto;
+}
+
+.gundelik-tanim .gt-yardim-metin {
+    margin: 10px 0 0;
+    padding: 8px 10px;
+    font-size: 12px;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.gundelik-tanim .gt-yardim-metin p {
+    margin: 0 0 6px;
+}
+
+.gundelik-tanim .gt-yardim-metin .gt-yardim-son {
+    margin-bottom: 0;
+}
+
+.gundelik-tanim .gt-grid {
+    width: 100%;
+    height: 400px;
+}
+
+.gundelik-tanim .gt-sag-baslik .ag-header-cell-label {
+    justify-content: flex-end;
+}

@@ -1,0 +1,234 @@
+/* Personel Raporları (InsanKaynaklari/RaporPersonel): solda rapor ağacı, sağda seçilen raporun kriterleri. Geniş ekranda iki
+   sütun, dar ekranda alt alta. Kriter alanları alt alta, etiket solda. */
+
+.rp {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+}
+
+.rp .kutu.rp-bolum {
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    padding: 0 14px 14px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.rp .kutu.rp-agac-bolum {
+    --bolum-baslik: #ece7f6;
+    --bolum-govde: #f8f6fc;
+}
+
+.rp-baslik {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    margin: 0 -14px 12px;
+    padding: 8px 14px;
+    font-size: 15px;
+    font-weight: 600;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.rp-dugmeler {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.rp-dugmeler[hidden] {
+    display: none;
+}
+
+.rp-dugmeler .btn {
+    margin: 0;
+}
+
+.rp-ipucu,
+.rp-not {
+    color: var(--soluk);
+}
+
+.rp-not {
+    margin: 4px 0 0;
+    font-size: 12px;
+}
+
+.rp-agac {
+    max-height: 70vh;
+    overflow: auto;
+    margin: 0;
+}
+
+/* kriterler: alt alta, etiket solda */
+.rp-form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+}
+
+.rp-alan {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 560px);
+    align-items: center;
+    column-gap: 10px;
+}
+
+.rp-alan[hidden],
+.rp-form [data-alan][hidden] {
+    display: none;
+}
+
+.rp-alan.rp-alan-genis {
+    grid-template-columns: 150px minmax(0, 1fr);
+    align-items: start;
+}
+
+.rp-etiket {
+    margin: 0;
+    font-weight: 600;
+}
+
+.rp-kisa {
+    max-width: 260px;
+}
+
+.rp-sayi {
+    width: 90px;
+}
+
+.rp-birim,
+.rp-yan-yana {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 6px;
+}
+
+.rp-birim input[readonly] {
+    flex: 1 1 220px;
+    cursor: pointer;
+    background: #fff;
+}
+
+.rp-yan-yana > input[type=text] {
+    flex: 1 1 220px;
+}
+
+.rp-yan {
+    margin: 0 0 0 6px;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+.rp-secenek {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 14px;
+}
+
+.rp-secenek label {
+    margin: 0;
+    font-weight: normal;
+}
+
+.rp-grid-dugme {
+    display: inline-flex;
+    gap: 4px;
+}
+
+.rp-dinamik {
+    height: 220px;
+}
+
+.rp-personel {
+    height: 300px;
+}
+
+.rp-resim {
+    width: 70px;
+    height: 90px;
+    object-fit: cover;
+}
+
+/* çoklu seçim (Grup / Tür / İzin Tür) */
+.rp-coklu {
+    position: relative;
+}
+
+.rp-coklu-dugme {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    text-align: left;
+}
+
+.rp-coklu-metin {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.rp-coklu-liste {
+    width: 100%;
+    max-height: 300px;
+    overflow: auto;
+    padding: 4px 0;
+}
+
+.rp-coklu-liste label {
+    display: block;
+    margin: 0;
+    padding: 2px 10px;
+    font-weight: normal;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.rp-coklu-liste label:hover {
+    background: var(--tema-acik);
+}
+
+.rp-coklu-bos {
+    padding: 2px 10px;
+    color: var(--soluk);
+}
+
+/* birim seçimi penceresi */
+.rp-pencere {
+    width: min(560px, 95vw);
+}
+
+.rp-birim-ara {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.rp-birim-agac {
+    max-height: 55vh;
+    overflow: auto;
+}
+
+@media (min-width: 992px) {
+    .rp {
+        grid-template-columns: 340px minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .rp-alan,
+    .rp-alan.rp-alan-genis {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 2px;
+    }
+}

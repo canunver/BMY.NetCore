@@ -1,0 +1,69 @@
+@page
+@model PersonelHITAPModel
+@{
+    ViewData["Title"] = "HİTAP'tan Al";
+    ViewData["GovdeSinif"] = "pb-alt";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="pb pb-hitap" id="pbHitap" data-personel-kod="@Model.PersonelKod" data-tur="@Model.Tur">
+    <section class="pb-bolum">
+        <h3>HİTAP Bağlantısı</h3>
+        <div class="pb-govde pb-form pbk-etiket-genis">
+            <div class="form-group">
+                <label class="control-label" for="txtHITAPKul">HİTAP Kullanıcı Kodu</label>
+                <div><input type="text" id="txtHITAPKul" class="form-control pbk-orta-alan" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtHITAPPar">HİTAP Parolası</label>
+                <div><input type="password" id="txtHITAPPar" class="form-control pbk-orta-alan" autocomplete="new-password" /></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-bolum renk-yesil">
+        <h3>Aktarılacak Kayıtlar</h3>
+        <div class="pb-govde pb-form pbk-etiket-genis">
+            <div class="form-group">
+                <label class="control-label" for="cmbPersonelTip">Personel Türü</label>
+                <div><select id="cmbPersonelTip" class="form-control"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtBirim">Birimi</label>
+                <div class="yan-yana pbk-secim">
+                    <input type="text" id="txtBirim" class="form-control" readonly placeholder="Birim seçin" />
+                    <button type="button" id="btnBirimSec" class="btn btn-default btn-sm" title="Birim seç" aria-label="Birim seç">&hellip;</button>
+                    <button type="button" id="btnBirimTemizle" class="btn btn-default btn-sm" title="Temizle" aria-label="Birimi temizle">&times;</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="pb-arac pbk-alt-arac">
+        <span class="bosluk"></span>
+        <button type="button" id="btnVeriAl" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Veri Al</button>
+    </div>
+</div>
+
+<dialog id="dlgBirim" class="pbk-pencere" aria-labelledby="dlgBirimBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgBirimBaslik">Birim Seç</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde"><ul id="agcBirim" class="pbk-agac"></ul></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/personelalt.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personel-kadro.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/personel-hitap.js" asp-append-version="true"></script>
+}

@@ -47,3 +47,34 @@
 .mt-yanyana > .hk-bilesen:has(.hk-ad) {
     flex: 1 1 auto;
 }
+
+/* Yazdıkça arama listesi (sayfanın gövdesine eklenir; pencerelerin de üstünde durur) */
+.hk-oneri-liste {
+    position: fixed;
+    z-index: 2100;
+    max-width: 640px;
+    max-height: 220px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid var(--cizgi, #ccc);
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    font-size: 12px;
+}
+
+.hk-oneri-liste[hidden] {
+    display: none;
+}
+
+.hk-oneri-satir {
+    padding: 3px 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.hk-oneri-satir:hover,
+.hk-oneri-satir.secili {
+    background: var(--b1-baslik);
+}

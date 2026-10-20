@@ -6,6 +6,7 @@
 //
 // Kullanım:
 //   Sgb.hesapPlaniSec({ yil: 2026, sonKirilim: true, secilince: function (h) { h.kod, h.hesapAd, h.detay } });
+//     kok: '830' verilirse ağaç o hesabın altından başlar.
 //     uc: hesap uçlarının kökü (isteğe bağlı; varsayılan api/makbuz/hesap/). Örn. Ödeme Bilgileri api/alacaktakip/odeme/hesap/ kullanır.
 //   Sgb.firmaSec({ muhasebe: 1, ara: '123', secilince: function (f) { f.vergiNo, f.ad, f.kod (arama ucu kod döndürüyorsa) } });
 //     adres: arama ucu (isteğe bağlı; varsayılan api/makbuz/firma/ara). Örn. Alacak Takip kendi yetkisiyle api/alacaktakip/takip/firma/ara kullanır.
@@ -77,13 +78,13 @@
             });
         }
 
-        var yilDegisti = hesap.agac && hesap.o.yil !== o.yil;
+        var yilDegisti = hesap.agac && (hesap.o.yil !== o.yil || (hesap.o.kok || '') !== (o.kok || ''));
         hesap.o = o;
         hesap.$p[0].showModal();
         if (!hesap.agac) {
             hesap.agac = Sgb.agac(hesap.$p.find('.mk-hesap-dal')[0], {
                 yukle: function (ust) {
-                    return Sgb.al((hesap.o.uc || 'api/makbuz/hesap/') + 'agac', { yil: hesap.o.yil || 0, ust: ust ? ust.kod : '' }).then(function (v) {
+                    return Sgb.al((hesap.o.uc || 'api/makbuz/hesap/') + 'agac', { yil: hesap.o.yil || 0, ust: ust ? ust.kod : (hesap.o.kok || '') }).then(function (v) {
                         if (v.hata) { Sgb.bildirim(v.hata, 'danger'); return []; }
                         return v.dugumler;
                     });

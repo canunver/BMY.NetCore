@@ -1,0 +1,134 @@
+@page
+@model PersonelGiderModel
+@{
+    ViewData["Title"] = "Giderler";
+    ViewData["GovdeSinif"] = "pb-alt";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="pb pb-gider" id="pbGider" data-personel-kod="@Model.PersonelKod">
+    <div class="pb-arac" role="toolbar">
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> <span id="btnKaydetMetin">Ekle</span>
+        </button>
+        <button type="button" id="btnTemizle" class="btn btn-default btn-sm" title="Formu temizler (yeni gider)">
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Kayıt
+        </button>
+        <label for="spnYil" class="pb-gider-etiket">Yıl:</label>
+        <input type="number" id="spnYil" class="form-control input-sm sgb-yil pb-gider-sayi" min="1900" max="2999" step="1" />
+        <label for="spnAy" class="pb-gider-etiket">Ay:</label>
+        <input type="number" id="spnAy" class="form-control input-sm pb-gider-sayi" min="1" max="12" step="1" />
+        <button type="button" id="btnListele" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+        </button>
+        <span class="bosluk"></span>
+        <button type="button" id="btnKumYukle" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-open-file" aria-hidden="true"></span> Küm. Yükle
+        </button>
+        <button type="button" id="btnAktar" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Aktar
+        </button>
+    </div>
+
+    <div class="pb-gider-govde">
+        <section class="pb-bolum renk-mavi">
+            <h3>Gider</h3>
+            <div class="pb-govde">
+                <form id="frmGider" class="pb-form" novalidate autocomplete="off">
+                    <div class="form-group">
+                        <label class="control-label" for="ddlYerleskeMetin">Harcama Yeri *</label>
+                        <div class="input-group input-group-sm">
+                            <input type="text" id="ddlYerleskeMetin" class="form-control" readonly placeholder="Harcama yeri seçiniz" />
+                            <span class="input-group-btn">
+                                <button type="button" id="btnYerTemizle" class="btn btn-default" title="Seçimi temizle" aria-label="Harcama yeri seçimini temizle">
+                                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" id="btnYerSec" class="btn btn-default" title="Harcama yeri seç" aria-label="Harcama yeri seç">&hellip;</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="cmbHarcamaTur">Tür *</label>
+                        <div><select id="cmbHarcamaTur" class="form-control dar"></select></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtTarih">Tarih *</label>
+                        <div><input type="datetime-local" id="txtTarih" class="form-control pb-gider-tarih" step="1" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="nfUcret">Tutar *</label>
+                        <div><input type="number" id="nfUcret" class="form-control dar" step="0.01" /></div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="pb-bolum renk-gri pb-doldur pb-gider-sag">
+            <h3>Giderler</h3>
+            <div class="pb-govde pb-doldur">
+                <div id="grdListe" class="pb-grid" aria-label="Giderler"></div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Harcama yeri seçimi (eski ExtOrgSecim AgacTur=2) -->
+<dialog id="dlgYer" class="pb-gider-dlg" aria-labelledby="dlgYerBaslik">
+    <div class="pb-gider-dlg-baslik">
+        <h2 id="dlgYerBaslik">Harcama Yeri</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pb-gider-dlg-ara">
+        <div class="input-group input-group-sm">
+            <input type="search" id="txtYerAra" class="form-control" placeholder="Tarifte ara" aria-label="Harcama yeri ara" />
+            <span class="input-group-btn">
+                <button type="button" id="btnYerAra" class="btn btn-default" aria-label="Ara"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+            </span>
+        </div>
+    </div>
+    <ul id="trpYer" class="pb-gider-agac"></ul>
+</dialog>
+
+<!-- Kümülatif gider dosyası yükleme (eski wndKumYukle) -->
+<dialog id="dlgKumYukle" class="pb-gider-dlg" aria-labelledby="dlgKumBaslik">
+    <div class="pb-gider-dlg-baslik">
+        <h2 id="dlgKumBaslik">Kümülatif Gider Dosyası Yükleme</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pb-gider-dlg-govde">
+        <p class="pb-gider-uyari">
+            <b>A sütununda</b> sicil no veya Kimlik no bulunan, <b>B sütununda</b> tutar bulunan dosya; seçili yıl, ay, harcama yeri ve tür için,
+            seçili ayın son gününe <b>varsa önceki verilerin hepsi silindikten sonra</b> yüklenir. Yüklemek için dosya seçip, yükle tuşuna basınız
+        </p>
+        <div class="pb-form">
+            <div class="form-group">
+                <label class="control-label" for="fuKumDosyaYukle">Yüklenecek Dosya</label>
+                <div><input type="file" id="fuKumDosyaYukle" class="form-control" accept=".xls,.xlsx" /></div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="button" id="btnKumDosyaYukle" class="btn btn-primary btn-sm">Yükle</button>
+        </div>
+    </div>
+</dialog>
+
+<dialog id="dlgOnay" class="pb-onay">
+    <p id="dlgOnayMetin"></p>
+    <div class="text-right">
+        <button type="button" class="btn btn-default btn-sm" data-sonuc="hayir">Vazgeç</button>
+        <button type="button" class="btn btn-primary btn-sm" data-sonuc="evet">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/personelalt.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personel-gider.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/personel-gider.js" asp-append-version="true"></script>
+}

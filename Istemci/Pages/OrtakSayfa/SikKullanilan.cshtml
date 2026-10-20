@@ -1,0 +1,18 @@
+@page
+@model SikKullanilanModel
+@{
+    // Açılış sayfasındaki "Sık Kullanılanlar" bilgi ekranı (eski Dashboard/Genel/SikKullanilan.ascx). Çerçeve içinde açıldığı için menüsüzdür.
+    // Liste her sayfanın başlığındaki +/− düğmesiyle değişir (eski KYM/MenuSikKullanilan.aspx taşınmadı).
+    ViewData["Title"] = Metin.Menu("SikKullanilanlar");
+    ViewData["MenuYok"] = true;
+    ViewData["GovdeSinif"] = "sik-kullanilan";
+}
+<div id="hata" class="alert alert-danger" role="alert" hidden></div>
+<div id="liste" class="sik-liste" data-bos="@Metin.Menu("SikBos")"></div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/sikkullanilan.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/sikkullanilan.js" asp-append-version="true"></script>
+}

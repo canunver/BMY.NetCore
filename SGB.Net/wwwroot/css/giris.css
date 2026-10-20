@@ -122,3 +122,36 @@ body.giris {
         padding: 24px 20px 16px;
     }
 }
+
+/* Güvenlik kodu (hatalı deneme sınırı aşılınca) */
+.giris-guvenlik-satir {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.giris-guvenlik-satir input {
+    flex: 1 1 auto;
+    min-width: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.giris-guvenlik-satir img {
+    flex: 0 0 auto;
+    border: 1px solid #d5dbe1;
+    border-radius: 3px;
+}
+
+.giris-unuttum {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.giris-aciklama {
+    margin: 0 0 16px;
+    padding-left: 18px;
+    font-size: 13px;
+    color: #5a6773;
+}

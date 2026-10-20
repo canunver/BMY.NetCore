@@ -1,0 +1,55 @@
+/* Çek Listesi (ButceMuhasebe/CekKocaniForm): avans.css'in sıkışık bölümleri üzerine alan genişlikleri ve iptal penceresi. */
+
+.ceklistesi .cek-kod {
+    width: 200px;
+}
+
+.ceklistesi .cek-tarih {
+    width: 140px;
+}
+
+.ceklistesi .cek-durumlar label {
+    margin: 0 10px 0 0;
+    font-weight: 400;
+}
+
+.ceklistesi .cek-durumlar input {
+    margin-right: 4px;
+}
+
+.ceklistesi .cek-sil {
+    padding: 0 4px;
+    color: #c62828;
+}
+
+.cek-pencere {
+    width: min(600px, calc(100vw - 32px));
+    font-size: 12px;
+}
+
+.cek-pencere .tanim-form {
+    --etiket-genislik: 110px;
+}
+
+.cek-pencere .form-control.input-sm {
+    height: 24px;
+    padding: 1px 6px;
+    font-size: 12px;
+}
+
+.cek-pencere textarea.form-control.input-sm {
+    height: auto;
+}
+
+.cek-pencere .btn-sm {
+    padding: 2px 8px;
+    font-size: 12px;
+}
+
+.cek-pencere .cek-kod {
+    width: 200px;
+}
+
+.cek-pencere .cek-tarih {
+    width: 140px;
+}

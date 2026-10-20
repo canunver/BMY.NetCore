@@ -1,0 +1,325 @@
+@page
+@model TanimBordroTanimModel
+@{
+    ViewData["Title"] = "Bordro Tanım Ekranı";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="bordro-tanim">
+    <div class="bt-ust">
+        <div class="btn-toolbar bt-arac" role="toolbar">
+            <button type="button" id="btnOku" class="btn btn-default btn-sm" title="Seçili bordro türü ve işlem türünün yapısını oku">
+                <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Oku
+            </button>
+            <button type="button" id="btnSakla" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Sakla
+            </button>
+            <button type="button" id="btnKodIndir" class="btn btn-default btn-sm" title="Formüllerden üretilen kodu metin dosyası olarak indir">
+                <span class="glyphicon glyphicon-console" aria-hidden="true"></span> Kodu İndir
+            </button>
+            <button type="button" id="btnSablonUret" class="btn btn-default btn-sm" title="Bordro değişkenleriyle boş Excel şablonu üret">
+                <span class="glyphicon glyphicon-th" aria-hidden="true"></span> Şablon Üret
+            </button>
+            <button type="button" id="btnCalistir" class="btn btn-default btn-sm" title="Excel'deki verilerle formülleri çalıştır">
+                <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Çalıştır
+            </button>
+            <span class="bt-baglar">
+                <a href="../InsanKaynaklari/PersonelTipForm" target="_blank" rel="noopener">Personel Tipleri Düzenleme Sayfası</a>
+                <a href="../HarcamaSurecleri/TanimBordroFormul" target="_blank" rel="noopener">Tüm Değişken ve Formüller</a>
+            </span>
+        </div>
+
+        <form id="frmKriter" class="bt-kriter" novalidate>
+            <div class="bt-alan">
+                <label for="cmbBordroTur">Bordro Türü</label>
+                <select id="cmbBordroTur" class="form-control input-sm"></select>
+            </div>
+            <div class="bt-alan">
+                <label for="txtAd">Adı</label>
+                <input type="text" id="txtAd" class="form-control input-sm" />
+            </div>
+            <div class="bt-alan">
+                <label for="cmbIslemTur">İşlem Türü</label>
+                <select id="cmbIslemTur" class="form-control input-sm"></select>
+            </div>
+            <div class="bt-alan">
+                <label for="txtKaynak">Kaynak</label>
+                <input type="text" id="txtKaynak" class="form-control input-sm" title="Kaynak bordro (bordro türü-işlem türü)" />
+            </div>
+        </form>
+    </div>
+
+    <ul class="nav nav-tabs bt-sekmeler" role="tablist" aria-label="Bordro tanımı">
+        <li role="presentation" class="active"><a href="#sekDegiskenler" id="sekmeDegiskenler" role="tab" aria-controls="sekDegiskenler" aria-selected="true" tabindex="0">Değişkenler</a></li>
+        <li role="presentation"><a href="#sekFormuller" id="sekmeFormuller" role="tab" aria-controls="sekFormuller" aria-selected="false" tabindex="-1">Formüller</a></li>
+        <li role="presentation"><a href="#sekOrtakFonk" id="sekmeOrtakFonk" role="tab" aria-controls="sekOrtakFonk" aria-selected="false" tabindex="-1">Ortak Fonksiyonlar</a></li>
+        <li role="presentation"><a href="#sekSablonlar" id="sekmeSablonlar" role="tab" aria-controls="sekSablonlar" aria-selected="false" tabindex="-1">Ortak Şablonlar</a></li>
+        <li role="presentation"><a href="#sekYardim" id="sekmeYardim" role="tab" aria-controls="sekYardim" aria-selected="false" tabindex="-1">Yardım</a></li>
+    </ul>
+
+    <div class="bt-paneller">
+        <section id="sekDegiskenler" class="bt-panel" role="tabpanel" aria-labelledby="sekmeDegiskenler">
+            <div class="btn-toolbar bt-grid-arac" role="toolbar" data-grid="degiskenler">
+                <button type="button" class="btn btn-default btn-xs" data-is="ekle"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekle</button>
+                <button type="button" class="btn btn-default btn-xs" data-is="sil"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Sil</button>
+                <span class="bt-ayrac"></span>
+                <button type="button" class="btn btn-default btn-xs" data-is="hepsi" title="Ctrl+A"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Hepsini Seç</button>
+                <button type="button" class="btn btn-default btn-xs" data-is="kopyala" title="Seçili satırları (seçili yoksa tümünü) kopyala; Ctrl+C"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Kopyala</button>
+                <button type="button" class="btn btn-default btn-xs" data-is="yapistir" title="Seçili satırdan başlayarak yapıştır; Ctrl+V"><span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Yapıştır</button>
+            </div>
+            <div id="grdDegiskenler" class="bt-grid" tabindex="-1" aria-label="Değişkenler"></div>
+        </section>
+
+        <section id="sekFormuller" class="bt-panel" role="tabpanel" aria-labelledby="sekmeFormuller" hidden>
+            <div class="btn-toolbar bt-grid-arac" role="toolbar" data-grid="formuller">
+                <button type="button" class="btn btn-default btn-xs" data-is="ekle"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekle</button>
+                <button type="button" class="btn btn-default btn-xs" data-is="sil"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Sil</button>
+                <span class="bt-ayrac"></span>
+                <button type="button" class="btn btn-default btn-xs" data-is="hepsi" title="Ctrl+A"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> Hepsini Seç</button>
+                <button type="button" class="btn btn-default btn-xs" data-is="kopyala" title="Seçili satırları (seçili yoksa tümünü) kopyala; Ctrl+C"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Kopyala</button>
+                <button type="button" class="btn btn-default btn-xs" data-is="yapistir" title="Seçili satırdan başlayarak yapıştır; Ctrl+V"><span class="glyphicon glyphicon-paste" aria-hidden="true"></span> Yapıştır</button>
+            </div>
+            <div id="grdFormuller" class="bt-grid" tabindex="-1" aria-label="Formüller"></div>
+        </section>
+
+        <section id="sekOrtakFonk" class="bt-panel" role="tabpanel" aria-labelledby="sekmeOrtakFonk" hidden>
+            <textarea id="txtOrtakFonksiyonlar" class="form-control bt-kod" spellcheck="false" aria-label="Ortak fonksiyonlar"></textarea>
+        </section>
+
+        <section id="sekSablonlar" class="bt-panel" role="tabpanel" aria-labelledby="sekmeSablonlar" hidden>
+            <div class="btn-toolbar bt-grid-arac" role="toolbar">
+                <button type="button" id="btnYeniSablon" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Yeni Şablon</button>
+            </div>
+            <div id="grdSablonlar" class="bt-grid" aria-label="Ortak şablonlar"></div>
+        </section>
+
+        <section id="sekYardim" class="bt-panel bt-yardim" role="tabpanel" aria-labelledby="sekmeYardim" hidden>
+            <h2>Formüllerde Kullanılacak Fonksiyonlar</h2>
+            <table class="table table-bordered table-condensed">
+                <tbody>
+                    <tr><th scope="row">tcKimlikNo</th><td>Bordro işleminin kimin için yapıldığı bilgisi</td></tr>
+                    <tr><th scope="row">yil</th><td>Değişken, Bordro yılını verir. Fark bordroları için önceki bordronun yılı, diğerleri için ödeme yılı</td></tr>
+                    <tr><th scope="row">ay</th><td>Değişken, Bordro ayını verir. Fark bordroları için önceki bordronun ayı, diğerleri için ödeme ayı</td></tr>
+                    <tr><th scope="row">hakedisBasTar</th><td>Maaşın hakedildiği dönemin başlangıç günü</td></tr>
+                    <tr><th scope="row">hakedisSonTar</th><td>Maaşın hakedildiği dönemin son günü</td></tr>
+                    <tr><th scope="row">hakedisGun</th><td>Maaş dönemindeki gün sayısı (maaş türü iş günü ise iş günü değilse ay günü)</td></tr>
+                    <tr><th scope="row">GelirVergisiHesapla(double oncekiMatrah, double simdikiMatrah)</th><td>Bordro yılı için geçerli vergi oranlarını kullanılarak gelir vergisi hesaplayan fonksiyon</td></tr>
+                    <tr><th scope="row">GenelMaasParamAy(string kod, int ay)</th><td>Verilen ay için sabit olarak verilen kodun değerini döndüren fonksiyon. Sabit kod değerleri için <b>Maaş Parametresi Değerleri</b> tablosuna bakınız.</td></tr>
+                    <tr><th scope="row">GunBul(DateTime kucuk, DateTime buyuk)</th><td>Büyük tarih ile küçük tarih arasındaki farkı 360 gün esasına dayanarak verir.</td></tr>
+                    <tr><th scope="row">GenelMaasParam(string kod)</th><td>Bordro ayı için sabit olarak verilen kodun değerini döndüren fonksiyon. Sabit kod değerleri için <b>Maaş Parametresi Değerleri</b> tablosuna bakınız.</td></tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>
+                            <b>Maaş Parametresi Değerleri</b><br />
+                            <b>"tabanAylikKatsayi"</b>: Taban Aylık Katsayısı<br />
+                            <b>"yanOdemeKatsayi"</b>: Yan Ödeme Katsayısı<br />
+                            <b>"enYuksekGosterge"</b>: En Yüksek Gösterge<br />
+                            <b>"aylikKatsayi"</b>: Aylık Katsayısı<br />
+                            <b>"damgaVergisiOrani"</b>: Damga Vergisi Oranı<br />
+                            <b>"brutAsgariUcret"</b>: Brüt Asgari Ücret<br />
+                            <b>"netAsgariUcret"</b>: Net Asgari Ücret<br />
+                            <b>"sakatlikIndirimi1"</b>: Sakatlık İndirimi 1. derece<br />
+                            <b>"sakatlikIndirimi2"</b>: Sakatlık İndirimi 2. derece<br />
+                            <b>"sakatlikIndirimi3"</b>: Sakatlık İndirimi 3. derece<br />
+                            <b>"kira1"</b>: Metre kare için kira bedeli<br />
+                            <b>"yakit1"</b>: Metre kare için yakıt bedeli<br />
+                            <b>"sskTavan"</b>: SSK Tavanı<br />
+                            <b>"topluGorusmeSabiti"</b>: Toplu Görüşme Sabiti<br />
+                            <b>"gelirVergisiOran"</b>: Gelir Vergisi Oranı<br />
+                            <b>"sskIsverenPayiOran"</b>: SSK İşveren Payı<br />
+                            <b>"sskIsciPayiOran"</b>: SSK İşçi Payı<br />
+                            <b>"isKazasiMeslekHast"</b>: İş Kazası Meslek Hastalığı Sigortası<br />
+                            <b>"analikSigortasi"</b>: Analık Sigortası<br />
+                            <b>"hastalikSigortasi"</b>: Toplu Görüşme Sabiti<br />
+                            <b>"malulYasliOlumSigortasi"</b>: Hastalık Sigortası<br />
+                            <b>"sskIssizSigIsVerenPayiOran"</b>: İşsizlik Sigortası İşveren Payı<br />
+                            <b>"sskIssizSigIsciPayiOran"</b>: İşsizlik Sigortası İşçi Payı<br />
+                            <b>"aileYardimiKatsayisi"</b>: Aile Yardım Katsayısı
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">TabloDeger(int tabloKod, int unvanKod, int derece)</th>
+                        <td>
+                            Bordro tabloları olarak oluşturulan tablolardan değer alan fonksiyon.<br />
+                            <b>tabloKod</b>: Tablo oluşturulurken verilen tablo numarası.<br />
+                            <b>unvanKod</b>: Çoğu tabloda personelin unvan kodu fakat istenilirse tablo oluşturulurken verilen birinci alan.<br />
+                            <b>derece</b>: Çoğu tabloda personelin derecesi, derece yoksa 1 girilmelidir. Ayrıca istenilirse tablo oluşturulurken verilen ikinci alan.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">TabloDegerYil(int tabloKod, int unvanKod, int derece, int yil)</th>
+                        <td>
+                            Bordro tabloları olarak oluşturulan tablolardan, yil bazlı çalışanlardan, değer alan fonksiyon.<br />
+                            <b>tabloKod</b>: Tablo oluşturulurken verilen tablo numarası.<br />
+                            <b>unvanKod</b>: Çoğu tabloda personelin unvan kodu fakat istenilirse tablo oluşturulurken verilen birinci alan.<br />
+                            <b>derece</b>: Çoğu tabloda personelin derecesi, derece yoksa 1 girilmelidir. Ayrıca istenilirse tablo oluşturulurken verilen ikinci alan.<br />
+                            <b>yil</b>: Tablonun geçerli olduğu yıl.
+                        </td>
+                    </tr>
+                    <tr><th scope="row">KurusYap(double deger)</th><td>Verilen rakamı kuruşa(2 ondalık basamak) yuvarlar.</td></tr>
+                    <tr><th scope="row">GunBul(DateTime kucuk, DateTime buyuk, bool sonGunDahil)</th><td>Verilen iki gün arasındaki günü bulur. Eğer hakediş günü 28'den küçük ise iş günü, değilse ay günü hesaplanır.</td></tr>
+                    <tr><th scope="row">GunBul(DateTime kucuk, DateTime buyuk, bool sonGunDahil, bool isGunu)</th><td>Verilen iki gün arasındaki günü bulur. isGunu doğru ise iş günü, değilse ay günü hesaplanır.</td></tr>
+                    <tr><th scope="row">GunBul360(DateTime kucuk, DateTime buyuk)</th><td>Verilen iki gün arasındaki ayların 30 çekme esasına göre olan günü bulur.</td></tr>
+                    <tr><th scope="row">Kur(string paraBirimiKod, string kurTur)</th><td>Bordronun hazırlama tarihindeki kur değerini döndürür.</td></tr>
+                    <tr><th scope="row">Yuvarla(double deger, int noktaSay)</th><td>Verilen değeri, verilen nokta sayısına kadar yuvarlar.</td></tr>
+                    <tr><th scope="row">YuvarlaAsagi(double deger)</th><td>Verilen değerin küsüratını atar.</td></tr>
+                    <tr><th scope="row">YuvarlaYukari(double deger)</th><td>Verilen değeri bir üst tamsayıya tamamlar.</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
+
+<!-- Ortak şablon (eski Dosya Yükleme Ekranı) -->
+<dialog id="dlgSablon" class="tanim-pencere bt-pencere-sablon" aria-labelledby="dlgSablonBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSablonBaslik">Dosya Yükleme Ekranı</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="btn-toolbar bt-pencere-arac" role="toolbar">
+            <button type="button" id="btnSablonKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+            <button type="button" id="btnSablonSil" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil</button>
+            <label id="lblSablonYukle" class="btn btn-default btn-sm bt-dosya-dugme">
+                <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Şablon Yükle
+                <input type="file" id="fuSablonYukle" accept=".xlsx,.xls" />
+            </label>
+        </div>
+        <form id="frmSablon" class="tanim-form" novalidate>
+            <div class="form-group">
+                <span class="control-label">Şablon Anahtar</span>
+                <div class="bt-anahtar">
+                    <label><input type="text" id="txtSabPTip" class="form-control input-sm" /><small>Per. Tip</small></label>
+                    <label><input type="text" id="txtSabIslem" class="form-control input-sm" /><small>İşlem Kod</small></label>
+                    <label><input type="text" id="txtSabKod" class="form-control input-sm" /><small>Şablon Kod</small></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtSablonAd">Açıklama</label>
+                <div><input type="text" id="txtSablonAd" class="form-control input-sm" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtGecerliKodlar">Geçerli Kodlar</label>
+                <div><input type="text" id="txtGecerliKodlar" class="form-control input-sm" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtSiralamaKod">Sıra Kodu</label>
+                <div><input type="text" id="txtSiralamaKod" class="form-control input-sm" /></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label">Seçenekler</span>
+                <div class="bt-secenekler">
+                    <label><input type="checkbox" id="chkBordroda" /> Bordroda Görünsün</label>
+                    <label><input type="checkbox" id="chkOrtakda" /> Ortak Raporda Görünsün</label>
+                    <label><input type="checkbox" id="chkKiside" /> Kişide Görünsün</label>
+                </div>
+            </div>
+        </form>
+        <div class="bt-aciklama">
+            Excel dosyası yükleyiniz. Excel dosyasında:
+            <br> - <b>BordroSatir</b> isimli bölge tanımlayınız.
+            <br> - <b>BordroSatir</b> bölgesi içinde bordro değişken isimlerinin başına <b>a_</b> hücreler tanımlayınız.
+            <br> - <b>SayfaToplam</b> isimli bölge tanımlayınız.
+            <br> - <b>SayfaToplam</b> bölgesi içinde bordro değişken isimlerinin başına <b>s_</b> ekleyerek hücreler tanımlayınız.
+            <br> - <b>GenelToplam</b> isimli bölge tanımlayınız.
+            <br> - <b>GenelToplam</b> bölgesi içinde bordro değişken isimlerinin başına <b>t_</b> ekleyerek hücreler tanımlayınız.
+            <br> - İlgili bölgelerde gerekiyorsa formüller tanımlayınız. Gösterilmeyecek değişkenleri gizli sütunlara koyunuz.
+            <br> - <b>Yil</b>, <b>Ay</b> ve <b>SayfaKisi</b> isimli hücreler tanımlayınız ve SayfaKisi hücresine sayfada kaç personel olacağını yazınız.
+            <br> - Bu bölgelerin gösterim şekillerini belirleyip, şablon satırları gizleyiniz.
+            <br> - Bordronun başlıklarını düzenleyiniz. İlk personelin gösterileceği başlangıç hücresine <b>BaslaSatir</b> ismini veriniz
+            <br>
+            <br> <b>Not:</b> Hücre ve bölge isimlendirmelerini hücre adresi gösterilen alana yazarak yada Formüller ad yöneticisinden yapabilirsiniz.
+        </div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Formül yazma penceresi (eski wndFormulGir) -->
+<dialog id="dlgFormul" class="tanim-pencere bt-pencere-formul" aria-labelledby="dlgFormulBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgFormulBaslik">Formül</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <textarea id="txtFormulGir" class="form-control bt-kod" spellcheck="false" aria-label="Formül"></textarea>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnYazKapat" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Aktar ve kapat</button>
+    </div>
+</dialog>
+
+<!-- Formül çalıştırma (eski wndCalistir) -->
+<dialog id="dlgCalistir" class="tanim-pencere bt-pencere-calistir" aria-labelledby="dlgCalistirBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgCalistirBaslik">Formül Çalıştırma Ekranı</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmCalistir" class="tanim-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="txtDonemTarih">Dönem</label>
+                <div><input type="date" id="txtDonemTarih" class="form-control input-sm bt-tarih" required /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtCalTarih">Hazırlama Tarihi</label>
+                <div><input type="date" id="txtCalTarih" class="form-control input-sm bt-tarih" required /></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label">İş Günü</span>
+                <div><label class="bt-kutu-etiket"><input type="checkbox" id="chkIsgunu" /> Evet</label></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="fuCalDosya">Dosya</label>
+                <div><input type="file" id="fuCalDosya" class="form-control input-sm" accept=".xlsx,.xls" /></div>
+            </div>
+        </form>
+        <div class="bt-aciklama">
+            Excel dosyası yükleyiniz. Excel dosyasının:
+            <br>Birinci satırı başlık için ayrılmalıdır. İkinci satırdan itibaren veriler olmalıdır.
+            <br>Birinci sütundan itibaren <b>Değişkenler</b> sayfasında bulunan tüm değişkenler olmalıdır
+            <br>Değişkenler <b>Sıra</b> alanına göre sütunlara yerleştirilmelidir.
+            <br>Sonuç dosyasında <b>Formüller</b> sayfasında bulunan formüllerin değerleri üretilecektir.
+            <br>Bordro parametreleri girilen <b>Dönem</b>e göre belirlenir
+            <br>Döviz kurları girilen <b>Hazırlama Tarihi</b>ne göre belirlenir.
+            <br>Gün hesabının iş günü mü takvim günü mü olacağı <b>İş Günü</b> alanına göre belirlenir.
+        </div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnHesapla" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> Hesapla</button>
+    </div>
+</dialog>
+
+<!-- Yapıştır: pano okunamazsa veri buraya yapıştırılır -->
+<dialog id="dlgYapistir" class="tanim-pencere" aria-labelledby="dlgYapistirBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgYapistirBaslik">Yapıştır</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="help-block" id="yapistirNot">Excel'den kopyaladığınız satırları buraya yapıştırınız (Ctrl+V).</p>
+        <textarea id="txtYapistir" class="form-control" rows="8" aria-label="Yapıştırılacak veri"></textarea>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnYapistirTamam" class="btn btn-primary btn-sm">Yapıştır</button>
+    </div>
+</dialog>
+
+<datalist id="lstGiris"></datalist>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/bordrotanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/bordrotanim.js" asp-append-version="true"></script>
+}

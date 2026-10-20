@@ -85,7 +85,6 @@
 				<Node ID="Menu2_2_9"  Text="Ek Formlar" URL="../ButceHazirlikv2/EkFormAna.aspx" Yetki="1,20"></Node>
 				<Node ID="Menu2_2_29" Text="Yolluk Planlama Formu" URL="../ButceHazirlikv2/YollukPlanlamaForm.aspx" Yetki="1,20"></Node>
 				<Node ID="Menu2_2_10" Text="Hizmet Maliyet Tespiti-Taşra" URL="../ButceForm/HizmetMaliyetiTespitiTasra.aspx" Yetki="1" Gizli="1" ></Node>
-				<Node ID="Menu2_2_11" Text="Fiziksel Değerler-Taşra" URL="../ButceForm/FizikselDegerlerTasra.aspx" Yetki="1" Gizli="1"></Node>
 				<Node ID="Menu2_2_30" Text="" URL="../ButceHazirlikv2/ButceCalismasiPersoneliForm.aspx" Yetki="1,20"></Node>
         <Node ID="Menu2_2_19" Text="Faaliyet - Birim İlişkilendirme" URL="../ButceHazirlikv2/FaaliyetinYapildigiYerForm.aspx" Yetki="1,20"></Node>
       </Node>

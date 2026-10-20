@@ -1,0 +1,153 @@
+@page
+@model BorcuYokBelgesiModel
+@{
+    ViewData["Title"] = "Borcu Yoktur Belgesi";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="borcuyok">
+    <!-- Vergi Borç Sorgulama Kullanıcı Taahhütnamesi (eski TanimTaahhutname.aspx?tur=1; imzalanmamışsa form yerine gösterilir) -->
+    <section id="pnlTaahhut" class="kutu bolum bolum-taahhut" hidden>
+        <h2 class="bolum-baslik">Vergi Borç Sorgulama Kullanıcı Taahhütnamesi</h2>
+        <div class="byb-taahhut-metin">
+            <p class="byb-orta"><b>VERGİ BORÇ SORGULAMA<br />KULLANICI TAAHHÜTNAMESİ</b></p>
+            <p class="byb-orta"><b>AÇIKLAMA</b></p>
+            <p>Bakanlığımız harcama ve taahhüt süreçlerinin elektronik ortama aktarılması, mevzuata uygunluk ve uygulama birliği ile zaman ve işgücünden tasarruf sağlanması amacıyla geliştirilen Maliye SGB.net sistemi, 31/12/2008 tarih ve 2008/6 sayılı Harcama Yönetimi genelgesi ile uygulamaya alınmıştır.</p>
+            <p>Söz konusu uygulama kapsamında Gelir İdaresi Başkanlığı ile elektronik ortamda vergi borç araştırması yapılabilmesi için protokol imzalanmıştır.</p>
+            <p>Maliye SGB.net sisteminden vergi borç araştırması, Kamu İhale Mevzuatı ile 28/07/1953 tarihli ve 6183 sayılı Amme Alacakları Tahsil Usulü Hakkında Kanun kapsamındaki işlemlerde kullanılacaktır.</p>
+            <p>Sistemden yapılan her türlü işlemin tarihi, saati, işlemi yapan kullanıcı ve yapılan sorgulama bilgileri izleme bilgisi olarak tutulmaktadır.</p>
+            <p class="byb-orta"><b>TAAHHÜTNAME</b></p>
+            <p>213 Sayılı Vergi Usul Kanununun 5.maddesi <b>“Vergi Mahremiyeti”</b> hükümleri çerçevesinde, Maliye SGB.net sistemi Vergi Borcu Sorgulama ekranından elde ettiğim tüm bilgileri sadece, ilgili mevzuatlar kapsamındaki iş süreçleri içerisinde kullanacağımı, kullanıcı parolamın güvenliğini sağlayacağımı beyan ve taahhüt ederim.</p>
+        </div>
+        <div class="byb-arac">
+            <button type="button" id="btnTaahhutKabul" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kabul Ediyorum
+            </button>
+            <button type="button" id="btnTaahhutRet" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Kabul Etmiyorum
+            </button>
+        </div>
+    </section>
+
+    <div id="pnlForm" hidden>
+        <!-- Sorgulama girişi (eski frmFormAlanlari) -->
+        <section class="kutu bolum bolum-giris">
+            <h2 class="bolum-baslik">
+                Vergi Borcu Sorgulama Girişi
+                <span class="byb-ust-tuslar">
+                    <button type="button" id="btnYardim" class="btn btn-default btn-xs byb-yardim" title="Açıklama" aria-expanded="false" aria-controls="pnlIpucu">
+                        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span><span class="sr-only">Açıklama</span>
+                    </button>
+                </span>
+            </h2>
+            <ul id="pnlIpucu" class="byb-ipucu" hidden>
+                <li>Sorgulama sonucunda elde edilen bilgiler sadece Bakanlık iş süreçleri içerisinde kullanılmalıdır.</li>
+                <li>Yapılan sorgulamalar, sorgulanan firma/kişi, sorgulayan kişi ve sorgulama tarihi olarak kayıt altına alınmaktadır.</li>
+                <li><b>Dilekçe sonuçlarını Belge Arama bölümündeki ilgili dilekçeyi bulduktan sonra SORGU butonuna basarak öğrenebilirsiniz!</b></li>
+                <li>Gönder: dilekçe Gelir İdaresi Başkanlığı'na gönderilir; GİB o an cevap veremezse dilekçe sıraya alınır ve daha sonra gönderilir.</li>
+            </ul>
+            <form id="frmGiris" class="tanim-form byb-alanlar" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="txtMuhasebe">Muhasebe Birimi Kodu</label>
+                    <div class="byb-bitisik">
+                        <input type="text" id="txtMuhasebe" class="form-control input-sm byb-kod" maxlength="5" inputmode="numeric" autocomplete="off" />
+                        <button type="button" id="btnMuhasebeSec" class="btn btn-default btn-sm" title="Muhasebe listesi">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Muhasebe listesi</span>
+                        </button>
+                        <span id="lblMuhasebeAd" class="byb-ad"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlNeden">Talep Nedeni</label>
+                    <div><select id="ddlNeden" class="form-control input-sm byb-genis"></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtVergiNo">Vergi / T.C.Kimlik</label>
+                    <div class="byb-bitisik">
+                        <input type="text" id="txtVergiNo" class="form-control input-sm byb-kod" maxlength="11" inputmode="numeric" autocomplete="off" />
+                        <button type="button" id="btnKimlik" class="btn btn-default btn-sm" title="Kimlik bilgilerini GİB'den getir">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Kimlik bilgilerini GİB'den getir</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtIlgiliMakam">Belge Verilecek Makam</label>
+                    <div><input type="text" id="txtIlgiliMakam" class="form-control input-sm byb-genis" maxlength="60" autocomplete="off" /></div>
+                </div>
+            </form>
+        </section>
+
+        <!-- GİB'den gelen kişi / firma bilgileri (eski lblVD, lblAd, lblAdres) -->
+        <section class="kutu bolum bolum-kimlik">
+            <h2 class="bolum-baslik">Kişi / Firma Bilgileri</h2>
+            <div class="tanim-form byb-alanlar">
+                <div class="form-group">
+                    <span class="control-label">Vergi Dairesi</span>
+                    <div><span id="lblVD" class="byb-deger"></span></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Adı Soyadı/Ünvanı</span>
+                    <div><span id="lblAd" class="byb-deger"></span></div>
+                </div>
+                <div class="form-group ust-hizali">
+                    <span class="control-label">Adres</span>
+                    <div><span id="lblAdres" class="byb-deger"></span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- İşlemler (eski üst araç çubuğu) -->
+        <div class="byb-arac" role="toolbar" aria-label="İşlemler">
+            <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-send" aria-hidden="true"></span> Gönder
+            </button>
+            <button type="button" id="btnTemizle" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle
+            </button>
+            <button type="button" id="btnOncekiYazdir" class="btn btn-default btn-sm" hidden>
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Önceki Sonucu Yazdır
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Muhasebe seçimi (eski MuhasebeGoster(1)) -->
+<dialog id="dlgMuhasebe" class="tanim-pencere byb-pencere" aria-labelledby="dlgMuhasebeBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgMuhasebeBaslik">Muhasebe Listesi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <ul id="agcMuhasebe" aria-label="Muhasebe birimleri"></ul>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu (eski Ext1.MessageBox.confirm, BelgeYazdirTamamla) -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin" class="byb-soru"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Hayır</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/borcuyokbelgesi.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/borcuyokbelgesi.js" asp-append-version="true"></script>
+}

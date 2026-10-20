@@ -1,0 +1,129 @@
+@page
+@model TaahhutOdemeEmriKayitModel
+@{
+    ViewData["Title"] = "Ödeme Emri Kayıt Sayfası";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+    // Kesinti satırları: etiket, hesap alanı, tutar alanı, hesap listesi (boşsa hesap kodu serbest girilir; eski sayfada bu listeler boştu).
+    var satirlar = new[]
+    {
+        new { Etiket = "KDV Tutarı 1", Hesap = "kdvHesapKodu", Tutar = "kdv", Liste = "kdv" },
+        new { Etiket = "KDV Tutarı 2", Hesap = "kdvHesapKodu2", Tutar = "kdv2", Liste = "kdv" },
+        new { Etiket = "KDV Tutarı 3", Hesap = "kdvHesapKodu3", Tutar = "kdv3", Liste = "kdv" },
+        new { Etiket = "Damga Vergisi 1", Hesap = "damgaVergisiHesapKodu", Tutar = "damgaVergisi", Liste = "damga" },
+        new { Etiket = "Damga Vergisi 2", Hesap = "damgaVergisiHesapKodu2", Tutar = "damgaVergisi2", Liste = "damga" },
+        new { Etiket = "KDV Tevkifatı", Hesap = "kdvTevkifatiHesapKodu", Tutar = "kdvTevkifati", Liste = "tevkifat" },
+        new { Etiket = "Gelir Vergisi Stopajı", Hesap = "gelirVergisiHesapKodu", Tutar = "gelirVergisiStopaji", Liste = "gelir" },
+        new { Etiket = "Para Cezaları", Hesap = "paraCezalariHesapKodu", Tutar = "paraCezalari", Liste = "paraCeza" },
+        new { Etiket = "Mahsup Edilen Avans", Hesap = "mahsupEdileAvansHesapKodu", Tutar = "mahsupEdilenAvans", Liste = "mahsupAvans" },
+        new { Etiket = "İcra Kesintisi", Hesap = "icraKesintisiHesapKodu", Tutar = "icraKesintisi", Liste = "icra" },
+        new { Etiket = "Teminat Kesintisi", Hesap = "teminatKesintisiHesapKodu", Tutar = "teminatKesintisi", Liste = "teminat" },
+        new { Etiket = "SSK Primi ve Gecik.Za.", Hesap = "sskPrimiGecikmeZammiHesapKodu", Tutar = "sskPrimiVeGecikmeZammi", Liste = "ssk" },
+        new { Etiket = "Temlik", Hesap = "temlikHesapKodu", Tutar = "temlik", Liste = "" },
+        new { Etiket = "Fon Payı", Hesap = "fonPayiHesapKodu", Tutar = "fonPayi", Liste = "" },
+        new { Etiket = "Vergi Borcu", Hesap = "vergiBorcuHesapKodu", Tutar = "vergiBorcu", Liste = "" },
+        new { Etiket = "Bütçe Emaneti", Hesap = "butceEmanetiHesapKodu", Tutar = "butceEmaneti", Liste = "" }
+    };
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans muh-tanim th-alt th-oe">
+    <section class="kutu bolum">
+        <div class="avans-arac mt-arac" role="toolbar" aria-label="Ödeme emri işlemleri" style="margin-top:8px">
+            <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+            <label for="txtYil" class="sr-only">Yıl</label>
+            <input type="number" id="txtYil" class="form-control input-sm sgb-yil" min="1980" title="Ödeme emri belge yılı" />
+            <label for="txtBelgeNo" class="sr-only">Ödeme Emri Belge No</label>
+            <input type="text" id="txtBelgeNo" class="form-control input-sm th-orta" placeholder="Ödeme Emri Belge No" title="Oluşturulacak belgeye daha önceki bir belgenin numarasını vermek için yazın, aksi halde boş bırakın" />
+            <label for="txtTarih" class="sr-only">Ödeme emri belge tarihi</label>
+            <input type="date" id="txtTarih" class="form-control input-sm th-tarih" title="ÖEB Tarih" />
+            <button type="button" id="btnKapat" class="btn btn-default btn-sm" hidden><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Kapat</button>
+            <span id="lblKayit" class="avans-ozet"></span>
+        </div>
+    </section>
+
+    <div class="th-iki-sutun">
+        <section class="kutu bolum">
+            <h2 class="bolum-baslik">Hakediş ve Ödeme</h2>
+            <div class="tanim-form avans-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="txtAciklama">Açıklama</label>
+                    <div><textarea id="txtAciklama" class="form-control input-sm" rows="3"></textarea></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtHakedisHesap">Hakediş Hesap Kodu</label>
+                    <div class="th-satir-hesap">
+                        <input type="text" id="txtHakedisHesap" class="form-control input-sm th-hesap" autocomplete="off" />
+                        <input type="text" id="txtHakedisTutari" class="form-control input-sm th-tutar" inputmode="decimal" placeholder="Tutar" aria-label="Hakediş tutarı" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtOdemeHesap">Ödeme Hesap Kodu</label>
+                    <div><input type="text" id="txtOdemeHesap" class="form-control input-sm th-hesap" autocomplete="off" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlYansitma">Yansıtma Hesap Kodu</label>
+                    <div><select id="ddlYansitma" class="form-control input-sm"><option value=""></option></select></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="kutu bolum bolum-liste">
+            <h2 class="bolum-baslik">Diğer Gelirler</h2>
+            <div class="avans-arac">
+                <button type="button" id="btnSatirEkle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Ekle</button>
+                <button type="button" id="btnSatirSil" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Satır Sil</button>
+                <span class="avans-not">Hesap kodlarını hücreye yazın.</span>
+            </div>
+            <div id="grdDiger" class="th-grid" style="height:200px" aria-label="Diğer gelirler"></div>
+        </section>
+    </div>
+
+    <section class="kutu bolum th-bolum-kesinti">
+        <h2 class="bolum-baslik">KDV ve Kesintiler</h2>
+        <div class="tanim-form avans-alanlar th-kesintiler">
+            @foreach (var s in satirlar)
+            {
+                <div class="form-group">
+                    <label class="control-label" for="h_@s.Hesap">@s.Etiket</label>
+                    <div class="th-satir-hesap">
+                        @if (s.Liste == "")
+                        {
+                            <input type="text" id="h_@s.Hesap" class="form-control input-sm th-hesap" data-hesap="@s.Hesap" autocomplete="off" />
+                        }
+                        else
+                        {
+                            <select id="h_@s.Hesap" class="form-control input-sm th-hesap-liste" data-hesap="@s.Hesap" data-liste="@s.Liste"><option value=""></option></select>
+                        }
+                        <input type="text" id="t_@s.Tutar" class="form-control input-sm th-tutar" inputmode="decimal" placeholder="Tutar" aria-label="@s.Etiket tutarı" data-tutar="@s.Tutar" />
+                        @if (s.Tutar == "mahsupEdilenAvans")
+                        {
+                            <input type="text" id="txtMahsupTertip" class="form-control input-sm th-tertip th-salt" readonly placeholder="Tertibi" aria-label="Mahsup edilen avans tertibi" />
+                            <button type="button" id="btnMahsupTertip" class="btn btn-default btn-sm" title="Tertip seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Tertip seç</span></button>
+                            <input type="text" id="txtMahsupBelgeNo" class="form-control input-sm th-orta" placeholder="Mahsup Belge No" aria-label="Mahsup belge no" />
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tertipsec.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hesapkodu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taahhutkarti.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/tertipsec.js" asp-append-version="true"></script>
+    <script src="~/js/hesapkodu.js" asp-append-version="true"></script>
+    <script src="~/js/taahhutodemeemri.js" asp-append-version="true"></script>
+}

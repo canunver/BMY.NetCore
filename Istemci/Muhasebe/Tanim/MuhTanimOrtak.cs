@@ -44,6 +44,7 @@ namespace Istemci.Muhasebe
             MuhTanimHesapPlaniUclari.Ekle(app);
             MuhTanimListeUclari.Ekle(app);
             MuhTanimDigerUclari.Ekle(app);
+            MuhTanimTasinirUclari.Ekle(app);
         }
 
         // ------------------------------------------------------------------ yetki

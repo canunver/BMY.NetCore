@@ -1,0 +1,182 @@
+/* Hizmet Belgesi sekmesi (PersonelKadro) ve açtığı pencereler (PersonelHITAP, PersonelHizmetAyari, PersonelHizmetSureleri,
+   PersonelKadroOnaysiz). Ortak görünüm personelalt.css'tedir; burada yalnızca bu sayfalara özgü kurallar var. */
+
+/* Sayfa, çerçevenin tamamını kaplar; hizmet listesi kalan yüksekliği doldurur. */
+.pb-kadro,
+.pb-onaysiz {
+    height: calc(100vh - 16px);
+    min-height: 420px;
+}
+
+.pb-kadro .pbk-liste,
+.pb-onaysiz .pbk-panel {
+    flex: 1 1 auto;
+}
+
+.pb-kadro .pbk-liste > .pb-govde,
+.pb-onaysiz .pbk-panel > .pb-govde {
+    flex: 1 1 auto;
+}
+
+.pbk-ipucu {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+.pbk-belge-grid {
+    height: 150px;
+}
+
+.pbk-dosya {
+    margin: 0 0 0 auto;
+    font-weight: 400;
+}
+
+/* Grid: ortalanmış sayılar, üst başlık grupları, durum simgeleri. */
+.pb .pbk-orta {
+    text-align: center;
+}
+
+.pb .pbk-orta .ag-header-cell-label {
+    justify-content: center;
+}
+
+.pb .pbk-grup .ag-header-group-cell-label {
+    justify-content: center;
+    font-weight: 600;
+}
+
+.pbk-ac {
+    padding: 0 4px;
+}
+
+.pbk-durum {
+    font-size: 13px;
+}
+
+.pbk-durum.durum-yeni { color: #2e7d32; }
+.pbk-durum.durum-aktif { color: #1b8a3a; }
+.pbk-durum.durum-kapaniyor { color: #c77700; }
+.pbk-durum.durum-kapandi { color: #5a6b7d; }
+.pbk-durum.durum-ayrildi { color: #37474f; }
+.pbk-durum.durum-red,
+.pbk-durum.durum-tanimsiz { color: #c62828; }
+
+/* Form alanları */
+.pb-form.pbk-etiket-genis {
+    --etiket-genislik: 170px;
+}
+
+.pb-form.pbk-etiket-cok-genis {
+    --etiket-genislik: 240px;
+}
+
+.pb-form .pbk-orta-alan {
+    max-width: 260px;
+}
+
+.pb-form .pbk-salt[readonly] {
+    background: #fff8d6;
+}
+
+.pbk-secim .form-control {
+    flex: 1 1 200px;
+    max-width: 360px;
+    cursor: pointer;
+}
+
+.pbk-alt-arac {
+    justify-content: flex-end;
+}
+
+.pbk-ust-arac {
+    margin-bottom: 6px;
+}
+
+.pbk-etiket {
+    margin: 0;
+    font-weight: 600;
+}
+
+.pbk-tarih {
+    width: 160px;
+}
+
+/* Sekmeler (Bekleyen İşlemler) */
+.pbk-sekmeler {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.pbk-sekme {
+    padding: 6px 14px;
+    font-size: 13px;
+    color: var(--murekkep);
+    background: transparent;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    border-radius: 6px 6px 0 0;
+}
+
+.pbk-sekme[aria-selected="true"] {
+    font-weight: 600;
+    background: var(--b1-baslik);
+    border-color: var(--cizgi);
+}
+
+/* Sayfa içi pencereler (onay, birim seçimi) */
+.pbk-pencere {
+    width: min(480px, calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    padding: 0;
+    color: var(--murekkep);
+    background: var(--yuzey, #fff);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .25);
+}
+
+.pbk-pencere::backdrop {
+    background: rgba(0, 0, 0, .45);
+}
+
+.pbk-pencere .pencere-baslik {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.pbk-pencere .pencere-baslik h2 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.pbk-pencere .pencere-govde {
+    max-height: 60vh;
+    padding: 14px;
+    overflow-y: auto;
+}
+
+.pbk-pencere .pencere-govde p {
+    margin: 0;
+}
+
+.pbk-pencere .pencere-alt {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 10px 14px;
+    border-top: 1px solid var(--cizgi);
+}
+
+.pbk-agac {
+    min-height: 200px;
+    margin: 0;
+    padding: 0;
+}

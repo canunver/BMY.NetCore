@@ -1,0 +1,137 @@
+@page
+@model MuhasebatAktarimTCCBModel
+@{
+    ViewData["Title"] = "Muhasebat Aktarım Belgesi";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans ma ma-form">
+    <!-- Belge bilgileri (eski pnl) ve işlem tuşları (eski Toolbar5) -->
+    <section class="kutu bolum bolum-kriter">
+        <h2 class="bolum-baslik">Muhasebat Aktarım Belgesi
+            <span id="lblDurum" class="ma-durum" aria-live="polite"></span>
+            <button type="button" class="btn btn-link btn-xs avans-yardim-dugme" data-yardim="#maYardim" title="Yardım" aria-label="Yardım">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+            </button>
+        </h2>
+        <div id="maYardim" class="alert alert-info avans-yardim" hidden>
+            Muhasebe / birim, tarih aralığı ve (isteğe bağlı) yevmiye numarası aralığını girip <b>Listele</b>'ye basınca o dönemin mizanından
+            belge satırları oluşturulur. Satırlar düzenlenip <b>Kaydet</b>'e basılır; kayıtlı belge Belge No yazılıp
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> ile (ya da Enter) okunur. Onaylanan belge
+            <b>Muhasebat'a Gönder</b> ile gönderilir. Hesap kodu hücresine en az iki karakter yazınca öneriler gelir.
+        </div>
+        <div class="avans-arac ma-arac" role="toolbar" aria-label="Belge işlemleri">
+            <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+            </button>
+            <button type="button" id="btnTemizle" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Temizle
+            </button>
+            <span class="ma-ayrac" aria-hidden="true"></span>
+            <button type="button" id="btnYazdir" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+            </button>
+            <span class="ma-bosluk"></span>
+            <button type="button" id="btnOnayla" class="btn btn-default btn-sm" data-islem="onayla">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Onayla
+            </button>
+            <button type="button" id="btnOnayKaldir" class="btn btn-default btn-sm" data-islem="onaykaldir">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Onay Kaldır
+            </button>
+            <button type="button" id="btnIptal" class="btn btn-default btn-sm" data-islem="iptal">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> İptal Et
+            </button>
+            <span class="ma-ayrac" aria-hidden="true"></span>
+            <button type="button" id="btnOnayaGonder" class="btn btn-default btn-sm" data-islem="gonder">
+                <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Muhasebat'a Gönder
+            </button>
+        </div>
+        <form id="frmBelge" class="avans-iki-sutun" onsubmit="return false;">
+            <div class="tanim-form avans-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="txtYil">Belge</label>
+                    <div class="avans-bitisik">
+                        <input type="number" id="txtYil" class="form-control input-sm sgb-yil" title="Yıl" aria-label="Yıl" />
+                        <input type="date" id="txtBelgeTarih" class="form-control input-sm ma-tarih" title="Belge Tarihi" aria-label="Belge Tarihi" />
+                        <span class="ma-ekli">
+                            <input type="text" id="txtBelgeNo" class="form-control input-sm ma-belgeno" placeholder="Belge No" title="Belge No" aria-label="Belge No" autocomplete="off" />
+                            <button type="button" id="btnListele" class="btn btn-default btn-sm" title="Belgeyi oku">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Belgeyi oku</span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMuhasebe">Muhasebe Birim</label>
+                    <div id="muhBirim"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtKriterTarih1">Tarihler</label>
+                    <div class="avans-bitisik">
+                        <input type="date" id="txtKriterTarih1" class="form-control input-sm ma-tarih" title="Başlama" aria-label="Başlama tarihi" />
+                        <span aria-hidden="true">-</span>
+                        <input type="date" id="txtKriterTarih2" class="form-control input-sm ma-tarih" title="Bitiş" aria-label="Bitiş tarihi" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtYevmiyeNo1">Yevmiye No</label>
+                    <div class="avans-bitisik">
+                        <input type="number" id="txtYevmiyeNo1" class="form-control input-sm ma-yevmiye" min="0" aria-label="Yevmiye No başlangıç" />
+                        <span aria-hidden="true">-</span>
+                        <input type="number" id="txtYevmiyeNo2" class="form-control input-sm ma-yevmiye" min="0" aria-label="Yevmiye No bitiş" />
+                        <button type="button" id="btnMizan" class="btn btn-primary btn-sm" title="Mizandan belge satırlarını oluştur">
+                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="tanim-form avans-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="ddlFisTur">Fiş Türü</label>
+                    <div><select id="ddlFisTur" class="form-control input-sm ma-fistur"></select></div>
+                </div>
+                <div class="form-group ust-hizali">
+                    <label class="control-label" for="txtAciklama">Açıklama</label>
+                    <div><textarea id="txtAciklama" class="form-control input-sm ma-aciklama" rows="3" placeholder="Açıklama ve Ekler"></textarea></div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <!-- Belge satırları (eski grdListe) -->
+    <section class="kutu bolum bolum-liste">
+        <div id="grdListe" class="avans-grid ma-grid" aria-label="Belge satırları"></div>
+        <div class="avans-arac ma-alt-arac" role="toolbar" aria-label="Satır işlemleri">
+            <button type="button" id="btnSatirAc" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Aç
+            </button>
+            <button type="button" id="btnSatirAcAraya" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span> Araya Satır Aç
+            </button>
+            <button type="button" id="btnSatirSil" class="btn btn-default btn-sm" disabled>
+                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Satır Sil
+            </button>
+            <span id="lblOzet" class="avans-ozet" aria-live="polite"></span>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tertipsec.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhasebataktarim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/tertipsec.js" asp-append-version="true"></script>
+    <script src="~/js/muhasebataktarim.js" asp-append-version="true"></script>
+}

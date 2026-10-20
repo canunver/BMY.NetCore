@@ -52,7 +52,7 @@
 
 .tavan-tertip .rapor-menu .dropdown-menu button:hover,
 .tavan-tertip .rapor-menu .dropdown-menu button:focus {
-    background: #e3edfa;
+    background: var(--b1-baslik);
     outline: none;
 }
 

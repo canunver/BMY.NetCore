@@ -5,7 +5,7 @@
 // Kullanım:
 //   Sgb.tertipSec({
 //       tur:       'muh',          // 'muh' (varsayılan): ButceMuhasebe/ListeTertip, ödenek - harcanan - bloke; ekonomik kod iki düzeyliyse
-//                                  //   satırın "Alt kodlar" tuşuyla alt düzeyden seçilir.
+//                                  //   satırın +/− tuşuyla altında açılan ayrıntıdan (harcama tertipleri) seçilir.
 //                                  // 'bhm': ButceHazirlikv2/ListeTertip, ödenek - gönderilen (muhasebe - birim verilirse birim sütunlarıyla).
 //       yil:       2026,           // verilmezse bu yıl
 //       muhasebe:  1, birim: '000',// eski muhasebe, birim (muh: kurumsal kod bunlardan bulunur; bhm: birim sütunları)
@@ -38,9 +38,9 @@
     var durum = {};         // son listenin biçimi: yil, anaGoster, mpOnayli, odenekBaslik
     var sayi = 30;          // eski hdnTertipSay
     var $p = null, pencere = null, $agacP = null, agacPencere = null;
-    var anaGrid = null, altGrid = null, secilenGrid = null;
+    var anaGrid = null, secilenGrid = null;
     var gridAnahtar = '';
-    var altSatir = null, pebler = [];
+    var acik = {};          // açık ayrıntılar: ana satır sırası -> ayrıntı satırı
     var agaclar = {}, aktifAlan = null;
 
     function tutar(x) { return x.value === null || x.value === undefined || x.value === '' ? '' : para.format(x.value); }
@@ -94,7 +94,6 @@
         $govde.append('<p class="help-block small ts-yardim">En az iki alana değer giriniz. Birden fazla kod virgülle ayrılabilir.</p>');
         $govde.append('<div class="ts-grid ts-ana" aria-label="Tertipler"></div>');
         $govde.append('<div class="ts-alt" hidden>'
-            + '<section><h3 class="ts-alt-baslik">Alt kodlar: <span class="ts-alt-tertip"></span></h3><div class="ts-grid ts-alt-grid" aria-label="Ekonomik alt kodlar"></div></section>'
             + '<section class="ts-secilen-kutu"><h3 class="ts-alt-baslik">Seçilen Tertipler</h3><div class="ts-grid ts-secilen-grid" aria-label="Seçilen tertipler"></div></section>'
             + '</div>');
         $p.append('<div class="pencere-alt"><button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>'
@@ -190,12 +189,8 @@
             { field: 'TERTIPPRG', headerName: 'Program Tertibi', width: 220, tooltipField: 'TERTIPPRG' });
         if (!durum.anaGoster) {
             d.unshift({
-                headerName: '', width: 92, sortable: false, pinned: 'left',
-                cellRenderer: function (x) {
-                    return $('<button type="button" class="btn btn-default btn-xs">Alt kodlar</button>')
-                        .attr('title', 'Ekonomik kodun alt düzeylerini göster')
-                        .on('click', function () { altKodlariAc(x.data); })[0];
-                }
+                colId: 'ac', headerName: '', width: 34, minWidth: 34, maxWidth: 34, sortable: false, resizable: false, pinned: 'left', cellClass: 'ts-ac-hucre',
+                cellRenderer: acHucre
             });
         }
         return d;
@@ -214,12 +209,20 @@
         anaGrid = Sgb.grid($p.find('.ts-ana')[0], {
             columnDefs: anaSutunlar(),
             rowSelection: secim,
+            getRowId: function (x) { return x.data._detay ? 'd' + x.data._ana._sira : 'a' + x.data._sira; },
+            isFullWidthRow: function (x) { return !!(x.rowNode.data && x.rowNode.data._detay); },
+            fullWidthCellRenderer: ayrintiHucre,
+            getRowHeight: function (x) { return x.data && x.data._detay ? ayrintiYukseklik(x.data) : undefined; },
+            isRowSelectable: function (n) { return !(n.data && n.data._detay); },
+            onSortChanged: ayrintilariKapat,
             overlayNoRowsTemplate: '<span>Kıstasları girip Listele\'ye basınız.</span>',
-            onRowDoubleClicked: function (e) { if (durum.anaGoster) aktar([e.data]); }
+            onRowDoubleClicked: function (e) { if (durum.anaGoster && !e.data._detay) aktar([e.data]); }
         });
     }
 
+    // Alttaki panelde yalnız seçilen tertipler (çoklu seçimde) durur; harcama tertipleri bütçe tertibinin altında açılır.
     function altPaneliGoster(goster) {
+        goster = goster && !o.secKapat;
         $p.find('.ts-alt').prop('hidden', !goster);
         $p.toggleClass('ts-alt-acik', goster);
         $p.find('.ts-secilen-kutu').prop('hidden', !!o.secKapat);
@@ -230,11 +233,13 @@
         if (anaGrid) anaGrid.setGridOption('loading', true);
         var istek = {
             tur: o.tur, yil: o.yil || '', muhasebe: o.muhasebe || '', birim: o.birim || '', belgeTur: o.belgeTur || 1,
-            hesapKod: o.hesapKod || '', onay: o.onay ? 1 : '', surecNo: o.surecNo || '', surecYil: o.surecYil || '',
+            hesapKod: o.hesapKod || '', onay: o.onay ? 1 : '', surecNo: o.surecNo || '', surecYil: o.surecYil || o.yil || '',   // süreç yılı yoksa belgenin yılı
             kur: kod('kur'), fin: kod('fin'), eko: kod('eko'), peb: kod('peb'),
             hepsi: hepsi ? 1 : '', sayi: sayi, ilk: ilk ? 1 : ''
         };
         if (ilk) { istek.oturumKur = oturumOku('kur'); istek.oturumEko = oturumOku('eko'); }
+        // Boş değerler gönderilmez: sayı parametresine (yil, muhasebe, surecYil...) boş metin 400 hatası verir.
+        $.each(istek, function (k, v) { if (v === '' || v === null || v === undefined) delete istek[k]; });
         return Sgb.al(UC + 'liste', istek).done(function (v) {
             if (v.hata) { Sgb.bildirim(v.hata, 'danger'); return; }
             durum = { yil: v.yil, anaGoster: v.anaGoster !== false, mpOnayli: !!v.mpOnayli, odenekBaslik: v.odenekBaslik };
@@ -250,36 +255,91 @@
             sayi = v.sayi || sayi;
             if (v.uyari) Sgb.bildirim(v.uyari, 'warning');
             anaGrid.setGridOption('overlayNoRowsTemplate', '<span>' + (ilk && !(v.satirlar || []).length ? 'Kıstasları girip Listele\'ye basınız.' : 'Tertip bulunamadı.') + '</span>');
-            anaGrid.setGridOption('rowData', v.satirlar || []);
+            var satirlar = v.satirlar || [];
+            $.each(satirlar, function (i, x) { x._sira = i; });
+            acik = {};
+            anaGrid.setGridOption('rowData', satirlar);
+            // Tek bütçe tertibi geldiyse harcama tertipleri hemen açılır.
+            if (!durum.anaGoster && satirlar.length === 1) ayrintiDegistir(anaGrid.getRowNode('a0'));
         }).fail(function (xhr) { hata(xhr); }).always(function () { if (anaGrid) anaGrid.setGridOption('loading', false); });
     }
 
     // ------------------------------------------------------------------ ekonomik kodun alt düzeyleri (eski BeforeExpand, DetayTertipTusu)
+    // Bütçe tertibinin altında açılan ayrıntı (Belge Arama'daki satır ayrıntısı gibi): harcama tertipleri, Seç tuşu ve gerekirse faaliyet.
 
-    function altGridKur() {
-        if (altGrid) altGrid.destroy();
-        var s = [
-            {
-                headerName: 'Seç', width: 70, sortable: false,
-                cellRenderer: function (x) {
-                    return $('<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Seç</button>')
-                        .on('click', function () { altKodSec(x.data); })[0];
-                }
-            },
-            { field: 'TERTIP', headerName: 'Tertip', width: 240, cellRenderer: tertipHucre, tooltipField: 'TERTIP' }
-        ];
-        if (pebler.length) {
-            s.push({
-                field: 'PEB', headerName: 'Faaliyet', width: 200, editable: true, singleClickEdit: true, cellClass: 'ts-girilir',
-                cellEditor: 'agSelectCellEditor', cellEditorParams: { values: $.map(pebler, function (x) { return x.kod; }) },
-                valueFormatter: function (x) {
-                    var b = $.grep(pebler, function (y) { return y.kod === x.value; });
-                    return b.length ? b[0].kod + ' - ' + (b[0].ad || '') : (x.value || '');
-                }
-            });
+    function acHucre(x) {
+        if (!x.data || x.data._detay) return '';
+        var a = !!acik[x.data._sira];
+        return $('<button type="button" class="btn btn-link btn-xs ts-ac"></button>')
+            .attr('title', a ? 'Harcama tertiplerini kapat' : 'Harcama tertiplerini göster').attr('aria-expanded', a ? 'true' : 'false')
+            .text(a ? '−' : '+')
+            .on('click', function (e) { e.stopPropagation(); ayrintiDegistir(x.node); })[0];
+    }
+
+    function ayrintiYukseklik(d) {
+        if (d.satirlar === null) return 44;
+        return Math.min(28 * (Math.max(d.satirlar.length, 1) + 1) + 20, 300);
+    }
+
+    function ayrintilariKapat() {
+        var sil = $.map(acik, function (d) { return d; });
+        acik = {};
+        if (sil.length && anaGrid) { anaGrid.applyTransaction({ remove: sil }); anaGrid.refreshCells({ columns: ['ac'], force: true }); }
+    }
+
+    function ayrintiDegistir(node) {
+        if (!node || !node.data || node.data._detay) return;
+        var ana = node.data, no = ana._sira;
+        if (acik[no]) {
+            anaGrid.applyTransaction({ remove: [acik[no]] });
+            delete acik[no];
+            anaGrid.refreshCells({ rowNodes: [node], columns: ['ac'], force: true });
+            return;
         }
-        s.push({ field: 'ACIKLAMA', headerName: 'Açıklama', flex: 1, minWidth: 200, tooltipField: 'ACIKLAMA' });
-        altGrid = Sgb.grid($p.find('.ts-alt-grid')[0], { columnDefs: s, stopEditingWhenCellsLoseFocus: true, overlayNoRowsTemplate: '<span>Alt kod bulunamadı.</span>' });
+        var d = { _detay: true, _ana: ana, satirlar: null, pebler: [] };
+        acik[no] = d;
+        anaGrid.applyTransaction({ add: [d], addIndex: node.rowIndex + 1 });
+        anaGrid.refreshCells({ rowNodes: [node], columns: ['ac'], force: true });
+        Sgb.al(UC + 'altkod', { yil: yil(), tertip: ana.TERTIP, eko: kod('eko') })
+            .done(function (v) {
+                if (v.hata) { Sgb.bildirim(v.hata, 'danger'); v = {}; }
+                d.satirlar = v.satirlar || [];
+                d.pebler = v.pebler || [];
+            })
+            .fail(function (xhr) { d.satirlar = []; hata(xhr, 'Alt kodlar okunamadı.'); })
+            .always(function () {
+                var n = anaGrid.getRowNode('d' + no);
+                if (!n) return;
+                anaGrid.redrawRows({ rowNodes: [n] });
+                anaGrid.resetRowHeights();
+            });
+    }
+
+    function ayrintiHucre(x) {
+        var d = x.data, $k = $('<div class="ts-ayrinti"></div>');
+        if (d.satirlar === null) { $('<div class="ts-not"></div>').text('Harcama tertipleri okunuyor...').appendTo($k); return $k[0]; }
+        var peb = d.pebler.length > 0;
+        var $t = $('<table class="ts-ayrinti-tablo"><thead><tr><th class="ts-sec-s">Seç</th><th>Tertip</th>'
+            + (peb ? '<th>Faaliyet</th>' : '') + '<th>Açıklama</th></tr></thead><tbody></tbody></table>');
+        var $b = $t.find('tbody');
+        if (!d.satirlar.length) $('<tr></tr>').append($('<td class="ts-not"></td>').attr('colspan', peb ? 4 : 3).text('Alt kod bulunamadı.')).appendTo($b);
+        $.each(d.satirlar, function (i, r) {
+            var $s = $('<tr></tr>');
+            $('<td class="ts-sec-s"></td>').append(
+                $('<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Seç</button>')
+                    .on('click', function (e) { e.stopPropagation(); altKodSec(r, d._ana); })).appendTo($s);
+            $('<td></td>').append(tertipHucre({ value: r.TERTIP })).appendTo($s);
+            if (peb) {
+                var $sel = $('<select class="form-control input-sm ts-peb"></select>').attr('aria-label', 'Faaliyet')
+                    .append('<option value=""></option>');
+                $.each(d.pebler, function (j, x) { $('<option></option>').val(x.kod).text(x.kod + ' - ' + (x.ad || '')).appendTo($sel); });
+                $sel.val(r.PEB || '').on('change', function () { r.PEB = $(this).val(); }).on('keydown click', function (e) { e.stopPropagation(); });
+                $('<td></td>').append($sel).appendTo($s);
+            }
+            $('<td></td>').text(r.ACIKLAMA || '').attr('title', r.ACIKLAMA || null).appendTo($s);
+            $b.append($s);
+        });
+        return $k.append($t)[0];
     }
 
     function secilenGridKur() {
@@ -302,25 +362,9 @@
         });
     }
 
-    function altKodlariAc(ana) {
-        altSatir = ana;
-        $p.find('.ts-alt-tertip').text(ana.TERTIP);
-        secilenGridKur();
-        Sgb.al(UC + 'altkod', { yil: yil(), tertip: ana.TERTIP, eko: kod('eko') })
-            .done(function (v) {
-                if (v.hata) { Sgb.bildirim(v.hata, 'danger'); return; }
-                pebler = v.pebler || [];
-                altGridKur();
-                altGrid.setGridOption('rowData', v.satirlar || []);
-            })
-            .fail(function (xhr) { hata(xhr, 'Alt kodlar okunamadı.'); });
-    }
-
     // Seçilen alt kodun tutarları ana satırdan gelir (eski DetayTertipTusu). secKapat: hemen aktarılır (eski DetayTertipTusu2).
-    function altKodSec(alt) {
-        if (!altSatir) return;
-        if (altGrid) altGrid.stopEditing();
-        var ana = altSatir;
+    function altKodSec(alt, ana) {
+        if (!ana) return;
         var kayit = {
             TERTIP: alt.TERTIP + (alt.PEB ? '-' + alt.PEB : ''), TERTIPPRG: alt.TERTIPPRG || '',
             KALAN: ana.KALAN, ODENEK: ana.ODENEK, HARCANAN: ana.HARCANAN, BLOKE: ana.BLOKE, MP: ana.MP,
@@ -346,7 +390,7 @@
 
     function secilenleriAktar() {
         var secili = [];
-        if (durum.anaGoster) secili = anaGrid ? anaGrid.getSelectedRows() : [];
+        if (durum.anaGoster) secili = anaGrid ? $.grep(anaGrid.getSelectedRows(), function (x) { return !x._detay; }) : [];
         else if (secilenGrid) secilenGrid.forEachNode(function (n) { secili.push(n.data); });
         aktar(secili);
     }
@@ -359,13 +403,11 @@
         o.tur = o.tur === 'bhm' ? 'bhm' : 'muh';
         durum = { yil: parseInt(o.yil, 10) || 0 };
         sayi = 30;
-        altSatir = null;
+        acik = {};
         $p.find('#tsBaslik').text(o.baslik || 'Tertip Seçimi');
         $kod('fin').prop('hidden', !o.finGoster);
         $.each(KODLAR, function (i, k) { $kod(k.alan).find('input').val(o[k.alan] || ''); adYaz($kod(k.alan), ''); });
-        $p.find('.ts-alt-tertip').text('');
         if (anaGrid) anaGrid.setGridOption('rowData', []);
-        if (altGrid) altGrid.setGridOption('rowData', []);
         if (secilenGrid) secilenGrid.setGridOption('rowData', []);
         altPaneliGoster(false);
         pencere.showModal();

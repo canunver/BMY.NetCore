@@ -7,9 +7,9 @@
 }
 
 .alt-faal .kutu.bolum {
-    --bolum-baslik: #e3edfa;
-    --bolum-govde: #f5f8fd;
-    --bolum-vurgu: #2f6fc4;
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
     padding: 0 12px 12px;
     background: var(--bolum-govde);
     border: 1px solid var(--cizgi);
@@ -17,9 +17,9 @@
 }
 
 .alt-faal .kutu.bolum.bolum-tablo {
-    --bolum-baslik: #e2f3e8;
-    --bolum-govde: #f4fbf6;
-    --bolum-vurgu: #2e8b4e;
+    --bolum-baslik: var(--b2-baslik);
+    --bolum-govde: var(--b2-govde);
+    --bolum-vurgu: var(--b2-vurgu);
 }
 
 .alt-faal .bolum-baslik {
@@ -134,8 +134,8 @@
     padding: 8px 10px;
     border: 1px solid var(--cizgi);
     border-radius: 8px;
-    background: #f5f8fd;
-    box-shadow: inset 4px 0 0 #2f6fc4;
+    background: var(--b1-govde);
+    box-shadow: inset 4px 0 0 var(--b1-vurgu);
 }
 
 .alt-faal-pencere .form-control.kisa {
@@ -156,8 +156,8 @@
     padding: 8px 10px;
     border: 1px solid var(--cizgi);
     border-radius: 8px;
-    background: #f4fbf6;
-    box-shadow: inset 4px 0 0 #2e8b4e;
+    background: var(--b2-govde);
+    box-shadow: inset 4px 0 0 var(--b2-vurgu);
 }
 
 .alt-faal-pencere .sablon-liste label {

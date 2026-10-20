@@ -33,9 +33,9 @@
 }
 
 .yat-giris .kutu.bolum.bolum-agac {
-    --bolum-baslik: #e2f3e8;
-    --bolum-govde: #f4fbf6;
-    --bolum-vurgu: #2e8b4e;
+    --bolum-baslik: var(--b2-baslik);
+    --bolum-govde: var(--b2-govde);
+    --bolum-vurgu: var(--b2-vurgu);
     min-height: 220px;
 }
 
@@ -181,9 +181,9 @@
 }
 
 .yat-detay .kutu.bolum.bolum-ilce {
-    --bolum-baslik: #e2f3e8;
-    --bolum-govde: #f4fbf6;
-    --bolum-vurgu: #2e8b4e;
+    --bolum-baslik: var(--b2-baslik);
+    --bolum-govde: var(--b2-govde);
+    --bolum-vurgu: var(--b2-vurgu);
 }
 
 .yat-detay .kutu.bolum.bolum-not,
@@ -370,8 +370,8 @@
     --etiket-genislik: 90px;
 }
 
-.yat-bilgi .kutu.bolum.bolum-hazirlayan { --bolum-baslik: #e3edfa; --bolum-govde: #f5f8fd; --bolum-vurgu: #2f6fc4; }
-.yat-bilgi .kutu.bolum.bolum-yurutecek  { --bolum-baslik: #e2f3e8; --bolum-govde: #f4fbf6; --bolum-vurgu: #2e8b4e; }
+.yat-bilgi .kutu.bolum.bolum-hazirlayan { --bolum-baslik: var(--b1-baslik); --bolum-govde: var(--b1-govde); --bolum-vurgu: var(--b1-vurgu); }
+.yat-bilgi .kutu.bolum.bolum-yurutecek  { --bolum-baslik: var(--b2-baslik); --bolum-govde: var(--b2-govde); --bolum-vurgu: var(--b2-vurgu); }
 .yat-bilgi .kutu.bolum.bolum-koordinator { --bolum-baslik: #ece6f7; --bolum-govde: #f8f5fd; --bolum-vurgu: #6b4fb3; }
 .yat-bilgi .kutu.bolum.bolum-plan       { --bolum-baslik: #fbefd3; --bolum-govde: #fefaf0; --bolum-vurgu: #b07a00; }
 

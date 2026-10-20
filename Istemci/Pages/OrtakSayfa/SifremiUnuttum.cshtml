@@ -1,0 +1,66 @@
+@page
+@model Istemci.Pages.OrtakSayfa.SifremiUnuttumModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="@Dil.Aktif">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="istek-jetonu" content="@Model.IstekJetonu" />
+    <title>@Metin.Menu("Sifre_Baslik") - @Model.YazilimAd</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/giris.css" asp-append-version="true" />
+</head>
+<body class="giris" style="@(Model.ArkaPlan != null ? "background-image:url('" + Model.ArkaPlan + "')" : null)">
+    <div class="giris-perde"></div>
+
+    <main class="giris-kutu">
+        <header class="giris-baslik">
+            @if (Model.Logo != null)
+            {
+                <img src="@Model.Logo" alt="" class="giris-logo" />
+            }
+            <h1>@Metin.Menu("Sifre_Baslik")</h1>
+        </header>
+
+        <div id="hata" class="alert alert-danger" role="alert" hidden></div>
+        <div id="bilgi" class="alert alert-success" role="status" hidden></div>
+
+        @if (!Model.Kullanilabilir)
+        {
+            <div class="alert alert-warning" role="alert">@Metin.Menu("Sifre_Kullanilamaz")</div>
+        }
+        else
+        {
+            <form id="frmUnuttum" autocomplete="off" novalidate>
+                <div class="form-group">
+                    <label for="txtBilgi">@Metin.Menu("Sifre_Bilgi")</label>
+                    <input type="text" id="txtBilgi" class="form-control input-lg" maxlength="100" required />
+                </div>
+                <ul class="giris-aciklama">
+                    <li>@Metin.Menu("Sifre_Aciklama1")</li>
+                    <li>@Metin.Menu("Sifre_Aciklama2")</li>
+                </ul>
+                <div class="form-group">
+                    <label for="txtGuvenlik">@Metin.Menu("Giris_GuvenlikKodu")</label>
+                    <div class="giris-guvenlik-satir">
+                        <input type="text" id="txtGuvenlik" class="form-control input-lg" autocomplete="off" maxlength="10" required />
+                        <img id="imgGuvenlik" alt="@Metin.Menu("Giris_GuvenlikKodu")" width="120" height="38" />
+                        <button type="button" id="btnGuvenlikYenile" class="btn btn-default" title="@Metin.Menu("Giris_GuvenlikYenile")">&#x21bb;</button>
+                    </div>
+                </div>
+                <button type="submit" id="btnGonder" class="btn btn-primary btn-lg btn-block">@Metin.Menu("Sifre_Gonder")</button>
+            </form>
+        }
+
+        <div class="giris-unuttum">
+            <a href="../Giris">@Metin.Menu("Sifre_GiriseDon")</a>
+        </div>
+    </main>
+
+    <script type="application/json" id="metinler">@Json.Serialize(Model.Metinler)</script>
+    <script src="~/js/sifremiunuttum.js" asp-append-version="true"></script>
+</body>
+</html>

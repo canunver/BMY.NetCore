@@ -1,0 +1,89 @@
+@page
+@model ResmiTatilXmlModel
+@{
+    // Resmi Tatil Günleri Düzenleme (eski KYM/ResmiTatilXml.aspx).
+    ViewData["Title"] = "Resmi Tatil Günleri Düzenleme";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="resmi-tatil">
+    <!-- Sol: seçili yılın 12 ayı; tatil günleri renkli. Bir güne tıklayınca o günün tatili açılır, tatil yoksa o tarihle yeni kayıt. -->
+    <section class="rt-sol">
+        <div class="rt-arac">
+            <label for="txtYil">Yıl</label>
+            <button type="button" id="btnOnceki" class="btn btn-default btn-sm" title="Önceki yıl" aria-label="Önceki yıl">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            </button>
+            <input type="number" id="txtYil" class="form-control input-sm sgb-yil" min="1900" max="2999" step="1" />
+            <button type="button" id="btnSonraki" class="btn btn-default btn-sm" title="Sonraki yıl" aria-label="Sonraki yıl">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            </button>
+            <button type="button" id="btnYeni" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Tatil
+            </button>
+            <span class="rt-isaret"><i class="rt-renk rt-renk-her"></i> Her yıl</span>
+            <span class="rt-isaret"><i class="rt-renk rt-renk-yil"></i> Bu yıla özel</span>
+        </div>
+        <div id="takvim" class="rt-takvim" aria-label="Yılın ayları"></div>
+    </section>
+
+    <!-- Sağ: tatil formu ve seçili yılın tatil listesi -->
+    <section class="rt-sag">
+        <div class="kutu">
+            <h2 class="kutu-baslik" id="formBaslik">Resmi Tatil Kayıt</h2>
+            <form id="frmTatil" class="rt-form" novalidate autocomplete="off">
+                <div class="form-group">
+                    <label class="control-label" for="txtAciklama">Açıklama</label>
+                    <div><input type="text" id="txtAciklama" class="form-control input-sm" maxlength="100" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtTarih">Tarih</label>
+                    <div><input type="date" id="txtTarih" class="form-control input-sm rt-tarih" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtSure">Süre (gün)</label>
+                    <div><input type="number" id="txtSure" class="form-control input-sm rt-sure" min="1" max="30" step="1" value="1" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="lstTur">Tatil Türü</label>
+                    <div>
+                        <select id="lstTur" class="form-control input-sm">
+                            <option value="her">Her yıl (Tüm Yıllar)</option>
+                            <option value="yil">Bu yıla özel (Aktif Yıl)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label"></span>
+                    <div class="rt-dugmeler">
+                        <button type="submit" id="btnKaydet" class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kaydet
+                        </button>
+                        <button type="button" id="btnSil" class="btn btn-danger btn-sm" hidden>
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+                        </button>
+                        <button type="button" id="btnVazgec" class="btn btn-default btn-sm">Vazgeç</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="kutu">
+            <h2 class="kutu-baslik"><span id="listeYil"></span> Yılı Tatilleri</h2>
+            <table class="table table-condensed table-hover rt-liste">
+                <thead><tr><th>Tarih</th><th>Gün</th><th>Açıklama</th><th>Tür</th></tr></thead>
+                <tbody id="tblTatil"></tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/resmitatil.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/resmitatil.js" asp-append-version="true"></script>
+}

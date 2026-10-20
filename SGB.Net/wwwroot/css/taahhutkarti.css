@@ -1,0 +1,433 @@
+/* Taahhüt Kartı (ButceMuhasebe/TaahhutKarti) ve alt ekranları: avans.css + tanim.css üzerine sekmeler, alan genişlikleri, pencereler. */
+
+/* ---- Sekmeler (Belge Arama / Belge Düzenleme) ---- */
+.taahhut .th-sekmeler {
+    display: flex;
+    gap: 2px;
+    border-bottom: 2px solid var(--b1-vurgu);
+}
+
+.taahhut .th-sekme {
+    padding: 4px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: #eef2f8;
+    border: 1px solid var(--cizgi);
+    border-bottom: 0;
+    border-radius: 6px 6px 0 0;
+    cursor: pointer;
+}
+
+.taahhut .th-sekme.active {
+    color: #fff;
+    background: var(--b1-vurgu);
+    border-color: var(--b1-vurgu);
+}
+
+.taahhut .th-sekme-bolme {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* ---- Alan genişlikleri ---- */
+.taahhut .th-tarih,
+.th-pencere .th-tarih,
+.th-alt .th-tarih {
+    width: 140px;
+}
+
+.taahhut .th-orta,
+.th-pencere .th-orta,
+.th-alt .th-orta {
+    width: 130px;
+}
+
+.taahhut .th-kisa,
+.th-pencere .th-kisa,
+.th-alt .th-kisa {
+    width: 80px;
+}
+
+.taahhut .th-tutar,
+.th-pencere .th-tutar,
+.th-alt .th-tutar {
+    width: 140px;
+    text-align: right;
+}
+
+.taahhut .th-tertip {
+    flex: 1 1 220px;
+    min-width: 180px;
+}
+
+.taahhut .th-para {
+    width: 90px;
+}
+
+.taahhut .th-hesap,
+.th-pencere .th-hesap,
+.th-alt .th-hesap {
+    width: 170px;
+}
+
+/* Salt okunur alanlar sarı, girilenler beyaz */
+.taahhut .th-salt,
+.th-pencere .th-salt,
+.th-alt .th-salt {
+    background: #fcfcd4;
+}
+
+.ag-cell.th-salt {
+    background: #fcfcd4;
+}
+
+.ag-cell.th-girilir {
+    background: #fff;
+}
+
+.taahhut .th-kapali {
+    margin-left: auto;
+    font-weight: 700;
+    color: #c0392b;
+}
+
+.taahhut .th-deger {
+    padding-top: 3px;
+}
+
+.th-komut {
+    padding: 0 3px;
+    cursor: pointer;
+    color: var(--b1-vurgu);
+}
+
+.th-komut:hover {
+    color: #1d4f91;
+}
+
+/* ---- Liste ---- */
+.taahhut #grdListe {
+    height: calc(100vh - 190px);
+    min-height: 360px;
+}
+
+/* ---- Belge düzenleme: iki kutu yan yana ---- */
+.taahhut .th-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px;
+    align-items: start;
+}
+
+.taahhut .th-form .avans-alanlar {
+    max-width: none;
+}
+
+.taahhut .th-bolum-sozlesme {
+    --bolum-baslik: #fbeedd;
+    --bolum-govde: #fefaf4;
+    --bolum-vurgu: #c87a1c;
+}
+
+.taahhut .th-grid-da {
+    width: 100%;
+    height: 240px;
+}
+
+@media (max-width: 1100px) {
+    .taahhut .th-form {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* ---- Pencereler ---- */
+.th-pencere {
+    font-size: 12px;
+    width: 560px;
+    max-width: calc(100vw - 32px);
+}
+
+.th-pencere.th-pencere-genis {
+    width: 900px;
+}
+
+.th-pencere.th-pencere-cokgenis {
+    width: 1150px;
+}
+
+.th-pencere .form-control.input-sm {
+    height: 24px;
+    padding: 1px 6px;
+    font-size: 12px;
+}
+
+.th-pencere .btn-sm {
+    padding: 2px 8px;
+    font-size: 12px;
+}
+
+.th-pencere .sgb-yil {
+    width: 90px;
+}
+
+.th-pencere .avans-alanlar {
+    --etiket-genislik: 160px;
+}
+
+.th-pencere .avans-alanlar .form-group {
+    margin-bottom: 4px;
+}
+
+.th-pencere .avans-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 6px;
+}
+
+.th-pencere .avans-not {
+    color: var(--soluk);
+}
+
+.th-grid-pencere {
+    width: 100%;
+    height: 340px;
+}
+
+.th-ilerleme {
+    width: 100%;
+    height: 16px;
+}
+
+.th-pencere [hidden],
+.taahhut [hidden] {
+    display: none !important;
+}
+
+/* ---- Alt ekranlar (Ödeme Emri Kaydı, Plan, Bakım Tarihçe, Sözleşme Metni, Belge Ekle) ---- */
+.th-alt {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.th-alt .th-iki-sutun {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 4px 16px;
+}
+
+.th-alt .th-grid {
+    width: 100%;
+    height: 320px;
+}
+
+.th-alt .th-metin {
+    min-height: 360px;
+    max-height: calc(100vh - 140px);
+    padding: 8px;
+    overflow: auto;
+    font-size: 13px;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.th-alt .th-metin-arac {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+}
+
+.th-alt .th-satir-hesap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+}
+
+@media (max-width: 900px) {
+    .th-alt .th-iki-sutun {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* Ödeme Emri Kayıt: kesinti satırları iki sütun */
+.th-oe .th-bolum-kesinti {
+    --bolum-baslik: #fbeedd;
+    --bolum-govde: #fefaf4;
+    --bolum-vurgu: #c87a1c;
+}
+
+.th-oe .th-kesintiler {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0 16px;
+    max-width: none;
+}
+
+.th-oe .th-hesap-liste {
+    width: 260px;
+}
+
+.th-oe .avans-alanlar {
+    --etiket-genislik: 150px;
+    max-width: none;
+}
+
+@media (max-width: 1100px) {
+    .th-oe .th-kesintiler {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* ---- Belge Arama: sorgu solda (%20, alanlar alt alta, etiket üstte), liste sağda (%80) (kullanıcı isteği 2026-10-19) ---- */
+.taahhut .th-arama-yan {
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.taahhut .th-arama-yan .th-kriter {
+    flex: 0 0 20%;
+    min-width: 200px;
+}
+
+.taahhut .th-arama-yan .th-sonuc {
+    flex: 1 1 80%;
+    min-width: 0;
+}
+
+.taahhut .th-ust-etiket .form-group {
+    margin-bottom: 6px;
+}
+
+.taahhut .th-ust-etiket .form-group > label {
+    display: block;
+    margin: 0 0 2px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.taahhut .th-ust-etiket .form-group > .form-control,
+.taahhut .th-ust-etiket .th-op .form-control {
+    width: 100%;
+}
+
+.taahhut .th-ust-etiket .sgb-yil {
+    width: 100px;
+}
+
+.taahhut .th-ust-etiket .muh-birim {
+    width: auto;
+}
+
+.taahhut .th-ust-etiket .th-op {
+    display: flex;
+    align-items: stretch;
+}
+
+.taahhut .th-ust-etiket .th-op + .th-op {
+    margin-top: 3px;
+}
+
+.taahhut .th-ust-etiket .th-ek {
+    flex: 0 0 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #555;
+    background: #eee;
+    border: 1px solid #ccc;
+    border-right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.taahhut .th-ust-etiket .th-op .form-control {
+    flex: 1 1 auto;
+    min-width: 0;
+    border-radius: 0 3px 3px 0;
+    padding-left: 4px;
+    padding-right: 2px;
+}
+
+.taahhut .th-ust-etiket .th-listele {
+    width: 100%;
+    margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+    .taahhut .th-arama-yan {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .taahhut .th-arama-yan .th-kriter {
+        flex: none;
+    }
+}
+
+/* ---- Sözleşme Koşulları / Garanti / Teminat Şartları: pencere ekranın yarısı, editör kalan alanın tamamı (kullanıcı isteği 2026-10-19) ---- */
+.sgb-pencere.th-pencere-yarim {
+    width: max(50vw, 560px);
+    height: max(50vh, 420px);
+}
+
+body.th-tam-sayfa > .sayfa-icerik {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    padding: 8px;
+}
+
+.th-sozlesme {
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.th-sozlesme > .kutu.bolum {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    padding-top: 8px;
+}
+
+.th-sozlesme .avans-arac {
+    flex: none;
+}
+
+.th-alt.th-sozlesme .th-metin {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+}
+
+/* Belge Ekle: liste pencerede kalan alanın tamamını kullanır */
+.th-doldur {
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.th-doldur > .kutu.bolum {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.th-doldur > .kutu.bolum > .avans-arac,
+.th-doldur > .kutu.bolum > .avans-not {
+    flex: none;
+}
+
+.th-alt.th-doldur .th-grid {
+    flex: 1 1 auto;
+    min-height: 120px;
+    height: auto;
+}

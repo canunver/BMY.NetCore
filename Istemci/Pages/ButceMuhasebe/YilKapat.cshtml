@@ -1,0 +1,50 @@
+@page
+@model YilKapatModel
+@{
+    ViewData["Title"] = "Muhasebe Kaydı Tarih Sınırlandırma Sayfası";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans yil-kapat">
+    <section class="kutu bolum bolum-kriter">
+        <h2 class="bolum-baslik">Muhasebe Kaydı Tarih Sınırlandırma</h2>
+        <div id="pnlDurum" class="alert alert-warning yk-durum" role="status" hidden></div>
+        <form id="frmYilKapat" class="tanim-form avans-alanlar" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label" for="txtTarih">Tarih</label>
+                <div><input type="date" id="txtTarih" class="form-control input-sm yk-tarih" /></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label"></span>
+                <div>
+                    <button type="button" id="btnKaydet" class="btn btn-primary btn-sm" title="Verilen tarihten öncesine ait muhasebe kaydı girişini engeller">
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> İşleme Kapat
+                    </button>
+                </div>
+            </div>
+        </form>
+        <ul class="yk-bilgi text-muted">
+            <li>Bu sayfa ile, verilen tarihten öncesine ait Muhasebe Kayıt Belgesinin girişini <b>engelleyebilirsiniz.</b></li>
+            <li>Yukarıdaki Tarih bilgisini yazıp <b>İşleme Kapat</b> düğmesine bastığınızda, verilen tarihten öncesine ait Muhasebe Kayıt Belgesinin girişi engellenir.</li>
+        </ul>
+        <div id="pnlSonuc" class="alert avans-sonuc" role="status" hidden></div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <style>
+        .yil-kapat .yk-tarih { width: 170px; }
+        .yil-kapat .yk-bilgi { margin: 10px 0 0; padding-left: 18px; font-size: 12px; }
+        .yil-kapat .yk-durum { margin-bottom: 10px; }
+    </style>
+}
+@section Betikler {
+    <script src="~/js/yilkapat.js" asp-append-version="true"></script>
+}

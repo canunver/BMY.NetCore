@@ -1,0 +1,89 @@
+@page
+@model TKDKTalepGirisModel
+@{
+    ViewData["Title"] = "Talep Giriş";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+    string[] aylar = { "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık" };
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans tkdktalep tk-form">
+    <div class="avans-arac" role="toolbar" aria-label="Talep işlemleri">
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+        <button type="button" id="btnSil" class="btn btn-default btn-sm" disabled>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+        </button>
+        <button type="button" id="btnYazdir" class="btn btn-default btn-sm" disabled title="Talep formu (Excel)">
+            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+        </button>
+        <button type="button" id="btnKapat" class="btn btn-default btn-sm" hidden>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Kapat
+        </button>
+        <span id="lblDurum" class="label label-default" hidden></span>
+    </div>
+
+    <section class="kutu bolum bolum-bilgi">
+        <h2 class="bolum-baslik">Talep Bilgileri</h2>
+        <form id="frmTalep" class="tanim-form avans-alanlar" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label" for="txtMuhasebe">Muhasebe / Birim</label>
+                <div id="muhBirim"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlTalepTur">Talep Tür</label>
+                <div>
+                    <select id="ddlTalepTur" class="form-control input-sm tk-secim">
+                        <option value=""></option>
+                        <option value="1">Nakit</option>
+                        <option value="2">Ödenek Aktarma</option>
+                        <option value="3">Ek Ödenek</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtYil">Talep Edilen</label>
+                <div class="avans-bitisik">
+                    <input type="number" id="txtYil" class="form-control input-sm sgb-yil tk-yil" min="2006" max="@(Model.BuYil + 1)" aria-label="Yıl" />
+                    <select id="ddlAy" class="form-control input-sm tk-ay" aria-label="Ay">
+                        @for (int i = 0; i < aylar.Length; i++)
+                        {
+                            <option value="@(i + 1)">@aylar[i]</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" id="grpMevcutBakiye" hidden>
+                <label class="control-label" for="txtMevcutBakiye">Mevcut Bakiye</label>
+                <div><input type="text" id="txtMevcutBakiye" class="form-control input-sm tk-tutar" inputmode="numeric" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtGerekce">Gerekçe</label>
+                <div><textarea id="txtGerekce" class="form-control input-sm tk-gerekce" rows="3"></textarea></div>
+            </div>
+        </form>
+    </section>
+
+    <section class="kutu bolum bolum-liste" id="bolSatir" hidden>
+        <h2 class="bolum-baslik" id="lblSatirBaslik">Ödeme Kalemleri</h2>
+        <div id="grdDetay1" class="tk-grid-detay" aria-label="Haftalık nakit talebi" hidden></div>
+        <div id="grdDetay2" class="tk-grid-detay" aria-label="Ödenek aktarma" hidden></div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tkdktalep.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/tkdktalep.js" asp-append-version="true"></script>
+}

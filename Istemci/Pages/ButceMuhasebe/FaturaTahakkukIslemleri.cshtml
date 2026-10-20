@@ -1,0 +1,45 @@
+@page
+@model FaturaTahakkukIslemleriModel
+@{
+    ViewData["Title"] = "Toplu Tahakkuk";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans fatura fatura-toplu">
+    <section class="kutu bolum bolum-liste">
+        <div class="avans-arac" role="toolbar" aria-label="Toplu tahakkuk işlemleri">
+            <button type="button" id="btnTopluTahakkuk" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Tahakkuk MİF Oluştur
+            </button>
+            <button type="button" id="btnTopluOdeme" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Ödeme Emri Oluştur
+            </button>
+            <button type="button" id="btnTopluYenile" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Yenile
+            </button>
+            <span id="lblSayi" class="avans-ozet" aria-live="polite"></span>
+        </div>
+        <p class="help-block small">Belge oluşturulacak faturaları seçiniz. Seçilen faturalardan tek belge oluşturulur.</p>
+        <div id="grdToplu" class="avans-grid" aria-label="Faturalar"></div>
+    </section>
+</div>
+
+<partial name="_FaturaBelgePenceresi" />
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hesapkodu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/fatura.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/hesapkodu.js" asp-append-version="true"></script>
+    <script src="~/js/fatura.js" asp-append-version="true"></script>
+}

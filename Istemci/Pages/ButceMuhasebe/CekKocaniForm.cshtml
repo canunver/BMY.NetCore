@@ -1,0 +1,107 @@
+@page
+@model CekKocaniFormModel
+@{
+    ViewData["Title"] = "Çek Listesi";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans ceklistesi">
+    <section class="kutu bolum bolum-kriter">
+        <h2 class="bolum-baslik">Kıstaslar
+            <button type="button" class="btn btn-link btn-xs avans-yardim-dugme" data-yardim="#cekYardim" title="Yardım" aria-label="Yardım">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+            </button>
+        </h2>
+        <div id="cekYardim" class="alert alert-info avans-yardim" hidden>
+            Hesap kodu ve çek no boş bırakılırsa bütün çekler listelenir. Tarihler çekin gününe göre süzer.
+            Kullanılmadan iptal edilen bir çeki "İptal Çek Ekle" ile kaydedebilirsiniz; iptal bilgisi satırdaki çöp kutusuyla silinir.
+        </div>
+        <form id="frmKriter" class="tanim-form avans-alanlar" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label" for="txtHesapKodSor">Hesap Kodu</label>
+                <div><input type="text" id="txtHesapKodSor" class="form-control input-sm cek-kod" title="Çekin ait olduğu hesap kodunu giriniz." /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtCekNoSor">Çek No</label>
+                <div><input type="text" id="txtCekNoSor" class="form-control input-sm cek-kod" title="Çek numarasını giriniz." /></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label">Durumlar</span>
+                <div class="avans-bitisik cek-durumlar">
+                    <label><input type="checkbox" id="chkIptalli" checked />İptalli</label>
+                    <label><input type="checkbox" id="chkAcik" checked />Açık</label>
+                    <label><input type="checkbox" id="chkBozdurulmus" checked />Bozdurulmuş</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtBasla">Tarih</label>
+                <div class="avans-bitisik">
+                    <input type="date" id="txtBasla" class="form-control input-sm cek-tarih" aria-label="Başlama tarihi" />
+                    <input type="date" id="txtBitis" class="form-control input-sm cek-tarih" aria-label="Bitiş tarihi" />
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <section class="kutu bolum bolum-liste">
+        <div class="avans-arac" role="toolbar" aria-label="İşlemler">
+            <button type="button" id="btnOku" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+            </button>
+            <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Listeyi Excel'e yazdır">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+            </button>
+            <button type="button" id="btnIptalAc" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> İptal Çek Ekle
+            </button>
+            <span id="lblOzet" class="avans-ozet"></span>
+        </div>
+        <div id="grdCekler" class="avans-grid" aria-label="Çek listesi"></div>
+    </section>
+</div>
+
+<dialog id="dlgIptal" class="tanim-pencere cek-pencere" aria-labelledby="dlgIptalBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgIptalBaslik">İptal Çek Ekle</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmIptal" class="tanim-form" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label" for="txtHesapKodYaz">Hesap Kodu</label>
+                <div><input type="text" id="txtHesapKodYaz" class="form-control input-sm cek-kod" title="Çekin ait olduğu hesap kodunu giriniz." /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtCekNoYaz">Çek No</label>
+                <div><input type="text" id="txtCekNoYaz" class="form-control input-sm cek-kod" title="Çek numarasını giriniz." /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtIptalTarih">İptal Tarihi</label>
+                <div><input type="date" id="txtIptalTarih" class="form-control input-sm cek-tarih" title="Çekin iptal tarihini giriniz." /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtIptalNeden">İptal Nedeni</label>
+                <div><textarea id="txtIptalNeden" class="form-control input-sm" rows="3" title="Çekin iptal nedenini giriniz."></textarea></div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">Kaydet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ceklistesi.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/ceklistesi.js" asp-append-version="true"></script>
+}

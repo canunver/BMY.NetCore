@@ -1,0 +1,123 @@
+@page
+@model PersonelKartModel
+@{
+    ViewData["Title"] = "Kart";
+    ViewData["GovdeSinif"] = "pb-alt";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="pb pkt" id="pktSayfa" data-personel-kod="@Model.PersonelKod">
+    <div class="pb-arac" role="toolbar">
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+        <button type="button" id="btnSil" class="btn btn-danger btn-sm">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+        </button>
+        <button type="button" id="btnTemizle" class="btn btn-default btn-sm" title="Formu temizle (yeni kart)">
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Kayıt
+        </button>
+    </div>
+
+    <div class="pkt-govde">
+        <section class="pb-bolum renk-mavi">
+            <h3>Kart Bilgileri</h3>
+            <form id="frmKart" class="pb-govde pb-form" novalidate autocomplete="off" style="--etiket-genislik: 170px">
+                <div class="form-group">
+                    <label class="control-label" for="ddlTip">Kart Tipi</label>
+                    <div><select id="ddlTip" class="form-control"></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtKartNo">Kart No</label>
+                    <div><input type="text" id="txtKartNo" class="form-control dar" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlYakinlik">Yakınlığı</label>
+                    <div><select id="ddlYakinlik" class="form-control"></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAdSoyad">Kart Sahibi Adı Soyadı</label>
+                    <div><input type="text" id="txtAdSoyad" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtPlaka">Plaka</label>
+                    <div><input type="text" id="txtPlaka" class="form-control dar" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtCihazNo">Tag Cihaz No</label>
+                    <div><input type="text" id="txtCihazNo" class="form-control dar" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtZimmetTarihi">Zimmet Tarihi</label>
+                    <div><input type="date" id="txtZimmetTarihi" class="form-control dar" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtIadeTarihi">İade Tarihi</label>
+                    <div><input type="date" id="txtIadeTarihi" class="form-control dar" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAciklama">Açıklama</label>
+                    <div><input type="text" id="txtAciklama" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtKayipTarihi">Kayıp Bildirim Tarihi</label>
+                    <div><input type="date" id="txtKayipTarihi" class="form-control dar" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtZimmetEden">Zimmet Eden Personel</label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" id="txtZimmetEden" class="form-control" readonly />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" data-sorgu="1" title="Zimmet eden personeli seç" aria-label="Zimmet eden personeli seç">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtIadeAlan">İade Alan Personel</label>
+                    <div class="input-group input-group-sm">
+                        <input type="text" id="txtIadeAlan" class="form-control" readonly />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" data-sorgu="2" title="İade alan personeli seç" aria-label="İade alan personeli seç">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <section class="pb-bolum renk-yesil pkt-liste">
+            <h3>Kartlar</h3>
+            <div class="pb-govde pb-doldur">
+                <div id="grdListe" class="pb-grid" aria-label="Kartlar"></div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<dialog id="dlgOnay" class="pkt-onay">
+    <form method="dialog">
+        <p id="dlgOnayMetin"></p>
+        <div class="pkt-onay-dugmeler">
+            <button value="hayir" class="btn btn-default btn-sm">Vazgeç</button>
+            <button value="evet" class="btn btn-primary btn-sm">Evet</button>
+        </div>
+    </form>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/personelalt.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personel-kart.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personelsec.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/personelsec.js" asp-append-version="true"></script>
+    <script src="~/js/personel-kart.js" asp-append-version="true"></script>
+}

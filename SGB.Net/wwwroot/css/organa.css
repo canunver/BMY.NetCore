@@ -86,8 +86,8 @@
     background: var(--bolum-govde);
 }
 
-.organa .bolum[data-kosul="yonetici"]   { --bolum-baslik: #e3edfa; --bolum-govde: #f5f8fd; --bolum-vurgu: #2f6fc4; }
-.organa .bolum[data-kosul="iletisim"]   { --bolum-baslik: #e2f3e6; --bolum-govde: #f5fbf6; --bolum-vurgu: #2e8b4e; }
+.organa .bolum[data-kosul="yonetici"]   { --bolum-baslik: var(--b1-baslik); --bolum-govde: var(--b1-govde); --bolum-vurgu: var(--b1-vurgu); }
+.organa .bolum[data-kosul="iletisim"]   { --bolum-baslik: #e2f3e6; --bolum-govde: #f5fbf6; --bolum-vurgu: var(--b2-vurgu); }
 .organa .bolum[data-kosul="butce"]      { --bolum-baslik: #fbefd3; --bolum-govde: #fefaf0; --bolum-vurgu: #b07a00; }
 .organa .bolum[data-kosul="harcamaKod"] { --bolum-baslik: #ece6f8; --bolum-govde: #f9f7fd; --bolum-vurgu: #6b4fb3; }
 .organa .bolum[data-kosul="ambar"]      { --bolum-baslik: #fae5e3; --bolum-govde: #fdf6f5; --bolum-vurgu: #b3493f; }

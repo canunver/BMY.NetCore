@@ -16,12 +16,16 @@ namespace Istemci.Pages.KYM
         /// <summary>Görev tanımlama ve göreve kişi atama pencereleri açılabilir mi? Yalnızca sistem yöneticisi (eski Grup Oluştur / Gruba Kullanıcı Ata).</summary>
         public bool GorevAtayabilir { get; private set; }
 
+        /// <summary>İşlem Tarihçesi raporu (eski KYM/Raporlar.aspx) alınabilir mi? Bkz. KullaniciIslemTarihceUclari.</summary>
+        public bool IslemTarihceAlabilir { get; private set; }
+
         /// <summary>JavaScript'in kullandığı metinler (JSON).</summary>
         public string MetinlerJson { get; private set; }
 
         public void OnGet()
         {
             GorevAtayabilir = GenelGorevUclari.YetkiVar(OturumBilgisi.KullaniciOku(HttpContext));
+            IslemTarihceAlabilir = Istemci.Kullanicilar.KullaniciIslemTarihceUclari.Yetkili(OturumBilgisi.KullaniciOku(HttpContext));
             Dictionary<string, string> metinler = new Dictionary<string, string>();
             foreach (string anahtar in new[] { "FRMKUA015", "FRMKUG005", "FRMKUA016", "FRMKUA017", "FRMKUA018", "FRMKUA019", "FRMKUA020", "FRMKUA021",
                                                "FRMKUA026", "Aktif", "Pasif", "IslemHata", "DisaAktarBos", "DosyaAd" })

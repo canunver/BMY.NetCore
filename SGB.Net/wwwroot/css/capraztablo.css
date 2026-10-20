@@ -1,0 +1,310 @@
+/* Çapraz Tablo (ButceMuhasebe/CaprazTablo): solda daraltılabilir sorgu alanları, sağda araç çubuğu, Hesap Plan Kod / Sütun Tür
+   ve kalan yüksekliği dolduran Satırlar / Sütunlar tabloları. Bölümler renkli başlıklı ayrı kutular; kıstaslar sıkı (12px). */
+
+.capraz-tablo [hidden] {
+    display: none !important;
+}
+
+.capraz-tablo {
+    display: grid;
+    grid-template-columns: 360px minmax(0, 1fr);
+    gap: 10px;
+    align-items: stretch;
+}
+
+.capraz-tablo.ct-kriter-gizli {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+/* ---- Bölüm kutuları ---- */
+.capraz-tablo .kutu.bolum {
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
+    min-width: 0;
+    padding: 0 8px 8px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.capraz-tablo .kutu.bolum.bolum-tablo {
+    --bolum-baslik: var(--b2-baslik);
+    --bolum-govde: var(--b2-govde);
+    --bolum-vurgu: var(--b2-vurgu);
+    padding-top: 8px;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.capraz-tablo .bolum-baslik {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 -8px 6px;
+    padding: 5px 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.capraz-tablo .ct-baslik-tuslar {
+    display: inline-flex;
+    gap: 4px;
+    margin-left: auto;
+}
+
+.capraz-tablo .ct-yardim {
+    min-width: 22px;
+    font-weight: 700;
+}
+
+.capraz-tablo .ct-ipucu {
+    margin: 0 0 6px;
+    padding: 6px 8px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--murekkep);
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+/* ---- Sorgu alanları (etiket solda, alt alta, sıkı) ---- */
+.capraz-tablo .ct-kriter {
+    min-height: 0;
+    overflow-y: auto;
+    font-size: 12px;
+}
+
+.capraz-tablo .ct-alanlar,
+.capraz-tablo .ct-tanim {
+    --etiket-genislik: 112px;
+}
+
+.capraz-tablo .ct-alanlar .form-group,
+.capraz-tablo .ct-tanim .form-group {
+    margin: 0 0 3px;
+    column-gap: 6px;
+}
+
+.capraz-tablo .ct-alanlar .control-label,
+.capraz-tablo .ct-tanim .control-label,
+.capraz-tablo .ct-secenek {
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+.capraz-tablo .ct-alanlar .form-control.input-sm,
+.capraz-tablo .ct-alanlar .btn-sm,
+.capraz-tablo .ct-alanlar .input-group-sm > .form-control,
+.capraz-tablo .ct-alanlar .input-group-sm > .input-group-btn > .btn,
+.capraz-tablo .ct-tanim .form-control.input-sm,
+.capraz-tablo .ct-tanim .btn-sm {
+    height: 24px;
+    padding: 1px 4px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.capraz-tablo .ct-tanim .hk-bilesen .hk-ad {
+    min-height: 24px;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.capraz-tablo .ct-tanim .hk-bilesen .hk-kod {
+    flex: 0 1 140px;
+    min-width: 100px;
+}
+
+.capraz-tablo .ct-tanim {
+    max-width: 640px;
+    margin-bottom: 6px;
+}
+
+.capraz-tablo .ct-sutuntur {
+    max-width: 200px;
+}
+
+.capraz-tablo .ct-bitisik,
+.capraz-tablo .ct-aralik {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 3px;
+    min-width: 0;
+}
+
+.capraz-tablo .ct-aralik .form-control {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.capraz-tablo .ct-ayrac {
+    flex: none;
+    color: var(--soluk);
+}
+
+.capraz-tablo .ct-yil {
+    flex: 0 0 80px;
+    width: 80px;
+}
+
+.capraz-tablo .ct-secenek {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+/* ---- Araç çubuğu ---- */
+.capraz-tablo .ct-arac,
+.ct-pencere .ct-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 6px;
+}
+
+.capraz-tablo .ct-arac > .btn,
+.capraz-tablo .ct-arac > .ct-menu,
+.ct-pencere .ct-arac > .btn {
+    margin-left: 0;
+    float: none;
+}
+
+.capraz-tablo .ct-acik {
+    margin-left: auto;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--murekkep);
+}
+
+.capraz-tablo .ct-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.capraz-tablo .ct-menu.open > .dropdown-menu {
+    display: block;
+}
+
+/* ---- Satırlar / Sütunlar ---- */
+.capraz-tablo .ct-tablo {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.capraz-tablo .ct-izgaralar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    min-height: 0;
+}
+
+.capraz-tablo .ct-izgaralar.ct-tek {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 50%;
+}
+
+.capraz-tablo .ct-izgara-kutu {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.capraz-tablo .ct-izgara-baslik {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.capraz-tablo .ct-izgara-baslik .btn {
+    margin-left: auto;
+}
+
+.capraz-tablo .ct-grid {
+    width: 100%;
+    height: 400px;
+}
+
+.capraz-tablo .ct-sil {
+    padding: 0 4px;
+    color: #b94a48;
+}
+
+.ct-pencere {
+    width: min(560px, 96vw);
+}
+
+.ct-pencere .ct-grid-pencere {
+    width: 100%;
+    height: 300px;
+}
+
+@media (min-width: 992px) {
+    body.ct-sayfa > .sayfa-icerik {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    body.menusuz.ct-sayfa > .sayfa-icerik {
+        height: 100vh;
+    }
+
+    .capraz-tablo {
+        flex: 1 1 auto;
+        min-height: 0;
+    }
+
+    .capraz-tablo .ct-izgaralar {
+        flex: 1 1 auto;
+    }
+
+    .capraz-tablo .ct-grid {
+        flex: 1 1 auto;
+        min-height: 220px;
+        height: auto;
+    }
+}
+
+@media (max-width: 991px) {
+    .capraz-tablo {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .capraz-tablo .ct-kriter {
+        overflow: visible;
+    }
+
+    .capraz-tablo .ct-izgaralar,
+    .capraz-tablo .ct-izgaralar.ct-tek {
+        grid-template-columns: minmax(0, 1fr);
+        max-width: none;
+    }
+}

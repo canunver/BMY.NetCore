@@ -12,10 +12,14 @@ namespace Istemci.OrtakSayfa
     public class MenuSatir
     {
         public string t { get; set; }
+        /// <summary>Bağlantının menu.xml'deki ID'si; sık kullanılanlar bu ID ile saklanır (eski MenuSikKullanilan.aspx gibi).</summary>
+        public string id { get; set; }
         public string ad { get; set; }
         public string url { get; set; }
         /// <summary>Bağlantı yeni pencerede açılır (menu.xml: AltPencere).</summary>
         public bool yeni { get; set; }
+        /// <summary>Core'a taşınma durumu (menu.xml: Durum): Yok / Yeni / Eski. Menüde renkle gösterilir.</summary>
+        public string durum { get; set; }
     }
 
     /// <summary>Sol menüdeki başlık (menu.xml: Tip="UstMenu") ve altındaki seçenekler.</summary>
@@ -28,6 +32,11 @@ namespace Istemci.OrtakSayfa
         /// <summary>Doluysa başlık panel açmaz, doğrudan bu adrese gider.</summary>
         public string url { get; set; }
         public List<List<MenuSatir>> kolonlar { get; set; } = new List<List<MenuSatir>>();
+        /// <summary>
+        /// Seçenekleri ayrı sayfada gösterilen menünün (SayfadaGoster) bağlantıları. Menüde çizilmez; yalnızca açık sayfanın
+        /// adını bulmak ve sık kullanılanlar için kullanılır.
+        /// </summary>
+        public List<MenuSatir> ekSatirlar { get; set; }
     }
 
     /// <summary>Menü grubu (menu.xml: Tip="Grup"); sol menünün başındaki seçiciden değiştirilir.</summary>
@@ -49,16 +58,19 @@ namespace Istemci.OrtakSayfa
     ///   - Yetki niteliği doluysa, kullanıcının tiplerinden biri listede olmalı ya da "YT|damga|değer" koşulu sağlanmalıdır.
     ///   - Kullanici niteliği doluysa (virgülle ayrılmış kullanıcı kodları), kullanıcının kodu listede olmalıdır (Yetki ile birlikte aranır).
     ///   - İçinde görünür seçenek kalmayan grup, başlık ve bölüm gösterilmez.
+    /// Dosya okunduktan sonra, kullanıcı "stratek" ise yalnızca ona açık teknik seçenekler koddan eklenir (StratekMenu).
     /// </summary>
     public class MenuOkuyucu
     {
         private readonly string[] kullaniciYetki;
         private readonly HashTableArrayList kullaniciDamga;
         private readonly string kullaniciKodu;
+        private readonly Kullanici kullanan;
         private readonly Dictionary<string, bool> modulDurum = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
         public MenuOkuyucu(Kullanici kullanan)
         {
+            this.kullanan = kullanan;
             kullaniciDamga = kullanan.yetkiTipiDegerleri;
             kullaniciKodu = kullanan.kullaniciKodu ?? "";
             if (kullanan.kullaniciTipi != null && kullanan.kullaniciTipi.Length > 0)
@@ -85,6 +97,7 @@ namespace Istemci.OrtakSayfa
 
             XmlDocument belge = new XmlDocument();
             belge.Load(dosyaYolu);
+            StratekMenu.Ekle(belge, kullanan);
             XmlNode kok = belge.DocumentElement;
             if (kok == null) return gruplar;
 
@@ -121,6 +134,7 @@ namespace Istemci.OrtakSayfa
             if (kullaniciYetki.Length == 0) return false;
             XmlDocument belge = new XmlDocument();
             belge.Load(dosyaYolu);
+            StratekMenu.Ekle(belge, kullanan);
             if (belge.DocumentElement == null) return false;
             return SayfaAra(belge.DocumentElement, url);
         }
@@ -149,6 +163,9 @@ namespace Istemci.OrtakSayfa
             if (sayfadaGoster != "")
             {
                 baslik.url = "../OrtakSayfa/SayfaMenu?menuID=" + (sayfadaGoster.StartsWith("Menu", StringComparison.Ordinal) ? sayfadaGoster : baslik.id);
+                List<MenuSatir> sayfadakiler = new List<MenuSatir>();
+                SatirlariOku(dugum, sayfadakiler);
+                baslik.ekSatirlar = sayfadakiler.FindAll(s => s.t == "a");
                 return baslik;
             }
 
@@ -217,7 +234,7 @@ namespace Istemci.OrtakSayfa
             }
 
             if (url != "")
-                satirlar.Add(new MenuSatir { t = "a", ad = ad != "" ? ad : url, url = url, yeni = Ozellik(dugum, "AltPencere") != "" });
+                satirlar.Add(new MenuSatir { t = "a", id = Ozellik(dugum, "ID"), ad = ad != "" ? ad : url, url = url, yeni = Ozellik(dugum, "AltPencere") != "", durum = Durum(dugum) });
             else if (ad == "")
                 satirlar.Add(new MenuSatir { t = "c" });
         }
@@ -225,6 +242,7 @@ namespace Istemci.OrtakSayfa
         /// <summary>Baştaki, sondaki ve art arda gelen ayırıcıları; ardından seçenek gelmeyen bölüm başlıklarını atar.</summary>
         private static void Toparla(List<MenuSatir> satirlar)
         {
+            YapilanlarOne(satirlar, s => s.t == "a", s => s.durum == "Yok");
             for (int i = satirlar.Count - 1; i >= 0; i--)
             {
                 bool sonda = i == satirlar.Count - 1;
@@ -232,6 +250,26 @@ namespace Istemci.OrtakSayfa
                     satirlar.RemoveAt(i);
                 else if (satirlar[i].t == "b" && (sonda || satirlar[i + 1].t == "b"))
                     satirlar.RemoveAt(i);
+            }
+        }
+
+        /// <summary>
+        /// Art arda gelen bağlantılar içinde Core'da yapılmış olanlar (Durum Yeni/Eski) yapılmamışların (Yok) önüne alınır;
+        /// her grubun kendi sırası korunur. Bölüm başlığı ve ayırıcılar yerinde kalır. Bkz. SayfaMenuUclari.
+        /// </summary>
+        public static void YapilanlarOne<T>(List<T> satirlar, Func<T, bool> baglanti, Func<T, bool> yapilmadi)
+        {
+            int i = 0;
+            while (i < satirlar.Count)
+            {
+                if (!baglanti(satirlar[i])) { i++; continue; }
+                int bas = i;
+                while (i < satirlar.Count && baglanti(satirlar[i])) i++;
+                List<T> parca = satirlar.GetRange(bas, i - bas);
+                List<T> sirali = new List<T>(parca.Count);
+                foreach (T s in parca) if (!yapilmadi(s)) sirali.Add(s);
+                foreach (T s in parca) if (yapilmadi(s)) sirali.Add(s);
+                for (int k = 0; k < sirali.Count; k++) satirlar[bas + k] = sirali[k];
             }
         }
 
@@ -271,6 +309,15 @@ namespace Istemci.OrtakSayfa
         private static string Ad(XmlNode dugum)
         {
             return Metin.Ortak(Ozellik(dugum, "ID"), Ozellik(dugum, "Text"));
+        }
+
+        /// <summary>Durum niteliği (Yok / Yeni / Eski); başka değer ya da boşsa null.</summary>
+        public static string Durum(XmlNode dugum)
+        {
+            string d = Ozellik(dugum, "Durum");
+            foreach (string s in new[] { "Yok", "Yeni", "Eski" })
+                if (string.Equals(d, s, StringComparison.OrdinalIgnoreCase)) return s;
+            return null;
         }
 
         /// <summary>Ikon niteliği; yalnızca dosya adı kabul edilir (klasör içeremez).</summary>

@@ -1,0 +1,197 @@
+@page
+@model CaprazTabloModel
+@{
+    ViewData["Title"] = "Çapraz Tablo Oluştur";
+    ViewData["GovdeSinif"] = "ct-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="capraz-tablo">
+    <!-- Sorgu alanları (eski Sorgu Alanları PropertyGrid'i; daraltılabilir) -->
+    <section class="kutu bolum bolum-kriter ct-kriter" id="pnlKriter" aria-label="Sorgu alanları">
+        <h2 class="bolum-baslik">
+            Sorgu Alanları
+            <span class="ct-baslik-tuslar">
+                <button type="button" id="btnYardim" class="btn btn-default btn-xs ct-yardim" title="Açıklama" aria-expanded="false" aria-controls="pnlYardim">?</button>
+                <button type="button" id="btnKriterGizle" class="btn btn-default btn-xs" title="Sorgu alanlarını gizle" aria-controls="pnlKriter">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">Sorgu alanlarını gizle</span>
+                </button>
+            </span>
+        </h2>
+        <div id="pnlYardim" class="ct-ipucu" hidden>
+            Satırlara ve (sütun türü <b>Hesap Kod</b> ise) sütunlara hesap kodlarını ekleyip <b>Tablo Göster</b>'e basınız; tablo
+            Excel olarak iner. Sütun türü <b>Ekonomik Kod</b> ya da <b>Kurumsal Kod</b> ise sütunlar o kodlardır, hücreler
+            borç - alacak toplamıdır. Hesap Kod türünde satırlar belge belge yazılır, sütunlarda aynı belgedeki sütun hesap
+            kodlarının bakiyesi görünür. Satır, sütun ve sorgu alanları <b>Kaydet</b> ile adıyla saklanır, <b>Kayıtlı Sorgular</b>dan açılır.
+        </div>
+        <form id="frmKriter" class="tanim-form ct-alanlar" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="txtYil">Yıl</label>
+                <div class="ct-bitisik">
+                    <input type="number" id="txtYil" class="form-control input-sm ct-yil sgb-yil" min="2006" step="1" />
+                    <label class="ct-secenek"><input type="checkbox" id="chkYilOnemsiz" /> Yıl Önemsiz</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlDurum">Durum</label>
+                <div><select id="ddlDurum" class="form-control input-sm"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtMuhasebe">Muhasebe / Harcama Birimi</label>
+                <div id="muhBirim"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtYevmiyeTarih1">Yevmiye Tarihi</label>
+                <div class="ct-aralik">
+                    <input type="date" id="txtYevmiyeTarih1" class="form-control input-sm" title="Yevmiye tarihi &gt;=" aria-label="Yevmiye tarihi en az" />
+                    <span class="ct-ayrac">-</span>
+                    <input type="date" id="txtYevmiyeTarih2" class="form-control input-sm" title="Yevmiye tarihi &lt;=" aria-label="Yevmiye tarihi en çok" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtBelgeTarih1">Belge Tarihi</label>
+                <div class="ct-aralik">
+                    <input type="date" id="txtBelgeTarih1" class="form-control input-sm" title="Belge tarihi &gt;=" aria-label="Belge tarihi en az" />
+                    <span class="ct-ayrac">-</span>
+                    <input type="date" id="txtBelgeTarih2" class="form-control input-sm" title="Belge tarihi &lt;=" aria-label="Belge tarihi en çok" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtIlgiliKod">İlgili No</label>
+                <div><input type="text" id="txtIlgiliKod" class="form-control input-sm" maxlength="20" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAltHesapNo">Alt Hesap Kodu</label>
+                <div><input type="text" id="txtAltHesapNo" class="form-control input-sm" maxlength="40" autocomplete="off" /></div>
+            </div>
+            <partial name="_OdenekDurumKodlar" />
+        </form>
+    </section>
+
+    <!-- Tablo tanımı (eski orta panel: araç çubuğu, Hesap Plan Kod, Sütun tür, Satırlar / Sütunlar) -->
+    <section class="kutu bolum bolum-tablo ct-tablo" aria-label="Çapraz tablo tanımı">
+        <div class="btn-toolbar ct-arac" role="toolbar" aria-label="Tablo işlemleri">
+            <button type="button" id="btnKriterGoster" class="btn btn-default btn-sm" title="Sorgu alanlarını göster" aria-controls="pnlKriter" hidden>
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Sorgu Alanları
+            </button>
+            <button type="button" id="btnTemizle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Temizle</button>
+            <div class="ct-menu" id="mnKaydet">
+                <button type="button" class="btn btn-default btn-sm dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#" id="btnKaydet"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</a></li>
+                    <li><a href="#" id="btnFarkliKaydet"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Farklı Kaydet</a></li>
+                </ul>
+            </div>
+            <button type="button" id="btnKayitliSorgular" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Kayıtlı Sorgular</button>
+            <button type="button" id="btnTabloGoster" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Tablo Göster</button>
+            <span class="ct-acik" id="lblAcik" aria-live="polite"></span>
+        </div>
+
+        <div class="tanim-form ct-tanim">
+            <div class="form-group">
+                <label class="control-label" for="txtHesapPlan">Hesap Plan Kod</label>
+                <div class="ct-bitisik ct-hesap-satir">
+                    <input type="text" id="txtHesapPlan" class="form-control input-sm" maxlength="40" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlSutunTur">Sütun Tür</label>
+                <div><select id="ddlSutunTur" class="form-control input-sm ct-sutuntur"></select></div>
+            </div>
+        </div>
+
+        <div class="ct-izgaralar" id="pnlIzgaralar">
+            <div class="ct-izgara-kutu">
+                <div class="ct-izgara-baslik">
+                    <span>Satırlar</span>
+                    <button type="button" id="btnSatirEkle" class="btn btn-default btn-xs" title="Hesap Plan Kod'daki hesabı satırlara ekle">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekle
+                    </button>
+                </div>
+                <div id="grdSatir" class="ct-grid" aria-label="Satır hesap kodları"></div>
+            </div>
+            <div class="ct-izgara-kutu" id="pnlSutun" hidden>
+                <div class="ct-izgara-baslik">
+                    <span>Sütunlar</span>
+                    <button type="button" id="btnSutunEkle" class="btn btn-default btn-xs" title="Hesap Plan Kod'daki hesabı sütunlara ekle">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekle
+                    </button>
+                </div>
+                <div id="grdSutun" class="ct-grid" aria-label="Sütun hesap kodları"></div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<partial name="_OdenekDurumKodPencere" />
+
+<!-- Kayıtlı sorgular (eski wndListe "Kriter Bilgileri") -->
+<dialog id="dlgListe" class="tanim-pencere ct-pencere" aria-labelledby="dlgListeBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgListeBaslik">Kriter Bilgileri</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="btn-toolbar ct-arac" role="toolbar" aria-label="Kayıtlı sorgu işlemleri">
+            <button type="button" id="btnListele" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Listele</button>
+            <button type="button" id="btnSil" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil</button>
+        </div>
+        <div id="grdListe" class="ct-grid-pencere" aria-label="Kayıtlı sorgular"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Sorgu adı (eski Kaydet onayındaki çok satırlı ad kutusu) -->
+<dialog id="dlgAd" class="tanim-pencere" aria-labelledby="dlgAdBaslik">
+    <form id="frmAd" method="dialog" novalidate>
+        <div class="pencere-baslik">
+            <h2 id="dlgAdBaslik">Onay</h2>
+            <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="pencere-govde">
+            <p>Kayıt işlemini onaylıyor musunuz?</p>
+            <label for="txtSorguAd">Sorgu adı</label>
+            <textarea id="txtSorguAd" class="form-control input-sm" rows="3" maxlength="500"></textarea>
+        </div>
+        <div class="pencere-alt">
+            <button type="button" class="btn btn-default btn-sm" data-kapat>Hayır</button>
+            <button type="submit" class="btn btn-primary btn-sm">Evet</button>
+        </div>
+    </form>
+</dialog>
+
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde"><p id="soruMetin"></p></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/makbuz.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hesapkodu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/odenekdurum.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/capraztablo.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/hesapkodu.js" asp-append-version="true"></script>
+    <script src="~/js/capraztablo.js" asp-append-version="true"></script>
+}

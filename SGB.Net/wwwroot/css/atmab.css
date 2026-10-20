@@ -65,9 +65,9 @@
 
 /* ---- Bölümler ---- */
 .atmab .kutu.bolum {
-    --bolum-baslik: #e3edfa;
-    --bolum-govde: #f5f8fd;
-    --bolum-vurgu: #2f6fc4;
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
     padding: 0 12px 12px;
     background: var(--bolum-govde);
     border: 1px solid var(--cizgi);
@@ -75,15 +75,15 @@
 }
 
 .atmab .kutu.bolum.bolum-liste {
-    --bolum-baslik: #e2f3e8;
-    --bolum-govde: #f4fbf6;
-    --bolum-vurgu: #2e8b4e;
+    --bolum-baslik: var(--b2-baslik);
+    --bolum-govde: var(--b2-govde);
+    --bolum-vurgu: var(--b2-vurgu);
 }
 
 .atmab .kutu.bolum.bolum-dosya {
-    --bolum-baslik: #efe6f8;
-    --bolum-govde: #faf6fd;
-    --bolum-vurgu: #7a4bb0;
+    --bolum-baslik: var(--b4-baslik);
+    --bolum-govde: var(--b4-govde);
+    --bolum-vurgu: var(--b4-vurgu);
 }
 
 .atmab .kutu.bolum.bolum-hareket {

@@ -1,0 +1,44 @@
+@page
+@model TasinirEkonomikKodModel
+@{
+    ViewData["Title"] = "Taşınır Ekonomik Kod";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim liste-genis muh-tanim">
+    <section class="tanim-sol">
+        <div class="kutu bolum izgarali">
+            <h2 class="bolum-baslik">Taşınır Hesapları</h2>
+            <div class="mt-arac" role="toolbar" aria-label="İşlemler">
+                <label for="tsYil">Yıl</label>
+                <input type="number" id="tsYil" class="form-control input-sm sgb-yil" min="@Model.IlkYil" max="@(Model.BuYil + 1)" value="@Model.BuYil" />
+                <button type="button" id="btnAra" class="btn btn-primary btn-sm" title="150 ve 25 ile başlayan, yansıtması olan hesapları listeler"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Ara</button>
+                <button type="button" id="btnSuzTemizle" class="btn btn-default btn-sm" title="Kod ve açıklama süzgeçlerini temizler"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Süzgeci Temizle</button>
+            </div>
+            <div id="grdListe" class="tanim-grid"></div>
+        </div>
+    </section>
+
+    <section class="tanim-sag">
+        <div class="kutu bolum izgarali yesil">
+            <h2 class="bolum-baslik">Kullanılabilecek Hesap Kodları <small id="tsSecili"></small></h2>
+            <p class="mt-ipucu">Soldaki listeden bir hesap seçince, o hesabın 830 ile başlayan yansıtma hesapları burada listelenir.</p>
+            <div id="grdKod" class="tanim-grid"></div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhtanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/muhtanim-tasinir.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,64 @@
+@page
+@model ButceAcilisFisiModel
+@{
+    ViewData["Title"] = "Gider Bütçesi Açılış Fişi Oluşturma";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans butce-acilis">
+    <section class="kutu bolum bolum-kriter">
+        <h2 class="bolum-baslik">Gider Bütçesi Açılış Fişi Oluşturma
+            <button type="button" class="btn btn-link btn-xs avans-yardim-dugme" id="btnYardim" title="Yardım" aria-expanded="false" aria-controls="pnlYardim">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span><span class="sr-only">Yardım</span>
+            </button>
+        </h2>
+        <div id="pnlYardim" class="alert alert-info avans-yardim" hidden>
+            Gider bütçesi açılış fişi oluşturmak istediğiniz Muhasebe Kodu, Birim Kodu ve Kurumsal Kodu yazdıktan sonra, oluşturulacak belge
+            için daha önceden numara ayrılmış ise numarayı yazarak <b>Bütçeden Oluştur</b> düğmesine basın. Fiş, bütçe ödeneklerinden
+            faaliyet bazlı oluşturulur; oluşan belge ayrı pencerede açılır.
+        </div>
+        <form id="frmAcilis" class="tanim-form avans-alanlar" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label" for="txtYil">Yıl</label>
+                <div><input type="number" id="txtYil" class="form-control input-sm sgb-yil" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtMuhasebe">Muhasebe / Birim</label>
+                <div id="muhBirim"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtKur">Kurumsal Kod</label>
+                <div><input type="text" id="txtKur" class="form-control input-sm acilis-kod" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtBelgeNo">Belge No</label>
+                <div><input type="text" id="txtBelgeNo" class="form-control input-sm acilis-kod" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label"></span>
+                <div>
+                    <button type="button" id="btnOlustur" class="btn btn-primary btn-sm" title="Bütçeden faaliyet bazlı açılış fişi oluştur">
+                        <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Bütçeden Oluştur
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div id="pnlSonuc" class="alert avans-sonuc" role="status" hidden></div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <style>.butce-acilis .acilis-kod { width: 160px; }</style>
+}
+@section Betikler {
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/butceacilisfisi.js" asp-append-version="true"></script>
+}

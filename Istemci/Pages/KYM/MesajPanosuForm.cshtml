@@ -1,0 +1,19 @@
+@page
+@model MesajPanosuFormModel
+@{
+    // Açılış sayfasındaki "Sistem Mesajları" bilgi ekranı (eski KYM/MesajPanosuForm.aspx). Çerçeve içinde açıldığı için menüsüzdür.
+    ViewData["Title"] = Metin.Kullanici("MesajPanosu001");
+    ViewData["MenuYok"] = true;
+    ViewData["GovdeSinif"] = "mesaj-panosu";
+}
+<div id="hata" class="alert alert-danger" role="alert" hidden></div>
+<div id="grdKullaniciMesaj" class="mesaj-panosu-grid" aria-label="@Metin.Kullanici("MesajPanosu001")"
+     data-tarih="@Metin.Kullanici("MesajPanosu002")" data-mesaj="@Metin.Kullanici("MesajPanosu003")"></div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/mesajpanosu.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/mesajpanosu.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,160 @@
+/* Banka Listesi İşlemleri (ButceMuhasebe/BankaListesiAna): avans.css'in sıkışık bölümleri üzerine iki sütunlu düzen ve pencereler. */
+
+.bankalistesi .bl-yerlesim {
+    display: grid;
+    grid-template-columns: 340px minmax(0, 1fr);
+    gap: 8px;
+    align-items: start;
+}
+
+.bankalistesi .bl-sag {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.bankalistesi .bl-sol .avans-alanlar {
+    --etiket-genislik: 60px;
+    max-width: none;
+}
+
+.bankalistesi .bl-tarih {
+    width: 140px;
+}
+
+.bankalistesi .bl-no {
+    width: 120px;
+}
+
+.bankalistesi .bl-grid-sol,
+.bankalistesi .bl-grid {
+    width: 100%;
+    height: 400px;
+}
+
+.bankalistesi .bl-onayli {
+    color: #2e7d32;
+}
+
+.bankalistesi .bl-secili {
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+/* Başlık bilgileri: üç sütun, her sütunda etiket solda alanlar alt alta */
+.bankalistesi .bl-baslik {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px 16px;
+}
+
+.bankalistesi .bl-baslik .avans-alanlar {
+    --etiket-genislik: 140px;
+    max-width: none;
+}
+
+.bankalistesi .bl-deger {
+    display: inline-block;
+    min-height: 22px;
+    padding-top: 3px;
+    font-weight: 600;
+}
+
+.bankalistesi .bl-toplam {
+    color: #c62828;
+}
+
+.bankalistesi .bl-komut {
+    padding: 0 3px;
+    line-height: 1;
+}
+
+.bankalistesi .bl-komutlar {
+    white-space: nowrap;
+}
+
+.bankalistesi .bl-dosya {
+    color: #b8860b;
+}
+
+/* Yazdır menüsü (bootstrap.js yok: açılıp kapanması bankalistesi.js'te) */
+.bankalistesi .bl-yazdir .dropdown-menu {
+    font-size: 12px;
+}
+
+.bankalistesi .bl-yazdir.open > .dropdown-menu {
+    display: block;
+}
+
+@media (max-width: 1300px) {
+    .bankalistesi .bl-baslik {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .bankalistesi .bl-yerlesim,
+    .bankalistesi .bl-baslik {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* ---- Pencereler ---- */
+.bl-pencere {
+    width: min(480px, calc(100vw - 32px));
+    font-size: 12px;
+}
+
+.bl-pencere .tanim-form {
+    --etiket-genislik: 120px;
+}
+
+.bl-pencere .form-control.input-sm {
+    height: 24px;
+    padding: 1px 6px;
+    font-size: 12px;
+}
+
+.bl-pencere .btn-sm {
+    padding: 2px 8px;
+    font-size: 12px;
+}
+
+.bl-pencere .bl-tarih {
+    width: 140px;
+}
+
+.bl-pencere .bl-no {
+    width: 140px;
+}
+
+.bl-pencere .sgb-yil {
+    width: 90px;
+}
+
+.bl-pencere .avans-bitisik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+}
+
+.bl-pencere .avans-bitisik label {
+    margin: 0;
+}
+
+.bl-pencere.bl-oesec {
+    width: min(1100px, calc(100vw - 32px));
+}
+
+.bl-pencere .bl-grid-pencere {
+    width: 100%;
+    height: min(460px, calc(100vh - 260px));
+    margin-top: 6px;
+}
+
+.bl-pencere .bl-komut {
+    padding: 0 3px;
+    line-height: 1;
+}

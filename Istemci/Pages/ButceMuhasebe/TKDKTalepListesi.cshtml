@@ -1,0 +1,204 @@
+@page
+@model TKDKTalepListesiModel
+@{
+    ViewData["Title"] = "İl Koordinatörlüğü Ödenek Talep İşlemleri";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+    string[] aylar = { "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık" };
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans tkdktalep tk-liste" data-yonetici="@(Model.Yonetici ? "1" : "0")">
+    <div class="tk-yerlesim">
+        <!-- Sol: sorgu alanları (eski pgFiltre) -->
+        <section class="kutu bolum bolum-kriter tk-sol">
+            <h2 class="bolum-baslik">Sorgu Alanları
+                <button type="button" class="btn btn-link btn-xs avans-yardim-dugme" data-yardim="#tkYardim" title="Yardım" aria-label="Yardım">
+                    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                </button>
+            </h2>
+            <div id="tkYardim" class="alert alert-info avans-yardim" hidden>
+                Kıstasları seçip Listele'ye basınız. Talebi açmak için satırdaki kalem simgesine, yeni talep için "Yeni Talep"e basınız.
+                Ödeme emri, banka listesi ve rapor seçili yıl ve ayın onaylanmış (Tamamlandı) taleplerinden hazırlanır.
+            </div>
+            <form id="frmKriter" class="tanim-form avans-alanlar" onsubmit="return false;">
+                <div class="form-group">
+                    <label class="control-label" for="txtYil">Yıl</label>
+                    <div><input type="number" id="txtYil" class="form-control input-sm sgb-yil tk-yil" min="2006" max="@(Model.BuYil + 1)" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlAy">Ay</label>
+                    <div>
+                        <select id="ddlAy" class="form-control input-sm tk-secim">
+                            <option value=""></option>
+                            @for (int i = 0; i < aylar.Length; i++)
+                            {
+                                <option value="@(i + 1)">@aylar[i]</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMuhasebe">Muhasebe / Birim</label>
+                    <div id="muhBirim"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlTalepTur">Talep Tür</label>
+                    <div>
+                        <select id="ddlTalepTur" class="form-control input-sm tk-secim">
+                            <option value=""></option>
+                            <option value="1">Nakit</option>
+                            <option value="2">Ödenek Aktarma</option>
+                            <option value="3">Ek Ödenek</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlDurum">Durum</label>
+                    <div>
+                        <select id="ddlDurum" class="form-control input-sm tk-secim">
+                            <option value="0">Hepsi</option>
+                            <option value="1">Yeni</option>
+                            <option value="2">İşleme Alındı</option>
+                            <option value="3">Tamamlandı</option>
+                            <option value="9">Reddedildi</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <div class="avans-arac" role="toolbar" aria-label="Sorgu işlemleri">
+                <button type="button" id="btnListele" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+                </button>
+                <button type="button" id="btnSorguTemizle" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle
+                </button>
+            </div>
+        </section>
+
+        <!-- Sağ: talepler (eski grdTanim) -->
+        <section class="kutu bolum bolum-liste tk-sag">
+            <div class="avans-arac" role="toolbar" aria-label="Talep işlemleri">
+                <button type="button" id="btnYeni" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Talep
+                </button>
+                <button type="button" id="btnListeYazdir" class="btn btn-default btn-sm" title="Listeyi Excel'e yazdır">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Listeyi Yazdır
+                </button>
+                <button type="button" id="btnImzaBilgileri" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> İmza Bilgileri
+                </button>
+                <span class="tk-ayrac" aria-hidden="true"></span>
+                @if (Model.Yonetici)
+                {
+                    <button type="button" id="btnRapor" class="btn btn-default btn-sm" title="Seçili yıl ve ayın rapor ve olur eki (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Rapor ve Olur Eki
+                    </button>
+                }
+                <div class="btn-group btn-group-sm tk-menu" id="grpOdemeEmri">
+                    <button type="button" id="btnOdemeEmri" class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Ödeme Emri <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="btnOdemeEmri">
+                        <li><a href="#" id="mnuOdemeEmriNakit">Ödeme Emri (Nakit)</a></li>
+                        <li><a href="#" id="mnuOdemeEmriAktarma">Ödeme Emri (Aktarma)</a></li>
+                    </ul>
+                </div>
+                <button type="button" id="btnBankaListesi" class="btn btn-default btn-sm" title="Ziraat banka listesi (xlsm)">
+                    <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Banka Listesi
+                </button>
+                @if (Model.Yonetici)
+                {
+                    <span class="tk-ayrac" aria-hidden="true"></span>
+                    <button type="button" id="btnOnayla" class="btn btn-default btn-sm" title="Seçili talepleri onayla">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Onayla
+                    </button>
+                    <button type="button" id="btnReddet" class="btn btn-default btn-sm" title="Seçili talepleri reddet">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Reddet
+                    </button>
+                }
+                <span id="lblOzet" class="avans-ozet"></span>
+            </div>
+            <div id="tkSonuc" class="alert alert-success tk-sonuc" role="status" hidden></div>
+            <div id="grdTanim" class="tk-grid" aria-label="Talepler"></div>
+        </section>
+    </div>
+</div>
+
+<dialog id="dlgImza" class="tanim-pencere tk-pencere" aria-labelledby="dlgImzaBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgImzaBaslik">İmza Bilgileri</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmImza" class="tanim-form tk-imza" onsubmit="return false;">
+            <span class="tk-imza-bos"></span>
+            <span class="tk-imza-baslik">Adı Soyadı</span>
+            <span class="tk-imza-baslik">Görevi</span>
+            <label class="control-label" for="txtDuzenleyenAdi">Düzenleyen</label>
+            <input type="text" id="txtDuzenleyenAdi" class="form-control input-sm" />
+            <input type="text" id="txtDuzenleyenGorev" class="form-control input-sm" aria-label="Düzenleyen görevi" />
+            <label class="control-label" for="txtOnaylayanAdi">Onaylayan</label>
+            <input type="text" id="txtOnaylayanAdi" class="form-control input-sm" />
+            <input type="text" id="txtOnaylayanGorev" class="form-control input-sm" aria-label="Onaylayan görevi" />
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnImzaKaydet" class="btn btn-primary btn-sm">Kaydet</button>
+    </div>
+</dialog>
+
+<dialog id="dlgHafta" class="tanim-pencere tk-pencere" aria-labelledby="dlgHaftaBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgHaftaBaslik">Ödeme Emri Oluştur</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="lblHaftaSoru" class="tk-soru">Kaçıncı haftanın ödeme emri belgesini oluşturmak istiyorsunuz?</p>
+        <form id="frmHafta" class="tanim-form" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label" for="txtHafta">Hafta (1-4)</label>
+                <div><input type="number" id="txtHafta" class="form-control input-sm tk-hafta" min="1" max="4" step="1" /></div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnHaftaTamam" class="btn btn-primary btn-sm">Tamam</button>
+    </div>
+</dialog>
+
+<dialog id="dlgTertip" class="tanim-pencere tk-pencere tk-pencere-genis" aria-labelledby="dlgTertipBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgTertipBaslik">Tertip Bilgileri</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="help-block small">Onaylanmış ödenek aktarma taleplerinin satırları. Her satırın tertibini kalem simgesiyle seçip "Ödeme Emri Oluştur"a basınız.</p>
+        <div id="grdTertip" class="tk-grid-tertip" aria-label="Tertip bilgileri"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnAktarmaOlustur" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Ödeme Emri Oluştur
+        </button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tertipsec.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tkdktalep.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/tertipsec.js" asp-append-version="true"></script>
+    <script src="~/js/tkdktalep.js" asp-append-version="true"></script>
+}

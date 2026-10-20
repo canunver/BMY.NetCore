@@ -1,0 +1,101 @@
+/* Personel İşlemleri > Giderler sekmesi (InsanKaynaklari/PersonelGider): solda gider formu, sağda giderler listesi. */
+.pb-gider {
+    min-height: calc(100vh - 16px);
+}
+
+.pb-gider-govde {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 700px);
+    gap: 10px;
+    align-items: start;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.pb-gider-sag {
+    align-self: stretch;
+}
+
+.pb-gider-sag .pb-grid {
+    min-height: 400px;
+}
+
+.pb-gider-etiket {
+    margin: 0 0 0 10px;
+    font-weight: 600;
+}
+
+.pb-gider-sayi {
+    width: 80px;
+}
+
+.pb-gider-tarih {
+    max-width: 220px;
+}
+
+.pb-gider .form-group.has-error .form-control {
+    border-color: #c9302c;
+}
+
+.pb-gider-dlg {
+    width: 460px;
+    max-width: calc(100vw - 32px);
+    padding: 0;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+}
+
+.pb-gider-dlg-baslik {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.pb-gider-dlg-baslik h2 {
+    flex: 1 1 auto;
+    margin: 0;
+    font-size: 15px;
+}
+
+.pb-gider-dlg-ara {
+    padding: 8px 12px 0;
+}
+
+.pb-gider-dlg-govde {
+    padding: 10px 12px 12px;
+}
+
+.pb-gider-uyari {
+    color: darkred;
+}
+
+.pb-gider-agac {
+    height: 320px;
+    margin: 0;
+    padding: 8px 12px;
+    overflow: auto;
+}
+
+.pb-onay {
+    max-width: 440px;
+    padding: 16px 18px;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+}
+
+.pb-onay p {
+    margin: 0 0 14px;
+    white-space: pre-line;
+}
+
+.pb-gider [hidden] {
+    display: none !important;
+}
+
+@media (max-width: 1000px) {
+    .pb-gider-govde {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

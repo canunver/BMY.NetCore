@@ -85,7 +85,7 @@
 
 .yolluk-onay .ag-row.onayli .ag-cell[col-id="durum"] {
     font-weight: 700;
-    color: #2e8b4e;
+    color: var(--b2-vurgu);
 }
 
 .yolluk-onay .ag-cell .btn-xs {

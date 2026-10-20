@@ -91,7 +91,7 @@
 }
 
 .sm-tasindi .glyphicon {
-    color: #2e8b4e;
+    color: var(--b2-vurgu);
 }
 
 .sm-kalan .glyphicon,
@@ -106,4 +106,17 @@
 
 .sayfa-menu [hidden] {
     display: none !important;
+}
+
+
+/* menu.xml Durum: yeni taşınanlar kırmızı, yapılmayanlar açık gri. */
+.sm-liste .sm-durum-yeni a,
+.sm-liste .sm-durum-yeni .glyphicon {
+    color: #c62828;
+}
+
+.sm-liste .sm-durum-yok a,
+.sm-liste .sm-durum-yok .sm-ad,
+.sm-liste .sm-durum-yok .glyphicon {
+    color: #a5adb5;
 }

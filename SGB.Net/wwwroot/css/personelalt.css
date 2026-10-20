@@ -1,0 +1,142 @@
+/* Personel İşlemleri (PersonelBilgi) sekmelerinde ve pencerelerinde açılan alt sayfaların ortak görünümü.
+   Kullanım: sayfa ViewData["GovdeSinif"] = "pb-alt" der, içeriğini <div class="pb"> içine yazar.
+   - .pb-arac            : üstteki düğme şeridi (Kaydet, Sil, Temizle, Yazdır ...)
+   - .pb-bolum           : renkli başlıklı kutu; .pb-bolum > h3 başlık, .pb-govde içerik. Renk: .renk-mavi|yesil|mor|turuncu|gri
+   - .pb-form            : etiket solda, alan sağda; .pb-form.iki-sutun iki sütun (dar ekranda tek)
+   - .pb-grid            : AG Grid; .pb-doldur içindeki grid kalan yüksekliği doldurur
+   - Grid hücreleri: veri girilen hücre beyaz, salt okunur hücre sarı (.hucre-salt). */
+
+body.pb-alt > .sayfa-icerik {
+    padding: 8px 10px;
+}
+
+body.pb-alt.menusuz > .sayfa-icerik {
+    min-height: 100vh;
+}
+
+.pb {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 13px;
+}
+
+.pb-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.pb-arac .bosluk {
+    flex: 1 1 auto;
+}
+
+.pb-bolum {
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: #fbfdff;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+}
+
+.pb-bolum.renk-yesil { --bolum-baslik: var(--b2-baslik); --bolum-govde: #fbfefc; }
+.pb-bolum.renk-mor { --bolum-baslik: var(--b4-baslik); --bolum-govde: #fdfbff; }
+.pb-bolum.renk-turuncu { --bolum-baslik: #fde9d9; --bolum-govde: #fffaf6; }
+.pb-bolum.renk-gri { --bolum-baslik: #eceff2; --bolum-govde: #fcfcfd; }
+
+.pb-bolum > h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 5px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 8px 8px 0 0;
+}
+
+.pb-govde {
+    padding: 8px 10px;
+}
+
+.pb-form .form-group {
+    display: grid;
+    grid-template-columns: var(--etiket-genislik, 140px) minmax(0, 1fr);
+    align-items: center;
+    column-gap: 8px;
+    margin: 0 0 5px;
+}
+
+.pb-form .form-group::before,
+.pb-form .form-group::after {
+    display: none;
+}
+
+.pb-form .control-label {
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    text-align: left;
+}
+
+.pb-form .form-control {
+    height: 28px;
+    padding: 3px 7px;
+    font-size: 12px;
+}
+
+.pb-form textarea.form-control {
+    height: auto;
+}
+
+.pb-form .yan-yana {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.pb-form .dar {
+    max-width: 140px;
+}
+
+.pb-form.iki-sutun {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 24px;
+}
+
+@media (max-width: 900px) {
+    .pb-form.iki-sutun {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.pb-grid {
+    height: 320px;
+}
+
+.pb-doldur {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.pb-doldur .pb-grid {
+    flex: 1 1 auto;
+    min-height: 220px;
+}
+
+.pb .hucre-salt {
+    background: #fff8d6;
+}
+
+.pb-not {
+    margin: 4px 0 0;
+    color: var(--soluk);
+    font-size: 12px;
+}

@@ -19,6 +19,8 @@ namespace Istemci.Giris
         public string IkinciKod { get; set; }
         public bool Hatirla { get; set; }
         public string DonusAdresi { get; set; }
+        /// <summary>Hatalı deneme sınırı aşıldıysa resimdeki güvenlik kodu.</summary>
+        public string GuvenlikKodu { get; set; }
     }
 
     /// <summary>Giriş uçlarının JSON yanıtı.</summary>
@@ -31,6 +33,8 @@ namespace Istemci.Giris
         public bool IkinciFaktorGerekli { get; set; }
         /// <summary>Giriş tamamlandı; tarayıcının gideceği adres.</summary>
         public string Yonlen { get; set; }
+        /// <summary>Bu IP adresinden yapılan hatalı denemeler sınıra ulaştı; sonraki istekte güvenlik kodu istenir.</summary>
+        public bool GuvenlikKoduGerekli { get; set; }
     }
 
     /// <summary>
@@ -41,11 +45,13 @@ namespace Istemci.Giris
     ///      /api/giris/kod-yenile: yeni doğrulama kodu gönderir.
     ///      /api/giris/cikis    : oturumu kapatır.
     /// Parola sunucuda adımlar arasında saklanmaz; ikinci adımda tarayıcı yeniden gönderir.
+    /// Aynı IP adresinden /GirisDenemeSayi kadar hatalı giriş yapılınca (tarayıcı değişse de) her istekte güvenlik resmindeki kod
+    /// istenir (eski hdnGuvenlikResmi). Sayı eskisi gibi veritabanında IP adresine bağlı "OlumsuzGirisSayisi" değişkeninde tutulur,
+    /// başarılı girişte sıfırlanır.
     /// </summary>
     public static class GirisUclari
     {
         private static readonly TimeSpan KodGecerlilikSuresi = TimeSpan.FromHours(8);
-        private static readonly TimeSpan KilitSuresi = TimeSpan.FromMinutes(15);
         private static readonly TimeSpan KodYenilemeAraligi = TimeSpan.FromSeconds(60);
 
         public static void Ekle(WebApplication app)
@@ -71,18 +77,18 @@ namespace Istemci.Giris
         private static async Task<IResult> Parola(HttpContext baglam, GirisIstegi istek, IAntiforgery sahtecilik, IMemoryCache bellek)
         {
             GirisYaniti onKontrol = await OnKontrol(baglam, istek, sahtecilik, bellek);
-            if (onKontrol != null) return Results.Json(onKontrol);
+            if (onKontrol != null) return Yanit(baglam, onKontrol);
 
             if (!IkiAsamali)
-                return Results.Json(await GirisiTamamla(baglam, istek, bellek));
+                return Yanit(baglam, await GirisiTamamla(baglam, istek, bellek));
 
             IKYMServis servisKym = TNS.KYM.Arac.Tanimla();
             KullaniciVAN kv = servisKym.GirisYapabilirMi(istek.KullaniciKodu, istek.Parola, false);
             if (kv == null || kv.sonuc == null || !kv.sonuc.islemSonuc || kv.kullanici == null)
             {
-                HataliDenemeYaz(baglam, bellek);
+                HataliDenemeYaz(baglam);
                 Izle(baglam, istek.KullaniciKodu, ENUMIzleme.HATALIGIRIS);
-                return Results.Json(Hatali(kv != null && kv.sonuc != null ? kv.sonuc.hataStr : null));
+                return Yanit(baglam, Hatali(kv != null && kv.sonuc != null ? kv.sonuc.hataStr : null));
             }
 
             IkinciKodGonder(servisKym, kv.kullanici, false);
@@ -91,35 +97,35 @@ namespace Istemci.Giris
             yanit.Basarili = true;
             yanit.IkinciFaktorGerekli = true;
             yanit.Bilgi = string.Format(Metin.Menu("Giris_KodGonderildi"), EPostaMaskele(kv.kullanici.EPOSTA));
-            return Results.Json(yanit);
+            return Yanit(baglam, yanit);
         }
 
         private static async Task<IResult> Tamamla(HttpContext baglam, GirisIstegi istek, IAntiforgery sahtecilik, IMemoryCache bellek)
         {
             GirisYaniti onKontrol = await OnKontrol(baglam, istek, sahtecilik, bellek);
-            if (onKontrol != null) return Results.Json(onKontrol);
+            if (onKontrol != null) return Yanit(baglam, onKontrol);
 
-            return Results.Json(await GirisiTamamla(baglam, istek, bellek));
+            return Yanit(baglam, await GirisiTamamla(baglam, istek, bellek));
         }
 
         private static async Task<IResult> KodYenile(HttpContext baglam, GirisIstegi istek, IAntiforgery sahtecilik, IMemoryCache bellek)
         {
             GirisYaniti onKontrol = await OnKontrol(baglam, istek, sahtecilik, bellek);
-            if (onKontrol != null) return Results.Json(onKontrol);
+            if (onKontrol != null) return Yanit(baglam, onKontrol);
 
             // Kod, parolayı bilen kişiye gönderilir; bu yüzden parola burada yeniden doğrulanır.
             IKYMServis servisKym = TNS.KYM.Arac.Tanimla();
             KullaniciVAN kv = servisKym.GirisYapabilirMi(istek.KullaniciKodu, istek.Parola, false);
             if (kv == null || kv.sonuc == null || !kv.sonuc.islemSonuc || kv.kullanici == null)
             {
-                HataliDenemeYaz(baglam, bellek);
-                return Results.Json(Hatali(kv != null && kv.sonuc != null ? kv.sonuc.hataStr : null));
+                HataliDenemeYaz(baglam);
+                return Yanit(baglam, Hatali(kv != null && kv.sonuc != null ? kv.sonuc.hataStr : null));
             }
 
             string yenilemeAnahtari = "kodyenile|" + kv.kullanici.kullaniciKodu;
             object dolu;
             if (bellek.TryGetValue(yenilemeAnahtari, out dolu))
-                return Results.Json(Hatali(Metin.Menu("Giris_KodAzOnce")));
+                return Yanit(baglam, Hatali(Metin.Menu("Giris_KodAzOnce")));
             bellek.Set(yenilemeAnahtari, true, KodYenilemeAraligi);
 
             IkinciKodGonder(servisKym, kv.kullanici, true);
@@ -128,7 +134,7 @@ namespace Istemci.Giris
             yanit.Basarili = true;
             yanit.IkinciFaktorGerekli = true;
             yanit.Bilgi = string.Format(Metin.Menu("Giris_YeniKodGonderildi"), EPostaMaskele(kv.kullanici.EPOSTA));
-            return Results.Json(yanit);
+            return Yanit(baglam, yanit);
         }
 
         private static async Task<IResult> Cikis(HttpContext baglam, IAntiforgery sahtecilik)
@@ -157,8 +163,14 @@ namespace Istemci.Giris
 
             istek.KullaniciKodu = istek.KullaniciKodu.Trim();
 
-            if (KilitliMi(baglam, bellek))
-                return Hatali(string.Format(Metin.Menu("Giris_CokDeneme"), (int)KilitSuresi.TotalMinutes));
+            // Eski Giris.aspx: hatalı deneme sınırı aşıldıysa güvenlik kodu doğru girilmeden parola denenmez.
+            if (GuvenlikKoduGerekli(baglam))
+            {
+                if (string.IsNullOrWhiteSpace(istek.GuvenlikKodu))
+                    return Hatali(Metin.Menu("Giris_GuvenlikKoduGir"));
+                if (!GuvenlikKodu.Dogrula(baglam, bellek, istek.GuvenlikKodu))
+                    return Hatali(Metin.Menu("Giris_GuvenlikKoduYanlis"));
+            }
 
             // Bakım modu: sistem değişkeni /TEKKULLANICI doluysa yalnızca o kullanıcı girebilir.
             string tekKullanici = Ayar.Degisken(0, "/TEKKULLANICI");
@@ -178,7 +190,7 @@ namespace Istemci.Giris
 
             if (kv == null || kv.sonuc == null || !kv.sonuc.islemSonuc || kv.kullanici == null)
             {
-                HataliDenemeYaz(baglam, bellek);
+                HataliDenemeYaz(baglam);
                 Izle(baglam, istek.KullaniciKodu, ENUMIzleme.HATALIGIRIS);
                 return Hatali(kv != null && kv.sonuc != null ? kv.sonuc.hataStr : null);
             }
@@ -204,7 +216,7 @@ namespace Istemci.Giris
             else
                 baglam.Response.Cookies.Delete("KulAd");
 
-            bellek.Remove(DenemeAnahtari(baglam));
+            HataliDenemeSifirla(baglam);
             Izle(baglam, istek.KullaniciKodu, ENUMIzleme.BASARILIGIRIS);
 
             GirisYaniti yanit = new GirisYaniti();
@@ -212,6 +224,14 @@ namespace Istemci.Giris
             // Giriş sayfası uygulamanın kökündedir; açılış sayfasının adresi ona göre görelidir.
             yanit.Yonlen = YerelAdresMi(istek.DonusAdresi) ? istek.DonusAdresi : IstemciBaslangic.AcilisSayfasi;
             return yanit;
+        }
+
+        /// <summary>Yanıta, sonraki istekte güvenlik kodunun gerekip gerekmediği eklenir.</summary>
+        private static IResult Yanit(HttpContext baglam, GirisYaniti yanit)
+        {
+            if (!yanit.Basarili || yanit.IkinciFaktorGerekli)
+                yanit.GuvenlikKoduGerekli = GuvenlikKoduGerekli(baglam);
+            return Results.Json(yanit);
         }
 
         private static GirisYaniti Hatali(string hata)
@@ -245,32 +265,44 @@ namespace Istemci.Giris
 
         // ------------------------------------------------------------------ hatalı deneme sınırı
 
-        private static string DenemeAnahtari(HttpContext baglam)
-        {
-            return "girisdeneme|" + Ayar.IPAdresi(baglam);
-        }
+        private const string DenemeDegiskeni = "OlumsuzGirisSayisi";
 
-        /// <summary>Sistem değişkeni /GirisDenemeSayi: izin verilen ardışık hatalı deneme sayısı (0 = sınır yok).</summary>
+        /// <summary>Sistem değişkeni /GirisDenemeSayi: güvenlik kodu istenmeden yapılabilecek hatalı deneme sayısı (0 = güvenlik kodu istenmez).</summary>
         private static int DenemeSiniri()
         {
             return OrtakFonksiyonlar.ConvertToInt(Ayar.Degisken(0, "/GirisDenemeSayi", "0"), 0);
         }
 
-        private static bool KilitliMi(HttpContext baglam, IMemoryCache bellek)
+        /// <summary>Bu IP adresinden yapılmış ardışık hatalı deneme sayısı (eski GirisDenemeSayisiKontrolu).</summary>
+        private static int HataliDenemeSayisi(HttpContext baglam)
         {
-            int sinir = DenemeSiniri();
-            if (sinir <= 0) return false;
-            int sayi;
-            return bellek.TryGetValue(DenemeAnahtari(baglam), out sayi) && sayi >= sinir;
+            int sayi = 0;
+            TNSCollection<string> kayit = TNS.KYM.Arac.Tanimla().DegiskenleriListele(Ayar.IPAdresi(baglam), DenemeDegiskeni);
+            if (kayit != null)
+                foreach (string deger in kayit)
+                    sayi = OrtakFonksiyonlar.ConvertToInt(deger, 0);
+            return sayi;
         }
 
-        private static void HataliDenemeYaz(HttpContext baglam, IMemoryCache bellek)
+        /// <summary>Giriş sayfası ve giriş uçları: bu IP adresinden sonraki denemede güvenlik kodu istenecek mi?</summary>
+        public static bool GuvenlikKoduGerekli(HttpContext baglam)
+        {
+            int sinir = DenemeSiniri();
+            return sinir > 0 && HataliDenemeSayisi(baglam) >= sinir;
+        }
+
+        private static void HataliDenemeYaz(HttpContext baglam)
         {
             if (DenemeSiniri() <= 0) return;
-            string anahtar = DenemeAnahtari(baglam);
-            int sayi;
-            bellek.TryGetValue(anahtar, out sayi);
-            bellek.Set(anahtar, sayi + 1, KilitSuresi);
+            TNSCollection degerler = new TNSCollection();
+            degerler.Add((HataliDenemeSayisi(baglam) + 1).ToString());
+            TNS.KYM.Arac.Tanimla().DegiskenKaydet(Ayar.IPAdresi(baglam), DenemeDegiskeni, degerler);
+        }
+
+        private static void HataliDenemeSifirla(HttpContext baglam)
+        {
+            if (DenemeSiniri() <= 0) return;
+            TNS.KYM.Arac.Tanimla().DegiskenKaydet(Ayar.IPAdresi(baglam), DenemeDegiskeni, new TNSCollection());
         }
 
         // ------------------------------------------------------------------ doğrulama kodu

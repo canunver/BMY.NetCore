@@ -1,0 +1,229 @@
+/* Avans Kapatma (Avans Listesi), Avans Sorgulama ve e-bütçe Aktarımları: sıkışık kıstaslar, renkli bölümler, tablo sayfayı doldurur. */
+
+.avans {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.avans .kutu.bolum {
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
+    margin: 0;
+    padding: 0 8px 8px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+}
+
+.avans .kutu.bolum.bolum-liste {
+    --bolum-baslik: var(--b2-baslik);
+    --bolum-govde: var(--b2-govde);
+    --bolum-vurgu: var(--b2-vurgu);
+    padding-top: 8px;
+}
+
+.avans .bolum-baslik {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 -8px 6px;
+    padding: 5px 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 8px 8px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.avans .avans-yardim-dugme {
+    padding: 0 2px;
+    color: var(--bolum-vurgu);
+}
+
+.avans .avans-yardim {
+    margin: 0 0 6px;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+/* ---- Alanlar: etiket solda, alt alta ---- */
+.avans .avans-alanlar {
+    --etiket-genislik: 140px;
+    max-width: 560px;
+}
+
+.avans .avans-alanlar .form-group {
+    margin-bottom: 4px;
+}
+
+.avans .avans-alanlar .control-label {
+    font-size: 12px;
+    padding-top: 3px;
+}
+
+.avans .form-control.input-sm {
+    height: 24px;
+    padding: 1px 6px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.avans .btn-sm {
+    padding: 2px 8px;
+    font-size: 12px;
+}
+
+.avans .sgb-yil {
+    width: 90px;
+}
+
+.avans .avans-no {
+    width: 150px;
+}
+
+.avans .avans-ay {
+    width: 160px;
+}
+
+.avans .avans-kullanici {
+    width: 160px;
+}
+
+.avans .avans-bitisik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+}
+
+.avans .avans-secenekler {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.avans .avans-secenekler label {
+    margin: 0;
+    font-weight: 400;
+}
+
+.avans .avans-secenekler input {
+    margin-right: 4px;
+}
+
+.avans .avans-iki-sutun {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 4px 16px;
+    max-width: 1100px;
+}
+
+.avans .avans-iki-sutun .avans-alanlar {
+    max-width: none;
+}
+
+/* ---- Liste ---- */
+.avans .avans-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 6px;
+}
+
+.avans .avans-ozet {
+    margin-left: auto;
+    font-weight: 600;
+    color: var(--bolum-vurgu);
+}
+
+.avans .avans-grid {
+    width: 100%;
+    height: 420px;
+}
+
+.avans .avans-ac {
+    padding: 0 4px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.avans .avans-ayrinti-satir {
+    height: 100%;
+    padding: 4px 8px 4px 44px;
+    overflow: auto;
+    background: #fff;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.avans .avans-ayrinti-tablo {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.avans .avans-ayrinti-tablo th,
+.avans .avans-ayrinti-tablo td {
+    padding: 3px 6px;
+    border: 1px solid var(--cizgi);
+}
+
+.avans .avans-ayrinti-tablo th {
+    font-weight: 600;
+    background: #fcfcd4;
+}
+
+.avans .avans-sag {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.avans .avans-kod {
+    white-space: nowrap;
+}
+
+.avans .avans-not {
+    color: var(--soluk);
+}
+
+.avans-gizli-metin {
+    position: fixed;
+    top: -1000px;
+    left: -1000px;
+}
+
+/* ---- e-bütçe Aktarımları ---- */
+.ebutce-aktar .kutu.bolum {
+    max-width: 640px;
+}
+
+.ebutce-aktar .avans-sonuc {
+    margin: 8px 0 0;
+    font-size: 12px;
+    white-space: pre-wrap;
+}
+
+.avans-bekle {
+    cursor: progress;
+}
+
+.ag-right-aligned-cell {
+    text-align: right;
+}
+
+@media (max-width: 900px) {
+    .avans .avans-iki-sutun {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.avans [hidden] {
+    display: none !important;
+}

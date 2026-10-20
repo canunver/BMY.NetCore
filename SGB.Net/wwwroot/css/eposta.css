@@ -1,0 +1,104 @@
+/* Kullanıcılara e-posta Gönderme (KYM/ePostaAt) ve Önceki e-posta Gönderimleri (KYM/ePostaGonderi). */
+
+.eposta {
+    max-width: 820px;
+}
+
+.eposta .kutu {
+    padding: 16px;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-left: 4px solid var(--tema-ana);
+    border-radius: 10px;
+}
+
+.eposta .kutu-baslik {
+    margin: 0 0 12px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.eposta .ep-adres {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    margin: 0 0 12px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: var(--tema-acik, rgba(0, 0, 0, .04));
+    font-size: 13px;
+}
+
+.eposta .ep-form .form-group {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    align-items: center;
+    column-gap: 10px;
+    margin: 0 0 8px;
+}
+
+.eposta .ep-form .form-group.ep-ust {
+    align-items: start;
+}
+
+.eposta .ep-form .form-group.ep-ust .control-label {
+    padding-top: 6px;
+}
+
+.eposta .ep-form .form-group::before,
+.eposta .ep-form .form-group::after {
+    display: none;
+}
+
+.eposta .control-label {
+    margin: 0;
+    font-weight: 600;
+    text-align: left;
+}
+
+.eposta textarea.form-control {
+    resize: vertical;
+    min-height: 160px;
+}
+
+.eposta .ep-grup {
+    max-width: 360px;
+}
+
+.eposta .ep-dugmeler {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.eposta-liste .ep-arac {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 8px;
+}
+
+.eposta-liste .ep-arac::before,
+.eposta-liste .ep-arac::after {
+    display: none;
+}
+
+.eposta-liste .ep-ipucu {
+    font-size: 12px;
+}
+
+.eposta-liste .ep-grid {
+    height: 420px;
+}
+
+.eposta-liste .ep-bag {
+    font-weight: 600;
+    cursor: pointer;
+}
+
+@media (max-width: 560px) {
+    .eposta .ep-form .form-group {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 4px;
+    }
+}

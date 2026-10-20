@@ -1,0 +1,228 @@
+@page
+@model FaturaGirisModel
+@{
+    ViewData["Title"] = "Fatura Giriş";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans fatura fatura-form">
+    <div class="avans-arac" role="toolbar" aria-label="Fatura işlemleri">
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+        <button type="button" id="btnIptal" class="btn btn-default btn-sm" disabled>
+            <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> İptal
+        </button>
+        <button type="button" id="btnYazdir" class="btn btn-default btn-sm" disabled title="Fatura (Word)">
+            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+        </button>
+        <button type="button" id="btnTahakkuk" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Tahakkuk MİF Oluştur
+        </button>
+        <button type="button" id="btnOdeme" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Ödeme MİF Oluştur
+        </button>
+        <button type="button" id="btnKapat" class="btn btn-default btn-sm" hidden>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Kapat
+        </button>
+        <span id="lblDurum" class="label label-default" hidden></span>
+    </div>
+
+    <div class="ft-form-ust">
+        <!-- Fatura bilgileri: alanlar alt alta, etiket solda -->
+        <section class="kutu bolum bolum-bilgi">
+            <h2 class="bolum-baslik">Fatura Bilgileri</h2>
+            <form id="frmFatura" class="tanim-form avans-alanlar" onsubmit="return false;">
+                <div class="form-group">
+                    <label class="control-label" for="txtMuhasebe">Muhasebe / Birim</label>
+                    <div id="muhBirim"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMudurluk">Müdürlük Kodu</label>
+                    <div class="avans-bitisik">
+                        <input type="text" id="txtMudurluk" class="form-control input-sm ft-kisa" autocomplete="off" />
+                        <button type="button" class="btn btn-default btn-sm" data-mudurluk="#txtMudurluk" title="Müdürlük listesi">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Müdürlük listesi</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtVNo">Müşteri Kimlik No</label>
+                    <div class="avans-bitisik">
+                        <input type="text" id="txtVNo" class="form-control input-sm ft-orta" maxlength="20" autocomplete="off" />
+                        <button type="button" id="btnFirmaSec" class="btn btn-default btn-sm" title="Kişi / firma listesi">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Kişi / firma listesi</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtUnvan">Müşteri Unvanı</label>
+                    <div><input type="text" id="txtUnvan" class="form-control input-sm ft-salt" readonly /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMusteriAdiEk">Müşteri Ek Bilgisi</label>
+                    <div class="avans-bitisik">
+                        <input type="text" id="txtMusteriAdiEk" class="form-control input-sm ft-genis" autocomplete="off" />
+                        <button type="button" class="btn btn-default btn-sm" data-aciklama="3" title="Açıklama listesinden seç">
+                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span><span class="sr-only">Açıklama listesinden seç</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtFaturaNo">Fatura No / Tarihi</label>
+                    <div class="avans-bitisik">
+                        <input type="text" id="txtFaturaNo" class="form-control input-sm ft-orta" autocomplete="off" />
+                        <input type="date" id="txtFaturaTarihi" class="form-control input-sm ft-tarih" aria-label="Fatura tarihi" />
+                        <span id="lblTahakkukBelge" class="ft-belge-no" hidden>Tahakkuk: <a href="#" id="lnkTahakkukBelge"></a></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtIrsaliyeNo">İrsaliye No / Tarihi</label>
+                    <div class="avans-bitisik">
+                        <input type="text" id="txtIrsaliyeNo" class="form-control input-sm ft-orta" autocomplete="off" />
+                        <input type="date" id="txtIrsaliyeTarihi" class="form-control input-sm ft-tarih" aria-label="İrsaliye tarihi" />
+                        <span id="lblOdemeBelge" class="ft-belge-no" hidden>Ödeme: <a href="#" id="lnkOdemeBelge"></a></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlTevkifat">Tevkifat</label>
+                    <div>
+                        <select id="ddlTevkifat" class="form-control input-sm ft-kisa">
+                            <option value="0">Yok</option>
+                            <option value="9">9/10</option>
+                            <option value="7">7/10</option>
+                            <option value="5">5/10</option>
+                            <option value="2">2/10</option>
+                            <option value="3">3/10</option>
+                            <option value="4">4/10</option>
+                            <option value="6">6/10</option>
+                            <option value="8">8/10</option>
+                            <option value="10">Tam</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <div class="ft-form-sag">
+            <section class="kutu bolum bolum-aciklama">
+                <h2 class="bolum-baslik">Açıklama
+                    <button type="button" class="btn btn-default btn-xs ft-baslik-tus" data-aciklama="1">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Açıklama Listesi
+                    </button>
+                </h2>
+                <textarea id="txtAciklama" class="form-control input-sm" rows="5" aria-label="Fatura açıklaması"></textarea>
+            </section>
+            <section class="kutu bolum bolum-ozet">
+                <h2 class="bolum-baslik">Fatura Özeti</h2>
+                <dl class="ft-ozet">
+                    <dt>Toplam Tutar</dt><dd id="lblToplam"></dd>
+                    <dt>KDV Tutarı</dt><dd id="lblKdv"></dd>
+                    <dt>Genel Toplam</dt><dd id="lblGenelToplam" class="ft-genel"></dd>
+                </dl>
+            </section>
+        </div>
+    </div>
+
+    <!-- Fatura satırları (eski grdTanim) -->
+    <section class="kutu bolum bolum-liste">
+        <div class="avans-arac" role="toolbar" aria-label="Satır işlemleri">
+            <button type="button" id="btnSatirEkle" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekle
+            </button>
+            <span id="lblTutarGirisi" class="avans-not"></span>
+        </div>
+        <div id="grdSatirlar" class="avans-grid" aria-label="Fatura satırları"></div>
+    </section>
+</div>
+
+<partial name="_FaturaMudurluk" />
+<partial name="_FaturaBelgePenceresi" />
+
+<!-- Açıklama tanımları (eski wndFaturaAciklama) -->
+<dialog id="dlgAciklama" class="tanim-pencere ft-pencere ft-pencere-genis" aria-labelledby="dlgAciklamaBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgAciklamaBaslik">Açıklama</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="avans-arac" role="toolbar" aria-label="Açıklama işlemleri">
+            <button type="button" id="btnAciklamaListele" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Listele</button>
+            <button type="button" id="btnAciklamaYeni" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Kayıt</button>
+            <button type="button" id="btnAciklamaKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+            <button type="button" id="btnAciklamaSil" class="btn btn-default btn-sm" disabled><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil</button>
+        </div>
+        <label class="sr-only" for="txtEditor">Açıklama</label>
+        <textarea id="txtEditor" class="form-control input-sm" rows="3" placeholder="Açıklama"></textarea>
+        <p class="help-block small">
+            Düzenlemek için satıra tıklayınız; <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> açıklamayı faturaya ekler.
+        </p>
+        <div id="grdAciklama" class="ft-grid-pencere" aria-label="Açıklamalar"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<!-- Hesaplama (eski wndHesapla) -->
+<dialog id="dlgHesapla" class="tanim-pencere ft-pencere" aria-labelledby="dlgHesaplaBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgHesaplaBaslik">Hesaplama</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmHesapla" class="tanim-form avans-alanlar" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label" for="txtHesaplamaTutar">Tutar</label>
+                <div><input type="text" id="txtHesaplamaTutar" class="form-control input-sm ft-orta" inputmode="decimal" autocomplete="off" /></div>
+            </div>
+            <div class="form-group" id="grpHesaplamaYuzde">
+                <label class="control-label" for="txtHesaplamaYuzde">Yüzde</label>
+                <div><input type="text" id="txtHesaplamaYuzde" class="form-control input-sm ft-orta" inputmode="decimal" autocomplete="off" /></div>
+            </div>
+            <div class="form-group" id="grpHesaplamaBirimFiyat">
+                <label class="control-label" for="txtHesaplamaBirimFiyat">Birim Fiyat</label>
+                <div><input type="text" id="txtHesaplamaBirimFiyat" class="form-control input-sm ft-orta" inputmode="decimal" autocomplete="off" /></div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnHesapla" class="btn btn-primary btn-sm">Hesapla ve Yaz</button>
+    </div>
+</dialog>
+
+<!-- Onay sorusu -->
+<dialog id="dlgSoru" class="tanim-pencere ft-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hesapkodu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/fatura.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/hesapkodu.js" asp-append-version="true"></script>
+    <script src="~/js/fatura.js" asp-append-version="true"></script>
+}

@@ -46,7 +46,7 @@ $(function () {
         Sgb.mt.islem('api/muhtanim/kbs/kaydet', { yil: yil(), satirlar: $.map(satirlar(tablo), function (s) {
             return { HESAPKOD: s.HESAPKOD, HESAPADI: s.HESAPADI, GOSTER: parseInt(s.GOSTER, 10) || 0, HESAPUZUNLUK: parseInt(s.HESAPUZUNLUK, 10) || 0,
                 FONUZUNLUK: parseInt(s.FONUZUNLUK, 10) || 0, FINUZUNLUK: parseInt(s.FINUZUNLUK, 10) || 0 };
-        }) });
+        }) }, 'Kaydedilecek, onaylıyor musunuz?');
     });
 
     // ---------------------------------------------------------------- detay hesap kodları
@@ -70,7 +70,7 @@ $(function () {
 
     $('#btnDetayKaydet').on('click', function () {
         if (!detay) return;
-        Sgb.mt.islem('api/muhtanim/kbs/detay-kaydet', { yil: yil(), satirlar: $.map(satirlar(detay), function (s) { return { HESAPKOD: s.HESAPKOD || '' }; }) });
+        Sgb.mt.islem('api/muhtanim/kbs/detay-kaydet', { yil: yil(), satirlar: $.map(satirlar(detay), function (s) { return { HESAPKOD: s.HESAPKOD || '' }; }) }, 'Kaydedilecek, onaylıyor musunuz?');
     });
 
     listele();

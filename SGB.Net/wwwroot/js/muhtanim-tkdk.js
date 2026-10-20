@@ -13,6 +13,8 @@ $(function () {
     function nakit() { return $('#tkTur').val() === '1'; }
     function girilir() { return nakit(); }
 
+    function hesapKutu() { return $('#tkHesap').data('hesapKodu') || Sgb.hesapKodu('#tkHesap'); }
+
     var satirTablo = Sgb.grid('#grdSatir', {
         columnDefs: [
             { field: 'HESAPKOD', headerName: 'Hesap Kodu', width: 130, editable: girilir, cellClass: function () { return nakit() ? 'mt-girilir' : 'mt-sari'; } },
@@ -32,9 +34,10 @@ $(function () {
 
     function turAyarla() {
         var n = nakit();
-        $('#tkHesap').prop('hidden', n).val('');
+        $('.tk-hesap-alan').prop('hidden', n);
+        hesapKutu().temizle();
         $('#tkIpucu').text(n ? 'Nakit talebinde hesap kodu ve açıklama tabloda girilir; Ekle boş satır ekler.'
-            : 'Ekonomik kodu yazıp listeden seçin ve Ekle\'ye basın. Satırlar Sil sütunuyla kaldırılır.');
+            : 'Ekonomik kodu (830.XX.XX) yazın ya da mercekle seçin ve Ekle\'ye basın; tabloya XX.XX olarak eklenir. Satırlar Sil sütunuyla kaldırılır.');
         satirTablo.refreshCells({ force: true });
     }
 
@@ -67,7 +70,11 @@ $(function () {
         Sgb.mt.oku('api/muhtanim/tkdk/oku', { kod: kod }, satirTablo).done(function (v) {
             form.temizle();
             form.yaz({ kod: v.kod, yil: v.yil, ay: v.ay, talepTur: v.talepTur });
-            satirTablo.setGridOption('rowData', v.satirlar || []);
+            var satirlar = v.satirlar || [];
+            // Kayıtta noktasız tutulan ekonomik kod (0102) tabloda XX.XX gösterilir.
+            if (String(v.talepTur) !== '1')
+                $.each(satirlar, function (i, r) { var k = String(r.HESAPKOD || ''); if (/^\d{4}$/.test(k)) r.HESAPKOD = k.substr(0, 2) + '.' + k.substr(2); });
+            satirTablo.setGridOption('rowData', satirlar);
             turAyarla();
             var n = liste.getRowNode(String(v.kod));
             if (n) n.setSelected(true);
@@ -80,7 +87,10 @@ $(function () {
         var satirlar = [];
         satirTablo.forEachNode(function (n) {
             var s = n.data;
-            satirlar.push({ KOD: /^y\d+$/.test(String(s.KOD)) ? '' : s.KOD, HESAPKOD: s.HESAPKOD || '', HESAPADI: s.HESAPADI || '' });
+            // Hesap / ekonomik kod her talep türünde noktasız kaydedilir (tabloda 01.02 -> 0102).
+            var hk = String(s.HESAPKOD || '');
+            hk = hk.replace(/\./g, '');
+            satirlar.push({ KOD: /^y\d+$/.test(String(s.KOD)) ? '' : s.KOD, HESAPKOD: hk, HESAPADI: s.HESAPADI || '' });
         });
         return { kod: f.kod, yil: parseInt(f.yil, 10) || 0, ay: parseInt(f.ay, 10) || 0, talepTur: parseInt(f.talepTur, 10) || 0, satirlar: satirlar };
     }
@@ -113,41 +123,26 @@ $(function () {
     $('#btnTemizle').on('click', temizle);
     $('#tkTur').on('change', turAyarla);
 
-    // ---------------------------------------------------------------- ekonomik kod arama (eski HesapStore_Refresh)
-
-    var aranan = '';
-    var zaman = null;
-    var sonuclar = {};
-    $('#tkHesap').on('input', function () {
-        var m = $.trim($(this).val());
-        clearTimeout(zaman);
-        if (m.length < 1 || sonuclar[m] || m === aranan) return;
-        zaman = setTimeout(function () {
-            aranan = m;
-            Sgb.al('api/muhtanim/tkdk/hesap', { yil: parseInt($('#tkYil').val(), 10) || 0, metin: m }).done(function (v) {
-                if (v.hata) return;
-                var $l = $('#tkHesapListe').empty();
-                $.each(v.satirlar || [], function (i, h) {
-                    sonuclar[h.gorunen] = h;
-                    $('<option></option>').val(h.gorunen).appendTo($l);
-                });
-            });
-        }, 250);
-    });
-
     $('#btnSatirEkle').on('click', function () {
         if (nakit()) {
             satirTablo.applyTransaction({ add: [{ KOD: yeniKod(), HESAPKOD: '', HESAPADI: '' }] });
             return;
         }
         if (!$('#tkTur').val()) { Sgb.bildirim('Lütfen önce talep türünü seçin.', 'warning'); return; }
-        var h = sonuclar[$.trim($('#tkHesap').val())];
-        if (!h) { Sgb.bildirim('Ekonomik kodu listeden seçin.', 'warning'); return; }
-        var varMi = false;
-        satirTablo.forEachNode(function (n) { if (n.data.HESAPKOD === h.kod) varMi = true; });
-        if (!varMi) satirTablo.applyTransaction({ add: [{ KOD: yeniKod(), HESAPKOD: h.kod, HESAPADI: h.ad }] });
-        $('#tkHesap').val('');
+        // 830.XX.XX düzeyinde hesap; tabloya 830. olmadan XX.XX olarak eklenir.
+        hesapKutu().hazir().done(satirEkle);
     });
+
+    function satirEkle(h) {
+        if (!h.kod) { Sgb.bildirim('Ekonomik kodu yazın ya da mercekle seçin.', 'warning'); $('#tkHesap').trigger('focus'); return; }
+        if (!h.gecerli || !h.ad) { Sgb.bildirim('Ekonomik kod hesap planında 830.XX.XX düzeyinde kayıtlı olmalı.', 'warning'); return; }
+        var kod = h.kod.replace(/^830\./, '');
+        var varMi = false;
+        satirTablo.forEachNode(function (n) { if (String(n.data.HESAPKOD).replace(/\./g, '') === kod.replace(/\./g, '')) varMi = true; });
+        if (varMi) Sgb.bildirim('Bu ekonomik kod tabloda zaten var.', 'warning');
+        else satirTablo.applyTransaction({ add: [{ KOD: yeniKod(), HESAPKOD: kod, HESAPADI: h.ad }] });
+        hesapKutu().temizle();
+    }
 
     temizle();
     listele();

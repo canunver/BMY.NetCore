@@ -3,9 +3,9 @@
    bölümler renkli başlıklı ayrı kutular. Girilen hücre / alan beyaz, salt okunur hücre / alan sarı. */
 
 .muh-tanim .kutu.bolum {
-    --bolum-baslik: #e3edfa;
-    --bolum-govde: #f5f8fd;
-    --bolum-vurgu: #2f6fc4;
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
     padding: 0 12px 12px;
     background: var(--bolum-govde);
 }
@@ -13,7 +13,7 @@
 .muh-tanim .kutu.bolum.yesil {
     --bolum-baslik: #e2f3e6;
     --bolum-govde: #f5fbf6;
-    --bolum-vurgu: #2e8b4e;
+    --bolum-vurgu: var(--b2-vurgu);
 }
 
 .muh-tanim .kutu.bolum.turuncu {
@@ -237,6 +237,21 @@
 
 .muh-tanim .mt-form-tablo-sag {
     flex: 1 1 360px;
+    min-width: 0;
+}
+
+.muh-tanim .mt-satir-ekle {
+    margin: 0 0 8px;
+}
+
+.muh-tanim .mt-satir-ekle > label {
+    flex: none;
+    margin: 0;
+    font-weight: 600;
+}
+
+.muh-tanim .mt-yanyana > .mt-yanyana-genis {
+    flex: 1 1 auto;
     min-width: 0;
 }
 

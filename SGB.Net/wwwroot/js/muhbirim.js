@@ -10,7 +10,9 @@
 //       oncesi:    function () { return true; },        // değişiklikten önce sorulur; false dönerse eski değer geri yazılır
 //       degisince: function (deger) { },                // birim değişip adı okunduktan sonra
 //       kurumsalGizle: true,                            // kurumsal kod alanı gösterilmez (değeri yine okunur)
-//       adGizle: true                                   // birim adı yazılmaz; ad, alanların üzerine gelince ipucu olarak görünür
+//       adGizle: true,                                  // birim adı yazılmaz; ad, alanların üzerine gelince ipucu olarak görünür
+//       birimGizle: true                                // yalnızca muhasebe (saymanlık) seçilir: birim ve kurumsal kod alanı yok,
+//                                                       // pencerede saymanlıklar açılmaz; ad olarak saymanlık adı yazılır
 //   });
 //   mb.deger()  -> { muhasebe: 1, birim: '000', kurumsal: '13.99.01.01', birimAd: '...' }
 //   mb.ata({ muhasebe, birim, kurumsal, birimAd })     // olay çıkarmadan yazar (ör. açılışta kullanıcının birimi)
@@ -40,7 +42,8 @@
             .append($muh, '<span class="mb-ayrac" aria-hidden="true">-</span>', $brm, '<span class="mb-ayrac" aria-hidden="true">-</span>', $kur, $sec)
             .appendTo($kok);
         $kok.append($ad);
-        if (o.kurumsalGizle) { $kur.prop('hidden', true).prev('.mb-ayrac').prop('hidden', true); }
+        if (o.kurumsalGizle || o.birimGizle) { $kur.prop('hidden', true).prev('.mb-ayrac').prop('hidden', true); }
+        if (o.birimGizle) { $brm.prop('hidden', true).prev('.mb-ayrac').prop('hidden', true); }
         if (o.adGizle) $ad.prop('hidden', true);
 
         var kayitli = { muhasebe: '', birim: '' }; // son kabul edilen değer: oncesi() false dönerse geri yazılır
@@ -117,6 +120,7 @@
                 yukle: function (ust) {
                     return Sgb.al('api/muhbirim/agac', { ust: ust ? ust.kod : '', yil: agacYil }).then(function (v) {
                         if (v.hata) { Sgb.bildirim(v.hata, 'danger'); return []; }
+                        if (o.birimGizle) $.each(v.dugumler || [], function (i, d) { d.altVar = false; });
                         return v.dugumler;
                     });
                 },

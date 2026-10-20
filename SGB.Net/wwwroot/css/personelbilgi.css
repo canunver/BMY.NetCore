@@ -1,0 +1,381 @@
+/* Personel İşlemleri (PersonelBilgi): solda personel arama ve listesi, sağda seçilen personelin özeti ve sekmeleri (çerçeveler).
+   Geniş ekranda sayfa pencereye sığar; liste ve sekme çerçevesi kalan yüksekliği doldurur. Dar ekranda alt alta. */
+
+.pbana {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+}
+
+.pbana .kutu {
+    padding: 10px 12px;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+/* ---- sol bölme ---- */
+.pbana-sol {
+    --bolum-baslik: #fbefd3;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 0;
+    font-size: 12px;
+}
+
+.pbana-sol-ust {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: -10px -12px 4px;
+    padding: 6px 12px;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+}
+
+.pbana-baslik {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.pbana-arac {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 0 0 6px;
+}
+
+.pbana-arac .btn {
+    margin: 0;
+}
+
+.pbana-arama .form-group {
+    display: grid;
+    grid-template-columns: 62px minmax(0, 1fr);
+    align-items: center;
+    column-gap: 6px;
+    margin: 0 0 4px;
+}
+
+.pbana-arama .form-group::before,
+.pbana-arama .form-group::after {
+    display: none;
+}
+
+.pbana-arama .control-label {
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    text-align: left;
+}
+
+.pbana-arama .form-control {
+    height: 26px;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.pbana-birim {
+    display: flex;
+    gap: 4px;
+}
+
+.pbana-birim input[readonly] {
+    cursor: pointer;
+    background: var(--yuzey);
+}
+
+.pbana-birim .btn {
+    height: 26px;
+    padding: 2px 7px;
+}
+
+.pbana-secenek {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 12px;
+}
+
+.pbana-secenek label {
+    margin: 0;
+    font-weight: normal;
+}
+
+/* çoklu seçim (Grup / Tür) */
+.pbana-coklu {
+    position: relative;
+}
+
+.pbana-coklu-dugme {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    text-align: left;
+}
+
+.pbana-coklu-metin {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.pbana-coklu-liste {
+    width: 100%;
+    max-height: 300px;
+    overflow: auto;
+    padding: 4px 0;
+}
+
+.pbana-coklu-liste label {
+    display: block;
+    margin: 0;
+    padding: 2px 10px;
+    font-weight: normal;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.pbana-coklu-liste label:hover {
+    background: var(--tema-acik);
+}
+
+.pbana-coklu-bos {
+    padding: 2px 10px;
+    color: var(--soluk);
+}
+
+.pbana-grid {
+    height: 360px;
+}
+
+.pbana-liste-resim {
+    width: 55px;
+    height: 70px;
+    object-fit: cover;
+}
+
+.pbana-ipucu {
+    color: var(--soluk);
+}
+
+.pbana-sayfalama {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+/* ---- sağ bölme ---- */
+.pbana-sag {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 70vh;
+}
+
+.pbana-ozet {
+    --bolum-baslik: var(--b1-baslik);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: var(--bolum-baslik) !important;
+}
+
+.pbana-resim {
+    position: relative;
+    flex: 0 0 auto;
+    width: 56px;
+    height: 70px;
+    overflow: hidden;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 4px;
+}
+
+.pbana-resim .glyphicon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: #c3cad2;
+}
+
+.pbana-resim img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pbana-ozet-govde {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.pbana-ozet-baslik {
+    margin: 0 0 4px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.pbana-ozet-alanlar {
+    display: grid;
+    grid-template-columns: minmax(0, 45fr) minmax(0, 35fr) minmax(0, 20fr);
+    gap: 1px 14px;
+    margin: 0;
+    font-size: 12px;
+}
+
+.pbana-ozet-alanlar > div {
+    display: flex;
+    gap: 6px;
+    min-width: 0;
+}
+
+.pbana-ozet-alanlar dt {
+    flex: 0 0 auto;
+    min-width: 76px;
+    font-weight: 600;
+}
+
+.pbana-ozet-alanlar dd {
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.pbana-sekmeler {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 6px 8px 8px !important;
+}
+
+.pbana-sekme-basliklari {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+}
+
+.pbana-sekme-basliklari > li {
+    float: none;
+    flex: 0 0 auto;
+}
+
+.pbana-sekme-basliklari > li > a {
+    padding: 6px 12px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.pbana-sekme-icerik {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    padding-top: 6px;
+}
+
+.pbana-sekme {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.pbana-sekme[hidden] {
+    display: none;
+}
+
+.pbana-cerceve {
+    flex: 1 1 auto;
+    width: 100%;
+    min-height: 70vh;
+    border: 0;
+    background: #fff;
+}
+
+.pbana-bos {
+    margin: 8px 0;
+    color: var(--soluk);
+}
+
+/* birim seçimi penceresi */
+.pbana-pencere {
+    width: min(560px, 95vw);
+}
+
+.pbana-birim-ara {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.pbana-agac {
+    max-height: 55vh;
+    overflow: auto;
+}
+
+@media (min-width: 992px) {
+    body.pb-sayfa > .sayfa-icerik {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .pbana {
+        flex: 1 1 auto;
+        min-height: 0;
+        grid-template-columns: 360px minmax(0, 1fr);
+        grid-template-rows: minmax(0, 1fr);
+        align-items: stretch;
+    }
+
+    .pbana.sol-dar {
+        grid-template-columns: 44px minmax(0, 1fr);
+    }
+
+    .pbana.sol-dar .pbana-sol > :not(.pbana-sol-ust),
+    .pbana.sol-dar .pbana-baslik {
+        display: none !important;
+    }
+
+    .pbana.sol-dar .pbana-sol-ust {
+        justify-content: center;
+        padding: 6px 0;
+    }
+
+    .pbana-sol {
+        overflow: hidden;
+    }
+
+    .pbana-grid {
+        flex: 1 1 auto;
+        height: auto;
+        min-height: 160px;
+    }
+
+    .pbana-sag,
+    .pbana-cerceve {
+        min-height: 0;
+    }
+}
+
+@media (max-width: 991px) {
+    .pbana-ozet-alanlar {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

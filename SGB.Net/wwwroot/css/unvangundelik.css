@@ -1,0 +1,100 @@
+/* Yıl, Unvan ve Ülke Kriterine Göre Gündelik Tanımlama (HarcamaSurecleri/TanimGundelik):
+   üstte renkli başlıklı form bölümü (etiketler solda, alanlar alt alta; tanim.css .tanim-form), altta liste sayfanın kalanını doldurur.
+   Girilebilir alanlar beyaz. */
+
+.unvan-gundelik .bolum {
+    --bolum-baslik: #fdf0dc;
+    --bolum-govde: #fefaf3;
+    --bolum-vurgu: #c7812a;
+    margin: 0 0 12px;
+    padding: 0 12px 10px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.unvan-gundelik .bolum-baslik {
+    margin: 0 -12px 10px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.unvan-gundelik .ug-form {
+    --etiket-genislik: 130px;
+    max-width: 620px;
+}
+
+.unvan-gundelik .ug-form .form-group {
+    margin-bottom: 6px;
+}
+
+.unvan-gundelik .ug-form .form-group[hidden] {
+    display: none;
+}
+
+.unvan-gundelik .bolum .form-control {
+    background: #fff;
+}
+
+.unvan-gundelik .ug-yil { width: 100px; }
+.unvan-gundelik .ug-secim { max-width: 320px; }
+.unvan-gundelik .ug-tutar { width: 160px; text-align: right; }
+.unvan-gundelik .ug-para { width: 100px; }
+
+.unvan-gundelik .ug-yan {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.unvan-gundelik .ug-ayrac {
+    width: 1px;
+    height: 22px;
+    margin: 0 4px;
+    background: var(--cizgi);
+}
+
+.unvan-gundelik .ug-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 10px 0 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--cizgi);
+}
+
+.unvan-gundelik .ug-yardim {
+    margin-left: auto;
+}
+
+.unvan-gundelik .ug-yardim-metin {
+    margin: 10px 0 0;
+    padding: 8px 10px;
+    font-size: 12px;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.unvan-gundelik .ug-yardim-metin p {
+    margin: 0 0 6px;
+}
+
+.unvan-gundelik .ug-yardim-metin .ug-yardim-son {
+    margin-bottom: 0;
+}
+
+.unvan-gundelik .ug-grid {
+    width: 100%;
+    height: 400px;
+}
+
+.unvan-gundelik .ug-sag-baslik .ag-header-cell-label {
+    justify-content: flex-end;
+}

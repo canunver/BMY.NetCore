@@ -1,0 +1,69 @@
+/* Personel Bordro Parametreleri (HarcamaSurecleri/PersonelBordroParamForm): tek bölüm, tablo sayfanın kalan yüksekliğini doldurur.
+   Girilebilir hücreler beyaz, salt okunurlar sarı. */
+
+.bordro-param .bolum {
+    --bolum-baslik: #e2f3e6;
+    --bolum-govde: #f5fbf6;
+    --bolum-vurgu: var(--b2-vurgu);
+    margin: 0;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.bordro-param .bolum-baslik {
+    margin: 0 -12px 10px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.bordro-param .bp-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 10px;
+}
+
+.bordro-param .bp-ayrac {
+    width: 1px;
+    height: 22px;
+    margin: 0 6px;
+    background: var(--cizgi);
+}
+
+.bordro-param .bp-yardim {
+    margin-left: auto;
+}
+
+.bordro-param .bp-yardim-metin {
+    margin: 0 0 10px;
+    padding: 8px 10px;
+    font-size: 12px;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.bordro-param .bp-grid {
+    width: 100%;
+    height: 440px;
+}
+
+.bordro-param .bp-girilir {
+    background: #fff;
+}
+
+.bordro-param .bp-salt {
+    background: #fcfcd4;
+}
+
+.bordro-param .bp-yeni-satir .bp-girilir {
+    font-weight: 600;
+}

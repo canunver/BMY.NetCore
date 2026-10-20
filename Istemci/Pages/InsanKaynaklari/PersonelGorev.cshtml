@@ -1,0 +1,128 @@
+@page
+@model Istemci.Pages.InsanKaynaklari.PersonelGorevModel
+@{
+    ViewData["Title"] = "Görevlendirmeler";
+    ViewData["GovdeSinif"] = "pb-alt";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="pb pb-gorev" id="pbGorev" data-personel-kod="@Model.PersonelKod">
+    <div class="pb-arac" role="toolbar" aria-label="Görevlendirme işlemleri">
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+        <button type="button" id="btnYeni" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni
+        </button>
+        <button type="button" id="btnSil" class="btn btn-danger btn-sm">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+        </button>
+    </div>
+
+    <div class="gorev-duzen">
+        <div>
+            <section class="pb-bolum">
+                <h3>Görevlendirme</h3>
+                <div class="pb-govde">
+                    <form id="frmGorev" class="pb-form gorev-form" novalidate autocomplete="off">
+                        <div class="form-group">
+                            <label class="control-label" for="txtGorevNo">Kayıt No</label>
+                            <div><input type="number" id="txtGorevNo" class="form-control dar" readonly tabindex="-1" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="cmbUnvan">Unvan</label>
+                            <div><select id="cmbUnvan" class="form-control"></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="cmbGorevDurumu">Görev Durumu</label>
+                            <div><select id="cmbGorevDurumu" class="form-control"></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtBirimAd">Birimi</label>
+                            <div class="izin-secim">
+                                <input type="hidden" id="hdnBirim" />
+                                <input type="text" id="txtBirimAd" class="form-control" readonly />
+                                <button type="button" id="btnBirimAc" class="btn btn-default btn-sm" aria-expanded="false" aria-controls="pnlBirim" title="Birim seç"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></button>
+                                <button type="button" id="btnBirimTemizle" class="btn btn-default btn-sm" title="Temizle" aria-label="Birimi temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                        <div id="pnlBirim" class="izin-agac-panel" hidden>
+                            <div class="izin-agac-ara">
+                                <input type="search" id="txtBirimAra" class="form-control input-sm" placeholder="Birim adı ile ara" aria-label="Birim adı ile ara" />
+                            </div>
+                            <ul id="agcBirim" class="izin-agac" aria-label="Birimler"></ul>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtBaslamaTarihi">Başlama Tarihi</label>
+                            <div><input type="date" id="txtBaslamaTarihi" class="form-control dar" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtBitisTarihi">Bitiş Tarihi</label>
+                            <div><input type="date" id="txtBitisTarihi" class="form-control dar" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtAciklama">Açıklama</label>
+                            <div><input type="text" id="txtAciklama" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtOnayNo">Onay No</label>
+                            <div><input type="text" id="txtOnayNo" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtOnayTarihi">Onay Tarihi</label>
+                            <div><input type="date" id="txtOnayTarihi" class="form-control dar" /></div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section class="pb-bolum renk-gri">
+                <h3>
+                    Belgeler
+                    <span class="bosluk"></span>
+                    <button type="button" id="btnBelgeEkle" class="btn btn-default btn-xs">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Belge Ekle
+                    </button>
+                    <input type="file" id="fileBelge" hidden />
+                </h3>
+                <div class="pb-govde">
+                    <div id="grdBelgeler" class="pb-grid izin-belge-grid" aria-label="Belgeler"></div>
+                </div>
+            </section>
+        </div>
+
+        <div>
+            <section class="pb-bolum renk-mor gorev-liste-bolum">
+                <h3>Görevlendirmeler</h3>
+                <div class="pb-govde pb-doldur">
+                    <div id="grdGorevler" class="pb-grid" aria-label="Görevlendirmeler"></div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<dialog id="dlgOnay" class="izin-pencere izin-pencere-dar" aria-labelledby="dlgOnayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOnayBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde"><p id="dlgOnayMetin"></p></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Hayır</button>
+        <button type="button" id="btnOnayEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/personelalt.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personel-izin.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/personel-gorev.js" asp-append-version="true"></script>
+}

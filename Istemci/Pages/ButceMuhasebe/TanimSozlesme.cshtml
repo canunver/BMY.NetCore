@@ -1,0 +1,43 @@
+@page
+@model TanimSozlesmeModel
+@{
+    ViewData["Title"] = Request.Query["tur"] == "1" ? "Sözleşme Koşulları" : Request.Query["tur"] == "3" ? "Teminat Şartları" : "Garanti Şartları";
+    ViewData["GovdeSinif"] = "avans-sayfa th-tam-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans muh-tanim th-alt th-sozlesme" data-sayfa="sozlesme">
+    <section class="kutu bolum">
+        <div class="avans-arac mt-arac" role="toolbar" aria-label="Metin işlemleri">
+            <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+            <button type="button" id="btnKapat" class="btn btn-default btn-sm" hidden><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Kapat</button>
+            <span class="th-metin-arac" role="group" aria-label="Biçim">
+                <button type="button" class="btn btn-default btn-sm" data-komut="bold" title="Kalın"><b>K</b></button>
+                <button type="button" class="btn btn-default btn-sm" data-komut="italic" title="İtalik"><i>İ</i></button>
+                <button type="button" class="btn btn-default btn-sm" data-komut="underline" title="Altı çizili"><u>A</u></button>
+                <button type="button" class="btn btn-default btn-sm" data-komut="insertUnorderedList" title="Madde işaretli liste"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></button>
+                <button type="button" class="btn btn-default btn-sm" data-komut="insertOrderedList" title="Numaralı liste">1.</button>
+                <button type="button" class="btn btn-default btn-sm" data-komut="justifyLeft" title="Sola yasla"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></button>
+                <button type="button" class="btn btn-default btn-sm" data-komut="justifyCenter" title="Ortala"><span class="glyphicon glyphicon-align-center" aria-hidden="true"></span></button>
+                <button type="button" class="btn btn-default btn-sm" data-komut="justifyFull" title="İki yana yasla"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></button>
+                <button type="button" class="btn btn-default btn-sm" data-komut="removeFormat" title="Biçimi temizle"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span></button>
+            </span>
+        </div>
+        <div id="txtMetin" class="th-metin" contenteditable="true" role="textbox" aria-multiline="true" aria-label="@ViewData["Title"]"></div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taahhutkarti.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/taahhutalt.js" asp-append-version="true"></script>
+}

@@ -126,4 +126,109 @@
   <data name="Giris_EpostaMesaj" xml:space="preserve">
     <value>{0} sistemine giriş kodunuz: &lt;b&gt;{1}&lt;/b&gt;&lt;br /&gt;Bu kod {2} saat süre ile geçerli olacaktır; bu süre içinde yapacağınız girişlerde aynı kodu kullanabilirsiniz.</value>
   </data>
+  <data name="SikKullanilanlar" xml:space="preserve">
+    <value>Sık Kullanılanlar</value>
+  </data>
+  <data name="SikEkle" xml:space="preserve">
+    <value>Sık kullanılanlara ekle</value>
+  </data>
+  <data name="SikCikar" xml:space="preserve">
+    <value>Sık kullanılanlardan çıkar</value>
+  </data>
+  <data name="SikBos" xml:space="preserve">
+    <value>Henüz sık kullanılan ekranınız yok. Bir ekranı eklemek için sayfa adının yanındaki + düğmesine basın.</value>
+  </data>
+  <data name="SikHata" xml:space="preserve">
+    <value>Sık kullanılanlar kaydedilemedi.</value>
+  </data>
+  <data name="TemaMor" xml:space="preserve">
+    <value>Mor</value>
+  </data>
+  <data name="TemaAntrasit" xml:space="preserve">
+    <value>Antrasit</value>
+  </data>
+  <data name="TemaAyarlari" xml:space="preserve">
+    <value>Tema ayarları...</value>
+  </data>
+  <data name="TemaBaslik" xml:space="preserve">
+    <value>Tema Değiştirme</value>
+  </data>
+  <data name="TemaSec" xml:space="preserve">
+    <value>Renk teması</value>
+  </data>
+  <data name="UstSerit" xml:space="preserve">
+    <value>Üst şerit</value>
+  </data>
+  <data name="UstSeritRenkli" xml:space="preserve">
+    <value>Renkli</value>
+  </data>
+  <data name="UstSeritSade" xml:space="preserve">
+    <value>Beyaz</value>
+  </data>
+  <data name="TemaKullanilan" xml:space="preserve">
+    <value>Kullanılan</value>
+  </data>
+  <data name="TemaYardim" xml:space="preserve">
+    <value>Bir temaya tıklayınca sayfa hemen o temayla görünür. Kalıcı olması için Uygula düğmesine basın; seçiminiz bütün ekranlarda kullanılır.</value>
+  </data>
+  <data name="TemaKaydedildi" xml:space="preserve">
+    <value>Tema kaydedildi.</value>
+  </data>
+  <data name="TemaKaydedilemedi" xml:space="preserve">
+    <value>Tema kaydedilemedi.</value>
+  </data>
+  <data name="TemaVazgec" xml:space="preserve">
+    <value>Vazgeç</value>
+  </data>
+  <data name="TemaOkunamadi" xml:space="preserve">
+    <value>Tema okunamadı.</value>
+  </data>
+  <data name="TemaKlasik" xml:space="preserve">
+    <value>Klasik</value>
+  </data>
+  <data name="Giris_GuvenlikKodu" xml:space="preserve">
+    <value>Güvenlik kodu</value>
+  </data>
+  <data name="Giris_GuvenlikKoduGir" xml:space="preserve">
+    <value>Resimdeki güvenlik kodunu giriniz.</value>
+  </data>
+  <data name="Giris_GuvenlikKoduYanlis" xml:space="preserve">
+    <value>Güvenlik kodu yanlış! Lütfen yeni resimdeki kodu giriniz.</value>
+  </data>
+  <data name="Giris_GuvenlikYenile" xml:space="preserve">
+    <value>Yeni resim</value>
+  </data>
+  <data name="Giris_SifremiUnuttum" xml:space="preserve">
+    <value>Şifremi unuttum</value>
+  </data>
+  <data name="Sifre_Baslik" xml:space="preserve">
+    <value>Şifremi Unuttum</value>
+  </data>
+  <data name="Sifre_Bilgi" xml:space="preserve">
+    <value>T.C. Kimlik No / E-Posta Adresi</value>
+  </data>
+  <data name="Sifre_Aciklama1" xml:space="preserve">
+    <value>Yukarıdaki alana T.C. Kimlik No veya E-Posta Adresi yazınız.</value>
+  </data>
+  <data name="Sifre_Aciklama2" xml:space="preserve">
+    <value>İşlem sonucunda yeni parolanız kullanıcı bilgilerinizde kayıtlı olan e-posta adresine gönderilecektir. Eğer e-posta adresini bilmiyorsanız görevliler ile irtibata geçin.</value>
+  </data>
+  <data name="Sifre_Gonder" xml:space="preserve">
+    <value>Yeni Parolamı e-posta Adresime Gönder</value>
+  </data>
+  <data name="Sifre_BilgiGir" xml:space="preserve">
+    <value>Lütfen T.C. Kimlik Numarası veya E-Posta Adresi bilgisini girin.</value>
+  </data>
+  <data name="Sifre_BilgiGecersiz" xml:space="preserve">
+    <value>Geçerli bir T.C. Kimlik Numarası (11 hane) ya da E-Posta Adresi giriniz.</value>
+  </data>
+  <data name="Sifre_Gonderildi" xml:space="preserve">
+    <value>İsteğiniz alındı. Girdiğiniz bilgi kayıtlı bir kullanıcıya aitse yeni parolanız kullanıcı bilgilerinizde kayıtlı e-posta adresine gönderilecektir. E-posta gelmezse görevliler ile irtibata geçiniz.</value>
+  </data>
+  <data name="Sifre_Kullanilamaz" xml:space="preserve">
+    <value>Parolanızı bu ekrandan yenileyemezsiniz; kurumunuzun kullanıcı sistemi (LDAP) kullanılıyor. Lütfen görevliler ile irtibata geçiniz.</value>
+  </data>
+  <data name="Sifre_GiriseDon" xml:space="preserve">
+    <value>Giriş sayfasına dön</value>
+  </data>
 </root>

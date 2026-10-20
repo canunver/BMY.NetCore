@@ -1,0 +1,9 @@
+/* Firma / Kişi Listesi (HarcamaSurecleri/ListeFirmaKisi) */
+.firma-kisi-liste .fk-kapat { margin-left: auto; }
+.firma-kisi-liste .fk-kriter .form-control { max-width: 320px; }
+.firma-kisi-liste .fk-muhasebe { width: 110px; }
+.firma-kisi-liste .fk-vno { width: 180px; }
+.firma-kisi-liste .fk-ipucu { margin: 0 0 4px; }
+.firma-kisi-liste .fk-grid { height: 300px; }
+.firma-kisi-liste .fk-kara { color: #c62828; font-weight: 600; }
+.firma-kisi-liste .fk-sec { cursor: pointer; }

@@ -1,4 +1,4 @@
-@page
+﻿@page
 @model TanimKBSAktarimModel
 @{
     ViewData["Title"] = "KBS Aktarım Tanımlama";
@@ -10,17 +10,27 @@
     return;
 }
 
-<div class="tanim mt-tek muh-tanim">
+<!-- Kriterler solda dar sütunda alt alta (etiket üstte), liste kalan alanda (kullanıcı isteği 2026-10-19, Muhasebat Belge Arama gibi) -->
+<div class="tanim muh-tanim kbs-yan">
+    <section>
+        <div class="kutu bolum bolum-kriter kbs-kriter">
+            <h2 class="bolum-baslik">KBS Aktarım</h2>
+            <form id="frmKriter" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="kbsYil">Yıl</label>
+                    <input type="number" id="kbsYil" class="form-control input-sm sgb-yil" min="@Model.IlkYil" max="@(Model.BuYil + 1)" value="@Model.BuYil" />
+                </div>
+                <div class="kbs-dugmeler" role="toolbar" aria-label="İşlemler">
+                    <button type="button" id="btnListele" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Listele</button>
+                    <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+                    <button type="button" id="btnDetay" class="btn btn-default btn-sm" title="Detay hesap kodları"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Detay İşlem</button>
+                </div>
+            </form>
+        </div>
+    </section>
     <section>
         <div class="kutu bolum izgarali">
             <h2 class="bolum-baslik">KBS Aktarım Hesapları</h2>
-            <div class="mt-arac" role="toolbar" aria-label="İşlemler">
-                <label for="kbsYil">Yıl</label>
-                <input type="number" id="kbsYil" class="form-control input-sm sgb-yil" min="@Model.IlkYil" max="@(Model.BuYil + 1)" value="@Model.BuYil" />
-                <button type="button" id="btnListele" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Listele</button>
-                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
-                <button type="button" id="btnDetay" class="btn btn-default btn-sm sag" title="Detay hesap kodları"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Detay İşlem</button>
-            </div>
             <div id="grdKbs" class="tanim-grid"></div>
         </div>
     </section>
@@ -44,6 +54,7 @@
 @section Baslik {
     <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/muhtanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/kbsaktarim.css" asp-append-version="true" />
 }
 @section Betikler {
     <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>

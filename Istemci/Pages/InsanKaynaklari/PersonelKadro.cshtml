@@ -1,0 +1,66 @@
+@page
+@model PersonelKadroModel
+@{
+    ViewData["Title"] = "Hizmet Belgesi";
+    ViewData["GovdeSinif"] = "pb-alt";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="pb pb-kadro" id="pbKadro" data-personel-kod="@Model.PersonelKod">
+    <div class="pb-arac" role="toolbar" aria-label="Hizmet işlemleri">
+        <button type="button" id="btnYeniKayit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Hizmet Ekle</button>
+        <button type="button" id="btnHizmetSureleri" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Hizmet Süreleri</button>
+        <button type="button" id="btnHizmetBelgesi" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Hizmet Belgesi Yazdır</button>
+        <button type="button" id="btnOnayla" class="btn btn-success btn-sm" data-onay="5"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Onayla</button>
+        <button type="button" id="btnRed" class="btn btn-default btn-sm" data-onay="9"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span> İptal Et</button>
+        <button type="button" id="btnYeniYap" class="btn btn-default btn-sm" data-onay="1"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Yeni Yap</button>
+        <button type="button" id="btnSil" class="btn btn-danger btn-sm" data-onay="10"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil</button>
+        <button type="button" id="btnHitaptanAl" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-import" aria-hidden="true"></span> HİTAP'tan Al</button>
+        <button type="button" id="btnHizmetAyari" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Hizmet Ayarları</button>
+        <button type="button" id="btnKisiBorcu" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Kişi Borcu</button>
+    </div>
+
+    <section class="pb-bolum pb-doldur pbk-liste">
+        <h3>Hizmet Kayıtları <span class="pbk-ipucu">Satırı açmak için kalem simgesine ya da satıra çift tıklayın; toplu işlemler için kutuları işaretleyin.</span></h3>
+        <div class="pb-govde pb-doldur">
+            <div id="grdListe" class="pb-grid" aria-label="Hizmet kayıtları"></div>
+        </div>
+    </section>
+
+    <section class="pb-bolum renk-gri" id="bolBelgeler" hidden>
+        <h3>Belgeler
+            <label class="btn btn-default btn-xs pbk-dosya">
+                <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Belge Ekle
+                <input type="file" id="dosyaBelge" hidden />
+            </label>
+        </h3>
+        <div class="pb-govde">
+            <div id="grdBelgeler" class="pb-grid pbk-belge-grid" aria-label="Ekli belgeler"></div>
+        </div>
+    </section>
+</div>
+
+<dialog id="dlgOnay" class="pbk-pencere" aria-labelledby="dlgOnayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOnayBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde"><p id="dlgOnayMetin"></p></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnOnayEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/personelalt.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personel-kadro.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/personel-kadro.js" asp-append-version="true"></script>
+}

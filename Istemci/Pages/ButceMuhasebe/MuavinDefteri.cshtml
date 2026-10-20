@@ -1,0 +1,195 @@
+@page
+@model MuavinDefteriModel
+@{
+    ViewData["Title"] = "Muavin Defteri";
+    ViewData["GovdeSinif"] = "md-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="muavin-defteri">
+    <!-- Sorgu alanları (eski Sorgu Alanları PropertyGrid'i; daraltılabilir) -->
+    <section class="kutu bolum bolum-kriter md-kriter" id="pnlKriter" aria-label="Sorgu alanları">
+        <h2 class="bolum-baslik">
+            Sorgu Alanları
+            <span class="md-baslik-tuslar">
+                <button type="button" id="btnYardim" class="btn btn-default btn-xs md-yardim" title="Açıklama" aria-expanded="false" aria-controls="pnlYardim">?</button>
+                <button type="button" id="btnKriterGizle" class="btn btn-default btn-xs" title="Sorgu alanlarını gizle" aria-controls="pnlKriter">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">Sorgu alanlarını gizle</span>
+                </button>
+            </span>
+        </h2>
+        <div id="pnlYardim" class="md-ipucu" hidden>
+            Hesap Kodu zorunludur. Belge Tarihi başlangıcı verilirse (1 Ocak değilse) her hesap kodunun başına o tarihe kadarki
+            toplam <b>DEVİR</b> satırı olarak eklenir; bakiye bu satırdan başlayarak yürür. Belge numarasına tıklanınca belge
+            "Belge Düzenleme" sekmesinde açılır. <b>Yazdır</b> muavin defterini (Liste Tür'e göre TL ya da döviz),
+            <b>Yazdır2</b> hesap kodu kırılımlarına göre borç / alacak / bakiye özetini Excel'e döker.
+        </div>
+        <form id="frmKriter" class="tanim-form md-alanlar" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="txtYil">Yıl</label>
+                <div class="md-bitisik">
+                    <input type="number" id="txtYil" class="form-control input-sm md-yil sgb-yil" min="2006" step="1" />
+                    <label class="md-secenek"><input type="checkbox" id="chkYilOnemsiz" /> Yıl Önemsiz</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlDurum">Durum</label>
+                <div><select id="ddlDurum" class="form-control input-sm"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlBelgeTur">Belge Türü</label>
+                <div><select id="ddlBelgeTur" class="form-control input-sm"></select></div>
+            </div>
+            <div class="form-group" id="grpListeTur" hidden>
+                <label class="control-label" for="ddlListeTur">Liste Tür</label>
+                <div><select id="ddlListeTur" class="form-control input-sm"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtHesapNo">Hesap Kodu</label>
+                <div><input type="text" id="txtHesapNo" class="form-control input-sm md-hesap" maxlength="40" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAltHesapNo">Alt Hesap Kodu</label>
+                <div><input type="text" id="txtAltHesapNo" class="form-control input-sm" maxlength="40" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtMuhasebe">Muhasebe / Birim</label>
+                <div id="muhBirim"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtYevmiyeNo1">Yevmiye No</label>
+                <div class="md-aralik">
+                    <input type="text" id="txtYevmiyeNo1" class="form-control input-sm" maxlength="12" autocomplete="off" placeholder="&gt;=" aria-label="Yevmiye no en az" />
+                    <span class="md-ayrac">-</span>
+                    <input type="text" id="txtYevmiyeNo2" class="form-control input-sm" maxlength="12" autocomplete="off" placeholder="&lt;=" aria-label="Yevmiye no en çok" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtBelgeNo1">Belge No</label>
+                <div class="md-aralik">
+                    <input type="text" id="txtBelgeNo1" class="form-control input-sm" maxlength="12" autocomplete="off" placeholder="&gt;=" aria-label="Belge no en az" />
+                    <span class="md-ayrac">-</span>
+                    <input type="text" id="txtBelgeNo2" class="form-control input-sm" maxlength="12" autocomplete="off" placeholder="&lt;=" aria-label="Belge no en çok" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtBelgeTarih1">Belge Tarihi</label>
+                <div class="md-aralik">
+                    <input type="date" id="txtBelgeTarih1" class="form-control input-sm" title="Belge tarihi &gt;=" aria-label="Belge tarihi en az" />
+                    <span class="md-ayrac">-</span>
+                    <input type="date" id="txtBelgeTarih2" class="form-control input-sm" title="Belge tarihi &lt;=" aria-label="Belge tarihi en çok" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtIlgiliAd">Adı Soyadı/Ünvanı</label>
+                <div><input type="text" id="txtIlgiliAd" class="form-control input-sm" maxlength="100" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtIlgiliNo">T.C./Vergi No</label>
+                <div><input type="text" id="txtIlgiliNo" class="form-control input-sm" maxlength="20" autocomplete="off" /></div>
+            </div>
+            <partial name="_OdenekDurumKodlar" />
+            <div class="form-group">
+                <label class="control-label" for="txtYevmiyeTarih1">Yevmiye Tarih</label>
+                <div class="md-aralik">
+                    <input type="date" id="txtYevmiyeTarih1" class="form-control input-sm" aria-label="Yevmiye tarihi en az" />
+                    <span class="md-ayrac">-</span>
+                    <input type="date" id="txtYevmiyeTarih2" class="form-control input-sm" aria-label="Yevmiye tarihi en çok" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtDurumTarih1">Durum Tarih</label>
+                <div class="md-aralik">
+                    <input type="date" id="txtDurumTarih1" class="form-control input-sm" aria-label="Durum tarihi en az" />
+                    <span class="md-ayrac">-</span>
+                    <input type="date" id="txtDurumTarih2" class="form-control input-sm" aria-label="Durum tarihi en çok" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtBorc">Borç</label>
+                <div><input type="text" id="txtBorc" class="form-control input-sm md-sag" maxlength="20" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAlacak">Alacak</label>
+                <div><input type="text" id="txtAlacak" class="form-control input-sm md-sag" maxlength="20" autocomplete="off" /></div>
+            </div>
+            <div class="form-group ust-hizali">
+                <span class="control-label" id="lblFisTur">Fiş Türü</span>
+                <div id="fisTurler" class="md-fisturler" role="group" aria-labelledby="lblFisTur"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtIslemYapan">En Son İşlem Yapan</label>
+                <div><input type="text" id="txtIslemYapan" class="form-control input-sm" maxlength="50" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAciklama">Açıklama</label>
+                <div><input type="text" id="txtAciklama" class="form-control input-sm" maxlength="200" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtCekNoSorgu">Çek/Gönderme No</label>
+                <div><input type="text" id="txtCekNoSorgu" class="form-control input-sm" maxlength="30" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtOdEsBeTur">Öd.Es.Bel.Türü</label>
+                <div><input type="text" id="txtOdEsBeTur" class="form-control input-sm" maxlength="50" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtOdEsBeNo">Öd.Es.Bel.Nosu</label>
+                <div><input type="text" id="txtOdEsBeNo" class="form-control input-sm" maxlength="50" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtOdEsTarih">Öd.Es.Bel.Tarihi</label>
+                <div><input type="date" id="txtOdEsTarih" class="form-control input-sm" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtYatirimProjeNo">DPT Proje No</label>
+                <div><input type="text" id="txtYatirimProjeNo" class="form-control input-sm" maxlength="30" autocomplete="off" /></div>
+            </div>
+            <div class="md-kriter-tuslar">
+                <button type="button" id="btnKriterTemizle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Sonuç (eski grdListe: hesap koduna göre gruplu, grup toplamlı) -->
+    <section class="kutu bolum bolum-liste md-liste" aria-label="Muavin defteri">
+        <div class="btn-toolbar md-arac" role="toolbar" aria-label="Liste işlemleri">
+            <button type="button" id="btnKriterGoster" class="btn btn-default btn-sm" title="Sorgu alanlarını göster" aria-controls="pnlKriter" hidden>
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Sorgu Alanları
+            </button>
+            <button type="submit" form="frmKriter" id="btnListe" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele</button>
+            <button type="button" id="btnListeYazdir" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır</button>
+            <button type="button" id="btnListeYazdir2" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır2</button>
+            <div class="md-menu" id="mnSutunlar">
+                <button type="button" class="btn btn-default btn-sm dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Sütunlar <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu md-sutun-liste" aria-label="Görünen sütunlar"></ul>
+            </div>
+            <span class="md-ozet" id="lblOzet" aria-live="polite"></span>
+        </div>
+        <div id="grdListe" class="md-grid" aria-label="Muavin defteri satırları"></div>
+    </section>
+</div>
+
+<partial name="_OdenekDurumKodPencere" />
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/makbuz.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hesapkodu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/odenekdurum.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muavindefteri.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/hesapkodu.js" asp-append-version="true"></script>
+    <script src="~/js/muavindefteri.js" asp-append-version="true"></script>
+}

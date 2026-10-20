@@ -34,9 +34,9 @@
 
 /* Misyon, vizyon ve amaçlar: her biri kendi açık renginde kutu */
 .strplan-kutu {
-    --kutu-baslik: #e3edfa;
-    --kutu-govde: #f5f8fd;
-    --kutu-vurgu: #2f6fc4;
+    --kutu-baslik: var(--b1-baslik);
+    --kutu-govde: var(--b1-govde);
+    --kutu-vurgu: var(--b1-vurgu);
     flex: none;
     background: var(--kutu-govde);
     border: 1px solid var(--cizgi);
@@ -45,7 +45,7 @@
 }
 
 .strplan-kutu.vizyon { --kutu-baslik: #fbefd3; --kutu-govde: #fefaf0; --kutu-vurgu: #b07a00; }
-.strplan-kutu.amaclar { --kutu-baslik: #e2f3e6; --kutu-govde: #f5fbf6; --kutu-vurgu: #2e8b4e; }
+.strplan-kutu.amaclar { --kutu-baslik: #e2f3e6; --kutu-govde: #f5fbf6; --kutu-vurgu: var(--b2-vurgu); }
 
 .strplan-kutu h3 {
     margin: 0;

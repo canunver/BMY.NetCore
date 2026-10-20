@@ -1,0 +1,87 @@
+@page
+@model SGBGondIslemDuzeltmeModel
+@{
+    ViewData["Title"] = "Bütçe İşlemleri Düzeltme";
+    ViewData["GovdeSinif"] = "og-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="odenek-gonderme og-liste sgb-duzeltme sgb-gond-islem">
+    <!-- Kıstaslar -->
+    <section class="kutu bolum bolum-kriter">
+        <h2 class="bolum-baslik">Kıstaslar</h2>
+        <form id="frmKriter" class="og-kriter" novalidate>
+            <div class="tanim-form og-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="ddlYil">Yıl</label>
+                    <div><input type="number" id="ddlYil" class="form-control input-sm og-yil sgb-yil" min="2006" max="2100" step="1" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtSaymanlik">Saymanlık Kodu</label>
+                    <div><input type="text" id="txtSaymanlik" class="form-control input-sm og-no" maxlength="6" autocomplete="off" inputmode="numeric" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtEko">Eko</label>
+                    <div><input type="text" id="txtEko" class="form-control input-sm og-no" maxlength="20" autocomplete="off" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtPeb">Peb</label>
+                    <div><input type="text" id="txtPeb" class="form-control input-sm og-no" maxlength="30" autocomplete="off" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlSorguTur">İşlem Türü</label>
+                    <div>
+                        <select id="ddlSorguTur" class="form-control input-sm">
+                            <option value="0">Çift işlemli olanlar</option>
+                            <option value="1">Tenkis - İşlem Tutarsızlığı</option>
+                            <option value="2">Gönderme - İşlem Tutarsızlığı</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <!-- Belgeler -->
+    <section class="kutu bolum bolum-liste">
+        <h2 class="bolum-baslik">Gönderme / Tenkis - Bütçe İşlemi <span class="og-toplam" id="lblOzet"></span></h2>
+        <div class="btn-toolbar og-arac" role="toolbar" aria-label="Liste işlemleri">
+            <div class="btn-group btn-group-sm">
+                <button type="submit" form="frmKriter" id="btnListele" class="btn btn-primary"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Listele</button>
+                <button type="button" id="btnIslemYap" class="btn btn-default"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> İşlem Yap</button>
+            </div>
+            <span id="lblDurum" class="sgb-ilerleme" role="status" aria-live="polite"></span>
+        </div>
+        <div id="kutuHata" class="alert alert-danger sgb-hata" role="alert" hidden></div>
+        <div id="grdFark" class="og-grid og-grid-liste" aria-label="Gönderme / tenkis ve bütçe işlemleri"></div>
+    </section>
+</div>
+
+<!-- Onay sorusu -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/odenekgonderme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/sgbduzeltme.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/sgbgondislem.js" asp-append-version="true"></script>
+}

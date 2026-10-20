@@ -1,0 +1,27 @@
+/* Sistem Mesajları bilgi ekranı (KYM/MesajPanosuForm): tablo çerçevenin tamamını kaplar. */
+body.mesaj-panosu .sayfa-icerik {
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body.mesaj-panosu #hata {
+    margin: 4px;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+.mesaj-panosu-grid {
+    flex: 1 1 auto;
+    min-height: 0;
+    font-size: 12px;
+}
+
+/* Uzun mesajlar alt satıra geçer (eski white-space: normal). */
+.mesaj-panosu-grid .mesaj-hucre {
+    white-space: normal;
+    line-height: 1.4;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}

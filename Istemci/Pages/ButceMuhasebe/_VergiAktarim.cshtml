@@ -1,0 +1,131 @@
+@model Istemci.Muhasebe.VergiAktarimSayfa
+@* Damga Vergisi / KDV Tevkifatı / KDV / Muhtasar aktarım sayfalarının ortak ekranı (eski dört Ext.NET sayfası aynı yapıdaydı). *@
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans vergiaktarim" data-tur="@Model.Tur">
+    <section class="kutu bolum bolum-kriter">
+        <h2 class="bolum-baslik">Kıstaslar
+            <button type="button" class="btn btn-link btn-xs avans-yardim-dugme" data-yardim="#vaYardim" title="Yardım" aria-label="Yardım">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+            </button>
+        </h2>
+        <div id="vaYardim" class="alert alert-info avans-yardim" hidden>
+            Seçilen ayın büyük defter kayıtları, aktarım tür tanımlarındaki hesap kodlarına göre listelenir. "Yevmiyeli" işaretliyse
+            yevmiye tarihine, değilse işlem tarihine bakılır. Beyaz hücreler tabloda değiştirilebilir; "XML Oluştur" tablodaki
+            satırlarla beyanname dosyasını, "Yazdır" Excel listesini üretir. Sürüm, beyanname XML şemasının sürümüdür ve
+            "Sürümü Sakla" ile saklanır. Beyannamedeki mükellef bilgileri kurum ayarıdır; "Mükellef Bilgileri" ile bir kez girilir,
+            dört aktarım sayfasında da kullanılır.
+        </div>
+        <form id="frmKriter" class="vergiaktarim-kriter" onsubmit="return false;">
+            <div class="tanim-form avans-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="txtYil">Yıl</label>
+                    <div><input type="number" id="txtYil" class="form-control input-sm sgb-yil" title="Yılı giriniz." /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlAy">Ay</label>
+                    <div>
+                        <select id="ddlAy" class="form-control input-sm avans-ay">
+                            <option value="1">Ocak</option>
+                            <option value="2">Şubat</option>
+                            <option value="3">Mart</option>
+                            <option value="4">Nisan</option>
+                            <option value="5">Mayıs</option>
+                            <option value="6">Haziran</option>
+                            <option value="7">Temmuz</option>
+                            <option value="8">Ağustos</option>
+                            <option value="9">Eylül</option>
+                            <option value="10">Ekim</option>
+                            <option value="11">Kasım</option>
+                            <option value="12">Aralık</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Seçim</span>
+                    <div class="avans-secenekler">
+                        <label><input type="checkbox" id="chkYevmiye" />Yevmiyeli</label>
+                    </div>
+                </div>
+            </div>
+            <div class="tanim-form avans-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="txtSurum">XML Sürümü</label>
+                    <div class="avans-bitisik">
+                        <input type="text" id="txtSurum" class="form-control input-sm va-surum" title="Beyanname XML şemasının sürümü" />
+                        <button type="button" id="btnSurumSakla" class="btn btn-default btn-sm" title="Sürümü saklar; sayfa sonraki açılışta bu sürümle gelir">
+                            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Sürümü Sakla
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Mükellef</span>
+                    <div class="avans-bitisik">
+                        <span id="lblMukellef" class="va-mukellef"></span>
+                        <button type="button" id="btnMukellefAc" class="btn btn-default btn-sm" title="Beyannamede yazılacak vergi no, vergi dairesi, unvan ve telefon">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Mükellef Bilgileri
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <section class="kutu bolum bolum-liste">
+        <div class="avans-arac" role="toolbar" aria-label="İşlemler">
+            <button type="button" id="btnListe" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+            </button>
+            <button type="button" id="btnXml" class="btn btn-success btn-sm" title="Tablodaki satırlarla beyanname XML dosyasını oluşturur">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> XML Oluştur
+            </button>
+            <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Listeyi Excel'e yazdır">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+            </button>
+            <span id="lblOzet" class="avans-ozet"></span>
+        </div>
+        <div id="grdListe" class="avans-grid" aria-label="Aktarım listesi"></div>
+    </section>
+</div>
+
+<dialog id="dlgMukellef" class="tanim-pencere va-pencere" aria-labelledby="dlgMukellefBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgMukellefBaslik">Mükellef Bilgileri</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmMukellef" class="tanim-form" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label" for="txtVergiNo">Vergi No</label>
+                <div><input type="text" id="txtVergiNo" class="form-control input-sm va-kisa" data-alan="vergiNo" maxlength="11" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtVdKodu">Vergi Dairesi Kodu</label>
+                <div><input type="text" id="txtVdKodu" class="form-control input-sm va-kisa" data-alan="vdKodu" maxlength="6" title="GİB vergi dairesi kodu (ör. 006260)" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtSoyadi">Unvan (soyadı)</label>
+                <div><input type="text" id="txtSoyadi" class="form-control input-sm" data-alan="soyadi" maxlength="60" title="Beyannamenin soyadı alanı; tüzel kişide unvanın ilk bölümü" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAdi">Unvan devamı (adı)</label>
+                <div><input type="text" id="txtAdi" class="form-control input-sm" data-alan="adi" maxlength="60" title="Beyannamenin adı alanı; tüzel kişide unvanın devamı" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAlanKodu">Telefon</label>
+                <div class="avans-bitisik">
+                    <input type="text" id="txtAlanKodu" class="form-control input-sm va-alan" data-alan="alanKodu" maxlength="3" aria-label="Alan kodu" title="Alan kodu" />
+                    <input type="text" id="txtTelNo" class="form-control input-sm va-kisa" data-alan="telNo" maxlength="7" aria-label="Telefon no" title="Telefon no" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnMukellefSakla" class="btn btn-primary btn-sm">Sakla</button>
+    </div>
+</dialog>

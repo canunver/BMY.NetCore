@@ -14,6 +14,8 @@ namespace Istemci.OrtakSayfa
     ///   - Sayfa menüde yoksa (bir ekranın içinde açılan alt sayfa; ör. ProjeGiris içindeki ProjeDetay, AltProjeAmacGiris), yetki
     ///     parametre olarak verilen üst sayfanın menüdeki yetkisinden gelir: kullanıcı üst sayfalardan birini görebiliyorsa girer.
     ///     Üst sayfa verilmemişse girilemez (eski kodda menüde olmayan sayfalar denetlenmiyordu).
+    /// Dosyalar, Komut Çalıştır ve Şifre Üret menu.xml'de yoktur (StratekMenu): bu sayfalara yalnızca sistem yöneticisi olan
+    /// "stratek" kullanıcısı girer, başka sistem yöneticileri de giremez.
     /// Adresler menu.xml'deki biçimdedir: "../Klasor/Sayfa.aspx" (gerekirse ?parametre ile).
     /// Üst sayfa adı kullanıcıdan (adres satırından) değil, alt sayfanın kendi kodundan verilir; böylece kullanıcı adrese başka
     /// bir sayfanın adını yazarak yetkisini genişletemez.
@@ -27,6 +29,7 @@ namespace Istemci.OrtakSayfa
         public static bool Yetkili(Kullanici kullanan, string uygulamaKlasoru, string sayfaAdresi, params string[] ustSayfalar)
         {
             if (kullanan == null || string.IsNullOrEmpty(kullanan.kullaniciKodu)) return false;
+            if (StratekMenu.SayfaVar(sayfaAdresi)) return StratekMenu.Stratek(kullanan);
             if (kullanan.KullaniciTipiIceriyorMu((int)ENUMKullaniciTipi.SISTEMYONETICISI)) return true;
             try
             {

@@ -1,0 +1,46 @@
+/* Personel İşlemleri "Tarihçe" sekmesi (InsanKaynaklari/PersonelTarihce): liste sayfa yüksekliğini doldurur. */
+
+.ptr-bolum {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 20px);
+    min-height: 360px;
+}
+
+.ptr-doldur {
+    flex: 1 1 auto;
+}
+
+.ptr-bosluk {
+    flex: 1 1 auto;
+}
+
+.ptr-suzgec {
+    margin: 0;
+    font-weight: normal;
+}
+
+.ptr-bolum > h3 select {
+    width: auto;
+    min-width: 160px;
+    height: 24px;
+    padding: 1px 6px;
+    font-weight: normal;
+}
+
+.ptr-sayi {
+    font-weight: normal;
+    color: var(--soluk);
+}
+
+.ptr .deger-alan {
+    font-weight: 600;
+}
+
+.ptr .deger-yeni {
+    color: #1e7b34;
+}
+
+.ptr .deger-eski {
+    color: #b42318;
+}

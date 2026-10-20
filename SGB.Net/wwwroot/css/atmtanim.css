@@ -33,3 +33,9 @@
         grid-template-columns: minmax(0, 1fr);
     }
 }
+
+/* Salt okunur alan (ör. Faiz Türü Kod): sarı */
+.atm-tanim .form-control.atm-okuma {
+    background: #fff8d6;
+    cursor: default;
+}

@@ -3,11 +3,13 @@
 //   var ed = Sgb.ekliDosyalar('#dosyalar', { modul: 'DUY', form: '12' });
 //   ed.formDegistir('13');         // başka bir kayda geç ('-1' ya da boş: kayıt henüz yok, yükleme kapalı)
 // Ayarlar: salt okunur için yuklemeYok: true; birim adı sütunu için birimAd: true; önek araması için onEk: true.
+//   baglantiEkle: function (satir) verilirse (DUY/YRD) satırda "Metne bağlantı ekle" düğmesi çıkar ve bununla çağrılır
+//   (ör. yardım sayfası dosyanın bağlantısını editöre ekler).
 window.Sgb = window.Sgb || {};
 Sgb.ekliDosyalar = function (element, ayarlar) {
     'use strict';
 
-    ayarlar = $.extend({ modul: '', form: '', yuklemeYok: false, birimAd: false, onEk: false }, ayarlar);
+    ayarlar = $.extend({ modul: '', form: '', yuklemeYok: false, birimAd: false, onEk: false, baglantiEkle: null }, ayarlar);
     var $kok = $(element).addClass('ekli-dosyalar').empty();
     var M = {};
     var kilitVar = false;
@@ -64,6 +66,7 @@ Sgb.ekliDosyalar = function (element, ayarlar) {
             if (!(kilitVar && kilitli)) kutu.appendChild(dugme('trash', M.Sil, 'sil', 'text-danger'));
             if (kilitVar) {
                 kutu.appendChild(dugme('link', M.Baglanti, 'baglanti'));
+                if (ayarlar.baglantiEkle) kutu.appendChild(dugme('share-alt', M.MetneEkle || 'Metne bağlantı ekle', 'metneEkle'));
                 kutu.appendChild(kilitli ? dugme('lock', M.KilitAc, 'kilitAc') : dugme('ok-circle', M.Kilitle, 'kilitle'));
             }
         }
@@ -89,7 +92,7 @@ Sgb.ekliDosyalar = function (element, ayarlar) {
                         return a;
                     }
                 },
-                { headerName: M.Islem, width: 104, sortable: false, cellRenderer: islemHucresi },
+                { headerName: M.Islem, width: ayarlar.baglantiEkle ? 130 : 104, sortable: false, cellRenderer: islemHucresi },
                 { field: 'aciklama', headerName: M.Aciklama, flex: 1, minWidth: 160 },
                 { field: 'buyukluk', headerName: M.Boy, width: 76, type: 'rightAligned', valueFormatter: function (p) { return boyut(p.value); } },
                 { field: 'tarih', headerName: M.Tarih, width: 100, valueFormatter: function (p) { return Sgb.tarih(p.value); } },
@@ -151,6 +154,8 @@ Sgb.ekliDosyalar = function (element, ayarlar) {
         } else if (ad === 'kilitle' || ad === 'kilitAc') {
             istek.kilitle = ad === 'kilitle';
             Sgb.gonder('api/ekli-dosya/kilit', istek).done(sonuc);
+        } else if (ad === 'metneEkle') {
+            if (ayarlar.baglantiEkle) ayarlar.baglantiEkle(satir);
         } else if (ad === 'baglanti') {
             var a = kaliciAdres(satir);
             if (navigator.clipboard) {

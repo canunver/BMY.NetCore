@@ -1,0 +1,117 @@
+@page
+@model PersonelKullaniciIslemleriModel
+@{
+    ViewData["Title"] = "Kullanıcı İşlemleri";
+    ViewData["GovdeSinif"] = "pb-alt";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="pb pb-kul" id="pbKullanici" data-personel-kod="@Model.PersonelKod" data-tc-kimlik-no="@Model.TcKimlikNo">
+    <!-- Kullanıcı yoksa (eski panelKullaniciYok) -->
+    <section class="pb-bolum renk-turuncu" id="panelKullaniciYok" hidden>
+        <h3>SGB Kullanıcısı Yap</h3>
+        <div class="pb-govde">
+            <div class="pb-form">
+                <div class="form-group">
+                    <label class="control-label" for="cbOneriKullaniciKodu">Kullanıcı Kodu</label>
+                    <div class="yan-yana">
+                        <input type="text" id="cbOneriKullaniciKodu" class="form-control pb-kul-kod" list="lstOneri" autocomplete="off" />
+                        <datalist id="lstOneri"></datalist>
+                        <button type="button" id="btnYeniKullaniciOlustur" class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kullanıcı Oluştur
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kullanıcı varsa (eski panelKullaniciVar) -->
+    <div id="panelKullaniciVar" class="pb-kul-var" hidden>
+        <section class="pb-bolum renk-mavi">
+            <h3>SGB Kullanıcısı</h3>
+            <div class="pb-govde">
+                <form id="frmParola" class="pb-form" novalidate autocomplete="off">
+                    <div class="form-group">
+                        <label class="control-label" for="txtSQBKullaniciKodu">Kullanıcı Kodu</label>
+                        <div><input type="text" id="txtSQBKullaniciKodu" class="form-control pb-kul-kod" readonly /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtSQBEskiParola">Eski Parola</label>
+                        <div><input type="password" id="txtSQBEskiParola" class="form-control pb-kul-kod" autocomplete="off" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtSQBYeniParola">Yeni Parola</label>
+                        <div><input type="password" id="txtSQBYeniParola" class="form-control pb-kul-kod" autocomplete="new-password" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtSQBYeniParolaTekrar">Parola Tekrar</label>
+                        <div><input type="password" id="txtSQBYeniParolaTekrar" class="form-control pb-kul-kod" autocomplete="new-password" /></div>
+                    </div>
+                    <div class="form-group">
+                        <span class="control-label"></span>
+                        <div class="yan-yana">
+                            <button type="button" id="btnDegistir" class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Değiştir
+                            </button>
+                            <button type="button" id="btnYeniParolaAta" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Yeni Parola Ata
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="pb-bolum renk-yesil pb-doldur pb-kul-roller">
+            <h3>Kullanıcı Rolleri</h3>
+            <div class="pb-govde pb-doldur">
+                <div class="pb-arac pb-kul-arac" role="toolbar">
+                    <button type="button" id="btnRolSil" class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Rolleri Kaldır
+                    </button>
+                    <label for="cmbGorevler" class="pb-kul-etiket">Görevler:</label>
+                    <select id="cmbGorevler" class="form-control input-sm pb-kul-gorev"></select>
+                    <label for="ddlBirimMetin" class="pb-kul-etiket">Birimler:</label>
+                    <div class="input-group input-group-sm pb-kul-birim">
+                        <input type="text" id="ddlBirimMetin" class="form-control" readonly placeholder="Birim seçiniz" />
+                        <span class="input-group-btn">
+                            <button type="button" id="btnBirimTemizle" class="btn btn-default" title="Seçimi temizle" aria-label="Birim seçimini temizle">
+                                <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" id="btnBirimSec" class="btn btn-default" title="Birim seç" aria-label="Birim seç">&hellip;</button>
+                        </span>
+                    </div>
+                    <button type="button" id="btnGorevEkle" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Görev Ekle
+                    </button>
+                </div>
+                <div id="gpRoller" class="pb-grid" aria-label="Kullanıcı rolleri"></div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<dialog id="dlgBirim" class="pb-kul-dlg" aria-labelledby="dlgBirimBaslik">
+    <div class="pb-kul-dlg-baslik">
+        <h2 id="dlgBirimBaslik">Birimler</h2>
+        <button type="button" id="btnBirimTamam" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Tamam
+        </button>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <ul id="trpBirim" class="pb-kul-agac"></ul>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/personelalt.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personel-kullaniciislemleri.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/personel-kullaniciislemleri.js" asp-append-version="true"></script>
+}

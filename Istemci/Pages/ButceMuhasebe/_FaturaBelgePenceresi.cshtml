@@ -1,0 +1,88 @@
+@* Tahakkuk / Ödeme MİF oluşturma penceresi (eski wndTahakkuk): Fatura Giriş ve Toplu Tahakkuk'ta kullanılır (js/fatura.js).
+   Muhasebe Belgesi Açıklaması yalnızca Fatura Giriş'te gösterilir (data-yalniz-form). *@
+<dialog id="dlgBelge" class="tanim-pencere ft-pencere ft-belge" aria-labelledby="dlgBelgeBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgBelgeBaslik">Tahakkuk Belge Oluşturma</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmBelge" class="tanim-form avans-alanlar" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label" for="txtBelgeTarih">Tarihi</label>
+                <div><input type="date" id="txtBelgeTarih" class="form-control input-sm ft-tarih" /></div>
+            </div>
+            <div class="form-group" data-belge="1">
+                <label class="control-label" for="txtTahakkukBelgeNo">Tahakkuk Belge No</label>
+                <div class="avans-bitisik">
+                    <input type="text" id="txtTahakkukBelgeNo" class="form-control input-sm ft-orta" placeholder="Yeni Belge için boş bırakın" autocomplete="off" />
+                    <button type="button" class="btn btn-default btn-sm" data-belge-ac="#txtTahakkukBelgeNo" title="Belgeyi aç">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Belgeyi aç</span>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group" data-belge="2">
+                <label class="control-label" for="txtOdemeBelgeNo">Ödeme Belge No</label>
+                <div class="avans-bitisik">
+                    <input type="text" id="txtOdemeBelgeNo" class="form-control input-sm ft-orta" placeholder="Yeni Belge için boş bırakın" autocomplete="off" />
+                    <button type="button" class="btn btn-default btn-sm" data-belge-ac="#txtOdemeBelgeNo" title="Belgeyi aç">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Belgeyi aç</span>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group ust-hizali" data-yalniz-form>
+                <label class="control-label" for="txtMuhBelgeAciklama">Muhasebe Belgesi Açıklaması</label>
+                <div><textarea id="txtMuhBelgeAciklama" class="form-control input-sm" rows="4"></textarea></div>
+            </div>
+            <div class="form-group" id="grpTahakkukHesap">
+                <label class="control-label" for="txtTahakkukHesapKod">Tahakkuk Hesap Kod</label>
+                <div><input type="text" id="txtTahakkukHesapKod" class="form-control input-sm ft-hesap" /></div>
+            </div>
+            <div class="form-group" id="grpOdemeHesap" data-belge="2">
+                <label class="control-label" for="txtOdemeHesapKod">Ödeme Hesap Kod</label>
+                <div><input type="text" id="txtOdemeHesapKod" class="form-control input-sm ft-hesap" /></div>
+            </div>
+            <div class="form-group ust-hizali" data-belge="2">
+                <span class="control-label">Damga Vergisi</span>
+                <div class="avans-secenekler" role="radiogroup" aria-label="Damga vergisi">
+                    <label><input type="radio" name="optDamga" value="1" checked />Damga vergisi kesilmiş</label>
+                    <label><input type="radio" name="optDamga" value="2" />Damga vergisi kesilmemiş</label>
+                    <label><input type="radio" name="optDamga" value="3" />Damga vergisi yok</label>
+                </div>
+            </div>
+            <div class="form-group ust-hizali" data-belge="1">
+                <span class="control-label">Tahakkuk Türü</span>
+                <div class="avans-secenekler" role="radiogroup" aria-label="Tahakkuk türü">
+                    <label><input type="radio" name="optTahakkukTur" value="1" checked />Tahakkuk (Tahsilat)</label>
+                    <label><input type="radio" name="optTahakkukTur" value="0" />Tahakkuk (Normal)</label>
+                </div>
+            </div>
+            <div class="form-group ust-hizali" data-belge="2">
+                <span class="control-label"></span>
+                <div class="avans-secenekler">
+                    <label id="lblChkTahakkuk"><input type="checkbox" id="chkTahakkuk" checked />Tahakkuku aynı fişte üret</label>
+                    <label><input type="checkbox" id="chkDamgaVergisi" />Sadece damga vergisi fişi üret</label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnBelgeOlustur" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Belge Oluştur
+        </button>
+    </div>
+</dialog>
+
+<!-- Belge sonucu (eski MesajKutusu "Ödeme Emri/MİF kaydı yapıldı. Belge Numarası :" + bağlantı) -->
+<dialog id="dlgBelgeSonuc" class="tanim-pencere ft-pencere" aria-labelledby="dlgBelgeSonucBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgBelgeSonucBaslik">Bilgi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p><span id="lblBelgeSonuc"></span> <a href="#" id="lnkBelgeSonuc"></a></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-primary btn-sm" data-kapat>Tamam</button>
+    </div>
+</dialog>

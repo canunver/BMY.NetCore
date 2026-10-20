@@ -27,6 +27,8 @@ namespace Istemci.OrtakSayfa
         public bool tasindi { get; set; }
         /// <summary>Yalnızca "tümü" isteğinde anlamlı: kullanıcı bu seçeneği menüde görmüyor (Gizli / Modul / Yetki / Kullanici).</summary>
         public bool gizli { get; set; }
+        /// <summary>menu.xml Durum niteliği: Yok / Yeni / Eski.</summary>
+        public string durum { get; set; }
     }
 
     /// <summary>
@@ -55,6 +57,7 @@ namespace Istemci.OrtakSayfa
             try
             {
                 belge.Load(MenuOkuyucu.DosyaYolu(ortam.ContentRootPath));
+                StratekMenu.Ekle(belge, kullanan);
             }
             catch (Exception e)
             {
@@ -145,7 +148,8 @@ namespace Istemci.OrtakSayfa
                     url = url,
                     yeni = Ozellik(dugum, "AltPencere") != "",
                     tasindi = sayfalar.Contains(SayfaYolu(url)),
-                    gizli = gizli
+                    gizli = gizli,
+                    durum = MenuOkuyucu.Durum(dugum)
                 });
             }
         }
@@ -165,6 +169,7 @@ namespace Istemci.OrtakSayfa
         /// <summary>Ardından bağlantı gelmeyen bölüm başlıklarını atar (bağlantısı kalmayan bölüm gösterilmez).</summary>
         private static void Toparla(List<SayfaMenuSatir> satirlar)
         {
+            MenuOkuyucu.YapilanlarOne(satirlar, s => s.t == "a", s => s.durum == "Yok");
             for (int i = satirlar.Count - 1; i >= 0; i--)
             {
                 if (satirlar[i].t != "b") continue;

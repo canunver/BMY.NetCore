@@ -1,0 +1,40 @@
+@page
+@model OdemeEmriMIFFrameModel
+@{
+    ViewData["Title"] = "Ödeme Emri/Muhasebe İşlem Fişi Belgesi İşlemleri";
+    ViewData["GovdeSinif"] = "og-cerceve-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<!-- Eski çerçevedeki üç sekme: Belge Düzenleme (OdemeEmriMIF2), Belge Arama (OdemeEmriMIFSorgu), Muavin Defteri.
+     aramaYok=1 ile (başka ekrandan belge açılınca) yalnız Belge Düzenleme görünür. -->
+<div class="og-cerceve oem-cerceve">
+    <ul class="nav nav-tabs og-sekmeler" role="tablist">
+        <li role="presentation" class="active"><a href="#" role="tab" data-sekme="form" aria-selected="true">Belge Düzenleme</a></li>
+        @if (!Model.AramaYok)
+        {
+            <li role="presentation"><a href="#" role="tab" data-sekme="liste" aria-selected="false">Belge Arama</a></li>
+            <li role="presentation"><a href="#" role="tab" data-sekme="muavin" aria-selected="false">Muavin Defteri</a></li>
+        }
+    </ul>
+    <iframe id="cerceveForm" class="og-alt-cerceve" data-sekme="form" title="Belge Düzenleme"
+            src="OdemeEmriMIF2?@Html.Raw(Model.FormParametreleri)"></iframe>
+    @if (!Model.AramaYok)
+    {
+        <iframe id="cerceveListe" class="og-alt-cerceve" data-sekme="liste" title="Belge Arama" hidden
+                data-src="OdemeEmriMIFSorgu?menuYok=1"></iframe>
+        <iframe id="cerceveMuavin" class="og-alt-cerceve" data-sekme="muavin" title="Muavin Defteri" hidden
+                data-src="MuavinDefteri?menuYok=1"></iframe>
+    }
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/odenekgonderme.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/odemeemrimifcerceve.js" asp-append-version="true"></script>
+}

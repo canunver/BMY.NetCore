@@ -1,0 +1,32 @@
+/* Sık Kullanılanlar bilgi ekranı (OrtakSayfa/SikKullanilan): çerçevenin içinde sade liste. */
+body.sik-kullanilan .sayfa-icerik {
+    padding: 6px 10px;
+}
+
+body.sik-kullanilan #hata {
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+.sik-liste {
+    font-size: 13px;
+}
+
+.sik-liste .sik-modul {
+    margin-top: 8px;
+    font-weight: 700;
+}
+
+.sik-liste .sik-modul:first-child {
+    margin-top: 0;
+}
+
+.sik-liste ul {
+    margin: 2px 0 0;
+    padding-left: 20px;
+}
+
+.sik-liste .sik-bos {
+    margin: 0;
+    color: #5c6875;
+}

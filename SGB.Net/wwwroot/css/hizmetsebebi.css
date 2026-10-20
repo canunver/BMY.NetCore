@@ -1,0 +1,76 @@
+/* Hizmet Sebepleri (InsanKaynaklari/HizmetSebebiForm): yerleşim tanim.css'ten (solda arama + liste, sağda form);
+   arama kriterleri ve form bölümü renkli başlıklı ayrı kutular. */
+
+/* Arama kriterleri: etiket solda, alan sağda, alt alta */
+.hizmet-sebebi .hs-arama {
+    flex: 0 0 auto;
+    margin: 0 0 10px;
+    padding: 8px 10px 0;
+    background: #f5fbf6;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    box-shadow: inset 4px 0 0 var(--b2-vurgu);
+}
+
+.hizmet-sebebi .hs-kriter {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr);
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.hizmet-sebebi .hs-kriter label {
+    margin: 0;
+    font-weight: 600;
+}
+
+.hizmet-sebebi .hs-kriter .form-control {
+    background: #fff;
+}
+
+.hizmet-sebebi .hs-arac {
+    display: flex;
+    gap: 6px;
+    margin: 0;
+    padding: 4px 0 8px;
+}
+
+.hizmet-sebebi .hs-arac .btn {
+    margin: 0;
+}
+
+/* Form bölümü */
+.hizmet-sebebi .bolum {
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
+    margin: 0 0 12px;
+    padding: 0 12px 6px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.hizmet-sebebi .bolum-baslik {
+    margin: 0 -12px 10px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.hizmet-sebebi .tanim-form {
+    --etiket-genislik: 100px;
+}
+
+.hizmet-sebebi .bolum .form-control {
+    background: #fff;
+}
+
+.hizmet-sebebi .dar {
+    max-width: 140px;
+}

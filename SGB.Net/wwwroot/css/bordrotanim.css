@@ -1,0 +1,263 @@
+/* Bordro Tanım Ekranı (HarcamaSurecleri/TanimBordroTanim): üstte araç çubuğu ve kısa kriterler (renkli kutu),
+   altında sekmeler; tablolar ve kod alanları sayfanın kalan yüksekliğini doldurur (yükseklik bordrotanim.js'te). */
+
+.bordro-tanim {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bordro-tanim .bt-ust {
+    padding: 8px 12px 6px;
+    background: var(--b1-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    box-shadow: inset 4px 0 0 var(--b1-vurgu);
+}
+
+.bordro-tanim .bt-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    margin: 0 0 6px;
+}
+
+.bordro-tanim .bt-arac > .btn {
+    margin: 0;
+}
+
+.bordro-tanim .bt-baglar {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-left: 16px;
+    font-size: 12px;
+}
+
+/* Kriterler: iki sütun, etiket solda, sıkı satırlar */
+.bordro-tanim .bt-kriter {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px 20px;
+    font-size: 12px;
+}
+
+.bordro-tanim .bt-alan {
+    display: grid;
+    grid-template-columns: 90px minmax(0, 1fr);
+    align-items: center;
+    column-gap: 8px;
+}
+
+.bordro-tanim .bt-alan label {
+    margin: 0;
+    font-weight: 600;
+}
+
+.bordro-tanim .bt-kriter .form-control {
+    height: 26px;
+    padding: 2px 6px;
+    font-size: 12px;
+    background: #fff;
+}
+
+@media (max-width: 720px) {
+    .bordro-tanim .bt-kriter { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Sekmeler */
+.bordro-tanim .bt-sekmeler {
+    margin-bottom: 0;
+}
+
+.bordro-tanim .bt-sekmeler > li > a {
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.bordro-tanim .bt-panel {
+    padding: 6px;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-top: 0;
+}
+
+.bordro-tanim .bt-panel[hidden] {
+    display: none;
+}
+
+.bordro-tanim .bt-grid-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    margin: 0 0 6px;
+}
+
+.bordro-tanim .bt-grid-arac > .btn {
+    margin: 0;
+}
+
+.bordro-tanim .bt-ayrac {
+    width: 16px;
+}
+
+.bordro-tanim .bt-grid {
+    height: 420px;
+    font-size: 12px;
+}
+
+.bordro-tanim .bt-no {
+    color: #777;
+    background: #f4f4f4;
+}
+
+.bordro-tanim .bt-orta {
+    text-align: center;
+}
+
+.bordro-tanim .bt-dugme-hucre {
+    padding: 0 !important;
+    text-align: center;
+}
+
+.bordro-tanim .bt-hucre-dugme,
+.bordro-tanim .bt-komutlar .btn {
+    padding: 0 6px;
+}
+
+.bordro-tanim .bt-giris-girdi {
+    width: 100%;
+    height: 100%;
+}
+
+/* Kod alanları (ortak fonksiyonlar, formül penceresi) */
+.bt-kod {
+    width: 100%;
+    min-height: 260px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 12px;
+    line-height: 1.4;
+    white-space: pre;
+    tab-size: 4;
+    resize: vertical;
+    background: #fff;
+}
+
+/* Yardım */
+.bordro-tanim .bt-yardim {
+    overflow-x: auto;
+}
+
+.bordro-tanim .bt-yardim h2 {
+    margin: 6px 0 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.bordro-tanim .bt-yardim table {
+    max-width: 1100px;
+    font-size: 12px;
+}
+
+.bordro-tanim .bt-yardim th {
+    width: 360px;
+    font-family: Consolas, "Courier New", monospace;
+    font-weight: 600;
+    background: var(--b1-govde);
+}
+
+/* Pencereler */
+.bt-pencere-sablon {
+    width: min(720px, calc(100vw - 32px));
+}
+
+.bt-pencere-calistir {
+    width: min(720px, calc(100vw - 32px));
+}
+
+.bt-pencere-formul {
+    width: min(900px, calc(100vw - 32px));
+}
+
+.bt-pencere-formul .bt-kod {
+    min-height: 420px;
+}
+
+.bt-pencere-sablon .tanim-form,
+.bt-pencere-calistir .tanim-form {
+    --etiket-genislik: 120px;
+}
+
+.bt-pencere-arac {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 12px;
+}
+
+.bt-pencere-arac > .btn {
+    margin: 0;
+}
+
+.bt-dosya-dugme {
+    position: relative;
+    overflow: hidden;
+}
+
+.bt-dosya-dugme input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.bt-dosya-dugme[hidden] {
+    display: none;
+}
+
+.bt-anahtar {
+    display: flex;
+    gap: 6px;
+}
+
+.bt-anahtar label {
+    flex: 1 1 0;
+    margin: 0;
+    font-weight: 400;
+}
+
+.bt-anahtar small {
+    display: block;
+    color: #777;
+}
+
+.bt-secenekler {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+}
+
+.bt-secenekler label,
+.bt-kutu-etiket {
+    margin: 0;
+    font-weight: 400;
+}
+
+.bt-pencere-calistir .bt-tarih {
+    max-width: 170px;
+}
+
+.bt-aciklama {
+    margin-top: 10px;
+    padding: 8px 10px;
+    font-size: 12px;
+    background: #fefaf3;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.tanim-pencere .form-control[readonly] {
+    background: #fdf6d8;
+}

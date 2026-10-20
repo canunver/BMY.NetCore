@@ -10,6 +10,8 @@
     <!-- Giriş sayfasında gösterilen sürüm -->
     <Version>3.0.0</Version>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <!-- Sürüm Bilgisi sayfasındaki "Sadece SGB.net dll dosyaları" süzgeci için (eski dll dosyaları gibi) -->
+    <Company>SGB.net</Company>
   </PropertyGroup>
 
   <ItemGroup>

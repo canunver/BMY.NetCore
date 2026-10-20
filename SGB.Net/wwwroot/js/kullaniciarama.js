@@ -87,6 +87,32 @@ $(function () {
     $('#btnGorevTanim').on('click', function () { Sgb.pencere('../Organizasyon/GenelGorevAna', 'Genel Görev Tanımlama'); });
     $('#btnGorevAta').on('click', function () { Sgb.pencere('../Organizasyon/GorevAta', 'Göreve Kişi Atama'); });
 
+    // ---------------------------------------------------------------- İşlem Tarihçesi (eski KYM/Raporlar.aspx, Tarihçe Raporu)
+
+    var dlgTarihce = document.getElementById('dlgIslemTarihce');
+    if (dlgTarihce) {
+        $(dlgTarihce).on('click', '[data-kapat]', function () { dlgTarihce.close(); });
+        $('#btnIslemTarihce').on('click', function () {
+            // Eski sayfa gibi tarihler bugünle açılır.
+            if (!$('#itTarih1').val()) $('#itTarih1').val(Sgb.bugun());
+            if (!$('#itTarih2').val()) $('#itTarih2').val(Sgb.bugun());
+            dlgTarihce.showModal();
+        });
+        $('#frmIslemTarihce').on('submit', function (e) { e.preventDefault(); $('#btnIslemTarihceYazdir').trigger('click'); });
+        $('#btnIslemTarihceYazdir').on('click', function () {
+            var t1 = $('#itTarih1').val(), t2 = $('#itTarih2').val();
+            if (!t1 || !t2) { mesaj('Tarih aralığını giriniz.', 'warning'); return; }
+            if (t1 > t2) { mesaj('Başlangıç tarihi bitiş tarihinden sonra olamaz.', 'warning'); return; }
+            var $b = $(this).prop('disabled', true);
+            Sgb.indir('api/kullanici/islem-tarihce', {
+                tarih1: t1, tarih2: t2,
+                tc: $.trim($('#itTc').val()),
+                kullanici: $.trim($('#itKullanici').val()),
+                islemYapan: $.trim($('#itIslemYapan').val())
+            }).then(function () { $b.prop('disabled', false); });
+        });
+    }
+
     // ---------------------------------------------------------------- açılış
 
     Sgb.al('api/kullanici/arama-tanimlar')

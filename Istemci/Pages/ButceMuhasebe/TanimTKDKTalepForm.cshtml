@@ -50,16 +50,13 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group" id="tkHesapSatir">
-                    <label class="control-label" for="tkHesap">Ekonomik Kod</label>
-                    <div class="mt-yanyana">
-                        <input type="text" id="tkHesap" class="form-control" list="tkHesapListe" autocomplete="off" placeholder="Kod ya da ad yazın (830 altı)" />
-                        <datalist id="tkHesapListe"></datalist>
-                        <button type="button" id="btnSatirEkle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekle</button>
-                    </div>
-                </div>
             </form>
             <div class="mt-form-tablo-sag">
+                <div class="mt-yanyana mt-satir-ekle">
+                    <label class="control-label tk-hesap-alan" for="tkHesap">Ekonomik Kod</label>
+                    <span class="tk-hesap-alan mt-yanyana-genis"><input type="text" id="tkHesap" class="form-control kisa" data-hesap-kodu data-yil="#tkYil" data-ad data-on-ek="830" data-seviye="3" /></span>
+                    <button type="button" id="btnSatirEkle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekle</button>
+                </div>
                 <div id="grdSatir" class="mt-satir-grid"></div>
                 <p class="mt-ipucu" id="tkIpucu"></p>
             </div>
@@ -77,10 +74,14 @@
 
 @section Baslik {
     <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/makbuz.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hesapkodu.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/muhtanim.css" asp-append-version="true" />
 }
 @section Betikler {
     <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/hesapkodu.js" asp-append-version="true"></script>
     <script src="~/js/muhtanim.js" asp-append-version="true"></script>
     <script src="~/js/muhtanim-tkdk.js" asp-append-version="true"></script>
 }

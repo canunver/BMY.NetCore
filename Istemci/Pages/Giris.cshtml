@@ -37,6 +37,16 @@
         <div id="hata" class="alert alert-danger" role="alert" hidden></div>
         <div id="bilgi" class="alert alert-info" role="status" hidden></div>
 
+        <!-- Aynı IP adresinden hatalı deneme sınırı aşılınca (eski GuvenlikResmi): her iki adımda da istenir -->
+        <div id="guvenlik" class="form-group giris-guvenlik" hidden="@(!Model.GuvenlikKoduGerekli)">
+            <label for="txtGuvenlik">@Metin.Menu("Giris_GuvenlikKodu")</label>
+            <div class="giris-guvenlik-satir">
+                <input type="text" id="txtGuvenlik" class="form-control input-lg" autocomplete="off" maxlength="10" />
+                <img id="imgGuvenlik" alt="@Metin.Menu("Giris_GuvenlikKodu")" width="120" height="38" />
+                <button type="button" id="btnGuvenlikYenile" class="btn btn-default" title="@Metin.Menu("Giris_GuvenlikYenile")">&#x21bb;</button>
+            </div>
+        </div>
+
         <!-- 1. adım: kullanıcı kodu ve parola -->
         <form id="frmParola" autocomplete="on" novalidate>
             <div class="form-group">
@@ -56,6 +66,12 @@
                 </label>
             </div>
             <button type="submit" id="btnGiris" class="btn btn-primary btn-lg btn-block">@Metin.Menu("Giris_Giris")</button>
+            @if (Model.SifremiUnuttum)
+            {
+                <div class="giris-unuttum">
+                    <a href="OrtakSayfa/SifremiUnuttum">@Metin.Menu("Giris_SifremiUnuttum")</a>
+                </div>
+            }
         </form>
 
         <!-- 2. adım: doğrulama kodu -->

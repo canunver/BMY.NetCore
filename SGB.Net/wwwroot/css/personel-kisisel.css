@@ -1,0 +1,224 @@
+/* Personel İşlemleri "Kişisel Bilgiler" sekmesi (PersonelKisisel). personelalt.css'in üstüne gelir.
+   - .kisisel-secim        : metin + küçük düğmeler (eski TriggerField: kimlik sorgusu, sicil önceki / sonraki, birim seçimi)
+   - .kisisel-resim        : personel resmi çerçevesi (125x160); resim yoksa simge
+   - .kisisel-pencere      : sayfa içi pencere (<dialog>)
+   - .kisisel-agac         : Sgb.agac ile çizilen birim ağacı */
+
+.kisisel-ayrac {
+    width: 1px;
+    height: 22px;
+    margin: 0 2px;
+    background: var(--cizgi);
+}
+
+.kisisel-duzen {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+}
+
+.kisisel-form {
+    --etiket-genislik: 150px;
+}
+
+.pb-form .form-control[readonly],
+.pb-form select.form-control[disabled] {
+    color: var(--murekkep);
+    background: #f4f6f8;
+}
+
+.kisisel-secim {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+}
+
+.kisisel-secim .form-control {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.kisisel-secim .btn {
+    flex: none;
+}
+
+.kisisel-onay {
+    margin: 0;
+    padding: 0;
+    min-height: 0;
+}
+
+.kisisel-onay label {
+    font-weight: normal;
+}
+
+.kisisel-onay .checkbox-inline + .checkbox-inline {
+    margin-left: 0;
+}
+
+.kisisel-resim-satir {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.kisisel-resim-alanlar {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.kisisel-resim {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 129px;
+    height: 164px;
+    margin: 0 0 5px;
+    padding: 1px;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.kisisel-resim img {
+    max-width: 125px;
+    max-height: 160px;
+    object-fit: contain;
+}
+
+.kisisel-resim-yok {
+    font-size: 64px;
+    color: #c9d1da;
+}
+
+.kisisel-kume {
+    margin: 6px 0 0;
+    padding: 4px 8px 2px;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.kisisel-kume legend {
+    width: auto;
+    margin: 0 0 4px;
+    padding: 0 4px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--soluk);
+    border: 0;
+}
+
+.kisisel-belge-grid {
+    height: 170px;
+}
+
+.pb-grid .grid-komut {
+    padding: 0 4px;
+    line-height: 1;
+    color: var(--tema-ana);
+    background: none;
+    border: 0;
+}
+
+.pb-grid .grid-komut.tehlike {
+    color: #c0392b;
+}
+
+@media (max-width: 560px) {
+    .kisisel-form {
+        --etiket-genislik: 120px;
+    }
+
+    .kisisel-resim-satir {
+        flex-direction: column-reverse;
+    }
+}
+
+/* Sayfa içi pencere */
+.kisisel-pencere {
+    width: min(560px, calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    padding: 0;
+    color: var(--murekkep);
+    background: var(--yuzey, #fff);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .25);
+}
+
+.kisisel-pencere[open] {
+    display: flex;
+    flex-direction: column;
+}
+
+.kisisel-pencere > form {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    margin: 0;
+}
+
+.kisisel-pencere-dar {
+    width: min(420px, calc(100vw - 32px));
+}
+
+.kisisel-pencere::backdrop {
+    background: rgba(0, 0, 0, .45);
+}
+
+.kisisel-pencere .pencere-baslik {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.kisisel-pencere .pencere-baslik h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.kisisel-pencere .pencere-govde {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 12px 16px;
+    overflow-y: auto;
+    font-size: 13px;
+}
+
+.kisisel-pencere .pencere-alt {
+    flex: none;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 10px 16px;
+    border-top: 1px solid var(--cizgi);
+}
+
+.kisisel-yeni-form {
+    --etiket-genislik: 110px;
+}
+
+.kisisel-agac-panel {
+    margin: 0 0 8px;
+    padding: 6px;
+    background: var(--yuzey, #fff);
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.kisisel-agac-ara {
+    margin-bottom: 4px;
+}
+
+.kisisel-agac {
+    max-height: 240px;
+    overflow-y: auto;
+}

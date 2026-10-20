@@ -1,0 +1,50 @@
+@page
+@model TemaDegistirModel
+@{
+    // Tema Değiştirme (eski KYM/TemaDegistir.aspx). Temalar önizlemeli kartlarla gösterilir; kartlar js/temadegistir.js
+    // tarafından çizilir. Renkler css/tema.css'teki değişkenlerden gelir.
+    ViewData["Title"] = Metin.Menu("TemaBaslik");
+}
+
+<div class="tema-degistir">
+    <section class="kutu td-kutu">
+        <div class="td-baslik">
+            <h2>@Metin.Menu("TemaSec")</h2>
+            <div class="td-ust" role="radiogroup" aria-label="@Metin.Menu("UstSerit")">
+                <span class="td-ust-ad">@Metin.Menu("UstSerit"):</span>
+                <label class="td-ust-secenek"><input type="radio" name="ustSerit" value="renkli" /> @Metin.Menu("UstSeritRenkli")</label>
+                <label class="td-ust-secenek"><input type="radio" name="ustSerit" value="sade" /> @Metin.Menu("UstSeritSade")</label>
+            </div>
+        </div>
+
+        <div id="tdKartlar" class="td-kartlar" role="radiogroup" aria-label="@Metin.Menu("TemaSec")"
+             data-kullanilan="@Metin.Menu("TemaKullanilan")"></div>
+
+        <div class="td-alt">
+            <button type="button" id="btnUygula" class="btn btn-primary btn-sm" disabled>
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> @Metin.Kullanici("FRMTEM006")
+            </button>
+            <button type="button" id="btnVazgec" class="btn btn-default btn-sm" disabled>@Metin.Menu("TemaVazgec")</button>
+            <span class="td-yardim">
+                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                @Metin.Menu("TemaYardim")
+            </span>
+        </div>
+    </section>
+</div>
+
+<script type="application/json" id="tdMetin">
+    @Html.Raw(System.Text.Json.JsonSerializer.Serialize(new
+    {
+        kaydedildi = Metin.Menu("TemaKaydedildi"),
+        kaydedilemedi = Metin.Menu("TemaKaydedilemedi"),
+        okunamadi = Metin.Menu("TemaOkunamadi")
+    }))
+</script>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/temadegistir.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/temadegistir.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,256 @@
+/* Personel İşlemleri: İzin/Görev (PersonelIzin), İzin Devir (PersonelIzinDevirTab) ve Görevlendirmeler (PersonelGorev) sekmeleri.
+   personelalt.css'in üstüne gelir. Görevlendirmeler sayfası da seçim alanı, ağaç ve pencere (<dialog>) biçimleri için bu dosyayı kullanır.
+   - .izin-duzen          : solda form / süre / belgeler, sağda izin listesi (dar ekranda alt alta)
+   - .izin-secim          : salt okunur metin + seç / temizle düğmeleri (eski TriggerField)
+   - .izin-pencere        : sayfa içi seçim / onay penceresi
+   - .izin-agac           : Sgb.agac ile çizilen ağaç (birim, yer) */
+
+.izin-donem-etiket {
+    margin: 0;
+    font-weight: 600;
+}
+
+.izin-donem-yil {
+    width: 90px;
+}
+
+.izin-donem-ad {
+    min-width: 110px;
+    color: var(--soluk);
+}
+
+.zorunlu {
+    color: #c0392b;
+}
+
+.izin-duzen {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
+    gap: 10px;
+    align-items: stretch;
+}
+
+.izin-sol,
+.izin-sag {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+
+.izin-liste-bolum {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.izin-liste-bolum > .pb-govde {
+    flex: 1 1 auto;
+}
+
+.izin-liste-bolum .pb-grid {
+    min-height: 360px;
+}
+
+@media (max-width: 1000px) {
+    .izin-duzen {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.izin-form {
+    --etiket-genislik: 110px;
+}
+
+.izin-form .form-control.is-invalid,
+.pb-form .form-control.is-invalid {
+    border-color: #c0392b;
+    box-shadow: 0 0 0 1px #c0392b inset;
+}
+
+.izin-secim {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+}
+
+.izin-secim .form-control {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.izin-secim .btn {
+    flex: none;
+}
+
+.pb-bolum > h3 .bosluk {
+    flex: 1 1 auto;
+}
+
+.izin-not-etiket {
+    margin: 0;
+    font-weight: 600;
+}
+
+.izin-sure-grid {
+    height: 190px;
+}
+
+.izin-belge-grid {
+    height: 130px;
+}
+
+.izin-personel-grid {
+    height: 300px;
+}
+
+/* Gridde veri girilen hücre beyaz, salt okunur hücre sarı (personelalt.css .hucre-salt) */
+.pb .hucre-girilir {
+    background: #fff;
+}
+
+.pb-grid .grid-komut {
+    padding: 0 4px;
+    line-height: 1;
+    color: var(--tema-ana);
+    background: none;
+    border: 0;
+}
+
+.pb-grid .grid-komut.tehlike {
+    color: #c0392b;
+}
+
+/* Sayfa içi pencere */
+.izin-pencere {
+    width: min(560px, calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    padding: 0;
+    color: var(--murekkep);
+    background: var(--yuzey, #fff);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .25);
+}
+
+.izin-pencere[open] {
+    display: flex;
+    flex-direction: column;
+}
+
+.izin-pencere-genis {
+    width: min(760px, calc(100vw - 32px));
+}
+
+.izin-pencere-dar {
+    width: min(420px, calc(100vw - 32px));
+}
+
+.izin-pencere::backdrop {
+    background: rgba(0, 0, 0, .45);
+}
+
+.izin-pencere .pencere-baslik {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.izin-pencere .pencere-baslik h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.izin-pencere .pencere-govde {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 12px 16px;
+    overflow-y: auto;
+    font-size: 13px;
+}
+
+.izin-pencere .pencere-alt {
+    flex: none;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 10px 16px;
+    border-top: 1px solid var(--cizgi);
+}
+
+.izin-secim-form {
+    --etiket-genislik: 110px;
+    margin-bottom: 8px;
+}
+
+.izin-agac-panel {
+    margin: 0 0 8px;
+    padding: 6px;
+    background: var(--yuzey, #fff);
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.izin-agac-ara {
+    margin-bottom: 4px;
+}
+
+.izin-agac {
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.izin-agac-yuksek {
+    max-height: 60vh;
+    min-height: 240px;
+}
+
+/* İzin Devir sekmesi */
+.pb-devir .pb-grid {
+    height: calc(100vh - 110px);
+    min-height: 240px;
+}
+
+/* Görevlendirmeler sekmesi */
+.gorev-duzen {
+    display: grid;
+    grid-template-columns: minmax(320px, 500px) minmax(0, 1fr);
+    gap: 10px;
+    align-items: stretch;
+}
+
+.gorev-duzen > div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+
+.gorev-liste-bolum {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.gorev-liste-bolum > .pb-govde {
+    flex: 1 1 auto;
+}
+
+.gorev-liste-bolum .pb-grid {
+    min-height: 420px;
+}
+
+.gorev-form {
+    --etiket-genislik: 120px;
+}
+
+@media (max-width: 900px) {
+    .gorev-duzen {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

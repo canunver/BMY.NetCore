@@ -1,0 +1,101 @@
+@page
+@model PersonelIzinDevirModel
+@{
+    ViewData["Title"] = "Personel İzin Devir Bilgileri";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="izd" id="izdAna">
+    <section class="kutu izd-bolum">
+        <div class="izd-arac" role="toolbar" aria-label="İzin devir işlemleri">
+            <button type="button" id="btnKaydet" class="btn btn-primary btn-sm" title="Değişen satırları kaydeder">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+            </button>
+            <button type="button" id="btnListele" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+            </button>
+            <button type="button" id="btnAktar" class="btn btn-default btn-sm" title="Bir önceki yıldan devreden günleri seçilen yıla aktarır">
+                <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Devreden İzinleri Aktar
+            </button>
+            <button type="button" id="btnYardim" class="btn btn-default btn-sm izd-yardim" aria-expanded="false" aria-controls="izdYardim" title="Yardım">?</button>
+        </div>
+        <p id="izdYardim" class="izd-not" hidden>
+            Birim seçip Listele'ye basın. Devreden İzin ve Yıl İçi İzin hücrelerine tıklayarak değiştirin; Kaydet yalnızca değişen satırları kaydeder.
+            Devreden İzinleri Aktar, seçilen yılın bir önceki yılından kalan günleri (devreden + yıl içi − kullanılan) seçilen yıla aktarır.
+        </p>
+
+        <form id="frmKriter" class="izd-form" novalidate autocomplete="off">
+            <label class="izd-etiket" for="txtYil">Yıl</label>
+            <div class="izd-yan">
+                <input type="number" id="txtYil" class="form-control input-sm sgb-yil izd-yil" min="1980" step="1" aria-describedby="lblDonemAd" />
+                <span id="lblDonemAd" class="izd-donem"></span>
+            </div>
+
+            <label class="izd-etiket" for="txtBirimAd">Birimi</label>
+            <div class="izd-yan izd-birim">
+                <input type="text" id="txtBirimAd" class="form-control input-sm" readonly placeholder="Birim seçiniz" />
+                <button type="button" id="btnBirimSec" class="btn btn-default btn-sm" title="Birim seç" aria-label="Birim seç">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+                <button type="button" id="btnBirimSil" class="btn btn-default btn-sm" title="Birimi kaldır" aria-label="Birimi kaldır">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+            </div>
+
+            <span class="izd-etiket" id="lblTur">Personel Tipi</span>
+            <div class="izd-coklu" id="cokTur" data-bos="Tümü" aria-labelledby="lblTur"></div>
+
+            <label class="izd-etiket" for="txtAra">Arama</label>
+            <input type="search" id="txtAra" class="form-control input-sm" placeholder="Ad, soyad, T.C. kimlik no, sicil no" />
+        </form>
+    </section>
+
+    <section class="kutu izd-bolum izd-liste">
+        <div id="grdListe" class="izd-grid" aria-label="Personel izin devir bilgileri"></div>
+    </section>
+</div>
+
+<!-- Birim seçimi (eski ExtOrgSecim) -->
+<dialog id="dlgBirim" class="tanim-pencere izd-pencere" aria-labelledby="dlgBirimBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgBirimBaslik">Birim Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="izd-birim-ara">
+            <input type="text" id="txtBirimAra" class="form-control input-sm" placeholder="Birim adında ara (en az 3 harf)" />
+            <button type="button" id="btnBirimAra" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Ara
+            </button>
+        </div>
+        <ul id="agcBirim" class="izd-birim-agac" aria-label="Birimler"></ul>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<dialog id="dlgOnay" class="tanim-pencere izd-pencere-dar" aria-labelledby="dlgOnayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOnayBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde"><p id="dlgOnayMetin"></p></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Hayır</button>
+        <button type="button" id="btnOnayEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/izindevir.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/izindevir.js" asp-append-version="true"></script>
+}

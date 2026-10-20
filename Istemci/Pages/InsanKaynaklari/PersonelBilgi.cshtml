@@ -1,0 +1,156 @@
+@page
+@model PersonelBilgiModel
+@{
+    ViewData["Title"] = "Personel İşlemleri";
+    ViewData["GovdeSinif"] = "pb-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="pbana" id="pbAna">
+    <!-- Sol: personel arama ve listesi -->
+    <aside class="pbana-sol kutu" id="pbSol">
+        <div class="pbana-sol-ust">
+            <h2 class="pbana-baslik">Personel Arama</h2>
+            <button type="button" id="btnSolDaralt" class="btn btn-link btn-xs" title="Arama bölmesini gizle / göster" aria-label="Arama bölmesini gizle / göster">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            </button>
+        </div>
+        <form id="frmArama" class="pbana-arama" novalidate autocomplete="off">
+            <div class="btn-toolbar pbana-arac" role="toolbar">
+                <button type="submit" id="btnListele" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                </button>
+                <button type="button" id="btnBekleyen" class="btn btn-default btn-sm" title="Onay bekleyen hizmet kayıtları ve tayin bekleyenler">
+                    <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span> Bekleyen İşl.
+                </button>
+                <button type="button" id="btnTemizle" class="btn btn-default btn-sm" title="Alanları boşalt">
+                    <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle
+                </button>
+                <button type="button" id="btnYeniPersonel" class="btn btn-default btn-sm" title="Yeni personel kaydı (boş Kişisel sekmesi)">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni
+                </button>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAra">Arama</label>
+                <div><input type="text" id="txtAra" class="form-control" placeholder="Ad, soyad, T.C. kimlik no, sicil no" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtBirimAd">Birim</label>
+                <div class="pbana-birim">
+                    <input type="text" id="txtBirimAd" class="form-control" readonly placeholder="Tümü" />
+                    <button type="button" id="btnBirimSec" class="btn btn-default btn-sm" title="Birim seç" aria-label="Birim seç">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" id="btnBirimSil" class="btn btn-default btn-sm" title="Birimi kaldır" aria-label="Birimi kaldır">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlUnvan">Unvan</label>
+                <div><select id="ddlUnvan" class="form-control"></select></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label">Grup</span>
+                <div class="pbana-coklu" id="cokGrup" data-bos="Tümü"></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label">Tür</span>
+                <div class="pbana-coklu" id="cokTur" data-bos="Tümü"></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label">Aktiflik</span>
+                <div class="pbana-secenek">
+                    <label><input type="radio" name="aktif" value="1" checked /> Aktif</label>
+                    <label><input type="radio" name="aktif" value="-1" /> Tümü</label>
+                    <label><input type="radio" name="aktif" value="0" /> Pasif</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="control-label">Resim</span>
+                <div class="pbana-secenek">
+                    <label><input type="radio" name="resim" value="0" checked /> Yok</label>
+                    <label><input type="radio" name="resim" value="1" /> Var</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlSiralama">Sıralama</label>
+                <div>
+                    <select id="ddlSiralama" class="form-control">
+                        <option value="1">Hiyerarşi</option>
+                        <option value="3">Ad Soyad</option>
+                        <option value="2">Birim</option>
+                        <option value="4">Unvan</option>
+                        <option value="5">Sicil No</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+        <div id="grdPersonel" class="pbana-grid" aria-label="Personel listesi"></div>
+        <div class="pbana-sayfalama" id="pbSayfalama" hidden>
+            <button type="button" id="btnOnceki" class="btn btn-default btn-xs" aria-label="Önceki sayfa">&lsaquo;</button>
+            <span id="lblSayfa"></span>
+            <button type="button" id="btnSonraki" class="btn btn-default btn-xs" aria-label="Sonraki sayfa">&rsaquo;</button>
+        </div>
+    </aside>
+
+    <!-- Sağ: seçilen personelin özeti ve sekmeleri -->
+    <section class="pbana-sag">
+        <div class="pbana-ozet kutu">
+            <div class="pbana-resim" aria-hidden="true"><span class="glyphicon glyphicon-user"></span><img id="imgResim" alt="" hidden /></div>
+            <div class="pbana-ozet-govde">
+                <h2 class="pbana-ozet-baslik" id="lblBaslik">Personel Bilgi</h2>
+                <dl class="pbana-ozet-alanlar">
+                    <div><dt>Per.Tip/Unv.</dt><dd id="lblTipUnvan"></dd></div>
+                    <div><dt>Baş. Tarihi</dt><dd id="lblKurumaBaslama"></dd></div>
+                    <div><dt>Kadro</dt><dd id="lblKadroDerece"></dd></div>
+                    <div><dt>Birimi</dt><dd id="lblKadroYeri"></dd></div>
+                    <div><dt>Görev Yeri</dt><dd id="lblGorevYeri"></dd></div>
+                    <div><dt>Kaz. Hak</dt><dd id="lblKazanilmis"></dd></div>
+                    <div><dt>İletişim</dt><dd id="lblIletisim"></dd></div>
+                    <div><dt>Vekil Un.</dt><dd id="lblVekilUnvan"></dd></div>
+                    <div><dt>Emekli</dt><dd id="lblEmekli"></dd></div>
+                </dl>
+            </div>
+        </div>
+        <div class="pbana-sekmeler kutu">
+            <ul class="nav nav-tabs pbana-sekme-basliklari" id="pbSekmeler" role="tablist"></ul>
+            <div class="pbana-sekme-icerik" id="pbSekmeIcerik">
+                <p class="pbana-bos" id="pbBos">Soldan bir personel seçiniz.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Birim seçimi (eski ExtOrgSecim) -->
+<dialog id="dlgBirim" class="tanim-pencere pbana-pencere" aria-labelledby="dlgBirimBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgBirimBaslik">Birim Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="pbana-birim-ara">
+            <input type="text" id="txtBirimAra" class="form-control input-sm" placeholder="Birim adında ara (en az 3 harf)" />
+            <button type="button" id="btnBirimAra" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Ara
+            </button>
+        </div>
+        <ul id="agcBirim" class="pbana-agac" aria-label="Birimler"></ul>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personelbilgi.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/personelbilgi.js" asp-append-version="true"></script>
+}

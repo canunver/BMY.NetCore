@@ -1,0 +1,120 @@
+@page
+@model PersonelAdresModel
+@{
+    ViewData["Title"] = "İletişim/Adres";
+    ViewData["GovdeSinif"] = "pb-alt";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="pb pb-adres" id="pbAdres" data-personel-kod="@Model.PersonelKod">
+    <div class="pb-arac" role="toolbar">
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+        <button type="button" id="btnAdres" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Adres Bilgisini Getir
+        </button>
+        <span class="glyphicon glyphicon-info-sign pb-adres-yardim" tabindex="0" role="img" aria-label="Yardım"
+              title="Adres bilgisini getir düğmesine basarak ulusal adres veritabanına kayıtlı olan ikametgah bilgilerinizi getirin ve diğer bilgileri girdikten sonra kaydet düğmesiyle bilgileri kaydedin."></span>
+    </div>
+
+    <form id="frmAdres" novalidate autocomplete="off">
+        <section class="pb-bolum renk-mavi">
+            <h3>İkamet Adresi</h3>
+            <div class="pb-govde pb-form">
+                <div class="form-group">
+                    <label class="control-label" for="txtAdres">İkamet Adresi</label>
+                    <div><textarea id="txtAdres" class="form-control" rows="3"></textarea></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pb-bolum renk-yesil">
+            <h3>İletişim Bilgileri</h3>
+            <div class="pb-govde pb-form iki-sutun">
+                <div class="form-group">
+                    <label class="control-label" for="txtIsTel">Telefon (İş)</label>
+                    <div><input type="text" id="txtIsTel" class="form-control" /></div>
+                </div>
+                <div class="form-group" id="grpTarabyaTel">
+                    <label class="control-label" for="txtTarabyaTel">Telefon (Tarabya)</label>
+                    <div><input type="text" id="txtTarabyaTel" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtEvTel">Telefon (Ev)</label>
+                    <div><input type="text" id="txtEvTel" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtCepTel">Telefon (GSM)</label>
+                    <div><input type="text" id="txtCepTel" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtCep2">Telefon (GSM2)</label>
+                    <div><input type="text" id="txtCep2" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtFaks">Faks</label>
+                    <div><input type="text" id="txtFaks" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtLojmanTel">Lojman</label>
+                    <div><input type="text" id="txtLojmanTel" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtTelsizTel">Telsiz</label>
+                    <div><input type="text" id="txtTelsizTel" class="form-control" /></div>
+                </div>
+                <div class="form-group" id="grpGoruntuluTel">
+                    <label class="control-label" for="txtGoruntuluTel">Görüntülü</label>
+                    <div><input type="text" id="txtGoruntuluTel" class="form-control" /></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pb-bolum renk-mor">
+            <h3>Internet Bilgileri</h3>
+            <div class="pb-govde pb-form iki-sutun">
+                <div class="form-group" hidden>
+                    <label class="control-label" for="txtMobilImzaTel">Mobil İmza(Avea)</label>
+                    <div><input type="text" id="txtMobilImzaTel" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtePosta">E-Posta</label>
+                    <div><input type="email" id="txtePosta" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtePosta2">Kişisel E-Posta</label>
+                    <div><input type="email" id="txtePosta2" class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtURL">Web (Internet Adresi)</label>
+                    <div><input type="url" id="txtURL" class="form-control" placeholder="http://" /></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Rehberde Gözüksün</span>
+                    <div><label class="checkbox-inline"><input type="checkbox" id="chkRehber" /> Evet</label></div>
+                </div>
+            </div>
+        </section>
+    </form>
+</div>
+
+<dialog id="dlgOnay" class="pb-onay">
+    <p id="dlgOnayMetin"></p>
+    <div class="text-right">
+        <button type="button" class="btn btn-default btn-sm" data-sonuc="hayir">Vazgeç</button>
+        <button type="button" class="btn btn-primary btn-sm" data-sonuc="evet">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/personelalt.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personel-adres.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/personel-adres.js" asp-append-version="true"></script>
+}

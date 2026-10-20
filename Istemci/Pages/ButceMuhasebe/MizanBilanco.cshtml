@@ -1,0 +1,197 @@
+@page
+@model MizanBilancoModel
+@{
+    ViewData["Title"] = "Muhasebe Raporları";
+    ViewData["GovdeSinif"] = "mzb-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="mizan-bilanco">
+    <!-- Rapor listesi (eski pnlSol "Raporlar") -->
+    <section class="kutu bolum bolum-liste mzb-liste" aria-label="Raporlar">
+        <h2 class="bolum-baslik">Raporlar</h2>
+        <input type="search" id="txtRaporAra" class="form-control input-sm mzb-ara" placeholder="Rapor ara..." aria-label="Rapor ara" autocomplete="off" />
+        <ol id="lstRapor" class="mzb-raporlar" role="listbox" aria-label="Rapor listesi"></ol>
+    </section>
+
+    <!-- Rapor kuralları (eski pnlRaporKurallari) -->
+    <section class="kutu bolum bolum-kriter mzb-kural" aria-labelledby="lblRaporBaslik">
+        <h2 class="bolum-baslik">
+            <span id="lblRaporBaslik">Rapor Kuralları</span>
+            <span class="mzb-baslik-tuslar">
+                <button type="button" id="btnYardim" class="btn btn-default btn-xs mzb-yardim" title="Açıklama" aria-expanded="false" aria-controls="pnlYardim">?</button>
+            </span>
+        </h2>
+        <div id="pnlYardim" class="mzb-ipucu" hidden>
+            Soldan raporu seçiniz; yalnızca o raporun kullandığı alanlar görünür. <b>Yazdır</b> raporu Excel olarak indirir
+            (Defter-i Kebir ve Yevmiye Defteri resmi formatları metin, Birleştirilmiş Veriler Defteri CSV dosyasıdır).
+            Seviye, tertip gösterilmeyecek hesaplar ve imza bilgileri bir sonraki açılış için saklanır.
+        </div>
+
+        <div class="btn-toolbar mzb-arac" role="toolbar" aria-label="Rapor işlemleri">
+            <button type="button" id="btnYazdir" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır</button>
+            <button type="button" id="btnTemizle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Temizle</button>
+        </div>
+
+        <form id="frmKural" class="tanim-form mzb-alanlar" novalidate>
+            <div class="form-group" data-alan="ddlYil">
+                <label class="control-label" for="txtYil">Yıl</label>
+                <div><input type="number" id="txtYil" class="form-control input-sm mzb-yil sgb-yil" step="1" /></div>
+            </div>
+            <div class="form-group" data-alan="ddlAy">
+                <label class="control-label" for="ddlAy">Ay</label>
+                <div><select id="ddlAy" class="form-control input-sm mzb-kisa"></select></div>
+            </div>
+            <div class="form-group" data-alan="txtBasTarih">
+                <label class="control-label" for="txtBasTarih">Başlangıç Tarihi</label>
+                <div><input type="date" id="txtBasTarih" class="form-control input-sm mzb-kisa" /></div>
+            </div>
+            <div class="form-group" data-alan="txtBitTarih">
+                <label class="control-label" for="txtBitTarih">Bitiş Tarihi</label>
+                <div><input type="date" id="txtBitTarih" class="form-control input-sm mzb-kisa" /></div>
+            </div>
+            <div class="form-group" data-alan="cmpMuhasebe cmpBirim">
+                <label class="control-label" for="txtMuhasebe">Muhasebe / Birim</label>
+                <div id="muhBirim"></div>
+            </div>
+            <div class="form-group" data-alan="cmpAltHesap">
+                <label class="control-label" for="txtAltHesap">Alt Hesap</label>
+                <div class="mzb-bitisik">
+                    <input type="text" id="txtAltHesap" class="form-control input-sm mzb-orta" maxlength="300" autocomplete="off" placeholder="Kimlik / vergi no" />
+                    <button type="button" id="btnAltHesapSec" class="btn btn-default btn-sm" title="Kişi / firma seç">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Kişi / firma seç</span>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group" data-alan="txtKurKod">
+                <label class="control-label" for="txtKurKod">Kurumsal Kod</label>
+                <div><input type="text" id="txtKurKod" class="form-control input-sm mzb-kisa" autocomplete="off" /></div>
+            </div>
+            <div class="form-group" data-alan="txtFonKod">
+                <label class="control-label" for="txtFonKod">Fonksiyonel Kod</label>
+                <div><input type="text" id="txtFonKod" class="form-control input-sm mzb-kisa" autocomplete="off" /></div>
+            </div>
+            <div class="form-group" data-alan="cmpBaslangicHesapKodu">
+                <label class="control-label" for="txtHesap1">Başlangıç Hesap Kodu</label>
+                <div>
+                    <input type="text" id="txtHesap1" class="form-control input-sm" autocomplete="off" />
+                    <label class="mzb-secenek" data-alan="chkHesapAdiniSec"><input type="checkbox" id="chkHesapAdiniSec" /> Bu hesap adı ile aynı olan hesapları göster</label>
+                </div>
+            </div>
+            <div class="form-group" data-alan="cmpBitisHesapKodu" id="grpBitisHesap">
+                <label class="control-label" for="txtHesap2">Bitiş Hesap Kodu</label>
+                <div><input type="text" id="txtHesap2" class="form-control input-sm" autocomplete="off" /></div>
+            </div>
+            <div class="form-group" data-alan="ddlSeviye">
+                <label class="control-label" for="ddlSeviye">Seviye</label>
+                <div>
+                    <select id="ddlSeviye" class="form-control input-sm mzb-kisa">
+                        <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                        <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                        <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" data-alan="ddlTur">
+                <label class="control-label" for="ddlTur">Türü</label>
+                <div>
+                    <select id="ddlTur" class="form-control input-sm mzb-kisa">
+                        <option value="3">Bütün</option>
+                        <option value="2">Onaylılar</option>
+                        <option value="1">Yevmiyeliler</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" data-alan="ddlFisTur">
+                <label class="control-label">Fiş Türü</label>
+                <div id="lstFisTur" class="mzb-coklu" role="group" aria-label="Fiş türü"></div>
+            </div>
+            <div class="form-group" data-alan="ddlListeTur" id="grpListeTur">
+                <label class="control-label" for="ddlListeTur">Döviz Tür</label>
+                <div><select id="ddlListeTur" class="form-control input-sm mzb-kisa"></select></div>
+            </div>
+            <div class="form-group" data-alan="ddlSayistay">
+                <label class="control-label" for="ddlSayistay">Format</label>
+                <div>
+                    <select id="ddlSayistay" class="form-control input-sm mzb-kisa">
+                        <option value="0">Rapor</option>
+                        <option value="1">Sayıştay</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" data-alan="ddlRaporSira">
+                <label class="control-label" for="ddlRaporSira">Sıralama</label>
+                <div>
+                    <select id="ddlRaporSira" class="form-control input-sm mzb-kisa">
+                        <option value="0">Tarih</option>
+                        <option value="1">Belge No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" data-alan="ddlFirmaRaporTur">
+                <label class="control-label" for="ddlFirmaRaporTur">Rapor Türü</label>
+                <div>
+                    <select id="ddlFirmaRaporTur" class="form-control input-sm mzb-orta">
+                        <option value="1">Gidere ait kesintiler</option>
+                        <option value="2" selected>Tüm Kesintiler</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" data-alan="sfStopajOran">
+                <label class="control-label" for="txtStopajOran">Stopaj Oran</label>
+                <div><input type="number" id="txtStopajOran" class="form-control input-sm mzb-yil" step="1" value="10" /></div>
+            </div>
+            <div class="form-group mzb-isaret" data-alan="chkBakiyeSifir">
+                <span class="control-label"></span>
+                <label class="mzb-secenek"><input type="checkbox" id="chkBakiyeSifir" /> Bakiye Sıfır ise Gösterme</label>
+            </div>
+            <div class="form-group mzb-isaret" data-alan="cftertipGosterme">
+                <span class="control-label"></span>
+                <div class="mzb-bitisik">
+                    <label class="mzb-secenek"><input type="checkbox" id="chkTertipGosterme" /> Belirtilen hesaplarında tertip gösterme</label>
+                    <input type="text" id="txtTertipGosterme" class="form-control input-sm mzb-orta" aria-label="Tertip gösterilmeyecek hesaplar" autocomplete="off" />
+                </div>
+            </div>
+            <div class="form-group mzb-isaret" data-alan="chkProgramButceTertip">
+                <span class="control-label"></span>
+                <label class="mzb-secenek"><input type="checkbox" id="chkProgramButceTertip" /> Tertipleri, program bütçe tertip yapısında göster</label>
+            </div>
+            <div class="form-group" data-alan="pnlAciklama">
+                <label class="control-label" for="txtAciklama">Açıklama</label>
+                <div>
+                    <textarea id="txtAciklama" class="form-control input-sm mzb-aciklama" rows="4"></textarea>
+                    <button type="button" id="btnAciklama" class="btn btn-default btn-xs mzb-aciklama-tus">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Açıklama Listesi
+                    </button>
+                </div>
+            </div>
+            <div class="form-group" data-alan="cfImza">
+                <label class="control-label" for="txtImzaAdi">İmza</label>
+                <div class="mzb-imza">
+                    <input type="text" id="txtImzaAdi" class="form-control input-sm" placeholder="Adı Soyadı" aria-label="İmza adı soyadı" />
+                    <input type="text" id="txtImzaBirim" class="form-control input-sm" placeholder="Birim" aria-label="İmza birim" />
+                    <input type="text" id="txtImzaUnvan" class="form-control input-sm" placeholder="Unvanı" aria-label="İmza unvanı" />
+                </div>
+            </div>
+        </form>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/makbuz.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hesapkodu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/mizanbilanco.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/hesapkodu.js" asp-append-version="true"></script>
+    <script src="~/js/mizanbilanco.js" asp-append-version="true"></script>
+}

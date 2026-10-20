@@ -1,0 +1,222 @@
+/* Mahsup İşlemleri (ButceMuhasebe/Kapatma): avans.css'in sıkışık bölümleri üzerine kıstas düzeni, seçilenler özeti ve pencereler. */
+
+.kapatma .kapatma-kriter {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 230px;
+    gap: 4px 16px;
+    align-items: start;
+}
+
+.kapatma .kapatma-kriter .avans-alanlar {
+    max-width: none;
+}
+
+.kapatma .kapatma-tarih {
+    width: 140px;
+}
+
+.kapatma .kapatma-no {
+    width: 110px;
+}
+
+.kapatma .kapatma-hesap {
+    width: 160px;
+}
+
+/* Seçilenlerin toplamları (eski pnlBilgi) */
+.kapatma .kapatma-secili {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 2px 8px;
+    margin: 0;
+    padding: 6px 8px;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.kapatma .kapatma-secili dt {
+    font-weight: 600;
+}
+
+.kapatma .kapatma-secili dd {
+    margin: 0;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.kapatma .kapatma-sonuc a {
+    font-weight: 600;
+}
+
+@media (max-width: 1100px) {
+    .kapatma .kapatma-kriter {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+}
+
+/* Tablo hücreleri: girilen beyaz, salt okunur sarı */
+.kapatma .kp-girilir {
+    background: #fff;
+}
+
+.kapatma .kp-sari {
+    background: #fcfcd4;
+}
+
+.kapatma .kp-toplam {
+    font-weight: 600;
+    color: #c62828;
+    background: #f3f3f3;
+}
+
+/* ---- Pencereler ---- */
+.kapatma-pencere {
+    font-size: 12px;
+}
+
+.kapatma-pencere .form-control.input-sm {
+    height: 24px;
+    padding: 1px 6px;
+    font-size: 12px;
+}
+
+.kapatma-pencere textarea.form-control.input-sm {
+    height: auto;
+}
+
+.kapatma-pencere .btn-sm {
+    padding: 2px 8px;
+    font-size: 12px;
+}
+
+.kapatma-pencere .avans-bitisik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+}
+
+.kapatma-pencere .avans-arac {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.kapatma-pencere .avans-secenekler label {
+    margin: 0;
+    font-weight: 400;
+}
+
+.kapatma-pencere .avans-secenekler input {
+    margin-right: 4px;
+}
+
+.kapatma-pencere.kapatma-belge {
+    width: min(900px, calc(100vw - 32px));
+}
+
+.kapatma-pencere .kapatma-belge-alanlar {
+    --etiket-genislik: 150px;
+}
+
+.kapatma-pencere .kapatma-belge-alanlar .form-group {
+    margin-bottom: 4px;
+}
+
+.kapatma-pencere .kapatma-tarih {
+    width: 140px;
+}
+
+.kapatma-pencere .kapatma-tutar {
+    width: 150px;
+}
+
+.kapatma-pencere .kapatma-hesap {
+    width: 150px;
+}
+
+.kapatma-pencere .kapatma-genis input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.kapatma-pencere .kapatma-grid-pencere {
+    width: 100%;
+    height: 190px;
+    margin-top: 6px;
+}
+
+.kapatma-pencere .kp-sil {
+    padding: 0 4px;
+    color: #c62828;
+}
+
+.kapatma-pencere .kapatma-liste {
+    height: auto;
+    margin-top: 6px;
+}
+
+.kapatma-pencere #frmOdemeHesap label {
+    margin: 0;
+}
+
+.kapatma-pencere.kapatma-kesinti {
+    width: min(720px, calc(100vw - 32px));
+}
+
+.kapatma-kesinti .kapatma-kesinti-oranlar {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.kapatma-kesinti fieldset {
+    margin: 0;
+    padding: 6px 8px;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.kapatma-kesinti legend {
+    width: auto;
+    margin: 0;
+    padding: 0 4px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 0;
+}
+
+.kapatma-kesinti fieldset label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0 0 2px;
+    font-weight: 400;
+}
+
+.kapatma-kesinti .kapatma-oran {
+    width: 80px;
+}
+
+.kapatma-kesinti .tanim-form {
+    --etiket-genislik: 120px;
+    max-width: 320px;
+}
+
+/* Tutar sütunlarının başlığında liste toplamı (eski sayfadaki gibi kırmızı) */
+.kapatma .kp-baslik {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+    line-height: 1.2;
+    cursor: pointer;
+}
+
+.kapatma .kp-baslik-toplam {
+    color: #c62828;
+    font-weight: 600;
+}

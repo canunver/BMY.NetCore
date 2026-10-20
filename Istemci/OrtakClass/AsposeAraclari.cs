@@ -107,6 +107,12 @@ namespace OrtakClass
                 return Istemci.Metin.Ortak("ORTAY" + ay.ToString("00"), "");
         }
 
+        /// <summary>Tutarın kuruş kısmı (eski GenelIslemler.KurusBul).</summary>
+        public static int KurusBul(double para)
+        {
+            return (int)(((long)Math.Round(para * 100)) % 100);
+        }
+
         public static string ExcelTur()
         {
             return "xlsx";
@@ -157,6 +163,7 @@ namespace OrtakClass
         public static string KodAd(int kodTur, string kosul, bool esitle)
         {
             string uzayAd;
+            string uzayAlan = null;
             if (kodTur == 53)
             {
                 // Eski: dört parçalı kodda birimin adına üst birimin adı parantez içinde eklenir.
@@ -172,9 +179,12 @@ namespace OrtakClass
             else if (kodTur == 4) uzayAd = "ABSEKO";
             else if (kodTur == 5) uzayAd = "ABSGELIRKOD";
             else if (kodTur == 6) uzayAd = "ABSFINANSMANKOD";
+            else if (kodTur == 11) { uzayAd = "MUHMUHASEBE"; uzayAlan = "MUHASEBEAD"; }
+            else if (kodTur == 12) { uzayAd = "MUHMUHASEBEBIRIM"; uzayAlan = "BIRIMAD"; }
+            else if (kodTur == 13) { uzayAd = "MUHHESAPPLANI"; uzayAlan = "ACIKLAMA"; }
             else if (kodTur == 58) uzayAd = "ABSPEBKOD";
             else return "";
-            string ad = TNS.UZY.Arac.Tanimla().UzayDegeriStr(new TNS.KYM.Kullanici(), uzayAd, kosul, esitle, null);
+            string ad = TNS.UZY.Arac.Tanimla().UzayDegeriStr(new TNS.KYM.Kullanici(), uzayAd, kosul, esitle, uzayAlan);
             return (ad ?? "").Replace(",", " ");
         }
 

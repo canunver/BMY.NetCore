@@ -1,0 +1,37 @@
+@page
+@model PersonelTarihceModel
+@{
+    ViewData["Title"] = "Tarihçe";
+    ViewData["GovdeSinif"] = "pb-alt";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="pb ptr" id="ptrSayfa" data-personel-kod="@Model.PersonelKod">
+    <section class="pb-bolum renk-gri ptr-bolum">
+        <h3>
+            <span>Personel Tarihçesi</span>
+            <span class="ptr-bosluk"></span>
+            <label class="ptr-suzgec" for="ddlKategori">Kategori</label>
+            <select id="ddlKategori" class="form-control input-sm">
+                <option value="">Tümü</option>
+            </select>
+            <span id="lblSayi" class="ptr-sayi"></span>
+        </h3>
+        <div class="pb-govde pb-doldur ptr-doldur">
+            <div id="grdTarihce" class="pb-grid" aria-label="Personel tarihçesi"></div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/personelalt.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personel-tarihce.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/personel-tarihce.js" asp-append-version="true"></script>
+}

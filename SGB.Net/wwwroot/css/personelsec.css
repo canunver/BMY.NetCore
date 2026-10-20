@@ -1,0 +1,114 @@
+/* Sgb.personelSec (js/personelsec.js): ortak personel seçimi penceresi.
+   Pencere çerçevesi burada da tanımlı (tanim.css'teki .tanim-pencere ile aynı), böylece tanim.css'i olmayan sayfalarda da çalışır. */
+
+dialog.personel-sec {
+    width: min(820px, calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    padding: 0;
+    color: var(--murekkep);
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .25);
+}
+
+dialog.personel-sec::backdrop {
+    background: rgba(0, 0, 0, .45);
+}
+
+.personel-sec .pencere-baslik {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.personel-sec .pencere-baslik h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.personel-sec .pencere-govde {
+    padding: 12px 16px 16px;
+    overflow-y: auto;
+}
+
+.personel-sec [hidden] {
+    display: none !important;
+}
+
+.personel-sec .ps-kriter {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.personel-sec .ps-alan {
+    display: grid;
+    grid-template-columns: 110px minmax(0, 1fr);
+    align-items: center;
+    column-gap: 8px;
+}
+
+.personel-sec .ps-alan label {
+    margin: 0;
+    font-weight: 600;
+}
+
+.personel-sec .ps-yan {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+}
+
+.personel-sec .ps-yan > .form-control {
+    flex: 1 1 220px;
+    width: auto;
+}
+
+.personel-sec #psBirimAd {
+    background: #fff;
+}
+
+.personel-sec .ps-birim-panel {
+    margin-left: 118px;
+    padding: 6px;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.personel-sec .ps-agac {
+    max-height: 240px;
+    overflow: auto;
+    margin: 6px 0 0;
+}
+
+.personel-sec .ps-grid {
+    height: min(380px, 50vh);
+}
+
+.personel-sec .ps-sec-dugme {
+    padding: 0 4px;
+}
+
+.personel-sec .ps-not {
+    margin: 6px 0 0;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+@media (max-width: 600px) {
+    .personel-sec .ps-alan {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .personel-sec .ps-birim-panel {
+        margin-left: 0;
+    }
+}

@@ -1,0 +1,58 @@
+@page
+@model PersonelKadroOnaysizModel
+@{
+    ViewData["Title"] = "Bekleyen İşlemler";
+    ViewData["GovdeSinif"] = "pb-alt";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="pb pb-onaysiz pb-doldur" id="pbOnaysiz" data-org-kod="@Model.OrgKod">
+    <div class="pbk-sekmeler" role="tablist" aria-label="Bekleyen işlemler">
+        <button type="button" role="tab" id="sekOnaysiz" class="pbk-sekme" aria-selected="true" aria-controls="panOnaysiz">Onaysızlar <span class="badge" id="sayOnaysiz">0</span></button>
+        <button type="button" role="tab" id="sekTayin" class="pbk-sekme" aria-selected="false" aria-controls="panTayin">Tayin Bekleyenler <span class="badge" id="sayTayin">0</span></button>
+    </div>
+
+    <section class="pb-bolum pb-doldur pbk-panel" id="panOnaysiz" role="tabpanel" aria-labelledby="sekOnaysiz">
+        <h3>Onaysızlar</h3>
+        <div class="pb-govde pb-doldur">
+            <div id="grdOnaysizlar" class="pb-grid" aria-label="Onaysız kayıtlar"></div>
+        </div>
+    </section>
+
+    <section class="pb-bolum renk-turuncu pb-doldur pbk-panel" id="panTayin" role="tabpanel" aria-labelledby="sekTayin" hidden>
+        <h3>Tayin Bekleyenler</h3>
+        <div class="pb-govde pb-doldur">
+            <div class="pb-arac pbk-ust-arac">
+                <label for="dfAlisTarih" class="pbk-etiket">Tarih:</label>
+                <input type="date" id="dfAlisTarih" class="form-control input-sm pbk-tarih" />
+                <button type="button" id="btnBirimeAl" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Birime Al</button>
+            </div>
+            <div id="grdTayinBekleyenler" class="pb-grid" aria-label="Tayin bekleyen kayıtlar"></div>
+        </div>
+    </section>
+</div>
+
+<dialog id="dlgOnay" class="pbk-pencere" aria-labelledby="dlgOnayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOnayBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde"><p>Seçili kişiyi kendi biriminize almak istiyor musunuz?</p></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnOnayEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/personelalt.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personel-kadro.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/personel-kadroonaysiz.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,96 @@
+/* Personel terfi ekranları (InsanKaynaklari/TerfiyeHakKazananlar, InsanKaynaklari/PersonelTerfiOnaylama):
+   tek bölüm, kriterler tek sıra ve sıkı, tablo sayfanın kalan yüksekliğini doldurur. Tablo salt okunurdur. */
+
+.terfi .bolum {
+    --bolum-baslik: #e3edf9;
+    --bolum-govde: #f6f9fd;
+    --bolum-vurgu: #2f6db5;
+    margin: 0;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.terfi .bolum-baslik {
+    margin: 0 -12px 8px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.terfi .tf-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 8px;
+    font-size: 12px;
+}
+
+.terfi .tf-arac label {
+    margin: 0 0 0 4px;
+    font-weight: 600;
+}
+
+.terfi .tf-arac .form-control {
+    height: 28px;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.terfi .tf-yil { width: 80px; }
+.terfi .tf-ay { width: 110px; }
+.terfi .tf-tip { width: 160px; }
+.terfi .tf-durum { width: 120px; }
+.terfi .tf-sebep { width: 300px; max-width: 100%; }
+
+.terfi .tf-ayrac {
+    width: 1px;
+    height: 22px;
+    margin: 0 6px;
+    background: var(--cizgi);
+}
+
+.terfi .tf-yardim {
+    margin-left: auto;
+}
+
+.terfi .tf-yardim-metin {
+    margin: 0 0 8px;
+    padding: 8px 10px;
+    font-size: 12px;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.terfi .tf-mesaj {
+    margin: 0 0 8px;
+    padding: 8px 10px;
+    font-size: 12px;
+    white-space: pre-line;
+}
+
+.terfi .tf-grid {
+    width: 100%;
+    height: 440px;
+}
+
+.terfi .tf-grup .ag-header-group-cell-label {
+    justify-content: center;
+    font-weight: 600;
+}
+
+.terfi .tf-orta {
+    text-align: center;
+}
+
+/* Kadro derecesine ulaşılmış (eski RENKATA, #B0FF30) */
+.terfi .tf-renk {
+    background: #c8f56a;
+}

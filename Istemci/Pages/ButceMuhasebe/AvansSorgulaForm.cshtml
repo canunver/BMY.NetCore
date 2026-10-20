@@ -1,0 +1,89 @@
+@page
+@model AvansSorgulaFormModel
+@{
+    ViewData["Title"] = "Avans Sorgulama";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans avans-sorgu">
+    <section class="kutu bolum bolum-kriter">
+        <h2 class="bolum-baslik">Kıstaslar
+            <button type="button" class="btn btn-link btn-xs avans-yardim-dugme" data-yardim="#avansYardim" title="Yardım" aria-label="Yardım">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+            </button>
+        </h2>
+        <div id="avansYardim" class="alert alert-info avans-yardim" hidden>
+            Yıl ve durum zorunludur. Satırın başındaki + ile o kişi / hesabın belge hareketleri açılır.
+            "Borç - alacak toplamı eşit olmayanlar" seçiliyse yalnızca kapanmamış avanslar gelir.
+        </div>
+        <form id="frmKriter" class="avans-iki-sutun" onsubmit="return false;">
+            <div class="tanim-form avans-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="txtYil">Yıl</label>
+                    <div><input type="number" id="txtYil" class="form-control input-sm sgb-yil" title="Belge yılını giriniz." /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMuhasebe">Saymanlık / Birim</label>
+                    <div id="muhBirim"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtHesapKod">Hesap Kod</label>
+                    <div><input type="text" id="txtHesapKod" class="form-control input-sm avans-no" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtTcVno">TC Kimlik / Vergi No</label>
+                    <div><input type="text" id="txtTcVno" class="form-control input-sm avans-no" maxlength="11" /></div>
+                </div>
+            </div>
+            <div class="tanim-form avans-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="ddlDurum">Durum</label>
+                    <div>
+                        <select id="ddlDurum" class="form-control input-sm" title="Belge durumunu seçiniz.">
+                            <option value="1">Yeni, Onaylı, Yevmiyeli</option>
+                            <option value="2">Onaylı, Yevmiyeli</option>
+                            <option value="3">Yevmiyeli</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label"></span>
+                    <div class="avans-secenekler">
+                        <label><input type="checkbox" id="chkTertipli" checked /> Tertipleri göster</label>
+                        <label><input type="checkbox" id="chkAltHesaptan" checked /> Alt hesaptan</label>
+                        <label><input type="checkbox" id="chkFarklilar" checked /> Borç - alacak toplamı eşit olmayanlar</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <section class="kutu bolum bolum-liste">
+        <div class="avans-arac" role="toolbar" aria-label="İşlemler">
+            <button type="button" id="btnListele" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+            </button>
+            <button type="button" id="btnKopyala" class="btn btn-default btn-sm" title="Listeyi panoya kopyala (Excel'e yapıştırılabilir)">
+                <span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Kopyala
+            </button>
+            <span id="lblOzet" class="avans-ozet"></span>
+        </div>
+        <div id="grdListe" class="avans-grid" aria-label="Avans sorgu sonucu"></div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/avanssorgu.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,55 @@
+@page
+@model ePostaAtModel
+@{
+    // Kullanıcılara e-posta Gönderme (eski KYM/ePostaAt.aspx).
+    ViewData["Title"] = Metin.Kullanici("FRMEPA006");
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="eposta">
+    <div class="kutu">
+        <h2 class="kutu-baslik">@Metin.Kullanici("FRMEPA006")</h2>
+        <div id="lblAdres" class="ep-adres" hidden>
+            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+            <span>@Metin.Kullanici("FRMEPA008") <b id="txtAdres"></b> @Metin.Kullanici("FRMEPA009")</span>
+        </div>
+
+        <form id="frmPosta" class="ep-form" novalidate autocomplete="off">
+            <div class="form-group">
+                <label class="control-label" for="txtKonu">@Metin.Kullanici("FRMEPA001")</label>
+                <div><input type="text" id="txtKonu" class="form-control" maxlength="255" /></div>
+            </div>
+            <div class="form-group ep-ust">
+                <label class="control-label" for="txtMesaj">@Metin.Kullanici("FRMEPA002")</label>
+                <div><textarea id="txtMesaj" class="form-control" rows="9"></textarea></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="lstKullaniciTipi">@Metin.Kullanici("FRMEPA003")</label>
+                <div><select id="lstKullaniciTipi" class="form-control ep-grup"></select></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label"></span>
+                <div class="ep-dugmeler">
+                    <button type="submit" id="btnTamam" class="btn btn-primary btn-sm"
+                            data-onay="@Metin.Ortak("JSGEN029")">
+                        <span class="glyphicon glyphicon-send" aria-hidden="true"></span> @Metin.Kullanici("FRMEPA004")
+                    </button>
+                    <a id="btnGonderiler" class="btn btn-default btn-sm" href="ePostaGonderi" hidden>
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> @Metin.Kullanici("FRMEPA005")
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/eposta.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/epostaat.js" asp-append-version="true"></script>
+}

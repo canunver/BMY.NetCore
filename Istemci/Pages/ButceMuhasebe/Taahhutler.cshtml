@@ -1,0 +1,37 @@
+@page
+@model TaahhutlerModel
+@{
+    ViewData["Title"] = "Taahhüt Planı";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans muh-tanim th-alt" data-sayfa="plan">
+    <section class="kutu bolum bolum-liste">
+        <h2 class="bolum-baslik">Taahhüt Planı</h2>
+        <div class="avans-arac mt-arac" role="toolbar" aria-label="Taahhüt planı işlemleri">
+            <button type="button" id="btnSatirEkle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Ekle</button>
+            <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+            <button type="button" id="btnSil" class="btn btn-default btn-sm" disabled><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Seçili Kayıtları Sil</button>
+            <button type="button" id="btnKapat" class="btn btn-default btn-sm" hidden><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Kapat</button>
+            <span id="lblToplam" class="avans-ozet"></span>
+        </div>
+        <div id="grdPlan" class="th-grid" aria-label="Taahhüt planı"></div>
+        <p class="avans-not">Yıl, ay, tertip ve tutar hücreleri tıklanarak değiştirilir; değişen ve yeni satırlar Kaydet ile kaydedilir.</p>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taahhutkarti.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/taahhutalt.js" asp-append-version="true"></script>
+}

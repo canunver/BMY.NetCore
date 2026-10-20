@@ -1,0 +1,101 @@
+/* Personel İşlemleri "Kart" sekmesi (InsanKaynaklari/PersonelKart) ve kart sekmesinin açtığı personel arama penceresi
+   (InsanKaynaklari/PersonelSorgu): ortak görünüm personelalt.css'ten. */
+
+.pkt-govde {
+    display: grid;
+    grid-template-columns: minmax(320px, 2fr) minmax(0, 3fr);
+    gap: 10px;
+    align-items: stretch;
+}
+
+.pkt-liste {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 70px);
+}
+
+.pkt-liste > .pb-doldur {
+    flex: 1 1 auto;
+}
+
+.pkt .input-group .form-control[readonly] {
+    background: #fff8d6;
+}
+
+.pkt-onay {
+    max-width: 420px;
+    padding: 16px;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+}
+
+.pkt-onay p {
+    margin: 0 0 14px;
+}
+
+.pkt-onay-dugmeler {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+@media (max-width: 900px) {
+    .pkt-govde {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pkt-liste {
+        min-height: 320px;
+    }
+}
+
+/* ---------------------------------------------------------------- personel arama penceresi */
+
+.psr {
+    height: calc(100vh - 16px);
+}
+
+.psr-govde {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) minmax(0, 3fr);
+    gap: 10px;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.psr-sol,
+.psr-sag {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.psr-sol > .pb-govde,
+.psr-sag > .pb-govde {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.psr-agac {
+    flex: 1 1 auto;
+    min-height: 160px;
+    margin: 4px 0 0;
+    padding: 0;
+    overflow: auto;
+    border: 1px solid var(--cizgi);
+    border-radius: 4px;
+    background: #fff;
+}
+
+.psr-secili {
+    margin: 4px 0 0;
+    font-size: 12px;
+}
+
+@media (max-width: 700px) {
+    .psr-govde {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

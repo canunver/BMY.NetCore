@@ -14,6 +14,7 @@
     var ANAHTAR = 'sgb.menu';
     var KIP_ANAHTARI = 'sgb.menuKipi';
     var GRUP_ANAHTARI = 'sgb.aktifGrup';
+    var SIK_ANAHTARI = 'sgb.sikAcik';     // sol menüdeki Sık Kullanılanlar bölümü açık mı ("0": kapalı)
     var KOK = '../';    // bütün sayfalar uygulama kökünün bir alt klasöründedir (OrtakSayfa, TasinirMal ...)
 
     var kokEl = document.documentElement;
@@ -53,8 +54,21 @@
         menu: 'M4 7h16M4 12h16M4 17h16',
         ara: 'M11 4a7 7 0 1 0 0 14a7 7 0 0 0 0-14zM21 21l-4.3-4.3',
         ok: 'M9 6l6 6-6 6',
-        sabitle: 'M9 4h6l-1 6 3 3H7l3-3-1-6zM12 13v7'
+        sabitle: 'M9 4h6l-1 6 3 3H7l3-3-1-6zM12 13v7',
+        ekle: 'M12 5v14M5 12h14',
+        cikar: 'M5 12h14',
+        // Modül (menü grubu) ikonları, menu.xml'deki grup ID'sine göre (GRUP_SIMGE)
+        butce: 'M12 3a9 9 0 1 0 9 9h-9zM15 3.2a8.5 8.5 0 0 1 5.8 5.8H15z',
+        kaynak: 'M3 7.5h16a1.5 1.5 0 0 1 1.5 1.5v9.5a1.5 1.5 0 0 1-1.5 1.5H4.5A1.5 1.5 0 0 1 3 18.5zM3 7.5l12-4v4M15.5 13.5h2',
+        gorev: 'M3 8h18v11H3zM9 8V5h6v3M3 13h18M11 13v2h2v-2',
+        rapor: 'M6 3h9l4 4v14H6zM14 3v5h5M9 12h7M9 16h7',
+        ayar: 'M12 9a3 3 0 1 0 0 6a3 3 0 0 0 0-6zM12 2.5v3M12 18.5v3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M2.5 12h3M18.5 12h3M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1',
+        yildiz: 'M12 3.5l2.6 5.3 5.9.9-4.25 4.1 1 5.8L12 16.9l-5.25 2.7 1-5.8L3.5 9.7l5.9-.9z',
+        yardim: 'M12 3a9 9 0 1 0 0 18a9 9 0 0 0 0-18zM9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.6.3-1 .8-1 1.5v.5M12 16.8v.2'
     };
+
+    // Modül başlıklarındaki ikon: menu.xml grup ID'si -> CIZIM adı. Listede olmayan grup yalnızca renkli çizgiyle gösterilir.
+    var GRUP_SIMGE = { Menu2: 'butce', Menu3: 'kaynak', Menu4: 'gorev', Menu5: 'rapor', Menu6: 'ayar' };
 
     // ---------------------------------------------------------------- saklama
 
@@ -135,19 +149,36 @@
     }
 
     // Açık sayfanın menüdeki yeri. Menüde yoksa null döner (başlık olarak sayfanın kendi adı kullanılır).
+    // id: sık kullanılanlara eklenebilecek menü ID'si (ayrı sayfada gösterilen menünün kendisi için yok).
     function sayfaKonumu(gruplar) {
         for (var g = 0; g < gruplar.length; g++) {
             var menuler = gruplar[g].menuler;
             for (var m = 0; m < menuler.length; m++) {
                 if (menuler[m].url && buSayfaMi(menuler[m].url))
-                    return { yer: gruplar[g].ad, ad: menuler[m].ad };
-                var satirlar = baglantilar(menuler[m]);
+                    return { yer: gruplar[g].ad, ad: menuler[m].ad, id: menuler[m].ekSatirlar ? null : menuler[m].id };
+                var satirlar = baglantilar(menuler[m]).concat(menuler[m].ekSatirlar || []);
                 for (var i = 0; i < satirlar.length; i++)
                     if (buSayfaMi(satirlar[i].url))
-                        return { yer: gruplar[g].ad + ' › ' + menuler[m].ad, ad: satirlar[i].ad };
+                        return { yer: gruplar[g].ad + ' › ' + menuler[m].ad, ad: satirlar[i].ad, id: satirlar[i].id };
             }
         }
         return null;
+    }
+
+    // Menü ID'sinden bağlantıya: sık kullanılanlar ID ile saklanır. Aynı ID menüde birden çok yerde olabilir; ilki alınır.
+    function idSozlugu(gruplar) {
+        var sozluk = {};
+        gruplar.forEach(function (grup, sira) {
+            grup.menuler.forEach(function (menu) {
+                function ekle(satir, yer) {
+                    if (satir.id && !sozluk[satir.id])
+                        sozluk[satir.id] = { id: satir.id, ad: satir.ad, url: satir.url, yeni: satir.yeni, durum: satir.durum, yer: yer, renk: sira % 4 };
+                }
+                if (menu.url && !menu.ekSatirlar) ekle(menu, grup.ad);
+                baglantilar(menu).concat(menu.ekSatirlar || []).forEach(function (satir) { ekle(satir, grup.ad + ' › ' + menu.ad); });
+            });
+        });
+        return sozluk;
     }
 
     // Aramada karşılaştırma için: küçük harf; bölünmez boşluk (&nbsp;, menü adlarında sık geçer) ve sekme gibi
@@ -189,6 +220,7 @@
     var sabitleDugme = null;
     var aramaKutusu = null;
     var fareIcinde = false;
+    var sonVeri = null;     // en son çizilen menü verisi (tema değişince saklanan veri güncellenir)
     var zamanlayici = null;
 
     function bekle(islev, sure) {
@@ -240,6 +272,31 @@
         if (kip() === 'acik') depoYaz(KIP_ANAHTARI, 'ikon');
     }
 
+    // Durumu Yeni (kırmızı) olan ekran açıldı: incelendi sayılır, menu.xml'de ve saklanan menüde Eski yapılır.
+    function yeniIncelendi(url) {
+        var veri = oku();
+        if (veri) {
+            (veri.gruplar || []).forEach(function (grup) {
+                grup.menuler.forEach(function (menu) {
+                    (menu.kolonlar || []).forEach(function (kolon) {
+                        kolon.forEach(function (satir) { if (satir.url === url && satir.durum === 'Yeni') satir.durum = 'Eski'; });
+                    });
+                });
+            });
+            depoYaz(ANAHTAR, JSON.stringify(veri));
+        }
+        var secenek = {
+            method: 'POST',
+            credentials: 'same-origin',
+            keepalive: true,    // sayfa değişse de istek tamamlanır
+            headers: { 'RequestVerificationToken': jeton, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ Url: url })
+        };
+        fetch(KOK + 'api/ortaksayfa/menu-durum-eski', secenek).catch(function () { /* bir sonraki tıklamada yeniden denenir */ });
+    }
+    // ortak.js window.Sgb'yi sonradan yeniden kurduğu için ayrı ad kullanılır (sayfamenu.js çağırır).
+    window.SgbMenu = { yeniIncelendi: yeniIncelendi };
+
     // ---------------------------------------------------------------- sol menü
 
     function satirCiz(kap, satir) {
@@ -254,8 +311,14 @@
                 a.target = '_blank';
                 a.rel = 'noopener';
             }
+            if (satir.durum) a.classList.add('y-durum-' + satir.durum.toLowerCase());
             if (buSayfaMi(satir.url)) a.classList.add('burada');
             a.addEventListener('click', ekranSecildi);
+            if (satir.durum === 'Yeni') a.addEventListener('click', function () {
+                yeniIncelendi(satir.url);
+                a.classList.remove('y-durum-yeni');
+                a.classList.add('y-durum-eski');
+            });
             kap.appendChild(a);
         }
     }
@@ -285,11 +348,13 @@
     // Bütün modüller (menü grupları) alt alta: modülün adı renkli bir başlık, altında birinci seviye menüler.
     // Aynı anda tek modül açıktır: açık sayfanın modülü, yoksa en son açılan, o da yoksa ilki.
     // Başka bir modülün başlığına basınca o açılır, diğeri kapanır.
-    function menuAgaciCiz(kap, gruplar) {
+    function menuAgaciCiz(kap, gruplar, veri) {
         kap.textContent = '';
         acilirKapat();
         var eskiler = yan.querySelectorAll('.y-acilir');
         for (var i = 0; i < eskiler.length; i++) eskiler[i].parentNode.removeChild(eskiler[i]);
+
+        sikKullanilanlarCiz(kap, gruplar, veri);
 
         if (gruplar.length === 1) {
             gruplar[0].menuler.forEach(function (menu) { menuCiz(kap, menu); });
@@ -309,6 +374,7 @@
             baslik.type = 'button';
             baslik.title = grup.ad;
             baslik.setAttribute('aria-expanded', acik ? 'true' : 'false');
+            if (GRUP_SIMGE[grup.id]) baslik.appendChild(svg(CIZIM[GRUP_SIMGE[grup.id]], 'y-grup-simge'));
             baslik.appendChild(el('span', null, grup.ad));
             baslik.appendChild(svg(CIZIM.ok, 'y-grup-ok'));
             var icerik = el('div', 'y-grup-icerik' + renk);
@@ -330,6 +396,88 @@
             kap.appendChild(baslik);
             kap.appendChild(icerik);
         });
+    }
+
+    // Menünün en başında kullanıcının sık kullanılan ekranları (eski açılış sayfası penceresi ve MenuSikKullanilan.aspx yerine).
+    // Ekranlar sayfa başlığındaki +/− düğmesiyle eklenip çıkarılır. Bölüm, modüllerden bağımsız açılıp kapanır.
+    function sikKullanilanlarCiz(kap, gruplar, veri) {
+        if (!veri || !Array.isArray(veri.sikKullanilanlar)) return;
+        var metin = veri.metin || {};
+        var sozluk = idSozlugu(gruplar);
+        var ekranlar = veri.sikKullanilanlar.map(function (id) { return sozluk[id]; }).filter(Boolean);
+        var acik = depoOku(SIK_ANAHTARI) !== '0';
+
+        var baslik = el('button', 'y-grup-baslik y-sik');
+        baslik.type = 'button';
+        baslik.title = metin.sikKullanilanlar || 'Sık Kullanılanlar';
+        baslik.setAttribute('aria-expanded', acik ? 'true' : 'false');
+        baslik.appendChild(svg(CIZIM.yildiz, 'y-sik-yildiz'));
+        baslik.appendChild(el('span', null, baslik.title));
+        baslik.appendChild(svg(CIZIM.ok, 'y-grup-ok'));
+
+        var icerik = el('div', 'y-grup-icerik y-sik-icerik');
+        icerik.hidden = !acik;
+        if (!ekranlar.length) icerik.appendChild(el('div', 'y-sik-bos', metin.sikBos || 'Henüz sık kullanılan ekranınız yok.'));
+        ekranlar.forEach(function (ekran) {
+            var a = el('a', 'y-menu y-renk-' + ekran.renk + (buSayfaMi(ekran.url) ? ' burada' : ''));
+            a.href = ekran.url;
+            a.title = ekran.yer + ' › ' + ekran.ad;
+            if (ekran.yeni) {
+                a.target = '_blank';
+                a.rel = 'noopener';
+            }
+            a.appendChild(ikonOlustur({ ad: ekran.ad }));
+            a.appendChild(el('span', 'y-ad', ekran.ad));
+            a.addEventListener('click', ekranSecildi);
+            if (ekran.durum === 'Yeni') a.addEventListener('click', function () { yeniIncelendi(ekran.url); });
+            icerik.appendChild(a);
+        });
+
+        baslik.addEventListener('click', function () {
+            acilirKapat();
+            var ac = icerik.hidden;
+            icerik.hidden = !ac;
+            baslik.setAttribute('aria-expanded', ac ? 'true' : 'false');
+            depoYaz(SIK_ANAHTARI, ac ? '1' : '0');
+        });
+
+        kap.appendChild(baslik);
+        kap.appendChild(icerik);
+    }
+
+    // Sayfa başlığındaki +/− : açık sayfayı sık kullanılanlara ekler ya da çıkarır. Kayıt sunucuda (kullanıcı değişkeni);
+    // başarılı olunca saklanan menü de güncellenir ve menü yeniden çizilir.
+    function sikDegistir(veri, id, dugme) {
+        var ekle = (veri.sikKullanilanlar || []).indexOf(id) < 0;
+        dugme.disabled = true;
+        gonder('api/ortaksayfa/sik-kullanilan', { Id: id, Ekle: ekle })
+            .then(function (yanit) {
+                if (yanit.status === 401) {
+                    window.location.href = KOK + 'Giris';
+                    return null;
+                }
+                return yanit.ok ? yanit.json() : { basarili: false };
+            })
+            .catch(function () { return { basarili: false }; })
+            .then(function (sonuc) {
+                if (!sonuc) return;
+                if (!sonuc.basarili) {
+                    dugme.disabled = false;
+                    window.alert(sonuc.hata || (veri.metin || {}).sikHata || 'Sık kullanılanlar kaydedilemedi.');
+                    return;
+                }
+                veri.sikKullanilanlar = sonuc.sikKullanilanlar || [];
+                // Eklenen ekran sol menüde görünsün diye bölüm açılır.
+                if (ekle) depoYaz(SIK_ANAHTARI, '1');
+                var guncel = oku();
+                if (guncel) {
+                    guncel.sikKullanilanlar = veri.sikKullanilanlar;
+                    depoYaz(ANAHTAR, JSON.stringify(guncel));
+                }
+                ciz(veri);
+                var yeniDugme = ust.querySelector('.k-sik');
+                if (yeniDugme) yeniDugme.focus();
+            });
     }
 
     function menuCiz(kap, menu) {
@@ -415,7 +563,7 @@
             grup.menuler.forEach(function (menu) {
                 if (menu.url) hepsi.push({ ad: menu.ad, url: menu.url, yer: grup.ad });
                 baglantilar(menu).forEach(function (satir) {
-                    hepsi.push({ ad: satir.ad, url: satir.url, yeni: satir.yeni, yer: grup.ad + ' › ' + menu.ad });
+                    hepsi.push({ ad: satir.ad, url: satir.url, yeni: satir.yeni, durum: satir.durum, yer: grup.ad + ' › ' + menu.ad });
                 });
             });
         });
@@ -447,7 +595,7 @@
                 return;
             }
             bulunan.forEach(function (x) {
-                var a = el('a', 'y-sonuc');
+                var a = el('a', 'y-sonuc' + (x.durum ? ' y-durum-' + x.durum.toLowerCase() : ''));
                 a.href = x.url;
                 if (x.yeni) {
                     a.target = '_blank';
@@ -459,6 +607,7 @@
                 a.appendChild(document.createTextNode(x.ad.slice(konum + aranan.length)));
                 a.appendChild(el('small', null, x.yer));
                 a.addEventListener('click', ekranSecildi);
+                if (x.durum === 'Yeni') a.addEventListener('click', function () { yeniIncelendi(x.url); });
                 sonuclar.appendChild(a);
             });
             sec(0);
@@ -495,8 +644,11 @@
         return fetch(KOK + adres, secenek);
     }
 
-    function temaUygula(veri, tema) {
+    // tema: Theme1..6, ustGorunum: renkli | sade (verilmezse değişmez)
+    function temaUygula(veri, tema, ustGorunum) {
+        if (ustGorunum) veri.temaUst = ustGorunum;
         kokEl.setAttribute('data-tema', tema);
+        if (veri.temaUst === 'sade') kokEl.setAttribute('data-ust', 'sade'); else kokEl.removeAttribute('data-ust');
         veri.tema = tema;
         depoYaz(ANAHTAR, JSON.stringify(veri));
         var dugmeler = ust.querySelectorAll('.k-tema');
@@ -507,7 +659,7 @@
     function temaDegistir(veri, tema) {
         var onceki = veri.tema;
         temaUygula(veri, tema);
-        gonder('api/ortaksayfa/tema', { tema: tema })
+        gonder('api/ortaksayfa/tema', { tema: tema, ust: veri.temaUst || 'renkli' })
             .then(function (yanit) { return yanit.ok ? yanit.json() : { basarili: false }; })
             .catch(function () { return { basarili: false }; })
             .then(function (sonuc) {
@@ -515,6 +667,11 @@
                 if (!sonuc.basarili) temaUygula(veri, onceki);
             });
     }
+
+    // Tema Değiştirme sayfası (js/temadegistir.js) kaydettikten sonra çağırır: menü verisi ve sayfa yeni temaya geçer.
+    window.SgbMenu.temaUygula = function (tema, ustGorunum) {
+        if (sonVeri) temaUygula(sonVeri, tema, ustGorunum);
+    };
 
     function dilDegistir(dil) {
         gonder('api/ortaksayfa/dil', { dil: dil })
@@ -540,7 +697,9 @@
 
     function ciz(veri) {
         var metin = veri.metin || {};
-        kokEl.setAttribute('data-tema', veri.tema || 'Theme1');
+        sonVeri = veri;
+        kokEl.setAttribute('data-tema', veri.tema || 'Klasik');
+        if (veri.temaUst === 'sade') kokEl.setAttribute('data-ust', 'sade'); else kokEl.removeAttribute('data-ust');
 
         var gruplar = veri.gruplar || [];
 
@@ -584,7 +743,7 @@
         var sonuclar = el('div', 'y-sonuclar');
         sonuclar.hidden = true;
         if (veri.menuHatasi) agac.appendChild(el('div', 'y-bos', veri.menuHatasi));
-        else menuAgaciCiz(agac, gruplar);
+        else menuAgaciCiz(agac, gruplar, veri);
 
         govde.appendChild(agac);
         govde.appendChild(sonuclar);
@@ -630,9 +789,33 @@
         var konum = sayfaKonumu(gruplar);
         var sayfa = el('div', 'k-sayfa');
         if (konum && konum.yer) sayfa.appendChild(el('div', 'k-sayfa-yer', konum.yer));
-        sayfa.appendChild(el('div', 'k-sayfa-ad', (konum && konum.ad) || document.title));
+        var adSatir = el('div', 'k-sayfa-satir');
+        adSatir.appendChild(el('div', 'k-sayfa-ad', (konum && konum.ad) || document.title));
+        // Sayfa menüdeyse adının yanında: sık kullanılanlarda değilse +, varsa −.
+        if (konum && konum.id && Array.isArray(veri.sikKullanilanlar)) {
+            var varMi = veri.sikKullanilanlar.indexOf(konum.id) >= 0;
+            var sikDugme = el('button', 'k-sik' + (varMi ? ' k-sik-var' : ''));
+            sikDugme.type = 'button';
+            sikDugme.title = varMi ? (metin.sikCikar || 'Sık kullanılanlardan çıkar') : (metin.sikEkle || 'Sık kullanılanlara ekle');
+            sikDugme.setAttribute('aria-label', sikDugme.title);
+            sikDugme.appendChild(svg(varMi ? CIZIM.cikar : CIZIM.ekle));
+            sikDugme.addEventListener('click', function () { sikDegistir(veri, konum.id, sikDugme); });
+            adSatir.appendChild(sikDugme);
+        }
+        sayfa.appendChild(adSatir);
         ust.appendChild(sayfa);
         ust.appendChild(el('div', 'k-bosluk'));
+
+        // Sayfanın yardımı (eski üst şeritteki "Yardım" bağlantısı, KYM/YardimSayfa.aspx?sayfaKod=Klasor/Sayfa).
+        var yardimDugme = el('button', 'k-yardim');
+        yardimDugme.type = 'button';
+        yardimDugme.title = metin.yardimIpucu || 'Bu sayfanın yardımı';
+        yardimDugme.appendChild(svg(CIZIM.yardim));
+        yardimDugme.appendChild(el('span', 'k-yardim-ad', metin.yardim || 'Yardım'));
+        yardimDugme.addEventListener('click', function () {
+            yardimAc((konum && konum.ad) || document.title);
+        });
+        ust.appendChild(yardimDugme);
 
         var kul = el('div', 'k-kullanici');
         var kulDugme = el('button', 'k-kullanici-dugme');
@@ -658,13 +841,16 @@
             var t = el('button', 'k-tema');
             t.type = 'button';
             t.setAttribute('data-tema', tema);
-            t.title = (metin.tema || 'Tema') + ' ' + (sira + 1);
+            t.title = (veri.temaAdlari && veri.temaAdlari[tema]) || ((metin.tema || 'Tema') + ' ' + (sira + 1));
             t.setAttribute('aria-label', t.title);
             if (tema === veri.tema) t.classList.add('secili');
             t.addEventListener('click', function () { temaDegistir(veri, tema); });
             temalar.appendChild(t);
         });
         temaBolum.appendChild(temalar);
+        var temaAyar = el('a', 'k-tema-ayar', metin.temaAyarlari || 'Tema ayarları...');
+        temaAyar.href = KOK + 'KYM/TemaDegistir';
+        temaBolum.appendChild(temaAyar);
         kulPanel.appendChild(temaBolum);
 
         if ((veri.diller || []).length > 1) {
@@ -687,9 +873,11 @@
             kulPanel.appendChild(dilBolum);
         }
 
-        var sifre = el('a', 'k-panel-satir', metin.sifreDegistir || 'Şifre Değiştir');
-        sifre.href = KOK + 'KYM/ParolaDegistir';
-        kulPanel.appendChild(sifre);
+        if (veri.parolaDegistir !== false) {
+            var sifre = el('a', 'k-panel-satir', metin.sifreDegistir || 'Parola Değiştir');
+            sifre.href = KOK + 'KYM/ParolaDegistir';
+            kulPanel.appendChild(sifre);
+        }
 
         var cikisDugme = el('button', 'k-panel-satir', metin.cikis || 'Çıkış');
         cikisDugme.type = 'button';
@@ -706,6 +894,19 @@
             if (veri.surum) alt.appendChild(el('span', null, (metin.surum || 'Sürüm') + ' ' + veri.surum));
             if (veri.kurumAdi) alt.appendChild(el('span', null, veri.kurumAdi));
         }
+    }
+
+    // Yardım anahtarı eski sistemdeki gibi adresin son iki parçasıdır, .aspx'siz: "Klasor/Sayfa".
+    function sayfaKodu() {
+        var parcalar = window.location.pathname.split('/').filter(function (p) { return p !== ''; });
+        return decodeURIComponent(parcalar.slice(-2).join('/')).replace(/\.aspx$/i, '');
+    }
+
+    function yardimAc(sayfaAd) {
+        var adres = KOK + 'KYM/YardimSayfa?sayfaKod=' + encodeURIComponent(sayfaKodu());
+        var baslik = 'Yardım' + (sayfaAd ? ' - ' + sayfaAd : '');
+        if (window.Sgb && Sgb.pencere) Sgb.pencere(adres, baslik);
+        else window.open(adres + '&menuYok=1', '_blank', 'noopener');
     }
 
     // Dışarı tıklamak açık panelleri kapatır ve menüyü daraltır.
@@ -743,7 +944,11 @@
     if (saklanan) ciz(saklanan);
 
     // Açılış sayfasında her zaman, diğer sayfalarda yalnızca saklanan veri yoksa sunucudan okunur.
-    if (yenile || !saklanan) {
+    // Sık kullanılanlardan önce saklanmış (eski biçimdeki) veri de yenilenir.
+    // Modül durumu ya da menu.xml değiştiyse (sayfadaki menü sürümü saklanandan farklı) menü yeniden okunur.
+    var surum = meta('menu-surum');
+    var eskimis = !!(saklanan && surum && saklanan.menuSurum !== surum);
+    if (yenile || eskimis || !saklanan || !Array.isArray(saklanan.sikKullanilanlar)) {
         sunucudanAl()
             .then(function (veri) { if (veri) ciz(veri); })
             .catch(function () {

@@ -1,0 +1,27 @@
+/* İmza Tanımları (ButceMuhasebe/ImzaTanim): tanim.css yerleşimi; sağ bölmedeki imza yerleri tablosu kalan yüksekliği doldurur. */
+
+.imza-tanim .it-detay .tanim-grid {
+    height: 300px;
+}
+
+@media (min-width: 992px) {
+    .tanim.imza-tanim {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    }
+
+    .imza-tanim .it-detay .kutu {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .imza-tanim .it-detay .tanim-grid {
+        flex: 1 1 auto;
+        min-height: 160px;
+        height: auto;
+    }
+}
+
+.imza-tanim .it-detay .kutu > :not(.tanim-grid) {
+    flex: none;
+}

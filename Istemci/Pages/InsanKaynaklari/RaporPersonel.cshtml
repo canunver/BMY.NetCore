@@ -1,0 +1,191 @@
+@page
+@model RaporPersonelModel
+@{
+    ViewData["Title"] = "Personel Raporları";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="rp" id="rpAna">
+    <!-- Rapor ağacı (eski treListe) -->
+    <section class="kutu rp-bolum rp-agac-bolum">
+        <h2 class="rp-baslik">Raporlar</h2>
+        <ul id="agcRaporlar" class="rp-agac" aria-label="Raporlar"></ul>
+    </section>
+
+    <!-- Kriterler (eski frmPanel) -->
+    <section class="kutu rp-bolum rp-kriter-bolum">
+        <h2 class="rp-baslik">
+            <span>Rapor Kriter Alanları - <span id="lblRaporAd">Lütfen Rapor Seçiniz</span></span>
+            <span class="rp-dugmeler" id="rpDugmeler" hidden>
+                <button type="button" id="btnGoster" class="btn btn-primary btn-sm" title="Raporu PDF olarak yeni sekmede gösterir">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Göster
+                </button>
+                <button type="button" id="btnIndir" class="btn btn-default btn-sm" title="Excel / Word olarak indirir">
+                    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> İndir
+                </button>
+                <button type="button" id="btnIndirPdf" class="btn btn-default btn-sm" title="PDF olarak indirir">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> İndir (PDF)
+                </button>
+            </span>
+        </h2>
+        <p id="lblBos" class="rp-ipucu">Soldaki ağaçtan bir rapor seçiniz.</p>
+
+        <form id="frmKriter" class="rp-form" novalidate autocomplete="off" hidden>
+            <div class="rp-alan" data-alan="birim">
+                <label class="rp-etiket" for="txtBirimAd">Birim</label>
+                <div class="rp-birim">
+                    <input type="text" id="txtBirimAd" class="form-control input-sm" readonly placeholder="Tümü" />
+                    <button type="button" id="btnBirimSec" class="btn btn-default btn-sm" title="Birim seç" aria-label="Birim seç">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" id="btnBirimSil" class="btn btn-default btn-sm" title="Birimi kaldır" aria-label="Birimi kaldır">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                    <label class="rp-yan"><input type="checkbox" id="chkAltBirimli" checked /> Alt Birimli</label>
+                </div>
+            </div>
+            <div class="rp-alan" data-alan="kadroDerece">
+                <label class="rp-etiket" for="ddlKadroDerece">Kadro Derece</label>
+                <select id="ddlKadroDerece" class="form-control input-sm rp-kisa"></select>
+            </div>
+            <div class="rp-alan" data-alan="islemSira">
+                <label class="rp-etiket" for="txtIslemSira">İşlem Sıra No</label>
+                <input type="text" id="txtIslemSira" class="form-control input-sm rp-kisa" />
+            </div>
+            <div class="rp-alan" data-alan="personelTur">
+                <span class="rp-etiket">Grup</span>
+                <div class="rp-coklu" id="cokGrup" data-bos="Tümü"></div>
+            </div>
+            <div class="rp-alan" data-alan="personelTur">
+                <span class="rp-etiket">Personel Türü</span>
+                <div class="rp-coklu" id="cokTur" data-bos="Tümü"></div>
+            </div>
+            <div class="rp-alan" data-alan="yukumlu">
+                <span class="rp-etiket">Yükümlülük</span>
+                <div class="rp-secenek">
+                    <label><input type="radio" name="yukumlu" value="0" checked /> Hepsi</label>
+                    <label><input type="radio" name="yukumlu" value="1" /> Sadece Bakmakla Yükümlü Oldukları</label>
+                </div>
+            </div>
+            <div class="rp-alan" data-alan="sonTarih">
+                <label class="rp-etiket" for="txtSonTarih" id="lblSonTarih">Son Tarih</label>
+                <input type="date" id="txtSonTarih" class="form-control input-sm rp-kisa" />
+            </div>
+            <div class="rp-alan" data-alan="dinamik">
+                <span class="rp-etiket">Dinamik Seçim Listesi</span>
+                <div>
+                    <div id="grdDinamik" class="rp-dinamik" aria-label="Raporda görülecek alanlar"></div>
+                    <p class="rp-not">Raporda görmek istediğiniz alanları işaretleyiniz; sırayı satırları sürükleyerek değiştirebilirsiniz.</p>
+                </div>
+            </div>
+            <div class="rp-alan" data-alan="aktiflik">
+                <label class="rp-etiket" for="ddlAktiflik">Personel Aktiflik</label>
+                <select id="ddlAktiflik" class="form-control input-sm rp-kisa">
+                    <option value="-1">Tümü</option>
+                    <option value="1" selected>Aktif</option>
+                    <option value="0">Pasif</option>
+                </select>
+            </div>
+            <div class="rp-alan" data-alan="site">
+                <label class="rp-etiket" for="ddlSite">Site</label>
+                <select id="ddlSite" class="form-control input-sm rp-kisa"></select>
+            </div>
+            <div class="rp-alan" data-alan="daire">
+                <label class="rp-etiket" for="ddlDaire">Daire</label>
+                <select id="ddlDaire" class="form-control input-sm rp-kisa">
+                    <option value="0" selected>Tümü</option>
+                    <option value="1">Boş</option>
+                    <option value="2">Dolu</option>
+                </select>
+            </div>
+            <div class="rp-alan" data-alan="yil">
+                <label class="rp-etiket" for="txtYil">Yıl</label>
+                <input type="number" id="txtYil" class="form-control input-sm sgb-yil rp-kisa" min="1990" max="2100" />
+            </div>
+            <div class="rp-alan" data-alan="ay">
+                <label class="rp-etiket" for="ddlAy">Ay</label>
+                <select id="ddlAy" class="form-control input-sm rp-kisa"></select>
+            </div>
+            <div class="rp-alan" data-alan="izinTur">
+                <span class="rp-etiket">İzin Tür</span>
+                <div class="rp-coklu" id="cokIzinTur" data-bos="Tümü"></div>
+            </div>
+            <div class="rp-alan" data-alan="yilArasi">
+                <span class="rp-etiket" id="lblYilArasi">Süre</span>
+                <div class="rp-yan-yana">
+                    <input type="number" id="txtYil1" class="form-control input-sm rp-sayi" aria-label="Başlangıç" />
+                    <input type="number" id="txtYil2" class="form-control input-sm rp-sayi" aria-label="Bitiş" />
+                </div>
+            </div>
+            <div class="rp-alan" data-alan="tarihSorgu">
+                <label class="rp-etiket" for="txtTarihSorgu">Tarih</label>
+                <div class="rp-yan-yana">
+                    <input type="date" id="txtTarihSorgu" class="form-control input-sm rp-kisa" />
+                    <select id="ddlTarihSorgu" class="form-control input-sm rp-kisa" aria-label="Tarih sorgusu">
+                        <option value="0" selected>-</option>
+                        <option value="10">Aktif</option>
+                        <option value="20">Sonra Başlayanlar</option>
+                        <option value="21">Önce Başlayanlar</option>
+                        <option value="30">Sonra Ayrılanlar</option>
+                        <option value="31">Önce Ayrılanlar</option>
+                    </select>
+                </div>
+            </div>
+            <div class="rp-alan" data-alan="kisiArama">
+                <label class="rp-etiket" for="txtAra">Arama</label>
+                <div class="rp-yan-yana">
+                    <input type="text" id="txtAra" class="form-control input-sm" placeholder="Ad, soyad, T.C. kimlik no, sicil no" />
+                    <span class="rp-grid-dugme" data-alan="kisiAramaGrid">
+                        <button type="button" id="btnListeResimsiz" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele (Resimsiz)
+                        </button>
+                        <button type="button" id="btnListeResimli" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Listele (Resimli)
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="rp-alan rp-alan-genis" data-alan="kisiAramaGrid">
+                <span class="rp-etiket">Personel</span>
+                <div id="grdPersonel" class="rp-personel" aria-label="Rapora girecek personel"></div>
+            </div>
+            <div class="rp-alan" data-alan="siralama">
+                <label class="rp-etiket" for="ddlSiralama">Sıralama</label>
+                <select id="ddlSiralama" class="form-control input-sm rp-kisa"></select>
+            </div>
+        </form>
+    </section>
+</div>
+
+<!-- Birim seçimi (eski ExtOrgSecim) -->
+<dialog id="dlgBirim" class="tanim-pencere rp-pencere" aria-labelledby="dlgBirimBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgBirimBaslik">Birim Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="rp-birim-ara">
+            <input type="text" id="txtBirimAra" class="form-control input-sm" placeholder="Birim adında ara (en az 3 harf)" />
+            <button type="button" id="btnBirimAra" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Ara
+            </button>
+        </div>
+        <ul id="agcBirim" class="rp-birim-agac" aria-label="Birimler"></ul>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/raporpersonel.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/raporpersonel.js" asp-append-version="true"></script>
+}

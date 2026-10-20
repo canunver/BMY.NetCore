@@ -1,0 +1,164 @@
+@page
+@model TanimOdaModel
+@{
+    ViewData["Title"] = "Yerleşke Oda Tanımı";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim yerleske">
+    <!-- Sol: yerleşke / bina / oda ağacı -->
+    <section class="tanim-sol">
+        <div class="kutu">
+            <h2 class="kutu-baslik">Bina ve Oda Hiyerarşisi</h2>
+            <!-- Yeni Yer seçili yerin altına kayıt açar (eski sağ tık menüsü), Taşı seçili yeri başka bir yerin altına alır
+                 (eski sürükle-bırak). Yazdır bütün yerlerin listesi (Excel). -->
+            <div class="btn-toolbar tanim-arac" role="toolbar">
+                <button type="button" id="btnYeni" class="btn btn-default btn-sm" title="Seçili yerin altına yeni yer / oda ekler" disabled>
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Yer
+                </button>
+                <button type="button" id="btnTasi" class="btn btn-default btn-sm" title="Seçili yeri başka bir yerin altına taşır" disabled>
+                    <span class="glyphicon glyphicon-move" aria-hidden="true"></span> Taşı
+                </button>
+                <span class="btn-group btn-group-sm pull-right" role="group">
+                    <button type="button" id="btnPasifler" class="btn btn-default" aria-pressed="false" title="Pasif yerleri de listeler" hidden>
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Pasifleri de Listele
+                    </button>
+                    <button type="button" id="btnYazdir" class="btn btn-default" title="Yerleşke ve oda listesi (Excel)">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                    </button>
+                </span>
+            </div>
+            <ul id="agacYer" class="kayan" aria-label="Yerleşke ve oda şeması"></ul>
+        </div>
+    </section>
+
+    <!-- Sağ: seçili yer -->
+    <section class="tanim-sag">
+        <div class="kutu">
+            <div class="btn-toolbar tanim-arac" role="toolbar">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm" disabled>
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+                <button type="button" id="btnDosya" class="btn btn-default btn-sm" title="Excel'deki kod (1. sütun) ve adları (2. sütun) formdaki yerin altına ekler" disabled>
+                    <span class="glyphicon glyphicon-open" aria-hidden="true"></span> Dosya Yükle
+                </button>
+                <input type="file" id="dosyaSec" accept=".xls,.xlsx" hidden />
+            </div>
+            <p id="ipucu" class="text-muted">Soldan bir yer seçiniz; altına kayıt eklemek için yeri seçip Yeni Yer'e basınız.</p>
+
+            <form id="frmYer" novalidate hidden>
+                <div class="bolum">
+                    <h3 class="bolum-baslik">Bulunduğu Yer</h3>
+                    <div class="tanim-form">
+                        <div class="form-group">
+                            <label class="control-label" for="txtUstAd">Bulunduğu Yer</label>
+                            <div><input type="text" id="txtUstAd" class="form-control" readonly /></div>
+                        </div>
+                        <div class="form-group ust-hizali">
+                            <label class="control-label" for="txtTarif">Tarifi</label>
+                            <div><textarea id="txtTarif" class="form-control" rows="3" readonly></textarea></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bolum bolum-2">
+                    <h3 class="bolum-baslik">Oda / Yer Bilgileri</h3>
+                    <div class="tanim-form">
+                        <div class="form-group">
+                            <label class="control-label" for="txtGorKod">Oda/Yer Kodu</label>
+                            <div><input type="text" id="txtGorKod" class="form-control dar" maxlength="3" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtAd">Oda/Yer Adı</label>
+                            <div><input type="text" id="txtAd" class="form-control" /></div>
+                        </div>
+                        <div class="form-group" data-mb hidden>
+                            <label class="control-label" for="txtMaliyetMerkezi">Maliyet Merkezi</label>
+                            <div><input type="text" id="txtMaliyetMerkezi" class="form-control dar" maxlength="3" inputmode="numeric" /></div>
+                        </div>
+                        <div class="form-group" data-mb hidden>
+                            <label class="control-label" for="txtSiraNo">Sıra No</label>
+                            <div><input type="text" id="txtSiraNo" class="form-control dar" maxlength="10" inputmode="numeric" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="cmbYerTur">Yer Türü</label>
+                            <div>
+                                <select id="cmbYerTur" class="form-control">
+                                    <option value="0"></option>
+                                    <option value="1">Yerleşke</option>
+                                    <option value="2">Bina</option>
+                                    <option value="3">Blok</option>
+                                    <option value="4">Kat</option>
+                                    <option value="13">Genel Müdürlük</option>
+                                    <option value="7">Müdürlük</option>
+                                    <option value="5">Oda Grubu</option>
+                                    <option value="6">Oda</option>
+                                    <option value="8">Servis</option>
+                                    <option value="9">Teras</option>
+                                    <option value="10">Hol</option>
+                                    <option value="11">Bahçe</option>
+                                    <option value="12">Garaj</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="cmbDurum">Durum</label>
+                            <div>
+                                <select id="cmbDurum" class="form-control">
+                                    <option value="1">Aktif</option>
+                                    <option value="3">Pasif</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" data-mb hidden>
+                            <label class="control-label" for="txtBirimKodu">Birim Kodu</label>
+                            <div><input type="text" id="txtBirimKodu" class="form-control" /></div>
+                        </div>
+                        <div class="form-group" id="grpIl" hidden>
+                            <label class="control-label" for="cmbIl">İl</label>
+                            <div><select id="cmbIl" class="form-control"></select></div>
+                        </div>
+                        <div class="form-group" id="grpBirim" hidden>
+                            <span class="control-label">Birim</span>
+                            <div class="secim-satir">
+                                <input type="text" id="txtBirimAd" class="form-control" readonly aria-label="Birim" />
+                                <button type="button" id="btnBirimSec" class="btn btn-default btn-sm" title="Birim seç" aria-label="Birim seç">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" id="btnBirimTemizle" class="btn btn-default btn-sm" title="Birimi temizle" aria-label="Birimi temizle">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+<!-- Ağaç seçimi: odanın birimi ya da taşınacak yerin yeni üst yeri -->
+<dialog id="dlgSec" class="tanim-pencere" aria-labelledby="dlgSecBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSecBaslik"></h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <ul id="agacSec" class="secim-agac" aria-labelledby="dlgSecBaslik"></ul>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnSecTamam" class="btn btn-primary btn-sm" disabled>Seç</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/yerleskeoda.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/yerleskeoda.js" asp-append-version="true"></script>
+}

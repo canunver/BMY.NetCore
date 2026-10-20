@@ -3,9 +3,9 @@
    (.ekform-bolum) de aynı biçimde, kendi renkleriyle ayrılır. */
 
 .ek-form .kutu.bolum {
-    --bolum-baslik: #e3edfa;
-    --bolum-govde: #f5f8fd;
-    --bolum-vurgu: #2f6fc4;
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
     padding-top: 0;
     background: var(--bolum-govde);
 }
@@ -13,7 +13,7 @@
 .ek-form .kutu.bolum.bolum-form {
     --bolum-baslik: #e2f2e6;
     --bolum-govde: #fbfdfb;
-    --bolum-vurgu: #2e8b4e;
+    --bolum-vurgu: var(--b2-vurgu);
 }
 
 .ek-form .bolum-baslik {
@@ -86,8 +86,8 @@
 
 .ekform-oge.secili {
     color: #fff;
-    background: #2f6fc4;
-    border-color: #2f6fc4;
+    background: var(--b1-vurgu);
+    border-color: var(--b1-vurgu);
 }
 
 .ekform-oge .form-no {
@@ -97,13 +97,13 @@
     font-size: 11px;
     font-weight: 700;
     text-align: center;
-    color: #2f6fc4;
-    background: #e3edfa;
+    color: var(--b1-vurgu);
+    background: var(--b1-baslik);
     border-radius: 4px;
 }
 
 .ekform-oge.secili .form-no {
-    color: #2f6fc4;
+    color: var(--b1-vurgu);
     background: #fff;
 }
 
@@ -178,8 +178,8 @@
     overflow: hidden;
 }
 
-.ekform-bolum.mavi { --alt-baslik: #e3edfa; --alt-vurgu: #2f6fc4; }
-.ekform-bolum.yesil { --alt-baslik: #e2f2e6; --alt-vurgu: #2e8b4e; }
+.ekform-bolum.mavi { --alt-baslik: var(--b1-baslik); --alt-vurgu: var(--b1-vurgu); }
+.ekform-bolum.yesil { --alt-baslik: #e2f2e6; --alt-vurgu: var(--b2-vurgu); }
 .ekform-bolum.mor { --alt-baslik: #ece6f6; --alt-vurgu: #6b4fa3; }
 
 .ekform-bolum > h3 {

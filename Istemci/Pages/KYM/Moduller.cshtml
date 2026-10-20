@@ -1,0 +1,45 @@
+@page
+@model ModullerModel
+@{
+    // Modüller (eski KYM/Moduller.aspx): modül durumları (Kullanım Dışı / Kullanımda / Test Amaçlı). Menüde modüle bağlı seçenekler
+    // yalnızca Kullanımda ya da Test Amaçlı modüllerde görünür.
+    ViewData["Title"] = "Modüller";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans moduller">
+    <section class="kutu bolum">
+        <div class="btn-toolbar tanim-arac md-arac" role="toolbar">
+            <button type="button" id="btnKaydet" class="btn btn-primary btn-sm" disabled>
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+            </button>
+            <span id="lblDegisen" class="md-degisen" role="status"></span>
+            <button type="button" id="btnYardim" class="btn btn-default btn-sm md-yardim" title="Açıklama"
+                    aria-expanded="false" aria-controls="pnlIpucu">?</button>
+        </div>
+        <div id="pnlIpucu" hidden>
+            <div class="alert alert-info md-aciklama">
+                Durum hücresine tıklayıp seçin, sonra Kaydet'e basın. Menüde bir modüle bağlı seçenekler yalnızca modül
+                <strong>Kullanımda</strong> ya da <strong>Test Amaçlı</strong> ise görünür. Kaydettikten sonra bütün kullanıcıların
+                menüsü açtıkları bir sonraki sayfada yenilenir.
+            </div>
+        </div>
+        <div id="hata" class="alert alert-danger" role="alert" hidden></div>
+        <div id="grdModul" class="md-grid" aria-label="Modüller"></div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/moduller.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/moduller.js" asp-append-version="true"></script>
+}

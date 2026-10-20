@@ -97,7 +97,7 @@
 .mp-islem-uret .mp-ipucu { font-size: 12px; color: var(--soluk); }
 .mp-islem-uret .mp-ipucu[hidden] { display: none; }
 .mp-islem-uret .mp-ipucu p { margin: 0 0 6px; }
-.mp-islem-uret .mp-yardim.active { background: #e3edfa; }
+.mp-islem-uret .mp-yardim.active { background: var(--b1-baslik); }
 .mp-islem-uret .pencere-alt { flex-wrap: wrap; }
 
 @media (max-width: 1199px) {

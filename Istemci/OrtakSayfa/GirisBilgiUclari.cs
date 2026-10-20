@@ -74,6 +74,9 @@ namespace Istemci.OrtakSayfa
             string sorgu = soru >= 0 ? adres.Substring(soru) : "";
             if (yol.EndsWith(".ascx", StringComparison.OrdinalIgnoreCase))
                 yol = yol.Substring(0, yol.Length - 5);
+            // Sık Kullanılanlar penceresi (BE003) Core'da OrtakSayfa altında: sayfalar uygulama kökünün bir alt klasöründe olmalı (KOK = '../').
+            if (string.Equals(yol, "../Dashboard/Genel/SikKullanilan", StringComparison.OrdinalIgnoreCase))
+                yol = "../OrtakSayfa/SikKullanilan";
             return yol + sorgu;
         }
 

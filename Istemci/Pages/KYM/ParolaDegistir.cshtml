@@ -1,0 +1,69 @@
+@page
+@model ParolaDegistirModel
+@{
+    // Parola Değiştir (eski KYM/ParolaDegistir.aspx). Sağ üstteki kullanıcı menüsünden açılır.
+    ViewData["Title"] = Metin.Kullanici("FRMPAD007");
+}
+@if (!Model.Kullanilabilir)
+{
+    <div class="alert alert-warning" role="alert">Parolanız bu ekrandan değiştirilemez.</div>
+    return;
+}
+
+<div class="parola-degistir">
+    <div class="kutu">
+        <h2 class="kutu-baslik">@Metin.Kullanici("FRMPAD005")</h2>
+
+        @if (Model.SuresiDoldu)
+        {
+            <div class="alert alert-warning pd-uyari" role="alert">@Html.Raw(Metin.Kullanici("FRMPAD008"))</div>
+        }
+
+        <form id="frmParola" class="pd-form" novalidate autocomplete="off">
+            <div class="form-group">
+                <span class="control-label">@Metin.Kullanici("FRMPAD001")</span>
+                <div class="pd-kod">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <span id="lblKod">@Model.KullaniciKodu</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtParola">@Metin.Kullanici("FRMPAD002")</label>
+                <div><input type="password" id="txtParola" class="form-control" autocomplete="current-password" autofocus /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtYeniParola">@Metin.Kullanici("FRMPAD003")</label>
+                <div class="pd-yeni">
+                    <input type="password" id="txtYeniParola" class="form-control" autocomplete="new-password" aria-describedby="pdGuc" />
+                    <div id="pdGuc" class="progress pd-guc" title="Parola gücü">
+                        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="width: 0%">0%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtYeniParolaTekrar">@Metin.Kullanici("FRMPAD004")</label>
+                <div><input type="password" id="txtYeniParolaTekrar" class="form-control" autocomplete="new-password" /></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label"></span>
+                <div>
+                    <button type="submit" id="btnParola" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> @Metin.Kullanici("FRMPAD005")
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div class="pd-yardim">
+            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+            <span>@Html.Raw(Metin.Kullanici("FRMPAD006"))</span>
+        </div>
+    </div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/paroladegistir.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/paroladegistir.js" asp-append-version="true"></script>
+}

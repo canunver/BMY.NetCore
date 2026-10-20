@@ -1,0 +1,307 @@
+@page
+@model Istemci.Pages.InsanKaynaklari.PersonelAtamaModel
+@{
+    ViewData["Title"] = "Personel Atama İşlemleri";
+    ViewData["GovdeSinif"] = "pb-alt";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="pb pa" data-personel-kod="@Model.PersonelKod" data-kod="@Model.Kod">
+    <div class="pb-arac">
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm" disabled>
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+        <button type="button" id="btnYeniKayit" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Kayıt
+        </button>
+        <span class="bosluk"></span>
+        <span class="pa-aciklama">Önceki kayıttan farklı olan yeni değerler <span class="pa-farkli-ornek">kırmızı</span> yazılır.</span>
+    </div>
+
+    <div class="pa-baslik-satir" aria-hidden="true">
+        <span></span>
+        <span class="pa-sutun-baslik pa-eski-baslik" id="lblEskiBaslik">Eski Kadro</span>
+        <span class="pa-sutun-baslik pa-yeni-baslik" id="lblYeniBaslik">Yeni Kadro</span>
+    </div>
+
+    <!-- Genel bilgiler -->
+    <section class="pb-bolum renk-mavi">
+        <h3>Hizmet Bilgileri</h3>
+        <div class="pb-govde pa-tablo">
+            <div class="pa-satir">
+                <label class="pa-etiket" for="cmbPersonelTip">Personel Türü</label>
+                <div class="pa-eski"><input type="text" id="eskiPersonelTip" class="form-control" readonly aria-label="Eski personel türü" /></div>
+                <div class="pa-yeni"><select id="cmbPersonelTip" class="form-control pa-alan" data-onay="1"></select></div>
+            </div>
+            <div class="pa-satir">
+                <label class="pa-etiket" for="txtHizmetGrubu">Hizmet Grubu</label>
+                <div class="pa-eski"><input type="text" id="eskiHizmetGrubu" class="form-control" readonly aria-label="Eski hizmet grubu" /></div>
+                <div class="pa-yeni"><input type="text" id="txtHizmetGrubu" class="form-control" readonly /></div>
+            </div>
+            <div class="pa-satir">
+                <label class="pa-etiket" for="ddlBaslamaGerekcesi">Başlangıç Sebebi</label>
+                <div class="pa-eski"><input type="text" id="eskiBaslamaGerekcesi" class="form-control" readonly aria-label="Eski başlangıç sebebi" /></div>
+                <div class="pa-yeni"><select id="ddlBaslamaGerekcesi" class="form-control pa-alan" data-onay="1"></select></div>
+            </div>
+            <div class="pa-satir">
+                <label class="pa-etiket" for="txtAtamaTarihi">Tarih / Açıklama</label>
+                <div class="pa-eski yan-yana">
+                    <input type="date" id="eskiAtamaTarihi" class="form-control pa-tarih" readonly aria-label="Eski atama tarihi" />
+                    <input type="text" id="eskiAtamaNedeni" class="form-control pa-esnek" readonly aria-label="Eski atama nedeni" />
+                </div>
+                <div class="pa-yeni yan-yana">
+                    <input type="date" id="txtAtamaTarihi" class="form-control pa-tarih pa-alan" data-onay="1" />
+                    <input type="text" id="txtAtamaNedeni" class="form-control pa-esnek pa-alan" data-onay="1" placeholder="Nedeni" aria-label="Atama nedeni" />
+                </div>
+            </div>
+            <div class="pa-satir" id="satirBirim">
+                <label class="pa-etiket" for="txtBirim">Kadro Birimi</label>
+                <div class="pa-eski"><input type="text" id="eskiBirim" class="form-control" readonly aria-label="Eski kadro birimi" /></div>
+                <div class="pa-yeni">
+                    <div class="pa-birim" data-birim="birim">
+                        <input type="text" id="txtBirim" class="form-control" readonly />
+                        <button type="button" class="btn btn-default btn-sm pa-birim-sec" data-onay="1" title="Birim seç" aria-label="Kadro birimini seç">&hellip;</button>
+                        <button type="button" class="btn btn-default btn-sm pa-birim-sil" data-onay="1" title="Temizle" aria-label="Kadro birimini temizle">&times;</button>
+                    </div>
+                </div>
+            </div>
+            <div class="pa-satir" id="satirGorevBirim">
+                <label class="pa-etiket" for="txtGorevBirim">Görev Birimi</label>
+                <div class="pa-eski"><input type="text" id="eskiGorevBirim" class="form-control" readonly aria-label="Eski görev birimi" /></div>
+                <div class="pa-yeni">
+                    <div class="pa-birim" data-birim="gorevBirim">
+                        <input type="text" id="txtGorevBirim" class="form-control" readonly />
+                        <button type="button" class="btn btn-default btn-sm pa-birim-sec" data-onay="1" title="Birim seç" aria-label="Görev birimini seç">&hellip;</button>
+                        <button type="button" class="btn btn-default btn-sm pa-birim-sil" data-onay="1" title="Temizle" aria-label="Görev birimini temizle">&times;</button>
+                    </div>
+                </div>
+            </div>
+            <div class="pa-satir" id="satirGorevYeri" hidden>
+                <label class="pa-etiket" for="txtGorevYeri">Görev Yeri</label>
+                <div class="pa-eski"><input type="text" id="eskiGorevYeri" class="form-control" readonly aria-label="Eski görev yeri" /></div>
+                <div class="pa-yeni"><input type="text" id="txtGorevYeri" class="form-control pa-alan" data-onay="1" /></div>
+            </div>
+            <div class="pa-satir">
+                <label class="pa-etiket" for="ddlUnvan">Unvanı</label>
+                <div class="pa-eski"><input type="text" id="eskiUnvan" class="form-control" readonly aria-label="Eski unvan" /></div>
+                <div class="pa-yeni"><select id="ddlUnvan" class="form-control pa-alan" data-onay="1"></select></div>
+            </div>
+            <div class="pa-satir">
+                <label class="pa-etiket" for="ddlVekaletUnvani">Görünen (Vekil) Unvanı</label>
+                <div class="pa-eski"><input type="text" id="eskiVekaletUnvani" class="form-control" readonly aria-label="Eski vekil unvanı" /></div>
+                <div class="pa-yeni"><select id="ddlVekaletUnvani" class="form-control pa-alan" data-onay="1"></select></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Evrak -->
+    <section class="pb-bolum renk-yesil">
+        <h3>Evrak</h3>
+        <div class="pb-govde pa-tablo">
+            <div class="pa-satir">
+                <label class="pa-etiket" for="txtEvrakNo">Evrak Numarası</label>
+                <div class="pa-eski"><input type="text" id="eskiEvrakNo" class="form-control" readonly aria-label="Eski evrak numarası" /></div>
+                <div class="pa-yeni"><input type="text" id="txtEvrakNo" class="form-control pa-alan" data-onay="1" /></div>
+            </div>
+            <div class="pa-satir">
+                <label class="pa-etiket" for="txtYasalDayanak">Dayanağı</label>
+                <div class="pa-eski"><input type="text" id="eskiYasalDayanak" class="form-control" readonly aria-label="Eski dayanak" /></div>
+                <div class="pa-yeni"><input type="text" id="txtYasalDayanak" class="form-control pa-alan" data-onay="1" /></div>
+            </div>
+            <div class="pa-satir">
+                <label class="pa-etiket" for="txtOnayTarih">Onay Tarihi</label>
+                <div class="pa-eski"><input type="date" id="eskiOnayTarih" class="form-control pa-tarih" readonly aria-label="Eski onay tarihi" /></div>
+                <div class="pa-yeni"><input type="date" id="txtOnayTarih" class="form-control pa-tarih pa-alan" data-onay="1" /></div>
+            </div>
+            <div class="pa-satir">
+                <label class="pa-etiket" for="txtMeslekKodu">Meslek Kodu</label>
+                <div class="pa-eski"><input type="text" id="eskiMeslekKodu" class="form-control" readonly aria-label="Eski meslek kodu" /></div>
+                <div class="pa-yeni"><input type="text" id="txtMeslekKodu" class="form-control pa-alan" data-onay="1" /></div>
+            </div>
+            <div class="pa-satir">
+                <label class="pa-etiket" for="txtAciklama">Açıklama</label>
+                <div class="pa-eski"><input type="text" id="eskiAciklama" class="form-control" readonly aria-label="Eski açıklama" /></div>
+                <div class="pa-yeni"><input type="text" id="txtAciklama" class="form-control pa-alan" data-onay="1" /></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Derece / kademe -->
+    <section class="pb-bolum renk-mor">
+        <h3>Kadro, Derece ve Kademe</h3>
+        <div class="pb-govde pa-derece-kutu">
+            <table class="pa-derece">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col">Derece</th>
+                        <th scope="col">Kademe</th>
+                        <th scope="col">Tarih</th>
+                        <th scope="col">Gösterge</th>
+                        <th scope="col">Ek Gösterge</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="pa-eski-satir">
+                        <th scope="rowgroup" rowspan="2">Kadro</th>
+                        <td class="pa-kim">Eski</td>
+                        <td><input type="number" id="eskiKadroDerece" class="form-control" readonly aria-label="Eski kadro derecesi" /></td>
+                        <td></td>
+                        <td><input type="date" id="eskiKadroTarih" class="form-control" readonly aria-label="Eski kadro tarihi" /></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="pa-kim">Yeni</td>
+                        <td><input type="number" id="txtKadroDerece" class="form-control pa-alan" data-onay="1" aria-label="Kadro derecesi" /></td>
+                        <td></td>
+                        <td><input type="date" id="txtKadroTarih" class="form-control pa-alan" data-onay="1" aria-label="Kadro tarihi" /></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="pa-eski-satir">
+                        <th scope="rowgroup" rowspan="2">Kazanılmış Hak</th>
+                        <td class="pa-kim">Eski</td>
+                        <td><input type="number" id="eskiKazanilmisHakDerece" class="form-control" readonly aria-label="Eski kazanılmış hak derecesi" /></td>
+                        <td><input type="number" id="eskiKazanilmisHakKademe" class="form-control" readonly aria-label="Eski kazanılmış hak kademesi" /></td>
+                        <td><input type="date" id="eskiKazanilmisHakTarih" class="form-control" readonly aria-label="Eski kazanılmış hak tarihi" /></td>
+                        <td><input type="number" id="eskiKazanilmisGosterge" class="form-control" readonly aria-label="Eski kazanılmış hak göstergesi" /></td>
+                        <td><input type="number" id="eskiKazanilmisEkGosterge" class="form-control" readonly aria-label="Eski kazanılmış hak ek göstergesi" /></td>
+                    </tr>
+                    <tr>
+                        <td class="pa-kim">Yeni</td>
+                        <td><input type="number" id="txtKazanilmisHakDerece" class="form-control pa-alan" data-onay="1" data-gosterge="1" aria-label="Kazanılmış hak derecesi" /></td>
+                        <td><input type="number" id="txtKazanilmisHakKademe" class="form-control pa-alan" data-onay="1" data-gosterge="1" aria-label="Kazanılmış hak kademesi" /></td>
+                        <td><input type="date" id="txtKazanilmisHakTarih" class="form-control pa-alan" data-onay="1" aria-label="Kazanılmış hak tarihi" /></td>
+                        <td><input type="number" id="txtKazanilmisGosterge" class="form-control" readonly aria-label="Kazanılmış hak göstergesi" /></td>
+                        <td><input type="number" id="txtKazanilmisEkGosterge" class="form-control pa-alan" data-onay="1" aria-label="Kazanılmış hak ek göstergesi" /></td>
+                    </tr>
+                    <tr class="pa-eski-satir">
+                        <th scope="rowgroup" rowspan="2">Emekliye Esas</th>
+                        <td class="pa-kim">Eski</td>
+                        <td><input type="number" id="eskiEmekliyeEsasDerece" class="form-control" readonly aria-label="Eski emekliye esas derece" /></td>
+                        <td><input type="number" id="eskiEmekliyeEsasKademe" class="form-control" readonly aria-label="Eski emekliye esas kademe" /></td>
+                        <td><input type="date" id="eskiEmekliyeEsasTarih" class="form-control" readonly aria-label="Eski emekliye esas tarih" /></td>
+                        <td><input type="number" id="eskiEmekliGosterge" class="form-control" readonly aria-label="Eski emekliye esas gösterge" /></td>
+                        <td><input type="number" id="eskiEmekliEkGosterge" class="form-control" readonly aria-label="Eski emekliye esas ek gösterge" /></td>
+                    </tr>
+                    <tr>
+                        <td class="pa-kim">Yeni</td>
+                        <td><input type="number" id="txtEmekliyeEsasDerece" class="form-control pa-alan" data-onay="1" data-gosterge="2" aria-label="Emekliye esas derece" /></td>
+                        <td><input type="number" id="txtEmekliyeEsasKademe" class="form-control pa-alan" data-onay="1" data-gosterge="2" aria-label="Emekliye esas kademe" /></td>
+                        <td><input type="date" id="txtEmekliyeEsasTarih" class="form-control pa-alan" data-onay="1" aria-label="Emekliye esas tarih" /></td>
+                        <td><input type="number" id="txtEmekliGosterge" class="form-control" readonly aria-label="Emekliye esas gösterge" /></td>
+                        <td><input type="number" id="txtEmekliEkGosterge" class="form-control pa-alan" data-onay="1" aria-label="Emekliye esas ek gösterge" /></td>
+                    </tr>
+                    <tr class="pa-eski-satir">
+                        <th scope="rowgroup" rowspan="2">Ödemeye Esas</th>
+                        <td class="pa-kim">Eski</td>
+                        <td><input type="number" id="eskiOdemeyeEsasDerece" class="form-control" readonly aria-label="Eski ödemeye esas derece" /></td>
+                        <td><input type="number" id="eskiOdemeyeEsasKademe" class="form-control" readonly aria-label="Eski ödemeye esas kademe" /></td>
+                        <td><input type="date" id="eskiOdemeyeEsasTarih" class="form-control" readonly aria-label="Eski ödemeye esas tarih" /></td>
+                        <td><input type="number" id="eskiOdemeyeEsasGosterge" class="form-control" readonly aria-label="Eski ödemeye esas gösterge" /></td>
+                        <td><input type="number" id="eskiOdemeyeEsasEkGosterge" class="form-control" readonly aria-label="Eski ödemeye esas ek gösterge" /></td>
+                    </tr>
+                    <tr>
+                        <td class="pa-kim">Yeni</td>
+                        <td><input type="number" id="txtOdemeyeEsasDerece" class="form-control pa-alan" data-onay="1" data-gosterge="3" aria-label="Ödemeye esas derece" /></td>
+                        <td><input type="number" id="txtOdemeyeEsasKademe" class="form-control pa-alan" data-onay="1" data-gosterge="3" aria-label="Ödemeye esas kademe" /></td>
+                        <td><input type="date" id="txtOdemeyeEsasTarih" class="form-control pa-alan" data-onay="1" aria-label="Ödemeye esas tarih" /></td>
+                        <td><input type="number" id="txtOdemeyeEsasGosterge" class="form-control" readonly aria-label="Ödemeye esas gösterge" /></td>
+                        <td><input type="number" id="txtOdemeyeEsasEkGosterge" class="form-control pa-alan" data-onay="1" aria-label="Ödemeye esas ek gösterge" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Ayrılış -->
+    <section class="pb-bolum renk-turuncu">
+        <h3>Ayrılış</h3>
+        <div class="pb-govde pa-tablo">
+            <div class="pa-satir">
+                <label class="pa-etiket" for="ddlAyrilmaGerekcesi">Sebebi</label>
+                <div class="pa-eski"><input type="text" id="eskiAyrilmaGerekcesi" class="form-control" readonly aria-label="Eski ayrılma sebebi" /></div>
+                <div class="pa-yeni"><select id="ddlAyrilmaGerekcesi" class="form-control pa-alan" data-ayrilis="1"></select></div>
+            </div>
+            <div class="pa-satir">
+                <label class="pa-etiket" for="txtAyrilmaNedeni">Ayrılma Nedeni</label>
+                <div class="pa-eski"><input type="text" id="eskiAyrilmaNedeni" class="form-control" readonly aria-label="Eski ayrılma nedeni" /></div>
+                <div class="pa-yeni"><input type="text" id="txtAyrilmaNedeni" class="form-control pa-alan" data-ayrilis="1" /></div>
+            </div>
+            <div class="pa-satir">
+                <label class="pa-etiket" for="txtAyrilmaTarihi">Ayrılma Tarihi</label>
+                <div class="pa-eski"><input type="date" id="eskiAyrilmaTarihi" class="form-control pa-tarih" readonly aria-label="Eski ayrılma tarihi" /></div>
+                <div class="pa-yeni"><input type="date" id="txtAyrilmaTarihi" class="form-control pa-tarih pa-alan" data-ayrilis="1" /></div>
+            </div>
+            <div class="pa-satir">
+                <label class="pa-etiket" for="txtTayinBirim">Gideceği Birim</label>
+                <div class="pa-eski"></div>
+                <div class="pa-yeni">
+                    <div class="pa-birim" data-birim="tayinBirim">
+                        <input type="text" id="txtTayinBirim" class="form-control" readonly />
+                        <button type="button" class="btn btn-default btn-sm pa-birim-sec" title="Birim seç" aria-label="Gideceği birimi seç">&hellip;</button>
+                        <button type="button" class="btn btn-default btn-sm pa-birim-sil" title="Temizle" aria-label="Gideceği birimi temizle">&times;</button>
+                    </div>
+                </div>
+            </div>
+            <div class="pa-satir">
+                <label class="pa-etiket" for="txtHizmetGunu">Hizmet Gün Sayısı</label>
+                <div class="pa-eski"><input type="number" id="eskiHizmetGunu" class="form-control pa-kisa" readonly aria-label="Eski hizmet gün sayısı" /></div>
+                <div class="pa-yeni"><input type="number" id="txtHizmetGunu" class="form-control pa-kisa pa-alan" data-ayrilis="1" /></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Atanacağı kadro (yalnızca kadro işlemi yapılan personel türlerinde) -->
+    <section class="pb-bolum renk-gri" id="bolumAtanacagiKadro" hidden>
+        <h3>Atanacağı Kadro</h3>
+        <div class="pb-govde pa-tablo">
+            <div class="pa-satir">
+                <label class="pa-etiket" for="cmbAtanacagiKadro">Atanacağı Kadro</label>
+                <div class="pa-eski"></div>
+                <div class="pa-yeni"><select id="cmbAtanacagiKadro" class="form-control pa-alan" data-onay="1"></select></div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<dialog id="dlgBirim" class="pa-pencere" aria-labelledby="dlgBirimBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgBirimBaslik">Birim Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="pa-ara-satir">
+            <input type="text" id="txtBirimAra" class="form-control input-sm" placeholder="Birim adında ara (en az 3 harf)" autocomplete="off" aria-label="Birim adında ara" />
+            <button type="button" id="btnBirimAra" class="btn btn-default btn-sm">Ara</button>
+        </div>
+        <ul id="agcBirim" class="pa-agac"></ul>
+    </div>
+    <div class="pencere-alt"><button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button></div>
+</dialog>
+
+<dialog id="dlgSoru" class="pa-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde"><p id="soruMetin">Kayıt işlemi yapılacak. Onaylıyor musunuz?</p></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Kaydet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/personelalt.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personel-atama.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/personel-atama.js" asp-append-version="true"></script>
+}

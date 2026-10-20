@@ -1,0 +1,133 @@
+@page
+@model PersonelKursModel
+@{
+    ViewData["Title"] = "Hizmet İçi Eğitim";
+    ViewData["GovdeSinif"] = "pb-alt";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="pb pb-egitim" id="pbKurs" data-personel-kod="@Model.PersonelKod">
+    <div class="pb-arac" role="toolbar" aria-label="Hizmet içi eğitim işlemleri">
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+        <button type="button" id="btnSil" class="btn btn-danger btn-sm">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+        </button>
+        <button type="button" id="btnTemizle" class="btn btn-default btn-sm" title="Formu temizle">
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Kayıt
+        </button>
+        <button type="button" id="btnYardim" class="btn btn-default btn-sm" aria-controls="pbYardim" aria-expanded="false" title="Açıklama">
+            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span><span class="sr-only">Açıklama</span>
+        </button>
+    </div>
+    <p id="pbYardim" class="pb-yardim" hidden>
+        Memuriyet sırasında aldığınız kurs, seminer veya verdiğiniz eğitimleri sırasıyla bilgilerini girerek kayıt ediniz. Kaydedip
+        bitirdiğiniz bilgilerden sonra yine bu formu kullanarak başka eğitim bilgileri kayıtlarınızı yapabilirsiniz. Başlama ve bitiş
+        tarihlerini tam olarak bilemiyorsanız 01.01.YIL olarak giriş yapabilirsiniz.
+    </p>
+
+    <div class="pb-egitim-govde">
+        <form id="frmKurs" class="pb-egitim-form" novalidate autocomplete="off">
+            <section class="pb-bolum renk-mavi">
+                <h3>Eğitim</h3>
+                <div class="pb-govde pb-form">
+                    <div class="form-group">
+                        <label class="control-label" for="cmbKurs">Eğitim Tipi</label>
+                        <div><select id="cmbKurs" class="form-control"></select></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtKursAdi">Adı</label>
+                        <div><input type="text" id="txtKursAdi" class="form-control" /></div>
+                    </div>
+                    <div class="form-group">
+                        <span class="control-label">Tarihler</span>
+                        <div class="alt-alanlar">
+                            <label><span class="alt-etiket">Başlama Tarihi</span><input type="date" id="txtBaslamaTarihi" class="form-control" /></label>
+                            <label><span class="alt-etiket">Bitirme Tarihi</span><input type="date" id="txtBitirmeTarihi" class="form-control" /></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtAlinanYer">Eğitimi Veren Kuruluş</label>
+                        <div><input type="text" id="txtAlinanYer" class="form-control" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="cmbOgrenimYeri">Öğrenim Yeri</label>
+                        <div><select id="cmbOgrenimYeri" class="form-control"></select></div>
+                    </div>
+                    <div class="form-group">
+                        <span class="control-label">Eğitim Süresi</span>
+                        <div class="alt-alanlar">
+                            <label><span class="alt-etiket">Gün</span><input type="text" id="txtGun" class="form-control" inputmode="numeric" /></label>
+                            <label><span class="alt-etiket">Saat</span><input type="text" id="txtDersSaati" class="form-control" inputmode="numeric" /></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <span class="control-label">Dönemi</span>
+                        <div class="alt-alanlar">
+                            <label><span class="alt-etiket">Yıl</span><input type="number" id="txtYil" class="form-control sgb-yil" step="1" /></label>
+                            <label>
+                                <span class="alt-etiket">Dönem</span>
+                                <select id="cmbDonem" class="form-control">
+                                    <option value=""></option>
+                                    <option value="I. 6 Aylık">I. 6 Aylık</option>
+                                    <option value="II. 6 Aylık">II. 6 Aylık</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtDerece">Derece</label>
+                        <div><input type="text" id="txtDerece" class="form-control dar" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtPuan">Puan</label>
+                        <div><input type="text" id="txtPuan" class="form-control dar" inputmode="decimal" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtDosyaNo">Dosya No</label>
+                        <div><input type="text" id="txtDosyaNo" class="form-control dar" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtAciklama">Açıklama</label>
+                        <div><textarea id="txtAciklama" class="form-control" rows="2"></textarea></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pb-bolum renk-mor">
+                <h3>Belgeler</h3>
+                <div class="pb-govde">
+                    <div class="pb-belge-arac">
+                        <button type="button" id="btnBelgeEkle" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Belge Ekle
+                        </button>
+                        <input type="file" id="fuBelge" hidden />
+                    </div>
+                    <div id="grdBelgeler" class="pb-belge-grid" aria-label="Belgeler"></div>
+                </div>
+            </section>
+        </form>
+
+        <section class="pb-bolum renk-gri pb-egitim-liste">
+            <h3>Hizmet İçi Eğitim Bilgileri</h3>
+            <div class="pb-govde pb-doldur">
+                <div id="grdListe" class="pb-grid" aria-label="Hizmet içi eğitim bilgileri"></div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/personelalt.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personel-egitim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/personel-egitim-ortak.js" asp-append-version="true"></script>
+    <script src="~/js/personel-kurs.js" asp-append-version="true"></script>
+}

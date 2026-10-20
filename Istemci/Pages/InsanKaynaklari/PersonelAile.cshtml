@@ -1,0 +1,146 @@
+@page
+@model PersonelAileModel
+@{
+    ViewData["Title"] = "Aile";
+    ViewData["GovdeSinif"] = "pb-alt";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="pb pb-aile" id="pbAile" data-personel-kod="@Model.PersonelKod">
+    <div class="pb-arac" role="toolbar">
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+        <button type="button" id="btnSil" class="btn btn-danger btn-sm">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+        </button>
+        <button type="button" id="btnTemizle" class="btn btn-default btn-sm" title="Formu temizler (yeni aile bireyi)">
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Kayıt
+        </button>
+        <button type="button" id="btnNufusCuzdani" class="btn btn-default btn-sm" data-tur="2">
+            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Nüfus Cüzdanı Örneği
+        </button>
+        <button type="button" id="btnIkametgah" class="btn btn-default btn-sm" data-tur="1">
+            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> İkametgah İl Muhaberi
+        </button>
+        <span class="glyphicon glyphicon-info-sign pb-aile-yardim" tabindex="0" role="img" aria-label="Yardım"
+              title="Aile bireyinin, TC Kimlik Numarasını girdikten sonra merceğe basarak bilgilerini getirin. Yakınlık Derecesi ve Durumunu girdikten sonra Kaydet düğmesi ile kayıt edin. Bu işlemi diğer aile bireyleri için tekrarlayın."></span>
+    </div>
+
+    <div class="pb-aile-govde">
+        <div class="pb-aile-sol">
+            <section class="pb-bolum renk-mavi">
+                <h3>Aile Bireyi</h3>
+                <div class="pb-govde">
+                    <form id="frmAile" class="pb-form iki-sutun" novalidate autocomplete="off">
+                        <div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtTCKimlikNo">T.C. Kimlik No *</label>
+                                <div class="input-group input-group-sm pb-aile-tc">
+                                    <input type="text" id="txtTCKimlikNo" class="form-control" maxlength="11" inputmode="numeric" required />
+                                    <span class="input-group-btn">
+                                        <button type="button" id="btnKimlik" class="btn btn-default" title="Nüfus bilgilerini getir" aria-label="Nüfus bilgilerini getir">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtAd">Adı</label>
+                                <div><input type="text" id="txtAd" class="form-control" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtSoyad">Soyadı</label>
+                                <div><input type="text" id="txtSoyad" class="form-control" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtDogumTarihi">Doğum Tarihi</label>
+                                <div><input type="date" id="txtDogumTarihi" class="form-control dar" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="ddlCinsiyet">Cinsiyeti</label>
+                                <div><select id="ddlCinsiyet" class="form-control"></select></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group">
+                                <label class="control-label" for="ddlYakinlik">Yakınlık Derecesi</label>
+                                <div><select id="ddlYakinlik" class="form-control"></select></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="ddlDurum">Durumu</label>
+                                <div><select id="ddlDurum" class="form-control"></select></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="ddlOgrenimTipi">Öğrenim Tipi</label>
+                                <div><select id="ddlOgrenimTipi" class="form-control"></select></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtMeslek">Meslek</label>
+                                <div><input type="text" id="txtMeslek" class="form-control" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="spnEng">Sak. Drc.</label>
+                                <div><input type="number" id="spnEng" class="form-control dar" min="0" max="3" step="1" /></div>
+                            </div>
+                            <div class="form-group">
+                                <span class="control-label">AGİ'ne dahil</span>
+                                <div><label class="checkbox-inline"><input type="checkbox" id="chkAGI" /> Evet</label></div>
+                            </div>
+                            <div class="form-group">
+                                <span class="control-label">Bakmakla Yükümlü Mü?</span>
+                                <div><label class="checkbox-inline"><input type="checkbox" id="chkYukumlu" /> Evet</label></div>
+                            </div>
+                            <div class="form-group" id="grpYukumlulukBitis" hidden>
+                                <label class="control-label" for="txtYukumlulukBitisTarihi">Yükümlülük Bitiş Tarihi</label>
+                                <div><input type="date" id="txtYukumlulukBitisTarihi" class="form-control dar" /></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section class="pb-bolum renk-yesil pb-doldur pb-aile-belge">
+                <h3>
+                    Belgeler
+                    <span class="bosluk"></span>
+                    <button type="button" id="btnBelgeEkle" class="btn btn-default btn-xs">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Belge Ekle
+                    </button>
+                    <input type="file" id="dosyaBelge" hidden />
+                </h3>
+                <div class="pb-govde pb-doldur">
+                    <div id="grdBelgeler" class="pb-grid" aria-label="Belgeler"></div>
+                </div>
+            </section>
+        </div>
+
+        <section class="pb-bolum renk-gri pb-doldur pb-aile-sag">
+            <h3>Aile Bireyleri</h3>
+            <div class="pb-govde pb-doldur">
+                <div id="grdListe" class="pb-grid" aria-label="Aile bireyleri"></div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<dialog id="dlgOnay" class="pb-onay">
+    <p id="dlgOnayMetin"></p>
+    <div class="text-right">
+        <button type="button" class="btn btn-default btn-sm" data-sonuc="hayir">Vazgeç</button>
+        <button type="button" class="btn btn-primary btn-sm" data-sonuc="evet">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/personelalt.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personel-aile.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/personel-aile.js" asp-append-version="true"></script>
+}

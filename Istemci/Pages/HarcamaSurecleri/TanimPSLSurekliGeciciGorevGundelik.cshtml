@@ -1,0 +1,110 @@
+@page
+@model TanimPSLSurekliGeciciGorevGundelikModel
+@{
+    ViewData["Title"] = "Geçici / Sürekli Görev Gündelik Tanım Formu";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="gundelik-tanim">
+    <section class="bolum">
+        <h2 class="bolum-baslik">Gündelik Tanımı</h2>
+        <form id="frmGundelik" class="tanim-form gt-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="cmbTur">Türü</label>
+                <div>
+                    <select id="cmbTur" class="form-control input-sm gt-tur">
+                        <option value="1" selected>Sürekli ve Geçici Görev</option>
+                        <option value="2">Denetim Elemanları</option>
+                        <option value="3">Yurtdışı Sürekli ve Geçici Görev</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtYil">Yıl</label>
+                <div><input type="number" id="txtYil" class="form-control input-sm sgb-yil gt-yil" step="1" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtKod">Tanım Kodu</label>
+                <div><input type="text" id="txtKod" class="form-control input-sm gt-kod" maxlength="3" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAd">Tanım Adı</label>
+                <div><input type="text" id="txtAd" class="form-control input-sm gt-ad" maxlength="255" autocomplete="off" /></div>
+            </div>
+            <div class="form-group" id="pnlUlkeler">
+                <label class="control-label" for="cmbUlke">Ülke</label>
+                <div><select id="cmbUlke" class="form-control input-sm gt-ulke"></select></div>
+            </div>
+            <div class="form-group" id="pnlAylikKadroDerece">
+                <label class="control-label" for="txtAylikKadroDereceBaslangic">Aylık/Kadro Derecesi</label>
+                <div class="gt-aralik">
+                    <input type="number" id="txtAylikKadroDereceBaslangic" class="form-control input-sm gt-derece" min="0" max="99" step="1" aria-label="Aylık/Kadro derecesi başlangıç" />
+                    <span>-</span>
+                    <input type="number" id="txtAylikKadroDereceBitis" class="form-control input-sm gt-derece" min="0" max="99" step="1" aria-label="Aylık/Kadro derecesi bitiş" />
+                </div>
+            </div>
+            <div class="form-group" id="pnlEkGosterge">
+                <label class="control-label" for="txtEkGostergeBaslangic">Ek Gösterge</label>
+                <div class="gt-aralik">
+                    <input type="number" id="txtEkGostergeBaslangic" class="form-control input-sm gt-gosterge" min="0" max="99999" step="1" aria-label="Ek gösterge başlangıç" />
+                    <span>-</span>
+                    <input type="number" id="txtEkGostergeBitis" class="form-control input-sm gt-gosterge" min="0" max="99999" step="1" aria-label="Ek gösterge bitiş" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtGundelik">Değeri</label>
+                <div class="gt-aralik">
+                    <input type="text" id="txtGundelik" class="form-control input-sm gt-deger" inputmode="decimal" maxlength="12" autocomplete="off" />
+                    <select id="cmbParaBirimi" class="form-control input-sm gt-para" aria-label="Para birimi"></select>
+                </div>
+            </div>
+        </form>
+
+        <div class="gt-arac" role="toolbar" aria-label="Gündelik tanım işlemleri">
+            <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+            </button>
+            <button type="button" id="btnSil" class="btn btn-danger btn-sm" title="Yıl ve tanım koduna göre sil">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+            </button>
+            <button type="button" id="btnBul" class="btn btn-default btn-sm" title="Formdaki yıl, tür, kod ve ada uyan tanımları listele">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Bul
+            </button>
+            <button type="button" id="btnKopyala" class="btn btn-default btn-sm" title="Önceki yılın bu türdeki tanımlarını seçili yıla kopyala">
+                <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Önceki Yıldan Kopyala
+            </button>
+            <button type="button" id="btnTemizle" class="btn btn-default btn-sm" title="Formu temizle">
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Temizle
+            </button>
+            <button type="button" id="btnDosyaSec" class="btn btn-default btn-sm" title="Excel'den yurtdışı gündeliklerini yükle">
+                <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Dosya Seç
+            </button>
+            <input type="file" id="fuDosya" accept=".xls,.xlsx" hidden />
+            <button type="button" id="btnYardim" class="btn btn-link btn-sm gt-yardim" aria-expanded="false" aria-controls="gtYardim" title="Yardım">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span><span class="sr-only">Yardım</span>
+            </button>
+        </div>
+        <div id="gtYardim" class="gt-yardim-metin" hidden>
+            <p>Listeden bir tanımın koduna tıklayınca bilgileri forma gelir. Kaydet aynı yıl ve kodda kayıt varsa günceller, yoksa ekler.
+                Sil formdaki yıl ve tanım koduna göre siler. Bul formdaki yıl, tür, kod (tam) ve ad (başı) ile listeler.</p>
+            <p>Önceki Yıldan Kopyala, seçili türün bir önceki yıldaki tanımlarını seçili yıla kopyalar; o yılın bu türdeki tanımları yenileriyle değiştirilir.</p>
+            <p class="gt-yardim-son">Dosya Seç ile yurtdışı gündelikleri Excel'den yüklenir: ilk satırda A1 başlangıç kodu, C1'den sağa gündelik açıklamaları;
+                sonraki satırlarda A ülke adı, B para birimi (ör. USD), C'den sağa gündelik değerleri. Her hücre ayrı tanım olarak eklenir.</p>
+        </div>
+    </section>
+
+    <div id="grdGundelik" class="gt-grid" aria-label="Gündelik tanımları"></div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/gundeliktanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/gundeliktanim.js" asp-append-version="true"></script>
+}

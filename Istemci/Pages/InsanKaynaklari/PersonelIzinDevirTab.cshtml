@@ -1,0 +1,47 @@
+@page
+@model Istemci.Pages.InsanKaynaklari.PersonelIzinDevirTabModel
+@{
+    ViewData["Title"] = "İzin Devir";
+    ViewData["GovdeSinif"] = "pb-alt";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="pb pb-devir" id="pbIzinDevir" data-personel-kod="@Model.PersonelKod">
+    <div class="pb-arac" role="toolbar" aria-label="İzin devir işlemleri">
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+        <span class="pb-not">Devreden ve Yıl içi hücrelerine tıklayarak değiştirin; yalnızca değişen satırlar kaydedilir.</span>
+    </div>
+    <section class="pb-bolum">
+        <h3>İzin Devir Bilgileri</h3>
+        <div class="pb-govde">
+            <div id="grdListe" class="pb-grid" aria-label="İzin devir bilgileri"></div>
+        </div>
+    </section>
+</div>
+
+<dialog id="dlgOnay" class="izin-pencere izin-pencere-dar" aria-labelledby="dlgOnayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOnayBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde"><p id="dlgOnayMetin"></p></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Hayır</button>
+        <button type="button" id="btnOnayEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/personelalt.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personel-izin.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/personel-izindevir.js" asp-append-version="true"></script>
+}

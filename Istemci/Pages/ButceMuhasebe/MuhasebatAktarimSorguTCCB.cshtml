@@ -1,0 +1,93 @@
+@page
+@model MuhasebatAktarimSorguTCCBModel
+@{
+    ViewData["Title"] = "Muhasebat Aktarım Belge Arama";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<!-- Kriterler solda dar (%15) sütunda alt alta (etiket üstte), aralıklar >= / <= ekli iki satır, kalan alanda liste (kullanıcı isteği 2026-10-19) -->
+<div class="avans ma ma-liste ma-yan">
+    <!-- Sorgu alanları (eski pgFiltre, eskisi de solda dar paneldi) -->
+    <section class="kutu bolum bolum-kriter ma-kriter">
+        <h2 class="bolum-baslik">Belge Arama
+            <button type="button" class="btn btn-link btn-xs avans-yardim-dugme" data-yardim="#malYardim" title="Yardım" aria-label="Yardım">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+            </button>
+        </h2>
+        <div id="malYardim" class="alert alert-info avans-yardim" hidden>
+            Kriterleri girip <b>Listele</b>'ye basınız. Belge numarasına tıklayınca belge Belge Düzenleme sekmesinde açılır, durumuna tıklayınca
+            belgenin tarihçesi görünür.
+        </div>
+        <form id="frmKriter" class="ma-ust-etiket" onsubmit="return false;">
+            <div class="form-group">
+                <label for="txtYil">Yıl</label>
+                <input type="number" id="txtYil" class="form-control input-sm sgb-yil" />
+            </div>
+            <div class="form-group">
+                <label for="ddlDurum">Durum</label>
+                <select id="ddlDurum" class="form-control input-sm"></select>
+            </div>
+            <div class="form-group">
+                <label for="txtMuhasebe">Muhasebe / Harcama Birimi</label>
+                <div id="muhBirim"></div>
+            </div>
+            <div class="form-group">
+                <label for="txtBelgeNo1">Belge No</label>
+                <div class="ma-op"><span class="ma-ek" aria-hidden="true">&gt;=</span>
+                    <input type="text" id="txtBelgeNo1" class="form-control input-sm" aria-label="Belge No büyük eşit" autocomplete="off" /></div>
+                <div class="ma-op"><span class="ma-ek" aria-hidden="true">&lt;=</span>
+                    <input type="text" id="txtBelgeNo2" class="form-control input-sm" aria-label="Belge No küçük eşit" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label for="txtBelgeTarihi1">Belge Tarihi</label>
+                <div class="ma-op"><span class="ma-ek" aria-hidden="true">&gt;=</span>
+                    <input type="date" id="txtBelgeTarihi1" class="form-control input-sm" aria-label="Belge tarihi büyük eşit" /></div>
+                <div class="ma-op"><span class="ma-ek" aria-hidden="true">&lt;=</span>
+                    <input type="date" id="txtBelgeTarihi2" class="form-control input-sm" aria-label="Belge tarihi küçük eşit" /></div>
+            </div>
+            <button type="button" id="btnListe" class="btn btn-primary btn-sm ma-listele">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+            </button>
+        </form>
+    </section>
+
+    <!-- Belgeler (eski grdListeMIF) -->
+    <section class="kutu bolum bolum-liste ma-sonuc">
+        <div class="avans-arac" role="toolbar" aria-label="Liste bilgisi">
+            <span class="ma-liste-baslik">Belgeler</span>
+            <span id="lblSayi" class="avans-ozet" aria-live="polite"></span>
+        </div>
+        <div id="grdListe" class="avans-grid" aria-label="Belgeler"></div>
+    </section>
+</div>
+
+<!-- Belge tarihçesi (eski BelgeTarihce.aspx?belgeTur=999) -->
+<dialog id="dlgTarihce" class="tanim-pencere ma-pencere" aria-labelledby="dlgTarihceBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgTarihceBaslik">Tarihçe</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div id="grdTarihce" class="ma-grid-pencere" aria-label="Belge tarihçesi"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhasebataktarim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/muhasebataktarimliste.js" asp-append-version="true"></script>
+}

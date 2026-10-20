@@ -1,0 +1,125 @@
+@page
+@model ListePersonelMaasParamModel
+@{
+    ViewData["Title"] = "Personel Maaş Bilgileri Toplu Düzenleme";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="mpt" id="mptSayfa">
+    <section class="mpt-kriter" aria-label="Listeleme kriterleri">
+        <div class="mpt-kolon">
+            <div class="mpt-satir">
+                <label class="mpt-etiket" for="txtMuhasebe">Muhasebe / Birim</label>
+                <div id="muhBirim"></div>
+            </div>
+            <div class="mpt-satir">
+                <span class="mpt-etiket" id="lblBordroTur">Bordro Tür *</span>
+                <div class="mpt-coklu" id="cokBordroTur" data-bos="Seçiniz" aria-labelledby="lblBordroTur"></div>
+            </div>
+            <div class="mpt-satir">
+                <label class="mpt-etiket" for="txtSorgu">Arama Kriteri</label>
+                <input type="text" id="txtSorgu" class="form-control input-sm" placeholder="Ad, soyad, T.C. kimlik no, sicil no" />
+            </div>
+        </div>
+        <div class="mpt-kolon">
+            <div class="mpt-satir">
+                <label class="mpt-etiket" for="ddlUnvan">Unvan</label>
+                <select id="ddlUnvan" class="form-control input-sm"></select>
+            </div>
+            <div class="mpt-satir">
+                <span class="mpt-etiket">Alan Koşulu 1</span>
+                <div class="mpt-kosul">
+                    <select id="cmbAlan1" class="form-control input-sm mpt-alan" aria-label="Koşul 1 alanı"></select>
+                    <select id="cmbIslec1" class="form-control input-sm mpt-islec" aria-label="Koşul 1 işleci"></select>
+                    <input type="text" id="txtDeger1" class="form-control input-sm mpt-deger" inputmode="decimal" aria-label="Koşul 1 değeri" />
+                </div>
+            </div>
+            <div class="mpt-satir">
+                <span class="mpt-etiket">Alan Koşulu 2</span>
+                <div class="mpt-kosul">
+                    <select id="cmbAlan2" class="form-control input-sm mpt-alan" aria-label="Koşul 2 alanı"></select>
+                    <select id="cmbIslec2" class="form-control input-sm mpt-islec" aria-label="Koşul 2 işleci"></select>
+                    <input type="text" id="txtDeger2" class="form-control input-sm mpt-deger" inputmode="decimal" aria-label="Koşul 2 değeri" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mpt-liste" aria-label="Personel listesi">
+        <div class="mpt-arac" role="toolbar" aria-label="Personel listesi işlemleri">
+            <button type="button" id="btnListele" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+            </button>
+            <span class="mpt-ayrac" aria-hidden="true"></span>
+            <select id="sbDegisken" class="form-control input-sm mpt-ata-alan" aria-label="Atanacak değişken"></select>
+            <input type="text" id="nfGirilen" class="form-control input-sm mpt-ata-deger" inputmode="decimal" aria-label="Atanacak değer" />
+            <button type="button" id="btnKisilereAta" class="btn btn-default btn-sm" title="Seçilen değişkene girilen değeri listedeki bütün kişilere yazar">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Kişilere Ata
+            </button>
+            <span class="mpt-ayrac" aria-hidden="true"></span>
+            <button type="button" id="btnKaydet" class="btn btn-success btn-sm">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+            </button>
+            <button type="button" id="btnDosyaYukle" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-open" aria-hidden="true"></span> Dosya Yükle
+            </button>
+            <div class="mpt-coklu mpt-kolonlar" id="cokKolonlar" data-bos="Kolon yok" data-onek="Kolonlar"></div>
+            <span class="mpt-sayi" id="lblSayi" aria-live="polite"></span>
+            <button type="button" id="btnYardim" class="btn btn-link btn-sm mpt-yardim" aria-expanded="false" aria-controls="mptYardim" title="Yardım">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span><span class="sr-only">Yardım</span>
+            </button>
+        </div>
+        <div id="mptYardim" class="mpt-yardim-metin" hidden>
+            Bordro türü seçip Listele'ye basınız; alan koşulları listeyi maaş parametresinin değerine göre süzer.
+            Değerler hücreye tıklanarak girilir (ondalık ayırıcı virgül). Kişilere Ata, seçilen değişkene girilen değeri listedeki bütün kişilere yazar.
+            Kaydet yalnızca değişen satırları ve <strong>Kolonlar</strong> listesinde seçili değişkenleri kaydeder; seçili olmayan kolonların kayıtlı değerleri değişmez.
+            Dosya Yükle, değerleri Excel'den okuyup ekrandaki kişilere yazar; ardından Kaydet bütün satırları kaydeder.
+        </div>
+        <div id="grdListe" class="mpt-grid" aria-label="Personel maaş parametreleri"></div>
+    </section>
+</div>
+
+<!-- Dosya Yükle (eski wndDosyaYukle) -->
+<dialog id="dlgDosya" class="tanim-pencere mpt-pencere" aria-labelledby="dlgDosyaBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgDosyaBaslik">Giriş Alanları Dosya Yükleme</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="mpt-satir">
+            <label class="mpt-etiket" for="cmbAnahtar">Anahtar Alan</label>
+            <select id="cmbAnahtar" class="form-control input-sm">
+                <option value="">Seçiniz</option>
+                <option value="1">Kimlik No</option>
+                <option value="2">Sicil No</option>
+            </select>
+        </div>
+        <div class="mpt-satir">
+            <label class="mpt-etiket" for="cmbVeri">Veri Alan</label>
+            <select id="cmbVeri" class="form-control input-sm"></select>
+        </div>
+        <p class="mpt-pencere-not">Birinci sütununda anahtar alanda seçtiğiniz veriler, ikinci sütunda ise yüklenecek veriler olan Excel dosyasını seçiniz.</p>
+        <input type="file" id="fuDosya" accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden />
+    </div>
+    <div class="pencere-alt">
+        <button type="button" id="btnDosyaSec" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Dosya Seç
+        </button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/maasparamtoplu.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/maasparamtoplu.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,76 @@
+/* Gelir Vergisi Bilgileri Tanımlama (HarcamaSurecleri/TanimPSLGelirVergisi): tek bölüm, tablo sayfanın kalan yüksekliğini doldurur.
+   Girilebilir hücreler beyaz, salt okunurlar sarı. */
+
+.gelir-vergisi .bolum {
+    --bolum-baslik: #e2f3e6;
+    --bolum-govde: #f5fbf6;
+    --bolum-vurgu: var(--b2-vurgu);
+    margin: 0;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.gelir-vergisi .bolum-baslik {
+    margin: 0 -12px 10px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.gelir-vergisi .gv-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 10px;
+}
+
+.gelir-vergisi .gv-etiket {
+    margin: 0 2px 0 0;
+    font-weight: 600;
+}
+
+.gelir-vergisi .gv-yil {
+    width: 90px;
+}
+
+.gelir-vergisi .gv-yardim {
+    margin-left: auto;
+}
+
+.gelir-vergisi .gv-yardim-metin {
+    margin: 0 0 10px;
+    padding: 8px 10px;
+    font-size: 12px;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.gelir-vergisi .gv-grid {
+    width: 100%;
+    max-width: 420px;
+    height: 520px;
+}
+
+.gelir-vergisi .gv-girilir {
+    background: #fff;
+}
+
+.gelir-vergisi .gv-salt {
+    background: #fcfcd4;
+}
+
+.gelir-vergisi .gv-sag {
+    text-align: right;
+}
+
+.gelir-vergisi .gv-sag-baslik .ag-header-cell-label {
+    justify-content: flex-end;
+}

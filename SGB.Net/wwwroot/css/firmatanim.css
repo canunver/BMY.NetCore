@@ -1,0 +1,33 @@
+/* Firma / Kişi Tanımlama (HarcamaSurecleri/TanimFirmaKisi) */
+.firma-tanim .ft-govde {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+}
+
+.firma-tanim .ft-sol {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.firma-tanim .ft-sag {
+    flex: 0 0 440px;
+    min-width: 0;
+    overflow: auto;
+}
+
+.firma-tanim .ft-sol .avans-alanlar { --etiket-genislik: 120px; }
+.firma-tanim .ft-sag .avans-alanlar { --etiket-genislik: 150px; max-width: none; }
+.firma-tanim .ft-muhasebe { width: 80px; }
+.firma-tanim .ft-vno { width: 180px; }
+.firma-tanim .ft-muhasebe-ad { font-weight: 600; }
+.firma-tanim .ft-grid { height: 300px; margin-top: 6px; }
+.firma-tanim .avans-secenekler { flex-direction: row; gap: 12px; padding-top: 3px; }
+.firma-tanim textarea.form-control.input-sm { height: auto; }
+
+@media (max-width: 900px) {
+    .firma-tanim .ft-govde { flex-direction: column; }
+    .firma-tanim .ft-sag { flex-basis: auto; }
+}

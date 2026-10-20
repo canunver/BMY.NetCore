@@ -75,9 +75,9 @@
       <KISTASALAN DEGISKEN="ONAYLAYANAD" TIP="YAZI" />
       <KISTASALAN DEGISKEN="ONAYLAYANUNVAN" TIP="YAZI"/>
     </KISTAS>
-    <RAPOR NO="1" YETKI="" RAPORTIP="METOD" DLL="KimlikPaylasim" NESNE="KimlikPaylasim.NufusYazdir" EKBILGI="1" SABLON="KPM\IkametgahIlmuhaberi.rtf" />
-    <RAPOR NO="2" YETKI="" RAPORTIP="METOD" DLL="KimlikPaylasim" NESNE="KimlikPaylasim.NufusYazdir" EKBILGI="2" SABLON="KPM\NufusCuzdanOrnegi.rtf" />
-    <RAPOR NO="3" YETKI="" RAPORTIP="METOD" DLL="KimlikPaylasim" NESNE="KimlikPaylasim.NufusYazdir" EKBILGI="3" SABLON="KPM\VukuatliNufusKayitOrnegi.rtf" />
+    <RAPOR NO="1" YETKI="" RAPORTIP="METOD" DLL="KimlikPaylasim" NESNE="KimlikPaylasim.NufusYazdir" EKBILGI="1" SABLON="KPM\IkametgahIlmuhaberi.dotx" />
+    <RAPOR NO="2" YETKI="" RAPORTIP="METOD" DLL="KimlikPaylasim" NESNE="KimlikPaylasim.NufusYazdir" EKBILGI="2" SABLON="KPM\NufusCuzdanOrnegi.dotx" />
+    <RAPOR NO="3" YETKI="" RAPORTIP="METOD" DLL="KimlikPaylasim" NESNE="KimlikPaylasim.NufusYazdir" EKBILGI="3" SABLON="KPM\VukuatliNufusKayitOrnegi.dotx" />
   </RAPORGRUP>
 
   <RAPORGRUP YETKI="" GRUPNO="700">
@@ -729,7 +729,7 @@
     <KISTAS AD="Ekonomik Detay Raporları">
       <KISTASALAN DEGISKEN="tcKimlikNo" TIP="YAZI" ZORUNLU="" EKBILGI=""/>
     </KISTAS>
-    <RAPOR NO="1" SABLON="HRC\BordroKisiListe.xltx" YETKI="" RAPORTIP="METOD" DLL="HarcamaSurecleri" NESNE="HarcamaSurecleri.BordroRaporlari" EKBILGI="Liste"/>
+    <RAPOR NO="1" SABLON="HRC\BordroKisiListeStr.xltx" YETKI="" RAPORTIP="METOD" DLL="HarcamaSurecleri" NESNE="HarcamaSurecleri.BordroRaporlari" EKBILGI="Liste"/>
   </RAPORGRUP>
 
   <RAPORGRUP AD="Gizli" YETKI="" GRUPNO="20001">

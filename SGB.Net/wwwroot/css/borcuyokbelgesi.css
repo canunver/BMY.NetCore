@@ -1,0 +1,171 @@
+/* Borcu Yoktur Belgesi / Vergi Borcu Sorgulama Girişi (HarcamaSurecleri/BorcuYokBelgesi). Bölümler renkli başlıklı ayrı kutular;
+   kriterler sıkışık (12px), alanlar alt alta, etiket solda. */
+
+.borcuyok,
+.borcuyok #pnlForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 12px;
+}
+
+.borcuyok #pnlForm[hidden],
+.borcuyok .kutu.bolum[hidden] {
+    display: none;
+}
+
+.borcuyok .kutu.bolum {
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
+    padding: 0 12px 10px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.borcuyok .kutu.bolum.bolum-kimlik {
+    --bolum-baslik: var(--b2-baslik);
+    --bolum-govde: var(--b2-govde);
+    --bolum-vurgu: var(--b2-vurgu);
+}
+
+.borcuyok .kutu.bolum.bolum-taahhut {
+    --bolum-baslik: #fbefdc;
+    --bolum-govde: #fffaf2;
+    --bolum-vurgu: #c27a12;
+}
+
+.borcuyok .bolum-baslik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    margin: 0 -12px 10px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.borcuyok .byb-ust-tuslar {
+    margin-left: auto;
+}
+
+.borcuyok .byb-yardim.active {
+    background: var(--b1-baslik);
+}
+
+.borcuyok .byb-ipucu {
+    margin: -4px 0 8px;
+    padding-left: 18px;
+    font-size: 11px;
+    color: var(--soluk);
+}
+
+.borcuyok .byb-ipucu[hidden] {
+    display: none;
+}
+
+/* ---- Alanlar ---- */
+.borcuyok .byb-alanlar {
+    --etiket-genislik: 150px;
+}
+
+.borcuyok .byb-alanlar .form-group {
+    margin-bottom: 5px;
+}
+
+.borcuyok .form-control.input-sm {
+    height: 26px;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.borcuyok .btn-sm {
+    padding: 3px 8px;
+    font-size: 12px;
+}
+
+.byb-bitisik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.borcuyok .byb-kod {
+    width: 110px;
+}
+
+.borcuyok .byb-genis {
+    width: 100%;
+    max-width: 420px;
+}
+
+.borcuyok .byb-ad {
+    color: var(--murekkep);
+    font-weight: 600;
+}
+
+/* Salt okunur değerler sarı */
+.borcuyok .byb-deger {
+    display: block;
+    min-height: 24px;
+    max-width: 560px;
+    padding: 3px 6px;
+    background: #fff8d6;
+    border: 1px solid #ecdca0;
+    border-radius: 4px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* ---- İşlemler ---- */
+.borcuyok .byb-arac {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.borcuyok .btn.yukleniyor {
+    cursor: progress;
+}
+
+/* ---- Taahhütname ---- */
+.borcuyok .byb-taahhut-metin {
+    max-width: 780px;
+    margin-bottom: 10px;
+    font-family: 'Times New Roman', serif;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.borcuyok .byb-orta {
+    text-align: center;
+}
+
+/* ---- Pencereler ---- */
+.byb-pencere {
+    width: min(520px, calc(100vw - 32px));
+}
+
+.byb-pencere .pencere-govde {
+    max-height: 60vh;
+    overflow: auto;
+}
+
+.byb-soru {
+    white-space: pre-line;
+}
+
+@media (max-width: 600px) {
+    .borcuyok .byb-alanlar {
+        --etiket-genislik: 110px;
+    }
+}

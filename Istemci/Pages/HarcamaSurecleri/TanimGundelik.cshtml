@@ -1,0 +1,79 @@
+@page
+@model TanimGundelikModel
+@{
+    ViewData["Title"] = "Yıl, Unvan ve Ülke Kriterine Göre Gündelik Tanımlama";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="unvan-gundelik">
+    <section class="bolum">
+        <h2 class="bolum-baslik">Gündelik Bilgisi</h2>
+        <form id="frmGundelik" class="tanim-form ug-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="txtYil">Yıl</label>
+                <div><input type="number" id="txtYil" class="form-control input-sm sgb-yil ug-yil" step="1" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="cmbUnvan">Unvan</label>
+                <div><select id="cmbUnvan" class="form-control input-sm ug-secim"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="cmbUlke">Ülke</label>
+                <div><select id="cmbUlke" class="form-control input-sm ug-secim"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="cmbTur">Tür</label>
+                <div><select id="cmbTur" class="form-control input-sm ug-secim"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtTutar">Gündelik Tutar</label>
+                <div class="ug-yan">
+                    <input type="text" id="txtTutar" class="form-control input-sm ug-tutar" inputmode="decimal" maxlength="18" autocomplete="off" />
+                    <select id="cmbParaBirimi" class="form-control input-sm ug-para" aria-label="Para birimi"></select>
+                </div>
+            </div>
+        </form>
+
+        <div class="ug-arac" role="toolbar" aria-label="Gündelik işlemleri">
+            <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+            </button>
+            <button type="button" id="btnSil" class="btn btn-danger btn-sm" title="Listeden seçili gündeliği sil">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+            </button>
+            <button type="button" id="btnAra" class="btn btn-default btn-sm" title="Formdaki bilgilere uyan gündelikleri listele">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Ara
+            </button>
+            <button type="button" id="btnTemizle" class="btn btn-default btn-sm" title="Formu temizle">
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Temizle
+            </button>
+            <span class="ug-ayrac" aria-hidden="true"></span>
+            <button type="button" id="btnKopyala" class="btn btn-default btn-sm" title="Seçili yılın gündeliklerini sonraki yıla kopyala">
+                <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Sonraki Yıla Kopyala
+            </button>
+            <button type="button" id="btnYardim" class="btn btn-link btn-sm ug-yardim" aria-expanded="false" aria-controls="ugYardim" title="Yardım">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span><span class="sr-only">Yardım</span>
+            </button>
+        </div>
+        <div id="ugYardim" class="ug-yardim-metin" hidden>
+            <p>Listeden bir satıra tıklayınca bilgileri forma gelir. Kaydet, seçili satırın yıl, unvan, ülke ve türü değişmediyse onu günceller, değiştiyse yeni kayıt ekler.
+                Sil listeden seçili kaydı siler. Ara formdaki yıl, unvan, ülke, tür ve tutara uyan kayıtları listeler; boş alanlar süzmez.</p>
+            <p class="ug-yardim-son">Sonraki Yıla Kopyala, seçili yılın bütün gündeliklerini bir sonraki yıla kopyalar (sonraki yılda hiç kayıt yoksa).</p>
+        </div>
+    </section>
+
+    <div id="grdGundelik" class="ug-grid" aria-label="Gündelik listesi"></div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/unvangundelik.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/unvangundelik.js" asp-append-version="true"></script>
+}

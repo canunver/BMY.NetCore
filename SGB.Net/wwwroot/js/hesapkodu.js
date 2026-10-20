@@ -11,13 +11,15 @@
 //       adHedef:   '#txtHesapAd',      // ad ayrıca (ya da yalnızca) bu kutuya yazılır
 //       denetle:   true,               // elle yazılan kod sunucuda okunsun (false: yalnız mercek; ör. yeni hesap tanımlanan kutu)
 //       uc:        'api/muhtanim/hesap/',
+//       onEk:      '830',              // yalnız bu hesabın altındakiler kabul edilir; mercekteki ağaç da buradan başlar
+//       seviye:    3,                  // yalnız bu düzeydeki hesaplar (830.01.01 -> 3) kabul edilir
 //       secilince: function (h) { },   // mercekten seçilince: { kod, ad, detay }
 //       degisince: function (h) { }    // kod değişip okununca (seçim dahil): { kod, ad, detay, gecerli }
 //   });
-//   hk.deger() -> { kod, ad, detay, gecerli }   hk.ata(kod, ad)   hk.temizle()   hk.gecerli()
+//   hk.deger() -> { kod, ad, detay, gecerli }   hk.ata(kod, ad)   hk.temizle()   hk.gecerli()   hk.hazir().done(function (h) { })
 //
 // Kullanım (işaretleme): <input type="text" class="form-control kisa" data-hesap-kodu data-yil="#txtYil" data-son-seviye data-ad
-//   data-ad-hedef="#txtAd" data-denetle="false" />  -> sayfa açılınca kendiliğinden kurulur; nesnesi $(kutu).data('hesapKodu').
+//   data-ad-hedef="#txtAd" data-denetle="false" data-on-ek="830" data-seviye="3" />  -> sayfa açılınca kendiliğinden kurulur; nesnesi $(kutu).data('hesapKodu').
 // Kutunun değeri koddan yazılırsa (Sgb.mt.form gibi) kutuda 'sgb:yazildi' olayı çıkarılmalı; bileşen adı yeniden okur.
 (function (Sgb, $) {
     'use strict';
@@ -39,6 +41,7 @@
         var durum = { kod: '', ad: '', detay: false, gecerli: true };
         var okunan = null;   // son okunan kod (aynı kod yeniden okunmasın)
         var istekNo = 0;
+        var bekleyen = null;  // süren ad okuması (hazir() bunu bekletir)
 
         var $kap = $('<span class="hk-bilesen"></span>');
         $in.addClass('hk-kod').attr('autocomplete', 'off').after($kap);
@@ -60,6 +63,14 @@
             if (!gecerli) $ad.text(neden).attr('title', neden);
         }
 
+        // onEk / seviye kısıtı; uymuyorsa nedeni döner
+        function kisitHata(kod) {
+            var k = String(kod || '');
+            if (o.onEk && k.indexOf(o.onEk + '.') !== 0) return o.onEk + ' ile başlayan bir hesap olmalı';
+            if (o.seviye && k.split('.').length !== o.seviye) return o.seviye + '. düzeyde bir hesap olmalı' + (o.onEk ? ' (ör. ' + o.onEk + '.01.01)' : '');
+            return '';
+        }
+
         function bildir() {
             if (o.degisince) o.degisince($.extend({}, durum));
         }
@@ -74,12 +85,15 @@
             if (!kod) { if (!sessiz) bildir(); return; }
             if (!o.denetle) { if (!sessiz) bildir(); return; }
             var no = ++istekNo;
-            Sgb.al(o.uc + 'ad', { yil: yilBul(o.yil), kod: kod }).done(function (v) {
+            bekleyen = Sgb.al(o.uc + 'ad', { yil: yilBul(o.yil), kod: kod });
+            bekleyen.done(function (v) {
                 if (no !== istekNo) return;
                 if (v.hata) { isaretle(false, v.hata); return; }
                 if (v.kod && v.kod !== kod) { $in.val(v.kod); okunan = v.kod; }
                 durum = { kod: v.kod || kod, ad: v.ad || '', detay: !!v.detay, gecerli: true };
+                var kh = kisitHata(v.kod || kod);
                 if (!v.ad) isaretle(false, 'Hesap planında yok');
+                else if (kh) { adYaz(v.ad); isaretle(false, kh); }
                 else if (o.sonSeviye && !v.detay) { adYaz(v.ad); isaretle(false, 'Son seviye değil: ' + v.ad); }
                 else adYaz(v.ad);
                 if (!sessiz) bildir();
@@ -89,32 +103,119 @@
             });
         }
 
+        // Mercekten ya da öneri listesinden seçilen hesap: { kod, hesapAd, detay }
+        function secildi(h) {
+            if (o.sonSeviye && !h.detay) { Sgb.bildirim('Son seviye bir hesap seçiniz.', 'warning'); return false; }
+            var kh = kisitHata(h.kod);
+            if (kh) { Sgb.bildirim('Seçilen hesap ' + kh + '.', 'warning'); return false; }
+            okunan = h.kod;
+            $in.val(h.kod);
+            durum = { kod: h.kod, ad: h.hesapAd || '', detay: !!h.detay, gecerli: true };
+            isaretle(true);
+            adYaz(h.hesapAd);
+            $in.trigger('change');   // sayfanın kendi dinleyicileri için; aynı kod yeniden okunmaz
+            if (o.secilince) o.secilince({ kod: h.kod, ad: h.hesapAd || '', detay: !!h.detay });
+            bildir();
+            return true;
+        }
+
+        // Yazdıkça arama (eski ComboBox MinChars=2): kodla başlayan ya da adında yazılan geçen hesaplar kutunun altında listelenir;
+        // ok tuşlarıyla gezilir, Enter / tıklama ile seçilir, Esc listeyi kapatır.
+        var $liste = $('<div class="hk-oneri-liste" role="listbox" hidden></div>').appendTo(document.body);
+        var oneri = { secenekler: [], isaret: -1, istek: 0, zaman: null, acik: false };
+
+        function oneriKapat() {
+            oneri.istek++;
+            clearTimeout(oneri.zaman);
+            $liste.prop('hidden', true).empty();
+            oneri.secenekler = []; oneri.isaret = -1; oneri.acik = false;
+            $in.attr('aria-expanded', 'false');
+        }
+
+        function oneriIsaretle(i) {
+            oneri.isaret = i;
+            var $s = $liste.children().removeClass('secili');
+            if (i >= 0) $s.eq(i).addClass('secili')[0].scrollIntoView({ block: 'nearest' });
+        }
+
+        function oneriAra() {
+            var metin = $.trim($in.val());
+            if (metin.length < 2 || $in.prop('readonly') || $in.prop('disabled')) { oneriKapat(); return; }
+            var no = ++oneri.istek;
+            Sgb.al(o.uc + 'ara', { yil: yilBul(o.yil), metin: metin, sonKirilim: o.sonSeviye ? '1' : '0' }).done(function (v) {
+                if (no !== oneri.istek || !$in.is(':focus')) return;
+                var liste = $.grep((v && v.satirlar) || [], function (h) { return !kisitHata(h.kod); }).slice(0, 50);
+                oneri.secenekler = liste;
+                $liste.empty();
+                if (!liste.length) { oneriKapat(); return; }
+                $.each(liste, function (i, h) {
+                    $('<div class="hk-oneri-satir" role="option"></div>').text(h.ad).attr('title', h.ad).appendTo($liste);
+                });
+                var r = $in[0].getBoundingClientRect();
+                var alt = window.innerHeight - r.bottom;
+                $liste.css({ left: r.left, minWidth: Math.max(r.width, 360), top: alt > 220 ? r.bottom : '', bottom: alt > 220 ? '' : window.innerHeight - r.top })
+                    .prop('hidden', false);
+                oneri.acik = true;
+                $in.attr('aria-expanded', 'true');
+                oneriIsaretle(-1);
+            });
+        }
+
+        function oneriSec(i) {
+            var h = oneri.secenekler[i];
+            if (!h) return;
+            oneriKapat();
+            secildi(h);
+        }
+
+        $in.attr({ role: 'combobox', 'aria-autocomplete': 'list', 'aria-expanded': 'false' });
+        $in.on('input', function () {
+            clearTimeout(oneri.zaman);
+            oneri.zaman = setTimeout(oneriAra, 300);
+        });
+        $in.on('keydown', function (e) {
+            if (!oneri.acik) return;
+            var n = oneri.secenekler.length;
+            if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                oneriIsaretle(e.key === 'ArrowDown' ? (oneri.isaret + 1) % n : (oneri.isaret - 1 + n) % n);
+            } else if (e.key === 'Enter') {
+                if (oneri.isaret >= 0) { e.preventDefault(); e.stopPropagation(); oneriSec(oneri.isaret); }
+                else oneriKapat();
+            } else if (e.key === 'Escape') {
+                e.preventDefault(); e.stopPropagation(); oneriKapat();
+            }
+        });
+        $in.on('blur', oneriKapat);
+        $liste.on('mousedown', '.hk-oneri-satir', function (e) { e.preventDefault(); oneriSec($(this).index()); });
+        // Sayfa kayınca liste kutudan kopmasın (listenin kendi kaydırması hariç)
+        window.addEventListener('scroll', function (e) { if (oneri.acik && e.target !== $liste[0]) oneriKapat(); }, true);
+
         $in.on('change', function () { oku(false); });
         $in.on('sgb:yazildi', function () { oku(true); });
 
         $sec.on('click', function () {
             if ($in.prop('readonly') || $in.prop('disabled')) return;
+            oneriKapat();
             Sgb.hesapPlaniSec({
                 yil: yilBul(o.yil),
                 sonKirilim: !!o.sonSeviye,
                 uc: o.uc,
-                secilince: function (h) {
-                    if (o.sonSeviye && !h.detay) { Sgb.bildirim('Son seviye bir hesap seçiniz.', 'warning'); return; }
-                    okunan = h.kod;
-                    $in.val(h.kod);
-                    durum = { kod: h.kod, ad: h.hesapAd || '', detay: !!h.detay, gecerli: true };
-                    isaretle(true);
-                    adYaz(h.hesapAd);
-                    $in.trigger('change');   // sayfanın kendi dinleyicileri için; aynı kod yeniden okunmaz
-                    if (o.secilince) o.secilince({ kod: h.kod, ad: h.hesapAd || '', detay: !!h.detay });
-                    bildir();
-                }
+                kok: o.onEk || '',
+                secilince: secildi
             });
         });
 
         var nesne = {
             deger: function () { return $.extend({}, durum); },
             gecerli: function () { return durum.gecerli; },
+            // Kutudaki kodun okunmasını bekler (ör. kod yazılıp hemen Ekle'ye basılınca): önce değişikliği işler.
+            hazir: function () {
+                if ($.trim($in.val()) !== okunan) oku(false);
+                var d = $.Deferred();
+                (bekleyen || $.Deferred().resolve()).always(function () { d.resolve($.extend({}, durum)); });
+                return d.promise();
+            },
             ata: function (kod, ad) {
                 $in.val(kod || '');
                 if (ad === undefined) { oku(true); return; }
@@ -143,7 +244,9 @@
                 ad: $i.is('[data-ad]'),
                 adHedef: $i.attr('data-ad-hedef') || undefined,
                 denetle: d === undefined ? true : d !== 'false',
-                uc: $i.attr('data-uc') || undefined
+                uc: $i.attr('data-uc') || undefined,
+                onEk: $i.attr('data-on-ek') || undefined,
+                seviye: parseInt($i.attr('data-seviye'), 10) || undefined
             });
         });
     };

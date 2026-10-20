@@ -1,0 +1,82 @@
+@page
+@model HizmetSebebiFormModel
+@{
+    ViewData["Title"] = "Hizmet Sebepleri";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim hizmet-sebebi">
+    <!-- Sol: arama ve hizmet sebepleri -->
+    <section class="tanim-sol">
+        <div class="kutu">
+            <h2 class="kutu-baslik">Hizmet Sebepleri</h2>
+            <form id="frmArama" class="hs-arama" role="search" novalidate>
+                <div class="hs-kriter">
+                    <label for="txtAraAd">Sebep Adı</label>
+                    <input type="search" id="txtAraAd" class="form-control input-sm" placeholder="Adın başı" />
+                </div>
+                <div class="hs-kriter">
+                    <label for="cmbAraTip">Tip</label>
+                    <select id="cmbAraTip" class="form-control input-sm"></select>
+                </div>
+                <div class="btn-toolbar hs-arac" role="toolbar">
+                    <button type="submit" id="btnListele" class="btn btn-default btn-sm" title="Kriterlere uyan hizmet sebeplerini listele">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+                    </button>
+                    <button type="button" id="btnSil" class="btn btn-danger btn-sm" title="İşaretli satırları sil">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+                    </button>
+                </div>
+            </form>
+            <div id="grdSebepler" class="tanim-grid" aria-label="Hizmet sebepleri"></div>
+        </div>
+    </section>
+
+    <!-- Sağ: seçili hizmet sebebi -->
+    <section class="tanim-sag">
+        <div class="kutu">
+            <div class="btn-toolbar tanim-arac" role="toolbar">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+                <button type="button" id="btnTemizle" class="btn btn-default btn-sm" title="Formu temizle, yeni kayıt">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Temizle
+                </button>
+            </div>
+
+            <form id="frmSebep" novalidate>
+                <div class="bolum">
+                    <h3 class="bolum-baslik">Hizmet Sebebi</h3>
+                    <div class="tanim-form">
+                        <div class="form-group">
+                            <label class="control-label" for="txtKod">Kod</label>
+                            <div><input type="number" id="txtKod" class="form-control dar" min="1" step="1" title="Kod" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtSebepAdi">Sebep Adı</label>
+                            <div><input type="text" id="txtSebepAdi" class="form-control" title="Sebep Adı" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="cmbTip">Tip</label>
+                            <div><select id="cmbTip" class="form-control" title="Tip"></select></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hizmetsebebi.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/hizmetsebebi.js" asp-append-version="true"></script>
+}

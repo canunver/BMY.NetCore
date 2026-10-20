@@ -1,0 +1,13 @@
+/* Modüller (js/moduller.js). Girilebilir hücre (Durum) beyaz, salt okunur hücreler sarı (proje kuralı). */
+
+.moduller .md-arac { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.moduller .md-degisen { color: var(--soluk); }
+.moduller .md-yardim { margin-left: auto; font-weight: bold; min-width: 30px; }
+.moduller .md-aciklama { margin-bottom: 6px; padding: 8px 12px; }
+.moduller .md-grid { width: 100%; max-width: 760px; height: 400px; }
+.moduller .md-salt { background-color: #fffbe0; }
+.moduller .md-girdi { background-color: #fff; cursor: pointer; }
+.moduller .md-degisti { font-weight: bold; }
+.moduller .md-durum-0 { color: #a94442; }
+.moduller .md-durum-1 { color: #3c763d; }
+.moduller .md-durum-2 { color: #8a6d3b; }

@@ -1,0 +1,61 @@
+@page
+@model AktarModel
+@{
+    ViewData["Title"] = "e-bütçe Bilgi Aktarım Sayfası";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans ebutce-aktar">
+    <section class="kutu bolum bolum-kriter">
+        <h2 class="bolum-baslik">e-bütçe Aktarımları</h2>
+        <form id="frmAktar" class="tanim-form avans-alanlar" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label">İşlemler</label>
+                <div class="avans-secenekler">
+                    <label><input type="radio" name="islem" value="harcama" checked /> <b>Harcama Gerçekleşmelerini</b> aktar</label>
+                    <label><input type="radio" name="islem" value="odenek" /> <b>Ödenek Servisi Çalıştır</b></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtYil">Yıl</label>
+                <div><input type="number" id="txtYil" class="form-control input-sm sgb-yil" /></div>
+            </div>
+            <div class="form-group" id="grpAy">
+                <label class="control-label" for="ddlAy">Ay</label>
+                <div><select id="ddlAy" class="form-control input-sm avans-ay"></select></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtKullanici">e-bütçe Kullanıcısı</label>
+                <div class="avans-bitisik">
+                    <input type="text" id="txtKullanici" class="form-control input-sm avans-kullanici" autocomplete="off" aria-label="Kullanıcı adı" />
+                    <input type="password" id="txtParola" class="form-control input-sm avans-kullanici" autocomplete="new-password" aria-label="Parola" />
+                    <button type="button" id="btnSakla" class="btn btn-default btn-sm" title="e-bütçeye bağlanma kullanıcı ve şifresini sakla">
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Sakla
+                    </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="control-label"></span>
+                <div>
+                    <button type="button" id="btnAktar" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Aktar
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div id="pnlSonuc" class="alert avans-sonuc" role="status" hidden></div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/ebutceaktar.js" asp-append-version="true"></script>
+}

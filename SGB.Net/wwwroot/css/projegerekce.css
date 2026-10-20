@@ -2,9 +2,9 @@
    Bölümler renkli başlıklı ayrı kutulardır (Ana Harcama Grupları Tavan Girişi ile aynı görünüm). */
 
 .proje-gerekce .kutu.bolum {
-    --bolum-baslik: #e3edfa;
-    --bolum-govde: #f5f8fd;
-    --bolum-vurgu: #2f6fc4;
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
     padding-top: 0;
     background: var(--bolum-govde);
 }
@@ -12,7 +12,7 @@
 .proje-gerekce .kutu.bolum.bolum-proje {
     --bolum-baslik: #e2f3e6;
     --bolum-govde: #f5fbf6;
-    --bolum-vurgu: #2e8b4e;
+    --bolum-vurgu: var(--b2-vurgu);
 }
 
 .proje-gerekce .bolum-baslik {

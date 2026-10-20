@@ -1,0 +1,88 @@
+@page
+@model SayistayVerileriModel
+@{
+    ViewData["Title"] = "Sayıştay Verileri";
+    ViewData["GovdeSinif"] = "sayistay-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="sayistay-verileri">
+    <!-- Tablo listesi (eski pnlSol "Sayıştay Verileri") -->
+    <section class="kutu bolum bolum-liste say-liste" aria-label="Sayıştay Verileri">
+        <h2 class="bolum-baslik">Sayıştay Verileri</h2>
+        <ol id="lstRapor" class="say-raporlar" role="listbox" aria-label="Tablo listesi"></ol>
+    </section>
+
+    <div class="say-sag">
+        <!-- Tablo kuralları (eski pnlRaporKurallari) -->
+        <section class="kutu bolum bolum-kriter say-kural" aria-labelledby="lblRaporBaslik">
+            <h2 class="bolum-baslik">
+                <span id="lblRaporBaslik">Rapor Kuralları</span>
+                <span class="say-baslik-tuslar">
+                    <button type="button" id="btnYardim" class="btn btn-default btn-xs say-yardim" title="Açıklama" aria-expanded="false" aria-controls="pnlYardim">?</button>
+                </span>
+            </h2>
+            <div id="pnlYardim" class="say-ipucu" hidden>
+                Soldan tabloyu seçiniz; yalnızca o tablonun kullandığı alanlar görünür. <b>Dosya Hazırla</b> seçilen tablonun Sayıştay'a
+                gönderilecek dosyasını indirir (| ile ayrılmış CSV; Öz Kaynak Değişim ve Bütçeleşen ve Gerçekleşen Tutarlar Excel).
+                Banka hesapları ve sayım tutanaklarında bilgiler aşağıdaki tabloya girilir ve <b>Kaydet</b> ile saklanır; dosya saklanan
+                bilgilerden hazırlanır. Başlığında * olan sütunlar zorunludur; tarihi (banka hesaplarında hesap numarası) boş satırlar saklanmaz.
+            </div>
+
+            <div class="btn-toolbar say-arac" role="toolbar" aria-label="Dosya işlemleri">
+                <button type="button" id="btnDosya" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Dosya Hazırla</button>
+            </div>
+
+            <form id="frmKural" class="tanim-form say-alanlar" novalidate onsubmit="return false;">
+                <div class="form-group">
+                    <label class="control-label" for="txtYil">Yıl</label>
+                    <div><input type="number" id="txtYil" class="form-control input-sm say-yil sgb-yil" step="1" /></div>
+                </div>
+                <div class="form-group" data-alan="ay">
+                    <label class="control-label" for="ddlAy">Ay</label>
+                    <div><select id="ddlAy" class="form-control input-sm say-kisa"></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMuhasebe">Muhasebe Birimi</label>
+                    <div id="muhBirim"></div>
+                </div>
+                <div class="form-group" data-alan="mizanTur">
+                    <label class="control-label" for="ddlMizanTur">Mizan Türü</label>
+                    <div>
+                        <select id="ddlMizanTur" class="form-control input-sm say-kisa">
+                            <option value="2" selected>Geçici Mizan</option>
+                            <option value="4">Kesin Mizan</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <!-- Giriş tablosu (eski grdBilgi): banka hesapları ve sayım tutanakları -->
+        <section class="kutu bolum bolum-tablo say-giris" data-alan="giris" aria-label="Bilgiler">
+            <h2 class="bolum-baslik">Bilgiler</h2>
+            <div class="btn-toolbar say-arac" role="toolbar" aria-label="Tablo işlemleri">
+                <button type="button" id="btnListele" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele</button>
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+                <button type="button" id="btnSatirEkle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Ekle</button>
+                <button type="button" id="btnSatirSil" class="btn btn-default btn-sm" disabled><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Satır Sil</button>
+            </div>
+            <div id="grdBilgi" class="say-grid"></div>
+        </section>
+    </div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/sayistayverileri.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/sayistayverileri.js" asp-append-version="true"></script>
+}

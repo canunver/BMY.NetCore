@@ -1,0 +1,83 @@
+/* Personel Tipleri (InsanKaynaklari/PersonelTipForm): yerleşim tanim.css'ten (solda liste, sağda form);
+   form bölümleri renkli başlıklı ayrı kutular. */
+
+.personel-tip .bolum {
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
+    margin: 0 0 12px;
+    padding: 0 12px 6px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.personel-tip .bolum.bolum-ozellik {
+    --bolum-baslik: #e2f3e6;
+    --bolum-govde: #f5fbf6;
+    --bolum-vurgu: var(--b2-vurgu);
+}
+
+.personel-tip .bolum.bolum-katsayi {
+    --bolum-baslik: #fbefdc;
+    --bolum-govde: #fefaf3;
+    --bolum-vurgu: #c7812a;
+}
+
+.personel-tip .bolum-baslik {
+    margin: 0 -12px 10px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.personel-tip .tanim-form {
+    --etiket-genislik: 120px;
+}
+
+.personel-tip .bolum .form-control {
+    background: #fff;
+}
+
+/* Özellikler ve katsayılar yan yana; dar ekranda alt alta */
+.personel-tip .pt-alt {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0 12px;
+}
+
+.personel-tip .pt-secenekler {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 6px;
+}
+
+.personel-tip .pt-secenekler label {
+    margin: 0;
+    font-weight: 400;
+}
+
+.personel-tip .pt-yanyana {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.personel-tip .pt-yanyana label {
+    margin: 0;
+    font-weight: 400;
+}
+
+.personel-tip .pt-yanyana .pt-gun {
+    width: 80px;
+}
+
+.personel-tip .pt-katsayi .dar {
+    max-width: 110px;
+}

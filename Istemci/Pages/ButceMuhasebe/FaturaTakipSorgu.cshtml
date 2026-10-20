@@ -1,0 +1,153 @@
+@page
+@model FaturaTakipSorguModel
+@{
+    ViewData["Title"] = "Fatura Takip";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans fatura fatura-takip">
+    <!-- Kriterler (eski pgFiltre) -->
+    <section class="kutu bolum bolum-kriter">
+        <h2 class="bolum-baslik">Fatura Takip
+            <button type="button" class="btn btn-link btn-xs avans-yardim-dugme" data-yardim="#ftkYardim" title="Yardım" aria-label="Yardım">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+            </button>
+        </h2>
+        <div id="ftkYardim" class="alert alert-info avans-yardim" hidden>
+            Kriterleri girip Listele'ye basınız. Hesap Kodu ve Alt Hesap Kodu alanlarına en az iki karakter yazınca öneriler gelir.
+            Satırdaki <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> takip durumunu değiştirir; belge numarası belgeyi,
+            belge durumu belgenin tarihçesini açar.
+        </div>
+        <form id="frmKriter" class="avans-iki-sutun" onsubmit="return false;">
+            <div class="tanim-form avans-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="txtYil">Yıl</label>
+                    <div><input type="number" id="txtYil" class="form-control input-sm sgb-yil" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlDurum">Belge Durum</label>
+                    <div><select id="ddlDurum" class="form-control input-sm ft-orta"></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlTakipDurum">Takip Durum</label>
+                    <div><select id="ddlTakipDurum" class="form-control input-sm ft-orta"></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMuhasebe">Muhasebe / Birim</label>
+                    <div id="muhBirim"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtHesapNo">Hesap Kodu</label>
+                    <div>
+                        <input type="text" id="txtHesapNo" class="form-control input-sm ft-genis" list="lstHesap" autocomplete="off" />
+                        <datalist id="lstHesap"></datalist>
+                    </div>
+                </div>
+            </div>
+            <div class="tanim-form avans-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="txtYevmiyeNo1">Yevmiye No</label>
+                    <div class="avans-bitisik">
+                        <input type="text" id="txtYevmiyeNo1" class="form-control input-sm ft-kisa" placeholder="&gt;=" aria-label="Yevmiye No büyük eşit" autocomplete="off" />
+                        <span aria-hidden="true">-</span>
+                        <input type="text" id="txtYevmiyeNo2" class="form-control input-sm ft-kisa" placeholder="&lt;=" aria-label="Yevmiye No küçük eşit" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtBelgeNo1">Belge No</label>
+                    <div class="avans-bitisik">
+                        <input type="text" id="txtBelgeNo1" class="form-control input-sm ft-orta" placeholder="&gt;=" aria-label="Belge No büyük eşit" autocomplete="off" />
+                        <span aria-hidden="true">-</span>
+                        <input type="text" id="txtBelgeNo2" class="form-control input-sm ft-orta" placeholder="&lt;=" aria-label="Belge No küçük eşit" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtBelgeTarihi1">Belge Tarihi</label>
+                    <div class="avans-bitisik">
+                        <input type="date" id="txtBelgeTarihi1" class="form-control input-sm ft-tarih" aria-label="Belge tarihi büyük eşit" />
+                        <span aria-hidden="true">-</span>
+                        <input type="date" id="txtBelgeTarihi2" class="form-control input-sm ft-tarih" aria-label="Belge tarihi küçük eşit" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAltHesapNo">Alt Hesap Kodu</label>
+                    <div>
+                        <input type="text" id="txtAltHesapNo" class="form-control input-sm ft-genis" list="lstAltHesap" autocomplete="off" />
+                        <datalist id="lstAltHesap"></datalist>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <!-- Belgeler (eski grdListeFaturaTakip) -->
+    <section class="kutu bolum bolum-liste">
+        <div class="avans-arac" role="toolbar" aria-label="Liste işlemleri">
+            <button type="button" id="btnListele" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+            </button>
+            <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Listeyi Excel'e yazdır">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Liste Yazdır
+            </button>
+            <span id="lblSayi" class="avans-ozet" aria-live="polite"></span>
+        </div>
+        <div id="grdListe" class="avans-grid" aria-label="Belgeler"></div>
+    </section>
+</div>
+
+<!-- Takip durumu (eski wndTakipDurumDegistir) -->
+<dialog id="dlgTakip" class="tanim-pencere ft-pencere" aria-labelledby="dlgTakipBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgTakipBaslik">Takip Durumu</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmTakip" class="tanim-form avans-alanlar" onsubmit="return false;">
+            <div class="form-group">
+                <span class="control-label">Belge No</span>
+                <div><span id="lblTakipBelge"></span></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ddlTakipDegistir">Takip Durum</label>
+                <div><select id="ddlTakipDegistir" class="form-control input-sm ft-orta"></select></div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnTakipKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+    </div>
+</dialog>
+
+<!-- Belge tarihçesi (eski BelgeTarihce.aspx) -->
+<dialog id="dlgTarihce" class="tanim-pencere ft-pencere ft-pencere-genis" aria-labelledby="dlgTarihceBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgTarihceBaslik">Tarihçe</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div id="grdTarihce" class="ft-grid-pencere" aria-label="Belge tarihçesi"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/fatura.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/faturatakip.js" asp-append-version="true"></script>
+}

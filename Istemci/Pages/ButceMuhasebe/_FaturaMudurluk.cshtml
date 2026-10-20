@@ -1,0 +1,15 @@
+@* Müdürlük seçimi (eski ButceMuhasebe/ListeMudurluk.aspx): Fatura Hazırlama ve Fatura Giriş'te kullanılır (js/fatura.js, /api/fatura/mudurluk). *@
+<dialog id="dlgMudurluk" class="tanim-pencere ft-pencere" aria-labelledby="dlgMudurlukBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgMudurlukBaslik">Müdürlük Listesi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <input type="search" id="txtMudurlukAra" class="form-control input-sm" placeholder="Kod ya da ad ile süz" autocomplete="off" aria-label="Müdürlük ara" />
+        <p class="help-block small">Seçmek için satıra tıklayınız.</p>
+        <div id="grdMudurluk" class="ft-grid-pencere" aria-label="Müdürlükler"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>

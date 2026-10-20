@@ -3740,6 +3740,12 @@ namespace TNS.KYM
         ObjectArray<KullaniciIslemYapan> KullaniciSessionGrafik(string kullaniciKodu, ENUMKullanimBilgiZaman grafikZamanAraligi, TNSDateTime tarih1, TNSDateTime tarih2, string sayfaAd);
 
         /// <summary>
+        /// KULLANICI_BILGI tablosunda saklamaYil yıldan eski kayıtları partiBoyut'luk partilerle KULLANICI_BILGI_ARSIV tablosuna taşır.
+        /// Arşiv tablosu ve ISLEMTARIHI index'leri yoksa önce oluşturulur. Başarılıysa bilgiStr'de taşınan satır sayısı döner.
+        /// </summary>
+        Sonuc KullaniciBilgiArsiveTasi(int saklamaYil, int partiBoyut);
+
+        /// <summary>
         /// Bir kullanıcının, bir değişkeninin değerlerini döndüren yordam.
         /// </summary>
         /// <param name="kullaniciKodu">Değişken değerleri bulunacak kullanıcının sisteme giriş kodu.</param>

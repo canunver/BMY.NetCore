@@ -1,0 +1,67 @@
+@page
+@model CalisanKullaniciGrafikModel
+@{
+    // Sistem Kullanım Grafiği (eski KYM/CalisanKullaniciGrafik.aspx): tarih aralığında, seçilen zaman dilimine göre sayfa görüntülenme sayıları.
+    ViewData["Title"] = Metin.Kullanici("FRMCKG010");
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans calisan-kullanici ck-grafik-sayfa" data-baslik="@Metin.Kullanici("FRMCKG010")">
+    <section class="kutu bolum bolum-kriter">
+        <form id="frmKriter" class="tanim-form avans-alanlar ck-grafik-alanlar" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label" for="txtSayfa">@Metin.Kullanici("FRMCKG001")</label>
+                <div><input type="text" id="txtSayfa" class="form-control input-sm ck-sayfa" maxlength="200" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtTarih1">@Metin.Kullanici("FRMCKG002")</label>
+                <div class="ck-satir">
+                    <input type="date" id="txtTarih1" class="form-control input-sm ck-tarih" />
+                    <input type="date" id="txtTarih2" class="form-control input-sm ck-tarih" aria-label="@Metin.Kullanici("FRMCKG002")" />
+                    <span class="ck-hizli">
+                        <button type="button" class="btn btn-default btn-xs" data-ay="0" data-zaman="3">Bu ay</button>
+                        <button type="button" class="btn btn-default btn-xs" data-ay="12" data-zaman="4">Son 1 yıl</button>
+                        <button type="button" class="btn btn-default btn-xs" data-ay="60" data-zaman="5">Son 5 yıl</button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="control-label">@Metin.Kullanici("FRMCKG003")</span>
+                <div class="ck-satir ck-zaman" role="radiogroup" aria-label="@Metin.Kullanici("FRMCKG003")">
+                    <label><input type="radio" name="zaman" value="1" /> @Metin.Kullanici("FRMCKG004")</label>
+                    <label><input type="radio" name="zaman" value="2" /> @Metin.Kullanici("FRMCKG005")</label>
+                    <label><input type="radio" name="zaman" value="3" checked /> @Metin.Kullanici("FRMCKG006")</label>
+                    <label><input type="radio" name="zaman" value="4" /> @Metin.Kullanici("FRMCKG007")</label>
+                    <label><input type="radio" name="zaman" value="5" /> @Metin.Kullanici("FRMCKG008")</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="control-label"></span>
+                <div class="ck-satir">
+                    <button type="submit" id="btnCiz" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> @Metin.Kullanici("FRMCKG009")
+                    </button>
+                    <span id="lblToplam" class="ck-adet" role="status"></span>
+                </div>
+            </div>
+        </form>
+        <div id="hata" class="alert alert-danger avans-sonuc" role="alert" hidden></div>
+    </section>
+    <section class="kutu bolum bolum-liste">
+        <div id="grafik" class="ck-grafik"></div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/calisankullanici.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/js/calisankullanici.js" asp-append-version="true"></script>
+}

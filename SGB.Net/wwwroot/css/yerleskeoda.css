@@ -1,0 +1,102 @@
+/* Yerleşke Oda Tanımı (KYM/TanimOda): yerleşim tanim.css'ten (solda ağaç, sağda form); form bölümleri renkli başlıklı ayrı kutular. */
+
+.yerleske [hidden] {
+    display: none !important;
+}
+
+.yerleske .kutu-baslik,
+.yerleske .tanim-sol .tanim-arac {
+    flex: none;
+}
+
+.yerleske .bolum {
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
+    margin: 0 0 12px;
+    padding: 0 12px 6px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.yerleske .bolum-2 {
+    --bolum-baslik: var(--b2-baslik);
+    --bolum-govde: var(--b2-govde);
+    --bolum-vurgu: var(--b2-vurgu);
+}
+
+.yerleske .bolum-baslik {
+    margin: 0 -12px 10px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.yerleske .tanim-form {
+    --etiket-genislik: 120px;
+    max-width: 560px;
+}
+
+/* Veri girilen alanlar beyaz, değiştirilemeyenler sarı */
+.yerleske .bolum .form-control {
+    background: #fff;
+}
+
+.yerleske .bolum .form-control[readonly] {
+    background: #fcfcd4;
+}
+
+.yerleske .tanim-form textarea.form-control {
+    resize: vertical;
+}
+
+.yerleske .secim-satir {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.yerleske .secim-satir .form-control {
+    flex: 1 1 auto;
+}
+
+.yerleske .secim-satir .btn {
+    flex: none;
+}
+
+#agacYer {
+    margin: 0;
+    padding: 0;
+}
+
+.secim-agac {
+    height: min(52vh, 420px);
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    border: 1px solid var(--cizgi);
+    border-radius: 4px;
+}
+
+@media (min-width: 992px) {
+    .tanim.yerleske {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .tanim.yerleske .tanim-sol .kutu {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .tanim.yerleske .kayan {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+    }
+}

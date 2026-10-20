@@ -1,0 +1,39 @@
+/* SGB - KBS Fark (Faal.) ve Bütçe İşlemleri Düzeltme: düzen odenekgonderme.css'teki Belge Arama'dan (.og-liste) gelir;
+   burada yalnızca bu iki sayfaya özgü olanlar var. */
+
+/* Yıl / Ay yan yana */
+.sgb-kbs-fark #ddlAy {
+    flex: 0 0 56px;
+    max-width: 56px;
+}
+
+/* En az fark ve fark türü yan yana */
+.sgb-kbs-fark #txtEnAzFark {
+    text-align: right;
+}
+
+/* Kaydet / işlem hataları: birden çok satır */
+.sgb-duzeltme .sgb-hata {
+    margin: 0 0 8px;
+    padding: 6px 10px;
+    max-height: 120px;
+    overflow: auto;
+    white-space: pre-line;
+    font-size: 12px;
+}
+
+/* İşlem Yap ilerlemesi (yapılan/toplam hata:n) */
+.sgb-duzeltme .sgb-ilerleme {
+    font-weight: 600;
+    color: var(--bolum-vurgu);
+}
+
+.sgb-duzeltme .ag-cell .sgb-satir-islem {
+    padding: 0 6px;
+    line-height: 1.5;
+}
+
+.sgb-kbs-fark .og-icmal select {
+    width: auto;
+    min-width: 110px;
+}

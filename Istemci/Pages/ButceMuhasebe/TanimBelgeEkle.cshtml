@@ -1,0 +1,36 @@
+@page
+@model TanimBelgeEkleModel
+@{
+    ViewData["Title"] = Request.Query["tip"] == "2" ? "Teminat Mektubu Dosya Yükleme" : "Sözleşme ve Taahhüt Kartı Dosya Yükleme";
+    ViewData["GovdeSinif"] = "avans-sayfa th-tam-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans muh-tanim th-alt th-doldur" data-sayfa="belge">
+    <section class="kutu bolum bolum-liste">
+        <div class="avans-arac mt-arac" role="toolbar" aria-label="Belge işlemleri">
+            <label class="btn btn-primary btn-sm" for="dosyaSec" style="margin:0"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Dosya Yükle</label>
+            <input type="file" id="dosyaSec" multiple hidden />
+            <button type="button" id="btnGoster" class="btn btn-default btn-sm" disabled><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Göster</button>
+            <button type="button" id="btnSil" class="btn btn-default btn-sm" disabled><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil</button>
+            <button type="button" id="btnKapat" class="btn btn-default btn-sm" hidden><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Kapat</button>
+        </div>
+        <div id="grdBelge" class="th-grid" aria-label="Yüklenen belgeler"></div>
+        <p class="avans-not">Belgeyi açmak için adına çift tıklayın.</p>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taahhutkarti.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/taahhutalt.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,175 @@
+/* Resmi Tatil Günleri Düzenleme (KYM/ResmiTatilXml): solda yılın 12 ayı, sağda form ve tatil listesi. */
+
+.resmi-tatil {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 380px;
+    gap: 14px;
+    align-items: start;
+}
+
+.resmi-tatil .rt-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 10px;
+}
+
+.resmi-tatil .rt-arac label {
+    margin: 0 4px 0 0;
+    font-weight: 600;
+}
+
+.resmi-tatil .rt-arac .sgb-yil {
+    width: 90px;
+}
+
+.resmi-tatil .rt-isaret {
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.resmi-tatil .rt-renk {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 3px;
+    vertical-align: -1px;
+    border-radius: 3px;
+}
+
+.resmi-tatil .rt-renk-her,
+.resmi-tatil .rt-tatil-her {
+    background: #f3c6c4;
+}
+
+.resmi-tatil .rt-renk-yil,
+.resmi-tatil .rt-tatil-yil {
+    background: #f7dd9a;
+}
+
+.resmi-tatil .rt-takvim {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 10px;
+}
+
+.resmi-tatil .rt-ay {
+    padding: 8px;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+}
+
+.resmi-tatil .rt-ay-baslik {
+    margin: 0 0 4px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--tema-ana);
+}
+
+.resmi-tatil .rt-ay-tablo {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 12px;
+}
+
+.resmi-tatil .rt-ay-tablo th {
+    padding: 2px 0;
+    font-weight: 600;
+    text-align: center;
+    opacity: .7;
+}
+
+.resmi-tatil .rt-ay-tablo td {
+    height: 24px;
+    padding: 0;
+    text-align: center;
+}
+
+.resmi-tatil .rt-gun {
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.resmi-tatil .rt-gun:hover,
+.resmi-tatil .rt-gun:focus {
+    outline: 1px solid var(--tema-ana);
+}
+
+.resmi-tatil .rt-haftasonu {
+    color: #a33;
+}
+
+.resmi-tatil .rt-bugun {
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.resmi-tatil .rt-secili {
+    outline: 2px solid var(--tema-koyu, #333);
+}
+
+.resmi-tatil .kutu {
+    margin: 0 0 12px;
+    padding: 12px 14px;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-left: 4px solid var(--tema-ana);
+    border-radius: 10px;
+}
+
+.resmi-tatil .kutu-baslik {
+    margin: 0 0 10px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.resmi-tatil .rt-form .form-group {
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr);
+    align-items: center;
+    column-gap: 8px;
+    margin: 0 0 6px;
+}
+
+.resmi-tatil .rt-form .form-group::before,
+.resmi-tatil .rt-form .form-group::after {
+    display: none;
+}
+
+.resmi-tatil .control-label {
+    margin: 0;
+    font-weight: 600;
+    text-align: left;
+}
+
+.resmi-tatil .rt-tarih {
+    max-width: 160px;
+}
+
+.resmi-tatil .rt-sure {
+    max-width: 90px;
+}
+
+.resmi-tatil .rt-dugmeler {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.resmi-tatil .rt-liste {
+    margin: 0;
+    font-size: 12px;
+}
+
+.resmi-tatil .rt-satir {
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    .resmi-tatil {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

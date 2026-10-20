@@ -10,9 +10,9 @@
 }
 
 .yat-proje .kutu.bolum {
-    --bolum-baslik: #e3edfa;
-    --bolum-govde: #f5f8fd;
-    --bolum-vurgu: #2f6fc4;
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
     padding-top: 0;
     background: var(--bolum-govde);
 }
@@ -25,9 +25,9 @@
 }
 
 .yat-proje .kutu.bolum.bolum-sozluk {
-    --bolum-baslik: #e2f3e8;
-    --bolum-govde: #f4fbf6;
-    --bolum-vurgu: #2e8b4e;
+    --bolum-baslik: var(--b2-baslik);
+    --bolum-govde: var(--b2-govde);
+    --bolum-vurgu: var(--b2-vurgu);
 }
 
 .yat-proje .bolum-baslik {
@@ -96,7 +96,7 @@
     box-shadow: inset 4px 0 0 var(--grup-vurgu);
 }
 
-.yat-proje .grup-kaynak { --grup-vurgu: #2e8b4e; }
+.yat-proje .grup-kaynak { --grup-vurgu: var(--b2-vurgu); }
 .yat-proje .grup-hedef  { --grup-vurgu: #6b4fb3; }
 .yat-proje .grup-secim  { --grup-vurgu: #c0504d; }
 

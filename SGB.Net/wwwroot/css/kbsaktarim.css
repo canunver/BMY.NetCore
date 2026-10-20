@@ -1,0 +1,35 @@
+/* KBS Aktarım Tanımlama (ButceMuhasebe/TanimKBSAktarim): kriterler solda dar sütunda alt alta (etiket üstte), tablo kalan alanda. */
+
+.kbs-kriter .form-group {
+    margin-bottom: 8px;
+}
+
+.kbs-kriter .form-group > label {
+    display: block;
+    margin: 0 0 2px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.kbs-kriter .sgb-yil {
+    width: 100px;
+}
+
+/* Düğmeler alt alta, sütun genişliğinde */
+.kbs-kriter .kbs-dugmeler {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.kbs-kriter .kbs-dugmeler .btn {
+    width: 100%;
+    text-align: left;
+}
+
+@media (min-width: 992px) {
+    .tanim.kbs-yan {
+        grid-template-columns: 200px minmax(0, 1fr);
+    }
+}

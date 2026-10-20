@@ -1,0 +1,249 @@
+/* Muhasebat Aktarım İşlemleri (MuhasebatAktarimTCCB belge formu, MuhasebatAktarimSorguTCCB belge arama). avans.css düzeni üzerine. */
+
+.ma .avans-alanlar {
+    --etiket-genislik: 150px;
+}
+
+.ma .ma-tarih {
+    width: 135px;
+}
+
+.ma .ma-belgeno {
+    width: 130px;
+}
+
+.ma .ma-yevmiye {
+    width: 100px;
+}
+
+.ma .ma-fistur,
+.ma .ma-durum-sec {
+    width: 220px;
+}
+
+.ma .ma-aciklama {
+    width: 100%;
+    min-height: 62px;
+    resize: vertical;
+}
+
+/* Belge no kutusuna bitişik mercek */
+.ma .ma-ekli {
+    display: inline-flex;
+}
+
+.ma .ma-ekli .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.ma .ma-ekli .btn {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* Başlıktaki belge durumu (eski lblDurum) */
+.ma .ma-durum {
+    font-weight: 600;
+    color: var(--bolum-vurgu);
+}
+
+/* Araç çubukları */
+.ma .ma-arac {
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.ma .ma-ayrac {
+    width: 1px;
+    height: 20px;
+    margin: 0 4px;
+    background: var(--cizgi);
+}
+
+.ma .ma-bosluk {
+    flex: 1 1 auto;
+}
+
+.ma .ma-alt-arac {
+    margin: 6px 0 0;
+}
+
+/* Tablo: girilen hücreler beyaz, salt okunur hücreler sarı */
+.ma .ma-girilir {
+    background: #fff;
+}
+
+.ma .ma-sari {
+    background: #fcfcd4;
+}
+
+.ma .ag-row.ma-toplam-satir,
+.ma .ag-row.ma-toplam-satir .ag-cell {
+    font-weight: 700;
+    background: #fcfcd4;
+}
+
+.ma-hucre-sec {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    width: 100%;
+}
+
+.ma-hucre-sec .ma-hucre-metin {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ma-hucre-sec .ma-mercek {
+    padding: 0 3px;
+    line-height: 1;
+    color: var(--bolum-vurgu, var(--b1-vurgu));
+}
+
+/* Hesap kodu önerisi (eski ComboBox listesi) */
+.ma-oneri-girdi {
+    width: 100%;
+    height: 100%;
+    padding: 0 6px;
+    border: 0;
+    font-size: 12px;
+}
+
+.ma-oneri-liste {
+    position: fixed;
+    z-index: 2100;
+    max-width: 640px;
+    max-height: 220px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid var(--cizgi, #ccc);
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    font-size: 12px;
+}
+
+.ma-oneri-liste[hidden] {
+    display: none;
+}
+
+.ma-oneri-satir {
+    padding: 3px 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.ma-oneri-satir:hover,
+.ma-oneri-satir.secili {
+    background: var(--b1-baslik);
+}
+
+/* Tarihçe penceresi */
+.tanim-pencere.ma-pencere {
+    width: min(900px, calc(100vw - 32px));
+    font-size: 12px;
+}
+
+.ma-pencere .ma-grid-pencere {
+    width: 100%;
+    height: 320px;
+}
+
+/* Belge Arama: kriterler solda dar (%15) sütunda (etiket üstte), liste kalan alanda */
+.ma.ma-yan {
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+/* Sabit 200px genişlik (kullanıcı isteği 2026-10-19) */
+.ma-yan .ma-kriter {
+    flex: 0 0 200px;
+    width: 200px;
+}
+
+.ma-ust-etiket .muh-birim {
+    width: auto;
+}
+
+.ma-yan .ma-sonuc {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.ma-ust-etiket .form-group {
+    margin-bottom: 6px;
+}
+
+.ma-ust-etiket .form-group > label {
+    display: block;
+    margin: 0 0 2px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* muh-birim kod alanları bileşenin kendi genişliğinde kalır */
+.ma-ust-etiket .form-group > .form-control,
+.ma-ust-etiket .ma-op .form-control {
+    width: 100%;
+}
+
+.ma-ust-etiket .sgb-yil {
+    width: 100px;
+}
+
+/* Aralık alanları: her sınır ayrı satırda, solda >= / <= eki (kullanıcı isteği 2026-10-19) */
+.ma-ust-etiket .ma-op {
+    display: flex;
+    align-items: stretch;
+}
+
+.ma-ust-etiket .ma-op + .ma-op {
+    margin-top: 3px;
+}
+
+.ma-ust-etiket .ma-ek {
+    flex: 0 0 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #555;
+    background: #eee;
+    border: 1px solid #ccc;
+    border-right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.ma-ust-etiket .ma-op .form-control {
+    flex: 1 1 auto;
+    min-width: 0;
+    border-radius: 0 3px 3px 0;
+    padding-left: 4px;
+    padding-right: 2px;
+}
+
+.ma-ust-etiket .ma-listele {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.ma-sonuc .ma-liste-baslik {
+    font-weight: 600;
+}
+
+@media (max-width: 900px) {
+    .ma.ma-yan {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .ma-yan .ma-kriter {
+        flex: none;
+        max-width: none;
+    }
+}

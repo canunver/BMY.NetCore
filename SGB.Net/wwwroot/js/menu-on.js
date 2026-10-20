@@ -2,9 +2,12 @@
 // Böylece sayfa önce varsayılan renk ve yerleşimle görünüp sonra değişmez.
 (function () {
     var kok = document.documentElement;
+    kok.setAttribute('data-tema', 'Klasik');    // seçim yoksa temalar genişletilmeden önceki sade görünüm
     try {
         var veri = JSON.parse(localStorage.getItem('sgb.menu') || 'null');
         if (veri && veri.tema) kok.setAttribute('data-tema', veri.tema);
+        // Üst şerit: renkli (varsayılan) | sade
+        if (veri && veri.temaUst === 'sade') kok.setAttribute('data-ust', 'sade');
     } catch (e) { /* saklanan veri okunamıyorsa varsayılan tema kalır */ }
 
     // Menü görünümü: acik (sabit, geniş) | ikon (dar şerit, üzerine gelince açılır) | gizli

@@ -1,0 +1,17 @@
+@page
+@model KDVAktarimiModel
+@{
+    ViewData["Title"] = Model.Baslik;
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+<partial name="_VergiAktarim" model="Model" />
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/vergiaktarim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/vergiaktarim.js" asp-append-version="true"></script>
+}

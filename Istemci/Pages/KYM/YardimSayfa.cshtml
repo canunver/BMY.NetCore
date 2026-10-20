@@ -1,0 +1,62 @@
+@page
+@model YardimSayfaModel
+@{
+    // Sayfa yardımı (eski KYM/YardimSayfa.aspx). Üst şeritteki Yardım düğmesiyle pencerede (?menuYok=1) açılır.
+    ViewData["Title"] = Metin.Ortak("IST054", "Yardım");
+    ViewData["GovdeSinif"] = "yardim-govde";
+}
+<div class="yardim-sayfa" data-sayfa-kod="@Model.SayfaKod" data-yazabilir="@(Model.Yazabilir ? "1" : "0")">
+    @if (Model.Yazabilir)
+    {
+        <div class="yardim-araclar" role="toolbar" aria-label="Yardım işlemleri">
+            <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+            </button>
+            <button type="button" id="btnDosyalar" class="btn btn-default btn-sm" aria-expanded="false" aria-controls="yardimDosyalar">
+                <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> Dosyalar
+            </button>
+            <button type="button" id="btnDuzenle" class="btn btn-default btn-sm" aria-pressed="true">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Düzenle
+            </button>
+            <span class="yardim-kod" title="Sayfa kodu">@Model.SayfaKod</span>
+        </div>
+        <div class="yardim-editor">
+            <textarea id="txtEditor" aria-label="Yardım metni"></textarea>
+        </div>
+        <!-- Dosyalar: açılır pencere (eski Duyuru/EkliDosyalarForm.aspx?mdl=YRD penceresi) -->
+        <dialog id="yardimDosyalar" class="sgb-pencere yardim-dosyalar" aria-labelledby="yardimDosyalarBaslik">
+            <div class="sgb-pencere-baslik">
+                <h2 id="yardimDosyalarBaslik">Sayfaya ilişkin dosyalar</h2>
+                <button type="button" class="close" id="btnDosyalarKapat" aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="yardim-dosyalar-icerik">
+                <p class="help-block small">Pencereyi başlığından tutup taşıyabilir, açıkken metinde çalışabilirsiniz. Dosyaya bağlantı vermek için
+                    satırdaki <span class="glyphicon glyphicon-link" aria-hidden="true"></span> düğmesiyle adresi kopyalayıp editördeki bağlantı düğmesine yapıştırın.</p>
+                <div id="dosyalar"></div>
+            </div>
+        </dialog>
+    }
+    else
+    {
+        <article id="yardimMetin" class="yardim-metin" aria-live="polite"></article>
+    }
+</div>
+
+@section Baslik {
+    @if (Model.Yazabilir)
+    {
+        <link rel="stylesheet" href="~/lib/jodit/jodit.min.css" />
+        <link rel="stylesheet" href="~/css/eklidosya.css" asp-append-version="true" />
+    }
+    <link rel="stylesheet" href="~/css/yardimsayfa.css" asp-append-version="true" />
+}
+@section Betikler {
+    @if (Model.Yazabilir)
+    {
+        <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+        <script src="~/lib/jodit/jodit.min.js"></script>
+        <script src="~/js/editor.js" asp-append-version="true"></script>
+        <script src="~/js/eklidosya.js" asp-append-version="true"></script>
+    }
+    <script src="~/js/yardimsayfa.js" asp-append-version="true"></script>
+}

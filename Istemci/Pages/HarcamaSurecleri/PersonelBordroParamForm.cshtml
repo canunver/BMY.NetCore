@@ -1,0 +1,48 @@
+@page
+@model PersonelBordroParamFormModel
+@{
+    ViewData["Title"] = "Personel Bordro Parametreleri";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="bordro-param">
+    <section class="bolum">
+        <h2 class="bolum-baslik">Bordro Parametreleri</h2>
+        <div class="bp-arac" role="toolbar" aria-label="Parametre işlemleri">
+            <button type="button" id="btnOku" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Oku
+            </button>
+            <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+            </button>
+            <span class="bp-ayrac" aria-hidden="true"></span>
+            <button type="button" id="btnEkle" class="btn btn-default btn-sm" title="Yeni değişken ekle">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ekle
+            </button>
+            <button type="button" id="btnSil" class="btn btn-default btn-sm" title="Seçili yeni (kaydedilmemiş) satırları sil">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+            </button>
+            <button type="button" id="btnYardim" class="btn btn-link btn-sm bp-yardim" aria-expanded="false" aria-controls="bpYardim" title="Yardım">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span><span class="sr-only">Yardım</span>
+            </button>
+        </div>
+        <div id="bpYardim" class="bp-yardim-metin" hidden>
+            Değişkenler bordro formüllerinde kişi bilgisi olarak kullanılır. Ekle ile yeni satır açılır; değişken adı yalnızca yeni satırda
+            yazılabilir. Kayıtlı değişkenlerin etiket, sıra ve tipi değiştirilip Kaydet'e basılır. Sil yalnızca henüz kaydedilmemiş satırları
+            kaldırır (eski sayfada da kayıtlı değişken silinemiyordu).
+        </div>
+        <div id="grdBordroParam" class="bp-grid" aria-label="Bordro parametreleri"></div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/bordroparam.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/bordroparam.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,51 @@
+/* Personel İşlemleri > Maaş Parametreleri sekmesi (InsanKaynaklari/PersonelMaasParam):
+   solda sendika ve gelirler (%40), sağda matrahlar (%60). */
+.pb-maas {
+    min-height: calc(100vh - 16px);
+}
+
+.pb-maas-govde {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    gap: 10px;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.pb-maas-sol {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+
+.pb-maas-gelir {
+    flex: 1 1 auto;
+}
+
+.pb-maas-arac {
+    margin-bottom: 6px;
+}
+
+.pb-maas .pb-grid {
+    min-height: 360px;
+}
+
+.pb-maas-etiket {
+    margin: 0;
+    font-weight: 600;
+}
+
+.pb-maas-yil {
+    width: 90px;
+}
+
+.pb-maas [hidden] {
+    display: none !important;
+}
+
+@media (max-width: 900px) {
+    .pb-maas-govde {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

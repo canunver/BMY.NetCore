@@ -1,0 +1,211 @@
+@page
+@model Istemci.Pages.InsanKaynaklari.PersonelIzinModel
+@{
+    ViewData["Title"] = "İzin/Görev";
+    ViewData["GovdeSinif"] = "pb-alt";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="pb pb-izin" id="pbIzin" data-personel-kod="@Model.PersonelKod" data-tc-kimlik-no="@Model.TcKimlikNo">
+    <div class="pb-arac" role="toolbar" aria-label="İzin işlemleri">
+        <label for="txtDonemYil" class="izin-donem-etiket">Dönem</label>
+        <input type="number" id="txtDonemYil" class="form-control input-sm sgb-yil izin-donem-yil" min="1980" step="1" aria-describedby="lblDonemAd" />
+        <span id="lblDonemAd" class="izin-donem-ad"></span>
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+        <button type="button" id="btnSil" class="btn btn-danger btn-sm">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+        </button>
+        <button type="button" id="btnTemizle" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Kayıt
+        </button>
+        <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Seçili iznin izin formunu (PDF) yazdır">
+            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+        </button>
+    </div>
+
+    <div class="izin-duzen">
+        <div class="izin-sol">
+            <section class="pb-bolum">
+                <h3>İzin Bilgileri</h3>
+                <div class="pb-govde">
+                    <form id="frmIzin" class="pb-form iki-sutun izin-form" novalidate autocomplete="off">
+                        <input type="hidden" id="hdnKod" />
+                        <input type="hidden" id="hdnMemuriyeti" />
+                        <div>
+                            <div class="form-group">
+                                <label class="control-label" for="ddlIzinTip">Türü <span class="zorunlu" aria-hidden="true">*</span></label>
+                                <div><select id="ddlIzinTip" class="form-control" required></select></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtBaslama">Başlangıcı <span class="zorunlu" aria-hidden="true">*</span></label>
+                                <div><input type="date" id="txtBaslama" class="form-control dar" required /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtBitis">Dönüşü <span class="zorunlu" aria-hidden="true">*</span></label>
+                                <div><input type="date" id="txtBitis" class="form-control dar" required /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtIzinGun">Gün</label>
+                                <div><input type="number" id="txtIzinGun" class="form-control dar" readonly tabindex="-1" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtIzinYeri">Adres</label>
+                                <div><textarea id="txtIzinYeri" class="form-control" rows="2"></textarea></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="ddlTelefon">Telefon</label>
+                                <div>
+                                    <input type="text" id="ddlTelefon" class="form-control" list="lstTelefon" title="Yazın ya da listeden seçin" />
+                                    <datalist id="lstTelefon"></datalist>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtBelgeNo">Belge No</label>
+                                <div><input type="text" id="txtBelgeNo" class="form-control dar" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtBelgeTarihi">Belge Tarihi</label>
+                                <div><input type="date" id="txtBelgeTarihi" class="form-control dar" /></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtYerineGorevli">Vekalet Eden</label>
+                                <div class="izin-secim">
+                                    <input type="hidden" id="hdnYerineGorevli" />
+                                    <input type="text" id="txtYerineGorevli" class="form-control" readonly />
+                                    <button type="button" class="btn btn-default btn-sm" data-personel-sec="3" title="Personel seç" aria-label="Vekalet Eden: personel seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                    <button type="button" class="btn btn-default btn-sm" data-personel-temizle="3" title="Temizle" aria-label="Vekalet Eden: temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                </div>
+                            </div>
+                            <div class="form-group" id="grpTeklifEden">
+                                <label class="control-label" for="txtTeklifEden">Teklif Eden</label>
+                                <div class="izin-secim">
+                                    <input type="hidden" id="hdnTeklifEden" />
+                                    <input type="text" id="txtTeklifEden" class="form-control" readonly />
+                                    <button type="button" class="btn btn-default btn-sm" data-personel-sec="2" title="Personel seç" aria-label="Teklif Eden: personel seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                    <button type="button" class="btn btn-default btn-sm" data-personel-temizle="2" title="Temizle" aria-label="Teklif Eden: temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                </div>
+                            </div>
+                            <div class="form-group" id="grpImzaAtan">
+                                <label class="control-label" for="txtImzaAtan">Uygun Gören</label>
+                                <div class="izin-secim">
+                                    <input type="hidden" id="hdnImzaAtan" />
+                                    <input type="text" id="txtImzaAtan" class="form-control" readonly />
+                                    <button type="button" class="btn btn-default btn-sm" data-personel-sec="1" title="Personel seç" aria-label="Uygun Gören: personel seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                    <button type="button" class="btn btn-default btn-sm" data-personel-temizle="1" title="Temizle" aria-label="Uygun Gören: temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtAciklama">Gerekçe</label>
+                                <div><textarea id="txtAciklama" class="form-control" rows="2"></textarea></div>
+                            </div>
+                            <div class="form-group izin-saglik" hidden>
+                                <label class="control-label" for="txtSaglikKurulusu">Sağlık Kuruluşu</label>
+                                <div><input type="text" id="txtSaglikKurulusu" class="form-control" /></div>
+                            </div>
+                            <div class="form-group izin-saglik" hidden>
+                                <label class="control-label" for="dfRaporTarihi">Rapor Tarihi</label>
+                                <div><input type="date" id="dfRaporTarihi" class="form-control dar" /></div>
+                            </div>
+                            <div class="form-group izin-saglik" hidden>
+                                <label class="control-label" for="txtRaporNo">Rapor No</label>
+                                <div><input type="text" id="txtRaporNo" class="form-control" /></div>
+                            </div>
+                            <div class="form-group" id="grpYatiliGun" hidden>
+                                <label class="control-label" for="nfYatiliGecenSure" id="lblYatiliGun">Yatılı Gün</label>
+                                <div><input type="number" id="nfYatiliGecenSure" class="form-control dar" step="1" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtYerAd">Yer</label>
+                                <div class="izin-secim">
+                                    <input type="hidden" id="hdnYerKod" />
+                                    <input type="text" id="txtYerAd" class="form-control" readonly />
+                                    <button type="button" id="btnYerSec" class="btn btn-default btn-sm" title="Yer seç" aria-label="Yer seç"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                    <button type="button" id="btnYerTemizle" class="btn btn-default btn-sm" title="Temizle" aria-label="Yer: temizle"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section class="pb-bolum renk-yesil">
+                <h3 id="lblSureBaslik">İzin Süre Bilgileri</h3>
+                <div class="pb-govde">
+                    <div id="grdIzinSureler" class="pb-grid izin-sure-grid" aria-labelledby="lblSureBaslik"></div>
+                </div>
+            </section>
+
+            <section class="pb-bolum renk-gri">
+                <h3>
+                    Belgeler
+                    <span class="bosluk"></span>
+                    <button type="button" id="btnBelgeEkle" class="btn btn-default btn-xs">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Belge Ekle
+                    </button>
+                    <input type="file" id="fileBelge" hidden />
+                </h3>
+                <div class="pb-govde">
+                    <div id="grdBelgeler" class="pb-grid izin-belge-grid" aria-label="Belgeler"></div>
+                </div>
+            </section>
+        </div>
+
+        <div class="izin-sag">
+            <section class="pb-bolum renk-mor izin-liste-bolum">
+                <h3>İzinler</h3>
+                <div class="pb-govde pb-doldur">
+                    <div id="grdListe" class="pb-grid" aria-label="İzinler"></div>
+                </div>
+            </section>
+            <section class="pb-bolum renk-gri">
+                <h3><label for="txtIzinNotu2" class="izin-not-etiket">İzin Notu</label></h3>
+                <div class="pb-govde">
+                    <textarea id="txtIzinNotu2" class="form-control" rows="4"></textarea>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<!-- Yer seçimi (eski ../ButceHazirlikv2/KodAgac.aspx?kodTur=20) -->
+<dialog id="dlgYer" class="izin-pencere" aria-labelledby="dlgYerBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgYerBaslik">Yer Seç</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <ul id="agcYer" class="izin-agac izin-agac-yuksek" aria-label="Yerler"></ul>
+    </div>
+</dialog>
+
+<!-- Onay -->
+<dialog id="dlgOnay" class="izin-pencere izin-pencere-dar" aria-labelledby="dlgOnayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOnayBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde"><p id="dlgOnayMetin"></p></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Hayır</button>
+        <button type="button" id="btnOnayEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/personelalt.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personel-izin.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personelsec.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/personelsec.js" asp-append-version="true"></script>
+    <script src="~/js/personel-izin.js" asp-append-version="true"></script>
+}

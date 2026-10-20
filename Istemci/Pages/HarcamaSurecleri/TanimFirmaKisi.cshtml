@@ -1,0 +1,182 @@
+@page
+@model TanimFirmaKisiModel
+@{
+    ViewData["Title"] = "Firma/Kişi Bilgileri Tanımlama Formu";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans firma-tanim" data-gelirler="@(Model.Gelirler ? "1" : "0")">
+    <div class="ft-govde">
+        <section class="kutu bolum bolum-liste ft-sol">
+            <h2 class="bolum-baslik">Firma Arama Bölümü
+                <button type="button" class="btn btn-link btn-xs avans-yardim-dugme" data-yardim="#ftYardim" title="Yardım" aria-label="Yardım">
+                    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                </button>
+            </h2>
+            <div id="ftYardim" class="alert alert-info avans-yardim" hidden>
+                Kimlik/Vergi No ya da Firma/Kişi Adı yazıp <b>Bul</b>'a basın; tüm firmaları listelemek için ad alanına <b>%</b> yazın.
+                Düzenlemek için listeden satırı seçin, sağdaki bilgileri değiştirip <b>Kaydet</b>'e basın. <b>Yazdır</b> listeyi Excel olarak verir.
+                Vergi no alanının yanındaki mercek, GİB bağlantısı varsa ad, vergi dairesi ve adresi Gelir İdaresi'nden getirir;
+                yoksa boş numara alanına rastgele bir numara üretir.
+            </div>
+            <div class="avans-arac" role="toolbar" aria-label="Arama işlemleri">
+                <button type="button" id="btnAra" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Bul
+                </button>
+                <button type="button" id="btnYaz" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                </button>
+            </div>
+            <form id="frmAra" class="tanim-form avans-alanlar" onsubmit="return false;">
+                <div class="form-group">
+                    <label class="control-label" for="txtMuhasebe">Muhasebe Birimi</label>
+                    <div class="avans-bitisik">
+                        <input type="text" id="txtMuhasebe" class="form-control input-sm ft-muhasebe" maxlength="5" value="@Model.Muhasebe" autocomplete="off" />
+                        <button type="button" id="btnMuhasebeSec" class="btn btn-default btn-sm" title="Muhasebe birimi seç">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Muhasebe birimi seç</span>
+                        </button>
+                        <span id="lblMuhasebeAd" class="ft-muhasebe-ad">@Model.MuhasebeAd</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAraVNo">Kimlik/Vergi No</label>
+                    <div><input type="text" id="txtAraVNo" class="form-control input-sm" autocomplete="off" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAraAd">Firma/Kişi Adı</label>
+                    <div><input type="text" id="txtAraAd" class="form-control input-sm" autocomplete="off" /></div>
+                </div>
+            </form>
+            <div id="grdListe" class="avans-grid ft-grid" aria-label="Firma / kişiler"></div>
+        </section>
+
+        <section class="kutu bolum bolum-kriter ft-sag">
+            <h2 class="bolum-baslik">Firma Bilgisi Düzenleme Bölümü</h2>
+            <div class="avans-arac" role="toolbar" aria-label="Kayıt işlemleri">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+                <button type="button" id="btnTemizle" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Temizle
+                </button>
+            </div>
+            <form id="frmFirma" class="tanim-form avans-alanlar ft-form" onsubmit="return false;">
+                <div class="form-group">
+                    <label class="control-label" for="txtVNo">T.C. Kimlik/Vergi No</label>
+                    <div class="avans-bitisik">
+                        <input type="text" id="txtVNo" class="form-control input-sm ft-vno" maxlength="20" autocomplete="off" />
+                        <button type="button" id="btnKimlik" class="btn btn-default btn-sm" title="Kimlik / vergi no sorgula">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Kimlik / vergi no sorgula</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtVD">Vergi Dairesi</label>
+                    <div><input type="text" id="txtVD" class="form-control input-sm ft-gib" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAd">Adı Soyadı/Ünvanı</label>
+                    <div><input type="text" id="txtAd" class="form-control input-sm ft-gib" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAdres">Adres</label>
+                    <div><textarea id="txtAdres" class="form-control input-sm ft-gib" rows="3"></textarea></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAdresNo">Adres No</label>
+                    <div><input type="text" id="txtAdresNo" class="form-control input-sm" /></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Uyruğu</span>
+                    <div class="avans-secenekler">
+                        <label><input type="radio" name="rbUyruk" id="rbTurk" value="0" checked />GİB'ten veri al</label>
+                        <label><input type="radio" name="rbUyruk" id="rbYabanci" value="1" />Manuel Giriş</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Kara Liste</span>
+                    <div class="avans-secenekler"><label><input type="checkbox" id="chkKaraListe" />Evet</label></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Yasaklı</span>
+                    <div class="avans-secenekler"><label><input type="checkbox" id="chkYasakli" />Evet</label></div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Listelemede Görülmesin</span>
+                    <div class="avans-secenekler"><label><input type="checkbox" id="chkGorulmesin" />Evet</label></div>
+                </div>
+                <div class="form-group" hidden>
+                    <span class="control-label">Firma, Fatura Girebilsin</span>
+                    <div class="avans-secenekler"><label><input type="checkbox" id="chkFatura" />Evet</label></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtBanka">Banka Adı-Şubesi</label>
+                    <div><input type="text" id="txtBanka" class="form-control input-sm" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtYetkili">Firma Yetkilisi</label>
+                    <div><input type="text" id="txtYetkili" class="form-control input-sm" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAciklama">Açıklama</label>
+                    <div><input type="text" id="txtAciklama" class="form-control input-sm" maxlength="500" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtCepTel">Cep Telefonu</label>
+                    <div><input type="text" id="txtCepTel" class="form-control input-sm" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtTelefon">Telefon</label>
+                    <div><input type="text" id="txtTelefon" class="form-control input-sm" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtHesapNo">Hesap No / IBAN No</label>
+                    <div><input type="text" id="txtHesapNo" class="form-control input-sm" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtEPosta">E-Posta</label>
+                    <div><input type="text" id="txtEPosta" class="form-control input-sm" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtWeb">Web</label>
+                    <div><input type="text" id="txtWeb" class="form-control input-sm" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtFaks">Faks</label>
+                    <div><input type="text" id="txtFaks" class="form-control input-sm" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtBICSWIFT">BIC/Swift</label>
+                    <div><input type="text" id="txtBICSWIFT" class="form-control input-sm" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtKisiUnvan">Kişi Ünvan</label>
+                    <div><input type="text" id="txtKisiUnvan" class="form-control input-sm" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtKisiDerece">Kişi Derece</label>
+                    <div><input type="text" id="txtKisiDerece" class="form-control input-sm" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtKisiEkGosterge">Kişi Ek Gösterge</label>
+                    <div><input type="text" id="txtKisiEkGosterge" class="form-control input-sm" /></div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/firmatanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/firmatanim.js" asp-append-version="true"></script>
+}

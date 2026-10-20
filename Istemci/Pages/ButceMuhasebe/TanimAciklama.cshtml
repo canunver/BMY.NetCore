@@ -1,0 +1,61 @@
+@page
+@model TanimAciklamaModel
+@{
+    ViewData["Title"] = "Açıklama Tanımları";
+    // Ödeme Emri / MİF formundan pencere (Sgb.pencere) olarak açılır: solda açıklama formu, sağda açıklama listesi (tanim.css, muhtanim.css).
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim form-solda muh-tanim" id="tanimAciklama"
+     data-muhasebe="@Model.Muhasebe" data-birim="@Model.Birim" data-tip="@Model.Tip">
+
+    <section class="tanim-sag">
+        <div class="kutu bolum yesil">
+            <h2 class="bolum-baslik">Açıklama</h2>
+            <div class="mt-arac" role="toolbar" aria-label="İşlemler">
+                <button type="button" id="btnListele" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele</button>
+                <button type="button" id="btnTemizle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Kayıt</button>
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm" disabled><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil</button>
+                <span class="sag">
+                    <button type="button" id="btnKapat" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Kapat</button>
+                </span>
+            </div>
+            <form id="frmAciklama" class="tanim-form" novalidate>
+                <input type="hidden" data-alan="kod" />
+                <input type="hidden" data-alan="muhasebeKod" />
+                <input type="hidden" data-alan="birimKod" />
+                <input type="hidden" data-alan="tipi" />
+                <div class="form-group">
+                    <label class="control-label" for="taAdi">Adı</label>
+                    <div><input type="text" id="taAdi" class="form-control" data-alan="adi" /></div>
+                </div>
+                <div class="form-group ust-hizali">
+                    <label class="control-label" for="taAciklama">Açıklama</label>
+                    <div><textarea id="taAciklama" class="form-control" rows="9" data-alan="aciklama"></textarea></div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="tanim-sol">
+        <div class="kutu bolum izgarali">
+            <h2 class="bolum-baslik">Açıklama Listesi <span class="bolum-not">Satırı seçince formda değiştirilir; <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ile açıklama forma aktarılır.</span></h2>
+            <div id="grdAciklama" class="tanim-grid"></div>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhtanim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/tanimaciklama.js" asp-append-version="true"></script>
+}

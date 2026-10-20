@@ -1,0 +1,15 @@
+/* Sistem Durum Dosya Listesi (js/hatadosya.js) */
+
+.hata-dosya .hd-arac { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.hata-dosya .hd-adet { color: var(--soluk); }
+.hata-dosya .hd-grid { width: 100%; height: 400px; }
+.hata-dosya .hd-sil {
+    padding: 0 6px;
+    line-height: 22px;
+    color: #c9302c;
+    background: transparent;
+    border: 0;
+}
+.hata-dosya .hd-sil:hover, .hata-dosya .hd-sil:focus { color: #a12622; background: rgba(201, 48, 44, .1); border-radius: 3px; }
+.hata-dosya .hd-ad { text-decoration: none; }
+.hata-dosya .hd-ad:hover { text-decoration: underline; }

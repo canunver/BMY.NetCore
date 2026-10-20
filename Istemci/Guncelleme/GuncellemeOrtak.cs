@@ -14,7 +14,7 @@ namespace Istemci.Guncelleme
     ///   Yazılım Güncelle : menü yetkisi (eski SayfayaGirisYapabilirMi; menu.xml'de Yetki="1")
     ///   Veritabanı Index : sistem yöneticisi
     ///   Dosyalar, Komut Çalıştır, Şifre Üret : yalnızca sistem yöneticisi olan "stratek" kullanıcısı (kullanıcı isteği;
-    ///   menu.xml'de Kullanici="stratek")
+    ///   seçenekler menu.xml'de yoktur, kullanıcı stratek ise koddan eklenir: OrtakSayfa/StratekMenu)
     /// Sayfa modelleri ve sayfaların bütün uçları aynı denetimi kullanır.
     /// </summary>
     public static class GuncellemeOrtak
@@ -22,7 +22,7 @@ namespace Istemci.Guncelleme
         public const string YazilimGuncelleSayfa = "../YazilimGuncelle/YazilimGuncelle.aspx";
 
         /// <summary>Dosyalar, Komut Çalıştır ve Şifre Üret sayfalarını kullanabilen tek kullanıcı.</summary>
-        public const string StratekKullanici = "stratek";
+        public const string StratekKullanici = StratekMenu.KullaniciKodu;
 
         /// <summary>Yüklenen dosyalar için üst sınır (Zip'ten güncelleme, Dosyalar sayfası).</summary>
         public const long AzamiYukleme = 1024L * 1024L * 1024L;
@@ -40,7 +40,7 @@ namespace Istemci.Guncelleme
         /// <summary>Sistem yöneticisi olan "stratek" kullanıcısı mı?</summary>
         public static bool Stratek(Kullanici kullanan)
         {
-            return Yonetici(kullanan) && kullanan.kullaniciKodu == StratekKullanici;
+            return StratekMenu.Stratek(kullanan);
         }
 
         public static bool DosyalarYetkili(Kullanici kullanan)

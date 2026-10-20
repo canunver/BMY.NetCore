@@ -1,0 +1,71 @@
+@page
+@model ListeFirmaKisiModel
+@{
+    ViewData["Title"] = "Firma Kişi Listesi";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans firma-kisi-liste" data-muhasebe="@Model.Muhasebe" data-tanim="@(Model.TanimVar ? "1" : "0")">
+    <div class="avans-arac" role="toolbar" aria-label="İşlemler">
+        <button type="button" id="btnBul" class="btn btn-primary btn-sm fk-sorgu">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+        </button>
+        <button type="button" id="btnYeni" class="btn btn-default btn-sm fk-sorgu" title="Yeni firma / kişi tanımla">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni
+        </button>
+        @if (Model.BirlestirGoster)
+        {
+            <button type="button" id="btnDuzenle" class="btn btn-default btn-sm" title="Aynı firmanın kayıtlarını birleştir (Firma Birleştirme)">
+                <span class="glyphicon glyphicon-link" aria-hidden="true"></span> Firma Birleştir
+            </button>
+        }
+        <button type="button" class="btn btn-link btn-xs avans-yardim-dugme" data-yardim="#fkYardim" title="Yardım" aria-label="Yardım">
+            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+        </button>
+        <button type="button" id="btnKapat" class="btn btn-default btn-sm fk-kapat" hidden>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Kapat
+        </button>
+    </div>
+    <div id="fkYardim" class="alert alert-info avans-yardim" hidden>
+        Ad Soyad/Ünvan ya da TC Kimlik/Vergi No yazıp <b>Listele</b>'ye basın. Bir ekrandan seçim için açıldıysa seçmek istediğiniz
+        satıra çift tıklayın. <b>Yeni</b> firma / kişi tanımlar, <b>Firma Birleştir</b> aynı firmanın birden çok kaydını tek kayıtta toplar.
+    </div>
+
+    <section class="kutu bolum bolum-kriter fk-kriter">
+        <h2 class="bolum-baslik">Arama</h2>
+        <form id="frmAra" class="tanim-form avans-alanlar" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label" for="txtMuhasebe">Muhasebe Kodu</label>
+                <div><input type="number" id="txtMuhasebe" class="form-control input-sm fk-muhasebe" min="0" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAd">Ad Soyad/Ünvan</label>
+                <div><input type="text" id="txtAd" class="form-control input-sm" autocomplete="off" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtVNo">TC Kimlik/Vergi No</label>
+                <div><input type="text" id="txtVNo" class="form-control input-sm fk-vno" autocomplete="off" /></div>
+            </div>
+        </form>
+    </section>
+
+    <section class="kutu bolum bolum-liste">
+        <p id="fkIpucu" class="help-block small fk-ipucu" hidden>Seçmek için satıra çift tıklayınız.</p>
+        <div id="grdListe" class="avans-grid fk-grid" aria-label="Firma / kişiler"></div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/firmakisiliste.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/firmakisiliste.js" asp-append-version="true"></script>
+}

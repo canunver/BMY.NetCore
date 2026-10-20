@@ -1,0 +1,295 @@
+@page
+@model KapatmaModel
+@{
+    string baslik = "Mahsup İşlemleri";
+    if (Model.Hesap != "") baslik += " (" + Model.Hesap + " Hesabı)";
+    ViewData["Title"] = baslik;
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans kapatma" data-hesap="@Model.Hesap">
+    <section class="kutu bolum bolum-kriter">
+        <h2 class="bolum-baslik">Kıstaslar
+            <button type="button" class="btn btn-link btn-xs avans-yardim-dugme" data-yardim="#kapatmaYardim" title="Yardım" aria-label="Yardım">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+            </button>
+        </h2>
+        <div id="kapatmaYardim" class="alert alert-info avans-yardim" hidden>
+            Yevmiyeli ve onaylı ödeme emri / MİF belgelerinin kapatılmamış satırları listelenir. Kapatılacak satırları işaretleyip
+            "Kapatma Belgesi Oluştur"a basınız; kapatma tutarı tabloda değiştirilebilir (beyaz hücre).
+            "Sadece kapatılan belgeleri göster" seçilince kapatılmış satırlar ve kapatma belgeleri listelenir, seçilenlerin kapatma belgesi iptal edilebilir.
+        </div>
+        <form id="frmKriter" class="kapatma-kriter" onsubmit="return false;">
+            <div class="tanim-form avans-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="txtYil">Yıl</label>
+                    <div><input type="number" id="txtYil" class="form-control input-sm sgb-yil" title="Belge yılını giriniz." /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMuhasebe">Muhasebe / Birim</label>
+                    <div id="muhBirim"></div>
+                </div>
+                <div class="form-group" id="grpHesapNo" hidden="@(Model.Hesap != "")">
+                    <label class="control-label" for="txtHesapNo">Hesap Kodu</label>
+                    <div><input type="text" id="txtHesapNo" class="form-control input-sm kapatma-hesap" value="@Model.Hesap" autocomplete="off" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtArama">Açıklama</label>
+                    <div><input type="text" id="txtArama" class="form-control input-sm" /></div>
+                </div>
+            </div>
+            <div class="tanim-form avans-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="txtYevmiyeTarih1">Yevmiye Tarihi</label>
+                    <div class="avans-bitisik">
+                        <input type="date" id="txtYevmiyeTarih1" class="form-control input-sm kapatma-tarih" aria-label="Yevmiye tarihi en az" />
+                        <input type="date" id="txtYevmiyeTarih2" class="form-control input-sm kapatma-tarih" aria-label="Yevmiye tarihi en çok" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtYevNo1">Yevmiye No</label>
+                    <div class="avans-bitisik">
+                        <input type="number" id="txtYevNo1" class="form-control input-sm kapatma-no" aria-label="Yevmiye no en az" />
+                        <input type="number" id="txtYevNo2" class="form-control input-sm kapatma-no" aria-label="Yevmiye no en çok" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtBelgeTarih1">Belge Tarihi</label>
+                    <div class="avans-bitisik">
+                        <input type="date" id="txtBelgeTarih1" class="form-control input-sm kapatma-tarih" aria-label="Belge tarihi en az" />
+                        <input type="date" id="txtBelgeTarih2" class="form-control input-sm kapatma-tarih" aria-label="Belge tarihi en çok" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="control-label">Seçimler</span>
+                    <div class="avans-secenekler">
+                        <label><input type="checkbox" id="chkYevmiyeListele" />Sadece yevmiyeli belgeleri listele</label>
+                        <label><input type="checkbox" id="chkKapatilmis" />Sadece kapatılan belgeleri göster</label>
+                    </div>
+                </div>
+                <div class="form-group" id="grpKapatmaBelgeNo" hidden>
+                    <label class="control-label" for="txtKapatmaBelgeNo">Kapatma Belge No</label>
+                    <div><input type="text" id="txtKapatmaBelgeNo" class="form-control input-sm kapatma-no" /></div>
+                </div>
+            </div>
+            <dl class="kapatma-secili" aria-live="polite">
+                <dt>Seçilenlerin</dt><dd id="lblSecili">0 adet satır için;</dd>
+                <dt>Borç Toplamı</dt><dd id="lblSeciliBorc">0,00</dd>
+                <dt>Alacak Toplamı</dt><dd id="lblSeciliAlacak">0,00</dd>
+                <dt>Tutar Toplamı</dt><dd id="lblSeciliTutar">0,00</dd>
+                <dt>Kapatma Toplamı</dt><dd id="lblSeciliKapatma">0,00</dd>
+            </dl>
+        </form>
+    </section>
+
+    <section class="kutu bolum bolum-liste">
+        <div class="avans-arac" role="toolbar" aria-label="İşlemler">
+            <button type="button" id="btnListele" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+            </button>
+            <button type="button" id="btnBelge" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Kapatma Belgesi Oluştur
+            </button>
+            <button type="button" id="btnBelgeIptal" class="btn btn-default btn-sm" hidden>
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Kapatma Belgesi İptal Et
+            </button>
+            <button type="button" id="btnListedenCikart" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Listeden Çıkart
+            </button>
+            <button type="button" id="btnBankaListesi" class="btn btn-default btn-sm" title="Seçili satırların banka listesi (Word)">
+                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Banka Listesi
+            </button>
+            <button type="button" id="btnYazdirButun" class="btn btn-default btn-sm" title="Bütün listeyi Excel'e yazdır">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Liste Yazdır
+            </button>
+            <span id="lblSonuc" class="kapatma-sonuc" aria-live="polite"></span>
+            <span id="lblOzet" class="avans-ozet"></span>
+        </div>
+        <div id="grdListe" class="avans-grid" aria-label="Mahsup listesi"></div>
+    </section>
+</div>
+
+<dialog id="dlgBelge" class="tanim-pencere kapatma-pencere kapatma-belge" aria-labelledby="dlgBelgeBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgBelgeBaslik">Belge Oluşturma Formu</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="avans-arac" role="toolbar" aria-label="Belge işlemleri">
+            <button type="button" id="btnBelgeOlustur" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kapatma Belgesi Oluştur
+            </button>
+            <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Seçili satırları Excel'e yazdır">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Liste Yazdır
+            </button>
+        </div>
+        <form id="frmBelge" class="tanim-form kapatma-belge-alanlar" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label" for="txtYilBelge">Yıl</label>
+                <div><input type="number" id="txtYilBelge" class="form-control input-sm sgb-yil" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtTarihBelge">Belge Tarihi</label>
+                <div><input type="date" id="txtTarihBelge" class="form-control input-sm kapatma-tarih" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtMuhasebeBelge">Muhasebe / Birim</label>
+                <div id="muhBirimBelge"></div>
+            </div>
+            <div class="form-group" data-gizle-103>
+                <label class="control-label" for="txtDamga">Damga Vergisi Tutarı</label>
+                <div class="avans-bitisik">
+                    <input type="text" id="txtDamga" class="form-control input-sm kapatma-tutar" autocomplete="off" />
+                    <button type="button" id="btnDamgaHesapla" class="btn btn-default btn-sm" title="Hesapla ve Yaz">
+                        <span class="glyphicon glyphicon-th" aria-hidden="true"></span><span class="sr-only">Hesapla ve Yaz</span>
+                    </button>
+                    <button type="button" id="btnDamgaEkle" class="btn btn-default btn-sm" title="Listeye Ekle">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><span class="sr-only">Listeye Ekle</span>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtKapatmaHesapKod">Kapatma Hesap Kodu</label>
+                <div class="avans-bitisik">
+                    <input type="text" id="txtKapatmaHesapKod" class="form-control input-sm kapatma-hesap" autocomplete="off" />
+                    <button type="button" id="btnKapatmaHesapSec" class="btn btn-default btn-sm" title="Hesap Kodu Seç">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Hesap Kodu Seç</span>
+                    </button>
+                    <button type="button" id="btnKapatmaHesapEkle" class="btn btn-default btn-sm" title="Listeye Ekle">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><span class="sr-only">Listeye Ekle</span>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group" data-gizle-103>
+                <label class="control-label" for="txtButceHesapKod">Bütçe Hesap Kodu</label>
+                <div class="avans-bitisik">
+                    <input type="text" id="txtButceHesapKod" class="form-control input-sm kapatma-hesap" autocomplete="off" />
+                    <button type="button" id="btnButceHesapSec" class="btn btn-default btn-sm" title="Hesap Kodu Seç">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Hesap Kodu Seç</span>
+                    </button>
+                    <button type="button" id="btnButceHesapEkle" class="btn btn-default btn-sm" title="Listeye Ekle">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><span class="sr-only">Listeye Ekle</span>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group" data-gizle-103>
+                <label class="control-label" for="txtIlgiliAd">Adı Soyadı/Ünvanı</label>
+                <div class="avans-bitisik kapatma-genis">
+                    <input type="text" id="txtIlgiliAd" class="form-control input-sm" readonly />
+                    <button type="button" id="btnFirmaSec" class="btn btn-default btn-sm" title="Firma Kişi Bilgisi Listesi">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Firma Kişi Bilgisi Listesi</span>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtAciklama">Açıklama</label>
+                <div><textarea id="txtAciklama" class="form-control input-sm" rows="2"></textarea></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label"></span>
+                <div class="avans-secenekler"><label><input type="checkbox" id="chkYevmiye" />Yevmiye Numarası verilsin</label></div>
+            </div>
+        </form>
+        <div id="grdKapatma" class="kapatma-grid-pencere" aria-label="Kapatma belgesi satırları"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<dialog id="dlgOdemeHesap" class="tanim-pencere kapatma-pencere" aria-labelledby="dlgOdemeHesapBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOdemeHesapBaslik">Ödeme Hesap Plan Kodu Listesi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmOdemeHesap" class="avans-bitisik" onsubmit="return false;">
+            <label for="txtOdemeHesapAra">Adı</label>
+            <input type="text" id="txtOdemeHesapAra" class="form-control input-sm" autocomplete="off" />
+            <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Bul</button>
+        </form>
+        <select id="lstOdemeHesap" class="form-control input-sm kapatma-liste" size="10" aria-label="Hesap kodları"></select>
+        <p class="help-block small">Seçmek için çift tıklayınız.</p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnOdemeHesapSec" class="btn btn-primary btn-sm">Seç ve Kapat</button>
+    </div>
+</dialog>
+
+<dialog id="dlgKesinti" class="tanim-pencere kapatma-pencere kapatma-kesinti" aria-labelledby="dlgKesintiBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgKesintiBaslik">Kesinti Hesapla</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="tanim-form">
+            <div class="form-group">
+                <label class="control-label" for="txtKsBorc">Borç Toplamı</label>
+                <div><input type="text" id="txtKsBorc" class="form-control input-sm kapatma-tutar" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtKsAvans">Avans Toplamı</label>
+                <div><input type="text" id="txtKsAvans" class="form-control input-sm kapatma-tutar" /></div>
+            </div>
+        </div>
+        <div class="kapatma-kesinti-oranlar">
+            <fieldset>
+                <legend>KDV Yüzde</legend>
+                <label><input type="radio" name="optKdv" value="0" checked /> 0</label>
+                <label><input type="radio" name="optKdv" value="1" /> 1</label>
+                <label><input type="radio" name="optKdv" value="8" /> 8</label>
+                <label><input type="radio" name="optKdv" value="10" /> 10</label>
+                <label><input type="radio" name="optKdv" value="18" /> 18</label>
+                <label><input type="radio" name="optKdv" value="20" /> 20</label>
+                <label><input type="radio" name="optKdv" value="26" /> 26</label>
+            </fieldset>
+            <fieldset>
+                <legend>Vergi Kesintisi Binde</legend>
+                <label><input type="radio" name="optVergi" value="56.9" data-sira="0" checked /> 5,69</label>
+                <label><input type="radio" name="optVergi" value="75.9" data-sira="1" /> 7,59</label>
+                <label><input type="radio" name="optVergi" value="94.8" data-sira="2" /> 9,48</label>
+                <label><input type="radio" name="optVergi" value="151.7" data-sira="3" /> 15,17</label>
+                <label><input type="radio" name="optVergi" value="189.6" data-sira="4" /> 18,96</label>
+                <label><input type="radio" name="optVergi" value="0" data-sira="5" id="optVergiOzel" />
+                    <input type="text" id="txtVergiOzel" class="form-control input-sm kapatma-oran" data-radyo="optVergiOzel" aria-label="Vergi kesintisi binde (girilen)" /></label>
+            </fieldset>
+            <fieldset>
+                <legend>KDV Tevkifatı</legend>
+                <label><input type="radio" name="optVergi" value="0" data-sira="6" id="optVergiKdv" />
+                    <input type="text" id="txtKDV" class="form-control input-sm kapatma-oran" data-radyo="optVergiKdv" aria-label="KDV tevkifatı (girilen)" /></label>
+                <p class="help-block small">Örnek: 2/3</p>
+            </fieldset>
+            <fieldset>
+                <legend>Gelir Vergisi Tevkifatı %</legend>
+                <label><input type="radio" name="optVergi" value="0" data-sira="7" id="optVergiGelir" />
+                    <input type="text" id="txtGelir" class="form-control input-sm kapatma-oran" data-radyo="optVergiGelir" aria-label="Gelir vergisi tevkifatı yüzde (girilen)" /></label>
+                <p class="help-block small">Örnek: 10</p>
+            </fieldset>
+        </div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnKesintiYaz" class="btn btn-primary btn-sm">Hesapla ve Yaz</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/hesapkodu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/kapatma.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/makbuzsecim.js" asp-append-version="true"></script>
+    <script src="~/js/hesapkodu.js" asp-append-version="true"></script>
+    <script src="~/js/kapatma.js" asp-append-version="true"></script>
+}

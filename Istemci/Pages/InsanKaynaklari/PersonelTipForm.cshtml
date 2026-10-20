@@ -1,0 +1,144 @@
+@page
+@model PersonelTipFormModel
+@{
+    ViewData["Title"] = "Personel Tipleri";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim personel-tip">
+    <!-- Sol: personel tipleri -->
+    <section class="tanim-sol">
+        <div class="kutu">
+            <h2 class="kutu-baslik">Personel Tipleri</h2>
+            <form id="frmArama" class="tanim-ekle" role="search" novalidate>
+                <input type="search" id="txtAra" class="form-control input-sm" placeholder="Grup, kod ya da ada göre süz" aria-label="Süz" />
+                <button type="submit" id="btnListele" class="btn btn-default btn-sm" title="Listeyi yeniden oku">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Listele
+                </button>
+            </form>
+            <div id="grdPersonelTip" class="tanim-grid" aria-label="Personel tipleri"></div>
+        </div>
+    </section>
+
+    <!-- Sağ: seçili personel tipi -->
+    <section class="tanim-sag">
+        <div class="kutu pt-form-kutu">
+            <div class="btn-toolbar tanim-arac" role="toolbar">
+                <button type="button" id="btnYeni" class="btn btn-default btn-sm" title="Formu temizle">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni
+                </button>
+                <button type="button" id="btnOku" class="btn btn-default btn-sm" title="Yazılan koddaki personel tipini oku">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Oku
+                </button>
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+            </div>
+
+            <form id="frmPersonelTip" novalidate>
+                <div class="bolum bolum-genel">
+                    <h3 class="bolum-baslik">Genel Bilgiler</h3>
+                    <div class="tanim-form">
+                        <div class="form-group">
+                            <label class="control-label" for="txtKod">Kod</label>
+                            <div><input type="number" id="txtKod" class="form-control dar" min="0" step="1" title="Kod" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtSira">Sıra</label>
+                            <div><input type="number" id="txtSira" class="form-control dar" step="1" title="Öncelik sırası" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtGrupAd">Grup Ad</label>
+                            <div><input type="text" id="txtGrupAd" class="form-control" title="Grup Adı" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtAd">Ad</label>
+                            <div><input type="text" id="txtAd" class="form-control" title="Ad" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="cmbHitap">Hizmet Grubu</label>
+                            <div><select id="cmbHitap" class="form-control"></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtMaasGrupAd">Maaş Grup Ad</label>
+                            <div><input type="text" id="txtMaasGrupAd" class="form-control" title="Maaş Grup Adı" /></div>
+                        </div>
+                        <div class="form-group">
+                            <span class="control-label">Maaş günleri</span>
+                            <div class="pt-yanyana">
+                                <label for="txtMaasDonemGun">Dönem İlk Günü:</label>
+                                <input type="number" id="txtMaasDonemGun" class="form-control pt-gun" step="1" />
+                                <label for="txtMaasOdemeGun">Ödeme Günü:</label>
+                                <input type="number" id="txtMaasOdemeGun" class="form-control pt-gun" step="1" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-alt">
+                    <div class="bolum bolum-ozellik">
+                        <h3 class="bolum-baslik">Özellikler</h3>
+                        <div class="pt-secenekler">
+                            <label title="Kadrolu bir personel tipi mi?"><input type="checkbox" id="chkKadrolu" /> Kadrolu</label>
+                            <label title="Kurum dışı mı?"><input type="checkbox" id="chkKurumDisi" /> Kurum Dışı</label>
+                            <label title="Listelerde gösterilsin mi?"><input type="checkbox" id="chkGoster" /> Göster</label>
+                            <label title="Aktif mi?"><input type="checkbox" id="chkAktif" /> Aktif</label>
+                            <label title="Terfiye Dahil mi?"><input type="checkbox" id="chkTerfiyeDahil" /> Terfiye Dahil</label>
+                            <label title="Maaşa Dahil mi?"><input type="checkbox" id="chkMaasaDahil" /> Maaş Dahil</label>
+                            <label title="HITAP'a gönderilecek mi?"><input type="checkbox" id="chkHitapMi" /> Hitap Mı</label>
+                            <label title="Maaş alıp çalışılıyorsa işaret koyunuz!"><input type="checkbox" id="chkPesinMi" /> Peşin Maaş</label>
+                        </div>
+                    </div>
+
+                    <div class="bolum bolum-katsayi">
+                        <h3 class="bolum-baslik">Hizmet Hesabı Katsayıları</h3>
+                        <div class="tanim-form pt-katsayi">
+                            <div class="form-group">
+                                <label class="control-label" for="txtH1">Hizmet Günü</label>
+                                <div><input type="number" id="txtH1" class="form-control dar" step="1" title="Hizmet Günü hesabı için çarpım katsayısını giriniz!" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtH6">Kıdem</label>
+                                <div><input type="number" id="txtH6" class="form-control dar" step="1" title="Kıdem hesabı için çarpım katsayısını giriniz!" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtH4">Kazanılmış Hak</label>
+                                <div><input type="number" id="txtH4" class="form-control dar" step="1" title="Kazanılmış hak hesabı için çarpım katsayısını giriniz!" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtH5">EKEA</label>
+                                <div><input type="number" id="txtH5" class="form-control dar" step="1" title="EKEA hesabı için çarpım katsayısını giriniz!" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtH2">İzin</label>
+                                <div><input type="number" id="txtH2" class="form-control dar" step="1" title="İzin hesabı için çarpım katsayısını giriniz!" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtH3">Kurum</label>
+                                <div><input type="number" id="txtH3" class="form-control dar" step="1" title="Kurum hizmeti hesabı için çarpım katsayısını giriniz!" /></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="txtH7">Kadro</label>
+                                <div><input type="number" id="txtH7" class="form-control dar" step="1" title="Kadro hizmeti hesabı için çarpım katsayısını giriniz!" /></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personeltip.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/personeltip.js" asp-append-version="true"></script>
+}

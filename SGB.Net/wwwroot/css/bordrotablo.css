@@ -1,0 +1,165 @@
+/* Bordro Tabloları (HarcamaSurecleri/BordroTabloForm): yerleşim tanim.css'ten (solda tablolar, sağda değerler).
+   Sağdaki bölümler renkli başlıklı ayrı kutular; değer tablosunda girilebilir hücreler beyaz, salt okunurlar sarı. */
+
+.bordro-tablo .btt-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 10px;
+}
+
+.bordro-tablo .btt-arac > label {
+    margin: 0;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.bordro-tablo .btt-arac.btt-alt {
+    margin: 10px 0 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--cizgi);
+}
+
+.bordro-tablo .btt-yil {
+    width: 80px;
+}
+
+.bordro-tablo .btt-kod {
+    width: 80px;
+}
+
+.bordro-tablo .btt-katsayi {
+    width: 110px;
+}
+
+.bordro-tablo .btt-ayrac {
+    width: 1px;
+    height: 22px;
+    margin: 0 6px;
+    background: var(--cizgi);
+}
+
+.bordro-tablo .btt-arac .btt-kutu-etiket {
+    font-weight: 400;
+}
+
+.btt-dosya-dugme {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+}
+
+.btt-dosya-dugme input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Bölümler */
+.bordro-tablo .bolum {
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
+    margin: 0 0 12px;
+    padding: 10px 12px 6px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.bordro-tablo .bolum.bolum-deger {
+    --bolum-baslik: #e2f3e6;
+    --bolum-govde: #f5fbf6;
+    --bolum-vurgu: var(--b2-vurgu);
+    padding-top: 0;
+    padding-bottom: 12px;
+    margin-bottom: 0;
+}
+
+.bordro-tablo .bolum-baslik {
+    margin: 0 -12px 10px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.bordro-tablo .tanim-form {
+    --etiket-genislik: 70px;
+}
+
+.bordro-tablo .bolum-secim .form-group:last-child {
+    margin-bottom: 4px;
+}
+
+.bordro-tablo .bolum .form-control {
+    background: #fff;
+}
+
+.bordro-tablo .btt-tablo-ad {
+    font-weight: 600;
+    color: var(--bolum-vurgu);
+}
+
+.bordro-tablo .btt-tablo-ad.bos {
+    font-weight: 400;
+    color: var(--soluk);
+}
+
+/* Değer tablosu */
+.bordro-tablo .btt-grid {
+    width: 100%;
+    height: 440px;
+}
+
+.bordro-tablo .btt-salt {
+    background: #fcfcd4;
+}
+
+.bordro-tablo .btt-girilir {
+    background: #fff;
+}
+
+.bordro-tablo .tablo-ipucu {
+    padding: 12px;
+    color: var(--soluk);
+}
+
+/* Tablo penceresi */
+.btt-turler {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+}
+
+.btt-turler label {
+    margin: 0;
+    font-weight: 400;
+}
+
+@media (min-width: 992px) {
+    /* Sağ bölme de sütun: değer bölümü ve tablosu kalan yüksekliği doldurur */
+    .bordro-tablo .tanim-sag .kutu {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .bordro-tablo .bolum.bolum-deger {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        min-height: 0;
+    }
+
+    .bordro-tablo .btt-grid {
+        flex: 1 1 auto;
+        min-height: 200px;
+        height: auto;
+    }
+}

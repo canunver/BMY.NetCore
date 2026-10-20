@@ -1,0 +1,155 @@
+@page
+@model PersonelOgrenimModel
+@{
+    ViewData["Title"] = "Öğrenim Durumu";
+    ViewData["GovdeSinif"] = "pb-alt";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="pb pb-egitim" id="pbOgrenim" data-personel-kod="@Model.PersonelKod">
+    <div class="pb-arac" role="toolbar" aria-label="Öğrenim işlemleri">
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+        <button type="button" id="btnSil" class="btn btn-danger btn-sm">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+        </button>
+        <button type="button" id="btnTemizle" class="btn btn-default btn-sm" title="Formu temizle">
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Kayıt
+        </button>
+        <button type="button" id="btnYardim" class="btn btn-default btn-sm" aria-controls="pbYardim" aria-expanded="false" title="Açıklama">
+            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span><span class="sr-only">Açıklama</span>
+        </button>
+    </div>
+    <p id="pbYardim" class="pb-yardim" hidden>
+        Memuriyete başladığınız eğitim seviyesinden başlayarak tüm eğitim bilgilerini sırayla bilgilerini girerek kayıt edin.
+        Kaydedip bitirdiğiniz bilgilerden sonra yine bu formu kullanarak başka öğrenim bilgileri kayıtlarınızı yapabilirsiniz.
+        Kayıt ettikleriniz sağdaki listede gözükecek. Okula başlama ve bitiş tarihlerini tam olarak bilmiyorsanız 01.01.YIL olarak
+        giriş yapınız. Belge bilgilerini eğer biliyorsanız doldurunuz.
+    </p>
+
+    <div class="pb-egitim-govde">
+        <form id="frmOgrenim" class="pb-egitim-form" novalidate autocomplete="off">
+            <section class="pb-bolum renk-mavi">
+                <h3>Okul</h3>
+                <div class="pb-govde pb-form">
+                    <div class="form-group">
+                        <label class="control-label" for="cmbOgrenim">Eğitim Seviyesi</label>
+                        <div><select id="cmbOgrenim" class="form-control"></select></div>
+                    </div>
+                    <div class="form-group uni-alan">
+                        <label class="control-label" for="cmbUniversite">Üniversite</label>
+                        <div><select id="cmbUniversite" class="form-control"></select></div>
+                    </div>
+                    <div class="form-group uni-alan">
+                        <label class="control-label" for="cmbFakulte">Fakülte</label>
+                        <div><select id="cmbFakulte" class="form-control"></select></div>
+                    </div>
+                    <div class="form-group uni-alan">
+                        <label class="control-label" for="cmbBolum">Bölüm</label>
+                        <div><select id="cmbBolum" class="form-control"></select></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtOkulAdi">Okul Adı</label>
+                        <div><input type="text" id="txtOkulAdi" class="form-control" /></div>
+                    </div>
+                    <div class="form-group">
+                        <span class="control-label">Okul Bilgisi</span>
+                        <div class="secenekler">
+                            <label><input type="checkbox" id="chkMemuriyeteBaslama" /> Memuriyete Başladığı Okul</label>
+                            <label><input type="checkbox" id="chkGecerli" /> Son Okul</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="cmbOgrenimYeri">Öğrenim Yeri</label>
+                        <div><select id="cmbOgrenimYeri" class="form-control"></select></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtOgrenimSuresi">Öğrenim Süresi</label>
+                        <div><input type="number" id="txtOgrenimSuresi" class="form-control dar" min="0" step="1" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtBaslamaTarihi">Mezun Tarihi</label>
+                        <div><input type="date" id="txtBaslamaTarihi" class="form-control dar" /></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pb-bolum renk-yesil">
+                <h3>Belge</h3>
+                <div class="pb-govde pb-form">
+                    <div class="form-group">
+                        <label class="control-label" for="cmbBelgeTur">Belge Tür</label>
+                        <div class="yan-yana">
+                            <select id="cmbBelgeTur" class="form-control"></select>
+                            <label class="ara-etiket" for="txtBelgeNo">Belge Numarası</label>
+                            <input type="text" id="txtBelgeNo" class="form-control dar" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtDerecesi">Belge Derecesi</label>
+                        <div class="yan-yana">
+                            <input type="text" id="txtDerecesi" class="form-control dar" inputmode="numeric" maxlength="9" />
+                            <label class="ara-etiket" for="txtBitirmeTarihi">Belge Tarihi</label>
+                            <input type="date" id="txtBitirmeTarihi" class="form-control dar" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="chkDenklik">Denklik Var Mı?</label>
+                        <div><input type="checkbox" id="chkDenklik" /></div>
+                    </div>
+                    <div class="form-group" id="grpDenklik" hidden>
+                        <span class="control-label"></span>
+                        <div class="alt-alanlar">
+                            <label><span class="alt-etiket">Denklik Bölüm</span><input type="text" id="txtDenklikBolum" class="form-control" /></label>
+                            <label><span class="alt-etiket">Denklik Okul Adı</span><input type="text" id="txtDenklikOkul" class="form-control" /></label>
+                            <label><span class="alt-etiket">Denklik Tarihi</span><input type="date" id="txtDenklikTarihi" class="form-control" /></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="chkHazirlik">Hazırlık Var Mı</label>
+                        <div><input type="checkbox" id="chkHazirlik" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtKurumIbrazTarihi">Kurum İbraz Tarihi</label>
+                        <div><input type="date" id="txtKurumIbrazTarihi" class="form-control dar" /></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pb-bolum renk-mor">
+                <h3>Belgeler</h3>
+                <div class="pb-govde">
+                    <div class="pb-belge-arac">
+                        <button type="button" id="btnBelgeEkle" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Belge Ekle
+                        </button>
+                        <input type="file" id="fuBelge" hidden />
+                    </div>
+                    <div id="grdBelgeler" class="pb-belge-grid" aria-label="Belgeler"></div>
+                </div>
+            </section>
+        </form>
+
+        <section class="pb-bolum renk-gri pb-egitim-liste">
+            <h3>Öğrenim Bilgileri</h3>
+            <div class="pb-govde pb-doldur">
+                <div id="grdListe" class="pb-grid" aria-label="Öğrenim bilgileri"></div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/personelalt.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personel-egitim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/personel-egitim-ortak.js" asp-append-version="true"></script>
+    <script src="~/js/personel-ogrenim.js" asp-append-version="true"></script>
+}

@@ -82,7 +82,7 @@
 .mp-dagitim .bolum-secim .kod-ad { font-size: 11px; }
 .mp-dagitim .mp-miktar-satir { margin: 0; gap: 4px 6px; }
 .mp-dagitim .mp-miktar-satir .mp-tutar { width: 160px; }
-.mp-dagitim .mp-yardim.active { background: #e3edfa; }
+.mp-dagitim .mp-yardim.active { background: var(--b1-baslik); }
 
 /* Birim seçim penceresi */
 .mp-birim-sec {
@@ -161,7 +161,7 @@
 .mp-genel .mp-satir + .mp-satir { margin-top: 4px; }
 .mp-genel .mp-rapor { flex: 1 1 220px; min-width: 0; }
 .mp-genel .mp-ay-sec { width: auto; }
-.mp-genel .mp-yardim.active { background: #e3edfa; }
+.mp-genel .mp-yardim.active { background: var(--b1-baslik); }
 .mp-genel .mp-ipucu { margin: 4px 0 0; font-size: 11px; }
 .mp-genel .mp-arac { margin-bottom: 6px; gap: 4px 6px; }
 
@@ -214,7 +214,7 @@
 .mp-ayarla .mp-kuryapi { max-width: 150px; }
 .mp-ayarla .mp-islem { width: auto; }
 .mp-ayarla .mp-tuslar { gap: 4px 6px; margin-top: 2px; }
-.mp-ayarla .mp-yardim.active { background: #e3edfa; }
+.mp-ayarla .mp-yardim.active { background: var(--b1-baslik); }
 .mp-ayarla .mp-ipucu { margin: 4px 0 0; font-size: 11px; }
 
 .mp-ayarla .mp-kriter-kolonlar {

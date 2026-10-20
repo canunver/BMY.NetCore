@@ -1,0 +1,214 @@
+/* Fatura Hazırlama, Fatura Giriş, Toplu Tahakkuk ve Fatura Takip (js/fatura.js, js/faturatakip.js). Ortak görünüm avans.css'ten. */
+
+.fatura .ft-kisa {
+    width: 90px;
+}
+
+.fatura .ft-orta,
+.ft-pencere .ft-orta {
+    width: 150px;
+}
+
+.fatura .ft-genis {
+    width: 300px;
+    max-width: 100%;
+}
+
+.fatura .ft-tarih,
+.ft-pencere .ft-tarih {
+    width: 130px;
+}
+
+/* Salt okunur alanlar sarı (girilen alanlar beyaz) */
+.fatura .ft-salt,
+.fatura .ft-salt[readonly] {
+    background: #fcfcd4;
+}
+
+.fatura .ft-oto-numara {
+    background: #f8d7d7;
+}
+
+.fatura .ft-belge-no {
+    margin-left: 8px;
+    font-weight: 600;
+}
+
+.fatura .avans-iki-sutun .avans-alanlar {
+    --etiket-genislik: 110px;
+}
+
+/* ---- Fatura Giriş ---- */
+.fatura-form .ft-form-ust {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 8px;
+}
+
+.fatura-form .ft-form-ust .avans-alanlar {
+    max-width: none;
+}
+
+.fatura-form .ft-form-sag {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fatura-form .kutu.bolum.bolum-aciklama {
+    --bolum-baslik: #f3ecdf;
+    --bolum-govde: #fbf8f2;
+    --bolum-vurgu: #b07a1f;
+}
+
+.fatura-form .kutu.bolum.bolum-ozet {
+    --bolum-baslik: #ece6f6;
+    --bolum-govde: #f8f6fc;
+    --bolum-vurgu: #6a4fb3;
+}
+
+.fatura-form .ft-baslik-tus {
+    margin-left: auto;
+    padding: 0 6px;
+    font-size: 11px;
+}
+
+.fatura-form #txtAciklama {
+    height: auto;
+    resize: vertical;
+}
+
+.fatura-form .ft-ozet {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 3px 12px;
+    margin: 0;
+}
+
+.fatura-form .ft-ozet dt {
+    font-weight: 600;
+}
+
+.fatura-form .ft-ozet dd {
+    margin: 0;
+    padding: 1px 6px;
+    text-align: right;
+    background: #fcfcd4;
+    border: 1px solid var(--cizgi);
+    border-radius: 3px;
+}
+
+.fatura-form .ft-ozet .ft-genel {
+    font-weight: 700;
+}
+
+/* ---- Tablolar ---- */
+.fatura .ft-girilir {
+    background: #fff;
+}
+
+.fatura .ft-salt-hucre {
+    background: #fcfcd4;
+}
+
+.fatura .ft-hesaplanan {
+    color: #c62828;
+}
+
+.fatura .ft-iptal {
+    color: #9e9e9e;
+    text-decoration: line-through;
+}
+
+.fatura .ft-ac,
+.fatura .ft-komut {
+    padding: 0 4px;
+    line-height: 1;
+}
+
+.fatura .ft-hucre-sec {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+}
+
+.fatura .ft-hucre-sec .ft-hucre-metin {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fatura .ft-aciklama-hucre {
+    white-space: normal;
+    line-height: 1.3;
+}
+
+/* ---- Pencereler ---- */
+.tanim-pencere.ft-pencere {
+    width: min(620px, calc(100vw - 32px));
+    font-size: 12px;
+}
+
+.tanim-pencere.ft-pencere-genis {
+    width: min(900px, calc(100vw - 32px));
+}
+
+.ft-pencere .tanim-form {
+    --etiket-genislik: 150px;
+}
+
+.ft-pencere .form-control.input-sm {
+    height: 26px;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.ft-pencere textarea.form-control.input-sm {
+    height: auto;
+}
+
+.ft-pencere .avans-bitisik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+}
+
+.ft-pencere .avans-secenekler {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ft-pencere .form-group {
+    margin-bottom: 6px;
+}
+
+.ft-pencere .ft-hesap {
+    width: 140px;
+}
+
+.ft-pencere .avans-secenekler label {
+    margin: 0;
+    font-weight: 400;
+}
+
+.ft-pencere .avans-secenekler input {
+    margin-right: 4px;
+}
+
+.ft-pencere .ft-grid-pencere {
+    width: 100%;
+    height: min(380px, calc(100vh - 300px));
+}
+
+.ft-pencere [hidden] {
+    display: none !important;
+}
+
+@media (max-width: 900px) {
+    .fatura-form .ft-form-ust {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

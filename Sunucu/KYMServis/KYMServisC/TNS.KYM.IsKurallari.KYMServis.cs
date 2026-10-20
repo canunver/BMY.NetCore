@@ -760,6 +760,18 @@ namespace TNS.KYM.IsKurallari
             return donusDeger;
         }
 
+        public Sonuc KullaniciBilgiArsiveTasi(int saklamaYil, int partiBoyut)
+        {
+            try
+            {
+                return KullaniciBilgiArsivi.Tasi(saklamaYil, partiBoyut);
+            }
+            catch (Exception e)
+            {
+                return new Sonuc(e.ToString());
+            }
+        }
+
         /// <summary>
         /// Bir kullanıcının, bir değişkeninin değerlerini döndüren yordam.
         /// </summary>

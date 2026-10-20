@@ -1,0 +1,158 @@
+/* Personel İşlemleri > Öğrenim Durumu, Yabancı Dil, Hizmet İçi Eğitim, Ceza/Ödül sekmeleri (PersonelOgrenim, PersonelDil,
+   PersonelKurs, PersonelCezaOdul). personelalt.css'in üzerine: solda form (kaydırılır), sağda sayfa yüksekliğini dolduran
+   kayıt listesi; dar ekranda alt alta. */
+
+.pb-egitim {
+    height: calc(100vh - 16px);
+    min-height: 420px;
+}
+
+.pb-egitim-govde {
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 440px);
+    gap: 10px;
+    min-height: 0;
+}
+
+.pb-egitim-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 2px;
+}
+
+.pb-egitim-liste {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.pb-egitim-liste > .pb-govde {
+    flex: 1 1 auto;
+}
+
+.pb-egitim .pb-form {
+    --etiket-genislik: 150px;
+}
+
+.pb-egitim .pb-form .yan-yana > .form-control {
+    width: auto;
+    flex: 1 1 120px;
+}
+
+.pb-egitim .pb-form .yan-yana > .form-control.dar {
+    flex: 0 1 140px;
+}
+
+.pb-egitim .pb-form .yan-yana > .ara-etiket {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.pb-egitim .secenekler {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+}
+
+.pb-egitim .secenekler label {
+    margin: 0;
+    font-weight: normal;
+}
+
+.pb-egitim .alt-etiket {
+    display: block;
+    font-size: 11px;
+    color: var(--soluk);
+}
+
+.pb-egitim .alt-alanlar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 6px;
+}
+
+.pb-belge-arac {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.pb-belge-grid {
+    width: 100%;
+}
+
+.pb-belge-komut {
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+    text-align: center;
+}
+
+.pb-yardim {
+    margin: 0;
+    padding: 6px 10px;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+    background: #fffbe6;
+    color: var(--murekkep);
+}
+
+/* Onay penceresi */
+.pb-onay {
+    width: min(420px, calc(100vw - 32px));
+    padding: 0;
+    color: var(--murekkep);
+    background: var(--yuzey, #fff);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .25);
+}
+
+.pb-onay::backdrop {
+    background: rgba(0, 0, 0, .45);
+}
+
+.pb-onay-baslik {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.pb-onay-baslik h2 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.pb-onay-govde {
+    padding: 14px;
+    white-space: pre-line;
+}
+
+.pb-onay-alt {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 10px 14px;
+    border-top: 1px solid var(--cizgi);
+}
+
+@media (max-width: 860px) {
+    .pb-egitim {
+        height: auto;
+    }
+
+    .pb-egitim-govde {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pb-egitim-form {
+        overflow: visible;
+    }
+
+    .pb-egitim-liste .pb-grid {
+        height: 320px;
+    }
+}

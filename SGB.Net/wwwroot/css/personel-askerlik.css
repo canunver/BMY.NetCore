@@ -1,0 +1,47 @@
+/* Personel İşlemleri "Askerlik" sekmesi (InsanKaynaklari/PersonelAskerlik): ortak görünüm personelalt.css'ten. */
+
+.pas-govde {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pas [hidden] {
+    display: none !important;
+}
+
+.pas-kutu {
+    margin: 0;
+    font-weight: normal;
+}
+
+.pas-bosluk {
+    flex: 1 1 auto;
+}
+
+.pas-dosya {
+    margin: 0;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.pas-belge-grid {
+    height: 200px;
+}
+
+.pas-onay {
+    max-width: 420px;
+    padding: 16px;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+}
+
+.pas-onay p {
+    margin: 0 0 14px;
+}
+
+.pas-onay-dugmeler {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+}

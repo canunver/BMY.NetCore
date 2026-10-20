@@ -1,0 +1,280 @@
+/* Sayıştay Verileri (ButceMuhasebe/SayistayVerileri): solda tablo listesi, sağda seçilen tablonun kuralları ve giriş tablosu.
+   Bölümler renkli başlıklı ayrı kutular; alanlar alt alta, etiket solda, sıkı (12px). Tabloda girilen hücreler beyaz. */
+
+.sayistay-verileri [hidden] {
+    display: none !important;
+}
+
+.sayistay-verileri {
+    display: grid;
+    grid-template-columns: 330px minmax(0, 1fr);
+    gap: 10px;
+    align-items: start;
+}
+
+@media (max-width: 760px) {
+    .sayistay-verileri {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* ---- Bölüm kutuları ---- */
+.sayistay-verileri .kutu.bolum {
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
+    min-width: 0;
+    padding: 0 8px 8px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.sayistay-verileri .kutu.bolum.bolum-kriter {
+    --bolum-baslik: var(--b2-baslik);
+    --bolum-govde: var(--b2-govde);
+    --bolum-vurgu: var(--b2-vurgu);
+}
+
+.sayistay-verileri .bolum-baslik {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 -8px 6px;
+    padding: 5px 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--murekkep);
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.sayistay-verileri .say-baslik-tuslar {
+    display: inline-flex;
+    gap: 4px;
+    margin-left: auto;
+}
+
+.sayistay-verileri .say-yardim {
+    min-width: 22px;
+    font-weight: 700;
+}
+
+.sayistay-verileri .say-ipucu {
+    margin: 0 0 6px;
+    padding: 6px 8px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--murekkep);
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+/* ---- Rapor listesi ---- */
+.sayistay-verileri .say-liste {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 120px);
+}
+
+.sayistay-verileri .say-ara {
+    height: 24px;
+    margin-bottom: 6px;
+    padding: 1px 6px;
+    font-size: 12px;
+}
+
+.sayistay-verileri .say-raporlar {
+    flex: 1 1 auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    list-style: none;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.sayistay-verileri .say-raporlar li {
+    display: flex;
+    gap: 6px;
+    padding: 3px 8px;
+    font-size: 12px;
+    line-height: 1.35;
+    cursor: pointer;
+    border-bottom: 1px solid var(--cizgi);
+}
+
+.sayistay-verileri .say-raporlar li:nth-child(even) {
+    background: rgba(0, 0, 0, .025);
+}
+
+.sayistay-verileri .say-raporlar li:hover {
+    background: var(--bolum-govde);
+}
+
+.sayistay-verileri .say-raporlar li.secili {
+    font-weight: 600;
+    color: #fff;
+    background: var(--bolum-vurgu);
+}
+
+.sayistay-verileri .say-raporlar li:focus-visible {
+    outline: 2px solid var(--bolum-vurgu);
+    outline-offset: -2px;
+}
+
+.sayistay-verileri .say-no {
+    flex: 0 0 22px;
+    text-align: right;
+    opacity: .7;
+}
+
+/* ---- Araç çubuğu ---- */
+.sayistay-verileri .say-arac {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 8px;
+}
+
+.sayistay-verileri .say-arac > .btn {
+    margin-left: 0;
+    float: none;
+}
+
+/* ---- Kural alanları (etiket solda, alt alta, sıkı) ---- */
+.sayistay-verileri .say-alanlar {
+    --etiket-genislik: 140px;
+    max-width: 760px;
+    font-size: 12px;
+}
+
+.sayistay-verileri .say-alanlar .form-group {
+    margin: 0 0 3px;
+    column-gap: 6px;
+}
+
+.sayistay-verileri .say-alanlar .control-label,
+.sayistay-verileri .say-secenek {
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+.sayistay-verileri .say-alanlar .form-control.input-sm,
+.sayistay-verileri .say-alanlar .btn-sm {
+    height: 24px;
+    padding: 1px 4px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.sayistay-verileri .say-alanlar textarea.form-control.input-sm {
+    height: auto;
+}
+
+.sayistay-verileri .say-alanlar .hk-bilesen .hk-ad {
+    min-height: 24px;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.sayistay-verileri .say-alanlar .hk-bilesen .hk-kod {
+    flex: 0 1 160px;
+    min-width: 110px;
+}
+
+.sayistay-verileri .say-yil {
+    width: 90px;
+}
+
+.sayistay-verileri .say-kisa {
+    width: 160px;
+    max-width: 100%;
+}
+
+.sayistay-verileri .say-orta {
+    width: 260px;
+    max-width: 100%;
+}
+
+.sayistay-verileri .say-bitisik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+}
+
+.sayistay-verileri .say-secenek {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin: 2px 10px 0 0;
+    font-weight: 400;
+}
+
+.sayistay-verileri .say-coklu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 4px;
+    padding: 2px 6px;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 4px;
+}
+
+.sayistay-verileri .say-aciklama {
+    width: 100%;
+    max-width: 620px;
+    resize: vertical;
+}
+
+.sayistay-verileri .say-aciklama-tus {
+    margin-top: 3px;
+}
+
+.sayistay-verileri .say-imza {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 200px));
+    gap: 4px;
+}
+
+@media (max-width: 600px) {
+    .sayistay-verileri .say-imza {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* ---- Sağ sütun: kurallar ve giriş tablosu alt alta ---- */
+.sayistay-verileri .say-sag {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+
+.sayistay-verileri .kutu.bolum.bolum-tablo {
+    --bolum-baslik: #fdf0dc;
+    --bolum-govde: #fefaf3;
+    --bolum-vurgu: #c7812a;
+}
+
+.sayistay-verileri .say-grid {
+    width: 100%;
+    height: 300px;
+    font-size: 12px;
+}
+
+/* Girilen hücreler beyaz (salt okunur yok; satır seçim sütunu varsayılan) */
+.sayistay-verileri .say-grid .ag-cell.girilir:not(.ag-cell-inline-editing) {
+    background: #fff;
+    box-shadow: inset 0 0 0 1px #e1e7ee;
+    cursor: text;
+}

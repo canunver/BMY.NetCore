@@ -1,0 +1,42 @@
+@page
+@model TanimPSLGelirVergisiModel
+@{
+    ViewData["Title"] = "Gelir Vergisi Bilgileri Tanımlama";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="gelir-vergisi">
+    <section class="bolum">
+        <h2 class="bolum-baslik">Gelir Vergisi Bilgileri</h2>
+        <div class="gv-arac" role="toolbar" aria-label="Gelir vergisi işlemleri">
+            <label for="txtYil" class="gv-etiket">Yıl</label>
+            <input type="number" id="txtYil" class="form-control input-sm sgb-yil gv-yil" step="1" />
+            <button type="button" id="btnListele" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+            </button>
+            <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+            </button>
+            <button type="button" id="btnYardim" class="btn btn-link btn-sm gv-yardim" aria-expanded="false" aria-controls="gvYardim" title="Yardım">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span><span class="sr-only">Yardım</span>
+            </button>
+        </div>
+        <div id="gvYardim" class="gv-yardim-metin" hidden>
+            Her satır bir vergi dilimidir: Yüzde (tam sayı) ve dilimin üst sınırı Miktar. Dilimleri küçükten büyüğe giriniz.
+            Yüzdesi boş ya da 0 olan satırlar kaydedilmez. Kaydet o yılın bütün dilimlerini silip yeniden yazar.
+        </div>
+        <div id="grdGelirVergisi" class="gv-grid" aria-label="Gelir vergisi dilimleri"></div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/gelirvergisi.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/gelirvergisi.js" asp-append-version="true"></script>
+}

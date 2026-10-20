@@ -1,0 +1,85 @@
+@page
+@model FirmaBilgisiDuzenlemeModel
+@{
+    ViewData["Title"] = "Firma Birleştirme";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">@Model.Hata</div>
+    return;
+}
+
+<div class="avans firma-duzenleme">
+    <div class="avans-arac fd-ust" role="toolbar" aria-label="İşlemler">
+        <button type="button" id="btnTemizle" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Temizle
+        </button>
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm" title="Birleştirilecek kayıtları ana kayıtta topla">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+        <button type="button" class="btn btn-link btn-xs avans-yardim-dugme" data-yardim="#fdYardim" title="Yardım" aria-label="Yardım">
+            <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+        </button>
+    </div>
+    <div id="fdYardim" class="alert alert-info avans-yardim" hidden>
+        Soldan firma/kişileri adıyla arayın. Bir satırı <b>Ana Kayıt Yap</b> ile (ya da çift tıklayarak) ana kayda alın;
+        aynı firmanın diğer kayıtlarını seçip <b>Birleştirilecekler</b> listesine ekleyin. <b>Kaydet</b> ile birleştirilecek kayıtların
+        ödeme emri/MİF alt hesap kodları ana kaydın vergi numarasına çevrilir ve bu firma bilgileri silinir.
+    </div>
+
+    <div class="fd-govde">
+        <section class="kutu bolum bolum-liste fd-sol">
+            <form id="frmAra" class="avans-arac fd-ara" onsubmit="return false;">
+                <input type="text" id="txtAra" class="form-control input-sm" placeholder="Firma / kişi adı" aria-label="Aranacak ad" />
+                <button type="button" id="btnAra" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Ara
+                </button>
+            </form>
+            <div id="grdBaslik" class="avans-grid fd-grid" aria-label="Bulunan firma/kişiler"></div>
+            <div class="avans-arac fd-alt">
+                <button type="button" id="btnAnaYap" class="btn btn-default btn-sm" title="Seçili satırı ana kayıt yap">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ana Kayıt Yap
+                </button>
+                <button type="button" id="btnEkle" class="btn btn-default btn-sm" title="Seçili satırları birleştirilecekler listesine ekle">
+                    Birleştirilecek <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                </button>
+            </div>
+        </section>
+
+        <div class="fd-sag">
+            <section class="kutu bolum bolum-kriter fd-ana">
+                <h2 class="bolum-baslik">Firma/Kişilerin Toplanacağı Ana Kayıt</h2>
+                <div class="tanim-form avans-alanlar">
+                    <div class="form-group">
+                        <label class="control-label" for="txtVergiNo">Vergi No</label>
+                        <div><input type="text" id="txtVergiNo" class="form-control input-sm" readonly /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtAd">Adı</label>
+                        <div><input type="text" id="txtAd" class="form-control input-sm" readonly /></div>
+                    </div>
+                </div>
+            </section>
+            <section class="kutu bolum bolum-liste fd-secilen">
+                <h2 class="bolum-baslik">Birleştirilecek Firma/Kişiler</h2>
+                <div id="grdSecenek" class="avans-grid fd-grid" aria-label="Birleştirilecek firma/kişiler"></div>
+                <div class="avans-arac fd-alt">
+                    <button type="button" id="btnCikar" class="btn btn-default btn-sm" title="Seçili satırları listeden çıkar, arama listesine geri al">
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Listeden Çıkar
+                    </button>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/firmaduzenleme.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/firmaduzenleme.js" asp-append-version="true"></script>
+}

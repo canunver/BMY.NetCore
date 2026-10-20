@@ -1,0 +1,153 @@
+@page
+@model SGBKBSDuzeltmePEBModel
+@{
+    ViewData["Title"] = "SGB - KBS Fark (Faal.)";
+    ViewData["GovdeSinif"] = "og-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="odenek-gonderme og-liste sgb-duzeltme sgb-kbs-fark">
+    <!-- Kıstaslar -->
+    <section class="kutu bolum bolum-kriter">
+        <h2 class="bolum-baslik">Kıstaslar</h2>
+        <form id="frmKriter" class="og-kriter" novalidate>
+            <div class="tanim-form og-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="ddlYil">Yıl / Ay</label>
+                    <div class="og-bitisik">
+                        <input type="number" id="ddlYil" class="form-control input-sm sgb-yil" min="2006" max="2100" step="1" aria-label="Yıl" />
+                        <span class="og-ayrac">/</span>
+                        <input type="number" id="ddlAy" class="form-control input-sm" min="1" max="12" step="1" aria-label="Ay" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMuhasebe">Saymanlık / Birim</label>
+                    <div id="muhBirim" title="Saymanlık alanına birden çok kod (1,5) ya da aralık (1-9) yazılabilir."></div>
+                </div>
+                <partial name="_OdenekDurumKodlar" />
+                <div class="form-group">
+                    <label class="control-label" for="ddlHarcamaDurum">Harcama Durum</label>
+                    <div>
+                        <select id="ddlHarcamaDurum" class="form-control input-sm">
+                            <option value="0">Hepsi</option>
+                            <option value="1">KBS Harcaması Fazla</option>
+                            <option value="2">SGB Harcaması Fazla</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtEnAzFark">En Az Fark</label>
+                    <div class="og-bitisik">
+                        <input type="text" id="txtEnAzFark" class="form-control input-sm" value="0" autocomplete="off" inputmode="decimal" />
+                        <select id="ddlFarkTur" class="form-control input-sm" aria-label="Fark türü">
+                            <option value="0">Düşük</option>
+                            <option value="1">Yüksek</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <!-- Farklar -->
+    <section class="kutu bolum bolum-liste">
+        <h2 class="bolum-baslik">Farklar <span class="og-toplam" id="lblOzet"></span></h2>
+        <div class="btn-toolbar og-arac" role="toolbar" aria-label="Liste işlemleri">
+            <div class="btn-group btn-group-sm">
+                <button type="button" class="btn btn-primary listele" data-mode="1"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Listele Harcama Fark</button>
+                <button type="button" class="btn btn-primary listele" data-mode="2"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Listele Gönderme Harcama Fark</button>
+            </div>
+            <div class="btn-group btn-group-sm">
+                <button type="button" id="btnKopyala" class="btn btn-default"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Kopyala</button>
+                <button type="button" id="btnKaydet" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kaydet</button>
+            </div>
+            <div class="og-icmal">
+                <label for="ddlIhale">İhale</label>
+                <select id="ddlIhale" class="form-control input-sm">
+                    <option value="">Yok</option>
+                    <option value="19Mal">19 Mal</option>
+                    <option value="20Mal">20 Mal</option>
+                    <option value="21aMal">21a Mal</option>
+                    <option value="22aMal">22a Mal</option>
+                    <option value="21bMal">21b Mal</option>
+                    <option value="22bMal">22b Mal</option>
+                    <option value="21cMal">21c Mal</option>
+                    <option value="22cMal">22c Mal</option>
+                    <option value="21dMal">21d Mal</option>
+                    <option value="22dMal">22d Mal</option>
+                    <option value="21eMal">21e Mal</option>
+                    <option value="22eMal">22e Mal</option>
+                    <option value="21fMal">21f Mal</option>
+                    <option value="22fMal">22f Mal</option>
+                    <option value="22gMal">22g Mal</option>
+                    <option value="19Hizmet">19 Hizmet</option>
+                    <option value="20Hizmet">20 Hizmet</option>
+                    <option value="21aHizmet">21a Hizmet</option>
+                    <option value="22aHizmet">22a Hizmet</option>
+                    <option value="21bHizmet">21b Hizmet</option>
+                    <option value="22bHizmet">22b Hizmet</option>
+                    <option value="21cHizmet">21c Hizmet</option>
+                    <option value="22cHizmet">22c Hizmet</option>
+                    <option value="21dHizmet">21d Hizmet</option>
+                    <option value="22dHizmet">22d Hizmet</option>
+                    <option value="21eHizmet">21e Hizmet</option>
+                    <option value="22eHizmet">22e Hizmet</option>
+                    <option value="21fHizmet">21f Hizmet</option>
+                    <option value="22fHizmet">22f Hizmet</option>
+                    <option value="22gHizmet">22g Hizmet</option>
+                    <option value="19Yapım">19 Yapım</option>
+                    <option value="20Yapım">20 Yapım</option>
+                    <option value="21aYapım">21a Yapım</option>
+                    <option value="22aYapım">22a Yapım</option>
+                    <option value="21bYapım">21b Yapım</option>
+                    <option value="22bYapım">22b Yapım</option>
+                    <option value="21cYapım">21c Yapım</option>
+                    <option value="22cYapım">22c Yapım</option>
+                    <option value="21dYapım">21d Yapım</option>
+                    <option value="22dYapım">22d Yapım</option>
+                    <option value="21eYapım">21e Yapım</option>
+                    <option value="22eYapım">22e Yapım</option>
+                    <option value="21fYapım">21f Yapım</option>
+                    <option value="22fYapım">22f Yapım</option>
+                    <option value="22gYapım">22g Yapım</option>
+                </select>
+            </div>
+        </div>
+        <div id="kutuHata" class="alert alert-danger sgb-hata" role="alert" hidden></div>
+        <div id="grdFark" class="og-grid og-grid-liste" aria-label="SGB - KBS farkları"></div>
+    </section>
+</div>
+
+<partial name="_OdenekDurumKodPencere" />
+
+<!-- Onay sorusu -->
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p id="soruMetin"></p>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/odenekdurum.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/odenekgonderme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/sgbduzeltme.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/sgbkbsfark.js" asp-append-version="true"></script>
+}

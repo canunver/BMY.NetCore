@@ -1,0 +1,101 @@
+@page
+@model PersonelMalBildirimiModel
+@{
+    ViewData["Title"] = "Mal Bildirimi";
+    ViewData["GovdeSinif"] = "pb-alt";
+    var tablolar = new[]
+    {
+        new { Kimlik = "Kimlik", Baslik = "Kimlik Bilgileri" },
+        new { Kimlik = "Tasinmaz", Baslik = "Taşınmaz Mal Bilgileri" },
+        new { Kimlik = "Kooperatif", Baslik = "Kooperatif Bilgileri" },
+        new { Kimlik = "Tasit", Baslik = "Taşıt Bilgileri" },
+        new { Kimlik = "DigerTasinir", Baslik = "Diğer Taşınır Mallar" },
+        new { Kimlik = "BankaMenkul", Baslik = "Banka ve Menkul Değerlere Ait Bilgiler" },
+        new { Kimlik = "AltinMucevher", Baslik = "Altın ve Mücevherat Bilgileri" },
+        new { Kimlik = "BorcAlacak", Baslik = "Borç - Alacak Bilgileri" },
+        new { Kimlik = "DigerServet", Baslik = "Haklar ve Beyanı Gerekli Görülen Diğer Servet Unsurları" }
+    };
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="pb pmb" id="pmbSayfa" data-personel-kod="@Model.PersonelKod" data-tc-kimlik-no="@Model.TcKimlikNo">
+    <div class="pb-arac" role="toolbar">
+        <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+        </button>
+        <button type="button" id="btnSil" class="btn btn-danger btn-sm">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+        </button>
+        <button type="button" id="btnYeni" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Kayıt
+        </button>
+    </div>
+
+    <div class="pmb-govde">
+        <div class="pmb-sol">
+            <section class="pb-bolum renk-mavi">
+                <h3>Mal Bildirim Bilgileri</h3>
+                <div class="pb-govde pb-form" id="frmBildirim">
+                    <div class="form-group">
+                        <label class="control-label" for="txtTarih">Mal Bildirim Tarihi</label>
+                        <div><input type="date" id="txtTarih" class="form-control dar" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtAciklama">Açıklama</label>
+                        <div><textarea id="txtAciklama" class="form-control" rows="2"></textarea></div>
+                    </div>
+                </div>
+            </section>
+
+            @foreach (var t in tablolar)
+            {
+                <section class="pb-bolum renk-gri pmb-tablo">
+                    <h3>
+                        <span>@t.Baslik</span>
+                        <span class="bosluk"></span>
+                        <button type="button" class="btn btn-default btn-xs" data-ekle="@t.Kimlik">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Satır Ekle
+                        </button>
+                        <button type="button" class="btn btn-default btn-xs" data-cikar="@t.Kimlik">
+                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Seçili Satırı Sil
+                        </button>
+                    </h3>
+                    <div class="pb-govde">
+                        <div id="grd@(t.Kimlik)" class="pb-grid pmb-grid" aria-label="@t.Baslik"></div>
+                    </div>
+                </section>
+            }
+        </div>
+
+        <aside class="pmb-sag pb-bolum renk-yesil">
+            <h3>Mal Bildirimleri</h3>
+            <div class="pb-govde pb-doldur">
+                <div id="grdListe" class="pb-grid" aria-label="Mal bildirimleri"></div>
+                <p class="pb-not">Bildirimi açmak için satıra tıklayın.</p>
+            </div>
+        </aside>
+    </div>
+</div>
+
+<dialog id="dlgOnay" class="pmb-onay">
+    <form method="dialog">
+        <p id="dlgOnayMetin"></p>
+        <div class="pmb-onay-dugmeler">
+            <button value="hayir" class="btn btn-default btn-sm">Vazgeç</button>
+            <button value="evet" class="btn btn-primary btn-sm">Evet</button>
+        </div>
+    </form>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/personelalt.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/personel-malbildirim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/personel-malbildirim.js" asp-append-version="true"></script>
+}

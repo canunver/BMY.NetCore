@@ -1,0 +1,42 @@
+@page
+@model TanimPSLMaasTemelBilgiModel
+@{
+    ViewData["Title"] = "Maaş Temel Bilgileri Tanımlama";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="maas-temel">
+    <section class="bolum">
+        <h2 class="bolum-baslik">Maaş Temel Bilgileri</h2>
+        <div class="mt-arac" role="toolbar" aria-label="Maaş temel bilgi işlemleri">
+            <label for="txtYil" class="mt-etiket">Yıl</label>
+            <input type="number" id="txtYil" class="form-control input-sm sgb-yil mt-yil" step="1" />
+            <button type="button" id="btnListele" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Listele
+            </button>
+            <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+            </button>
+            <button type="button" id="btnYardim" class="btn btn-link btn-sm mt-yardim" aria-expanded="false" aria-controls="mtYardim" title="Yardım">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span><span class="sr-only">Yardım</span>
+            </button>
+        </div>
+        <div id="mtYardim" class="mt-yardim-metin" hidden>
+            Yıl değişince o yılın bilgileri okunur. Aylara ait değerler hücreye tıklanarak girilir (ondalık ayırıcı virgül);
+            Kaydet o yılın 12 ayını birlikte yazar.
+        </div>
+        <div id="grdMaasTemel" class="mt-grid" aria-label="Maaş temel bilgileri"></div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/maastemel.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/maastemel.js" asp-append-version="true"></script>
+}

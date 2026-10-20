@@ -1,0 +1,38 @@
+/* Personel İşlemleri > İletişim/Adres sekmesi (InsanKaynaklari/PersonelAdres). */
+.pb-adres .pb-form {
+    --etiket-genislik: 150px;
+}
+
+.pb-adres form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pb-adres-yardim {
+    margin-left: 6px;
+    color: #c79a00;
+    font-size: 16px;
+    cursor: help;
+}
+
+.pb-adres .form-control:invalid {
+    border-color: #c9302c;
+}
+
+/* .pb-form .form-group display:grid verdiği için gizli alanlar açıkça gizlenir. */
+.pb-adres [hidden] {
+    display: none !important;
+}
+
+.pb-onay {
+    max-width: 420px;
+    padding: 16px 18px;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+}
+
+.pb-onay p {
+    margin: 0 0 14px;
+    white-space: pre-line;
+}

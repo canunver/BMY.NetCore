@@ -1,0 +1,46 @@
+/* Unvan Bilgileri (InsanKaynaklari/TanimUnvan): yerleşim tanim.css'ten (solda liste, sağda form);
+   form bölümü renkli başlıklı ayrı kutu. */
+
+.unvan .bolum {
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
+    margin: 0 0 12px;
+    padding: 0 12px 6px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.unvan .bolum-baslik {
+    margin: 0 -12px 10px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.unvan .tanim-form {
+    --etiket-genislik: 110px;
+}
+
+.unvan .bolum .form-control {
+    background: #fff;
+}
+
+.unvan .dar {
+    max-width: 160px;
+}
+
+.unvan .unvan-secenekler {
+    display: flex;
+    gap: 18px;
+}
+
+.unvan .unvan-secenekler label {
+    margin: 0;
+    font-weight: normal;
+}

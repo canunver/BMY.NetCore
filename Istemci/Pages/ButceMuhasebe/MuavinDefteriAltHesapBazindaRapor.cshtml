@@ -1,0 +1,31 @@
+@page
+@model MuavinDefteriAltHesapBazindaRaporModel
+@{
+    ViewData["Title"] = "Muavin Defteri Listesi";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div id="oemMuavinSayfa" class="oem-sayfa">
+    <div class="oem-sayfa-ust">
+        <p class="oem-belge"><strong>Hesap:</strong> <span class="oem-muavin-hesap"></span></p>
+        <button type="button" class="btn btn-default btn-sm oem-sayfa-kapat">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Kapat
+        </button>
+    </div>
+    <div class="oem-bolum oem-bolum-liste">
+        <div class="oem-grid oem-muavin-grid" aria-label="Muavin defteri"></div>
+    </div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/odemeemrisecim.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/odemeemrisecim.js" asp-append-version="true"></script>
+}

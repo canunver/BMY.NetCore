@@ -1,0 +1,69 @@
+/* Personel İşlemleri > Aile sekmesi (InsanKaynaklari/PersonelAile): solda form + belgeler, sağda aile bireyleri. */
+.pb-aile {
+    min-height: calc(100vh - 16px);
+}
+
+.pb-aile-govde {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 10px;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.pb-aile-sol {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+
+.pb-aile-belge {
+    flex: 1 1 auto;
+}
+
+.pb-aile-belge .pb-grid {
+    min-height: 180px;
+}
+
+.pb-aile-sag .pb-grid {
+    min-height: 360px;
+}
+
+.pb-aile-tc {
+    max-width: 200px;
+}
+
+.pb-aile-yardim {
+    margin-left: 6px;
+    color: #c79a00;
+    font-size: 16px;
+    cursor: help;
+}
+
+.pb-aile .pb-bolum > h3 .bosluk {
+    flex: 1 1 auto;
+}
+
+.pb-onay {
+    max-width: 420px;
+    padding: 16px 18px;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+}
+
+.pb-onay p {
+    margin: 0 0 14px;
+    white-space: pre-line;
+}
+
+@media (max-width: 900px) {
+    .pb-aile-govde {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* .pb-form .form-group display:grid verdiği için gizli alanlar açıkça gizlenir. */
+.pb-aile [hidden] {
+    display: none !important;
+}

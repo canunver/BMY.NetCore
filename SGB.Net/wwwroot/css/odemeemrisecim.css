@@ -1,0 +1,284 @@
+/* Sgb.oem (js/odemeemrisecim.js): Ödeme Emri / MİF formunun seçim ve gösterim pencereleri.
+   Pencere çerçevesi tanim.css'teki .tanim-pencere'dir. Kıstaslar sıkışık (12px), etiket solda, alanlar alt alta. */
+
+.oem-pencere [hidden] {
+    display: none !important;
+}
+
+.tanim-pencere.oem-mahsup,
+.tanim-pencere.oem-fatura,
+.tanim-pencere.oem-muavin,
+.tanim-pencere.oem-kapatma {
+    width: min(980px, calc(100vw - 32px));
+}
+
+.tanim-pencere.oem-taahhut {
+    width: min(1180px, calc(100vw - 32px));
+}
+
+.tanim-pencere.oem-tarihce {
+    width: min(860px, calc(100vw - 32px));
+}
+
+.tanim-pencere.oem-is {
+    width: min(520px, calc(100vw - 32px));
+}
+
+.tanim-pencere.oem-kesinti {
+    width: min(780px, calc(100vw - 16px));
+    max-height: calc(100vh - 16px);
+}
+
+.oem-pencere .pencere-govde {
+    padding: 10px 12px;
+}
+
+/* Renkli bölümler */
+.oem-bolum {
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
+    margin-bottom: 8px;
+    padding: 8px 10px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-left: 4px solid var(--bolum-vurgu);
+    border-radius: 6px;
+}
+
+.oem-bolum.oem-bolum-liste {
+    --bolum-govde: var(--b2-govde);
+    --bolum-vurgu: var(--b2-vurgu);
+    margin-bottom: 0;
+}
+
+.oem-bolum-baslik {
+    margin: 0 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Kıstaslar: iki sütun, her sütunda etiket solda alan sağda, alt alta */
+.oem-kriter {
+    font-size: 12px;
+}
+
+.oem-kolonlar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0 18px;
+}
+
+.oem-satir {
+    display: grid;
+    grid-template-columns: 130px minmax(0, 1fr);
+    align-items: center;
+    gap: 6px;
+    min-height: 28px;
+    margin-bottom: 3px;
+}
+
+.oem-satir > label {
+    margin: 0;
+    font-weight: 600;
+}
+
+.oem-alan {
+    min-width: 0;
+}
+
+.oem-pencere .form-control.input-sm,
+.oem-sayfa .form-control.input-sm {
+    height: 26px;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.oem-alan > .form-control:not(.kisa):not(.oem-yil) {
+    width: 100%;
+}
+
+.oem-alan > .form-control.kisa {
+    width: 150px;
+}
+
+.oem-yil {
+    width: 90px;
+}
+
+.oem-muh-birim {
+    display: flex;
+    gap: 4px;
+}
+
+.oem-muh-birim .form-control {
+    width: 70px;
+}
+
+.oem-onay {
+    margin: 0;
+}
+
+.oem-onay label {
+    font-weight: 400;
+}
+
+.oem-tuslar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.oem-yardim {
+    margin: 0 0 6px;
+}
+
+.oem-belge {
+    margin: 0 0 8px;
+}
+
+/* Tablolar */
+.oem-grid {
+    width: 100%;
+    height: min(380px, calc(100vh - 360px));
+    min-height: 180px;
+}
+
+.oem-is .oem-grid {
+    height: min(420px, calc(100vh - 220px));
+}
+
+.oem-taahhut .oem-grid,
+.oem-muavin .oem-grid,
+.oem-tarihce .oem-grid {
+    height: min(460px, calc(100vh - 230px));
+}
+
+.oem-kapatma .oem-grid {
+    height: min(220px, calc(50vh - 150px));
+}
+
+.oem-bag.btn-link {
+    padding: 0;
+    font-size: 12px;
+}
+
+/* Kesinti hesabı: tutarlar yan yana, oranlar dört sütun (KDV %, Vergi binde, KDV tevkifatı, GV tevkifatı); kaydırmasız sıkı düzen */
+.oem-kesinti .pencere-govde {
+    padding: 8px 10px;
+}
+
+.oem-kesinti .oem-bolum {
+    margin-bottom: 6px;
+    padding: 6px 8px;
+}
+
+.oem-kesinti-tutar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0 16px;
+}
+
+.oem-kesinti-tutar .oem-satir {
+    grid-template-columns: 100px minmax(0, 1fr);
+    margin: 0;
+}
+
+.oem-kesinti-tutar .oem-alan > .form-control {
+    width: 100% !important;
+    max-width: 180px;
+}
+
+.oem-kesinti-oranlar {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0 12px;
+    font-size: 12px;
+}
+
+.oem-kesinti-kolon {
+    min-width: 0;
+    margin: 0;
+}
+
+.oem-kesinti-kolon legend {
+    margin-bottom: 2px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.3;
+    border: 0;
+}
+
+.oem-kesinti-kolon .radio {
+    min-height: 0;
+    margin: 0;
+}
+
+.oem-kesinti-kolon .radio label {
+    min-height: 0;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+.oem-kesinti-kolon .oem-girilen {
+    width: 100%;
+    max-width: 100px;
+    height: 24px;
+    margin-top: 2px;
+    padding: 1px 6px;
+    font-size: 12px;
+}
+
+.oem-kesinti-kolon .help-block {
+    margin: 2px 0 0;
+}
+
+@media (max-width: 479px) {
+    .oem-kesinti-oranlar,
+    .oem-kesinti-tutar {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 6px 12px;
+    }
+}
+
+/* Razor sayfası: ButceMuhasebe/MuavinDefteriAltHesapBazindaRapor */
+.oem-sayfa {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: calc(100vh - 40px);
+    min-height: 320px;
+}
+
+.oem-sayfa .oem-sayfa-ust {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+/* Yalnızca sayfanın kendi bölümü: Ödeme Emri sayfasının gövdesi de oem-sayfa sınıfını taşır, pencerelerdeki tablolar etkilenmesin. */
+.oem-sayfa > .oem-bolum-liste {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.oem-sayfa > .oem-bolum-liste > .oem-grid {
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 200px;
+}
+
+@media (max-width: 767px) {
+    .oem-kolonlar {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .oem-satir {
+        grid-template-columns: 110px minmax(0, 1fr);
+    }
+}

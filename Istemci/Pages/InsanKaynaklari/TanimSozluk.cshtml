@@ -1,0 +1,82 @@
+@page
+@model TanimSozlukModel
+@{
+    ViewData["Title"] = "Sözlük Bilgileri";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim sozluk" data-ana-kayit-kod="@Model.AnaKayitKod">
+    <!-- Sol: sözlük kayıtları -->
+    <section class="tanim-sol">
+        <div class="kutu">
+            <h2 class="kutu-baslik" id="sozlukBaslik">Sözlük Bilgileri</h2>
+            <form id="frmArama" class="tanim-ekle" role="search" novalidate>
+                <input type="search" id="txtAra" class="form-control input-sm" placeholder="Kod ya da ada göre süz" aria-label="Süz" />
+                <button type="submit" id="btnBul" class="btn btn-default btn-sm" title="Listeyi yeniden oku">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Bul
+                </button>
+            </form>
+            <div id="grdSozluk" class="tanim-grid" aria-label="Sözlük kayıtları"></div>
+        </div>
+    </section>
+
+    <!-- Sağ: seçili kayıt -->
+    <section class="tanim-sag">
+        <div class="kutu">
+            <div class="btn-toolbar tanim-arac" role="toolbar">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                </button>
+                <button type="button" id="btnTemizle" class="btn btn-default btn-sm" title="Formu temizle, yeni kayıt">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Temizle
+                </button>
+            </div>
+
+            <form id="frmSozluk" novalidate>
+                <div class="bolum">
+                    <h3 class="bolum-baslik">Kayıt Bilgileri</h3>
+                    <div class="tanim-form">
+                        <div class="form-group">
+                            <label class="control-label" for="cmbAna">Ana Kayıt</label>
+                            <div><select id="cmbAna" class="form-control"></select></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtKayitKod">Kayıt Kodu</label>
+                            <div><input type="text" id="txtKayitKod" class="form-control dar" readonly title="Yeni kayıtta otomatik verilir" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtAd">Kayıt Adı</label>
+                            <div><input type="text" id="txtAd" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtKisaAd">Kısa Adı</label>
+                            <div><input type="text" id="txtKisaAd" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtSeviye">Seviye</label>
+                            <div><input type="text" id="txtSeviye" class="form-control dar" readonly title="Yeni kayıtta otomatik verilir" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtHitapID">Hitap Id</label>
+                            <div><input type="text" id="txtHitapID" class="form-control dar" /></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/sozluk.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/sozluk.js" asp-append-version="true"></script>
+}

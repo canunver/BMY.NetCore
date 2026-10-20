@@ -1,0 +1,71 @@
+/* Personel İşlemleri "Mal Bildirimi" sekmesi (InsanKaynaklari/PersonelMalBildirimi): ortak görünüm personelalt.css'ten.
+   Solda bildirim bilgileri ve dokuz tablo (kaydırılır), sağda mal bildirimleri listesi (sayfa yüksekliğini doldurur). */
+
+.pmb-govde {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(240px, 1fr);
+    gap: 10px;
+    align-items: start;
+}
+
+.pmb-sol {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+
+.pmb-sag {
+    position: sticky;
+    top: 8px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 70px);
+    min-height: 320px;
+}
+
+.pmb-sag > .pb-doldur {
+    flex: 1 1 auto;
+}
+
+.pmb-tablo > h3 .bosluk {
+    flex: 1 1 auto;
+}
+
+.pmb-tablo > h3 .btn-xs {
+    font-weight: normal;
+}
+
+.pmb-grid {
+    height: 230px;
+}
+
+.pmb-onay {
+    max-width: 420px;
+    padding: 16px;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+}
+
+.pmb-onay p {
+    margin: 0 0 14px;
+    white-space: pre-line;
+}
+
+.pmb-onay-dugmeler {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+@media (max-width: 900px) {
+    .pmb-govde {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pmb-sag {
+        position: static;
+        height: 320px;
+        order: -1;
+    }
+}

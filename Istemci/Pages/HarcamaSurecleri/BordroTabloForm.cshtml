@@ -1,0 +1,127 @@
+@page
+@model BordroTabloFormModel
+@{
+    ViewData["Title"] = "Bordro Tabloları";
+    ViewData["GovdeSinif"] = "tanim-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tanim bordro-tablo">
+    <!-- Sol: tablolar -->
+    <section class="tanim-sol">
+        <div class="kutu">
+            <div class="btt-arac" role="toolbar" aria-label="Tablo işlemleri">
+                <label for="txtYil">Yıl</label>
+                <input type="number" id="txtYil" class="form-control input-sm btt-yil" min="0" step="1" value="0" title="0: yıla bağlı olmayan değerler" />
+                <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Seçili tablonun bütün ünvanlarını Excel'e yazar">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                </button>
+                <button type="button" id="btnMaasHesapla" class="btn btn-default btn-sm" title="TKDK maaş hesabı (seçili ünvan, seçilmemişse bütün aktif ünvanlar)">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Maaş Hesapla
+                </button>
+                <button type="button" id="btnYeni" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Kayıt
+                </button>
+                <label id="lblYukle" class="btn btn-default btn-sm btt-dosya-dugme" title="Excel: A ünvan kodu, B derece, C değer, D çarpan">
+                    <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Dosya Yükle
+                    <input type="file" id="fuYukle" accept=".xlsx,.xls" />
+                </label>
+            </div>
+            <div id="grdTablolar" class="tanim-grid" aria-label="Bordro tabloları"></div>
+            <div class="btt-arac btt-alt" role="group" aria-label="Artış">
+                <label for="txtArtisKatsayi">Artış Katsayısı:</label>
+                <input type="number" id="txtArtisKatsayi" class="form-control input-sm btt-katsayi" step="any" min="0" />
+                <button type="button" id="btnArtis" class="btn btn-default btn-sm" title="Seçili tablonun bu yılki değerlerini katsayıyla çarpar">
+                    <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Artış Yap
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sağ: seçili tablonun değerleri -->
+    <section class="tanim-sag">
+        <div class="kutu">
+            <div class="bolum bolum-secim">
+                <div class="tanim-form">
+                    <div class="form-group">
+                        <span class="control-label">Tablo</span>
+                        <div id="lblTablo" class="btt-tablo-ad">Soldan bir tablo seçiniz.</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="cmbUnvan">Ünvan</label>
+                        <div class="tanim-ekle">
+                            <select id="cmbUnvan" class="form-control input-sm"><option value="">Seçiniz</option></select>
+                            <button type="button" id="btnUnvanTemizle" class="btn btn-default btn-sm" title="Ünvan seçimini temizle" aria-label="Ünvan seçimini temizle">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bolum bolum-deger">
+                <h3 class="bolum-baslik">Bordro Tablo Değerleri</h3>
+                <div class="btt-arac" role="toolbar" aria-label="Değer işlemleri">
+                    <button type="button" id="btnOku" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+                    </button>
+                    <button type="button" id="btnKaydet" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet
+                    </button>
+                    <span class="btt-ayrac" aria-hidden="true"></span>
+                    <label for="txtKaynakKod">Kaynak Tablo Kod:</label>
+                    <input type="number" id="txtKaynakKod" class="form-control input-sm btt-kod" min="0" step="1" />
+                    <button type="button" id="btnKopyala" class="btn btn-default btn-sm" title="Kaynak tablonun değerlerini bu tabloya kopyalar">
+                        <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span> Kopyala
+                    </button>
+                    <label class="btt-kutu-etiket"><input type="checkbox" id="chkUstuneYaz" /> Üstüne Yaz</label>
+                </div>
+                <div id="grdDegerler" class="btt-grid" aria-label="Bordro tablo değerleri"></div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Tablo bilgi düzenleme / giriş (eski wndTabloBilgi) -->
+<dialog id="dlgTablo" class="tanim-pencere" aria-labelledby="dlgTabloBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgTabloBaslik">Tablo bilgi düzenleme/giriş</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmTablo" class="tanim-form" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="txtTabloKod">Kod</label>
+                <div><input type="number" id="txtTabloKod" class="form-control input-sm dar" min="0" step="1" title="Tablo Kodu" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtTabloAd">Ad</label>
+                <div><input type="text" id="txtTabloAd" class="form-control input-sm" title="Tablo Adı" /></div>
+            </div>
+            <div class="form-group">
+                <span class="control-label">Türü</span>
+                <div class="btt-turler">
+                    <label><input type="radio" name="tabloTur" id="rdUnvanDerece" value="1" /> Ünvan/Derece</label>
+                    <label><input type="radio" name="tabloTur" id="rdDereceKademe" value="2" /> Derece/Kademe</label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnTanimKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Kaydet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/bordrotablo.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/bordrotablo.js" asp-append-version="true"></script>
+}

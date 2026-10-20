@@ -40,12 +40,19 @@
                 if (!$liste) $liste = $('<ul class="sm-liste"></ul>').appendTo($k);
                 if (s.tasindi) tasinan++; else kalan++;
                 var $li = $('<li></li>').addClass(s.tasindi ? 'sm-tasindi' : 'sm-kalan').toggleClass('sm-gizli', s.gizli)
+                    .addClass(s.durum ? 'sm-durum-' + s.durum.toLowerCase() : '')
                     .attr('title', s.url + (s.gizli ? ' (menüde gizli)' : '')).appendTo($liste);
                 $('<span class="glyphicon" aria-hidden="true"></span>')
                     .addClass(s.tasindi ? 'glyphicon-ok-sign' : 'glyphicon-time').appendTo($li);
                 if (s.tasindi) {
                     var $a = $('<a></a>').attr('href', s.url).text(s.ad).appendTo($li);
                     if (s.yeni) $a.on('click', function (e) { e.preventDefault(); Sgb.pencere(s.url, s.ad); });
+                    // Yeni (kırmızı) ekran açıldı: incelendi sayılır, Eski yapılır (bkz. menu.js).
+                    if (s.durum === 'Yeni') $a.on('click', function () {
+                        if (window.SgbMenu) window.SgbMenu.yeniIncelendi(s.url);
+                        s.durum = 'Eski';
+                        $li.removeClass('sm-durum-yeni').addClass('sm-durum-eski');
+                    });
                 } else {
                     $('<span class="sm-ad"></span>').text(s.ad).appendTo($li);
                     $('<span class="sr-only"></span>').text(' (henüz taşınmadı)').appendTo($li);

@@ -1,0 +1,21 @@
+/* Borçlar ve Temlikler (ButceMuhasebe/TaahhutBorclarVeTemliklerKayit): tanim.css + muhtanim.css üzerine alan genişlikleri. */
+
+.temlik .tanim-form {
+    --etiket-genislik: 150px;
+}
+
+.temlik .temlik-kisa {
+    max-width: 180px;
+}
+
+.temlik .temlik-tutar {
+    text-align: right;
+}
+
+.temlik .temlik-tarih {
+    width: 140px;
+}
+
+.temlik .tanim-arama .genis {
+    width: 200px;
+}

@@ -1,0 +1,46 @@
+/* İzin Türleri (InsanKaynaklari/TanimIzinTur): yerleşim tanim.css'ten (solda liste, sağda form);
+   form bölümü renkli başlıklı ayrı kutu. */
+
+.izin-tur .bolum {
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
+    margin: 0 0 12px;
+    padding: 0 12px 6px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.izin-tur .bolum-baslik {
+    margin: 0 -12px 10px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.izin-tur .tanim-form {
+    --etiket-genislik: 110px;
+}
+
+.izin-tur .bolum .form-control {
+    background: #fff;
+}
+
+.izin-tur .dar {
+    max-width: 160px;
+}
+
+.izin-tur .it-yanyana {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.izin-tur .it-yanyana .form-control {
+    width: 110px;
+}

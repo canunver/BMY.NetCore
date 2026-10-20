@@ -1,0 +1,402 @@
+/* Tema Değiştirme (KYM/TemaDegistir): tema kartları ve önizlemeler.
+   Her kart data-tema taşır; içindeki önizleme o temanın değişkenleriyle (css/tema.css) çizilir. */
+
+.tema-degistir {
+    max-width: 1120px;
+}
+
+.tema-degistir .td-kutu {
+    padding: 0 16px 16px;
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-left: 4px solid var(--tema-ana);
+    border-radius: 10px;
+}
+
+.tema-degistir .td-baslik {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 24px;
+    margin: 0 -16px 14px -16px;
+    padding: 10px 16px;
+    background: var(--tema-acik);
+    border-bottom: 1px solid var(--tema-cizgi);
+    border-radius: 0 9px 0 0;
+}
+
+.tema-degistir .td-baslik h2 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--tema-koyu);
+}
+
+.td-ust {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 13px;
+}
+
+.td-ust-ad {
+    font-weight: 600;
+}
+
+.td-ust-secenek {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin: 0;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.td-ust-secenek input {
+    margin: 0;
+}
+
+/* ---------- kartlar ---------- */
+
+.td-kartlar {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.td-kart {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    text-align: left;
+    color: var(--murekkep);
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.12s ease, transform 0.12s ease;
+}
+
+.td-kart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(22, 32, 43, 0.14);
+}
+
+.td-kart:focus-visible {
+    outline: 3px solid var(--tema-ana);
+    outline-offset: 2px;
+}
+
+.td-kart.secili {
+    border-color: var(--tema-ana);
+    box-shadow: 0 0 0 3px var(--tema-ana);
+}
+
+.td-kart-alt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-top: 1px solid var(--cizgi);
+}
+
+.td-renk {
+    flex: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--tema-ana);
+}
+
+.td-ad {
+    flex: 1;
+    font-weight: 600;
+}
+
+.td-kullanilan {
+    display: none;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--tema-koyu);
+    background: var(--tema-acik);
+}
+
+.td-kart.kayitli .td-kullanilan {
+    display: inline;
+}
+
+.td-alt {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+    margin-top: 16px;
+}
+
+.td-yardim {
+    margin-left: 6px;
+    font-size: 12px;
+    color: var(--soluk);
+}
+
+.td-yardim .glyphicon {
+    margin-right: 4px;
+}
+
+/* ---------- önizleme ---------- */
+
+.to {
+    --to-cizgi: #dfe4ea;
+    display: flex;
+    flex-direction: column;
+    height: 128px;
+    background: var(--tema-zemin);
+    pointer-events: none;
+}
+
+.to-ust {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 20px;
+    padding: 0 8px;
+    background: linear-gradient(90deg, var(--tema-ust1), var(--tema-ust2));
+}
+
+.td-kartlar[data-ust="sade"] .to-ust {
+    background: #fff;
+    box-shadow: inset 0 -2px 0 var(--tema-ana);
+}
+
+.to-logo {
+    width: 16px;
+    height: 10px;
+    border-radius: 2px;
+    background: #fff;
+}
+
+.td-kartlar[data-ust="sade"] .to-logo {
+    background: var(--tema-cizgi);
+}
+
+.to-bosluk {
+    flex: 1;
+}
+
+.to-avatar {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.td-kartlar[data-ust="sade"] .to-avatar {
+    background: var(--tema-ana);
+}
+
+.to-cizgi {
+    display: block;
+    width: 60%;
+    height: 4px;
+    border-radius: 2px;
+    background: currentColor;
+    opacity: 0.35;
+}
+
+.to-c-ust {
+    width: 40px;
+    color: #fff;
+    opacity: 0.8;
+}
+
+.td-kartlar[data-ust="sade"] .to-c-ust {
+    color: var(--murekkep);
+    opacity: 0.35;
+}
+
+.to-govde {
+    flex: 1;
+    display: flex;
+    min-height: 0;
+}
+
+.to-yan {
+    flex: none;
+    width: 56px;
+    padding: 6px 4px;
+    background: #fff;
+    border-right: 1px solid var(--to-cizgi);
+}
+
+.to-yan-satir {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 4px;
+    padding: 2px;
+    border-radius: 3px;
+    color: var(--murekkep);
+}
+
+.to-yan-satir.burada {
+    background: var(--tema-acik);
+}
+
+.to-ikon {
+    flex: none;
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+    background: var(--to-cizgi);
+}
+
+.to-yan-satir.burada .to-ikon {
+    background: var(--tema-ana);
+}
+
+.to-ic {
+    flex: 1;
+    min-width: 0;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.to-bolum {
+    background: var(--b1-govde);
+    border: 1px solid var(--to-cizgi);
+    border-left: 3px solid var(--b1-vurgu);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.to-bolum-baslik {
+    padding: 3px 5px;
+    color: var(--b1-vurgu);
+    background: var(--b1-baslik);
+}
+
+.to-bolum-baslik .to-cizgi {
+    width: 40%;
+    opacity: 0.8;
+}
+
+.to-alanlar {
+    display: flex;
+    gap: 6px;
+    padding: 4px 5px 0;
+    color: var(--murekkep);
+}
+
+.to-alan {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.to-etiket {
+    width: 14px;
+}
+
+/* Veri girilen alan beyazdır (tema değiştirmez) */
+.to-girdi {
+    flex: 1;
+    height: 8px;
+    background: #fff;
+    border: 1px solid var(--to-cizgi);
+    border-radius: 2px;
+}
+
+.to-dugmeler {
+    display: flex;
+    gap: 4px;
+    padding: 4px 5px;
+}
+
+.to-dugme {
+    width: 26px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--tema-ana);
+}
+
+.to-dugme.ikincil {
+    background: #fff;
+    border: 1px solid var(--tema-cizgi);
+}
+
+.to-tablo {
+    background: #fff;
+    border: 1px solid var(--to-cizgi);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.to-satir {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 7px;
+    border-top: 1px solid var(--to-cizgi);
+}
+
+.to-tablo-baslik {
+    height: 8px;
+    border-top: 0;
+    background: var(--tema-acik);
+    box-shadow: inset 0 -1px 0 var(--tema-cizgi);
+}
+
+.to-satir.secili {
+    background: color-mix(in srgb, var(--tema-ana) 14%, #fff);
+}
+
+.to-hucre + .to-hucre {
+    border-left: 1px solid var(--to-cizgi);
+}
+
+/* Salt okunur hücre sarıdır (tema değiştirmez) */
+.to-hucre.salt-okunur {
+    background: #fcfcd4;
+}
+
+.to-bolum2 {
+    padding: 3px 5px;
+    color: var(--b2-vurgu);
+    background: var(--b2-baslik);
+    border: 1px solid var(--to-cizgi);
+    border-left: 3px solid var(--b2-vurgu);
+    border-radius: 4px;
+}
+
+.to-bolum2 .to-cizgi {
+    width: 35%;
+    opacity: 0.8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .td-kart {
+        transition: none;
+    }
+
+    .td-kart:hover {
+        transform: none;
+    }
+}
+
+/* Klasik tema önizlemesi: beyaz üst şerit, Bootstrap düğmesi, AG Grid'in kendi başlığı */
+.td-kartlar .td-kart[data-tema="Klasik"] .to-ust {
+    background: #fff;
+    box-shadow: inset 0 -1px 0 #dfe4ea;
+}
+
+.td-kartlar .td-kart[data-tema="Klasik"] .to-logo { background: #dfe4ea; }
+.td-kartlar .td-kart[data-tema="Klasik"] .to-c-ust { color: var(--murekkep); opacity: 0.35; }
+.td-kartlar .td-kart[data-tema="Klasik"] .to-avatar { background: var(--tema-ana); }
+.td-kartlar .td-kart[data-tema="Klasik"] .to-yan-satir.burada { background: transparent; }
+.td-kartlar .td-kart[data-tema="Klasik"] .to-dugme:not(.ikincil) { background: #337ab7; }
+.td-kartlar .td-kart[data-tema="Klasik"] .to-tablo-baslik { background: #f8f8f8; box-shadow: inset 0 -1px 0 #dfe4ea; }

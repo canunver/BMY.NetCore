@@ -1,0 +1,65 @@
+/* Vergi dairesi aktarım sayfaları (Damga Vergisi, KDV Tevkifatı, KDV, Muhtasar): avans.css'in sıkışık bölümleri üzerine
+   iki sütunlu kıstaslar ve tablo hücre renkleri. */
+
+.vergiaktarim .vergiaktarim-kriter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 24px;
+}
+
+.vergiaktarim .vergiaktarim-kriter .avans-alanlar {
+    flex: 0 1 380px;
+}
+
+.vergiaktarim .va-surum {
+    width: 90px;
+}
+
+/* Tablo hücreleri: girilen beyaz, salt okunur sarı */
+.vergiaktarim .va-girilir {
+    background: #fff;
+}
+
+.vergiaktarim .va-sari {
+    background: #fcfcd4;
+}
+
+.vergiaktarim .va-mukellef {
+    max-width: 260px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.vergiaktarim .va-mukellef.va-eksik {
+    color: #c62828;
+}
+
+/* Mükellef bilgileri penceresi */
+.va-pencere {
+    width: min(560px, calc(100vw - 32px));
+    font-size: 12px;
+}
+
+.va-pencere .tanim-form {
+    --etiket-genislik: 140px;
+}
+
+.va-pencere .form-control.input-sm {
+    height: 24px;
+    padding: 1px 6px;
+    font-size: 12px;
+}
+
+.va-pencere .btn-sm {
+    padding: 2px 8px;
+    font-size: 12px;
+}
+
+.va-pencere .va-kisa {
+    width: 130px;
+}
+
+.va-pencere .va-alan {
+    width: 60px;
+}

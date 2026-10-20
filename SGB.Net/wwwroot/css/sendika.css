@@ -1,0 +1,107 @@
+/* Sendika Bilgisi (InsanKaynaklari/SendikaBilgiForm): yerleşim tanim.css'ten (solda sendika listesi, sağda form + personel listesi). */
+
+.sendika .sendika-sol-baslik {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.sendika .sendika-sol-baslik .kutu-baslik {
+    margin: 0;
+}
+
+.sendika .tanim-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.sendika .tanim-arac > .btn {
+    margin: 0;
+}
+
+.sendika .sendika-oran {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 8px;
+}
+
+.sendika .sendika-oran label {
+    margin: 0;
+    font-weight: 600;
+}
+
+.sendika .sendika-oran input {
+    width: 110px;
+}
+
+.sendika .bolum {
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
+    margin: 0 0 12px;
+    padding: 0 12px 6px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.sendika .bolum-personel {
+    --bolum-baslik: #e4f3ea;
+    --bolum-govde: #f5faf7;
+    --bolum-vurgu: #2e8b57;
+    padding-bottom: 12px;
+}
+
+.sendika .bolum-baslik {
+    margin: 0 -12px 10px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.sendika .tanim-form {
+    --etiket-genislik: 150px;
+}
+
+.sendika .bolum .form-control {
+    background: #fff;
+}
+
+.sendika .bolum .form-control[readonly] {
+    background: #fff8d6;
+}
+
+.sendika .sendika-personel-grid {
+    height: 320px;
+}
+
+/* Geniş ekranda sağ bölme: form sabit, personel listesi kalan yüksekliği doldurur */
+@media (min-width: 992px) {
+    .sendika .sendika-sag {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sendika .bolum-personel {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        min-height: 240px;
+        margin-bottom: 0;
+    }
+
+    .sendika .sendika-personel-grid {
+        flex: 1 1 auto;
+        height: auto;
+        min-height: 180px;
+    }
+}

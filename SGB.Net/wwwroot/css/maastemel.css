@@ -1,0 +1,82 @@
+/* Maaş Temel Bilgileri Tanımlama (HarcamaSurecleri/TanimPSLMaasTemelBilgi): tek bölüm, tablo sayfanın kalan yüksekliğini doldurur.
+   Girilebilir hücreler beyaz, salt okunurlar sarı. */
+
+.maas-temel .bolum {
+    --bolum-baslik: #e2f3e6;
+    --bolum-govde: #f5fbf6;
+    --bolum-vurgu: var(--b2-vurgu);
+    margin: 0;
+    padding: 0 12px 12px;
+    background: var(--bolum-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.maas-temel .bolum-baslik {
+    margin: 0 -12px 10px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--bolum-baslik);
+    border-bottom: 1px solid var(--cizgi);
+    box-shadow: inset 4px 0 0 var(--bolum-vurgu);
+}
+
+.maas-temel .mt-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 10px;
+}
+
+.maas-temel .mt-etiket {
+    margin: 0 2px 0 0;
+    font-weight: 600;
+}
+
+.maas-temel .mt-yil {
+    width: 90px;
+}
+
+.maas-temel .mt-yardim {
+    margin-left: auto;
+}
+
+.maas-temel .mt-yardim-metin {
+    margin: 0 0 10px;
+    padding: 8px 10px;
+    font-size: 12px;
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+.maas-temel .mt-grid {
+    width: 100%;
+    height: 540px;
+    --ag-font-size: 12px;
+    --ag-cell-horizontal-padding: 6px;
+}
+
+.maas-temel .mt-grid .ag-header-cell {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.maas-temel .mt-girilir {
+    background: #fff;
+}
+
+.maas-temel .mt-salt {
+    background: #fcfcd4;
+}
+
+.maas-temel .mt-sag {
+    text-align: right;
+}
+
+.maas-temel .mt-sag-baslik .ag-header-cell-label {
+    justify-content: flex-end;
+}

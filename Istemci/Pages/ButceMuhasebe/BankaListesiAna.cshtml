@@ -1,0 +1,293 @@
+@page
+@model BankaListesiAnaModel
+@{
+    ViewData["Title"] = "Banka Listesi İşlemleri";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans bankalistesi">
+    <div class="bl-yerlesim">
+        <!-- Sol: banka listeleri -->
+        <section class="kutu bolum bolum-kriter bl-sol">
+            <h2 class="bolum-baslik">Banka Listeleri
+                <button type="button" class="btn btn-link btn-xs avans-yardim-dugme" data-yardim="#blYardim" title="Yardım" aria-label="Yardım">
+                    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                </button>
+            </h2>
+            <div id="blYardim" class="alert alert-info avans-yardim" hidden>
+                Muhasebe birimini ve tarih aralığını seçip Listele'ye basınız. "Ara" ile MİF belge no, ilgili ya da sözleşme aranabilir.
+                Listeden seçilen banka listesinin bilgileri ve ödemeleri sağda gösterilir. Yeni bir liste için "Yeni Liste"ye basınız.
+            </div>
+            <form id="frmKriter" class="tanim-form avans-alanlar bl-kriter" onsubmit="return false;">
+                <div class="form-group">
+                    <label class="control-label" for="txtMuhasebe">Birimi</label>
+                    <div id="muhBirim"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtBasla">Başla</label>
+                    <div><input type="date" id="txtBasla" class="form-control input-sm bl-tarih" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtBitis">Bitiş</label>
+                    <div><input type="date" id="txtBitis" class="form-control input-sm bl-tarih" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtAra">Ara</label>
+                    <div><input type="text" id="txtAra" class="form-control input-sm" placeholder="MİF Belge No, İlgili, Sözleşme" /></div>
+                </div>
+            </form>
+            <div class="avans-arac" role="toolbar" aria-label="Liste işlemleri">
+                <button type="button" id="btnListele" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+                </button>
+                <button type="button" id="btnYeniListe" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Liste Ekle
+                </button>
+            </div>
+            <div id="grdListe" class="bl-grid-sol" aria-label="Banka listeleri"></div>
+        </section>
+
+        <!-- Sağ: seçilen listenin bilgileri ve ödemeleri -->
+        <div class="bl-sag">
+            <section class="kutu bolum bl-bilgi">
+                <h2 class="bolum-baslik">Banka Listesi Bilgileri <span id="lblSecili" class="bl-secili"></span></h2>
+                <form id="frmBaslik" class="bl-baslik" onsubmit="return false;">
+                    <div class="tanim-form avans-alanlar">
+                        <div class="form-group">
+                            <label class="control-label" for="txtAciklama1">Açıklama</label>
+                            <div><input type="text" id="txtAciklama1" class="form-control input-sm" data-alan="aciklama" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtMuhYetkili">Muhasebe Yetkilisi</label>
+                            <div><input type="text" id="txtMuhYetkili" class="form-control input-sm" data-alan="muhYetkili" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtMuhYetUnvan">Muh. Yetkilisi Unvanı</label>
+                            <div><input type="text" id="txtMuhYetUnvan" class="form-control input-sm" data-alan="muhYetUnvan" /></div>
+                        </div>
+                    </div>
+                    <div class="tanim-form avans-alanlar">
+                        <div class="form-group">
+                            <label class="control-label" for="txtHazirlayan">Hazırlayan</label>
+                            <div><input type="text" id="txtHazirlayan" class="form-control input-sm" data-alan="hazirlayan" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtOnaylayan">Onaylayan</label>
+                            <div><input type="text" id="txtOnaylayan" class="form-control input-sm" data-alan="onaylayan" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtOnayUnvan">Onaylayan Unvanı</label>
+                            <div><input type="text" id="txtOnayUnvan" class="form-control input-sm" data-alan="onayUnvan" /></div>
+                        </div>
+                    </div>
+                    <div class="tanim-form avans-alanlar">
+                        <div class="form-group">
+                            <label class="control-label" for="txtOdemeTarih">Ödeme Tarihi</label>
+                            <div><input type="date" id="txtOdemeTarih" class="form-control input-sm bl-tarih" data-alan="odemeTarih" /></div>
+                        </div>
+                        <div class="form-group">
+                            <span class="control-label">Durum / Dönem No</span>
+                            <div class="avans-bitisik"><span id="lblDurum" class="bl-deger"></span><span id="lblDonemNo" class="bl-deger" title="Dönem No"></span></div>
+                        </div>
+                        <div class="form-group">
+                            <span class="control-label">Dosya Ad</span>
+                            <div><span id="lblDosyaAd" class="bl-deger"></span></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="txtCekEmriNo">Çek No</label>
+                            <div class="avans-bitisik">
+                                <input type="text" id="txtCekEmriNo" class="form-control input-sm bl-no" />
+                                <button type="button" id="btnCekNoOEGetir" class="btn btn-default btn-sm" title="Çek numarasındaki ödeme emirlerini listeye getir">Ö.E. Getir</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="control-label">Toplam</span>
+                            <div><span id="lblToplam" class="bl-deger bl-toplam"></span></div>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <section class="kutu bolum bolum-liste bl-odemeler">
+                <div class="avans-arac" role="toolbar" aria-label="Banka listesi işlemleri">
+                    <button type="button" id="btnGuncelle" class="btn btn-primary btn-sm" data-onaysiz>
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Başlık Bilgilerini Sakla
+                    </button>
+                    <button type="button" id="btnSilKayit" class="btn btn-default btn-sm" data-onaysiz>
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+                    </button>
+                    <button type="button" id="btnOnayla" class="btn btn-default btn-sm" data-onaysiz>
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Onayla
+                    </button>
+                    <button type="button" id="btnOnayKaldir" class="btn btn-default btn-sm" hidden>
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Onay Kaldır
+                    </button>
+                    <button type="button" id="btnOEEkle" class="btn btn-default btn-sm" data-onaysiz>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ödeme Emri Ekle
+                    </button>
+                    <button type="button" id="btnSil" class="btn btn-default btn-sm" data-onaysiz title="Seçilenleri listeden çıkart">
+                        <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Seç. Sat. Sil
+                    </button>
+                    <button type="button" id="btnTopluKapat" class="btn btn-default btn-sm" data-onayli hidden>
+                        <span class="glyphicon glyphicon-check" aria-hidden="true"></span> Toplu Kapat
+                    </button>
+                    <div class="btn-group btn-group-sm bl-yazdir" id="grpYazdir">
+                        <button type="button" id="btnYazdir" class="btn btn-default" title="Word">
+                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                        </button>
+                        <button type="button" id="btnYazdirMenu" class="btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false" title="Diğer çıktılar">
+                            <span class="caret"></span><span class="sr-only">Diğer çıktılar</span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="btnYazdirMenu">
+                            <li><a href="#" data-yazdir="word">Word</a></li>
+                            <li><a href="#" data-yazdir="xls">Liste (xls)</a></li>
+                            <li><a href="#" data-yazdir="xls" data-grup="1">Liste Grup (xls)</a></li>
+                            <li><a href="#" data-yazdir="detay">Liste (Detaylı)</a></li>
+                            <li><a href="#" data-yazdir="wordtek">Word (Tek Ödeme)</a></li>
+                            <li><a href="#" data-yazdir="wordozet">Word (Tek Özet)</a></li>
+                            <li><a href="#" data-yazdir="xls" data-pdf="1">Liste (pdf)</a></li>
+                            <li><a href="#" data-yazdir="xls" data-grup="1" data-pdf="1">Liste Grup (pdf)</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#" id="mnuBankayaGonder">Bankaya Gönder</a></li>
+                            <li><a href="#" id="mnuBankadanAl">Bankadan Al</a></li>
+                        </ul>
+                    </div>
+                    <button type="button" id="btnEvrakaGonder" class="btn btn-default btn-sm" data-onayli hidden>
+                        <span class="glyphicon glyphicon-send" aria-hidden="true"></span> EBYS'ye Gönder
+                    </button>
+                    <span id="lblOzet" class="avans-ozet"></span>
+                </div>
+                <div id="grdOE" class="bl-grid" aria-label="İlişkilendirilmiş ödeme emirleri"></div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<dialog id="dlgYeni" class="tanim-pencere bl-pencere" aria-labelledby="dlgYeniBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgYeniBaslik">Yeni Banka Listesi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmYeni" class="tanim-form" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label" for="txtYeniOdemeTarihi">Ödeme Tarihi</label>
+                <div><input type="date" id="txtYeniOdemeTarihi" class="form-control input-sm bl-tarih" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtYeniAciklama">Açıklama</label>
+                <div><input type="text" id="txtYeniAciklama" class="form-control input-sm" /></div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnYeni" class="btn btn-primary btn-sm">Ekle</button>
+    </div>
+</dialog>
+
+<dialog id="dlgOde" class="tanim-pencere bl-pencere" aria-labelledby="dlgOdeBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOdeBaslik">Ödeme Bilgisi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="help-block small">Dekont numarası girerek ödeme işlemini tamamlayınız.</p>
+        <form id="frmOde" class="tanim-form" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label" for="txtDekontTarih">Dekont Tarihi</label>
+                <div><input type="date" id="txtDekontTarih" class="form-control input-sm bl-tarih" /></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="txtDekont">Dekont Numarası</label>
+                <div><input type="text" id="txtDekont" class="form-control input-sm bl-no" /></div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnOde" class="btn btn-primary btn-sm">Ödendi</button>
+    </div>
+</dialog>
+
+<dialog id="dlgTopluKapat" class="tanim-pencere bl-pencere" aria-labelledby="dlgTopluKapatBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgTopluKapatBaslik">Toplu Kapat</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <p class="help-block small">Seçili satırlar bu tarihle kapatılacaktır.</p>
+        <form class="tanim-form" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label" for="txtKapatmaTarihi">Kapatma Tarihi</label>
+                <div><input type="date" id="txtKapatmaTarihi" class="form-control input-sm bl-tarih" /></div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnSeciliKapat" class="btn btn-primary btn-sm">Kapat ve Kaydet</button>
+    </div>
+</dialog>
+
+<dialog id="dlgCekNo" class="tanim-pencere bl-pencere" aria-labelledby="dlgCekNoBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgCekNoBaslik">Çek Numarası Girişi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form class="tanim-form" onsubmit="return false;">
+            <div class="form-group">
+                <label class="control-label" for="txtCekNo">Çek No</label>
+                <div><input type="text" id="txtCekNo" class="form-control input-sm bl-no" /></div>
+            </div>
+        </form>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+        <button type="button" id="btnCekYaz" class="btn btn-primary btn-sm">Çek No Ata</button>
+    </div>
+</dialog>
+
+<dialog id="dlgOESec" class="tanim-pencere bl-pencere bl-oesec" aria-labelledby="dlgOESecBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgOESecBaslik">Ödeme Emri Ekle</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmOESec" class="avans-bitisik" onsubmit="return false;">
+            <label for="txtOEYil">Yıl</label>
+            <input type="number" id="txtOEYil" class="form-control input-sm sgb-yil" />
+            <label for="txtOEBasla">Yevmiye Tarihi</label>
+            <input type="date" id="txtOEBasla" class="form-control input-sm bl-tarih" title="Yevmiye başlama tarihi" />
+            <input type="date" id="txtOEBitis" class="form-control input-sm bl-tarih" title="Yevmiye bitiş tarihi" aria-label="Yevmiye bitiş tarihi" />
+            <button type="submit" id="btnYenileOdenecek" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Yenile</button>
+            <button type="button" id="btnOESeciliEkle" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Seçilenleri Ekle</button>
+        </form>
+        <p class="help-block small">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> satırı,
+            <span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span> o ödeme emrindeki bütün satırları banka listesine ekler.
+        </p>
+        <div id="grdOdenecekOE" class="bl-grid-pencere" aria-label="Eklenebilecek ödeme emirleri"></div>
+    </div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/bankalistesi.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/bankalistesi.js" asp-append-version="true"></script>
+}

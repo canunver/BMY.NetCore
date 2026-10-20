@@ -1,0 +1,110 @@
+@page
+@model FaturaListesiModel
+@{
+    ViewData["Title"] = "Fatura Hazırlama";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans fatura fatura-liste">
+    <!-- Kriterler (eski pgFiltre) -->
+    <section class="kutu bolum bolum-kriter">
+        <h2 class="bolum-baslik">Fatura Hazırlama
+            <button type="button" class="btn btn-link btn-xs avans-yardim-dugme" data-yardim="#ftYardim" title="Yardım" aria-label="Yardım">
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+            </button>
+        </h2>
+        <div id="ftYardim" class="alert alert-info avans-yardim" hidden>
+            Kriterleri girip Listele'ye basınız. Satırdaki <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> ya da çift tıklama faturayı açar.
+            Yeni Fatura boş fatura formunu açar. Toplu Tahakkuk Oluştur, bu kriterlere uyan faturalardan seçilenler için tek belge oluşturur.
+        </div>
+        <form id="frmKriter" class="avans-iki-sutun" onsubmit="return false;">
+            <div class="tanim-form avans-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="txtYil">Yıl</label>
+                    <div><input type="number" id="txtYil" class="form-control input-sm sgb-yil" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMuhasebe">Muhasebe / Birim</label>
+                    <div id="muhBirim"></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMudurluk">Müdürlük</label>
+                    <div class="avans-bitisik">
+                        <input type="text" id="txtMudurluk" class="form-control input-sm ft-kisa" autocomplete="off" />
+                        <button type="button" class="btn btn-default btn-sm" data-mudurluk="#txtMudurluk" title="Müdürlük listesi">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Müdürlük listesi</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlDurum">Durum</label>
+                    <div><select id="ddlDurum" class="form-control input-sm ft-orta"></select></div>
+                </div>
+            </div>
+            <div class="tanim-form avans-alanlar">
+                <div class="form-group">
+                    <label class="control-label" for="txtFaturaNo">Fatura No</label>
+                    <div><input type="text" id="txtFaturaNo" class="form-control input-sm ft-orta" autocomplete="off" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtTarih1">Fatura Tarihi</label>
+                    <div class="avans-bitisik">
+                        <input type="date" id="txtTarih1" class="form-control input-sm ft-tarih" aria-label="Başlangıç tarihi" />
+                        <span aria-hidden="true">-</span>
+                        <input type="date" id="txtTarih2" class="form-control input-sm ft-tarih" aria-label="Bitiş tarihi" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtMusteri">Müşteri (VKN)</label>
+                    <div><input type="text" id="txtMusteri" class="form-control input-sm ft-orta" autocomplete="off" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtIslemYapan">İşlem Yapan</label>
+                    <div><input type="text" id="txtIslemYapan" class="form-control input-sm ft-orta" autocomplete="off" /></div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <!-- Faturalar (eski grdListe) -->
+    <section class="kutu bolum bolum-liste">
+        <div class="avans-arac" role="toolbar" aria-label="Fatura işlemleri">
+            <button type="button" id="btnListele" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+            </button>
+            <button type="button" id="btnTemizle" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle
+            </button>
+            <button type="button" id="btnYeni" class="btn btn-success btn-sm">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Yeni Fatura
+            </button>
+            <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="Kriterlere uyan faturaların listesi (Excel)">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Listeyi Yazdır
+            </button>
+            <button type="button" id="btnToplu" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Toplu Tahakkuk Oluştur
+            </button>
+            <span id="lblSayi" class="avans-ozet" aria-live="polite"></span>
+        </div>
+        <div id="grdListe" class="avans-grid" aria-label="Faturalar"></div>
+    </section>
+</div>
+
+<partial name="_FaturaMudurluk" />
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/muhbirim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/fatura.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhbirim.js" asp-append-version="true"></script>
+    <script src="~/js/fatura.js" asp-append-version="true"></script>
+}

@@ -67,9 +67,9 @@
 }
 
 .odenek-gonderme .kutu.bolum {
-    --bolum-baslik: #e3edfa;
-    --bolum-govde: #f5f8fd;
-    --bolum-vurgu: #2f6fc4;
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
     padding: 0 12px 12px;
     background: var(--bolum-govde);
     border: 1px solid var(--cizgi);
@@ -84,15 +84,15 @@
 
 .odenek-gonderme .kutu.bolum.bolum-tertip,
 .odenek-gonderme .kutu.bolum.bolum-liste {
-    --bolum-baslik: #e2f3e8;
-    --bolum-govde: #f4fbf6;
-    --bolum-vurgu: #2e8b4e;
+    --bolum-baslik: var(--b2-baslik);
+    --bolum-govde: var(--b2-govde);
+    --bolum-vurgu: var(--b2-vurgu);
 }
 
 .odenek-gonderme .kutu.bolum.bolum-ayrinti {
-    --bolum-baslik: #efe6f8;
-    --bolum-govde: #faf6fd;
-    --bolum-vurgu: #7a4bb0;
+    --bolum-baslik: var(--b4-baslik);
+    --bolum-govde: var(--b4-govde);
+    --bolum-vurgu: var(--b4-vurgu);
 }
 
 .odenek-gonderme .bolum-baslik {
@@ -249,7 +249,7 @@
 .og-hucre-sec .og-tertip-sec {
     padding: 0 4px;
     line-height: 1;
-    color: var(--bolum-vurgu, #2f6fc4);
+    color: var(--bolum-vurgu, var(--b1-vurgu));
     background: none;
     border: 0;
     cursor: pointer;
@@ -574,7 +574,7 @@
     font-size: 16px;
     font-weight: 700;
     line-height: 1;
-    color: var(--bolum-vurgu, #2e8b4e);
+    color: var(--bolum-vurgu, var(--b2-vurgu));
     text-decoration: none;
     border: 1px solid var(--cizgi);
     border-radius: 4px;
@@ -583,7 +583,7 @@
 
 .og-liste .og-ac:hover,
 .og-liste .og-ac[aria-expanded="true"] {
-    background: #e2f3e8;
+    background: var(--b2-baslik);
 }
 
 .og-liste .og-ayrinti-satir {
@@ -593,8 +593,8 @@
     overflow: auto;
     font-size: 13px;
     line-height: 24px;
-    background: #faf6fd;
-    border-left: 4px solid #7a4bb0;
+    background: var(--b4-govde);
+    border-left: 4px solid var(--b4-vurgu);
 }
 
 .og-liste .og-ayrinti-tablo {
@@ -614,7 +614,7 @@
 
 .og-liste .og-ayrinti-tablo th {
     font-weight: 600;
-    background: #efe6f8;
+    background: var(--b4-baslik);
 }
 
 .og-liste .og-ayrinti-tablo td:first-child {

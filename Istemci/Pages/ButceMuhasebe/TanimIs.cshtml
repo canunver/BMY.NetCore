@@ -1,0 +1,268 @@
+@page
+@model TanimIsModel
+@{
+    ViewData["Title"] = "İş Tanımları";
+    ViewData["GovdeSinif"] = "tis-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="tis">
+    <section class="tis-sol">
+        <div class="kutu bolum bolum-sorgu">
+            <h2 class="bolum-baslik">Sorgu
+                <button type="button" class="btn btn-link btn-xs tis-yardim-dugme" data-yardim="#tisYardim" title="Yardım" aria-label="Yardım">
+                    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                </button>
+            </h2>
+            <div id="tisYardim" class="alert alert-info tis-yardim" hidden>
+                Listele, kıstaslara uyan işleri getirir. Ödeme emrinde seçilebilmesi için işin bitiş tarihi bugün ya da sonrası, başlangıç ya da bitiş tarihi belgenin yılında olmalı ve birimi belgenin muhasebe birimine bağlı olmalıdır. Yazdır, işlere göre ödenek bloke durumunu Excel'e döker.
+                Listeden bir iş seçilince bilgileri sağda açılır.
+            </div>
+            <form id="frmSorgu" class="tanim-form tis-alanlar" onsubmit="return false;">
+                <div class="form-group">
+                    <label class="control-label" for="txtSorguYil">Yıl</label>
+                    <div><input type="number" id="txtSorguYil" class="form-control input-sm sgb-yil" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlSorguTip">Tip</label>
+                    <div><select id="ddlSorguTip" class="form-control input-sm"><option value="">Hepsi</option></select></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="txtSorguEko">Ekonomik Kod</label>
+                    <div class="input-group input-group-sm tis-ekli">
+                        <input type="text" id="txtSorguEko" class="form-control input-sm" autocomplete="off" />
+                        <span class="input-group-btn">
+                            <button type="button" id="btnEkoSec" class="btn btn-default" title="Ekonomik kod seç" aria-label="Ekonomik kod seç">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="ddlSorguDurum">Durum</label>
+                    <div><select id="ddlSorguDurum" class="form-control input-sm"><option value="">Hepsi</option></select></div>
+                </div>
+            </form>
+            <div class="tis-arac" role="toolbar" aria-label="Sorgu işlemleri">
+                <button type="button" id="btnSorguTemizle" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Temizle
+                </button>
+                <button type="button" id="btnYazdir" class="btn btn-default btn-sm" title="İşlere göre ödenek bloke durumu (Excel)">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+                </button>
+                <button type="button" id="btnListele" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+                </button>
+            </div>
+        </div>
+        <div class="kutu bolum bolum-liste">
+            <h2 class="bolum-baslik">İş Tanımları <span id="lblIsSayi" class="tis-not"></span></h2>
+            <div id="grdIs" class="tis-grid-is" aria-label="İş listesi"></div>
+        </div>
+    </section>
+
+    <section class="tis-sag">
+        <div class="kutu bolum bolum-form">
+            <h2 class="bolum-baslik">İş Bilgileri <span id="lblIsKod" class="tis-not"></span></h2>
+            <div class="tis-arac" role="toolbar" aria-label="İş işlemleri">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm" title="İş bilgilerini kaydeder">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> İşi Kaydet
+                </button>
+                <button type="button" id="btnYeni" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni
+                </button>
+                <button type="button" id="btnSil" class="btn btn-danger btn-sm" disabled>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil
+                </button>
+            </div>
+            <form id="frmIs" class="tis-form-iki" onsubmit="return false;">
+                <div class="tanim-form tis-alanlar">
+                    <div class="form-group">
+                        <label class="control-label" for="txtBirimAd">Birim</label>
+                        <div class="input-group input-group-sm tis-ekli">
+                            <input type="text" id="txtBirimAd" class="form-control input-sm" readonly placeholder="Birim seçiniz" />
+                            <span class="input-group-btn">
+                                <button type="button" id="btnBirimSec" class="btn btn-default" title="Birim seç" aria-label="Birim seç">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" id="btnBirimSil" class="btn btn-default" title="Birimi temizle" aria-label="Birimi temizle">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtAdi">Adı</label>
+                        <div><input type="text" id="txtAdi" class="form-control input-sm" maxlength="250" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="ddlTip">Tip</label>
+                        <div><select id="ddlTip" class="form-control input-sm"><option value="0"></option></select></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtBaslangic">Başlangıç Tarihi</label>
+                        <div><input type="date" id="txtBaslangic" class="form-control input-sm tis-tarih" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtBitis">Bitiş Tarihi</label>
+                        <div><input type="date" id="txtBitis" class="form-control input-sm tis-tarih" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtSorumlu">Sorumlu</label>
+                        <div class="tis-sorumlu">
+                            <div class="input-group input-group-sm tis-ekli tis-tc">
+                                <input type="text" id="txtSorumlu" class="form-control input-sm" maxlength="11" placeholder="T.C. Kimlik No" />
+                                <span class="input-group-btn">
+                                    <button type="button" id="btnSorumluSec" class="btn btn-default" title="Sorumlu seç" aria-label="Sorumlu seç">
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                    </button>
+                                </span>
+                            </div>
+                            <span id="lblSorumluAd" class="tis-ad"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tanim-form tis-alanlar">
+                    <div class="form-group ust-hizali">
+                        <label class="control-label" for="txtAmac">Amaç</label>
+                        <div><textarea id="txtAmac" class="form-control input-sm" rows="2"></textarea></div>
+                    </div>
+                    <div class="form-group ust-hizali">
+                        <label class="control-label" for="txtHedef">Hedef</label>
+                        <div><textarea id="txtHedef" class="form-control input-sm" rows="2"></textarea></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtGorev">Görev Tanımı</label>
+                        <div><input type="text" id="txtGorev" class="form-control input-sm" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="ddlDurum">Durum</label>
+                        <div><select id="ddlDurum" class="form-control input-sm tis-durum"><option value="0"></option></select></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="kutu bolum bolum-sekme">
+            <div class="tis-sekme-ust">
+                <ul class="nav nav-tabs tis-sekmeler" role="tablist">
+                    <li class="active" role="presentation"><a href="#" role="tab" data-sekme="bloke">Ödenek Bloke</a></li>
+                    <li role="presentation"><a href="#" role="tab" data-sekme="fis">Muhasebe Fişleri</a></li>
+                    <li role="presentation"><a href="#" role="tab" data-sekme="durum">Ödenek Durum</a></li>
+                    <li role="presentation"><a href="#" role="tab" data-sekme="taahhut">Taahhütler</a></li>
+                </ul>
+                <div class="tis-sekme-yil">
+                    <label class="control-label" for="txtYil">Yıl</label>
+                    <input type="number" id="txtYil" class="form-control input-sm sgb-yil" />
+                    <button type="button" id="btnSekmeListele" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Listele
+                    </button>
+                </div>
+            </div>
+
+            <div class="tis-sekme" data-sekme="bloke">
+                <div class="tis-arac" role="toolbar" aria-label="Ödenek bloke işlemleri">
+                    <button type="button" id="btnTertipEkle" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Tertip Ekle
+                    </button>
+                    <button type="button" id="btnBlokeKaydet" class="btn btn-default btn-sm" title="Yalnız bu sekmedeki ödenek blokelerini kaydeder">
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Blokeleri Kaydet
+                    </button>
+                    <span id="lblBlokeToplam" class="tis-not"></span>
+                </div>
+                <div id="grdBloke" class="tis-grid-sekme" aria-label="Ödenek bloke listesi"></div>
+            </div>
+            <div class="tis-sekme" data-sekme="fis" hidden>
+                <div id="grdFis" class="tis-grid-sekme" aria-label="Muhasebe fişleri"></div>
+            </div>
+            <div class="tis-sekme" data-sekme="durum" hidden>
+                <div id="grdDurum" class="tis-grid-sekme" aria-label="Ödenek durumu"></div>
+            </div>
+            <div class="tis-sekme" data-sekme="taahhut" hidden>
+                <div id="grdTaahhut" class="tis-grid-sekme" aria-label="Taahhütler"></div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<dialog id="dlgBirim" class="tanim-pencere tis-pencere" aria-labelledby="dlgBirimBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgBirimBaslik">Birim Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <div class="tis-ara-satir">
+            <input type="text" id="txtBirimAra" class="form-control input-sm" placeholder="Birim adında ara (en az 3 harf)" autocomplete="off" />
+            <button type="button" id="btnBirimAra" class="btn btn-default btn-sm">Ara</button>
+        </div>
+        <ul id="agcBirim" class="tis-agac"></ul>
+    </div>
+    <div class="pencere-alt"><button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button></div>
+</dialog>
+
+<dialog id="dlgEko" class="tanim-pencere tis-pencere" aria-labelledby="dlgEkoBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgEkoBaslik">Ekonomik Kod Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde"><ul id="agcEko" class="tis-agac"></ul></div>
+    <div class="pencere-alt">
+        <button type="button" id="btnEkoTemizle" class="btn btn-default btn-sm">Temizle</button>
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button>
+    </div>
+</dialog>
+
+<dialog id="dlgSorumlu" class="tanim-pencere tis-pencere tis-pencere-genis" aria-labelledby="dlgSorumluBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSorumluBaslik">Sorumlu Seçimi</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde">
+        <form id="frmSorumlu" class="tis-ara-satir" onsubmit="return false;">
+            <input type="text" id="txtSorAd" class="form-control input-sm" placeholder="Ad" aria-label="Ad" />
+            <input type="text" id="txtSorSoyad" class="form-control input-sm" placeholder="Soyad" aria-label="Soyad" />
+            <input type="text" id="txtSorTc" class="form-control input-sm" placeholder="T.C. Kimlik No" aria-label="T.C. Kimlik No" maxlength="11" />
+            <button type="submit" id="btnSorumluAra" class="btn btn-primary btn-sm">Ara</button>
+        </form>
+        <div id="grdSorumlu" class="tis-grid-pencere" aria-label="Kişi listesi"></div>
+    </div>
+    <div class="pencere-alt"><button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button></div>
+</dialog>
+
+<dialog id="dlgFisDetay" class="tanim-pencere tis-pencere tis-pencere-genis" aria-labelledby="dlgFisDetayBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgFisDetayBaslik">Belge Satırları</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde"><div id="grdFisDetay" class="tis-grid-pencere" aria-label="Belge satırları"></div></div>
+    <div class="pencere-alt"><button type="button" class="btn btn-default btn-sm" data-kapat>Kapat</button></div>
+</dialog>
+
+<dialog id="dlgSoru" class="tanim-pencere" aria-labelledby="dlgSoruBaslik">
+    <div class="pencere-baslik">
+        <h2 id="dlgSoruBaslik">Onay</h2>
+        <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="pencere-govde"><p id="soruMetin"></p></div>
+    <div class="pencere-alt">
+        <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        <button type="button" id="btnSoruEvet" class="btn btn-primary btn-sm">Evet</button>
+    </div>
+</dialog>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tertipsec.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/odemeemrisecim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tanimis.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/tertipsec.js" asp-append-version="true"></script>
+    <script src="~/js/odemeemrisecim.js" asp-append-version="true"></script>
+    <script src="~/js/tanimis.js" asp-append-version="true"></script>
+}

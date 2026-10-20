@@ -36,6 +36,10 @@ namespace Istemci.Pages
         public string Logo { get; private set; }
         public string HatirlananKullanici { get; private set; }
         public string IstekJetonu { get; private set; }
+        /// <summary>Bu IP adresinden hatalı deneme sınırı aşıldı; güvenlik kodu baştan gösterilir.</summary>
+        public bool GuvenlikKoduGerekli { get; private set; }
+        /// <summary>LDAP kullanılıyorsa "Şifremi unuttum" bağlantısı gösterilmez (eski lnkUnuttum).</summary>
+        public bool SifremiUnuttum { get; private set; }
 
         /// <summary>Sayfanın altındaki dil seçenekleri.</summary>
         public List<DilSecenegi> Diller { get; private set; } = new List<DilSecenegi>();
@@ -72,20 +76,24 @@ namespace Istemci.Pages
             Metinler["kodParolaGir"] = Metin.Menu("Giris_KodParolaGir");
             Metinler["kodGir"] = Metin.Menu("Giris_KodGir");
             Metinler["sunucuYok"] = Metin.Menu("Giris_SunucuYok");
+            Metinler["guvenlikKoduGir"] = Metin.Menu("Giris_GuvenlikKoduGir");
 
             YazilimAd = Ayar.Oku("yazilimAd", "SGB.net");
             KurumAdi = Ayar.Degisken(DateTime.Now.Year, "/KURUMAD");
             SistemUyarisi = Ayar.Oku("sistemUyarisi");
             Surum = SurumBul();
-            ArkaPlan = RastgeleArkaPlan();
+            ArkaPlan = RastgeleArkaPlan(ortam, Url);
             Logo = ortam.WebRootFileProvider.GetFileInfo("img/kurumlogo.jpg").Exists ? Url.Content("~/img/kurumlogo.jpg") : null;
             HatirlananKullanici = Request.Cookies["KulAd"];
             IstekJetonu = sahtecilik.GetAndStoreTokens(HttpContext).RequestToken;
+            GuvenlikKoduGerekli = GirisUclari.GuvenlikKoduGerekli(HttpContext);
+            SifremiUnuttum = SifremiUnuttumUclari.Kullanilabilir();
             return Page();
         }
 
-        /// <summary>wwwroot/img/giris klasöründeki resimlerden birini rastgele seçer. Klasör boşsa null döner (düz renkli arka plan).</summary>
-        private string RastgeleArkaPlan()
+        /// <summary>wwwroot/img/giris klasöründeki resimlerden birini rastgele seçer. Klasör boşsa null döner (düz renkli arka plan).
+        /// Şifremi Unuttum sayfası da kullanır.</summary>
+        public static string RastgeleArkaPlan(IWebHostEnvironment ortam, IUrlHelper Url)
         {
             // Dosyalar diskten değil web kökü sağlayıcısından okunur: kitaplıkla gelen wwwroot dosyaları
             // geliştirme sırasında exe'nin klasöründe değil, Istemci projesinin içindedir.

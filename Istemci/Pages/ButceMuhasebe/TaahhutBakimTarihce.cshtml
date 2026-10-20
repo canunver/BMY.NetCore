@@ -1,0 +1,51 @@
+@page
+@model TaahhutBakimTarihceModel
+@{
+    ViewData["Title"] = "Bakım Tarihçesi";
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans muh-tanim th-alt" data-sayfa="bakim">
+    <div class="th-iki-sutun">
+        <section class="kutu bolum bolum-liste">
+            <h2 class="bolum-baslik">Bakım Kayıtları</h2>
+            <div id="grdBakim" class="th-grid" style="height:440px" aria-label="Bakım kayıtları"></div>
+        </section>
+        <section class="kutu bolum">
+            <h2 class="bolum-baslik">Bakım Bilgisi</h2>
+            <div class="avans-arac mt-arac" role="toolbar" aria-label="Bakım işlemleri">
+                <button type="button" id="btnKaydet" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Kaydet</button>
+                <button type="button" id="btnSil" class="btn btn-default btn-sm" disabled><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Sil</button>
+                <button type="button" id="btnYeni" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Yeni Kayıt</button>
+                <button type="button" id="btnKapat" class="btn btn-default btn-sm" hidden><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Kapat</button>
+            </div>
+            <input type="hidden" id="hdnKod" />
+            <div class="tanim-form avans-alanlar" style="max-width:none">
+                <div class="form-group">
+                    <label class="control-label" for="txtTarih">Tarih</label>
+                    <div><input type="date" id="txtTarih" class="form-control input-sm th-tarih" /></div>
+                </div>
+                <div class="form-group ust-hizali">
+                    <label class="control-label" for="txtAciklama">Açıklama</label>
+                    <div><textarea id="txtAciklama" class="form-control input-sm" rows="16"></textarea></div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/taahhutkarti.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/muhtanim.js" asp-append-version="true"></script>
+    <script src="~/js/taahhutalt.js" asp-append-version="true"></script>
+}

@@ -2,9 +2,9 @@
    Pr. ve Gerç. Durumu ve Tamamlama Raporu sekmeleri. Ödenek tablosu eski OdenekTabloOl görünümündedir. */
 
 .yat-izleme .kutu.bolum {
-    --bolum-baslik: #e3edfa;
-    --bolum-govde: #f5f8fd;
-    --bolum-vurgu: #2f6fc4;
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-govde: var(--b1-govde);
+    --bolum-vurgu: var(--b1-vurgu);
     padding: 0 12px 12px;
     background: var(--bolum-govde);
     border: 1px solid var(--cizgi);
@@ -135,6 +135,6 @@
 
 .izleme-genel .rapor-menu .dropdown-menu button:hover,
 .izleme-genel .rapor-menu .dropdown-menu button:focus {
-    background: #e3edfa;
+    background: var(--b1-baslik);
     outline: none;
 }

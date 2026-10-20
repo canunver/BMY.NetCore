@@ -1,0 +1,338 @@
+/* Renk temaları (KYM/TemaDegistir ve sağ üstteki kullanıcı menüsü).
+   Kullanıcının seçtiği tema <html data-tema="ThemeN"> ile, üst şerit görünümü <html data-ust="renkli|sade"> ile uygulanır
+   (js/menu-on.js sayfa çizilmeden önce yazar). Her tema yalnızca aşağıdaki değişkenleri değiştirir; menü, düğmeler,
+   sekmeler, tablo (AG Grid) başlıkları, bölüm kutuları ve sayfa zemini bu değişkenlerden renk alır.
+   Önizleme kartları da data-tema taşıdığı için aynı değişkenlerle kendi temasında çizilir.
+
+   Değişkenler:
+     --tema-ana / --tema-koyu / --tema-acik / --tema-cizgi : vurgu rengi, koyusu (üzerine gelince), açık zemin, kenar
+     --tema-ust1 / --tema-ust2                             : renkli üst şeridin soldan sağa geçişi
+     --tema-zemin                                          : sayfa zemini
+     --b1-* : ana bölüm kutusu (eski mavi kutular)    --b2-* : ikinci bölüm kutusu (eski yeşil kutular)
+     --b4-* : dördüncü bölüm kutusu (eski mor kutular) ; her birinde -baslik, -govde, -vurgu
+   Sarı (salt okunur) ve beyaz (veri girilen) hücre renkleri temadan etkilenmez. */
+
+:root,
+[data-tema="Theme1"] {
+    --tema-ana: #1d6f8f;
+    --tema-koyu: #155670;
+    --tema-acik: #e4f0f5;
+    --tema-cizgi: #b9d6e2;
+    --tema-ust1: #155670;
+    --tema-ust2: #2a8bb0;
+    --tema-zemin: #f1f5f7;
+    --b1-baslik: #e3edfa; --b1-govde: #f5f8fd; --b1-vurgu: #2f6fc4;
+    --b2-baslik: #e2f3e8; --b2-govde: #f4fbf6; --b2-vurgu: #2e8b4e;
+    --b4-baslik: #efe6f8; --b4-govde: #faf6fd; --b4-vurgu: #7a4bb0;
+}
+
+[data-tema="Theme2"] {
+    --tema-ana: #a83f3f;
+    --tema-koyu: #862f2f;
+    --tema-acik: #f9e9e8;
+    --tema-cizgi: #ebc3c0;
+    --tema-ust1: #8a2f33;
+    --tema-ust2: #c0504d;
+    --tema-zemin: #f8f4f4;
+    --b1-baslik: #f8e3e2; --b1-govde: #fdf7f7; --b1-vurgu: #b5474a;
+    --b2-baslik: #e2f3e8; --b2-govde: #f4fbf6; --b2-vurgu: #2e8b4e;
+    --b4-baslik: #efe6f8; --b4-govde: #faf6fd; --b4-vurgu: #7a4bb0;
+}
+
+[data-tema="Theme3"] {
+    --tema-ana: #3f7a26;
+    --tema-koyu: #30601c;
+    --tema-acik: #e8f3df;
+    --tema-cizgi: #c3dcb2;
+    --tema-ust1: #2f5f1c;
+    --tema-ust2: #5a9a3a;
+    --tema-zemin: #f3f6f1;
+    --b1-baslik: #e3f0da; --b1-govde: #f7fbf3; --b1-vurgu: #4a8a2c;
+    /* yeşil temada ikinci bölümler yeşil kalırsa ana bölümlerle karışır: deniz mavisi olur */
+    --b2-baslik: #dceff1; --b2-govde: #f3fafb; --b2-vurgu: #23808a;
+    --b4-baslik: #efe6f8; --b4-govde: #faf6fd; --b4-vurgu: #7a4bb0;
+}
+
+[data-tema="Theme4"] {
+    --tema-ana: #9a5b00;
+    --tema-koyu: #7a4800;
+    --tema-acik: #fbefd9;
+    --tema-cizgi: #ecd2a6;
+    --tema-ust1: #7a4800;
+    --tema-ust2: #b8750f;
+    --tema-zemin: #f8f5f0;
+    --b1-baslik: #f6e7d3; --b1-govde: #fdf9f4; --b1-vurgu: #a8651a;
+    --b2-baslik: #e2f3e8; --b2-govde: #f4fbf6; --b2-vurgu: #2e8b4e;
+    --b4-baslik: #efe6f8; --b4-govde: #faf6fd; --b4-vurgu: #7a4bb0;
+}
+
+[data-tema="Theme5"] {
+    --tema-ana: #6b4fb3;
+    --tema-koyu: #553d94;
+    --tema-acik: #eee9f8;
+    --tema-cizgi: #d3c8ee;
+    --tema-ust1: #4f3a8c;
+    --tema-ust2: #7d62c4;
+    --tema-zemin: #f5f3f9;
+    --b1-baslik: #ece6f8; --b1-govde: #faf8fe; --b1-vurgu: #6b4fb3;
+    --b2-baslik: #e2f3e8; --b2-govde: #f4fbf6; --b2-vurgu: #2e8b4e;
+    /* mor temada dördüncü bölümler ana bölümlerle karışmasın diye maviye döner */
+    --b4-baslik: #e3edfa; --b4-govde: #f5f8fd; --b4-vurgu: #2f6fc4;
+}
+
+[data-tema="Theme6"] {
+    --tema-ana: #3d5368;
+    --tema-koyu: #2c3e50;
+    --tema-acik: #e7ecf1;
+    --tema-cizgi: #c6d0da;
+    --tema-ust1: #263544;
+    --tema-ust2: #4a6178;
+    --tema-zemin: #f2f4f6;
+    --b1-baslik: #e4e9ef; --b1-govde: #f7f9fb; --b1-vurgu: #4a6178;
+    --b2-baslik: #e2f3e8; --b2-govde: #f4fbf6; --b2-vurgu: #2e8b4e;
+    --b4-baslik: #efe6f8; --b4-govde: #faf6fd; --b4-vurgu: #7a4bb0;
+}
+
+/* Klasik: temalar genişletilmeden önceki sade görünüm (beyaz üst şerit, gri zemin, Bootstrap düğmeleri,
+   AG Grid'in kendi başlıkları). Aşağıdaki tema kuralları Klasik'te uygulanmaz. Seçim yapılmamışsa varsayılandır. */
+[data-tema="Klasik"] {
+    --tema-ana: #1d6f8f;
+    --tema-koyu: #155670;
+    --tema-acik: #e4f0f5;
+    --tema-cizgi: #b9d6e2;
+    --tema-ust1: #1d6f8f;
+    --tema-ust2: #e4f0f5;
+    --tema-zemin: #f3f5f7;
+    --b1-baslik: #e3edfa; --b1-govde: #f5f8fd; --b1-vurgu: #2f6fc4;
+    --b2-baslik: #e2f3e8; --b2-govde: #f4fbf6; --b2-vurgu: #2e8b4e;
+    --b4-baslik: #efe6f8; --b4-govde: #faf6fd; --b4-vurgu: #7a4bb0;
+}
+
+/* ---------- sayfa zemini ---------- */
+
+:root {
+    --zemin: var(--tema-zemin);
+}
+
+/* ---------- renkli üst şerit (varsayılan; data-ust="sade" ise beyaz kalır) ---------- */
+
+html:not([data-ust="sade"]):not([data-tema="Klasik"]) .menu-ust {
+    --murekkep: #ffffff;
+    --soluk: rgba(255, 255, 255, 0.78);
+    --zemin: rgba(255, 255, 255, 0.16);
+    --cizgi: rgba(255, 255, 255, 0.3);
+    color: #fff;
+    background: linear-gradient(90deg, var(--tema-ust1), var(--tema-ust2));
+    border-bottom-color: transparent;
+    box-shadow: 0 1px 4px rgba(22, 32, 43, 0.18);
+}
+
+html:not([data-ust="sade"]):not([data-tema="Klasik"]) .menu-ust :focus-visible {
+    outline-color: #fff;
+}
+
+html:not([data-ust="sade"]):not([data-tema="Klasik"]) .menu-ust .k-marka img {
+    padding: 2px 4px;
+    background: #fff;
+    border-radius: 6px;
+}
+
+html:not([data-ust="sade"]):not([data-tema="Klasik"]) .menu-ust .k-avatar {
+    color: var(--tema-koyu);
+    background: #fff;
+}
+
+/* Kullanıcı paneli şeridin içindedir ama beyaz zeminde çizilir: renkler eski haline döner */
+html:not([data-ust="sade"]):not([data-tema="Klasik"]) .menu-ust .k-kullanici-panel {
+    --murekkep: #16202b;
+    --soluk: #5c6875;
+    --zemin: var(--tema-zemin);
+    --cizgi: #dfe4ea;
+    color: var(--murekkep);
+}
+
+html:not([data-ust="sade"]):not([data-tema="Klasik"]) .menu-ust .k-kullanici-panel :focus-visible {
+    outline-color: var(--tema-ana);
+}
+
+/* Sade şeritte altında ince tema çizgisi */
+html[data-ust="sade"]:not([data-tema="Klasik"]) .menu-ust {
+    box-shadow: inset 0 -3px 0 var(--tema-ana);
+}
+
+/* ---------- sol menü ve alt bilgi ---------- */
+
+:where(html:not([data-tema="Klasik"])) .menu-yan .y-menu.burada {
+    background: var(--tema-acik);
+}
+
+:where(html:not([data-tema="Klasik"])) .menu-alt {
+    border-top: 2px solid var(--tema-cizgi);
+}
+
+/* Kullanıcı menüsündeki tema düğmeleri kendi temalarının rengini gösterir */
+.menu-ust .k-tema {
+    background: linear-gradient(135deg, var(--tema-ust1) 0 50%, var(--b1-baslik) 50% 100%);
+}
+
+/* ---------- Bootstrap bileşenleri ---------- */
+
+/* Bootstrap'in bağlantı rengiyle aynı güçte: sayfaların kendi bağlantı renkleri yine geçerlidir */
+:where(html:not([data-tema="Klasik"])) a {
+    color: var(--tema-ana);
+}
+
+:where(html:not([data-tema="Klasik"])) a:hover,
+:where(html:not([data-tema="Klasik"])) a:focus {
+    color: var(--tema-koyu);
+}
+
+:where(html:not([data-tema="Klasik"])) .btn-primary {
+    color: #fff;
+    background-color: var(--tema-ana);
+    border-color: var(--tema-koyu);
+}
+
+:where(html:not([data-tema="Klasik"])) .btn-primary:hover,
+:where(html:not([data-tema="Klasik"])) .btn-primary:focus,
+:where(html:not([data-tema="Klasik"])) .btn-primary.focus,
+:where(html:not([data-tema="Klasik"])) .btn-primary:active,
+:where(html:not([data-tema="Klasik"])) .btn-primary.active,
+:where(html:not([data-tema="Klasik"])) .open > .dropdown-toggle.btn-primary,
+:where(html:not([data-tema="Klasik"])) .btn-primary:active:hover,
+:where(html:not([data-tema="Klasik"])) .btn-primary:active:focus,
+:where(html:not([data-tema="Klasik"])) .btn-primary.active:hover,
+:where(html:not([data-tema="Klasik"])) .btn-primary.active:focus {
+    color: #fff;
+    background-color: var(--tema-koyu);
+    border-color: var(--tema-koyu);
+}
+
+:where(html:not([data-tema="Klasik"])) .btn-primary.disabled,
+:where(html:not([data-tema="Klasik"])) .btn-primary[disabled],
+:where(html:not([data-tema="Klasik"])) .btn-primary.disabled:hover,
+:where(html:not([data-tema="Klasik"])) .btn-primary[disabled]:hover,
+:where(html:not([data-tema="Klasik"])) .btn-primary.disabled:focus,
+:where(html:not([data-tema="Klasik"])) .btn-primary[disabled]:focus {
+    background-color: var(--tema-ana);
+    border-color: var(--tema-koyu);
+}
+
+:where(html:not([data-tema="Klasik"])) .btn-primary .badge {
+    color: var(--tema-ana);
+}
+
+:where(html:not([data-tema="Klasik"])) .btn-default:hover,
+:where(html:not([data-tema="Klasik"])) .btn-default:focus {
+    border-color: var(--tema-cizgi);
+}
+
+:where(html:not([data-tema="Klasik"])) .btn-link {
+    color: var(--tema-ana);
+}
+
+:where(html:not([data-tema="Klasik"])) .form-control:focus {
+    border-color: var(--tema-ana);
+    box-shadow: 0 0 0 3px var(--tema-acik);
+}
+
+:where(html:not([data-tema="Klasik"])) input[type="checkbox"],
+:where(html:not([data-tema="Klasik"])) input[type="radio"],
+:where(html:not([data-tema="Klasik"])) progress {
+    accent-color: var(--tema-ana);
+}
+
+:where(html:not([data-tema="Klasik"])) .nav-tabs > li.active > a,
+:where(html:not([data-tema="Klasik"])) .nav-tabs > li.active > a:hover,
+:where(html:not([data-tema="Klasik"])) .nav-tabs > li.active > a:focus {
+    color: var(--tema-koyu);
+    box-shadow: inset 0 3px 0 var(--tema-ana);
+}
+
+:where(html:not([data-tema="Klasik"])) .nav-tabs > li > a:hover {
+    border-color: var(--tema-acik) var(--tema-acik) var(--tema-cizgi);
+    background-color: var(--tema-acik);
+}
+
+:where(html:not([data-tema="Klasik"])) .nav-pills > li.active > a,
+:where(html:not([data-tema="Klasik"])) .nav-pills > li.active > a:hover,
+:where(html:not([data-tema="Klasik"])) .nav-pills > li.active > a:focus,
+:where(html:not([data-tema="Klasik"])) .pagination > .active > a,
+:where(html:not([data-tema="Klasik"])) .pagination > .active > span,
+:where(html:not([data-tema="Klasik"])) .pagination > .active > a:hover,
+:where(html:not([data-tema="Klasik"])) .pagination > .active > span:hover,
+:where(html:not([data-tema="Klasik"])) .list-group-item.active,
+:where(html:not([data-tema="Klasik"])) .list-group-item.active:hover,
+:where(html:not([data-tema="Klasik"])) .list-group-item.active:focus,
+:where(html:not([data-tema="Klasik"])) .dropdown-menu > .active > a,
+:where(html:not([data-tema="Klasik"])) .dropdown-menu > .active > a:hover,
+:where(html:not([data-tema="Klasik"])) .dropdown-menu > .active > a:focus,
+:where(html:not([data-tema="Klasik"])) .label-primary,
+:where(html:not([data-tema="Klasik"])) .bg-primary {
+    color: #fff;
+    background-color: var(--tema-ana);
+    border-color: var(--tema-ana);
+}
+
+:where(html:not([data-tema="Klasik"])) .pagination > li > a,
+:where(html:not([data-tema="Klasik"])) .pagination > li > span,
+:where(html:not([data-tema="Klasik"])) .text-primary {
+    color: var(--tema-ana);
+}
+
+:where(html:not([data-tema="Klasik"])) .progress-bar:not(.progress-bar-success):not(.progress-bar-info):not(.progress-bar-warning):not(.progress-bar-danger) {
+    background-color: var(--tema-ana);
+}
+
+:where(html:not([data-tema="Klasik"])) .panel-primary {
+    border-color: var(--tema-ana);
+}
+
+:where(html:not([data-tema="Klasik"])) .panel-primary > .panel-heading {
+    color: #fff;
+    background-color: var(--tema-ana);
+    border-color: var(--tema-ana);
+}
+
+/* Açılış sayfasındaki bilgi pencerelerinin başlığı */
+:where(html:not([data-tema="Klasik"])) .bilgi-ekran > .panel-heading {
+    background: var(--tema-acik);
+    border-bottom-color: var(--tema-cizgi);
+    box-shadow: inset 3px 0 0 var(--tema-ana);
+}
+
+/* Pencere (Sgb.pencere) başlığı */
+:where(html:not([data-tema="Klasik"])) .sgb-pencere-baslik {
+    background: var(--tema-acik);
+    border-bottom-color: var(--tema-cizgi);
+}
+
+/* ---------- tablolar (AG Grid) ----------
+   AG Grid kendi stilini sayfaya sonradan eklediği için seçici daha güçlü yazılır. Yalnızca başlık, seçili satır ve
+   üzerine gelme rengi değişir; hücre zeminleri (beyaz giriş, sarı salt okunur) olduğu gibi kalır. */
+
+html:not([data-tema="Klasik"]) body .ag-theme-quartz,
+:where(html:not([data-tema="Klasik"])) .ag-theme-quartz.sgb-grid {
+    --ag-header-background-color: var(--tema-acik);
+    --ag-header-foreground-color: var(--tema-koyu);
+    --ag-header-column-resize-handle-color: var(--tema-cizgi);
+    --ag-active-color: var(--tema-ana);
+    --ag-selected-row-background-color: color-mix(in srgb, var(--tema-ana) 14%, #fff);
+    --ag-row-hover-color: color-mix(in srgb, var(--tema-ana) 6%, transparent);
+    --ag-range-selection-border-color: var(--tema-ana);
+    --ag-checkbox-checked-color: var(--tema-ana);
+    --ag-input-focus-border-color: var(--tema-ana);
+}
+
+/* Kullanıcı menüsünde tema düğmelerinin altındaki "Tema ayarları..." bağlantısı */
+.menu-ust .k-tema-ayar {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--tema-ana);
+}
+
+.menu-ust .k-tema-ayar:hover {
+    color: var(--tema-koyu);
+    text-decoration: underline;
+}

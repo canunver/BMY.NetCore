@@ -1,0 +1,172 @@
+/* Personel İzin Devir Bilgileri (InsanKaynaklari/PersonelIzinDevir): üstte sıkı ölçüt kutusu, altta sayfanın kalan yüksekliğini
+   dolduran grid. Gridde veri girilen hücre beyaz, salt okunur hücre sarı. */
+
+.izd {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.izd .kutu.izd-bolum {
+    padding: 8px 12px;
+    background: var(--b1-govde);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+}
+
+.izd .kutu.izd-liste {
+    padding: 6px;
+    background: #fff;
+}
+
+.izd-arac {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.izd-arac .btn {
+    margin: 0;
+}
+
+.izd-yardim {
+    margin-left: auto !important;
+    min-width: 28px;
+    font-weight: 600;
+}
+
+.izd-not {
+    margin: 0 0 8px;
+    padding: 6px 10px;
+    font-size: 12px;
+    color: var(--soluk);
+    background: #fff;
+    border: 1px solid var(--cizgi);
+    border-radius: 6px;
+}
+
+/* ölçütler alt alta, etiket solda */
+.izd-form {
+    display: grid;
+    grid-template-columns: 110px minmax(0, 420px);
+    align-items: center;
+    gap: 4px 10px;
+    font-size: 12px;
+}
+
+.izd-etiket {
+    margin: 0;
+    font-weight: 600;
+}
+
+.izd-form .form-control,
+.izd-form .btn-sm {
+    height: 26px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: 12px;
+}
+
+.izd-yan {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.izd-yil {
+    width: 90px;
+}
+
+.izd-donem {
+    color: var(--soluk);
+}
+
+.izd-birim input[readonly] {
+    flex: 1 1 auto;
+    cursor: pointer;
+    background: #fff;
+}
+
+/* personel tipi çoklu seçimi */
+.izd-coklu {
+    position: relative;
+}
+
+.izd-coklu-dugme {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    text-align: left;
+}
+
+.izd-coklu-metin {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.izd-coklu-liste {
+    width: 100%;
+    max-height: 300px;
+    overflow: auto;
+    padding: 4px 0;
+}
+
+.izd-coklu-liste label {
+    display: block;
+    margin: 0;
+    padding: 2px 10px;
+    font-weight: normal;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.izd-coklu-liste label:hover {
+    background: var(--tema-acik);
+}
+
+.izd-coklu-bos {
+    padding: 2px 10px;
+    color: var(--soluk);
+}
+
+.izd-grid {
+    height: 400px;
+}
+
+.izd .hucre-salt {
+    background: #fff8d6;
+}
+
+.izd .hucre-girilir {
+    background: #fff;
+}
+
+/* pencereler */
+.izd-pencere {
+    width: min(560px, 95vw);
+}
+
+.izd-pencere-dar {
+    width: min(420px, 95vw);
+}
+
+.izd-birim-ara {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.izd-birim-agac {
+    max-height: 55vh;
+    overflow: auto;
+}
+
+@media (max-width: 600px) {
+    .izd-form {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

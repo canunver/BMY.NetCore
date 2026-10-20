@@ -1,0 +1,29 @@
+/* Sistemi Kullanan Kişilerin Listesi ve Sistem Kullanım Grafiği (js/calisankullanici.js) */
+
+.calisan-kullanici .avans-alanlar { max-width: 760px; }
+.calisan-kullanici .ck-satir { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.calisan-kullanici .ck-sayfa { max-width: 320px; }
+.calisan-kullanici .ck-sure { width: 80px; }
+.calisan-kullanici .ck-tarih { width: 150px; }
+.calisan-kullanici .ck-hizli { display: inline-flex; gap: 4px; }
+.calisan-kullanici .ck-zaman label { margin: 0 8px 0 0; font-weight: normal; white-space: nowrap; }
+.calisan-kullanici .ck-adet { color: var(--soluk); }
+.calisan-kullanici .ck-grid { width: 100%; height: 400px; }
+
+.calisan-kullanici .ck-grafik { position: relative; min-height: 120px; }
+.calisan-kullanici .ck-figur { max-width: 1100px; }
+.calisan-kullanici .ck-figur svg { max-height: 64vh; }
+.calisan-kullanici .ck-cizgi { stroke-width: 2; }
+.calisan-kullanici .ck-ipucu {
+    position: absolute;
+    transform: translateX(-50%);
+    padding: 3px 8px;
+    font-size: 12px;
+    white-space: nowrap;
+    color: var(--murekkep);
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
+    pointer-events: none;
+}

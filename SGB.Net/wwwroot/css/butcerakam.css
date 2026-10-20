@@ -98,7 +98,7 @@
 
 .butce-rakam .rapor-menu .dropdown-menu button:hover,
 .butce-rakam .rapor-menu .dropdown-menu button:focus {
-    background: #e3edfa;
+    background: var(--b1-baslik);
     outline: none;
 }
 
@@ -163,16 +163,16 @@
 }
 
 .butce-rakam-gelismis .gelismis-bolum {
-    --bolum-baslik: #e3edfa;
-    --bolum-vurgu: #2f6fc4;
+    --bolum-baslik: var(--b1-baslik);
+    --bolum-vurgu: var(--b1-vurgu);
     margin: 0;
     padding: 0 12px 6px;
-    background: #f5f8fd;
+    background: var(--b1-govde);
 }
 
 .butce-rakam-gelismis .gelismis-bolum + .gelismis-bolum {
     --bolum-baslik: #e2f3e6;
-    --bolum-vurgu: #2e8b4e;
+    --bolum-vurgu: var(--b2-vurgu);
     background: #f5fbf6;
 }
 

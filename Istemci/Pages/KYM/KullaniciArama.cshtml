@@ -75,6 +75,13 @@
                         <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Göreve Kişi Ata
                     </button>
                 }
+                @if (Model.IslemTarihceAlabilir)
+                {
+                    <!-- Eski KYM/Raporlar.aspx'teki Tarihçe Raporu; Raporlar sayfası Core'da yok. -->
+                    <button type="button" id="btnIslemTarihce" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span> İşlem Tarihçesi
+                    </button>
+                }
                 <button type="button" id="btnDisaAktar" class="btn btn-default btn-sm pull-right">
                     <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> @Metin.Kullanici("DisaAktar")
                 </button>
@@ -84,10 +91,54 @@
     </section>
 </div>
 
+@if (Model.IslemTarihceAlabilir)
+{
+    <dialog id="dlgIslemTarihce" class="tanim-pencere" aria-labelledby="dlgIslemTarihceBaslik">
+        <div class="pencere-baslik">
+            <h2 id="dlgIslemTarihceBaslik">Kullanıcı İşlem Tarihçesi</h2>
+            <button type="button" class="close" data-kapat aria-label="Kapat"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="pencere-govde">
+            <form id="frmIslemTarihce" class="tanim-form" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="itTarih1">Tarih</label>
+                    <div class="it-tarihler">
+                        <input type="date" id="itTarih1" class="form-control input-sm" required aria-label="Başlangıç tarihi" />
+                        <span aria-hidden="true">-</span>
+                        <input type="date" id="itTarih2" class="form-control input-sm" required aria-label="Bitiş tarihi" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="itTc">İşlem Yapılan T.C. Kimlik No</label>
+                    <div><input type="text" id="itTc" class="form-control input-sm" inputmode="numeric" maxlength="11" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="itKullanici">İşlem Yapılan Kullanıcı Adı</label>
+                    <div><input type="text" id="itKullanici" class="form-control input-sm" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="itIslemYapan">İşlem Yapan Kullanıcı Adı</label>
+                    <div><input type="text" id="itIslemYapan" class="form-control input-sm" /></div>
+                </div>
+            </form>
+        </div>
+        <div class="pencere-alt">
+            <button type="button" id="btnIslemTarihceYazdir" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Yazdır
+            </button>
+            <button type="button" class="btn btn-default btn-sm" data-kapat>Vazgeç</button>
+        </div>
+    </dialog>
+}
+
 <script type="application/json" id="metinler">@Html.Raw(Model.MetinlerJson)</script>
 
 @section Baslik {
     <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <style>
+        #dlgIslemTarihce .it-tarihler { display: flex; align-items: center; gap: 6px; }
+        #dlgIslemTarihce .it-tarihler input { width: 150px; }
+    </style>
 }
 @section Betikler {
     <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>

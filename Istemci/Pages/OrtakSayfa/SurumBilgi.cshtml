@@ -1,0 +1,40 @@
+@page
+@model SurumBilgiModel
+@{
+    // Sistem Dosyaları Sürüm Bilgisi (eski OrtakSayfa/SurumBilgi.aspx). Uygulama klasöründeki dll dosyaları;
+    // sütun başlığına tıklanarak sıralanır.
+    ViewData["Title"] = Metin.Ortak("ISTSUR001", "Sistem Dosyaları Sürüm Bilgisi");
+    ViewData["GovdeSinif"] = "avans-sayfa";
+}
+@if (!Model.Yetkili)
+{
+    <div class="alert alert-warning" role="alert">Bu sayfayı kullanma yetkiniz yok.</div>
+    return;
+}
+
+<div class="avans surum-bilgi">
+    <section class="kutu bolum">
+        <div class="btn-toolbar tanim-arac sb-arac" role="toolbar">
+            <button type="button" id="btnYenile" class="btn btn-primary btn-sm">
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Yenile
+            </button>
+            <label class="checkbox-inline sb-secim">
+                <input type="checkbox" id="chkSGBdll" /> @Metin.Ortak("ISTSUR002", "Sadece SGB.net dll dosyalarını göster")
+            </label>
+            <span id="lblAdet" class="sb-adet" role="status"></span>
+        </div>
+        <div id="lblKlasor" class="sb-klasor"></div>
+        <div id="hata" class="alert alert-danger" role="alert" hidden></div>
+        <div id="grdDosya" class="sb-grid" aria-label="@Metin.Ortak("ISTSUR001", "Sistem Dosyaları Sürüm Bilgisi")"></div>
+    </section>
+</div>
+
+@section Baslik {
+    <link rel="stylesheet" href="~/css/tanim.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avans.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/surumbilgi.css" asp-append-version="true" />
+}
+@section Betikler {
+    <script src="~/lib/ag-grid/ag-grid-community.min.js"></script>
+    <script src="~/js/surumbilgi.js" asp-append-version="true"></script>
+}
